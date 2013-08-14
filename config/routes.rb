@@ -2,6 +2,7 @@ Staffnet2::Application.routes.draw do
 
   root  'static_pages#home'
 
+
   scope '/admin' do
 
     devise_for :users
