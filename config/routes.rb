@@ -1,5 +1,12 @@
 Staffnet2::Application.routes.draw do
-  get "static_pages/home"
+
+  root  'static_pages#home'
+
+  scope '/admin' do
+
+    devise_for :users
+
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -54,6 +61,4 @@ Staffnet2::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
-  root  'admin/static_pages#home'
 end

@@ -26,6 +26,8 @@ module Staffnet2
     # config.i18n.default_locale = :de
 
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    config.filter_parameters += [:password, :password_confirmation]
+    config.autoload_paths += %W(#{config.root}/lib/validations)
 
     config.generators do |g|
       g.test_framework :rspec, fixture: true
