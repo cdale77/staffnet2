@@ -1,0 +1,276 @@
+@import "bootstrap";
+
+
+/********* MIX-INS, VARS, ETC *************/
+$grayMediumLight: #eaeaea;
+$grayLight: #ddd;
+$gray: #666;
+$grayDark: #333;
+$red: #ff0000;
+$white: #ffffff;
+$white-almost: #fcfcfc;
+
+
+/************ BASIC CLASSES ***************/
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+.red {
+  color: $red;
+}
+
+
+/************* FONTS *********************/
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.7em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $grayLight;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/************ LINKS *********************/
+
+footer a {
+  color: $white !important;
+}
+
+a.hover_only {
+  text-decoration: none;
+}
+
+a.hover_only:hover {
+  text-decoration: underline;
+}
+
+a.hover-underline-grey:link {
+  text-decoration: none;
+  color: $grayDark;
+}
+
+a.hover-underline-grey:visited {
+  text-decoration: none;
+  color: $grayDark;
+}
+
+a.hover-underline-grey:hover {
+  text-decoration: underline;
+  color: $grayDark;
+}
+
+a.hover-underline-grey:active {
+  text-decoration: underline;
+  color: $grayDark;
+}
+
+
+/************ BASIC SETUP *****************/
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding: 10px 10px 20px 10px;
+
+  background: url("bg1.jpg");
+}
+
+#main-wrapper {
+  background: url("bg2.jpg");
+  padding: 20px 0px;
+
+}
+
+.container-main {
+  background-color: $white;
+  padding: 20px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.35);
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+
+/************** HEADER ********************/
+header {
+  margin-top: 5px;
+  height: 80px;
+  background-color: $white;
+  position: relative;
+
+  /*z-index: 20;                      */
+  box-shadow: 0px 1px 1px
+  rgba(0, 0, 0, .35), 0px -1px 1px
+  rgba(0, 0, 0, .15);
+  -webkit-box-shadow: 0px 1px 1px
+  rgba(0, 0, 0, .35), 0px -1px 1px
+  rgba(0, 0, 0, .15);
+  -moz-box-shadow: 0px 1px 1px
+  rgba(0, 0, 0, .35), 0px -1px 1px
+  rgba(0, 0, 0, .15);
+}
+
+div.logo a {
+  color: $grayLight;
+  text-decoration: none;
+  font-size: 26px;
+  line-height: 68px;
+}
+
+div.navbar {
+  float: right;
+  background: none !important;
+  border: none;
+  padding: 0xp;
+  margin: 0px;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+ul.nav {
+  list-style: none;
+}
+
+ul.nav li {
+  line-height: 20px;
+  float: left;
+}
+
+ul.nav li a.nav-link {
+  color: $gray;
+  text-shadow: none;
+  font-size: 16px;
+  padding: 28px 20px;
+}
+
+.menu {
+  padding-bottom: 10px;
+  .menu-link-active {
+    text-decoration: none;
+    color: $grayDark;
+    curor: pointer;
+  }
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: $white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+  &:hover {
+    color: $white;
+    text-decoration: none;
+  }
+}
+
+/******************* FOOTER ***************/
+footer {
+  margin-top: 20px;
+  padding: 40px 0px 40px 0px;
+  background: url(footer_bg.jpg);
+  color: $white-almost !important;
+}
+
+footer h3 {
+  padding: 2px 0px !important;
+  margin-bottom: 10px;
+  color: $white-almost !important;
+}
+
+textarea#msg {
+  width: 81%;
+}
+
+
+.clear {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+
+#email_template {
+  padding-left: 20px;
+
+}
+
+.bootstrap-timepicker table td input {
+  width: 35px;
+
+}
+
+.padbottom {
+  padding-bottom: 10px;
+}
+
+.padtop {
+  padding-top: 10px;
+}
+
+.padtopmore {
+  padding-top: 15px;
+
+}
+
+
+/****************** TABLES ****************/
+
+table {
+  text-align: left;
+}
+
+th,td {
+  padding: 3px 6px 3px 6px
+}
+
+
+/****************** FORMS ****************/
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}
