@@ -46,4 +46,13 @@ describe "UserPages" do
       end
     end
   end
+
+  describe 'edit user' do
+    before { visit edit_user_registration_path(user) }
+
+    describe 'page' do
+      it { should have_selector('h1', text: 'Edit user') }
+      it { should have_content(user.first_name) }
+    end
+  end
 end
