@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   #:token_authenticatable,
   #:trackable, and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable, :lockable, :timeoutable,
-         :recoverable, :rememberable
+         :recoverable, :rememberable, :validatable
 
   ## SET UP ENVIRONMENT
   include Regex
