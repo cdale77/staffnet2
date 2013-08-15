@@ -41,8 +41,8 @@ describe "UserPages" do
         before { click_button 'New user' }
         let(:user) { User.find_by(email: 'example@example.com') }
 
-        it { should have_title(user.first_name) }
-        it { should have_selector('div.alert.alert-success', text: 'Success') }
+        it { should have_title('Staffnet:Home') }
+        it { should have_selector('div.alert') }
       end
     end
   end
