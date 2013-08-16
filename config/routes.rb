@@ -5,7 +5,7 @@ Staffnet2::Application.routes.draw do
 
   scope '/admin' do
 
-    devise_for :users, :controllers => { :registrations => 'users/registrations' }
+    devise_for :users#, :controllers => { :registrations => 'users/registrations' }
 
   end
 

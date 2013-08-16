@@ -1,3 +1,4 @@
+=begin
 class Users::RegistrationsController < Devise::RegistrationsController
   #def resource_params
   #  params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
@@ -12,4 +13,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #end
   private :sign_up_params
   #private :account_update_params
-end
+end=end
