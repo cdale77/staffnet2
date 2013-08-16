@@ -1,0 +1,36 @@
+<% provide(:title, @user.full_name) %>
+<h1>User profile</h1>
+<div class="row">
+  <div class="span4">
+    <div class="row">
+      <div class="span2">
+        <h3 class="user-name"><%= @user.full_name %></h3>
+      </div>
+      <div class="span2 padtop">
+        <div class="buttons">
+          <%= link_to 'edit', '#', class: 'btn btn-mini', type: 'button' %>
+          <%= link_to 'delete', '#', method: :delete,
+                      data: { confirm: "You sure?" },
+                      class: 'btn btn-mini btn-danger', type: 'button' %>
+        </div>
+      </div>
+    </div>
+    <div>
+      <table>
+        <tr height="5px"></tr>
+        <tr>
+          <th>Email:</th>
+          <td><%= mail_to @user.email, @user.email %></td>
+        </tr>
+        <tr>
+          <th>Modified:</th>
+          <td><%= @user.updated_at %></td>
+        </tr>
+        <tr>
+          <th>Created:</th>
+          <td><%= @user.created_at %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
