@@ -56,7 +56,13 @@ class User < ActiveRecord::Base
    #         length: { maximum: 64, minimum: 2, message: 'must be between 2 and 64 characters.' }
 
   validates :password, presence: { message: 'required' },
-            length: { minimum: 10, message: 'must be be at least 10 characters.' }
+            length: { minimum: 10, message: 'must be be at least 10 characters.' },
+            on: :create
+
+  validates :password,
+            length: { minimum: 10, message: 'must be be at least 10 characters.' },
+            on: :update,
+            allow_blank: true
 
 
   def full_name

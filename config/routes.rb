@@ -2,11 +2,9 @@ Staffnet2::Application.routes.draw do
 
   root  'static_pages#home'
 
-
+  devise_for :users#, :controllers => { :registrations => 'users/registrations' }
   scope '/admin' do
-
-    devise_for :users#, :controllers => { :registrations => 'users/registrations' }
-
+    resources :users
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

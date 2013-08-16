@@ -8,7 +8,7 @@
       </div>
       <div class="span2 padtop">
         <div class="buttons">
-          <%= link_to 'edit', '#', class: 'btn btn-mini', type: 'button' %>
+          <%= link_to 'edit', edit_user_path(@user), class: 'btn btn-mini', type: 'button' %>
           <%= link_to 'delete', '#', method: :delete,
                       data: { confirm: "You sure?" },
                       class: 'btn btn-mini btn-danger', type: 'button' %>

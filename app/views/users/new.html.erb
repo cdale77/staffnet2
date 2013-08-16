@@ -2,9 +2,9 @@
 <div class="row">
   <div class="span8 offset2">
     <h1>New user</h1>
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-        <%# render 'shared/error_messages', object: f.object %>
-        <%= devise_error_messages! %>
+    <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%# devise_error_messages! %>
         <div class="row">
           <div class="span4">
             <div class="input">

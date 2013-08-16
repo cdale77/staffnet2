@@ -31,7 +31,7 @@ describe "AuthenticationPages" do
         end
         it { should have_content('Staffnet') }
         it { should have_title('Staffnet:Home') }
-        it { should have_selector('div.alert', text: user.full_name) }
+        it { should have_selector('div.alert', text: 'Signed in successfully') }
       end
     end
   end

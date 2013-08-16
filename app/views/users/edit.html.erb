@@ -1,2 +1,36 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<% provide(:title, 'Edit user') %>
+<div class="row">
+  <div class="span8 offset2">
+    <h1>Edit user</h1>
+    <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="row">
+          <div class="span4">
+            <div class="input">
+              <%= f.label :first_name %>
+              <%= f.text_field :first_name %>
+            </div>
+          </div>
+          <div class="span4">
+            <div class="input">
+              <%= f.label :last_name %>
+              <%= f.text_field :last_name %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span4">
+            <div class="input">
+              <%= f.label :email %>
+              <%= f.text_field :email %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span8">
+            <%= f.submit 'Edit user', class: 'btn btn-large btn-primary' %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
