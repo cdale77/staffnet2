@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-  #before_filter :configure_permitted_parameters
-
   def new
     @user = User.new
   end
@@ -21,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def index
-
+    @users = User.all
   end
 
   def edit
@@ -39,25 +37,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    #User.find(params[:id]).destroy
-    #flash[:success] = "User destroyed."
-    #redirect_to users_url
+    User.find(params[:id]).destroy
+    flash[:success] = "User destroyed."
+    redirect_to users_url
   end
 
   private
-=begin
-
-  #this is for strong_parameters and Devise.
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:first_name, :last_name,
-               :email, :password, :password_confirmation)
-    end
-    devise_parameter_sanitizer.for(:account_update) do |u|
-      u.permit(:first_name, :last_name, :email )
-    end
-  end
-=end
     def user_params
       if params[:user][:password].blank?
         params.require(:user).permit(:first_name, :last_name, :email)
@@ -65,12 +50,5 @@ class UsersController < ApplicationController
         params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       end
     end
-=begin
-    def clean_password
-      if params[:user][:password].blank?
-        params[:user].delete(:password)
-        params[:user].delete(:password_confirmation)
-      end
-    end
-=end
+
 end

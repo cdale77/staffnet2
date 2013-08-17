@@ -41,6 +41,26 @@ describe "UserPages" do
     end
   end
 
+  describe 'index' do
+    before do
+      FactoryGirl.create(:user, first_name: 'Bob', last_name: 'Smith', email: 'bob@example.com')
+      FactoryGirl.create(:user, first_name: 'Ben', last_name: 'Jones',  email: 'ben@example.com')
+      visit users_path
+    end
+    it { should have_title('All users') }
+    it 'should list each user' do
+      User.all.each do |user|
+        expect(page).to have_selector('td', text: user.first_name)
+      end
+    end
+    it 'should have show and edit links for users' do
+      User.all.each do |user|
+        expect(page).to have_link('details', user_path(user))
+        expect(page).to have_link('edit', edit_user_path(user))
+      end
+    end
+  end
+
   describe 'edit user' do
     before { visit edit_user_path(user) }
 
