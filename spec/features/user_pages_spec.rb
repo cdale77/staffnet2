@@ -41,17 +41,6 @@ describe "UserPages" do
     end
   end
 
-  describe 'show' do
-    before { visit user_path(user) }
-    describe 'page' do
-      it { should have_content (user.first_name) }
-      it { should have_content (user.last_name) }
-      describe 'links' do
-        it { should have_link('edit', href: edit_user_path(user)) }
-      end
-    end
-  end
-
   describe 'edit user' do
     before { visit edit_user_path(user) }
 
@@ -82,6 +71,28 @@ describe "UserPages" do
       it { should have_selector('div.alert.alert-success') }
       specify { expect(user.reload.first_name).to  eq new_first_name }
       specify { expect(user.reload.email).to eq new_email }
+    end
+  end
+
+  describe 'show' do
+    before { visit user_path(user) }
+    describe 'page' do
+      it { should have_content (user.first_name) }
+      it { should have_content (user.last_name) }
+      describe 'links' do
+        it { should have_link('edit', href: edit_user_path(user)) }
+        it { should have_link('delete', href: user_path(user)) }
+      end
+    end
+  end
+
+  describe 'delete' do
+    before do
+      test_sign_in(user)
+      visit user_path(user)
+    end
+    it 'should delete a user' do
+      expect { click_link 'delete' }.to change(User, :count).by(-1)
     end
   end
 end
