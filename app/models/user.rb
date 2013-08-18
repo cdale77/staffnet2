@@ -25,6 +25,7 @@
 #  authentication_token   :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  role                   :string(255)      default("")
 #
 
 class User < ActiveRecord::Base
@@ -69,9 +70,12 @@ class User < ActiveRecord::Base
     first_name + ' ' + last_name
   end
 
+  def self.roles
+    Staffnet2::Application.config.user_roles
+  end
 
   def role?(base_role)
-    Staffnet2::Application.config.user_roles.index(base_role.to_s) <= Staffnet2::Application.config.user_roles.index(role)
+    role.present? && User.roles.index(base_role.to_s) <= User.roles.index(role)
   end
 
   private

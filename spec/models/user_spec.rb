@@ -25,6 +25,7 @@
 #  authentication_token   :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  role                   :string(255)      default("")
 #
 
 require 'spec_helper'
