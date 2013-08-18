@@ -38,5 +38,13 @@ module Staffnet2
       g.javascripts = false
       g.helper = false
     end
+
+    ## SETTINGS
+
+    config.user_roles = %w[moderator admin superadmin]
+
+
+
+
   end
 end

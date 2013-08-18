@@ -69,10 +69,16 @@ class User < ActiveRecord::Base
     first_name + ' ' + last_name
   end
 
+
+  def role?(base_role)
+    Staffnet2::Application.config.user_roles.index(base_role.to_s) <= Staffnet2::Application.config.user_roles.index(role)
+  end
+
   private
   #def set_user_defaults  #set attributes not required by validations to avoid nil errors
   #  self.created_by ||= 0
   #end
+
 
 
 end
