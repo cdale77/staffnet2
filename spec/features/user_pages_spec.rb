@@ -1,12 +1,28 @@
 require 'spec_helper'
 
+#for easy sign-in using Devise
+#include Warden::Test::Helpers
+#Warden.test_mode!
+
 describe "UserPages" do
+
   subject { page }
+
   let(:user) { FactoryGirl.create(:user) }
 
+  before do
+    visit new_user_session_path
+    fill_in 'Email',    with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign in'
+  end
 
   describe 'new user' do
-    before { visit new_user_path }
+
+    before  do
+      visit new_user_path
+    end
+
     it { should have_selector('h1', text: 'New user') }
     it { should have_title('Staffnet:New user') }
 
@@ -24,7 +40,7 @@ describe "UserPages" do
       before do
         fill_in 'First name',             with: 'Brad'
         fill_in 'Last name',              with: 'Johnson'
-        fill_in 'Email',                  with: 'example@example.com'
+        fill_in 'Email',                  with: 'example' + rand(1..500).to_s + '@example.com'
         fill_in 'Password',               with: 'foobar7878'
         fill_in 'Confirmation',           with: 'foobar7878'
       end
@@ -33,7 +49,6 @@ describe "UserPages" do
       end
       describe 'after saving user' do
         before { click_button 'New user' }
-        let(:user) { User.find_by(email: 'example@example.com') }
 
         it { should have_title('Staffnet:Home') }
         it { should have_selector('div.alert') }
@@ -107,10 +122,7 @@ describe "UserPages" do
   end
 
   describe 'delete' do
-    before do
-      test_sign_in(user)
-      visit user_path(user)
-    end
+    before { visit user_path(user) }
     it 'should delete a user' do
       expect { click_link 'delete' }.to change(User, :count).by(-1)
     end

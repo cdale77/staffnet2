@@ -17,10 +17,6 @@ describe "AuthenticationPages" do
         before { click_button 'Sign in' }
         it { should have_selector('h1', 'Sign in') }
         it { should have_selector('div.alert', text: 'Invalid') }
-        describe "after visiting another page" do
-          before { click_link "Home" }
-          it { should_not have_selector('div.alert') }
-        end
       end
 
       describe 'with valid information' do
@@ -32,6 +28,10 @@ describe "AuthenticationPages" do
         it { should have_content('Staffnet') }
         it { should have_title('Staffnet:Home') }
         it { should have_selector('div.alert', text: 'Signed in successfully') }
+        describe "after visiting another page" do
+          before { click_link "Home" }
+          it { should_not have_selector('div.alert') }
+        end
       end
     end
   end
