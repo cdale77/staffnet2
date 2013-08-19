@@ -1,5 +1,6 @@
 require 'spec_helper'
-
+include Warden::Test::Helpers
+Warden.test_mode!
 
 describe "UserPages" do
 
@@ -19,6 +20,10 @@ describe "UserPages" do
       fill_in 'Email',    with: super_admin.email
       fill_in 'Password', with: super_admin.password
       click_button 'Sign in'
+   end
+
+   after do
+     logout(:super_admin)
    end
 
     describe 'new user' do
