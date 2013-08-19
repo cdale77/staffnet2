@@ -1,8 +1,5 @@
 require 'spec_helper'
 
-#for easy sign-in using Devise
-#include Warden::Test::Helpers
-#Warden.test_mode!
 
 describe "UserPages" do
 
@@ -17,12 +14,12 @@ describe "UserPages" do
   #### AS SUPERADMIN USER ####
   describe 'as superadmin user' do
 
-    before do
+   before do
       visit new_user_session_path
       fill_in 'Email',    with: super_admin.email
       fill_in 'Password', with: super_admin.password
       click_button 'Sign in'
-    end
+   end
 
     describe 'new user' do
 

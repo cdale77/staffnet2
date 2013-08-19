@@ -13,6 +13,7 @@
       <div class="span3">
         <h3>My Account</h3>
         <%= link_to 'Home', '/', class: 'nav-link' %><br />
+        <%= link_to 'Sign out', destroy_user_session_path, method: 'delete', class: 'nav-link' %>
       </div>
       <div class="span6">
 

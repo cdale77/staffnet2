@@ -41,7 +41,7 @@ module Staffnet2
 
     ## SETTINGS
 
-    config.user_roles = %w[moderator admin super_admin]
+    config.user_roles = %w[staff manager admin super_admin]
 
 
 

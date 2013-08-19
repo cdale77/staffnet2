@@ -2,10 +2,19 @@ class UsersController < ApplicationController
 
 
   before_filter :authenticate_user!
+  before_filter :super_admin, only: [:edit, :update, :destroy]
+  before_filter :admin, only: [:new, :create, :index, :show]
+
+  def super_admin
+    current_user.role? :super_admin
+  end
+
+  def admin
+    current_user.role? :admin
+  end
 
   def new
     @user = User.new
-    authorize @user
   end
 
   def create
