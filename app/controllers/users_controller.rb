@@ -6,11 +6,11 @@ class UsersController < ApplicationController
   before_filter :admin, only: [:new, :create, :index, :show]
 
   def super_admin
-    current_user.role? :super_admin
+    redirect_to root_path unless current_user.role? :super_admin
   end
 
   def admin
-    current_user.role? :admin
+    redirect_to root_path unless current_user.role? :admin
   end
 
   def new
