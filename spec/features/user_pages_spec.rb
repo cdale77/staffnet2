@@ -12,6 +12,21 @@ describe "UserPages" do
   let(:staff) { FactoryGirl.create(:staff) }
   let(:user) { FactoryGirl.create(:user) }
 
+
+  ### HELPERS ###
+  def fill_in_example_user
+    fill_in 'First name',             with: 'Brad'
+    fill_in 'Last name',              with: 'Johnson'
+    fill_in 'Email',                  with: 'example' + rand(1..500).to_s + '@example.com'
+    fill_in 'Password',               with: 'foobar7878'
+    fill_in 'Confirmation',           with: 'foobar7878'
+  end
+
+  def create_sample_users
+    FactoryGirl.create(:user, first_name: 'Bob', last_name: 'Smith', email: 'bob@example.com')
+    FactoryGirl.create(:user, first_name: 'Ben', last_name: 'Jones',  email: 'ben@example.com')
+  end
+
   #### AS SUPERADMIN USER ####
   describe 'as superadmin user' do
 
@@ -47,11 +62,7 @@ describe "UserPages" do
 
       describe 'with valid information' do
         before do
-          fill_in 'First name',             with: 'Brad'
-          fill_in 'Last name',              with: 'Johnson'
-          fill_in 'Email',                  with: 'example' + rand(1..500).to_s + '@example.com'
-          fill_in 'Password',               with: 'foobar7878'
-          fill_in 'Confirmation',           with: 'foobar7878'
+          fill_in_example_user
         end
         it 'should create a new user' do
           expect { click_button 'New user' }.to change(User, :count).by(1)
@@ -67,8 +78,7 @@ describe "UserPages" do
 
     describe 'index' do
       before do
-        FactoryGirl.create(:user, first_name: 'Bob', last_name: 'Smith', email: 'bob@example.com')
-        FactoryGirl.create(:user, first_name: 'Ben', last_name: 'Jones',  email: 'ben@example.com')
+        create_sample_users
         visit users_path
       end
       it { should have_title('All users') }
@@ -173,11 +183,7 @@ describe "UserPages" do
 
       describe 'with valid information' do
         before do
-          fill_in 'First name',             with: 'Brad'
-          fill_in 'Last name',              with: 'Johnson'
-          fill_in 'Email',                  with: 'example' + rand(1..500).to_s + '@example.com'
-          fill_in 'Password',               with: 'foobar7878'
-          fill_in 'Confirmation',           with: 'foobar7878'
+          fill_in_example_user
         end
         it 'should create a new user' do
           expect { click_button 'New user' }.to change(User, :count).by(1)
@@ -193,8 +199,7 @@ describe "UserPages" do
 
     describe 'index' do
       before do
-        FactoryGirl.create(:user, first_name: 'Bob', last_name: 'Smith', email: 'bob@example.com')
-        FactoryGirl.create(:user, first_name: 'Ben', last_name: 'Jones',  email: 'ben@example.com')
+        create_sample_users
         visit users_path
       end
       it { should have_title('All users') }
@@ -308,7 +313,7 @@ describe "UserPages" do
   end
 
   #### AS STAFF USER ####
-  describe 'as superadmin user' do
+  describe 'as staff user' do
 
     before do
       visit new_user_session_path
@@ -388,22 +393,9 @@ describe "UserPages" do
 
     describe 'index' do
       before do
-        FactoryGirl.create(:user, first_name: 'Bob', last_name: 'Smith', email: 'bob@example.com')
-        FactoryGirl.create(:user, first_name: 'Ben', last_name: 'Jones',  email: 'ben@example.com')
         visit users_path
       end
       it { should_not have_title('All users') }
-      it 'should not list each user' do
-        User.all.each do |user|
-          expect(page).to_not have_selector('td', text: user.first_name)
-        end
-      end
-      it 'should not have show and edit links for users' do
-        User.all.each do |user|
-          expect(page).to_not have_link('details', user_path(user))
-          expect(page).to_not have_link('edit', edit_user_path(user))
-        end
-      end
     end
 
     describe 'edit user' do
