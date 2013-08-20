@@ -14,6 +14,9 @@ module ApplicationHelper
     user == current_user
   end
 
+  def super_admin_user?
+    current_user.role? :super_admin
+  end
 
   def admin_user?
     current_user.role? :admin

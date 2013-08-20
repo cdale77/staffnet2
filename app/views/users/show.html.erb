@@ -8,7 +8,7 @@
       </div>
       <div class="span2 padtop">
         <div class="buttons">
-          <% if correct_user(@user) || admin_user?  %>
+          <% if super_admin_user?  %>
               <%= link_to 'edit', edit_user_path(@user), class: 'btn btn-mini', type: 'button' %>
           <% end %>
           <% if admin_user? %>
