@@ -4,4 +4,19 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  private
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to root_path unless ( current_user == @user || current_user.role?(:admin) )
+    end
+
+    def super_admin
+      redirect_to root_path unless current_user.role? :super_admin
+    end
+
+    def admin
+      redirect_to root_path unless current_user.role? :admin
+    end
+
 end

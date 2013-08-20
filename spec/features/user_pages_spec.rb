@@ -192,15 +192,23 @@ describe "UserPages" do
       end
     end
 
-    describe 'show' do
+    describe 'showing their own profile' do
       before { visit user_path(user) }
       describe 'page' do
         it { should have_content (user.first_name) }
         it { should have_content (user.last_name) }
         describe 'links' do
-          it { should_not have_link('edit', href: edit_user_path(user)) }
+          it { should have_link('edit', href: edit_user_path(user)) }
           it { should_not have_link('delete', href: user_path(user)) }
         end
+      end
+    end
+
+    describe 'showing another profile profile' do
+      before { visit user_path(admin) }
+      describe 'page' do
+        it { should_not have_content (user.first_name) }
+        it { should_not have_content (user.last_name) }
       end
     end
   end

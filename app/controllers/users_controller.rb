@@ -3,15 +3,9 @@ class UsersController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :super_admin, only: [:edit, :update, :destroy]
-  before_filter :admin, only: [:new, :create, :index, :show]
+  before_filter :admin, only: [:new, :create, :index]
+  before_filter :correct_user, only: :show
 
-  def super_admin
-    redirect_to root_path unless current_user.role? :super_admin
-  end
-
-  def admin
-    redirect_to root_path unless current_user.role? :admin
-  end
 
   def new
     @user = User.new
