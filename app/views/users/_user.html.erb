@@ -2,6 +2,7 @@
   <td><%= user.first_name%></td>
   <td><%= user.last_name %>
   <td><%= mail_to user.email, user.email, class: 'hover-underline-grey' %></td>
+  <td><%= user.role.humanize %></td>
   <td><%= user.created_at %></td>
   <td class="buttons"><%= link_to 'details', user_path(user), class: 'btn btn-mini', type: 'button' %>
     <%= link_to 'edit', edit_user_path(user), class: 'btn btn-mini', type: 'button' if super_admin_user? %></td>

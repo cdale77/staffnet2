@@ -255,6 +255,8 @@ describe "UserPages" do
       end
     end
   end
+
+
   #### AS MANAGER USER ####
   describe 'as manager user' do
 

@@ -27,6 +27,10 @@
           <td><%= mail_to @user.email, @user.email %></td>
         </tr>
         <tr>
+          <th>Role:</th>
+          <td><%= @user.role.humanize %></td>
+        </tr>
+        <tr>
           <th>Modified:</th>
           <td><%= @user.updated_at %></td>
         </tr>

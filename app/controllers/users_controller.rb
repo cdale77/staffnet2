@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if @user.update_attributes(admin_user_params)
       flash[:success] = 'User updated'
       redirect_to user_path(@user)
     else
@@ -56,6 +56,10 @@ class UsersController < ApplicationController
       else
         params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       end
+    end
+
+    def admin_user_params
+      params.require(:user).permit(:first_name, :last_name, :email, :role)
     end
 
 end

@@ -53,9 +53,6 @@ class User < ActiveRecord::Base
             format: { with: VALID_EMAIL_REGEX, message: 'invalid email.' },
             uniqueness: { case_sensitive: false }
 
-  #validates :organization,
-   #         length: { maximum: 64, minimum: 2, message: 'must be between 2 and 64 characters.' }
-
   validates :password, presence: { message: 'required' },
             length: { minimum: 10, message: 'must be be at least 10 characters.' },
             on: :create
