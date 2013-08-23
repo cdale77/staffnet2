@@ -5,28 +5,7 @@
     <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <%# devise_error_messages! %>
-        <div class="row">
-          <div class="span4">
-            <div class="input">
-              <%= f.label :first_name %>
-              <%= f.text_field :first_name %>
-            </div>
-          </div>
-          <div class="span4">
-            <div class="input">
-              <%= f.label :last_name %>
-              <%= f.text_field :last_name %>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="span4">
-            <div class="input">
-              <%= f.label :email %>
-              <%= f.text_field :email %>
-            </div>
-          </div>
-        </div>
+        <%= render partial: 'user_fields', locals: { f: f } %>
         <div class="row">
           <div class="span4">
             <div class="input">
