@@ -32,6 +32,7 @@ class Employee < ActiveRecord::Base
 
   ## SET UP ENVIRONMENT
   include Regex
+  include PeopleMethods
 
   ## VALIDATIONS
 
@@ -72,6 +73,9 @@ class Employee < ActiveRecord::Base
   validates :fed_allowances, :ca_allowances,  presence: { message: "required." },
             length: { is: 1 },
             numericality: { message: "must be a single digit." }
+
+  ## CALLBACKS
+  before_save { self.email = email.downcase }
 
 
   private

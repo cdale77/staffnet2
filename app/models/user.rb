@@ -35,8 +35,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :lockable, :timeoutable,
          :recoverable, :rememberable, :validatable
 
+
   ## SET UP ENVIRONMENT
   include Regex
+  include PeopleMethods
 
 
   ## VALIDATIONS
@@ -58,28 +60,19 @@ class User < ActiveRecord::Base
             length: { minimum: 10, message: 'must be be at least 10 characters.' },
             on: :update,
             allow_blank: true
+
+
   ## CALLBACKS
-  #after_initialize :set_user_defaults
   before_save { self.email = email.downcase }
 
-
-  def full_name
-    first_name + ' ' + last_name
-  end
-
-  def self.roles
-    Staffnet2::Application.config.user_roles
-  end
 
   def role?(base_role)
     role.present? && User.roles.index(base_role.to_s) <= User.roles.index(role)
   end
 
   private
-  #def set_user_defaults  #set attributes not required by validations to avoid nil errors
-  #  self.created_by ||= 0
-  #end
-
-
+    def self.roles
+      Staffnet2::Application.config.user_roles
+    end
 
 end
