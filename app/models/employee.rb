@@ -67,13 +67,11 @@ class Employee < ActiveRecord::Base
 
   validate :pay_validator
 
+  validate :min_wage_validator
+
   validates :fed_allowances, :ca_allowances,  presence: { message: "required." },
             length: { is: 1 },
             numericality: { message: "must be a single digit." }
-
-
-
-
 
 
   private
@@ -82,6 +80,11 @@ class Employee < ActiveRecord::Base
         errors.add(:pay_hourly, 'Specify an hourly or a daily rate, but not both.')
         errors.add(:pay_daily, 'Specify an hourly or a daily rate, but not both.')
       end
+    end
 
+    def min_wage_validator
+      if pay_hourly < Staffnet2::Application.config.minimum_wage
+        errors.add(:pay_hourly, 'Hourly pay must be greater than ' + Staffnet2::Application.config.minimum_wage.to_s )
+      end
     end
 end
