@@ -122,6 +122,13 @@ describe Employee do
       employee.should_not be_valid
     end
   end
+  describe 'termination date validation' do
+    it 'should be after the hire date' do
+      employee.hire_date = Date.today
+      employee.term_date = Date.yesterday
+      employee.should_not be_valid
+    end
+  end
   describe 'address validations' do
     it 'should reject employees without a street address' do
       employee.address1 = ''

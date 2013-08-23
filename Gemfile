@@ -5,7 +5,8 @@ gem 'rails', '4.0.0'
 gem 'pg', '0.16.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'devise', '3.0.2'
-#gem 'pundit'
+
+gem 'date_validator'
 
 
 gem 'sass-rails', '~> 4.0.0'

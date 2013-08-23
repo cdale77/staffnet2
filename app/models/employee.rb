@@ -47,6 +47,10 @@ class Employee < ActiveRecord::Base
   validates :address1, :city, :fed_filing_status, :ca_filing_status, :hire_date, :dob, :title,
             presence: { message: "required." }
 
+  validates :term_date,
+            date: { after: :hire_date },
+            allow_blank: true
+
   validates :state, presence: { message: "required." },
             format: { with: STATE_REGEX, message: "must be two upper-case letters." }
 
