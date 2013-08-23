@@ -11,12 +11,12 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :state, :default => ''
       t.string :zip, :default => ''
       t.string :title, :default => ''
-      t.string :pay_hourly, :decimal, :scale => 2, :precision=> 8, :default => 0.00
-      t.string :pay_daily, :decimal, :scale => 2, :precision=> 8, :default => 0.00
+      t.decimal :pay_hourly, :scale => 2, :precision=> 8, :default => 0.00
+      t.decimal :pay_daily, :scale => 2, :precision=> 8, :default => 0.00
       t.date :hire_date
       t.date :term_date
       t.string :fed_filing_status, :default => ''
-      t.string :ca_filing_stats, :default => ''
+      t.string :ca_filing_status, :default => ''
       t.integer :fed_allowances, :default => 0
       t.integer :ca_allowances, :default => 0
       t.date :dob

@@ -33,9 +33,7 @@ require 'spec_helper'
 describe User do
 
   user_attributes = { first_name: 'Test', last_name: 'User', email: 'test@example.com',
-                      password: 'foobar7878', password_confirmation: 'foobar7878' }
-  protected_attributes = {}
-  all_attributes = user_attributes.merge(protected_attributes)
+                      password: 'foobar7878', password_confirmation: 'foobar7878', role: 'manager' }
 
   #let(:user) { FactoryGirl.create(:user) }
   before do
@@ -45,38 +43,14 @@ describe User do
 
   subject { @user }
 
-
-  ## DEFAULTS
-  #describe 'default values' do
-  #  @default_user = User.new
-  #  @default_user.organization.should == ''
-  #  @default_user.role.should == ''
-  #  @default_user.created_by.should == 0
-  #end
-
   ## ATTRIBUTES
   describe 'attribute tests' do
-    all_attributes.each do |key, value|
+    user_attributes.each do |key, value|
       it { should respond_to(key) }
     end
 
     it { should be_valid }
   end
-
-  ## MASS ASSIGNMENT
-=begin
-  describe 'mass assignment' do
-    user_attributes.each do |key,value|
-      it { should allow_mass_assignment_of(key) }
-      it { should allow_mass_assignment_of(key).as(:admin) }
-    end
-
-    protected_attributes.each do |key,value|
-      it { should_not allow_mass_assignment_of(key) }
-      it { should allow_mass_assignment_of(key).as(:admin) }
-    end
-  end
-=end
 
   ## VALIDATIONS
   describe 'first name validations' do

@@ -11,37 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130821034921) do
+ActiveRecord::Schema.define(version: 20130822231635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "employees", force: true do |t|
-    t.string   "first_name",        default: ""
-    t.string   "last_name",         default: ""
-    t.string   "email",             default: ""
-    t.string   "phone",             default: ""
-    t.string   "address1",          default: ""
-    t.string   "address2",          default: ""
-    t.string   "city",              default: ""
-    t.string   "state",             default: ""
-    t.string   "zip",               default: ""
-    t.string   "title",             default: ""
-    t.string   "pay_hourly",        default: "0.0"
-    t.string   "decimal",           default: "0.0"
-    t.string   "pay_daily",         default: "0.0"
+    t.string   "first_name",                                default: ""
+    t.string   "last_name",                                 default: ""
+    t.string   "email",                                     default: ""
+    t.string   "phone",                                     default: ""
+    t.string   "address1",                                  default: ""
+    t.string   "address2",                                  default: ""
+    t.string   "city",                                      default: ""
+    t.string   "state",                                     default: ""
+    t.string   "zip",                                       default: ""
+    t.string   "title",                                     default: ""
+    t.decimal  "pay_hourly",        precision: 8, scale: 2, default: 0.0
+    t.decimal  "pay_daily",         precision: 8, scale: 2, default: 0.0
     t.date     "hire_date"
     t.date     "term_date"
-    t.string   "fed_filing_status", default: ""
-    t.string   "ca_filing_stats",   default: ""
-    t.integer  "fed_allowances",    default: 0
-    t.integer  "ca_allowances",     default: 0
+    t.string   "fed_filing_status",                         default: ""
+    t.string   "ca_filing_status",                          default: ""
+    t.integer  "fed_allowances",                            default: 0
+    t.integer  "ca_allowances",                             default: 0
     t.date     "dob"
-    t.string   "gender",            default: ""
-    t.boolean  "active",            default: true
+    t.string   "gender",                                    default: ""
+    t.boolean  "active",                                    default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "employees", ["email"], name: "index_employees_on_email", using: :btree
+  add_index "employees", ["hire_date"], name: "index_employees_on_hire_date", using: :btree
+  add_index "employees", ["phone"], name: "index_employees_on_phone", using: :btree
+  add_index "employees", ["term_date"], name: "index_employees_on_term_date", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name",             default: ""

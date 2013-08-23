@@ -38,9 +38,6 @@ class User < ActiveRecord::Base
   ## SET UP ENVIRONMENT
   include Regex
 
-  ## CALLBACKS
-  #after_initialize :set_user_defaults
-  before_save { self.email = email.downcase }
 
   ## VALIDATIONS
   validates :first_name, presence: { message: 'required.' },
@@ -61,6 +58,9 @@ class User < ActiveRecord::Base
             length: { minimum: 10, message: 'must be be at least 10 characters.' },
             on: :update,
             allow_blank: true
+  ## CALLBACKS
+  #after_initialize :set_user_defaults
+  before_save { self.email = email.downcase }
 
 
   def full_name
