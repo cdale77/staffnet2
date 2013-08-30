@@ -1,0 +1,104 @@
+<% provide(:title, @employee.full_name) %>
+<h1>Employee profile</h1>
+<div class="row">
+  <div class="span4">
+    <div class="row">
+      <div class="span2">
+        <h2><%= @employee.full_name %></h2>
+      </div>
+      <div class="span2 padtop">
+        <div class="buttons">
+          <%= link_to 'edit', edit_employee_path(@employee), class: 'btn btn-mini', type: 'button' %>
+          <%= link_to 'delete', @employee, method: :delete,
+                      data: { confirm: 'You sure?' },
+                      class: 'btn btn-mini', type: 'button' %>
+        </div>
+      </div>
+    </div>
+    <div>
+      <table>
+        <tr height="5px"></tr>
+        <tr>
+          <th>Name:</th>
+          <td><%= @employee.full_name %></td>
+        </tr>
+        <tr>
+          <th>Email:</th>
+          <td><%= @employee.email %></td>
+        </tr>
+        <tr>
+          <th>Phone:</th>
+          <td><%= @employee.phone %></td>
+        </tr>
+        <tr>
+          <th>Address:</th>
+          <td><%= @employee.address1 %></td>
+        </tr>
+        <% if @employee.address2.present? %>
+          <tr>
+            <th></th>
+            <td><%= @employee.address2 %></td>
+          </tr>
+        <% end %>
+        <tr>
+           <th></th>
+           <td>
+             <%= @employee.city + ', ' + @employee.state + ' ' + @employee.zip  %>
+           </td>
+        </tr>
+        <tr>
+          <th>DOB</th>
+          <td><%= @employee.dob %></td>
+        </tr>
+        <tr>
+          <th>Gender</th>
+          <td><%= @employee.gender %></td>
+        </tr>
+        <tr height="5px"></tr>
+        <tr>
+          <th>Title:</th>
+          <td><%= @employee.title.humanize %></td>
+        </tr>
+        <% if @employee.pay_hourly > 0 %>
+          <tr>
+            <th>Hourly pay:</th>
+            <td><%= number_to_currency(@employee.pay_hourly) %></td>
+          </tr>
+        <% elsif @employee.pay_daily > 0 %>
+           <tr>
+             <th>Daily pay:</th>
+             <td><%= number_to_currency(@employee.pay_daily) %> </td>
+           </tr>
+        <% end %>
+        <tr>
+          <th>Hire date:</th>
+          <td><%= @employee.hire_date %></td>
+        </tr>
+        <% if @employee.term_date.present? %>
+          <tr>
+            <th>Term. date:</th>
+            <td><%= @employee.term_date %></td>
+          </tr>
+        <% end %>
+        <tr height="5px"></tr>
+        <tr>
+          <th>Fed tax status:</th>
+          <td><%= @employee.fed_filing_status %> </td>
+        </tr>
+        <tr>
+          <th>CA tax status:</th>
+          <td><%= @employee.ca_filing_status %></td>
+        </tr>
+        <tr>
+          <th>Fed allowances:</th>
+          <td><%= @employee.fed_allowances %></td>
+        </tr>
+        <tr>
+          <th>CA allowances:</th>
+          <td><%= @employee.ca_allowances %></td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+</div>

@@ -91,6 +91,21 @@ describe 'EmployeePages' do
         end
       end
     end
+
+    describe 'show' do
+      before { visit employee_path(employee) }
+
+      describe 'page' do
+        describe 'page' do
+          it { should have_content (employee.first_name) }
+          it { should have_content (employee.last_name) }
+          describe 'links' do
+            it { should have_link('edit', href: edit_employee_path(employee)) }
+            it { should have_link('delete', href: employee_path(employee)) }
+          end
+        end
+      end
+    end
   end
 
 
