@@ -261,6 +261,7 @@ th,td {
 }
 
 
+
 /****************** FORMS ****************/
 #error_explanation {
   color: #f00;
@@ -274,3 +275,14 @@ th,td {
   @extend .control-group;
   @extend .error;
 }
+
+.input {
+  select { width: 100%; }
+  .zip { width: 65px; }
+}
+
+div.span2 {
+  input { width: 100%; }
+}
+
+

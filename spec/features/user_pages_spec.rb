@@ -43,9 +43,7 @@ describe "UserPages" do
 
     describe 'new user' do
 
-      before  do
-        visit new_user_path
-      end
+      before  { visit new_user_path }
 
       it { should have_selector('h1', text: 'New user') }
       it { should have_title('Staffnet:New user') }
