@@ -8,10 +8,14 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
     if @employee.save
       flash[:success] = 'Success.'
-      redirect_to root_path
+      redirect_to employee_path(@employee)
     else
       render 'new'
     end
+  end
+
+  def show
+    @employee = Employee.find(params[:id])
   end
 
 

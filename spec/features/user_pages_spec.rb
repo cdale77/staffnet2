@@ -59,9 +59,8 @@ describe "UserPages" do
       end
 
       describe 'with valid information' do
-        before do
-          fill_in_example_user
-        end
+        before { fill_in_example_user }
+
         it 'should create a new user' do
           expect { click_button 'New user' }.to change(User, :count).by(1)
         end
