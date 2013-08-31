@@ -36,7 +36,7 @@ FactoryGirl.define do
     state               'OH'
     zip                 '12345'
     title               'Organizer'
-    pay_hourly          12.00
+    pay_hourly          12
     fed_filing_status   'single'
     ca_filing_status    'single'
     fed_allowances      2

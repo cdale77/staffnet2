@@ -18,6 +18,21 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
   end
 
+  def index
+    @employees = Employee.all
+  end
+
+  def edit
+    @employee = Employee.find(params[:id])
+  end
+
+  def update
+
+  end
+
+  def destroy
+
+  end
 
   private
 

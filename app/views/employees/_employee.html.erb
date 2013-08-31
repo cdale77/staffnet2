@@ -1,0 +1,9 @@
+<tr>
+  <td><%= employee.full_name %></td>
+  <td><%= employee.title.humanize %></td>
+  <td><%= mail_to employee.email, employee.email, class: 'hover-underline-grey' %></td>
+  <td><%= number_to_phone(employee.phone.to_i) %></td>
+  <td><%= employee.active %></td>
+  <td class="buttons"><%= link_to 'details', employee_path(employee), class: 'btn btn-mini', type: 'button' %>
+    <%= link_to 'edit', edit_employee_path(employee), class: 'btn btn-mini', type: 'button' %></td>
+</tr>

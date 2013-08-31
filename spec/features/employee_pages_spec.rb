@@ -13,6 +13,11 @@ describe 'EmployeePages' do
 
   let(:employee) { FactoryGirl.create(:employee) }
 
+  def create_sample_employees
+    FactoryGirl.create(:employee, first_name: 'Bob', last_name: 'Smith', email: 'bobsky@example.com')
+    FactoryGirl.create(:employee, first_name: 'Ben', last_name: 'Jones',  email: 'ben@example.com')
+  end
+
   ### HELPERS ###
   def fill_in_example_employee
     fill_in 'First name',             with: 'Brad'
@@ -104,6 +109,41 @@ describe 'EmployeePages' do
             it { should have_link('delete', href: employee_path(employee)) }
           end
         end
+      end
+    end
+
+    describe 'index' do
+      before do
+        create_sample_employees
+        visit employees_path
+      end
+
+      after { Employee.delete_all }
+
+      describe 'page' do
+        it { should have_title('All employees') }
+
+        it 'should list each employee' do
+          Employee.all.each do |employee|
+            expect(page).to have_content(employee.full_name)
+            expect(page).to have_content(employee.email)
+          end
+        end
+        it 'should have show and edit links for users' do
+          Employee.all.each do |employee|
+            expect(page).to have_link('details', employee_path(employee))
+            expect(page).to have_link('edit', edit_employee_path(employee))
+          end
+        end
+      end
+    end
+
+    describe 'edit employee' do
+      before { visit edit_employee_path(employee) }
+
+      describe 'page' do
+        it { should have_selector('h1', text: 'Edit employee') }
+        it { should have_content(employee.full_name) }
       end
     end
   end
