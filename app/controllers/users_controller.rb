@@ -12,13 +12,7 @@ class UsersController < ApplicationController
   end
 
   def create
-
-    if current_user.role? :super_admin
-      @user = User.new(admin_user_params)
-    else
-      @user = User.new(user_params)
-    end
-
+    @user = User.new(user_params)
     if @user.save
       flash[:success] = 'Success.'
       redirect_to user_path(@user)
@@ -41,8 +35,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    
-    if @user.update_attributes(admin_user_params)
+    if @user.update_attributes(user_params)
       flash[:success] = 'User updated'
       redirect_to user_path(@user)
     else
@@ -59,14 +52,18 @@ class UsersController < ApplicationController
   private
     def user_params
       if params[:user][:password].blank?
-        params.require(:user).permit(:first_name, :last_name, :email)
+        if current_user.role? :super_admin
+          params.require(:user).permit(:first_name, :last_name, :email, :role)
+        elsif current_user.role? :admin
+          params.require(:user).permit(:first_name, :last_name, :email)
+        end
       else
-        params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+        if current_user.role? :super_admin
+          params.require(:user).permit(:first_name, :last_name, :email, :role, :password, :password_confirmation)
+        elsif current_user.role? :admin
+          params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+        end
+
       end
     end
-
-    def admin_user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :role)
-    end
-
 end
