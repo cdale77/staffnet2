@@ -276,13 +276,14 @@ th,td {
   @extend .error;
 }
 
-.input {
+div.input {
   select { width: 100%; }
   .zip { width: 65px; }
 }
 
-div.span2 {
+/*div.span2 {
   input { width: 100%; }
 }
+*/
 
 

@@ -19,4 +19,15 @@
       <%= f.text_field :email %>
     </div>
   </div>
+  <% if super_admin_user? %>
+    <div class="span2">
+      <div class="input select">
+        <%= f.label :role %>
+        <%= f.select :role, options_for_select([ ['None', ''], ['Superadmin', 'super_admin'],
+                                                 ['Admin', 'admin'], ['Manager', 'manager'],
+                                                 ['Staff', 'staff'] ], @user.role) %>
+      </div>
+    </div>
+
+  <% end %>
 </div>

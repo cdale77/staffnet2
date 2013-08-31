@@ -27,6 +27,8 @@ describe "UserPages" do
     FactoryGirl.create(:user, first_name: 'Ben', last_name: 'Jones',  email: 'ben@example.com')
   end
 
+  roles = ['super_admin', 'admin', 'manager', 'staff']
+
   #### AS SUPERADMIN USER ####
   describe 'as superadmin user' do
 
@@ -59,7 +61,10 @@ describe "UserPages" do
       end
 
       describe 'with valid information' do
-        before { fill_in_example_user }
+        before do
+          fill_in_example_user
+          select 'Admin', from: 'user_role'
+        end
 
         it 'should create a new user' do
           expect { click_button 'New user' }.to change(User, :count).by(1)
@@ -67,7 +72,8 @@ describe "UserPages" do
         describe 'after saving user' do
           before { click_button 'New user' }
 
-          it { should have_title('Staffnet:Home') }
+          it { should have_content('Brad Johnson') }
+          it { should have_content('Admin') }
           it { should have_selector('div.alert') }
         end
       end
@@ -168,6 +174,10 @@ describe "UserPages" do
       it { should have_selector('h1', text: 'New user') }
       it { should have_title('Staffnet:New user') }
 
+      describe 'page' do
+        it { should_not have_content('Role') }
+      end
+
       describe 'with invalid information' do
         it 'should not create a new user' do
           expect { click_button 'New user' }.not_to change(User, :count)
@@ -188,7 +198,13 @@ describe "UserPages" do
         describe 'after saving user' do
           before { click_button 'New user' }
 
-          it { should have_title('Staffnet:Home') }
+          it { should have_content('Brad Johnson') }
+
+          #check to make sure the user page isn't displaying any role for the user
+          roles.each do |role|
+            it { should_not have_content('Role: ' + role.humanize) }
+          end
+
           it { should have_selector('div.alert') }
         end
       end

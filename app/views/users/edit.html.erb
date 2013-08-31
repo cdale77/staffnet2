@@ -4,17 +4,7 @@
     <h1>Edit user</h1>
     <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-          <%= render partial: 'user_fields', locals: { f: f} %>
-        <div class="row">
-          <div class="span4">
-            <div class="input">
-              <%= f.label :role %>
-              <%= f.select :role, options_for_select([ ['None', ''], ['Superadmin', 'super_admin'],
-                                                       ['Admin', 'admin'], ['Manager', 'manager'],
-                                                       ['Staff', 'staff'] ], @user.role) %>
-            </div>
-          </div>
-        </div>
+        <%= render partial: 'user_fields', locals: { f: f} %>
         <div class="row">
           <div class="span8">
             <%= f.submit 'Edit user', class: 'btn btn-large btn-primary' %>

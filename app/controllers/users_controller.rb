@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = 'Success.'
-      redirect_to root_path
+      redirect_to user_path(@user)
     else
       render 'new'
     end
