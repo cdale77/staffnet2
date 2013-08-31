@@ -2,8 +2,8 @@ class UsersController < ApplicationController
 
 
   before_filter :authenticate_user!
-  before_filter :super_admin, only: [:edit, :update]
-  before_filter :admin, only: [:new, :create, :index, :destroy]
+  #before_filter :super_admin, only: [:edit, :update]
+  before_filter :admin, only: [:new, :create, :edit, :update, :index, :destroy]
   before_filter :correct_user, only: :show
 
 
@@ -12,7 +12,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+
+    if current_user.role? :super_admin
+      @user = User.new(admin_user_params)
+    else
+      @user = User.new(user_params)
+    end
+
     if @user.save
       flash[:success] = 'Success.'
       redirect_to user_path(@user)
@@ -35,6 +41,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    
     if @user.update_attributes(admin_user_params)
       flash[:success] = 'User updated'
       redirect_to user_path(@user)
