@@ -25,7 +25,7 @@
         <%= f.label :role %>
         <%= f.select :role, options_for_select([ ['None', ''], ['Superadmin', 'super_admin'],
                                                  ['Admin', 'admin'], ['Manager', 'manager'],
-                                                 ['Staff', 'staff'] ], @user.role) %>
+                                                 ['Staff', 'staff'] ], user.role) %>
       </div>
     </div>
 

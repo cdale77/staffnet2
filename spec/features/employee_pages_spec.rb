@@ -143,7 +143,6 @@ describe 'EmployeePages' do
 
       describe 'page' do
         it { should have_selector('h1', text: 'Edit employee') }
-        it { should have_content(employee.full_name) }
       end
     end
   end

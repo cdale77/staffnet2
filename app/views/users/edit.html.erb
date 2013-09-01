@@ -4,7 +4,7 @@
     <h1>Edit user</h1>
     <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-        <%= render partial: 'user_fields', locals: { f: f} %>
+        <%= render partial: 'user_fields', locals: { user: @user, f: f} %>
         <div class="row">
           <div class="span8">
             <%= f.submit 'Edit user', class: 'btn btn-large btn-primary' %>

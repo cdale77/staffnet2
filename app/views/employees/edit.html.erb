@@ -1,0 +1,16 @@
+<% provide(:title, 'Edit employee') %>
+<div class="row">
+  <div class="span8 offset2">
+    <h1>Edit employee</h1>
+    <%= form_for(@employee) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= render partial: 'employee_fields', locals: { employee: @employee, f: f } %>
+      <div class="row">
+        <div class="span8">
+          <%= f.submit 'Edit employee', class: 'btn btn-large btn-primary' %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>

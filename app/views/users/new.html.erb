@@ -5,7 +5,7 @@
     <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <%# devise_error_messages! %>
-        <%= render partial: 'user_fields', locals: { f: f } %>
+        <%= render partial: 'user_fields', locals: { user: @user, f: f } %>
         <div class="row">
           <div class="span4">
             <div class="input">
