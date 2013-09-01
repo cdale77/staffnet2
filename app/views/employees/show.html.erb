@@ -8,10 +8,12 @@
       </div>
       <div class="span2 padtop">
         <div class="buttons">
-          <%= link_to 'edit', edit_employee_path(@employee), class: 'btn btn-mini', type: 'button' %>
-          <%= link_to 'delete', @employee, method: :delete,
+          <% if admin_user? %>
+            <%= link_to 'edit', edit_employee_path(@employee), class: 'btn btn-mini', type: 'button' %>
+            <%= link_to 'delete', @employee, method: :delete,
                       data: { confirm: 'You sure?' },
                       class: 'btn btn-mini btn-danger', type: 'button' %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -59,16 +61,18 @@
           <th>Title:</th>
           <td><%= @employee.title.humanize %></td>
         </tr>
-        <% if @employee.pay_hourly > 0 %>
-          <tr>
-            <th>Hourly pay:</th>
-            <td><%= number_to_currency(@employee.pay_hourly) %></td>
-          </tr>
-        <% elsif @employee.pay_daily > 0 %>
-           <tr>
-             <th>Daily pay:</th>
-             <td><%= number_to_currency(@employee.pay_daily) %> </td>
-           </tr>
+        <% if admin_user? %>
+          <% if @employee.pay_hourly > 0 %>
+            <tr>
+              <th>Hourly pay:</th>
+              <td><%= number_to_currency(@employee.pay_hourly) %></td>
+            </tr>
+          <% elsif @employee.pay_daily > 0 %>
+             <tr>
+               <th>Daily pay:</th>
+               <td><%= number_to_currency(@employee.pay_daily) %> </td>
+             </tr>
+          <% end %>
         <% end %>
         <tr>
           <th>Hire date:</th>
