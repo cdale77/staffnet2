@@ -146,9 +146,9 @@ describe "UserPages" do
       end
     end
 
-    describe 'delete' do
+    describe 'destroy' do
       before { visit user_path(user) }
-      it 'should delete a user' do
+      it 'should destroy a user' do
         expect { click_link 'delete' }.to change(User, :count).by(-1)
       end
     end

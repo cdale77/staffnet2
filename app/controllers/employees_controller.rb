@@ -27,11 +27,20 @@ class EmployeesController < ApplicationController
   end
 
   def update
+    @employee = Employee.find(params[:id])
+    if @employee.update_attributes(employee_params)
+      flash[:success] = 'Employee updated'
+      redirect_to employee_path(@employee)
+    else
+      render 'edit'
+    end
 
   end
 
   def destroy
-
+    Employee.find(params[:id]).destroy
+    flash[:success] = "Employee destroyed."
+    redirect_to employees_url
   end
 
   private

@@ -144,6 +144,37 @@ describe 'EmployeePages' do
       describe 'page' do
         it { should have_selector('h1', text: 'Edit employee') }
       end
+
+      describe 'with invalid information' do
+        before do
+          fill_in 'Email', with: 'notarealemail.com'
+          click_button 'Edit employee'
+        end
+        it { should have_selector('div.alert-error') }
+      end
+
+      describe 'with valid information' do
+        let(:new_first_name)  { 'New' }
+        let(:new_last_name)   { 'Name' }
+        let(:new_email) { 'new@example.com' }
+        before do
+          fill_in 'First name',       with: new_first_name
+          fill_in 'Last name',        with: new_last_name
+          fill_in 'Email',            with: new_email
+          click_button 'Edit employee'
+
+          it { should have_selector('div.alert.alert-success') }
+          specify { expect(employee.reload.first_name).to  eq new_first_name }
+          specify { expect(employee.reload.email).to eq new_email }
+        end
+      end
+    end
+
+    describe 'destroy' do
+      before { visit employee_path(employee) }
+      it 'should destroy an employee' do
+        expect { click_link 'delete' }.to change(Employee, :count).by(-1)
+      end
     end
   end
 
