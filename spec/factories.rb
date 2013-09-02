@@ -47,10 +47,14 @@ FactoryGirl.define do
     active              true
   end
 
-=begin
+  factory :shift_type do
+    shift_type      ['street', 'door', 'office', 'phone'].sample
+    shift
+  end
+
+
   factory :shift do
     date                Date.today
-    shift_type          'door'
     time_in             Time.now - 5.hours
     time_out            Time.now
     break_time          30
@@ -58,5 +62,5 @@ FactoryGirl.define do
     notes               'Great shift'
     employee
   end
-=end
+
 end
