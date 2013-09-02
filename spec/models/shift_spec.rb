@@ -18,4 +18,8 @@ describe Shift do
   end
 
   ## VALIDATIONS
+
+  describe 'shift type validations' do
+
+  end
 end
