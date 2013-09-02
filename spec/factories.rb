@@ -47,6 +47,7 @@ FactoryGirl.define do
     active              true
   end
 
+=begin
   factory :shift do
     date                Date.today
     shift_type          'door'
@@ -57,4 +58,5 @@ FactoryGirl.define do
     notes               'Great shift'
     employee
   end
+=end
 end

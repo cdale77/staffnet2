@@ -2,8 +2,8 @@ class CreateShifts < ActiveRecord::Migration
   def change
     create_table :shifts do |t|
       t.integer :employee_id
+      t.integer :shift_type_id
       t.date    :date
-      t.string  :shift_type, :default => ''
       t.time    :time_in
       t.time    :time_out
       t.integer :break_time, :default => 0

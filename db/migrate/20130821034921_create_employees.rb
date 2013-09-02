@@ -25,5 +25,13 @@ class CreateEmployees < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :employees, :email
+    add_index :employees, :hire_date
+    add_index :employees, :term_date
+    add_index :employees, :phone
+    add_index :employees, :active
+    add_index :employees, :title
+    add_index :employees, :last_name
   end
 end

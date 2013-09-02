@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Shift do
 
-  shift_attributes = {  date: Date.today, shift_type: 'office', time_in: Time.now - 4.hours, time_out: Time.now,
+  shift_attributes = {  date: Date.today, time_in: Time.now - 4.hours, time_out: Time.now,
                         break_time: 30, notes: 'Great shift', travel_reimb: 12.50 }
 
 
