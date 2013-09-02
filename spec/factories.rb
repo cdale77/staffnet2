@@ -49,7 +49,6 @@ FactoryGirl.define do
 
   factory :shift_type do
     shift_type      ['street', 'door', 'office', 'phone'].sample
-    shift
   end
 
 
@@ -61,6 +60,7 @@ FactoryGirl.define do
     travel_reimb        12.5
     notes               'Great shift'
     employee
+    shift_type
   end
 
 end

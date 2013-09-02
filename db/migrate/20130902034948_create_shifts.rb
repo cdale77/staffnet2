@@ -14,7 +14,7 @@ class CreateShifts < ActiveRecord::Migration
     end
 
     add_index :shifts, :employee_id
-    add_index :shifts, :shift_type
+    add_index :shifts, :shift_type_id
     add_index :shifts, :date
   end
 end

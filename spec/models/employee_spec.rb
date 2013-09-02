@@ -48,6 +48,9 @@ describe Employee do
       it { should respond_to(key)}
     end
   end
+
+  ## RELATIONSHIPS
+  it { should respond_to(:shifts)}
   
   ## VALIDATIONS
   describe 'first name validations' do

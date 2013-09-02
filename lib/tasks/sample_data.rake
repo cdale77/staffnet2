@@ -45,7 +45,15 @@ namespace :db do
                                 gender:             ['m', 'f'].sample,
                                 active:             [true, false].sample }
 
-      Employee.create!( employee_attributes )
+      Employee.create!(employee_attributes)
     end
+
+    ## shift_types
+    shift_types = ['door', 'street', 'phone', 'office', 'vacation', 'holiday', 'sick' ]
+    shift_types.each do |shift_type|
+      ShiftType.create!(shift_type: shift_type)
+    end
+
+
   end
 end

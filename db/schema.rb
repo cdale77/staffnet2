@@ -56,22 +56,24 @@ ActiveRecord::Schema.define(version: 20130902185734) do
     t.datetime "updated_at"
   end
 
+  add_index "shift_types", ["shift_type"], name: "index_shift_types_on_shift_type", using: :btree
+
   create_table "shifts", force: true do |t|
     t.integer  "employee_id"
+    t.integer  "shift_type_id"
     t.date     "date"
-    t.string   "shift_type",                           default: ""
     t.time     "time_in"
     t.time     "time_out"
-    t.integer  "break_time",                           default: 0
-    t.string   "notes",                                default: ""
-    t.decimal  "travel_reimb", precision: 8, scale: 2, default: 0.0
+    t.integer  "break_time",                            default: 0
+    t.string   "notes",                                 default: ""
+    t.decimal  "travel_reimb",  precision: 8, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "shifts", ["date"], name: "index_shifts_on_date", using: :btree
   add_index "shifts", ["employee_id"], name: "index_shifts_on_employee_id", using: :btree
-  add_index "shifts", ["shift_type"], name: "index_shifts_on_shift_type", using: :btree
+  add_index "shifts", ["shift_type_id"], name: "index_shifts_on_shift_type_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name",             default: ""
