@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822231635) do
+ActiveRecord::Schema.define(version: 20130902040029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,10 +42,30 @@ ActiveRecord::Schema.define(version: 20130822231635) do
     t.datetime "updated_at"
   end
 
+  add_index "employees", ["active"], name: "index_employees_on_active", using: :btree
   add_index "employees", ["email"], name: "index_employees_on_email", using: :btree
   add_index "employees", ["hire_date"], name: "index_employees_on_hire_date", using: :btree
+  add_index "employees", ["last_name"], name: "index_employees_on_last_name", using: :btree
   add_index "employees", ["phone"], name: "index_employees_on_phone", using: :btree
   add_index "employees", ["term_date"], name: "index_employees_on_term_date", using: :btree
+  add_index "employees", ["title"], name: "index_employees_on_title", using: :btree
+
+  create_table "shifts", force: true do |t|
+    t.integer  "employee_id"
+    t.date     "date"
+    t.string   "shift_type",                           default: ""
+    t.time     "time_in"
+    t.time     "time_out"
+    t.integer  "break_time",                           default: 0
+    t.string   "notes",                                default: ""
+    t.decimal  "travel_reimb", precision: 8, scale: 2, default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shifts", ["date"], name: "index_shifts_on_date", using: :btree
+  add_index "shifts", ["employee_id"], name: "index_shifts_on_employee_id", using: :btree
+  add_index "shifts", ["shift_type"], name: "index_shifts_on_shift_type", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name",             default: ""

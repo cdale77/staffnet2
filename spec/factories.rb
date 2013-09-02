@@ -46,4 +46,15 @@ FactoryGirl.define do
     gender              'f'
     active              true
   end
+
+  factory :shift do
+    date                Date.today
+    shift_type          'door'
+    time_in             Time.now - 5.hours
+    time_out            Time.now
+    break_time          30
+    travel_reimb        12.5
+    notes               'Great shift'
+    employee
+  end
 end

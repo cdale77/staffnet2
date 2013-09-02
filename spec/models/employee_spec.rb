@@ -3,26 +3,26 @@
 # Table name: employees
 #
 #  id                :integer          not null, primary key
-#  first_name        :string(255)      default('')
-#  last_name         :string(255)      default('')
-#  email             :string(255)      default('')
-#  phone             :string(255)      default('')
-#  address1          :string(255)      default('')
-#  address2          :string(255)      default('')
-#  city              :string(255)      default('')
-#  state             :string(255)      default('')
-#  zip               :string(255)      default('')
-#  title             :string(255)      default('')
+#  first_name        :string(255)      default("")
+#  last_name         :string(255)      default("")
+#  email             :string(255)      default("")
+#  phone             :string(255)      default("")
+#  address1          :string(255)      default("")
+#  address2          :string(255)      default("")
+#  city              :string(255)      default("")
+#  state             :string(255)      default("")
+#  zip               :string(255)      default("")
+#  title             :string(255)      default("")
 #  pay_hourly        :decimal(8, 2)    default(0.0)
 #  pay_daily         :decimal(8, 2)    default(0.0)
 #  hire_date         :date
 #  term_date         :date
-#  fed_filing_status :string(255)      default('')
-#  ca_filing_status  :string(255)      default('')
+#  fed_filing_status :string(255)      default("")
+#  ca_filing_status  :string(255)      default("")
 #  fed_allowances    :integer          default(0)
 #  ca_allowances     :integer          default(0)
 #  dob               :date
-#  gender            :string(255)      default('')
+#  gender            :string(255)      default("")
 #  active            :boolean          default(TRUE)
 #  created_at        :datetime
 #  updated_at        :datetime
@@ -38,13 +38,12 @@ describe Employee do
                           fed_filing_status: 'single', ca_filing_status: 'single', fed_allowances: 2,
                           ca_allowances: 2, dob: Date.today, gender: 'f', active: true }
 
-  #before { employee = Employee.new(employee_attributes) }
   let(:employee) { FactoryGirl.create(:employee)}
 
   subject { employee }
 
   ## ATTRIBUTES
-  describe 'atribute tests' do
+  describe 'employee atribute tests' do
     employee_attributes.each do |key, value|
       it { should respond_to(key)}
     end
