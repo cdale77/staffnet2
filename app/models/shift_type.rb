@@ -11,7 +11,8 @@
 class ShiftType < ActiveRecord::Base
 
   ## VALIDATIONS
-  validates :shift_type, presence: { message: 'required.' }
+  validates :shift_type, presence: { message: 'required.' },
+            length: { maximum: 56, minimum: 2, message: 'must be between 2 and 56 characters.' }
 
   ## RELATIONSHIPS
   has_many :shifts

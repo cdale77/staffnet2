@@ -42,7 +42,7 @@ class EmployeesController < ApplicationController
 
   def destroy
     Employee.find(params[:id]).destroy
-    flash[:success] = "Employee destroyed."
+    flash[:success] = 'Employee destroyed.'
     redirect_to employees_url
   end
 
