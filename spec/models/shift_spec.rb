@@ -39,8 +39,16 @@ describe Shift do
   it { should respond_to(:employee) }
 
   ## VALIDATIONS
-
-  describe 'shift type validations' do
-
+  describe 'break time validations' do
+    it 'should reject too high break times' do
+      large_break = 121
+      shift.break_time = large_break
+      shift.should_not be_valid
+    end
+    it 'should reject too short break times' do
+      short_break = 4
+      shift.break_time = short_break
+      shift.should_not be_valid
+    end
   end
 end

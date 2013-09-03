@@ -25,7 +25,9 @@ class Shift < ActiveRecord::Base
   belongs_to :shift_type
 
   ## VALIDATIONS
-
+  validates :break_time,
+            numericality: { greater_than: 4, less_than: 121 },
+            allow_blank: true
 
   ## CALLBACKS
 
