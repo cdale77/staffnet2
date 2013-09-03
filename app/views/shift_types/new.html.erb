@@ -1,0 +1,24 @@
+<% provide(:title, 'New shift type') %>
+<div class="row">
+  <div class="span8 offset3">
+    <h1>New shift type</h1>
+    <%= form_for(@shift_type) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="row">
+        <div class="span3">
+          <div class="input">
+            <%= f.label :shift_type %>
+            <%= f.text_field :shift_type %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3">
+          <div class="input">
+            <%= f.submit 'New shift type', class: 'btn btn-large btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

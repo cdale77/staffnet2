@@ -5,7 +5,17 @@ Staffnet2::Application.routes.draw do
   devise_for :users#, :controllers => { :registrations => 'users/registrations' }
   scope '/admin' do
     resources :users
+
     resources :employees
+
+    resources :shift_types do
+      resources :shifts
+    end
+
+    resources :shifts do
+      resource :shift_type
+    end
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

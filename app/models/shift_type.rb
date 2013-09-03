@@ -16,6 +16,10 @@ class ShiftType < ActiveRecord::Base
   ## RELATIONSHIPS
   has_many :shifts
 
+  def number_of_shifts
+    self.shifts.count
+  end
+
 
 
 end
