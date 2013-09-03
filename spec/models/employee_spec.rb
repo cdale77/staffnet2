@@ -50,7 +50,7 @@ describe Employee do
   end
 
   ## RELATIONSHIPS
-  it { should respond_to(:shifts)}
+  it { should respond_to(:shifts) }
   
   ## VALIDATIONS
   describe 'first name validations' do
