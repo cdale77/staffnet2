@@ -51,4 +51,12 @@ describe Shift do
       shift.should_not be_valid
     end
   end
+
+  describe 'travel reimb validations' do
+    it 'should reject negative values' do
+      negative_reimb = -9
+      shift.travel_reimb = negative_reimb
+      shift.should_not be_valid
+    end
+  end
 end

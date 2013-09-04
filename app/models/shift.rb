@@ -29,6 +29,10 @@ class Shift < ActiveRecord::Base
             numericality: { greater_than: 4, less_than: 121 },
             allow_blank: true
 
+  validates :travel_reimb,
+            numericality: { greater_than_or_equal_to: 0 },
+            allow_blank: true
+
   ## CALLBACKS
 
 end
