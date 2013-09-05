@@ -37,6 +37,8 @@ class Shift < ActiveRecord::Base
 
   def net_time
     self.break_time ||= 0
+    self.time_in ||= 0
+    self.time_out ||= 0
     ((self.time_out - self.time_in)/3600) - ((self.break_time.to_f)/60.to_f)
   end
 
