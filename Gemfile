@@ -7,6 +7,10 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'devise', '3.0.2'
 
 gem 'date_validator'
+gem 'bootstrap-datepicker-rails'
+gem 'morrisjs-rails'
+gem 'raphael-rails'
+gem 'jquery-rails'
 
 
 gem 'sass-rails', '~> 4.0.0'
