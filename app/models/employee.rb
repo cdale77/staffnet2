@@ -80,6 +80,10 @@ class Employee < ActiveRecord::Base
   ## CALLBACKS
   before_save { self.email = email.downcase }
 
+  def self.active
+    Employee.where(active: true)
+  end
+
 
   private
     def pay_validator

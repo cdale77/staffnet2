@@ -26,13 +26,28 @@ class Shift < ActiveRecord::Base
 
   ## VALIDATIONS
   validates :break_time,
-            numericality: { greater_than: 4, less_than: 121 },
+            numericality: { greater_than_or_equal_to: 5, less_than_or_equal_to: 120 },
             allow_blank: true
 
   validates :travel_reimb,
-            numericality: { greater_than_or_equal_to: 0 },
+            numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 },
             allow_blank: true
 
+  validate :time_validator
+
+  def net_time
+    self.break_time ||= 0
+    ((self.time_out - self.time_in)/3600) - ((self.break_time.to_f)/60.to_f)
+  end
+
+
+
+
   ## CALLBACKS
+
+  private
+    def time_validator
+      errors.add(:time_out, 'You cannot have zero or negative hours.') unless (2..24).include?(net_time)
+    end
 
 end

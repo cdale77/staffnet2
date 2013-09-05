@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="span2">
+    <div class="input">
+      <%= f.label :employee_id, 'Employee' %>
+      <%= f.select :employee_id, options_from_collection_for_select(Employee.active, :id, :full_name, @shift.employee_id) %>
+    </div>
+  </div>
+  <div class="span2">
+    <div class="input">
+      <%= f.label :date %>
+      <%= f.date_select :date %>
+    </div>
+  </div>
+  <div class="span2">
+    <div class="input">
+      <%= f.label :shift_type_id, 'Shift type' %>
+      <%= f.select :shift_type_id, options_from_collection_for_select(ShiftType.all, :id, :human_shift_type, @shift.shift_type_id) %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span2">
+    <div class="input">
+      <%= f.label :time_in %>
+      <%= f.time_select :time_in %>
+    </div>
+  </div>
+  <div class="span2">
+    <div class="input">
+      <%= f.label :time_out %>
+      <%= f.time_select :time_out %>
+    </div>
+  </div>
+  <div class="span2">
+    <div class="input">
+      <%= f.label :break_time %>
+      <%= f.text_field :break_time %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span6">
+    <%= f.label :notes %>
+    <%= f.text_field :notes %>
+  </div>
+</div>

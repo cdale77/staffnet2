@@ -59,4 +59,23 @@ describe Shift do
       shift.should_not be_valid
     end
   end
+
+  describe 'shift length validations' do
+    it 'should require a minimum shift length' do
+      shift.time_in = Time.now - 1.hour
+      shift.time_out = Time.now
+      shift.should_not be_valid
+    end
+    it 'should require a maximum shift length' do
+      shift.time_in = Time.now - 25.hours
+      shift.time_out = Time.now
+    end
+
+    describe 'travel_reimb validations' do
+      it 'should reject too large travel reimbursements' do
+        shift.travel_reimb = 101
+        shift.should_not be_valid
+      end
+    end
+  end
 end

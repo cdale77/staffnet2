@@ -21,6 +21,8 @@ class ShiftType < ActiveRecord::Base
     self.shifts.count
   end
 
-
+  def human_shift_type
+    self.shift_type.humanize
+  end
 
 end

@@ -6,7 +6,9 @@ Staffnet2::Application.routes.draw do
   scope '/admin' do
     resources :users
 
-    resources :employees
+    resources :employees do
+      resources :shifts
+    end
 
     resources :shift_types do
       resources :shifts
@@ -14,7 +16,9 @@ Staffnet2::Application.routes.draw do
 
     resources :shifts do
       resource :shift_type
+      resource :employee
     end
+
 
   end
 
