@@ -22,6 +22,12 @@ module ApplicationHelper
     current_user.role? :admin
   end
 
+  def filing_status_options
+    [ ['Single', 'single'], ['Married - joint', 'married-joint'],
+      ['Married - sep.', 'married-separate'],
+      ['Head of household', 'hoh'], ['Widower', 'widower'] ]
+  end
+
   def us_states
     [
         ['Alabama', 'AL'],
