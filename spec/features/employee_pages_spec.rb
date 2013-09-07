@@ -30,23 +30,14 @@ describe 'EmployeePages' do
     select 'California',                      from: 'employee_state'
     fill_in 'Zip',                    with: '94709'
     select 'Organizer',               from: 'employee_title'
-    fill_in 'Pay hourly',             with: 12
-    select '2013',                    from: 'employee_hire_date_1i'
-    select 'August',                  from: 'employee_hire_date_2i'
-    select '12',                      from: 'employee_hire_date_3i'
+    fill_in 'Pay hrly',             with: 12
     select 'M',                       from: 'employee_gender'
-    #select 'Single',                  from: 'employee_fed_filing_status'
-    #select 'Single',                  from: 'employee_ca_filing_status'
-    fill_in 'Fed filing status',       with: 'single'
-    fill_in 'Ca filing status',       with: 'single'
-    #select '2',                       from: 'employee_ca_allowances'
-    #select '2',                       from: 'employee_fed_allowances'
-    fill_in 'Ca allowances',          with: '2'
-    fill_in 'Fed allowances',         with: '2'
-    select '2012',                    from: 'employee_hire_date_1i'
-    select 'August',                  from: 'employee_hire_date_2i'
-    select '23',                      from: 'employee_hire_date_3i'
-
+    select 'Single',                  from: 'employee_fed_filing_status'
+    select 'Single',                  from: 'employee_ca_filing_status'
+    fill_in 'employee_ca_allowances', with: '2'
+    fill_in 'employee_fed_allowances', with: '2'
+    fill_in 'Dob',                    with: '1980-09-01'
+    fill_in 'Hire date',              with: '2013-09-01'
   end
 
 
