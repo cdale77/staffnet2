@@ -8,6 +8,7 @@ gem 'devise', '3.0.2'
 
 gem 'date_validator'
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-timepicker-rails'
 gem 'morrisjs-rails'
 gem 'raphael-rails'
 gem 'jquery-rails'
