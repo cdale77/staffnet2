@@ -26,7 +26,7 @@ class Shift < ActiveRecord::Base
 
   ## VALIDATIONS
   validates :break_time,
-            numericality: { greater_than_or_equal_to: 5, less_than_or_equal_to: 120 },
+            numericality: { less_than_or_equal_to: 120 },
             allow_blank: true
 
   validates :travel_reimb,

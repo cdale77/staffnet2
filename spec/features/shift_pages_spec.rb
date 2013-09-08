@@ -20,7 +20,9 @@ describe 'ShiftPages' do
 
   def fill_in_example_shift
     select employee.full_name,    from: 'shift_employee_id'
-
+    fill_in 'Date',               with: '13-09-4'
+    fill_in 'Time in',            with: '09:00 AM'
+    fill_in 'Time out',           with: '05:00 PM'
   end
 
 
