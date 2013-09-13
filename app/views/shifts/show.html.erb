@@ -1,2 +1,47 @@
 <% provide(:title, 'Shift') %>
 <h1>Shift details</h1>
+<div class="row">
+  <div class="span4">
+    <div>
+      <table>
+        <tr height="5px"></tr>
+        <tr>
+          <th>Employee:</th>
+          <td><%= @shift.employee.full_name %></td>
+        </tr>
+        <tr>
+          <th>Date:</th>
+          <td><%= @shift.date %></td>
+        </tr>
+        <tr>
+          <th>Type:</th>
+          <td><%= @shift.shift_type.shift_type.humanize %></td>
+        </tr>
+        <tr>
+          <th>Time in:</th>
+          <td><%= @shift.time_in %></td>
+        </tr>
+        <tr>
+          <th>Time out:</th>
+          <td><%= @shift.time_out %></td>
+        </tr>
+        <tr>
+          <th>Break time:</th>
+          <td><%= @shift.break_time %> minutes</td>
+        </tr>
+        <tr>
+          <th>Net time:</th>
+          <td>Fix this</td>
+        </tr>
+        <tr>
+          <th>Travel reimb:</th>
+          <td><%= number_to_currency(@shift.travel_reimb) %></td>
+        </tr>
+        <tr>
+          <th>Notes:</th>
+          <td><%= @shift.notes %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

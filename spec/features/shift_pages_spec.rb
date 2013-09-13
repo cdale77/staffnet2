@@ -20,7 +20,7 @@ describe 'ShiftPages' do
 
   def fill_in_example_shift
     select employee.full_name,    from: 'shift_employee_id'
-    fill_in 'Date',               with: '13-09-4'
+    fill_in 'Date',               with: '2013-09-04'
     fill_in 'Time in',            with: '09:00 AM'
     fill_in 'Time out',           with: '05:00 PM'
   end
@@ -69,6 +69,17 @@ describe 'ShiftPages' do
           it { should have_selector('div.alert') }
         end
       end
+    end
+
+    describe 'show' do
+      before { visit shift_path(shift) }
+
+      describe 'page' do
+        it { should have_selector('h1', text: 'Shift details') }
+        it { should have_content(shift.date) }
+        it { should have_content(shift.employee.full_name) }
+      end
+
     end
   end
 

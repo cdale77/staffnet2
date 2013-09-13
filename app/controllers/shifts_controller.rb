@@ -15,11 +15,15 @@ class ShiftsController < ApplicationController
     end
   end
 
+  def show
+    @shift = Shift.find(params[:id])
+  end
 
 
   private
 
     def shift_params
-      params.require(:shift).permit(:employee_id, :shift_type_id, :time_in, :time_out, :break_time, :notes, :travel_reimb)
+      params.require(:shift).permit(:employee_id, :shift_type_id, :time_in, :time_out, :break_time, :notes,
+                                    :date, :travel_reimb)
     end
 end

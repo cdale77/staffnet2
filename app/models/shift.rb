@@ -25,6 +25,9 @@ class Shift < ActiveRecord::Base
   belongs_to :shift_type
 
   ## VALIDATIONS
+  validates :date,
+            presence: { message: 'required.' }
+
   validates :break_time,
             numericality: { less_than_or_equal_to: 120 },
             allow_blank: true
@@ -33,7 +36,7 @@ class Shift < ActiveRecord::Base
             numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 },
             allow_blank: true
 
-  validate :time_validator
+  validate :shift_time_validator
 
   def net_time
     self.break_time ||= 0
@@ -43,12 +46,13 @@ class Shift < ActiveRecord::Base
   end
 
 
-
-
   ## CALLBACKS
 
+
+
   private
-    def time_validator
+
+    def shift_time_validator
       errors.add(:time_out, 'You cannot have zero or negative hours.') unless (2..24).include?(net_time)
     end
 
