@@ -78,6 +78,10 @@ describe 'ShiftPages' do
         it { should have_selector('h1', text: 'Shift details') }
         it { should have_content(shift.date) }
         it { should have_content(shift.employee.full_name) }
+        describe 'links' do
+          it { should have_link('edit', href: edit_shift_path(shift)) }
+          it { should have_link('delete', href: shift_path(shift)) }
+        end
       end
 
     end

@@ -2,13 +2,25 @@
 <h1>Shift details</h1>
 <div class="row">
   <div class="span4">
+    <div class="row">
+      <div class="span2">
+        <h2><%= @shift.employee.full_name %></h2>
+      </div>
+      <div class="span2 padtop">
+        <div class="buttons">
+          <% if true %>
+            <%= link_to 'edit', edit_shift_path(@shift), class: 'btn btn-mini', type: 'button' %>
+            <%= link_to 'delete', @shift, method: :delete,
+                        data: { confirm: 'You sure?' },
+                        class: 'btn btn-mini btn-danger', type: 'button' %>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
     <div>
       <table>
         <tr height="5px"></tr>
-        <tr>
-          <th>Employee:</th>
-          <td><%= @shift.employee.full_name %></td>
-        </tr>
         <tr>
           <th>Date:</th>
           <td><%= @shift.date %></td>
