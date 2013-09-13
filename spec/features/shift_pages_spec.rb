@@ -112,8 +112,33 @@ describe 'ShiftPages' do
             expect(page).to have_link('edit', edit_shift_path(shift))
           end
         end
+      end
+    end
 
+    describe 'edit' do
+      before { visit edit_shift_path(shift) }
 
+      describe 'page' do
+        it { should have_title('Edit shift') }
+        it { should have_selector('h1', 'Edit shift') }
+      end
+
+      describe 'with invalid information' do
+        before do
+          fill_in 'Time in', with: shift.time_out
+          click_button 'Edit shift'
+        end
+        it { should have_selector('div.alert-error') }
+      end
+
+      describe 'with valid information' do
+        new_note = "This is a new note."
+        before do
+          fill_in 'Notes', with: new_note
+          click_button 'Edit shift'
+        end
+        it { should have_selector('div.alert.alert-success') }
+        specify { expect(shift.reload.notes).to  eq new_note }
       end
     end
   end

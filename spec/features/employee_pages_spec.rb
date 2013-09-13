@@ -131,7 +131,7 @@ describe 'EmployeePages' do
       end
     end
 
-    describe 'edit employee' do
+    describe 'edit' do
       before { visit edit_employee_path(employee) }
 
       describe 'page' do
