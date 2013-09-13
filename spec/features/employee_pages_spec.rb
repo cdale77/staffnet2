@@ -13,10 +13,6 @@ describe 'EmployeePages' do
 
   let(:employee) { FactoryGirl.create(:employee) }
 
-  def create_sample_employees
-    FactoryGirl.create(:employee, first_name: 'Bob', last_name: 'Smith', email: 'bobsky@example.com')
-    FactoryGirl.create(:employee, first_name: 'Ben', last_name: 'Jones',  email: 'ben@example.com')
-  end
 
   ### HELPERS ###
   def fill_in_example_employee
@@ -39,6 +35,12 @@ describe 'EmployeePages' do
     fill_in 'Dob',                    with: '1980-09-01'
     fill_in 'Hire date',              with: '2013-09-01'
   end
+
+  def create_sample_employees
+    FactoryGirl.create(:employee, first_name: 'Bob', last_name: 'Smith', email: 'bobsky@example.com')
+    FactoryGirl.create(:employee, first_name: 'Ben', last_name: 'Jones',  email: 'ben@example.com')
+  end
+
 
 
   #### AS SUPERADMIN USER ####

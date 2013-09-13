@@ -25,6 +25,11 @@ describe 'ShiftPages' do
     fill_in 'Time out',           with: '05:00 PM'
   end
 
+  def create_sample_shifts
+    FactoryGirl.create(:shift, date: Date.yesterday)
+    FactoryGirl.create(:shift, date: Date.today)
+  end
+
 
   ## AS SUPERADMIN USER
   describe 'as super_admin user' do
@@ -83,7 +88,33 @@ describe 'ShiftPages' do
           it { should have_link('delete', href: shift_path(shift)) }
         end
       end
+    end
 
+    describe 'index' do
+      before do
+        create_sample_shifts
+        visit shifts_path
+      end
+
+      after { Shift.delete_all }
+
+      describe 'page' do
+        it { should have_title('All shifts') }
+        it 'should show each shift' do
+          Shift.all.each do |shift|
+            expect(page).to have_content(shift.date)
+            expect(page).to have_content(shift.employee.last_name)
+          end
+        end
+        it 'should have details and edit links for each shift do' do
+          Shift.all.each do |shift|
+            expect(page).to have_link('details', shift_path(shift))
+            expect(page).to have_link('edit', edit_shift_path(shift))
+          end
+        end
+
+
+      end
     end
   end
 

@@ -19,6 +19,10 @@ class ShiftsController < ApplicationController
     @shift = Shift.find(params[:id])
   end
 
+  def index
+    @shifts = Shift.all
+  end
+
 
   private
 
