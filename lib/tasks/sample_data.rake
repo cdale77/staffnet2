@@ -2,7 +2,7 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
 
-    Employee.create!(    first_name:         'Brad',
+    employee = Employee.create!(    first_name:         'Brad',
                          last_name:          'Johnson',
                          email:              'example@example.com',
                          phone:              (0..9).to_a.shuffle.join.to_s,
@@ -46,7 +46,17 @@ namespace :db do
       Employee.create!(employee_attributes)
     end
 
-    Employee.all.each do |employee|
+    # employee should be the first employee. So create a super_admin user for it
+    employee.create_user!(first_name: employee.first_name,
+                          last_name: employee.last_name,
+                          email: employee.email,
+                          role: 'super_admin',
+                          password: 'foobar7878',
+                          password_confirmation: 'foobar7878')
+
+
+    employees = Employee.all.drop(1) #get the remaining employees and make users for them
+    employees.each do |employee|
       employee.create_user!(first_name: employee.first_name,
                             last_name: employee.last_name,
                             email: employee.email,

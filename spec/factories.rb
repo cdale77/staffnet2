@@ -46,6 +46,22 @@ FactoryGirl.define do
     gender              'f'
     active              true
     user
+
+    factory :super_admin_employee do
+      super_admin
+    end
+
+    factory :admin_employee do
+      admin
+    end
+
+    factory :manager_employee do
+      manager
+    end
+
+    factory :staff_employee do
+      staff
+    end
   end
 
   factory :shift_type do

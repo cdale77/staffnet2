@@ -12,9 +12,11 @@ describe "UserPages" do
   let(:staff) { FactoryGirl.create(:staff) }
   let(:user) { FactoryGirl.create(:user) }
 
+  let!(:employee) { FactoryGirl.create(:employee, first_name: 'Jason') }
 
   ### HELPERS ###
   def fill_in_example_user
+    select employee.first_name,       from: 'user_employee_id'
     fill_in 'First name',             with: 'Brad'
     fill_in 'Last name',              with: 'Johnson'
     fill_in 'Email',                  with: 'example' + rand(1..500).to_s + '@example.com'
