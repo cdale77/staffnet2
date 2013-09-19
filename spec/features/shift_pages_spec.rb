@@ -141,6 +141,13 @@ describe 'ShiftPages' do
         specify { expect(shift.reload.notes).to  eq new_note }
       end
     end
+
+    describe 'destroy' do
+      before { visit shift_path(shift) }
+      it 'should destroy a shift' do
+        expect { click_link 'delete' }.to change(Shift, :count).by(-1)
+      end
+    end
   end
 
 

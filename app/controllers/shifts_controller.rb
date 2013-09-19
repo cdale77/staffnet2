@@ -30,11 +30,17 @@ class ShiftsController < ApplicationController
   def update
     @shift = Shift.find(params[:id])
     if @shift.update_attributes(shift_params)
-      flash[:success] = 'Shift updated'
+      flash[:success] = 'Shift updated.'
       redirect_to shift_path(@shift)
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    Shift.find(params[:id]).destroy
+    flash[:success] = 'Shift destroyed.'
+    redirect_to shifts_path
   end
 
 
