@@ -40,6 +40,9 @@ class User < ActiveRecord::Base
   include Regex
   include PeopleMethods
 
+  ## RELATIONSHIPS
+  belongs_to :employee
+
 
   ## VALIDATIONS
   validates :first_name, presence: { message: 'required.' },

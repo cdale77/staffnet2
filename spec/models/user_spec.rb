@@ -52,6 +52,9 @@ describe User do
     it { should be_valid }
   end
 
+  ## RELATIONSHIPS
+  it { should respond_to(:employee) }
+
   ## VALIDATIONS
   describe 'first name validations' do
     it 'should reject users with no first name' do
