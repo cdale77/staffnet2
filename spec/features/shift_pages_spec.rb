@@ -125,7 +125,7 @@ describe 'ShiftPages' do
 
       describe 'with invalid information' do
         before do
-          fill_in 'Time in', with: shift.time_out
+          fill_in 'Date', with: ''
           click_button 'Edit shift'
         end
         it { should have_selector('div.alert-error') }
