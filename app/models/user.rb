@@ -26,6 +26,7 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  role                   :string(255)      default("")
+#  employee_id            :integer
 #
 
 class User < ActiveRecord::Base
