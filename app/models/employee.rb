@@ -72,7 +72,7 @@ class Employee < ActiveRecord::Base
 
   validate :pay_validator
 
-  validate :min_wage_validator
+  #validate :min_wage_validator
 
   validates :fed_allowances, :ca_allowances,  presence: { message: "required." },
             length: { is: 1 },

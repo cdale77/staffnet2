@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-  #before_filter :super_admin, only: [:edit, :update]
-  before_filter :admin, only: [:new, :create, :edit, :update, :index, :destroy]
+  before_filter :super_admin, only: [:new, :create, :edit, :update]
+  before_filter :admin, only: [:index, :destroy]
   before_filter :correct_user, only: :show
 
 
@@ -50,18 +50,9 @@ class UsersController < ApplicationController
   private
     def user_params
       if params[:user][:password].blank?
-        if current_user.role? :super_admin
-          params.require(:user).permit(:first_name, :last_name, :email, :role)
-        elsif current_user.role? :admin
-          params.require(:user).permit(:first_name, :last_name, :email)
-        end
+        params.require(:user).permit(:first_name, :last_name, :email, :role, :employee_id)
       else
-        if current_user.role? :super_admin
-          params.require(:user).permit(:first_name, :last_name, :email, :role, :password, :password_confirmation)
-        elsif current_user.role? :admin
-          params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
-        end
-
+        params.require(:user).permit(:first_name, :last_name, :email, :role, :employee_id, :password, :password_confirmation)
       end
     end
 end
