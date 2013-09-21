@@ -7,9 +7,8 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to root_path unless ( current_user == @user || current_user.role?(:admin) )
+    def correct_user(resource)
+      redirect_to root_path unless ( current_user == resource.user || current_user.role?(:admin) )
     end
 
     def super_admin

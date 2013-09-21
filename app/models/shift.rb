@@ -38,6 +38,10 @@ class Shift < ActiveRecord::Base
 
   validate :shift_time_validator
 
+  def user
+    employee.user
+  end
+
   def net_time
     self.break_time ||= 0
     self.time_in ||= 0
