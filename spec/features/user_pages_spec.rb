@@ -17,16 +17,14 @@ describe "UserPages" do
   ### HELPERS ###
   def fill_in_example_user
     select employee.first_name,       from: 'user_employee_id'
-    fill_in 'First name',             with: 'Brad'
-    fill_in 'Last name',              with: 'Johnson'
     fill_in 'Email',                  with: 'example' + rand(1..500).to_s + '@example.com'
     fill_in 'Password',               with: 'foobar7878'
     fill_in 'Confirmation',           with: 'foobar7878'
   end
 
   def create_sample_users
-    FactoryGirl.create(:user, first_name: 'Bob', last_name: 'Smith', email: 'bob@example.com')
-    FactoryGirl.create(:user, first_name: 'Ben', last_name: 'Jones',  email: 'ben@example.com')
+    FactoryGirl.create(:user, email: 'bob@example.com')
+    FactoryGirl.create(:user, email: 'ben@example.com')
   end
 
   roles = ['super_admin', 'admin', 'manager', 'staff']
@@ -74,7 +72,6 @@ describe "UserPages" do
         describe 'after saving user' do
           before { click_button 'New user' }
 
-          it { should have_content('Brad Johnson') }
           it { should have_content('Admin') }
           it { should have_selector('div.alert') }
         end
@@ -89,7 +86,7 @@ describe "UserPages" do
       it { should have_title('All users') }
       it 'should list each user' do
         User.all.each do |user|
-          expect(page).to have_selector('td', text: user.first_name)
+          expect(page).to have_selector('td', text: user.email)
         end
       end
       it 'should have show and edit links for users' do
@@ -121,8 +118,6 @@ describe "UserPages" do
         let(:new_last_name)   { 'Name' }
         let(:new_email) { 'new@example.com' }
         before do
-          fill_in 'First name',       with: new_first_name
-          fill_in 'Last name',        with: new_last_name
           fill_in 'Email',            with: new_email
           select 'Admin',             from: 'user_role'
           click_button 'Edit user'
@@ -130,7 +125,6 @@ describe "UserPages" do
 
 
         it { should have_selector('div.alert.alert-success') }
-        specify { expect(user.reload.first_name).to  eq new_first_name }
         specify { expect(user.reload.email).to eq new_email }
         specify { expect(user.reload.role).to eq 'admin' }
       end
@@ -139,8 +133,7 @@ describe "UserPages" do
     describe 'show' do
       before { visit user_path(user) }
       describe 'page' do
-        it { should have_content (user.first_name) }
-        it { should have_content (user.last_name) }
+        it { should have_content (user.email) }
         describe 'links' do
           it { should have_link('edit', href: edit_user_path(user)) }
           it { should have_link('delete', href: user_path(user)) }
@@ -191,7 +184,7 @@ describe "UserPages" do
       it { should have_title('All users') }
       it 'should list each user' do
         User.all.each do |user|
-          expect(page).to have_selector('td', text: user.first_name)
+          expect(page).to have_selector('td', text: user.email)
         end
       end
       it 'should have show and edit links for users' do
@@ -213,8 +206,7 @@ describe "UserPages" do
     describe 'showing their own profile' do
       before { visit user_path(admin) }
       describe 'page' do
-        it { should have_content (admin.first_name) }
-        it { should have_content (admin.last_name) }
+        it { should have_content (admin.email) }
         describe 'links' do
           it { should_not have_link('edit', href: edit_user_path(admin)) }
           it { should have_link('delete', href: user_path(admin)) }
@@ -225,8 +217,7 @@ describe "UserPages" do
     describe 'showing another user profile profile' do
       before { visit user_path(user) }
       describe 'page' do
-        it { should have_content (admin.first_name) }
-        it { should have_content (admin.last_name) }
+        it { should have_content (user.email) }
         describe 'links' do
           it { should_not have_link('edit', href: edit_user_path(user)) }
           it { should have_link('delete', href: user_path(user)) }
@@ -282,8 +273,7 @@ describe "UserPages" do
     describe 'showing their own profile' do
       before { visit user_path(manager) }
       describe 'page' do
-        it { should have_content (manager.first_name) }
-        it { should have_content (manager.last_name) }
+        it { should have_content (manager.email) }
         describe 'links' do
           it { should_not have_link('edit', href: edit_user_path(manager)) }
           it { should_not have_link('delete', href: user_path(manager)) }
@@ -294,8 +284,7 @@ describe "UserPages" do
     describe 'showing another user profile' do
       before { visit user_path(user) }
       describe 'page' do
-        it { should_not have_content (user.first_name) }
-        it { should_not have_content (user.last_name) }
+        it { should_not have_content (user.email) }
       end
     end
   end
@@ -339,8 +328,7 @@ describe "UserPages" do
     describe 'showing their own profile' do
       before { visit user_path(staff) }
       describe 'page' do
-        it { should have_content (staff.first_name) }
-        it { should have_content (user.last_name) }
+        it { should have_content (staff.email) }
         describe 'links' do
           it { should_not have_link('edit', href: edit_user_path(staff)) }
           it { should_not have_link('delete', href: user_path(staff)) }
@@ -351,8 +339,7 @@ describe "UserPages" do
     describe 'showing another profile profile' do
       before { visit user_path(admin) }
       describe 'page' do
-        it { should_not have_content (user.first_name) }
-        it { should_not have_content (user.last_name) }
+        it { should_not have_content (user.email) }
         end
 
     end
@@ -397,8 +384,7 @@ describe "UserPages" do
     describe 'showing their own profile' do
       before { visit user_path(user) }
       describe 'page' do
-        it { should have_content (user.first_name) }
-        it { should have_content (user.last_name) }
+        it { should have_content (user.email) }
         describe 'links' do
           it { should_not have_link('edit', href: edit_user_path(user)) }
           it { should_not have_link('delete', href: user_path(user)) }
@@ -409,8 +395,7 @@ describe "UserPages" do
     describe 'showing another profile profile' do
       before { visit user_path(admin) }
       describe 'page' do
-        it { should_not have_content (user.first_name) }
-        it { should_not have_content (user.last_name) }
+        it { should_not have_content (user.email) }
       end
     end
   end

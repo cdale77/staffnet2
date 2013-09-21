@@ -33,12 +33,12 @@ require 'spec_helper'
 
 describe User do
 
-  user_attributes = { first_name: 'Test', last_name: 'User', email: 'test@example.com',
+  user_attributes = { email: 'test@example.com',
                       password: 'foobar7878', password_confirmation: 'foobar7878', role: 'manager' }
 
   #let(:user) { FactoryGirl.create(:user) }
   before do
-    @user = User.new(first_name: 'Test', last_name: 'User', email: 'test@example.com',
+    @user = User.new(email: 'test@example.com',
                      password: 'foobar7878', password_confirmation: 'foobar7878')
   end
 
@@ -57,40 +57,6 @@ describe User do
   it { should respond_to(:employee) }
 
   ## VALIDATIONS
-  describe 'first name validations' do
-    it 'should reject users with no first name' do
-      @user.first_name = ' '
-      @user.should_not be_valid
-    end
-    it 'should reject users with too long first names' do
-      long_name = 'a' * 26
-      @user.first_name = long_name
-      @user.should_not be_valid
-    end
-    it 'should reject users with too short first names' do
-      short_name = 'a'
-      @user.first_name = short_name
-      @user.should_not be_valid
-    end
-  end
-
-  describe 'last name validations' do
-    it 'should reject users with no last name' do
-      @user.last_name = ' '
-      @user.should_not be_valid
-    end
-    it 'should reject users with too long last names' do
-      long_name = 'a' * 36
-      @user.last_name = long_name
-      @user.should_not be_valid
-    end
-    it 'should reject users with too short last names' do
-      short_name = 'a'
-      @user.last_name = short_name
-      @user.should_not be_valid
-    end
-  end
-
   describe 'email validations' do
     it 'should reject invalid emails' do
       addresses = %w[user@foo,com user_at_foo.org example.user@foo. foo@bar_baz.com foo@bar+baz.com]

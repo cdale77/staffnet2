@@ -46,11 +46,6 @@ class User < ActiveRecord::Base
 
 
   ## VALIDATIONS
-  validates :first_name, presence: { message: 'required.' },
-            length: { maximum: 25, minimum: 2, message: 'must be between 2 and 25 characters.' }
-
-  validates :last_name, presence: { message: 'required.' },
-            length: { maximum: 35, minimum: 2, message: 'must be between 2 and 35 characters.' }
 
   validates :email, presence: { message: 'required' },
             format: { with: VALID_EMAIL_REGEX, message: 'invalid email.' },

@@ -1,11 +1,8 @@
-<% provide(:title, @user.full_name) %>
+<% provide(:title) %>
 <h1>User profile</h1>
 <div class="row">
   <div class="span4">
     <div class="row">
-      <div class="span2">
-        <h3 class="user-name"><%= @user.full_name %></h3>
-      </div>
       <div class="span2 padtop">
         <div class="buttons">
           <% if super_admin_user?  %>

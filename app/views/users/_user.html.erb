@@ -1,6 +1,4 @@
 <tr>
-  <td><%= user.first_name%></td>
-  <td><%= user.last_name %>
   <td><%= mail_to user.email, user.email, class: 'hover-underline-grey' %></td>
   <td><%= user.role.humanize %></td>
   <td><%= user.created_at %></td>

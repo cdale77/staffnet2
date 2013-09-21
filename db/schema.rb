@@ -76,8 +76,6 @@ ActiveRecord::Schema.define(version: 20130902185734) do
   add_index "shifts", ["shift_type_id"], name: "index_shifts_on_shift_type_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "first_name",             default: ""
-    t.string   "last_name",              default: ""
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -105,7 +103,7 @@ ActiveRecord::Schema.define(version: 20130902185734) do
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["employee_id"], name: "index_users_on_employee_id", unique: true, using: :btree
+  add_index "users", ["employee_id"], name: "index_users_on_employee_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 

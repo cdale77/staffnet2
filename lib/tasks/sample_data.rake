@@ -47,8 +47,7 @@ namespace :db do
     end
 
     # employee should be the first employee. So create a super_admin user for it
-    employee.create_user!(first_name: employee.first_name,
-                          last_name: employee.last_name,
+    employee.create_user!(
                           email: employee.email,
                           role: 'super_admin',
                           password: 'foobar7878',
