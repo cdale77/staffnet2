@@ -56,8 +56,7 @@ namespace :db do
 
     employees = Employee.all.drop(1) #get the remaining employees and make users for them
     employees.each do |employee|
-      employee.create_user!(first_name: employee.first_name,
-                            last_name: employee.last_name,
+      employee.create_user!(
                             email: employee.email,
                             role: ['super_admin', 'admin', 'manager', 'staff'].sample,
                             password: 'foobar7878',
