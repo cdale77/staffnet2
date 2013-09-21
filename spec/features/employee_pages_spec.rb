@@ -13,6 +13,9 @@ describe 'EmployeePages' do
 
   let(:employee) { FactoryGirl.create(:employee) }
   let(:super_admin_employee) { FactoryGirl.create(:super_admin_employee) }
+  let(:admin_employee) { FactoryGirl.create(:admin_employee) }
+  let(:manager_employee) { FactoryGirl.create(:manager_employee) }
+  let(:staff_employee) { FactoryGirl.create(:staff_employee) }
 
 
 
@@ -94,12 +97,11 @@ describe 'EmployeePages' do
 
     describe 'show' do
       describe 'page' do
-
         describe 'when viewing their own employee profile' do
           before { visit employee_path(super_admin_employee) }
           describe 'page' do
-            it { should have_content (employee.first_name) }
-            it { should have_content (employee.last_name) }
+            it { should have_content (super_admin_employee.first_name) }
+            it { should have_content (super_admin_employee.last_name) }
             describe 'links' do
               it { should have_link('edit', href: edit_employee_path(super_admin_employee)) }
               it { should have_link('delete', href: employee_path(super_admin_employee)) }
@@ -234,15 +236,29 @@ describe 'EmployeePages' do
     end
 
     describe 'show' do
-      before { visit employee_path(employee) }
-
       describe 'page' do
         describe 'page' do
-          it { should have_content (employee.first_name) }
-          it { should have_content (employee.last_name) }
-          describe 'links' do
-            it { should have_link('edit', href: edit_employee_path(employee)) }
-            it { should have_link('delete', href: employee_path(employee)) }
+          describe 'when viewing their own employee profile' do
+            before { visit employee_path(admin_employee) }
+            describe 'page' do
+              it { should have_content (admin_employee.first_name) }
+              it { should have_content (admin_employee.last_name) }
+              describe 'links' do
+                it { should have_link('edit', href: edit_employee_path(admin_employee)) }
+                it { should have_link('delete', href: employee_path(admin_employee)) }
+              end
+            end
+          end
+          describe 'when viewing another employee profile' do
+            before { visit employee_path(employee) }
+            describe 'page' do
+              it { should have_content (employee.first_name) }
+              it { should have_content (employee.last_name) }
+              describe 'links' do
+                it { should have_link('edit', href: edit_employee_path(employee)) }
+                it { should have_link('delete', href: employee_path(employee)) }
+              end
+            end
           end
         end
       end
@@ -342,16 +358,29 @@ describe 'EmployeePages' do
     end
 
     describe 'show' do
-      before { visit employee_path(employee) }
-
       describe 'page' do
         describe 'page' do
-          it { should have_content (employee.first_name) }
-          it { should have_content (employee.last_name) }
-          it { should_not have_content ('pay') }
-          describe 'links' do
-            it { should_not have_link('edit', href: edit_employee_path(employee)) }
-            it { should_not have_link('delete', href: employee_path(employee)) }
+          describe 'when viewing their own employee profile' do
+            before { visit employee_path(manager_employee) }
+            describe 'page' do
+              it { should have_content (manager_employee.first_name) }
+              it { should have_content (manager_employee.last_name) }
+              describe 'links' do
+                it { should have_link('edit', href: edit_employee_path(manager_employee)) }
+                it { should have_link('delete', href: employee_path(manager_employee)) }
+              end
+            end
+          end
+          describe 'when viewing another employee profile' do
+            before { visit employee_path(employee) }
+            describe 'page' do
+              it { should have_content (employee.first_name) }
+              it { should have_content (employee.last_name) }
+              describe 'links' do
+                it { should_not have_link('edit', href: edit_employee_path(employee)) }
+                it { should_not have_link('delete', href: employee_path(employee)) }
+              end
+            end
           end
         end
       end
@@ -419,16 +448,29 @@ describe 'EmployeePages' do
     end
 
     describe 'show' do
-      before { visit employee_path(employee) }
-
       describe 'page' do
         describe 'page' do
-          it { should_not have_content (employee.first_name) }
-          it { should_not have_content (employee.last_name) }
-          it { should_not have_content ('pay') }
-          describe 'links' do
-            it { should_not have_link('edit', href: edit_employee_path(employee)) }
-            it { should_not have_link('delete', href: employee_path(employee)) }
+          describe 'when viewing their own employee profile' do
+            before { visit employee_path(staff_employee) }
+            describe 'page' do
+              it { should have_content (staff_employee.first_name) }
+              it { should have_content (staff_employee.last_name) }
+              describe 'links' do
+                it { should have_link('edit', href: edit_employee_path(staff_employee)) }
+                it { should have_link('delete', href: employee_path(admin_employee)) }
+              end
+            end
+          end
+          describe 'when viewing another employee profile' do
+            before { visit employee_path(employee) }
+            describe 'page' do
+              it { should_not have_content (employee.first_name) }
+              it { should_not have_content (employee.last_name) }
+              describe 'links' do
+                it { should_not have_link('edit', href: edit_employee_path(employee)) }
+                it { should_not have_link('delete', href: employee_path(employee)) }
+              end
+            end
           end
         end
       end
@@ -481,21 +523,34 @@ describe 'EmployeePages' do
     end
 
     describe 'show' do
-      before { visit employee_path(employee) }
-
       describe 'page' do
         describe 'page' do
-          it { should_not have_content (employee.first_name) }
-          it { should_not have_content (employee.last_name) }
-          it { should_not have_content ('pay') }
-          describe 'links' do
-            it { should_not have_link('edit', href: edit_employee_path(employee)) }
-            it { should_not have_link('delete', href: employee_path(employee)) }
+          describe 'when viewing their own employee profile' do
+            before { visit employee_path(staff_employee) }
+            describe 'page' do
+              it { should_not have_content (staff_employee.first_name) }
+              it { should_not have_content (staff_employee.last_name) }
+              describe 'links' do
+                it { should_not have_link('edit', href: edit_employee_path(staff_employee)) }
+                it { should_not have_link('delete', href: employee_path(admin_employee)) }
+              end
+            end
+          end
+          describe 'when viewing another employee profile' do
+            before { visit employee_path(employee) }
+            describe 'page' do
+              it { should_not have_content (employee.first_name) }
+              it { should_not have_content (employee.last_name) }
+              describe 'links' do
+                it { should_not have_link('edit', href: edit_employee_path(employee)) }
+                it { should_not have_link('delete', href: employee_path(employee)) }
+              end
+            end
           end
         end
       end
     end
-
+    
     describe 'index' do
       before do
         create_sample_employees

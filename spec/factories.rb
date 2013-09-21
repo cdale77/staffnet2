@@ -46,7 +46,23 @@ FactoryGirl.define do
     user
 
     factory :super_admin_employee do
+      first_name 'SuperAdmin'
       association :user, :factory => :super_admin
+    end
+
+    factory :admin_employee do
+      first_name 'Admin'
+      association :user, :factory => :admin
+    end
+
+    factory :manager_employee do
+      first_name 'Manager'
+      association :user, :factory => :manager
+    end
+
+    factory :staff_employee do
+      first_name 'Staff'
+      association :user, :factory => :staff
     end
   end
 
