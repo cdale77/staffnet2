@@ -46,21 +46,47 @@ FactoryGirl.define do
     user
 
     factory :super_admin_employee do
-      super_admin
-    end
-
-    factory :admin_employee do
-      admin
-    end
-
-    factory :manager_employee do
-      manager
-    end
-
-    factory :staff_employee do
-      staff
+      association :user, :factory => :super_admin
     end
   end
+
+=begin
+  factory :super_admin_employee do
+    first_name          'Superadmin'
+    last_name           'Employee'
+    phone               '5105551234'
+    email               'super_admin_employee@example.com'
+    address1            '1234 Main St.'
+    address2            'Apt 318'
+    city                'Cleveland'
+    state               'OH'
+    zip                 '12345'
+    title               'Organizer'
+    pay_hourly          12
+    fed_filing_status   'single'
+    ca_filing_status    'single'
+    fed_allowances      2
+    ca_allowances       2
+    dob                 Date.today
+    hire_date           Date.today
+    gender              'f'
+    active              true
+    super_admin
+   end
+=end
+
+   # factory :admin_employee do
+   #   admin
+   # end
+
+   # factory :manager_employee do
+   #   manager
+   # end
+
+   # factory :staff_employee do
+   #   staff
+   # end
+
 
   factory :shift_type do
     shift_type      ['street', 'door', 'office', 'phone'].sample

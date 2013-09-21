@@ -3,6 +3,7 @@ class EmployeesController < ApplicationController
   before_filter :admin, only: [:new, :edit, :update]
   before_filter :manager, only: [:show, :index]
 
+
   def new
     @employee = Employee.new
   end

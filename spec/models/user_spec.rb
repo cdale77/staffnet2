@@ -3,8 +3,6 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  first_name             :string(255)      default("")
-#  last_name              :string(255)      default("")
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
 #  reset_password_token   :string(255)
@@ -23,10 +21,10 @@
 #  unlock_token           :string(255)
 #  locked_at              :datetime
 #  authentication_token   :string(255)
-#  created_at             :datetime
-#  updated_at             :datetime
 #  role                   :string(255)      default("")
 #  employee_id            :integer
+#  created_at             :datetime
+#  updated_at             :datetime
 #
 
 require 'spec_helper'

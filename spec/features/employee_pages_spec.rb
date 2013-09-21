@@ -12,6 +12,8 @@ describe 'EmployeePages' do
   let(:user) { FactoryGirl.create(:user) }
 
   let(:employee) { FactoryGirl.create(:employee) }
+  let(:super_admin_employee) { FactoryGirl.create(:super_admin_employee) }
+
 
 
   ### HELPERS ###
@@ -91,15 +93,28 @@ describe 'EmployeePages' do
     end
 
     describe 'show' do
-      before { visit employee_path(employee) }
-
       describe 'page' do
-        describe 'page' do
-          it { should have_content (employee.first_name) }
-          it { should have_content (employee.last_name) }
-          describe 'links' do
-            it { should have_link('edit', href: edit_employee_path(employee)) }
-            it { should have_link('delete', href: employee_path(employee)) }
+
+        describe 'when viewing their own employee profile' do
+          before { visit employee_path(super_admin_employee) }
+          describe 'page' do
+            it { should have_content (employee.first_name) }
+            it { should have_content (employee.last_name) }
+            describe 'links' do
+              it { should have_link('edit', href: edit_employee_path(super_admin_employee)) }
+              it { should have_link('delete', href: employee_path(super_admin_employee)) }
+            end
+          end
+        end
+        describe 'when viewing another employee profile' do
+          before { visit employee_path(employee) }
+          describe 'page' do
+            it { should have_content (employee.first_name) }
+            it { should have_content (employee.last_name) }
+            describe 'links' do
+              it { should have_link('edit', href: edit_employee_path(employee)) }
+              it { should have_link('delete', href: employee_path(employee)) }
+            end
           end
         end
       end
