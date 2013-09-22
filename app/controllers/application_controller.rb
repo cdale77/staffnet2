@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def correct_user(resource)
-      redirect_to root_path unless ( current_user == resource.user || current_user.role?(:admin) )
-    end
+    #def correct_user(resource)
+    #  redirect_to root_path unless current_user == resource.user || current_user.role?(:manager) )
+    #end
 
     def super_admin
       redirect_to root_path unless current_user.role? :super_admin
@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
 
     def manager
       redirect_to root_path unless current_user.role? :manager
+    end
+
+    def staffer
+      redirect_to root_path unless current_user.role? :staff
     end
 
 end

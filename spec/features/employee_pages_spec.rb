@@ -366,8 +366,8 @@ describe 'EmployeePages' do
               it { should have_content (manager_employee.first_name) }
               it { should have_content (manager_employee.last_name) }
               describe 'links' do
-                it { should have_link('edit', href: edit_employee_path(manager_employee)) }
-                it { should have_link('delete', href: employee_path(manager_employee)) }
+                it { should_not have_link('edit', href: edit_employee_path(manager_employee)) }
+                it { should_not have_link('delete', href: employee_path(manager_employee)) }
               end
             end
           end
@@ -456,8 +456,8 @@ describe 'EmployeePages' do
               it { should have_content (staff_employee.first_name) }
               it { should have_content (staff_employee.last_name) }
               describe 'links' do
-                it { should have_link('edit', href: edit_employee_path(staff_employee)) }
-                it { should have_link('delete', href: employee_path(admin_employee)) }
+                it { should_not have_link('edit', href: edit_employee_path(staff_employee)) }
+                it { should_not have_link('delete', href: employee_path(admin_employee)) }
               end
             end
           end
@@ -550,7 +550,7 @@ describe 'EmployeePages' do
         end
       end
     end
-    
+
     describe 'index' do
       before do
         create_sample_employees
