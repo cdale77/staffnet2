@@ -1,17 +1,23 @@
 class EmployeesController < ApplicationController
 
-  before_filter :admin, only: [:new, :create, :edit, :update, :destroy]
-  before_filter :manager, only: [:index]
-  before_filter :staffer, only: :show     #users who aren't at least staffers can't see their employee record
-  before_filter :check_owner, only: :show
+  include Pundit
+  after_filter :verify_authorized
+
+  #before_filter :admin, only: [:new, :create, :edit, :update, :destroy]
+  #before_filter :manager, only: [:index]
+  #before_filter :staffer, only: :show     #users who aren't at least staffers can't see their employee record
+  #before_filter :check_owner, only: :show
+
 
 
   def new
     @employee = Employee.new
+    authorize @employee
   end
 
   def create
     @employee = Employee.new(employee_params)
+    authorize @employee
     if @employee.save
       flash[:success] = 'Success.'
       redirect_to employee_path(@employee)
@@ -22,18 +28,22 @@ class EmployeesController < ApplicationController
 
   def show
     @employee = Employee.find(params[:id])
+    authorize @employee
   end
 
   def index
     @employees = Employee.all
+    authorize @employees
   end
 
   def edit
     @employee = Employee.find(params[:id])
+    authorize @employee
   end
 
   def update
     @employee = Employee.find(params[:id])
+    authorize @employee
     if @employee.update_attributes(employee_params)
       flash[:success] = 'Employee updated'
       redirect_to employee_path(@employee)
@@ -44,7 +54,9 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
-    Employee.find(params[:id]).destroy
+    @employee = Employee.find(params[:id])
+    authorize @employee
+    @employee.destroy
     flash[:success] = 'Employee destroyed.'
     redirect_to employees_url
   end
