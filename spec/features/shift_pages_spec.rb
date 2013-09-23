@@ -33,6 +33,8 @@ describe 'ShiftPages' do
 
 
   #### AS SUPERADMIN USER ####
+  ## log in as superadmin user to test basic functionality of the pages. Authorization is handled in the
+  ## policy specs
   describe 'as super_admin user' do
     before do
       visit new_user_session_path
@@ -150,6 +152,7 @@ describe 'ShiftPages' do
       end
     end
   end
+=begin
 
   #### AS ADMIN USER ####
   describe 'as admin user' do
@@ -578,6 +581,7 @@ describe 'ShiftPages' do
       end
     end
   end
+=end
 
 
 end

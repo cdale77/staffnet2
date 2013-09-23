@@ -30,6 +30,7 @@ describe "UserPages" do
   roles = ['super_admin', 'admin', 'manager', 'staff']
 
   #### AS SUPERADMIN USER ####
+
   describe 'as superadmin user' do
 
    before do
