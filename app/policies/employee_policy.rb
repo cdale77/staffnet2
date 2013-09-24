@@ -1,30 +1,33 @@
-class EmployeePolicy < Struct.new(:user, :employee)
+class EmployeePolicy < Struct.new(:user, :record)
 
   def new?
-    user.role? :admin
+  #  user.role? :admin
   end
 
   def create?
-    user.role? :admin
+  #  user.role? :admin
   end
 
+  # kludgy way to deal with cases where user is nil (user comes from the current_user method in the controller)
   def show?
-    user.role? :admin# or user == employee.user
+    #if user
+    #  user.role? :admin or user == employee.user
+    #end
   end
 
   def index?
-    user.role? :manager
+  #  user.role? :manager
   end
 
   def edit?
-    user.role? :admin
+  #  user.role? :admin
   end
 
   def update?
-    user.role? :admin
+  #  user.role? :admin
   end
 
   def destroy?
-    user.role? :admin
+  #  user.role? :admin
   end
 end
