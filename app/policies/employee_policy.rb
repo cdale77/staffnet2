@@ -10,9 +10,9 @@ class EmployeePolicy < Struct.new(:user, :record)
 
   # kludgy way to deal with cases where user is nil (user comes from the current_user method in the controller)
   def show?
-    #if user
-    #  user.role? :admin or user == employee.user
-    #end
+    if user
+      user.role? :manager || user.record == record
+    end
   end
 
   def index?

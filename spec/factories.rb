@@ -1,7 +1,8 @@
 FactoryGirl.define do
 
   factory :user do
-    sequence(:email)       {|n| "user#{n}@example.com" }
+    #sequence(:email)       {|n| "user#{n}@example.com" }
+    email                  (1..20).to_a.sample.to_s + 'user@exampl.com'
     role                   ''
     password              'foobar7878'
     password_confirmation 'foobar7878'
@@ -43,27 +44,27 @@ FactoryGirl.define do
     hire_date           Date.today
     gender              'f'
     active              true
-    user
+#    user
 
-    factory :super_admin_employee do
-      first_name 'SuperAdmin'
-      association :user, :factory => :super_admin
-    end
+#    factory :super_admin_employee do
+#      first_name 'SuperAdmin'
+ #     association :user, :factory => :super_admin
+ #   end
 
-    factory :admin_employee do
-      first_name 'Admin'
-      association :user, :factory => :admin
-    end
+ #   factory :admin_employee do
+ #     first_name 'Admin'
+ #     association :user, :factory => :admin
+ #   end
 
-    factory :manager_employee do
-      first_name 'Manager'
-      association :user, :factory => :manager
-    end
+ #   factory :manager_employee do
+ #     first_name 'Manager'
+ #     association :user, :factory => :manager
+ #   end
 
-    factory :staff_employee do
-      first_name 'Staff'
-      association :user, :factory => :staff
-    end
+  #  factory :staff_employee do
+   #   first_name 'Staff'
+   #   association :user, :factory => :staff
+  #  end
   end
 
 =begin

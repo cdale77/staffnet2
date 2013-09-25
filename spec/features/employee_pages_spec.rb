@@ -12,10 +12,7 @@ describe 'EmployeePages' do
   let(:user) { FactoryGirl.create(:user) }
 
   let(:employee) { FactoryGirl.create(:employee) }
-  let(:super_admin_employee) { FactoryGirl.create(:super_admin_employee) }
-  let(:admin_employee) { FactoryGirl.create(:admin_employee) }
-  let(:manager_employee) { FactoryGirl.create(:manager_employee) }
-  let(:staff_employee) { FactoryGirl.create(:staff_employee) }
+
 
 
 
@@ -100,26 +97,13 @@ describe 'EmployeePages' do
 
     describe 'show' do
       describe 'page' do
-        describe 'when viewing their own employee profile' do
-          before { visit employee_path(super_admin_employee) }
-          describe 'page' do
-            it { should have_content (super_admin_employee.first_name) }
-            it { should have_content (super_admin_employee.last_name) }
-            describe 'links' do
-              it { should have_link('edit', href: edit_employee_path(super_admin_employee)) }
-              it { should have_link('delete', href: employee_path(super_admin_employee)) }
-            end
-          end
-        end
-        describe 'when viewing another employee profile' do
-          before { visit employee_path(employee) }
-          describe 'page' do
-            it { should have_content (employee.first_name) }
-            it { should have_content (employee.last_name) }
-            describe 'links' do
-              it { should have_link('edit', href: edit_employee_path(employee)) }
-              it { should have_link('delete', href: employee_path(employee)) }
-            end
+        before { visit employee_path(employee) }
+        describe 'page' do
+          it { should have_content (employee.first_name) }
+          it { should have_content (employee.last_name) }
+          describe 'links' do
+            it { should have_link('edit', href: edit_employee_path(employee)) }
+            it { should have_link('delete', href: employee_path(employee)) }
           end
         end
       end

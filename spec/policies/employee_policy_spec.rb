@@ -10,7 +10,6 @@ describe EmployeePolicy do
   context 'for a visitor' do
 
     let(:user) { nil }
-    let(:employee) { FactoryGirl.create(:employee) }
 
     it { should_not permit(:new) }
     it { should_not permit(:create) }
@@ -36,9 +35,10 @@ describe EmployeePolicy do
   end
 
   context 'for a staff user' do
-    let(:user) { FactoryGirl.create(:staff) }
-    let(:employee) { FactoryGirl.create(:staff_employee) }
-    #subject { EmployeePolicy.new(FactoryGirl.create(:staff), FactoryGirl.create(:staff_employee)) }
+
+    #create a new test user with role of staff and with a dependent employee record
+   # let(:employee) { FactoryGirl.create(:employee) }
+    let(:user) { FactoryGirl.create(:staff, employee_id: employee.id) }
 
     it { should_not permit(:new) }
     it { should_not permit(:create) }
