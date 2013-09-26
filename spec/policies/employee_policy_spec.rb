@@ -37,7 +37,6 @@ describe EmployeePolicy do
   context 'for a staff user' do
 
     #create a new test user with role of staff and with a dependent employee record
-   # let(:employee) { FactoryGirl.create(:employee) }
     let(:user) { FactoryGirl.create(:staff, employee_id: employee.id) }
 
     it { should_not permit(:new) }

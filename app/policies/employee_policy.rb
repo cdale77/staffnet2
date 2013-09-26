@@ -11,7 +11,7 @@ class EmployeePolicy < Struct.new(:user, :record)
   # kludgy way to deal with cases where user is nil (user comes from the current_user method in the controller)
   def show?
     if user
-      user.role? :manager || user.record == record
+      user.role? :manager || user == record.user
     end
   end
 
