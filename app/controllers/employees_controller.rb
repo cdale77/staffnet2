@@ -3,13 +3,6 @@ class EmployeesController < ApplicationController
   include Pundit
   after_filter :verify_authorized
 
-  #before_filter :admin, only: [:new, :create, :edit, :update, :destroy]
-  #before_filter :manager, only: [:index]
-  #before_filter :staffer, only: :show     #users who aren't at least staffers can't see their employee record
-  #before_filter :check_owner, only: :show
-
-
-
   def new
     @employee = Employee.new
     authorize @employee
