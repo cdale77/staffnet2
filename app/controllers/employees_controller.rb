@@ -47,9 +47,9 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
-    @employee = Employee.find(params[:id])
-    authorize @employee
-    @employee.destroy
+    employee = Employee.find(params[:id])
+    authorize employee
+    employee.destroy
     flash[:success] = 'Employee destroyed.'
     redirect_to employees_url
   end
