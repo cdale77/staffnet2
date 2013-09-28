@@ -6,7 +6,6 @@ describe 'EmployeePages' do
   subject { page }
 
   let(:super_admin) { FactoryGirl.create(:super_admin) }
-
   let(:employee) { FactoryGirl.create(:employee) }
 
   ### HELPERS ###

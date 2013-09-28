@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe EmployeePolicy do
+describe ShiftPolicy do
 
-  subject { EmployeePolicy.new(user, employee) }
-
+  subject { ShiftPolicy.new(user, shift) }
   let(:employee) { FactoryGirl.create(:employee) }
+  let(:shift) { FactoryGirl.create(:shift) }
 
 =begin
-turned off for now because the before_filter in ApplicationController should catch no users
-TODO: fix this so the policy spec covers cases where there is no logged in user
+  turned off for now because the before_filter in ApplicationController should catch no users
+  TODO: fix this so the policy spec covers cases where there is no logged in user
   context 'for a visitor' do
     let(:user) { nil }
 
@@ -35,31 +35,44 @@ TODO: fix this so the policy spec covers cases where there is no logged in user
   end
 
   context 'for a staff user' do
-    #create a new test user with role of staff and with a dependent employee record
-    let(:user) { FactoryGirl.create(:staff, employee_id: employee.id) }
+    let(:user) { FactoryGirl.create(:staff) }
 
-    it { should_not permit(:new) }
-    it { should_not permit(:create) }
-    it { should_not permit(:index) }
-    it { should_not permit(:edit) }
-    it { should_not permit(:update) }
-    it { should_not permit(:destroy) }
+    context 'for other employee shifts' do
+      it { should_not permit(:new) }
+      it { should_not permit(:create) }
+      it { should_not permit(:show) }
+      it { should_not permit(:index) }
+      it { should_not permit(:edit) }
+      it { should_not permit(:update) }
+      it { should_not permit(:destroy) }
+    end
 
-    context 'looking at their own profile' do
+    context 'for their own shifts' do
+      # ownership is set through the user-employee relationship. To test for when the user owns the shift, set the
+      # user's employee id to the employee's id.
+
+      let(:user) { FactoryGirl.create(:staff, employee_id: employee.id) }
+
+      it { should permit(:new) }
+      it { should permit(:create) }
       it { should permit(:show) }
+      it { should permit(:index) }
+      it { should_not permit(:edit) }
+      it { should_not permit(:update) }
+      it { should_not permit(:destroy) }
     end
   end
 
   context 'for a manager user' do
     let(:user) { FactoryGirl.create(:manager) }
 
-    it { should_not permit(:new) }
-    it { should_not permit(:create) }
+    it { should permit(:new) }
+    it { should permit(:create) }
     it { should permit(:show) }
     it { should permit(:index) }
-    it { should_not permit(:edit) }
-    it { should_not permit(:update) }
-    it { should_not permit(:destroy) }
+    it { should permit(:edit) }
+    it { should permit(:update) }
+    it { should permit(:destroy) }
   end
 
   context 'for an admin user' do

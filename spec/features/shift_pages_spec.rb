@@ -7,15 +7,8 @@ describe 'ShiftPages' do
   subject { page }
 
   let(:super_admin) { FactoryGirl.create(:super_admin) }
-  let(:admin) { FactoryGirl.create(:admin) }
-  let(:manager) { FactoryGirl.create(:manager) }
-  let(:staff) { FactoryGirl.create(:staff) }
-  let(:user) { FactoryGirl.create(:user) }
-
   let!(:employee) { FactoryGirl.create(:employee, first_name: 'Jason') }
-
   let!(:shift) { FactoryGirl.create(:shift) }
-
 
   ## HELPERS
 
