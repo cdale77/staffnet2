@@ -10,7 +10,7 @@ class EmployeePolicy < Struct.new(:user, :record)
 
 
   def show?
-    user.role? :manager or record.is_owned_by?(user)
+    user.role? :manager or user == record.user
   end
 
   def index?

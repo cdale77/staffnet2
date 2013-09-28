@@ -85,11 +85,6 @@ class Employee < ActiveRecord::Base
     Employee.where(active: true)
   end
 
-  def is_owned_by?(user)
-    user == self.user
-  end
-
-
   private
     def pay_validator
       if ( pay_hourly > 0 && pay_daily > 0 ) || ( pay_hourly == 0 && pay_daily == 0 )
