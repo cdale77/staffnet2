@@ -25,7 +25,8 @@ class ShiftsController < ApplicationController
   end
 
   def index
-    @shifts = Shift.all
+    #@shifts = Shift.all
+    @shifts = policy_scope(Shift)
     authorize @shifts
   end
 
