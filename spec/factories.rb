@@ -2,7 +2,7 @@ FactoryGirl.define do
 
   factory :user do
     #sequence(:email)       {|n| "user#{n}@example.com" }
-    email                  %w[a b c d e f g h i j k].sample + 'user@exampl.com'
+    email                  ('a'..'z').to_a.shuffle[0,3].join + 'user@exampl.com'
     role                   ''
     password              'foobar7878'
     password_confirmation 'foobar7878'

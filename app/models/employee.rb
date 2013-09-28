@@ -50,21 +50,21 @@ class Employee < ActiveRecord::Base
             format: { with: PHONE_REGEX, message: 'must be 10 digits' }
 
   validates :address1, :city, :fed_filing_status, :ca_filing_status, :hire_date, :dob, :title,
-            presence: { message: "required." }
+            presence: { message: 'required.' }
 
   validates :term_date,
             date: { after: :hire_date },
             allow_blank: true
 
-  validates :state, presence: { message: "required." },
-            format: { with: STATE_REGEX, message: "must be two upper-case letters." }
+  validates :state, presence: { message: 'required.' },
+            format: { with: STATE_REGEX, message: 'must be two upper-case letters.' }
 
-  validates :zip, presence: { message: "required." },
+  validates :zip, presence: { message: 'required.' },
             length: { is: 5 },
-            numericality: { message: "must be 5 digits." }
+            numericality: { message: 'must be 5 digits.' }
 
-  validates :gender, presence: { message: "required." },
-            format: { with: GENDER_REGEX, message: "must be either M for F." }
+  validates :gender, presence: { message: 'required.' },
+            format: { with: GENDER_REGEX, message: 'must be either M for F.' }
 
   validates :pay_hourly, :pay_daily,
             numericality: { message: 'must be a number.' },
@@ -74,15 +74,19 @@ class Employee < ActiveRecord::Base
 
   #validate :min_wage_validator
 
-  validates :fed_allowances, :ca_allowances,  presence: { message: "required." },
+  validates :fed_allowances, :ca_allowances,  presence: { message: 'required.' },
             length: { is: 1 },
-            numericality: { message: "must be a single digit." }
+            numericality: { message: 'must be a single digit.' }
 
   ## CALLBACKS
   before_save { self.email = email.downcase }
 
   def self.active
     Employee.where(active: true)
+  end
+
+  def is_owned_by?(user)
+    user == self.user
   end
 
 

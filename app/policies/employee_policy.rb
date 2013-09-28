@@ -1,17 +1,17 @@
 class EmployeePolicy < Struct.new(:user, :record)
 
   def new?
-  #  user.role? :admin
+ #   user.role? :admin
   end
 
   def create?
-  #  user.role? :admin
+ #   user.role? :admin
   end
 
-  # kludgy way to deal with cases where user is nil (user comes from the current_user method in the controller)
+
   def show?
-    if user
-      user.role? :manager || user == record.user
+    if user # kludge. sometimes current_user is nil
+      user.role? :manager or record.is_owned_by?(user)
     end
   end
 
