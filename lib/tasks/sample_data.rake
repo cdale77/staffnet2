@@ -64,13 +64,27 @@ namespace :db do
     end
 
 
-
     ## shift_types
     shift_types = ['door', 'street', 'phone', 'office', 'vacation', 'holiday', 'sick' ]
     shift_types.each do |shift_type|
       ShiftType.create!(shift_type: shift_type)
     end
 
+    ## shifts
+
+    Employee.all.each do |employee|
+      5.times do |n|
+        shift_type = ShiftType.create!(shift_type: shift_types.sample)
+        s = employee.shifts.build(date:       Date.today,
+                              time_in:    Time.now - 5.hours,
+                              time_out:   Time.now,
+                              break_time: 30,
+                              travel_reimb: 12.50,
+                              shift_type_id: shift_type.id,
+                              notes: 'test shift' + n.to_s  )
+        s.save
+        end
+    end
 
   end
 end

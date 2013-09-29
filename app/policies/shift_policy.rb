@@ -5,7 +5,7 @@ ShiftPolicy = Struct.new(:user, :record) do
       if user.role? :manager
         scope
       else
-        scope.where(:user == user)
+        scope.where(:user => user)
       end
     end
   end
