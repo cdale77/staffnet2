@@ -21,6 +21,7 @@ class Shift < ActiveRecord::Base
   include Regex
 
   ## RELATIONSHIPS
+  belongs_to :user
   belongs_to :employee
   belongs_to :shift_type
 
