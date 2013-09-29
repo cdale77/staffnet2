@@ -25,6 +25,12 @@ class Shift < ActiveRecord::Base
   belongs_to :employee
   belongs_to :shift_type
 
+  #attr_reader :user_id
+
+  def user_id
+    employee.user.id
+  end
+
   ## VALIDATIONS
   validates :date,
             presence: { message: 'required.' }
@@ -39,9 +45,7 @@ class Shift < ActiveRecord::Base
 
   validate :shift_time_validator
 
-  def user
-    employee.user
-  end
+
 
   def net_time
     self.break_time ||= 0
