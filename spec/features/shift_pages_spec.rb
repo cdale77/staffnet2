@@ -6,8 +6,13 @@ describe 'ShiftPages' do
 
   subject { page }
 
-  let(:super_admin) { FactoryGirl.create(:super_admin) }
   let!(:employee) { FactoryGirl.create(:employee, first_name: 'Jason') }
+  let!(:staff_employee) { FactoryGirl.create(:employee, first_name: 'Staffer') }
+  let!(:super_admin_employee) { FactoryGirl.create(:employee, first_name: 'SuperAdmin') }
+
+  let(:super_admin) { FactoryGirl.create(:super_admin, employee_id: super_admin_employee.id) }
+  let(:staff) { FactoryGirl.create(:staff, employee_id: staff_employee.id) }
+
   let!(:shift) { FactoryGirl.create(:shift) }
 
   ## HELPERS
@@ -22,6 +27,10 @@ describe 'ShiftPages' do
   def create_sample_shifts
     FactoryGirl.create(:shift, date: Date.yesterday)
     FactoryGirl.create(:shift, date: Date.today)
+    FactoryGirl.create(:shift, employee_id: staff_employee.id)
+    FactoryGirl.create(:shift, employee_id: staff_employee.id)
+    FactoryGirl.create(:shift, employee_id: super_admin_employee.id)
+    FactoryGirl.create(:shift, employee_id: super_admin_employee.id)
   end
 
 
@@ -142,6 +151,38 @@ describe 'ShiftPages' do
       before { visit shift_path(shift) }
       it 'should destroy a shift' do
         expect { click_link 'delete' }.to change(Shift, :count).by(-1)
+      end
+    end
+  end
+
+
+
+  #### AS STAFF USER ####
+  ## using integration tests to test for the proper scope for Shift#index
+  describe 'as staff user' do
+    before do
+      visit new_user_session_path
+      fill_in 'Email',    with: staff.email
+      fill_in 'Password', with: staff.password
+      click_button 'Sign in'
+    end
+
+    after do
+      logout(:super_admin)
+    end
+
+    describe 'index' do
+      before do
+        create_sample_shifts
+        visit shifts_path
+      end
+      describe 'page' do
+        it 'should show the correct users shifts' do
+          expect(page).to have_content(staff_employee.first_name)
+        end
+        it 'should not show shifts for another user' do
+          expect(page).to_not have_content(super_admin_employee.first_name)
+        end
       end
     end
   end
