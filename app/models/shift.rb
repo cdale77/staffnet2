@@ -26,12 +26,6 @@ class Shift < ActiveRecord::Base
   delegate :user, to: :employee
   belongs_to :shift_type
 
-  #attr_reader :user_id
-
-  #def user_id
-  #  employee.user.id
-  #end
-
   ## VALIDATIONS
   validates :date,
             presence: { message: 'required.' }

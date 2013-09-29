@@ -32,12 +32,15 @@ require 'spec_helper'
 describe User do
 
   user_attributes = { email: 'test@example.com',
-                      password: 'foobar7878', password_confirmation: 'foobar7878', role: 'manager' }
+                      password: 'foobar7878',
+                      password_confirmation: 'foobar7878',
+                      role: 'manager' }
 
   #let(:user) { FactoryGirl.create(:user) }
   before do
     @user = User.new(email: 'test@example.com',
-                     password: 'foobar7878', password_confirmation: 'foobar7878')
+                     password: 'foobar7878',
+                     password_confirmation: 'foobar7878')
   end
 
   subject { @user }
@@ -53,6 +56,7 @@ describe User do
 
   ## RELATIONSHIPS
   it { should respond_to(:employee) }
+  it { should respond_to(:shifts) }
 
   ## VALIDATIONS
   describe 'email validations' do

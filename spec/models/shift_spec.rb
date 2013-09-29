@@ -35,6 +35,7 @@ describe Shift do
   end
 
   ## RELATIONSHIPS
+  it { should respond_to(:user) }
   it { should respond_to(:shift_type) }
   it { should respond_to(:employee) }
 
