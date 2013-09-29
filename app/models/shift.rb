@@ -23,13 +23,14 @@ class Shift < ActiveRecord::Base
   ## RELATIONSHIPS
   belongs_to :user
   belongs_to :employee
+  delegate :user, to: :employee
   belongs_to :shift_type
 
   #attr_reader :user_id
 
-  def user_id
-    employee.user.id
-  end
+  #def user_id
+  #  employee.user.id
+  #end
 
   ## VALIDATIONS
   validates :date,
