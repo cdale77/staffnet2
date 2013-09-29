@@ -1,14 +1,4 @@
-ShiftPolicy = Struct.new(:user, :record) do
-
-  Scope = Struct.new(:user, :scope) do
-    def resolve
-      if user.role? :manager
-        scope
-      else
-        scope.where(:user => user)
-      end
-    end
-  end
+class ShiftPolicy < Struct.new(:user, :record)
 
   def new?
     user.role? :staff
