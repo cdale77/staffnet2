@@ -25,6 +25,11 @@ class ShiftsController < ApplicationController
   end
 
   def index
+    if current_user.role? :manager
+      @shifts = Shift.all
+    elsif current_user.role? :staff
+      @shifts = current_user.shifts
+    end
     @shifts = Shift.all
     authorize @shifts
   end

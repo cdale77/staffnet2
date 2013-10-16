@@ -3,6 +3,7 @@ require 'spec_helper'
 describe ShiftPolicy do
 
   subject { ShiftPolicy.new(user, shift) }
+
   let(:employee) { FactoryGirl.create(:employee) }
   let(:shift) { FactoryGirl.create(:shift) }
 
@@ -48,8 +49,6 @@ describe ShiftPolicy do
     end
 
     context 'for their own shifts' do
-      # ownership is set through the user-employee relationship. To test for when the user owns the shift, set the
-      # user's employee id to the employee's id.
 
       let(:user) { FactoryGirl.create(:staff, employee_id: employee.id) }
 
