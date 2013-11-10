@@ -36,7 +36,6 @@ class Employee < ActiveRecord::Base
 
   ## RELATIONSHIPS
   has_many :shifts, dependent: :destroy
-  has_one :user
 
   ## VALIDATIONS
 

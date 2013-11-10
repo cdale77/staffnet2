@@ -35,7 +35,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       ## Custom
         t.string :role, :default => ""
-        t.integer :employee_id
 
       t.timestamps
     end
@@ -45,6 +44,5 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :confirmation_token,   :unique => true
     add_index :users, :unlock_token,         :unique => true
     add_index :users, :authentication_token, :unique => true
-    add_index :users, :employee_id
   end
 end

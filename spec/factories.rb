@@ -47,6 +47,7 @@ FactoryGirl.define do
     hire_date           Date.today
     gender              'f'
     active              true
+    user
   end
 
 

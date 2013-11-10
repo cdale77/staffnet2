@@ -2,6 +2,41 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
 
+    #create user with each role user for testing
+    ['super_admin', 'admin', 'manager', 'staff' ''].each do |role|
+      user = User.new(  email:                  "#{role}-example@example.com",
+                        role:                   role,
+                        password:               'foobar7878',
+                        password_confirmation:  'foobar7878')
+      user.save
+    end
+
+    # create employees
+    User.all.each do |user|
+      employee = user.build_employee(  first_name:         'Brad',
+                                last_name:          'Johnson',
+                                email:              user.email,
+                                phone:              (0..9).to_a.shuffle.join.to_s,
+                                address1:           Faker::Address.street_address,
+                                address2:           Faker::Address.secondary_address,
+                                city:               Faker::Address.city,
+                                state:              'CA',
+                                zip:                '94'+ (1..3).to_a.shuffle.join.to_s,
+                                title:              'director',
+                                pay_hourly:         [11.50, 12.25, 12, 13.50].sample,
+                                hire_date:          Date.today,
+                                fed_filing_status:  ['single', 'married'].sample,
+                                ca_filing_status:   ['single', 'married'].sample,
+                                fed_allowances:     [0, 1, 2, 3].sample,
+                                ca_allowances:      [0, 1, 2, 3].sample,
+                                dob:                Date.today - 20.years,
+                                gender:             ['m', 'f'].sample,
+                                active:             true )
+      employee.save
+    end
+
+
+=begin
     employee = Employee.create!(    first_name:         'Brad',
                          last_name:          'Johnson',
                          email:              'example@example.com',
@@ -46,7 +81,7 @@ namespace :db do
       Employee.create!(employee_attributes)
     end
 
-    # employee should be the first employee. So create a super_admin user for it
+    employee should be the first employee. So create a super_admin user for it
     employee.create_user!(
                           email: employee.email,
                           role: 'super_admin',
@@ -62,6 +97,7 @@ namespace :db do
                             password: 'foobar7878',
                             password_confirmation: 'foobar7878')
     end
+=end
 
 
     ## shift_types

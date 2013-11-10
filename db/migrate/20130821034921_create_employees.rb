@@ -1,6 +1,7 @@
 class CreateEmployees < ActiveRecord::Migration
   def change
     create_table(:employees) do |t|
+      t.integer :user_id
       t.string :first_name, :default => ''
       t.string :last_name, :default => ''
       t.string :email, :default => ''
@@ -26,6 +27,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.timestamps
     end
 
+    add_index :employees, :user_id
     add_index :employees, :email
     add_index :employees, :hire_date
     add_index :employees, :term_date

@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20130902185734) do
   enable_extension "plpgsql"
 
   create_table "employees", force: true do |t|
+    t.integer  "user_id"
     t.string   "first_name",                                default: ""
     t.string   "last_name",                                 default: ""
     t.string   "email",                                     default: ""
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 20130902185734) do
   add_index "employees", ["phone"], name: "index_employees_on_phone", using: :btree
   add_index "employees", ["term_date"], name: "index_employees_on_term_date", using: :btree
   add_index "employees", ["title"], name: "index_employees_on_title", using: :btree
+  add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
 
   create_table "shift_types", force: true do |t|
     t.string   "shift_type", default: ""
@@ -95,7 +97,6 @@ ActiveRecord::Schema.define(version: 20130902185734) do
     t.datetime "locked_at"
     t.string   "authentication_token"
     t.string   "role",                   default: ""
-    t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -103,7 +104,6 @@ ActiveRecord::Schema.define(version: 20130902185734) do
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["employee_id"], name: "index_users_on_employee_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 

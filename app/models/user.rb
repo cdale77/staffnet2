@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   include PeopleMethods
 
   ## RELATIONSHIPS
-  belongs_to :employee
+  has_one :employee
   has_many :shifts, through: :employee
 
 
