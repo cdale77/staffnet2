@@ -35,6 +35,7 @@ class Employee < ActiveRecord::Base
   include PeopleMethods
 
   ## RELATIONSHIPS
+  belongs_to :user
   has_many :shifts, dependent: :destroy
 
   ## VALIDATIONS

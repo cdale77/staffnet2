@@ -25,6 +25,7 @@ FactoryGirl.define do
       email             ('a'..'z').to_a.shuffle[0,6].join + 'user@example.com'
       role              'staff'
     end
+
   end
 
   factory :employee do
