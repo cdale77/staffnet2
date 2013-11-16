@@ -8,7 +8,6 @@ class EmployeePolicy < Struct.new(:user, :record)
     user.role? :admin
   end
 
-
   def show?
     user.role? :manager or user == record.user
   end
