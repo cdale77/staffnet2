@@ -16,7 +16,6 @@ describe "UserPages" do
 
   ### HELPERS ###
   def fill_in_example_user
-    select employee.first_name,       from: 'user_employee_id'
     fill_in 'Email',                  with: 'example' + rand(1..500).to_s + '@example.com'
     fill_in 'Password',               with: 'foobar7878'
     fill_in 'Confirmation',           with: 'foobar7878'

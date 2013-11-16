@@ -4,7 +4,7 @@ describe EmployeePolicy do
 
   subject { EmployeePolicy.new(user, employee) }
 
-  let(:employee) { FactoryGirl.create(:employee) }
+  let!(:employee) { FactoryGirl.create(:employee) }
 
 =begin
 turned off for now because the before_filter in ApplicationController should catch no users
@@ -36,7 +36,7 @@ TODO: fix this so the policy spec covers cases where there is no logged in user
 
   context 'for a staff user' do
     #create a new test user with role of staff and with a dependent employee record
-    let(:user) { FactoryGirl.create(:staff, employee_id: employee.id) }
+    let(:user) { FactoryGirl.create(:staff) }
 
     it { should_not permit(:new) }
     it { should_not permit(:create) }

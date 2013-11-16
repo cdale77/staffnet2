@@ -1,38 +1,42 @@
 FactoryGirl.define do
 
+  sequence :email do |n|
+    "email#{n}@example.com"
+  end
+
   factory :user do
-    email                 ('a'..'z').to_a.shuffle[0,6].join + 'user@example.com'
+    email
     role                  ''
     password              'foobar7878'
     password_confirmation 'foobar7878'
 
     factory :super_admin do
-      email             ('a'..'z').to_a.shuffle[0,6].join + 'user@example.com'
+      email
       role              'super_admin'
     end
 
     factory :admin do
-      email             ('a'..'z').to_a.shuffle[0,6].join + 'user@example.com'
+      email
       role              'admin'
     end
 
     factory :manager do
-      email             ('a'..'z').to_a.shuffle[0,6].join + 'user@example.com'
+      email
       role              'manager'
     end
 
     factory :staff do
-      email             ('a'..'z').to_a.shuffle[0,6].join + 'user@example.com'
+      email
       role              'staff'
     end
 
   end
 
   factory :employee do
-    first_name          'Numberone'
+    first_name          'User'
     last_name           'Employee'
     phone               '5105551234'
-    email               'employee@example.com'
+    email               #('a'..'z').to_a.shuffle[0,10].join + 'employee@example.com'
     address1            '1234 Main St.'
     address2            'Apt 318'
     city                'Cleveland'
@@ -49,6 +53,52 @@ FactoryGirl.define do
     gender              'f'
     active              true
     user
+  end
+
+  factory :staff_employee do
+    first_name          'Staffer'
+    last_name           'Employee'
+    phone               '5105551234'
+    email               #('a'..'z').to_a.shuffle[0,10].join + 'staff_employee@example.com'
+    address1            '1234 Main St.'
+    address2            'Apt 318'
+    city                'Cleveland'
+    state               'OH'
+    zip                 '12345'
+    title               'Organizer'
+    pay_hourly          12
+    fed_filing_status   'single'
+    ca_filing_status    'single'
+    fed_allowances      2
+    ca_allowances       2
+    dob                 Date.today
+    hire_date           Date.today
+    gender              'f'
+    active              true
+    staff
+  end
+
+  factory :super_admin_employee do
+    first_name          'SuperAdmin'
+    last_name           'Employee'
+    phone               '5105551234'
+    email               #('a'..'z').to_a.shuffle[0,10].join + 'super_admin_employee@example.com'
+    address1            '1234 Main St.'
+    address2            'Apt 318'
+    city                'Cleveland'
+    state               'OH'
+    zip                 '12345'
+    title               'Organizer'
+    pay_hourly          12
+    fed_filing_status   'single'
+    ca_filing_status    'single'
+    fed_allowances      2
+    ca_allowances       2
+    dob                 Date.today
+    hire_date           Date.today
+    gender              'f'
+    active              true
+    super_admin
   end
 
 

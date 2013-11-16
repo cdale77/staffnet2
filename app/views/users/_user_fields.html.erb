@@ -14,11 +14,4 @@
                                                ['Staff', 'staff'] ], user.role) %>
     </div>
   </div>
-  <div class="span2">
-    <div class="input select">
-      <%= f.label :employee_id, 'Employee' %>
-      <%= f.select :employee_id,
-                   options_from_collection_for_select(Employee.active, :id, :full_name, user.employee_id) %>
-    </div>
-  </div>
 </div>

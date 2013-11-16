@@ -10,29 +10,29 @@ describe 'EmployeePages' do
 
   ### HELPERS ###
   def fill_in_example_employee
-    fill_in 'First name',             with: 'Brad'
-    fill_in 'Last name',              with: 'Johnson'
-    fill_in 'Email',                  with: 'example' + rand(1..500).to_s + '@example.com'
-    fill_in 'Phone',                  with: '5108574932'
-    fill_in 'Address line 1',         with: '2017 Mission St'
-    fill_in 'Address line 2',         with: '2nd Fl'
-    fill_in 'City',                   with: 'Orinda'
-    select 'California',                      from: 'employee_state'
-    fill_in 'Zip',                    with: '94709'
-    select 'Organizer',               from: 'employee_title'
-    fill_in 'Pay hrly',             with: 12
-    select 'M',                       from: 'employee_gender'
-    select 'Single',                  from: 'employee_fed_filing_status'
-    select 'Single',                  from: 'employee_ca_filing_status'
-    fill_in 'employee_ca_allowances', with: '2'
-    fill_in 'employee_fed_allowances', with: '2'
-    fill_in 'Dob',                    with: '1980-09-01'
-    fill_in 'Hire date',              with: '2013-09-01'
+    fill_in 'First name',               with: 'Brad'
+    fill_in 'Last name',                with: 'Johnson'
+    fill_in 'Email',                    with: 'example' + rand(1..500).to_s + '@example.com'
+    fill_in 'Phone',                    with: '5108574932'
+    fill_in 'Address line 1',           with: '2017 Mission St'
+    fill_in 'Address line 2',           with: '2nd Fl'
+    fill_in 'City',                     with: 'Orinda'
+    select 'California',                from: 'employee_state'
+    fill_in 'Zip',                      with: '94709'
+    select 'Organizer',                 from: 'employee_title'
+    fill_in 'Pay hrly',                 with: 12
+    select 'M',                         from: 'employee_gender'
+    select 'Single',                    from: 'employee_fed_filing_status'
+    select 'Single',                    from: 'employee_ca_filing_status'
+    fill_in 'employee_ca_allowances',   with: '2'
+    fill_in 'employee_fed_allowances',  with: '2'
+    fill_in 'Dob',                      with: '1980-09-01'
+    fill_in 'Hire date',                with: '2013-09-01'
   end
 
   def create_sample_employees
-    FactoryGirl.create(:employee, first_name: 'Bob', last_name: 'Smith', email: 'bobsky@example.com')
-    FactoryGirl.create(:employee, first_name: 'Ben', last_name: 'Jones',  email: 'ben@example.com')
+    FactoryGirl.create(:employee, first_name: 'Bob', last_name: 'Smith')
+    FactoryGirl.create(:employee, first_name: 'Ben', last_name: 'Jones')
   end
 
 
