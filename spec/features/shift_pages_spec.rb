@@ -6,12 +6,12 @@ describe 'ShiftPages' do
 
   subject { page }
 
-  let(:employee) { FactoryGirl.create(:employee, first_name: 'Jason') }
-  let(:staff_employee) { FactoryGirl.create(:staff_employee) }
-  let(:super_admin_employee) { FactoryGirl.create(:super_admin_employee) }
-
-  let(:super_admin) { FactoryGirl.create(:super_admin) }
   let(:staff) { FactoryGirl.create(:staff) }
+  let(:super_admin) { FactoryGirl.create(:super_admin) }
+
+  let(:employee) { FactoryGirl.create(:employee, first_name: 'Jason') }
+  let(:staff_employee) { FactoryGirl.create(:employee, first_name: 'Staff', user_id: staff.id) }
+  let(:super_admin_employee) { FactoryGirl.create(:employee, first_name: 'SuperAdmin', user_id: super_admin.id) }
 
   let(:shift) { FactoryGirl.create(:shift) }
 

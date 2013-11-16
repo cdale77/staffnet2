@@ -29,14 +29,13 @@ FactoryGirl.define do
       email
       role              'staff'
     end
-
   end
 
   factory :employee do
     first_name          'User'
     last_name           'Employee'
     phone               '5105551234'
-    email               #('a'..'z').to_a.shuffle[0,10].join + 'employee@example.com'
+    email               ('a'..'z').to_a.shuffle[0,10].join + 'employee@example.com'
     address1            '1234 Main St.'
     address2            'Apt 318'
     city                'Cleveland'
@@ -55,11 +54,13 @@ FactoryGirl.define do
     user
   end
 
+
+=begin
   factory :staff_employee do
     first_name          'Staffer'
     last_name           'Employee'
     phone               '5105551234'
-    email               #('a'..'z').to_a.shuffle[0,10].join + 'staff_employee@example.com'
+    email               ('a'..'z').to_a.shuffle[0,10].join + 'staff_employee@example.com'
     address1            '1234 Main St.'
     address2            'Apt 318'
     city                'Cleveland'
@@ -75,14 +76,14 @@ FactoryGirl.define do
     hire_date           Date.today
     gender              'f'
     active              true
-    staff
+    user
   end
 
   factory :super_admin_employee do
     first_name          'SuperAdmin'
     last_name           'Employee'
     phone               '5105551234'
-    email               #('a'..'z').to_a.shuffle[0,10].join + 'super_admin_employee@example.com'
+    email               ('a'..'z').to_a.shuffle[0,10].join + 'super_admin_employee@example.com'
     address1            '1234 Main St.'
     address2            'Apt 318'
     city                'Cleveland'
@@ -100,6 +101,7 @@ FactoryGirl.define do
     active              true
     super_admin
   end
+=end
 
 
   factory :shift_type do
