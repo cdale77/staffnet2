@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  # using before_filters for authorization here because it is awkward in Pundit. Tests for this code are in
+  # the user features spec.
   before_filter :super_admin, only: [:new, :create, :edit, :update]
   before_filter :admin, only: [:index, :destroy]
   before_filter :authorize_user, only: :show
