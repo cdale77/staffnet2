@@ -13,8 +13,8 @@ namespace :db do
 
     # create employees
     User.all.each do |user|
-      employee = user.build_employee(  first_name:  'Brad',
-                                last_name:          'Johnson',
+      employee = user.build_employee(  first_name:  Faker::Name.first_name,
+                                last_name:          Faker::Name.last_name,
                                 email:              user.email,
                                 phone:              (0..9).to_a.shuffle.join.to_s,
                                 address1:           Faker::Address.street_address,
@@ -22,7 +22,7 @@ namespace :db do
                                 city:               Faker::Address.city,
                                 state:              'CA',
                                 zip:                '94'+ (1..3).to_a.shuffle.join.to_s,
-                                title:              'director',
+                                title:              ['caller', 'canvasser','director'].sample,
                                 pay_hourly:         [11.50, 12.25, 12, 13.50].sample,
                                 hire_date:          Date.today,
                                 fed_filing_status:  ['single', 'married'].sample,
