@@ -49,8 +49,8 @@ describe ShiftPolicy do
     end
 
     context 'for their own shifts' do
-
-      let(:user) { FactoryGirl.create(:staff) }
+      let(:employee) { FactoryGirl.create(:employee, user_id: user.id) }
+      let(:shift) { FactoryGirl.create(:shift, employee_id: employee.id) }
 
       it { should permit(:new) }
       it { should permit(:create) }
