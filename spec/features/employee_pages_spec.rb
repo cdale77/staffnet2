@@ -7,6 +7,7 @@ describe 'EmployeePages' do
 
   let(:super_admin) { FactoryGirl.create(:super_admin) }
   let(:employee) { FactoryGirl.create(:employee) }
+  let(:shift) { FactoryGirl.create(:shift) }
 
   ### HELPERS ###
   def fill_in_example_employee
@@ -96,6 +97,9 @@ describe 'EmployeePages' do
           describe 'links' do
             it { should have_link('edit', href: edit_employee_path(employee)) }
             it { should have_link('delete', href: employee_path(employee)) }
+          end
+          describe 'shifts' do
+            it { should have_link('details', href: shift_path(shift)) }
           end
         end
       end

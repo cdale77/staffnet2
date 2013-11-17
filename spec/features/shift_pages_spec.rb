@@ -9,7 +9,7 @@ describe 'ShiftPages' do
   let(:staff) { FactoryGirl.create(:staff) }
   let(:super_admin) { FactoryGirl.create(:super_admin) }
 
-  # use bang on the first employee create because it is assumed to exit in some examples. let is lazy-evaluated.
+  # use bang on the first employee create because it is assumed to exist in some examples. let is lazy-evaluated.
   let!(:employee) { FactoryGirl.create(:employee, first_name: 'Jason') }
   let(:staff_employee) { FactoryGirl.create(:employee, first_name: 'Staff', user_id: staff.id) }
   let(:super_admin_employee) { FactoryGirl.create(:employee, first_name: 'SuperAdmin', user_id: super_admin.id) }
@@ -18,8 +18,12 @@ describe 'ShiftPages' do
 
   ## HELPERS
 
+  # create a ShiftType
+  ShiftType.new(shift_type: 'Door').save
+
   def fill_in_example_shift
     select employee.full_name,    from: 'shift_employee_id'
+    select 'Door',                from: 'shift_shift_type_id'
     fill_in 'Date',               with: '2013-09-04'
     fill_in 'Time in',            with: '09:00 AM'
     fill_in 'Time out',           with: '05:00 PM'
@@ -155,7 +159,6 @@ describe 'ShiftPages' do
       end
     end
   end
-
 
 
   #### AS STAFF USER ####

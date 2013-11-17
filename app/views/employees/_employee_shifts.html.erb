@@ -1,0 +1,28 @@
+<div class="span8" id="employee-shifts">
+  <div class="row">
+    <div class="span6">
+      <h3 class="table-title-right">Shifts</h3>
+    </div>
+    <div class="span2 padtop">
+      <div class="buttons">
+        buttons here
+      </div>
+    </div>
+  </div>
+  <table class="table table-condensed table-striped">
+    <tr>
+      <th>Date</th>
+      <th>Hours</th>
+      <th>Type</th>
+      <th></th>
+    </tr>
+    <% shifts.each do |shift| %>
+      <tr>
+        <td><%= shift.date %></td>
+        <td>Fix this</td>
+        <td><%= shift.shift_type %></td>
+        <td class="buttons"><%= link_to 'details', shift_path(shift), class: 'btn btn-mini', type: 'button' %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

@@ -21,6 +21,7 @@ class EmployeesController < ApplicationController
 
   def show
     @employee = Employee.find(params[:id])
+    @shifts = @employee.shifts.limit(18)
     authorize @employee
   end
 
