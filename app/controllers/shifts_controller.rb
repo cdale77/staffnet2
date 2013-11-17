@@ -25,12 +25,12 @@ class ShiftsController < ApplicationController
   end
 
   def index
+    # Pundit policy scopes don't seem to work since user is delegated/user_id isn't in the Shifts table.
     if current_user.role? :manager
       @shifts = Shift.all
     elsif current_user.role? :staff
       @shifts = current_user.shifts
     end
-    @shifts = Shift.all
     authorize @shifts
   end
 
