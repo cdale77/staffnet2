@@ -14,11 +14,9 @@ describe 'ShiftPages' do
   let(:staff_employee) { FactoryGirl.create(:employee, first_name: 'Staff', user_id: staff.id) }
   let(:super_admin_employee) { FactoryGirl.create(:employee, first_name: 'SuperAdmin', user_id: super_admin.id) }
 
-  # create a ShiftType
-  shift_type = ShiftType.new(shift_type: 'Door')
-  shift_type.save
 
-  let(:shift) { FactoryGirl.create(:shift, shift_type_id: shift_type.id) }
+
+  let(:shift) { FactoryGirl.create(:shift) }
 
   ## HELPERS
 
@@ -54,11 +52,19 @@ describe 'ShiftPages' do
 
     after do
       logout(:super_admin)
-      shift_type.destroy
+  #    shift_type.destroy
     end
 
     describe 'new shift' do
-      before { visit new_shift_path }
+      before do
+        # create a ShiftType
+        shift_type = ShiftType.new(shift_type: 'Door')
+        shift_type.save
+
+        visit new_shift_path
+      end
+
+      after { ShiftType.destroy_all }
 
       describe 'page' do
         it { should have_selector('h1', 'New shift') }

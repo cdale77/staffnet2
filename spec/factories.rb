@@ -54,7 +54,6 @@ FactoryGirl.define do
     user
   end
 
-
 =begin
   factory :staff_employee do
     first_name          'Staffer'
@@ -103,11 +102,9 @@ FactoryGirl.define do
   end
 =end
 
-
   factory :shift_type do
     shift_type      ['street', 'door', 'office', 'phone'].sample
   end
-
 
   factory :shift do
     date                Date.today
@@ -118,6 +115,20 @@ FactoryGirl.define do
     notes               'Great shift'
     employee
     shift_type
+  end
+
+  factory :client do
+    name            'Test client'
+    address1        '123 Mission St'
+    address2        'Ste. 350'
+    city            'San Francisco'
+    state           'CA'
+    zip             '94104'
+    contact_name    'Ed Lee'
+    contact_phone   '4158634511'
+    contact_email   'ed@example.com'
+    uri             'http://www.example.com'
+    notes           'Some notes here.'
   end
 
 end
