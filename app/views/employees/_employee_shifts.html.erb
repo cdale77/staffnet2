@@ -20,7 +20,7 @@
       <tr>
         <td><%= shift.date %></td>
         <td>Fix this</td>
-        <td><%= shift.shift_type %></td>
+        <td><%= shift.shift_type.shift_type.titlecase %></td>
         <td class="buttons"><%= link_to 'details', shift_path(shift), class: 'btn btn-mini', type: 'button' %></td>
       </tr>
     <% end %>

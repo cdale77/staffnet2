@@ -6,8 +6,8 @@ describe 'EmployeePages' do
   subject { page }
 
   let(:super_admin) { FactoryGirl.create(:super_admin) }
-  let(:employee) { FactoryGirl.create(:employee) }
-  let(:shift) { FactoryGirl.create(:shift) }
+  let!(:employee) { FactoryGirl.create(:employee) }
+  let!(:shift) { FactoryGirl.create(:shift, employee_id: employee.id) }
 
   ### HELPERS ###
   def fill_in_example_employee
@@ -99,6 +99,7 @@ describe 'EmployeePages' do
             it { should have_link('delete', href: employee_path(employee)) }
           end
           describe 'shifts' do
+            it { should have_content(shift.shift_type.shift_type.titlecase)}
             it { should have_link('details', href: shift_path(shift)) }
           end
         end
