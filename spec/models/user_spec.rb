@@ -22,7 +22,6 @@
 #  locked_at              :datetime
 #  authentication_token   :string(255)
 #  role                   :string(255)      default("")
-#  employee_id            :integer
 #  created_at             :datetime
 #  updated_at             :datetime
 #

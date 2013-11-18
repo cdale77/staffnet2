@@ -28,7 +28,7 @@ describe Shift do
   subject { shift }
 
   ## ATTRIBUTES
-  describe 'shift atribute tests' do
+  describe 'shift attribute tests' do
     shift_attributes.each do |key, value|
       it { should respond_to(key)}
     end

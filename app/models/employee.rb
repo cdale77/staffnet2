@@ -3,6 +3,7 @@
 # Table name: employees
 #
 #  id                :integer          not null, primary key
+#  user_id           :integer
 #  first_name        :string(255)      default("")
 #  last_name         :string(255)      default("")
 #  email             :string(255)      default("")

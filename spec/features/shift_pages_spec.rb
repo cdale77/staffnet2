@@ -14,12 +14,13 @@ describe 'ShiftPages' do
   let(:staff_employee) { FactoryGirl.create(:employee, first_name: 'Staff', user_id: staff.id) }
   let(:super_admin_employee) { FactoryGirl.create(:employee, first_name: 'SuperAdmin', user_id: super_admin.id) }
 
-  let(:shift) { FactoryGirl.create(:shift) }
+  # create a ShiftType
+  shift_type = ShiftType.new(shift_type: 'Door')
+  shift_type.save
+
+  let(:shift) { FactoryGirl.create(:shift, shift_type_id: shift_type.id) }
 
   ## HELPERS
-
-  # create a ShiftType
-  ShiftType.new(shift_type: 'Door').save
 
   def fill_in_example_shift
     select employee.full_name,    from: 'shift_employee_id'
@@ -48,10 +49,12 @@ describe 'ShiftPages' do
       fill_in 'Email',    with: super_admin.email
       fill_in 'Password', with: super_admin.password
       click_button 'Sign in'
+
     end
 
     after do
       logout(:super_admin)
+      shift_type.destroy
     end
 
     describe 'new shift' do
@@ -126,7 +129,9 @@ describe 'ShiftPages' do
     end
 
     describe 'edit' do
-      before { visit edit_shift_path(shift) }
+      before do
+        visit edit_shift_path(shift)
+      end
 
       describe 'page' do
         it { should have_title('Edit shift') }

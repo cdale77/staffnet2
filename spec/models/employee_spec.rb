@@ -3,6 +3,7 @@
 # Table name: employees
 #
 #  id                :integer          not null, primary key
+#  user_id           :integer
 #  first_name        :string(255)      default("")
 #  last_name         :string(255)      default("")
 #  email             :string(255)      default("")
@@ -43,7 +44,7 @@ describe Employee do
   subject { employee }
 
   ## ATTRIBUTES
-  describe 'employee atribute tests' do
+  describe 'employee attribute tests' do
     employee_attributes.each do |key, value|
       it { should respond_to(key)}
     end
