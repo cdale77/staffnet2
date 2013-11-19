@@ -55,7 +55,22 @@ namespace :db do
                                     shift_type_id:  shift_type.id,
                                     notes:          'test shift' + n.to_s  )
         s.save
-        end
+      end
+    end
+
+    # clients
+    5.times do |n|
+      client = Client.new(  name:           Faker::Company.name,
+                            address1:       Faker::Address.street_address,
+                            address2:       Faker::Address.secondary_address,
+                            city:           Faker::Address.city,
+                            state:          'CA',
+                            zip:            '94'+ (1..3).to_a.shuffle.join.to_s,
+                            contact_name:   Faker::Name.name,
+                            contact_phone:  (0..9).to_a.shuffle.join.to_s,
+                            contact_email:  Faker::Internet.email,
+                            uri:            Faker::Internet.url )
+      client.save
     end
 
   end

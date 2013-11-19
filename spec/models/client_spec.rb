@@ -99,19 +99,19 @@ describe Client do
       client.uri = ''
       client.should be_valid
     end
-    it 'should reject invalid uris' do
-      bad_uris = %W[http/ somestring .com htt://wwww.somestring.com www.example.com ]
-      bad_uris.each do |bad_uri|
-        client.uri = bad_uri
-        client.should_not be_valid
-      end
-    end
-    it 'should accept valid uris' do
-      valid_uris = %W[http://www.example.com https://www.example.com http://www.example.org ]
-      valid_uris.each do |valid_uri|
-        client.uri = valid_uri
-        client.should be_valid
-      end
-    end
+    #it 'should reject invalid uris' do
+    #  bad_uris = %W[http/ somestring .com htt://wwww.somestring.com www.example.com ]
+    #  bad_uris.each do |bad_uri|
+    #    client.uri = bad_uri
+    #    client.should_not be_valid
+    #  end
+    #end
+    #it 'should accept valid uris' do
+    #  valid_uris = %W[http://www.example.com https://www.example.com http://www.example.org ]
+    #  valid_uris.each do |valid_uri|
+    #    client.uri = valid_uri
+    #    client.should be_valid
+    #  end
+    #end
   end
 end

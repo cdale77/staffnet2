@@ -34,11 +34,7 @@ class Client < ActiveRecord::Base
             allow_blank: true
 
   validates :contact_email,
-            email: true,
-            allow_blank: true
-
-  validates :uri,
-            url: true,
+            format: { with: VALID_EMAIL_REGEX },
             allow_blank: true
 
 
