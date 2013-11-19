@@ -19,6 +19,7 @@ Staffnet2::Application.routes.draw do
       resource :employee
     end
 
+    resources :clients
 
   end
 
