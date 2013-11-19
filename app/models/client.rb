@@ -20,5 +20,26 @@ class Client < ActiveRecord::Base
 
   ## SET UP ENVIRONMENT
   include Regex
-  
+
+  ## Validations
+
+  validates :name, presence: { message: 'required.' }
+
+  validates :state,
+            format: { with: STATE_REGEX, message: 'must be two upper-case letters.' },
+            allow_blank: true
+
+  validates :contact_phone,
+            format: { with: PHONE_REGEX, message: 'must be 10 digits' },
+            allow_blank: true
+
+  validates :contact_email,
+            email: true,
+            allow_blank: true
+
+  validates :uri,
+            url: true,
+            allow_blank: true
+
+
 end

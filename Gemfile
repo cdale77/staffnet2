@@ -8,6 +8,7 @@ gem 'devise', '3.0.2'
 gem 'pundit'
 
 gem 'date_validator'
+gem 'activevalidators'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-timepicker-rails'
 gem 'morrisjs-rails'

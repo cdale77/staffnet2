@@ -234,6 +234,20 @@ describe Employee do
     end
   end
 
+  describe 'phone number validations' do
+    it 'should reject employees with no phone number' do
+      employee.phone = ''
+      employee.should_not be_valid
+    end
+    it 'should reject employees with an invalid phone number' do
+      bad_phones = %W[1 123456789 aaaaaaaaaa 415-555-1234 ]
+      bad_phones.each do |bad_phone|
+        employee.phone = bad_phone
+        employee.should_not be_valid
+      end
+    end
+  end
+
 end
 
 
