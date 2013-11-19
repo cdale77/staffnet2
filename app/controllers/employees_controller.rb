@@ -15,6 +15,7 @@ class EmployeesController < ApplicationController
       flash[:success] = 'Success.'
       redirect_to employee_path(@employee)
     else
+      flash[:error] = 'Error.'
       render 'new'
     end
   end
@@ -44,7 +45,6 @@ class EmployeesController < ApplicationController
     else
       render 'edit'
     end
-
   end
 
   def destroy

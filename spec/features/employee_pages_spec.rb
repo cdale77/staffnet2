@@ -6,6 +6,7 @@ describe 'EmployeePages' do
   subject { page }
 
   let(:super_admin) { FactoryGirl.create(:super_admin) }
+  let(:manager) { FactoryGirl.create(:manager) }
   let!(:employee) { FactoryGirl.create(:employee) }
   let!(:shift) { FactoryGirl.create(:shift, employee_id: employee.id) }
 
@@ -168,6 +169,52 @@ describe 'EmployeePages' do
       before { visit employee_path(employee) }
       it 'should destroy an employee' do
         expect { click_link 'delete' }.to change(Employee, :count).by(-1)
+      end
+    end
+  end
+
+  #### AS MANAGER USER ####
+
+  # manager users should not see edit or delete links
+  describe 'as manager user' do
+    before do
+      visit new_user_session_path
+      fill_in 'Email',    with: manager.email
+      fill_in 'Password', with: manager.password
+      click_button 'Sign in'
+    end
+
+    after do
+      logout(:manager)
+    end
+
+    describe 'show' do
+      describe 'page' do
+        before { visit employee_path(employee) }
+        describe 'page' do
+          describe 'links' do
+            it { should_not have_link('edit', href: edit_employee_path(employee)) }
+            it { should_not have_link('delete', href: employee_path(employee)) }
+          end
+        end
+      end
+    end
+
+    describe 'index' do
+      before do
+        create_sample_employees
+        visit employees_path
+      end
+
+      after { Employee.delete_all }
+
+      describe 'page' do
+        it 'should have the right links' do
+          Employee.all.each do |employee|
+            expect(page).to have_link('details', employee_path(employee))
+            expect(page).to_not have_link('edit', edit_employee_path(employee))
+          end
+        end
       end
     end
   end

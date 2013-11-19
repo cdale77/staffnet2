@@ -1,0 +1,8 @@
+<tr>
+  <td><%= client.name %></td>
+  <td><%= client.contact_name %></td>
+  <td><%= client.contact_email %></td>
+  <td><%= client.contact_phone %></td>
+  <td class="buttons"><%= link_to 'details', client_path(client), class: 'btn btn-mini', type: 'button' %>
+    <%= link_to 'edit', edit_client_path(client), class: 'btn btn-mini', type: 'button' if admin_user? %></td>
+</tr>
