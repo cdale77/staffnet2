@@ -14,12 +14,17 @@
 #  contact_email :string(255)      default("")
 #  uri           :string(255)      default("")
 #  notes         :text             default("")
+#  created_at    :datetime
+#  updated_at    :datetime
 #
 
 class Client < ActiveRecord::Base
 
   ## SET UP ENVIRONMENT
   include Regex
+
+  ## RELATIONSHIPS
+  has_many :projects, dependent: :destroy
 
   ## Validations
 

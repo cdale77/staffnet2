@@ -11,23 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131118012116) do
+ActiveRecord::Schema.define(version: 20131120011536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "clients", force: true do |t|
-    t.string "name",          default: ""
-    t.string "address1",      default: ""
-    t.string "address2",      default: ""
-    t.string "city",          default: ""
-    t.string "state",         default: ""
-    t.string "zip",           default: ""
-    t.string "contact_name",  default: ""
-    t.string "contact_phone", default: ""
-    t.string "contact_email", default: ""
-    t.string "uri",           default: ""
-    t.text   "notes",         default: ""
+    t.string   "name",          default: ""
+    t.string   "address1",      default: ""
+    t.string   "address2",      default: ""
+    t.string   "city",          default: ""
+    t.string   "state",         default: ""
+    t.string   "zip",           default: ""
+    t.string   "contact_name",  default: ""
+    t.string   "contact_phone", default: ""
+    t.string   "contact_email", default: ""
+    t.string   "uri",           default: ""
+    t.text     "notes",         default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "employees", force: true do |t|
@@ -65,6 +67,19 @@ ActiveRecord::Schema.define(version: 20131118012116) do
   add_index "employees", ["term_date"], name: "index_employees_on_term_date", using: :btree
   add_index "employees", ["title"], name: "index_employees_on_title", using: :btree
   add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
+
+  create_table "projects", force: true do |t|
+    t.integer  "client_id"
+    t.string   "name",       default: ""
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "desc",       default: ""
+    t.text     "notes",      default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects", ["client_id"], name: "index_projects_on_client_id", using: :btree
 
   create_table "shift_types", force: true do |t|
     t.string   "shift_type", default: ""

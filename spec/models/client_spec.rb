@@ -14,6 +14,8 @@
 #  contact_email :string(255)      default("")
 #  uri           :string(255)      default("")
 #  notes         :text             default("")
+#  created_at    :datetime
+#  updated_at    :datetime
 #
 
 require 'spec_helper'
@@ -36,6 +38,7 @@ describe Client do
   end
 
   ## RELATIONSHIPS
+  it { should respond_to(:projects) }
 
   ## VALIDATIONS
   describe 'name validations' do

@@ -44,7 +44,7 @@ namespace :db do
 
     # shifts
     Employee.all.each do |employee|
-      5.times do |n|
+      15.times do |n|
         #shift_type = ShiftType.create!(shift_type: shift_types.sample)
         shift_type = ShiftType.order("RANDOM()").first
         s = employee.shifts.build(  date:           Date.today,
@@ -71,6 +71,19 @@ namespace :db do
                             contact_email:  Faker::Internet.email,
                             uri:            Faker::Internet.url )
       client.save
+    end
+
+    # projects
+    Client.all.each do |client|
+      4.times do |n|
+        project = client.projects.build(  name:       Faker::Company.catch_phrase,
+                                          start_date: Date.today - 23.days,
+                                          end_date:   Date.yesterday,
+                                          desc:       Faker::Lorem.sentence,
+                                          notes:      Faker::Lorem.sentence )
+        project.save
+
+      end
     end
 
   end

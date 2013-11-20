@@ -12,6 +12,7 @@ class CreateClients < ActiveRecord::Migration
       t.string  :contact_email, :default => ''
       t.string  :uri, :default => ''
       t.text    :notes, :default => ''
+      t.timestamps
     end
   end
 end

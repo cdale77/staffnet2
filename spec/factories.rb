@@ -131,4 +131,13 @@ FactoryGirl.define do
     notes           'Some notes here.'
   end
 
+  factory :project do
+    name            'Test project'
+    start_date      Date.today - 20.days
+    end_date        Date.yesterday
+    desc            'This is a test project.'
+    notes           'Notes go here.'
+    client
+  end
+
 end
