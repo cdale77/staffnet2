@@ -1,3 +1,5 @@
+require 'Faker'
+
 FactoryGirl.define do
 
   sequence :email do |n|
@@ -118,10 +120,13 @@ FactoryGirl.define do
   end
 
   factory :client do
-    name            'Test client'
-    address1        '123 Mission St'
-    address2        'Ste. 350'
-    city            'San Francisco'
+    name             Faker::Company.name
+    #address1        '123 Mission St'
+    #address2        'Ste. 350'
+    #city            'San Francisco'
+    address1         Faker::Address.street_address
+    address2         Faker::Address.secondary_address
+    city             Faker::Address.city
     state           'CA'
     zip             '94104'
     contact_name    'Ed Lee'
