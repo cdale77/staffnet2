@@ -32,13 +32,6 @@ describe 'EmployeePages' do
     fill_in 'Hire date',                with: '2013-09-01'
   end
 
-  def create_sample_employees
-    FactoryGirl.create(:employee, first_name: 'Bob', last_name: 'Smith')
-    FactoryGirl.create(:employee, first_name: 'Ben', last_name: 'Jones')
-  end
-
-
-
   #### AS SUPERADMIN USER ####
 
   ## log in as superadmin user to test basic functionality of the pages. Authorization is handled in the
@@ -109,7 +102,7 @@ describe 'EmployeePages' do
 
     describe 'index' do
       before do
-        create_sample_employees
+        5.times { FactoryGirl.create(:employee) }
         visit employees_path
       end
 
@@ -202,7 +195,7 @@ describe 'EmployeePages' do
 
     describe 'index' do
       before do
-        create_sample_employees
+        5.times { FactoryGirl.create(:employee) }
         visit employees_path
       end
 

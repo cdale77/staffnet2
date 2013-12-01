@@ -34,8 +34,8 @@ FactoryGirl.define do
   end
 
   factory :employee do
-    first_name          'User'
-    last_name           'Employee'
+    first_name          Faker::Name.first_name
+    last_name           Faker::Name.last_name
     phone               '5105551234'
     email               ('a'..'z').to_a.shuffle[0,10].join + 'employee@example.com'
     address1            '1234 Main St.'
