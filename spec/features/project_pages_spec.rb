@@ -8,6 +8,7 @@ describe 'ProjectPages' do
 
   let(:super_admin) { FactoryGirl.create(:super_admin) }
   let!(:client) { FactoryGirl.create(:client) }
+  let(:project) { FactoryGirl.create(:project) }
 
   ## HELPERS
 
@@ -63,6 +64,19 @@ describe 'ProjectPages' do
           before { click_button 'New project' }
 
           it { should have_selector('div.alert') }
+        end
+      end
+    end
+
+    describe 'show' do
+      describe 'page' do
+        before { visit project_path(project) }
+        describe 'page' do
+          it { should have_content (project.name) }
+          describe 'links' do
+            it { should have_link('edit', href: edit_project_path(project)) }
+            it { should have_link('delete', href: project_path(project)) }
+          end
         end
       end
     end
