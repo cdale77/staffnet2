@@ -48,8 +48,10 @@ namespace :db do
         #shift_type = ShiftType.create!(shift_type: shift_types.sample)
         shift_type = ShiftType.order("RANDOM()").first
         s = employee.shifts.build(  date:           Date.today,
-                                    time_in:        Time.now - 5.hours,
-                                    time_out:       Time.now,
+                                    #time_in:        Time.now - 5.hours,
+                                    #time_out:       Time.now,
+                                    time_in:        '9:00',
+                                    time_out:       '17:00',
                                     break_time:     30,
                                     travel_reimb:   12.50,
                                     shift_type_id:  shift_type.id,

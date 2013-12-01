@@ -2,7 +2,7 @@
   <div class="span2">
     <div class="input">
       <%= f.label :employee_id, 'Employee' %>
-      <%= f.select :employee_id, options_from_collection_for_select(Employee.active, :id, :full_name, @shift.employee_id) %>
+      <%= f.select :employee_id, options_from_collection_for_select(Employee.active, :id, :full_name, shift.employee_id) %>
     </div>
   </div>
   <div class="span2">
@@ -14,7 +14,7 @@
   <div class="span2">
     <div class="input">
       <%= f.label :shift_type_id, 'Shift type' %>
-      <%= f.select :shift_type_id, options_from_collection_for_select(ShiftType.all, :id, :human_shift_type, @shift.shift_type_id) %>
+      <%= f.select :shift_type_id, options_from_collection_for_select(ShiftType.all, :id, :human_shift_type, shift.shift_type_id) %>
     </div>
   </div>
 </div>

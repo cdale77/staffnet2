@@ -14,8 +14,6 @@ describe 'ShiftPages' do
   let(:staff_employee) { FactoryGirl.create(:employee, first_name: 'Staff', user_id: staff.id) }
   let(:super_admin_employee) { FactoryGirl.create(:employee, first_name: 'SuperAdmin', user_id: super_admin.id) }
 
-
-
   let(:shift) { FactoryGirl.create(:shift) }
 
   ## HELPERS
@@ -52,7 +50,6 @@ describe 'ShiftPages' do
 
     after do
       logout(:super_admin)
-  #    shift_type.destroy
     end
 
     describe 'new shift' do
@@ -153,7 +150,7 @@ describe 'ShiftPages' do
       end
 
       describe 'with valid information' do
-        new_note = "This is a new note."
+        let(:new_note) { 'New note'}
         before do
           fill_in 'Notes', with: new_note
           click_button 'Edit shift'
