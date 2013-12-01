@@ -21,13 +21,6 @@ describe "UserPages" do
     fill_in 'Confirmation',           with: 'foobar7878'
   end
 
-  def create_sample_users
-    FactoryGirl.create(:user, email: 'bob@example.com')
-    FactoryGirl.create(:user, email: 'ben@example.com')
-  end
-
-  roles = ['super_admin', 'admin', 'manager', 'staff']
-
   #### AS SUPERADMIN USER ####
 
   describe 'as superadmin user' do
@@ -80,7 +73,7 @@ describe "UserPages" do
 
     describe 'index' do
       before do
-        create_sample_users
+        5.times { FactoryGirl.create(:user) }
         visit users_path
       end
       it { should have_title('All users') }
@@ -178,7 +171,7 @@ describe "UserPages" do
 
     describe 'index' do
       before do
-        create_sample_users
+        5.times { FactoryGirl.create(:user) }
         visit users_path
       end
       it { should have_title('All users') }
