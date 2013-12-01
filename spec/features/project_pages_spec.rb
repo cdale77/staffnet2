@@ -7,7 +7,8 @@ describe 'ProjectPages' do
   subject { page }
 
   let(:super_admin) { FactoryGirl.create(:super_admin) }
-  let!(:client) { FactoryGirl.create(:client) }
+  let!(:client) { FactoryGirl.create(:client) } # bang here so that the client exists for Project#new view
+  let(:client2) { FactoryGirl.create(:client, name: 'Client2') }
   let(:project) { FactoryGirl.create(:project) }
 
   ## HELPERS
@@ -18,6 +19,13 @@ describe 'ProjectPages' do
     fill_in 'Start date',    with: '2013-02-10'
     fill_in 'Description',   with: 'Sample project.'
     fill_in 'Notes',         with: 'Notes go here.'
+  end
+
+  def create_sample_projects
+    FactoryGirl.create(:project, name: 'Project2')
+    FactoryGirl.create(:project, name: 'Project3')
+    FactoryGirl.create(:project, name: 'Project4', client_id: client2.id)
+    FactoryGirl.create(:project, name: 'Project5', client_id: client2.id)
   end
 
   #### AS SUPERADMIN USER ####
@@ -80,5 +88,32 @@ describe 'ProjectPages' do
         end
       end
     end
+
+    describe 'index' do
+      before do
+        create_sample_projects
+        visit projects_path
+      end
+
+      after { Project.delete_all }
+
+      describe 'page' do
+        it { should have_title('All projects') }
+
+        it 'should list each project with client name' do
+          Project.all.each do |project|
+            expect(page).to have_content(project.name)
+            expect(page).to have_content(project.client.name)
+          end
+        end
+        it 'should have show and edit links for projects' do
+          Project.all.each do |project|
+            expect(page).to have_link('details', project_path(project))
+            expect(page).to have_link('edit', project_path(project))
+          end
+        end
+      end
+    end
+
   end
 end

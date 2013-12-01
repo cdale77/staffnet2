@@ -106,7 +106,7 @@ describe 'ClientPages' do
             expect(page).to have_content(client.name)
           end
         end
-        it 'should have show and edit links for users' do
+        it 'should have show and edit links for clients' do
           Client.all.each do |client|
             expect(page).to have_link('details', client_path(client))
             expect(page).to have_link('edit', client_path(client))
