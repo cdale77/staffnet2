@@ -68,7 +68,7 @@ describe Client do
       client.should be_valid
     end
     it 'should require contact phone numbers to be 10 digits only' do
-      bad_phones = %W[1 123456789 aaaaaaaaaa 415-555-1234 ]
+      bad_phones = %W[1 123456789]
       bad_phones.each do |bad_phone|
         client.contact_phone = bad_phone
         client.should_not be_valid

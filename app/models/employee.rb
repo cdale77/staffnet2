@@ -34,6 +34,7 @@ class Employee < ActiveRecord::Base
   ## SET UP ENVIRONMENT
   include Regex
   include PeopleMethods
+  include Cleaning
 
   ## RELATIONSHIPS
   belongs_to :user
@@ -81,6 +82,9 @@ class Employee < ActiveRecord::Base
 
   ## CALLBACKS
   before_save { self.email = email.downcase }
+
+  # make the phone number 10 digits
+  before_validation { self.phone = clean_phone(phone) if attribute_present?('phone') }
 
   def self.active
     Employee.where(active: true)

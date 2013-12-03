@@ -79,18 +79,18 @@ FactoryGirl.define do
     state           Faker::Address.state_abbr
     zip             '94104'
     contact_name    Faker::Name.name
-    contact_phone   '4158634511'
-    contact_email   'ed@example.com'
-    uri             'http://www.example.com'
-    notes           'Some notes here.'
+    contact_phone   Faker::PhoneNumber.cell_phone
+    contact_email   Faker::Internet.email
+    uri             Faker::Internet.url
+    notes           Faker::Lorem.sentence
   end
 
   factory :project do
     name            'Test project'
     start_date      Date.today - 20.days
     end_date        Date.yesterday
-    desc            'This is a test project.'
-    notes           'Notes go here.'
+    desc            Faker::Lorem.sentence
+    notes           Faker::Lorem.sentence
     client
   end
 

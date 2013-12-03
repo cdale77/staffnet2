@@ -240,7 +240,7 @@ describe Employee do
       employee.should_not be_valid
     end
     it 'should reject employees with an invalid phone number' do
-      bad_phones = %W[1 123456789 aaaaaaaaaa 415-555-1234 ]
+      bad_phones = %W[1 123456789 ]
       bad_phones.each do |bad_phone|
         employee.phone = bad_phone
         employee.should_not be_valid

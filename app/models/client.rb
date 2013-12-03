@@ -22,6 +22,7 @@ class Client < ActiveRecord::Base
 
   ## SET UP ENVIRONMENT
   include Regex
+  include Cleaning
 
   ## RELATIONSHIPS
   has_many :projects, dependent: :destroy
@@ -41,6 +42,11 @@ class Client < ActiveRecord::Base
   validates :contact_email,
             format: { with: VALID_EMAIL_REGEX },
             allow_blank: true
+
+  ## CALLBACKS
+
+  # make sure the phone number is only 10 characters
+  before_validation { self.contact_phone = clean_phone(contact_phone) if attribute_present?('contact_phone') }
 
 
 end
