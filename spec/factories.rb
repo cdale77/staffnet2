@@ -38,10 +38,10 @@ FactoryGirl.define do
     last_name           Faker::Name.last_name
     phone               '5105551234'
     email               ('a'..'z').to_a.shuffle[0,10].join + 'employee@example.com'
-    address1            '1234 Main St.'
-    address2            'Apt 318'
-    city                'Cleveland'
-    state               'OH'
+    address1            Faker::Address.street_address
+    address2            Faker::Address.secondary_address
+    city                Faker::Address.city
+    state               Faker::Address.state_abbr
     zip                 '12345'
     title               'Organizer'
     pay_hourly          12
@@ -55,54 +55,6 @@ FactoryGirl.define do
     active              true
     user
   end
-
-=begin
-  factory :staff_employee do
-    first_name          'Staffer'
-    last_name           'Employee'
-    phone               '5105551234'
-    email               ('a'..'z').to_a.shuffle[0,10].join + 'staff_employee@example.com'
-    address1            '1234 Main St.'
-    address2            'Apt 318'
-    city                'Cleveland'
-    state               'OH'
-    zip                 '12345'
-    title               'Organizer'
-    pay_hourly          12
-    fed_filing_status   'single'
-    ca_filing_status    'single'
-    fed_allowances      2
-    ca_allowances       2
-    dob                 Date.today
-    hire_date           Date.today
-    gender              'f'
-    active              true
-    user
-  end
-
-  factory :super_admin_employee do
-    first_name          'SuperAdmin'
-    last_name           'Employee'
-    phone               '5105551234'
-    email               ('a'..'z').to_a.shuffle[0,10].join + 'super_admin_employee@example.com'
-    address1            '1234 Main St.'
-    address2            'Apt 318'
-    city                'Cleveland'
-    state               'OH'
-    zip                 '12345'
-    title               'Organizer'
-    pay_hourly          12
-    fed_filing_status   'single'
-    ca_filing_status    'single'
-    fed_allowances      2
-    ca_allowances       2
-    dob                 Date.today
-    hire_date           Date.today
-    gender              'f'
-    active              true
-    super_admin
-  end
-=end
 
   factory :shift_type do
     shift_type      ['street', 'door', 'office', 'phone'].sample
@@ -120,16 +72,13 @@ FactoryGirl.define do
   end
 
   factory :client do
-    name             Faker::Company.name
-    #address1        '123 Mission St'
-    #address2        'Ste. 350'
-    #city            'San Francisco'
-    address1         Faker::Address.street_address
-    address2         Faker::Address.secondary_address
-    city             Faker::Address.city
-    state           'CA'
+    name            Faker::Company.name
+    address1        Faker::Address.street_address
+    address2        Faker::Address.secondary_address
+    city            Faker::Address.city
+    state           Faker::Address.state_abbr
     zip             '94104'
-    contact_name    'Ed Lee'
+    contact_name    Faker::Name.name
     contact_phone   '4158634511'
     contact_email   'ed@example.com'
     uri             'http://www.example.com'
