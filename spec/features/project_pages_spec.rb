@@ -115,5 +115,32 @@ describe 'ProjectPages' do
       end
     end
 
+    describe 'edit' do
+      before { visit edit_project_path(project) }
+
+      describe 'page' do
+        it { should have_selector('h1', text: 'Edit project') }
+      end
+
+      describe 'with invalid information' do
+        before do
+          fill_in 'Project name', with: ''
+          click_button 'Edit project'
+        end
+        it { should have_selector('div.alert-error') }
+      end
+
+      describe 'with valid information' do
+        let(:new_name)  { 'New project' }
+        before do
+          fill_in 'name',       with: new_name
+          click_button 'Edit project'
+
+          it { should have_selector('div.alert.alert-success') }
+          specify { expect(project.reload.name).to  eq new_name }
+        end
+      end
+    end
+
   end
 end

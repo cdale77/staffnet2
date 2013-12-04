@@ -40,7 +40,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     authorize @employee
     if @employee.update_attributes(employee_params)
-      flash[:success] = 'Employee updated'
+      flash[:success] = 'Employee updated.'
       redirect_to employee_path(@employee)
     else
       render 'edit'
