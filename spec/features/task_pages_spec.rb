@@ -117,6 +117,33 @@ describe 'TaskPages' do
       end
     end
 
+    describe 'edit' do
+      before { visit edit_task_path(task) }
+
+      describe 'page' do
+        it { should have_selector('h1', text: 'Edit task') }
+      end
+
+      describe 'with invalid information' do
+        before do
+          fill_in 'Task name', with: ''
+          click_button 'Edit task'
+        end
+        it { should have_selector('div.alert-error') }
+      end
+
+      describe 'with valid information' do
+        let(:new_name)  { 'New task' }
+        before do
+          fill_in 'name',       with: new_name
+          click_button 'Edit task'
+
+          it { should have_selector('div.alert.alert-success') }
+          specify { expect(task.reload.name).to  eq new_name }
+        end
+      end
+    end
+
   end
 
 

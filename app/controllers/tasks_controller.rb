@@ -31,19 +31,19 @@ class TasksController < ApplicationController
   end
 
   def edit
-    #@task = Task.find(params[:id])
+    @task = Task.find(params[:id])
     #authorize @task
   end
 
   def update
-    #@task = Task.find(params[:id])
+    @task = Task.find(params[:id])
     #authorize @task
-    #if @task.update_attributes(task_params)
-    #  flash[:success] = 'Task updated.'
-    #  redirect_to task_path(@task)
-    #else
-    #  render 'edit'
-    #end
+    if @task.update_attributes(task_params)
+      flash[:success] = 'Task updated.'
+      redirect_to task_path(@task)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
