@@ -1,14 +1,16 @@
 class ProjectsController < ApplicationController
 
-  #include Pundit
-  #after_filter :verify_authorized
+  include Pundit
+  after_filter :verify_authorized
 
   def new
     @project = Project.new
+    authorize @project
   end
 
   def create
     @project = Project.new(project_params)
+    authorize @project
     if @project.save
       flash[:success] = 'Successfully saved new project.'
       redirect_to project_path(@project)
@@ -20,18 +22,22 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @client = @project.client
+    authorize @project
   end
 
   def index
     @projects = Project.all
+    authorize @project
   end
 
   def edit
     @project = Project.find(params[:id])
+    authorize @project
   end
 
   def update
     @project = Project.find(params[:id])
+    authorize @project
     if @project.update_attributes(project_params)
       flash[:success] = 'Project updated.'
       redirect_to project_path(@project)
@@ -42,6 +48,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     project = Project.find(params[:id])
+    authorize project
     project.destroy
     flash[:success] = 'Project destroyed.'
     redirect_to projects_url
