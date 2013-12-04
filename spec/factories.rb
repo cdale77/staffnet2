@@ -79,7 +79,7 @@ FactoryGirl.define do
     state           Faker::Address.state_abbr
     zip             '94104'
     contact_name    Faker::Name.name
-    contact_phone   Faker::PhoneNumber.cell_phone
+    contact_phone   '5105551234'
     contact_email   Faker::Internet.email
     uri             Faker::Internet.url
     notes           Faker::Lorem.sentence
