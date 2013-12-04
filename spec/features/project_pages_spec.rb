@@ -7,6 +7,7 @@ describe 'ProjectPages' do
   subject { page }
 
   let(:super_admin) { FactoryGirl.create(:super_admin) }
+  let(:manager) { FactoryGirl.create(:manager) }
   let!(:client) { FactoryGirl.create(:client) } # bang here so that the client exists for Project#new view
   let(:client2) { FactoryGirl.create(:client, name: 'Client2') }
   let(:project) { FactoryGirl.create(:project) }
@@ -148,6 +149,51 @@ describe 'ProjectPages' do
         expect { click_link 'delete' }.to change(Project, :count).by(-1)
       end
     end
+  end
 
+  #### AS MANAGER USER ####
+
+  # manager users should not see edit or delete links
+  describe 'as manager user' do
+    before do
+      visit new_user_session_path
+      fill_in 'Email',    with: manager.email
+      fill_in 'Password', with: manager.password
+      click_button 'Sign in'
+    end
+
+    after do
+      logout(:manager)
+    end
+
+    describe 'show' do
+      describe 'page' do
+        before { visit project_path(project) }
+        describe 'page' do
+          describe 'links' do
+            it { should_not have_link('edit', href: edit_project_path(project)) }
+            it { should_not have_link('delete', href: project_path(project)) }
+          end
+        end
+      end
+    end
+
+    describe 'index' do
+      before do
+        5.times { FactoryGirl.create(:project) }
+        visit projects_path
+      end
+
+      after { Project.delete_all }
+
+      describe 'page' do
+        it 'should have the right links' do
+          Project.all.each do |project|
+            expect(page).to have_link('details', project_path(project))
+            expect(page).to_not have_link('edit', edit_project_path(project))
+          end
+        end
+      end
+    end
   end
 end
