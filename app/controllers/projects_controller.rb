@@ -41,7 +41,10 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-
+    project = Project.find(params[:id])
+    project.destroy
+    flash[:success] = 'Project destroyed.'
+    redirect_to projects_url
   end
 
   private

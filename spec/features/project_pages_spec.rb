@@ -142,5 +142,12 @@ describe 'ProjectPages' do
       end
     end
 
+    describe 'destroy' do
+      before { visit project_path(project) }
+      it 'should destroy a project' do
+        expect { click_link 'delete' }.to change(Project, :count).by(-1)
+      end
+    end
+
   end
 end
