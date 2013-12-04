@@ -17,6 +17,7 @@ Staffnet2::Application.routes.draw do
     resources :shifts do
       resource :shift_type
       resource :employee
+      resources :tasks
     end
 
     resources :clients do
@@ -25,6 +26,12 @@ Staffnet2::Application.routes.draw do
 
     resources :projects do
       resource :client
+      resources :tasks
+    end
+
+    resources :tasks do
+      resource :project
+      resource :shift
     end
 
   end

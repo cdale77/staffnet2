@@ -86,7 +86,7 @@ FactoryGirl.define do
   end
 
   factory :project do
-    name            'Test project'
+    name            Faker::Lorem.word + ' ' + Faker::Lorem.word
     start_date      Date.today - 20.days
     end_date        Date.yesterday
     desc            Faker::Lorem.sentence
@@ -95,10 +95,10 @@ FactoryGirl.define do
   end
 
   factory :task do
-    name          'Some task'
+    name          Faker::Lorem.word + ' ' + Faker::Lorem.word
     hours          2.00
-    desc          'A description'
-    notes         'Some notes go here'
+    desc          Faker::Lorem.word + ' ' + Faker::Lorem.word
+    notes         Faker::Lorem.sentence
     shift
     project
   end

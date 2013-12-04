@@ -1,0 +1,15 @@
+<% provide(:title, 'New task') %>
+<div class="row">
+  <div class="span4 offset4">
+    <h1>New task</h1>
+    <%= form_for(@task) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= render partial: 'task_fields', locals: { task: @task, f: f } %>
+      <div class="row">
+        <div class="span2">
+          <%= f.submit 'New task', class: 'btn btn-large btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

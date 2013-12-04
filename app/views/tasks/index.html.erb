@@ -1,0 +1,12 @@
+<% provide(:title, 'All taskss') %>
+<h1>All tasks</h1>
+<table class="table table-condensed table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Project</th>
+    <th>Hours</th>
+    <th>Date</th>
+    <th></th>
+  </tr>
+  <%= render @tasks %>
+</table>

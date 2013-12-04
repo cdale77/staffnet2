@@ -7,7 +7,7 @@ describe 'ProjectPages' do
   subject { page }
 
   let(:super_admin) { FactoryGirl.create(:super_admin) }
-  let(:manager) { FactoryGirl.create(:manager)}
+  let(:manager) { FactoryGirl.create(:manager) }
   let!(:client) { FactoryGirl.create(:client) } # bang here so that the client exists for Project#new view
   let(:client2) { FactoryGirl.create(:client, name: 'Client2') }
   let(:project) { FactoryGirl.create(:project) }
@@ -39,7 +39,6 @@ describe 'ProjectPages' do
       fill_in 'Email',    with: super_admin.email
       fill_in 'Password', with: super_admin.password
       click_button 'Sign in'
-
     end
 
     after do

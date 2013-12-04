@@ -1,0 +1,41 @@
+
+<div class="row">
+  <div class="span4">
+    <div class="input">
+      <%= f.label :name, 'Task name' %>
+      <%= f.text_field :name %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span4">
+    <div class="input">
+      <%= f.label :project_id %>
+      <%= f.select :project_id, options_from_collection_for_select(Project.all, :id, :name, task.project_id) %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span2">
+    <div class="input">
+      <%= f.label :hours %>
+      <%= f.text_field :hours %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span4">
+    <div class="input">
+      <%= f.label :desc, 'Description' %>
+      <%= f.text_field :desc %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span4">
+    <div class="input">
+      <%= f.label :notes %>
+      <%= f.text_area :notes %>
+    </div>
+  </div>
+</div>
