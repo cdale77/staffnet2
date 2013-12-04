@@ -19,5 +19,23 @@ class Task < ActiveRecord::Base
   belongs_to :shift
   belongs_to :project
 
-  
+  ## VALIDATIONS
+
+  validates :name, presence: { message: 'required.' }
+
+  validates :hours, presence: { message: 'required.' },
+            numericality: { message: 'must be a number.' }
+
+  validate :hours_validator
+
+
+
+
+  private
+
+    def hours_validator
+      errors.add(:hours, 'Tasks cannot exceed 24 hours.') unless hours > 0 && hours < 24
+    end
+
+
 end
