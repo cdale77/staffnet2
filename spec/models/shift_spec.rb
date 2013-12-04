@@ -9,7 +9,7 @@
 #  time_in       :time
 #  time_out      :time
 #  break_time    :integer          default(0)
-#  notes         :string(255)      default("")
+#  notes         :text             default("")
 #  travel_reimb  :decimal(8, 2)    default(0.0)
 #  created_at    :datetime
 #  updated_at    :datetime
@@ -38,6 +38,7 @@ describe Shift do
   it { should respond_to(:user) }
   it { should respond_to(:shift_type) }
   it { should respond_to(:employee) }
+  it { should respond_to(:tasks) }
 
   ## VALIDATIONS
   describe 'date validations' do

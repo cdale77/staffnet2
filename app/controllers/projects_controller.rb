@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
-    authorize @project
+    authorize @projects
   end
 
   def edit

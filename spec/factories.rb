@@ -94,4 +94,13 @@ FactoryGirl.define do
     client
   end
 
+  factory :task do
+    name          'Some task'
+    hours          2.00
+    desc          'A description'
+    notes         'Some notes go here'
+    shift
+    project
+  end
+
 end

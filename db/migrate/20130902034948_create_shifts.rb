@@ -7,8 +7,8 @@ class CreateShifts < ActiveRecord::Migration
       t.time    :time_in
       t.time    :time_out
       t.integer :break_time, :default => 0
-      t.string  :notes, :default => ''
-      t.decimal :travel_reimb,  :scale => 2, :precision=> 8, :default => 0.00
+      t.text    :notes, :default => ''
+      t.decimal :travel_reimb, :scale => 2, :precision=> 8, :default => 0.00
 
       t.timestamps
     end

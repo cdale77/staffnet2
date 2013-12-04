@@ -9,7 +9,7 @@
 #  time_in       :time
 #  time_out      :time
 #  break_time    :integer          default(0)
-#  notes         :string(255)      default("")
+#  notes         :text             default("")
 #  travel_reimb  :decimal(8, 2)    default(0.0)
 #  created_at    :datetime
 #  updated_at    :datetime
@@ -25,6 +25,7 @@ class Shift < ActiveRecord::Base
   belongs_to :employee
   delegate :user, to: :employee
   belongs_to :shift_type
+  has_many :tasks, dependent: :destroy
 
   ## VALIDATIONS
   validates :date,

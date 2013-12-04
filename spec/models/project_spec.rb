@@ -33,6 +33,7 @@ describe Project do
 
   ## RELATIONSHIPS
   it { should respond_to(:client) }
+  it { should respond_to(:tasks) }
 
   ## VALIDATIONS
   describe 'name validations' do

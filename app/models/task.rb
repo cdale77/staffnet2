@@ -1,25 +1,23 @@
 # == Schema Information
 #
-# Table name: projects
+# Table name: tasks
 #
 #  id         :integer          not null, primary key
-#  client_id  :integer
+#  shift_id   :integer
+#  project_id :integer
 #  name       :string(255)      default("")
-#  start_date :date
-#  end_date   :date
+#  hours      :decimal(8, 2)    default(0.0)
 #  desc       :string(255)      default("")
 #  notes      :text             default("")
 #  created_at :datetime
 #  updated_at :datetime
 #
 
-class Project < ActiveRecord::Base
+class Task < ActiveRecord::Base
 
   ## RELATIONSHIPS
-  belongs_to :client
-  has_many :tasks, dependent: :destroy
+  belongs_to :shift
+  belongs_to :project
 
-  ## VALIDATIONS
-  validates :name, presence: { message: 'required.' }
   
 end
