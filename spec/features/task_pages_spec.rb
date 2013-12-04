@@ -144,6 +144,13 @@ describe 'TaskPages' do
       end
     end
 
+    describe 'destroy' do
+      before { visit task_path(task) }
+      it 'should destroy a project' do
+        expect { click_link 'delete' }.to change(Task, :count).by(-1)
+      end
+    end
+
   end
 
 

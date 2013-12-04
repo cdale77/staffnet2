@@ -47,11 +47,11 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    #task = Task.find(params[:id])
+    task = Task.find(params[:id])
     #authorize task
-    #task.destroy
-    #flash[:success] = 'Task destroyed.'
-    #redirect_to tasks_url
+    task.destroy
+    flash[:success] = 'Task destroyed.'
+    redirect_to tasks_url
   end
 
   private
