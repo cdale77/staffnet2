@@ -88,5 +88,20 @@ namespace :db do
       end
     end
 
+    # tasks
+    Shift.all.each do |shift|
+      7.times do |n|
+        task = shift.tasks.build(       name:       Faker::Lorem.word,
+                                        hours:      [1, 2, 3, 2.25, 4, 3.75, 1.5].sample,
+                                        desc:       Faker::Lorem.word,
+                                        notes:      Faker::Lorem.sentence )
+
+        # assign the task to a random project
+        task.project_id = (1..Project.count).to_a.sort{ rand() - 0.5}[0]
+
+        task.save
+      end
+    end
+
   end
 end

@@ -7,6 +7,7 @@ describe 'TaskPages' do
   subject { page }
 
   let(:super_admin) { FactoryGirl.create(:super_admin) }
+  let(:staff) { FactoryGirl.create(:staff) }
   let(:project) { FactoryGirl.create(:project) }
   let(:project2) { FactoryGirl.create(:project) }
   let!(:shift) { FactoryGirl.create(:shift) }
@@ -153,5 +154,66 @@ describe 'TaskPages' do
 
   end
 
+#### AS STAFF USER ####
 
+# staff users should not see edit or delete links on tasks, except their own
+  describe 'as staff user' do
+    before do
+      visit new_user_session_path
+      fill_in 'Email',    with: staff.email
+      fill_in 'Password', with: staff.password
+      click_button 'Sign in'
+    end
+
+    after do
+      logout(:staff)
+    end
+
+    let(:employee) { FactoryGirl.create(:employee, user_id: staff.id) }
+    let(:shift) { FactoryGirl.create(:shift, employee_id: employee.id) }
+    let(:self_task) { FactoryGirl.create(:task, shift_id: shift.id) }
+
+    describe 'show' do
+      describe 'their own task' do
+        describe 'page' do
+          before { visit task_path(self_task) }
+          describe 'page' do
+            describe 'links' do
+              it { should have_link('edit', href: edit_task_path(self_task)) }
+              it { should have_link('delete', href: task_path(self_task)) }
+            end
+          end
+        end
+      end
+      describe 'another users task' do
+        describe 'page' do
+          before { visit task_path(task) }
+          describe 'page' do
+            describe 'links' do
+              it { should_not have_link('edit', href: edit_task_path(task)) }
+              it { should_not have_link('delete', href: task_path(task)) }
+            end
+          end
+        end
+      end
+    end
+
+    describe 'index' do
+      before do
+        create_sample_tasks
+        visit tasks_path
+      end
+
+      after { Task.delete_all }
+
+      describe 'page' do
+        it 'should have the right links' do
+          Task.all.each do |taks|
+            expect(page).to have_link('details', task_path(task))
+            expect(page).to_not have_link('edit', edit_task_path(task))
+          end
+        end
+      end
+    end
+  end
 end

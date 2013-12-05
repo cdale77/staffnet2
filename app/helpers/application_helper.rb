@@ -10,9 +10,9 @@ module ApplicationHelper
     end
   end
 
-  def correct_user(user)
-    user == current_user
-  end
+  #def correct_user(user)
+  #  user == current_user
+  #end
 
   def super_admin_user?
     current_user.role? :super_admin
@@ -20,6 +20,14 @@ module ApplicationHelper
 
   def admin_user?
     current_user.role? :admin
+  end
+
+  def manager_user?
+    current_user.role? :manager
+  end
+
+  def current_user_owns?(record)
+    record.user == current_user
   end
 
   def filing_status_options

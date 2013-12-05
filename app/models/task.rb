@@ -18,6 +18,7 @@ class Task < ActiveRecord::Base
   ## RELATIONSHIPS
   belongs_to :shift
   belongs_to :project
+  delegate :user, to: :shift
 
   ## VALIDATIONS
 
@@ -27,8 +28,6 @@ class Task < ActiveRecord::Base
             numericality: { message: 'must be a number.' }
 
   validate :hours_validator
-
-
 
 
   private
