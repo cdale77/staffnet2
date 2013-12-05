@@ -1,0 +1,6 @@
+<tr>
+  <td><%= task_type.name %></td>
+  <td class="buttons"> <%= link_to 'edit', edit_task_type_path(task_type), class: 'btn btn-mini', type: 'button' if admin_user? %>
+  <%= link_to 'delete', task_type_path(task_type), method: :delete,
+              data: { confirm: 'You sure?' } if admin_user? %> </td>
+</tr>

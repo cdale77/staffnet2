@@ -5,12 +5,12 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    #authorize @task
+    authorize @task
   end
 
   def create
     @task = Task.new(task_params)
-    #authorize @task
+    authorize @task
     if @task.save
       flash[:success] = 'Successfully saved new task.'
       redirect_to task_path(@task)
@@ -22,22 +22,22 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @project = @task.project
-    #authorize @task
+    authorize @task
   end
 
   def index
     @tasks = Task.all
-    #authorize @tasks
+    authorize @tasks
   end
 
   def edit
     @task = Task.find(params[:id])
-    #authorize @task
+    authorize @task
   end
 
   def update
     @task = Task.find(params[:id])
-    #authorize @task
+    authorize @task
     if @task.update_attributes(task_params)
       flash[:success] = 'Task updated.'
       redirect_to task_path(@task)
@@ -48,7 +48,7 @@ class TasksController < ApplicationController
 
   def destroy
     task = Task.find(params[:id])
-    #authorize task
+    authorize task
     task.destroy
     flash[:success] = 'Task destroyed.'
     redirect_to tasks_url
@@ -57,6 +57,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:shift_id, :project_id, :name, :hours, :desc, :notes )
+    params.require(:task).permit(:shift_id, :project_id, :task_type_id, :name, :hours, :desc, :notes )
   end
 end

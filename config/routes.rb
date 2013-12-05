@@ -34,6 +34,8 @@ Staffnet2::Application.routes.draw do
       resource :shift
     end
 
+    resources :task_types
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
