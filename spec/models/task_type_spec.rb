@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: task_types
+#
+#  id   :integer          not null, primary key
+#  name :string(255)      default("")
+#  desc :string(255)      default("")
+#
+
 require 'spec_helper'
 
 describe TaskType do
@@ -17,4 +26,13 @@ describe TaskType do
 
   ## RELATIONSHIPS
   it { should respond_to(:tasks) }
+
+  ## VALIDATIONS
+
+  describe 'name validations' do
+    it 'should reject task types with no name' do
+      task_type.name = ''
+      task_type.should_not be_valid
+    end
+  end
 end

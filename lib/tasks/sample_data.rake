@@ -104,7 +104,7 @@ namespace :db do
 
         # assign the task to a random project and task_type
         task.project_id = (1..Project.count).to_a.sort{ rand() - 0.5}[0]
-        task.task_type_id = (1..TaskType.count).to_a.sort{ rand() - .5}[0]
+        task.task_type_id = (1..TaskType.count).to_a.sort{ rand() - 0.5}[0]
         task.save
       end
     end
