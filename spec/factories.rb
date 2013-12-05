@@ -94,6 +94,11 @@ FactoryGirl.define do
     client
   end
 
+  factory :task_type do
+    name          Faker::Lorem.word
+    desc          Faker::Lorem.sentence
+  end
+
   factory :task do
     name          Faker::Lorem.word + ' ' + Faker::Lorem.word
     hours          2.00
@@ -101,6 +106,9 @@ FactoryGirl.define do
     notes         Faker::Lorem.sentence
     shift
     project
+    task_type
   end
+
+
 
 end

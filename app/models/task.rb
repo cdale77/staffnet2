@@ -18,6 +18,7 @@ class Task < ActiveRecord::Base
   ## RELATIONSHIPS
   belongs_to :shift
   belongs_to :project
+  belongs_to :task_type
   delegate :user, to: :shift
 
   ## VALIDATIONS

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131204002737) do
+ActiveRecord::Schema.define(version: 20131205022349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,19 +106,26 @@ ActiveRecord::Schema.define(version: 20131204002737) do
   add_index "shifts", ["employee_id"], name: "index_shifts_on_employee_id", using: :btree
   add_index "shifts", ["shift_type_id"], name: "index_shifts_on_shift_type_id", using: :btree
 
+  create_table "task_types", force: true do |t|
+    t.string "name", default: ""
+    t.string "desc", default: ""
+  end
+
   create_table "tasks", force: true do |t|
     t.integer  "shift_id"
     t.integer  "project_id"
-    t.string   "name",                               default: ""
-    t.decimal  "hours",      precision: 8, scale: 2, default: 0.0
-    t.string   "desc",                               default: ""
-    t.text     "notes",                              default: ""
+    t.integer  "task_type_id"
+    t.string   "name",                                 default: ""
+    t.decimal  "hours",        precision: 8, scale: 2, default: 0.0
+    t.string   "desc",                                 default: ""
+    t.text     "notes",                                default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree
   add_index "tasks", ["shift_id"], name: "index_tasks_on_shift_id", using: :btree
+  add_index "tasks", ["task_type_id"], name: "index_tasks_on_task_type_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

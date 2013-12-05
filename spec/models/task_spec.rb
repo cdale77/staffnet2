@@ -33,6 +33,7 @@ describe Task do
   ## RELATIONSHIPS
   it { should respond_to(:shift) }
   it { should respond_to(:project) }
+  it { should respond_to(:task_type) }
 
   ## VALIDATIONS
   describe 'name validations' do

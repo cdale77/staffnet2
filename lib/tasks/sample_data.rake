@@ -88,6 +88,12 @@ namespace :db do
       end
     end
 
+    # task types
+    8.times do |n|
+      task_type = TaskType.new( name: Faker::Lorem.word, desc: Faker::Lorem.sentence )
+      task_type.save
+    end
+
     # tasks
     Shift.all.each do |shift|
       7.times do |n|
@@ -96,9 +102,9 @@ namespace :db do
                                         desc:       Faker::Lorem.word,
                                         notes:      Faker::Lorem.sentence )
 
-        # assign the task to a random project
+        # assign the task to a random project and task_type
         task.project_id = (1..Project.count).to_a.sort{ rand() - 0.5}[0]
-
+        task.task_type_id = (1..TaskType.count).to_a.sort{ rand() - .5}[0]
         task.save
       end
     end
