@@ -147,7 +147,7 @@ describe 'TaskPages' do
 
     describe 'destroy' do
       before { visit task_path(task) }
-      it 'should destroy a project' do
+      it 'should destroy a task' do
         expect { click_link 'delete' }.to change(Task, :count).by(-1)
       end
     end
@@ -181,17 +181,6 @@ describe 'TaskPages' do
             describe 'links' do
               it { should have_link('edit', href: edit_task_path(self_task)) }
               it { should have_link('delete', href: task_path(self_task)) }
-            end
-          end
-        end
-      end
-      describe 'another users task' do
-        describe 'page' do
-          before { visit task_path(task) }
-          describe 'page' do
-            describe 'links' do
-              it { should_not have_link('edit', href: edit_task_path(task)) }
-              it { should_not have_link('delete', href: task_path(task)) }
             end
           end
         end

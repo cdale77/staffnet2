@@ -12,7 +12,7 @@ class TaskPolicy < Struct.new(:user, :record)
   end
 
   def index?
-    user.role? :manager or user == record.user
+    user.role? :staff
   end
 
   def edit?

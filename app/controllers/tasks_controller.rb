@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
-  #include Pundit
-  #after_filter :verify_authorized
+  include Pundit
+  after_filter :verify_authorized
 
   def new
     @task = Task.new
@@ -26,7 +26,13 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.all
+    # Pundit policy scopes don't seem to work since user is delegated/user_id isn't in the Shifts table.
+    if current_user.role? :manager
+      @tasks = Task.all
+    elsif current_user.role? :staff
+      @tasks = current_user.tasks
+    end
+    authorize @shifts
     authorize @tasks
   end
 

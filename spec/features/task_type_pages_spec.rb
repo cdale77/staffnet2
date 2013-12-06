@@ -89,5 +89,39 @@ describe 'TaskTypePages' do
       end
     end
 
+    describe 'edit' do
+      before { visit edit_task_type_path(task_type) }
+
+      describe 'page' do
+        it { should have_selector('h1', text: 'Edit task type') }
+      end
+
+      describe 'with invalid information' do
+        before do
+          fill_in 'Task type name', with: ''
+          click_button 'Edit task type'
+        end
+        it { should have_selector('div.alert-error') }
+      end
+
+      describe 'with valid information' do
+        let(:new_name)  { 'New task type' }
+        before do
+          fill_in 'name',       with: new_name
+          click_button 'Edit task type'
+
+          it { should have_selector('div.alert.alert-success') }
+          specify { expect(task_type.reload.name).to  eq new_name }
+        end
+      end
+    end
+
+    describe 'destroy' do
+      before { visit task_type_path(task_type) }
+      it 'should destroy a task type' do
+        expect { click_link 'delete' }.to change(TaskType, :count).by(-1)
+      end
+    end
+
   end
 end
