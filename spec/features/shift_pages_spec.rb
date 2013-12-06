@@ -125,7 +125,6 @@ describe 'ShiftPages' do
         it 'should have details and edit links for each shift do' do
           Shift.all.each do |shift|
             expect(page).to have_link('details', shift_path(shift))
-            expect(page).to have_link('edit', edit_shift_path(shift))
           end
         end
       end
