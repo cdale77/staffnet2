@@ -1,3 +1,4 @@
+=begin
 # == Schema Information
 #
 # Table name: projects
@@ -43,3 +44,4 @@ describe Project do
     end
   end
 end
+=end

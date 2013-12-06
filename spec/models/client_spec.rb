@@ -38,7 +38,7 @@ describe Client do
   end
 
   ## RELATIONSHIPS
-  it { should respond_to(:projects) }
+  #it { should respond_to(:projects) }
 
   ## VALIDATIONS
   describe 'name validations' do

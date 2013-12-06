@@ -24,17 +24,17 @@ Staffnet2::Application.routes.draw do
       resources :projects
     end
 
-    resources :projects do
-      resource :client
-      resources :tasks
-    end
+    #resources :projects do
+    #  resource :client
+    #  resources :tasks
+    #end
 
-    resources :tasks do
-      resource :project
-      resource :shift
-    end
+    #resources :tasks do
+    #  resource :project
+    #  resource :shift
+    #end
 
-    resources :task_types
+    #resources :task_types
 
   end
 

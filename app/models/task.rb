@@ -14,6 +14,7 @@
 #  updated_at   :datetime
 #
 
+=begin
 class Task < ActiveRecord::Base
 
   ## RELATIONSHIPS
@@ -40,3 +41,4 @@ class Task < ActiveRecord::Base
 
 
 end
+=end

@@ -7,6 +7,7 @@
 #  desc :string(255)      default("")
 #
 
+=begin
 class TaskType < ActiveRecord::Base
 
   ## RELATIONSHIPS
@@ -17,3 +18,4 @@ class TaskType < ActiveRecord::Base
   validates :name, presence: { message: 'required.' }
 
 end
+=end

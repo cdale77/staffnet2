@@ -38,7 +38,7 @@ describe Shift do
   it { should respond_to(:user) }
   it { should respond_to(:shift_type) }
   it { should respond_to(:employee) }
-  it { should respond_to(:tasks) }
+  #it { should respond_to(:tasks) }
 
   ## VALIDATIONS
   describe 'date validations' do

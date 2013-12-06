@@ -13,6 +13,7 @@
 #  updated_at :datetime
 #
 
+=begin
 class Project < ActiveRecord::Base
 
   ## RELATIONSHIPS
@@ -23,3 +24,4 @@ class Project < ActiveRecord::Base
   validates :name, presence: { message: 'required.' }
   
 end
+=end

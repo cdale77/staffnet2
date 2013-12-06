@@ -1,3 +1,4 @@
+=begin
 require 'spec_helper'
 
 describe ProjectPolicy do
@@ -67,3 +68,4 @@ describe ProjectPolicy do
   end
 
 end
+=end

@@ -25,7 +25,7 @@ class Shift < ActiveRecord::Base
   belongs_to :employee
   delegate :user, to: :employee
   belongs_to :shift_type
-  has_many :tasks, dependent: :destroy
+  #has_many :tasks, dependent: :destroy
 
   ## VALIDATIONS
   validates :date,

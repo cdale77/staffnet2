@@ -25,7 +25,7 @@ class Client < ActiveRecord::Base
   include Cleaning
 
   ## RELATIONSHIPS
-  has_many :projects, dependent: :destroy
+  #has_many :projects, dependent: :destroy
 
   ## Validations
 

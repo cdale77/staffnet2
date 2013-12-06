@@ -85,6 +85,7 @@ FactoryGirl.define do
     notes           Faker::Lorem.sentence
   end
 
+=begin
   factory :project do
     name            Faker::Lorem.word + ' ' + Faker::Lorem.word
     start_date      Date.today - 20.days
@@ -108,6 +109,7 @@ FactoryGirl.define do
     project
     task_type
   end
+=end
 
 
 

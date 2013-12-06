@@ -1,3 +1,4 @@
+=begin
 # == Schema Information
 #
 # Table name: task_types
@@ -36,3 +37,4 @@ describe TaskType do
     end
   end
 end
+=end

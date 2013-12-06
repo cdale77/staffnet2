@@ -1,3 +1,4 @@
+=begin
 # == Schema Information
 #
 # Table name: tasks
@@ -60,3 +61,4 @@ describe Task do
   end
 
 end
+=end

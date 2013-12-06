@@ -1,3 +1,4 @@
+=begin
 require 'spec_helper'
 include Warden::Test::Helpers
 Warden.test_mode!
@@ -196,13 +197,18 @@ describe 'TaskPages' do
       after { Task.delete_all }
 
       describe 'page' do
-        it 'should have the right links' do
-          Task.all.each do |taks|
-            expect(page).to have_link('details', task_path(task))
-            expect(page).to_not have_link('edit', edit_task_path(task))
+
+        describe 'page' do
+          it 'should show the correct users shifts' do
+            expect(page).to have_content(staff_task._name)
+            expect(page).to have_content(staff2_task._name)
+          end
+          it 'should not show shifts for another user' do
+            expect(page).to_not have_content(admin_task.name)
           end
         end
       end
     end
   end
 end
+=end

@@ -1,3 +1,4 @@
+=begin
 require 'spec_helper'
 
 describe TaskPolicy do
@@ -83,3 +84,4 @@ describe TaskPolicy do
   end
 
 end
+=end
