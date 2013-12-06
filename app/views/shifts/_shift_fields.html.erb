@@ -1,10 +1,9 @@
 <div class="row">
-  <div class="span2">
-    <div class="input">
-      <%= f.label :employee_id, 'Employee' %>
-      <%= f.select :employee_id, options_from_collection_for_select(Employee.active, :id, :full_name, shift.employee_id) %>
-    </div>
+  <div class="span6">
+    <h4>Employee: <%= @employee.full_name %></h4>
   </div>
+</div>
+<div class="row">
   <div class="span2">
     <div class="input">
       <%= f.label :date %>

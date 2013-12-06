@@ -4,7 +4,7 @@
   <div class="span4">
     <div class="row">
       <div class="span2">
-        <h2><%= @shift.employee.full_name %></h2>
+        <h2><%= @employee.full_name %></h2>
       </div>
       <div class="span2 padtop">
         <div class="buttons">
@@ -41,8 +41,8 @@
           <td><%= @shift.break_time %> minutes</td>
         </tr>
         <tr>
-          <th>Net time:</th>
-          <td>Fix this</td>
+          <th>Net hours:</th>
+          <td><%= @shift.net_time %></td>
         </tr>
         <tr>
           <th>Travel reimb:</th>

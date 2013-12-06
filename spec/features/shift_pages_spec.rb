@@ -19,7 +19,7 @@ describe 'ShiftPages' do
   ## HELPERS
 
   def fill_in_example_shift
-    select employee.full_name,    from: 'shift_employee_id'
+    #select employee.full_name,    from: 'shift_employee_id'
     select 'Door',                from: 'shift_shift_type_id'
     fill_in 'Date',               with: '2013-09-04'
     fill_in 'Time in',            with: '09:00 AM'
@@ -58,7 +58,7 @@ describe 'ShiftPages' do
         shift_type = ShiftType.new(shift_type: 'Door')
         shift_type.save
 
-        visit new_shift_path
+        visit new_employee_shift_path(employee)
       end
 
       after { ShiftType.destroy_all }

@@ -4,12 +4,21 @@ class ShiftsController < ApplicationController
   after_filter :verify_authorized
 
   def new
-    @shift = Shift.new
-    authorize @shift
+    #@shift = Shift.new
+    @employee = Employee.find(params[:employee_id])
+    if @employee
+      @shift = @employee.shifts.build
+      authorize @shift
+    else
+      flash[:error] = 'Could not find employee.'
+      render root_path
+    end
+
   end
 
   def create
-    @shift = Shift.new(shift_params)
+    @employee = Employee.find(params[:employee_id])
+    @shift = @employee.shifts.build(shift_params)
     authorize @shift
     if @shift.save
       flash[:success] = 'Success.'
@@ -21,6 +30,7 @@ class ShiftsController < ApplicationController
 
   def show
     @shift = Shift.find(params[:id])
+    @employee = @shift.employee
     authorize @shift
   end
 
@@ -36,11 +46,13 @@ class ShiftsController < ApplicationController
 
   def edit
     @shift = Shift.find(params[:id])
+    @employee = @shift.employee
     authorize @shift
   end
 
   def update
     @shift = Shift.find(params[:id])
+    @employee = @shift.employee
     authorize @shift
     if @shift.update_attributes(shift_params)
       flash[:success] = 'Shift updated.'
@@ -62,7 +74,7 @@ class ShiftsController < ApplicationController
   private
 
     def shift_params
-      params.require(:shift).permit(:employee_id, :shift_type_id, :time_in, :time_out, :break_time, :notes,
+      params.require(:shift).permit(:shift_type_id, :time_in, :time_out, :break_time, :notes,
                                     :date, :travel_reimb)
     end
 end
