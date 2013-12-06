@@ -74,6 +74,7 @@ namespace :db do
                             uri:            Faker::Internet.url )
       client.save
     end
+=begin
 
     # projects
     Client.all.each do |client|
@@ -108,6 +109,7 @@ namespace :db do
         task.save
       end
     end
+=end
 
   end
 end
