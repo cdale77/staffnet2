@@ -89,4 +89,14 @@ describe Shift do
       end
     end
   end
+
+  ## METHODS
+  describe 'net_time method' do
+    it 'should have a net time method' do
+      shift.time_in = Time.now.beginning_of_day
+      shift.time_out = Time.now.beginning_of_day + 5.hours
+      shift.break_time = 30
+      shift.net_time.should eql 4.5
+    end
+  end
 end
