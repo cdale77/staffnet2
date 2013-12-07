@@ -121,6 +121,7 @@ describe 'ShiftTypePages' do
       end
     end
   end
+=begin
 
   ## AS ADMIN USER
   describe 'as admin user' do
@@ -333,5 +334,6 @@ describe 'ShiftTypePages' do
       end
     end
   end
+=end
 
 end

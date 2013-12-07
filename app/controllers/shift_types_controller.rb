@@ -1,13 +1,16 @@
 class ShiftTypesController < ApplicationController
 
-  before_filter :admin
+  include Pundit
+  after_filter :verify_authorized
 
   def new
     @shift_type = ShiftType.new
+    authorize @shift_type
   end
 
   def create
     @shift_type = ShiftType.new(shift_type_params)
+    authorize @shift_type
     if @shift_type.save
       flash[:success] = 'Success.'
       redirect_to shift_types_path
@@ -18,14 +21,17 @@ class ShiftTypesController < ApplicationController
 
   def index
     @shift_types = ShiftType.all
+    authorize @shift_types
   end
 
   def edit
     @shift_type = ShiftType.find(params[:id])
+    authorize @shift_type
   end
 
   def update
     @shift_type = ShiftType.find(params[:id])
+    authorize @shift_type
     if @shift_type.update_attributes(shift_type_params)
       flash[:success] = 'Success.'
       redirect_to shift_types_path
@@ -33,17 +39,6 @@ class ShiftTypesController < ApplicationController
       flash[:error] = 'Problem updating shift type.'
       render 'edit'
     end
-  end
-
-  def destroy
-    @shift_type = ShiftType.find(params[:id])
-    if @shift_type.number_of_shifts > 0
-      flash[:error] = 'Cannot delete this task type.'
-    else
-      @shift_type.destroy
-      flash[:success] = 'Shift type destroyed.'
-    end
-    redirect_to shift_types_path
   end
 
 
