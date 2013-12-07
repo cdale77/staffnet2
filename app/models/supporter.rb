@@ -76,9 +76,9 @@ class Supporter < ActiveRecord::Base
             numericality: { message: 'must be 5 digits.' }
 
   ## CALLBACKS
-  before_save :downcase_emails
-  # make the phone number 10 digits
+  before_validation :downcase_emails
   before_validation :format_phone_numbers
+  before_validation { self.salutation = first_name if self.salutation.blank? }
 
 
   private
@@ -87,6 +87,7 @@ class Supporter < ActiveRecord::Base
       self.email_2 = email_2.downcase if attribute_present?('email_2')
     end
 
+  # make the phone number 10 digits
     def format_phone_numbers
       self.phone_mobile = clean_phone(phone_mobile) if attribute_present?('phone_mobile')
       self.phone_work = clean_phone(phone_work) if attribute_present?('phone_work')

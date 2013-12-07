@@ -153,4 +153,16 @@ describe Supporter do
       end
     end
   end
+
+  ## METHODS
+
+  describe 'salutation setting' do
+    it 'should set the salutation correctly' do
+      name = 'Kim'
+      supporter.salutation = ''
+      supporter.first_name = name
+      supporter.save
+      expect(supporter.reload.salutation).to eql name
+    end
+  end
 end

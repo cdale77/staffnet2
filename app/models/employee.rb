@@ -86,6 +86,8 @@ class Employee < ActiveRecord::Base
   # make the phone number 10 digits
   before_validation { self.phone = clean_phone(phone) if attribute_present?('phone') }
 
+
+  ## METHODS
   def self.active
     Employee.where(active: true)
   end
