@@ -1,0 +1,21 @@
+<% provide(:title, 'Edit supporter type') %>
+<div class="row">
+  <div class="span8 offset2">
+    <h1>Edit supporter type</h1>
+    <%= form_for(@supporter_type) do |f| %>
+      <div class="row">
+        <div class="span3">
+          <div class="input">
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3">
+          <%= f.submit 'Edit supporter type', class: 'btn btn-large btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

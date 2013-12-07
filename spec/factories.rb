@@ -107,6 +107,7 @@ FactoryGirl.define do
     occupation            'Consultant'
     source                Faker::Lorem.word
     notes                 Faker::Lorem.sentence
+    supporter_type
   end
 
 
