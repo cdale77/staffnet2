@@ -52,4 +52,20 @@ class Supporter < ActiveRecord::Base
 
   ## VALIDATIONS
 
+=begin
+  validates :first_name, :last_name, presence: { message: 'required.' },
+            length: { maximum: 25, minimum: 2, message: 'must be between 2 and 25 characters.' }
+
+  validates :email_1, :email_2,
+            format: { with: VALID_EMAIL_REGEX },
+            allow_blank: true
+
+  validates :phone_mobile, :phone_home, :phone_alt,
+            format: { with: PHONE_REGEX, message: 'must be 10 digits' },
+            allow_blank: true
+
+  validates :address1, :city, :fed_filing_status, :ca_filing_status, :hire_date, :dob, :title,
+            presence: { message: 'required.' }
+=end
+
 end
