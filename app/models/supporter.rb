@@ -48,7 +48,7 @@ class Supporter < ActiveRecord::Base
   #include Cleaning
 
   ## RELATIONSHIPS
-  #belongs_to :contact_type
+  belongs_to :supporter_type
 
   ## VALIDATIONS
 

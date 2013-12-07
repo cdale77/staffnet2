@@ -85,6 +85,31 @@ FactoryGirl.define do
     notes           Faker::Lorem.sentence
   end
 
+  factory :supporter_type do
+    name        Faker::Lorem.word
+  end
+
+  factory :supporter do
+    first_name            Faker::Name.first_name
+    last_name             Faker::Name.last_name
+    address_line_1       Faker::Address.street_address
+    address_line_2        Faker::Address.secondary_address
+    address_city          Faker::Address.city
+    address_state         'CA'
+    address_zip           '94523'
+    email_1               Faker::Internet.email
+    email_2               Faker::Internet.email
+    phone_mobile          '5553234322'
+    phone_home            '5553232325'
+    phone_alt             '5554954933'
+    vol_level             2
+    employer              Faker::Company.name
+    occupation            'Consultant'
+    source                Faker::Lorem.word
+    notes                 Faker::Lorem.sentence
+  end
+
+
 =begin
   factory :project do
     name            Faker::Lorem.word + ' ' + Faker::Lorem.word

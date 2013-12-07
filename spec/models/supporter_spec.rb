@@ -61,7 +61,7 @@ describe Supporter do
   end
 
   ## RELATIONSHIPS
-  it { should respond_to(:contact_type) }
+  it { should respond_to(:supporter_type) }
   #it { should respond_to(:donations) }
   #it { should respond_to(:payments) }
 
