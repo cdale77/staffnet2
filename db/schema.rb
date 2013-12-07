@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205022349) do
+ActiveRecord::Schema.define(version: 20131207000319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,47 @@ ActiveRecord::Schema.define(version: 20131205022349) do
   add_index "shifts", ["date"], name: "index_shifts_on_date", using: :btree
   add_index "shifts", ["employee_id"], name: "index_shifts_on_employee_id", using: :btree
   add_index "shifts", ["shift_type_id"], name: "index_shifts_on_shift_type_id", using: :btree
+
+  create_table "supporters", force: true do |t|
+    t.integer  "external_id"
+    t.integer  "cim_id"
+    t.integer  "contact_type_id"
+    t.string   "prefix",           default: ""
+    t.string   "salutation",       default: ""
+    t.string   "first_name",       default: ""
+    t.string   "last_name",        default: ""
+    t.string   "suffix",           default: ""
+    t.string   "address_line_1",   default: ""
+    t.string   "address_line_2",   default: ""
+    t.string   "address_city",     default: ""
+    t.string   "address_state",    default: ""
+    t.string   "address_zip",      default: ""
+    t.boolean  "address_bad",      default: false
+    t.string   "email_1",          default: ""
+    t.boolean  "email_1_bad",      default: false
+    t.string   "email_2",          default: ""
+    t.boolean  "email_2_bad",      default: false
+    t.string   "phone_mobile",     default: ""
+    t.boolean  "phone_mobile_bad", default: false
+    t.string   "phone_home",       default: ""
+    t.boolean  "phone_home_bad",   default: false
+    t.string   "phone_alt",        default: ""
+    t.boolean  "phone_alt_bad",    default: false
+    t.boolean  "do_not_mail",      default: false
+    t.boolean  "do_not_call",      default: false
+    t.boolean  "do_not_email",     default: false
+    t.boolean  "keep_informed",    default: false
+    t.integer  "vol_level",        default: 0
+    t.string   "employer",         default: ""
+    t.string   "occupation",       default: ""
+    t.string   "source",           default: ""
+    t.string   "notes",            default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "supporters", ["cim_id"], name: "index_supporters_on_cim_id", using: :btree
+  add_index "supporters", ["external_id"], name: "index_supporters_on_external_id", using: :btree
 
   create_table "task_types", force: true do |t|
     t.string "name", default: ""
