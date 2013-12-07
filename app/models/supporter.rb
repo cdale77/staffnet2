@@ -52,8 +52,11 @@ class Supporter < ActiveRecord::Base
 
   ## VALIDATIONS
 
-=begin
-  validates :first_name, :last_name, presence: { message: 'required.' },
+  validates :first_name, :prefix, :salutation,
+            length: { maximum: 25, minimum: 2, message: 'must be between 2 and 25 characters.' },
+            allow_blank: true
+
+  validates :last_name, presence: { message: 'required.' },
             length: { maximum: 25, minimum: 2, message: 'must be between 2 and 25 characters.' }
 
   validates :email_1, :email_2,
@@ -64,8 +67,14 @@ class Supporter < ActiveRecord::Base
             format: { with: PHONE_REGEX, message: 'must be 10 digits' },
             allow_blank: true
 
-  validates :address1, :city, :fed_filing_status, :ca_filing_status, :hire_date, :dob, :title,
-            presence: { message: 'required.' }
-=end
+  validates :address_state,
+            format: { with: STATE_REGEX, message: 'must be 2 characters' },
+            allow_blank: true
+
+  validates :address_zip, presence: { message: 'required.' },
+            length: { is: 5 },
+            numericality: { message: 'must be 5 digits.' }
+
+
 
 end
