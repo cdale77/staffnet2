@@ -50,7 +50,7 @@ class ShiftTypesController < ApplicationController
   private
 
     def shift_type_params
-      params.require(:shift_type).permit(:shift_type)
+      params.require(:shift_type).permit(:name)
     end
 
 end

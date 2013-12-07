@@ -3,7 +3,7 @@
 # Table name: shift_types
 #
 #  id         :integer          not null, primary key
-#  shift_type :string(255)      default("")
+#  name       :string(255)      default("")
 #  created_at :datetime
 #  updated_at :datetime
 #
@@ -17,7 +17,7 @@ describe ShiftType do
   subject { shift_type }
 
   ## ATTRIBUTES
-  it { should respond_to(:shift_type) }
+  it { should respond_to(:name) }
 
   ## RELATIONSHIPS
   it { should respond_to(:shifts) }

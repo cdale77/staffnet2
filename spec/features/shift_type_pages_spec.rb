@@ -18,10 +18,10 @@ describe 'ShiftTypePages' do
   ## HELPERS ##
 
   def create_sample_shift_types
-    FactoryGirl.create(:shift_type, shift_type: 'door')
-    FactoryGirl.create(:shift_type, shift_type: 'office')
-    FactoryGirl.create(:shift_type, shift_type: 'vacation')
-    FactoryGirl.create(:shift_type, shift_type: 'sick')
+    FactoryGirl.create(:shift_type, name: 'door')
+    FactoryGirl.create(:shift_type, name: 'office')
+    FactoryGirl.create(:shift_type, name: 'vacation')
+    FactoryGirl.create(:shift_type, name: 'sick')
   end
 
   ## AS SUPERADMIN USER ##
@@ -55,7 +55,7 @@ describe 'ShiftTypePages' do
       end
 
       describe 'with valid information' do
-        before { fill_in 'Shift type', with: 'Tabling' }
+        before { fill_in 'Name', with: 'Tabling' }
 
         it 'should create a new shift_type' do
           expect { click_button 'New shift type' }.to change(ShiftType, :count).by(1)
@@ -81,7 +81,7 @@ describe 'ShiftTypePages' do
 
         it 'should list each shift type' do
           ShiftType.all.each do |shift_type|
-            expect(page).to have_content(shift_type.shift_type)
+            expect(page).to have_content(shift_type.name)
           end
         end
 
@@ -105,7 +105,7 @@ describe 'ShiftTypePages' do
       describe 'with invalid information' do
         invalid_shift_type = 'a' * 80
         before  do
-          fill_in 'Shift type', with: invalid_shift_type
+          fill_in 'Name', with: invalid_shift_type
           click_button 'Edit shift type'
         end
         it { should have_selector('div.alert-error') }
@@ -114,11 +114,11 @@ describe 'ShiftTypePages' do
       describe 'with valid information' do
         valid_shift_type = 'Newshift'
         before  do
-          fill_in 'Shift type', with: valid_shift_type
+          fill_in 'Name', with: valid_shift_type
           click_button 'Edit shift type'
         end
         it { should have_selector('div.alert-success') }
-        specify { expect(shift_type.reload.shift_type).to eq 'Newshift' }
+        specify { expect(shift_type.reload.name).to eq 'Newshift' }
       end
     end
   end
@@ -154,7 +154,7 @@ describe 'ShiftTypePages' do
       end
 
       describe 'with valid information' do
-        before { fill_in 'Shift type', with: 'Tabling' }
+        before { fill_in 'Name', with: 'Tabling' }
 
         it 'should create a new shift_type' do
           expect { click_button 'New shift type' }.to change(ShiftType, :count).by(1)
@@ -180,7 +180,7 @@ describe 'ShiftTypePages' do
 
         it 'should list each shift type' do
           ShiftType.all.each do |shift_type|
-            expect(page).to have_content(shift_type.shift_type)
+            expect(page).to have_content(shift_type.name)
           end
         end
 
@@ -204,7 +204,7 @@ describe 'ShiftTypePages' do
       describe 'with invalid information' do
         invalid_shift_type = 'a' * 80
         before  do
-          fill_in 'Shift type', with: invalid_shift_type
+          fill_in 'Name', with: invalid_shift_type
           click_button 'Edit shift type'
         end
         it { should have_selector('div.alert-error') }
@@ -213,11 +213,11 @@ describe 'ShiftTypePages' do
       describe 'with valid information' do
         valid_shift_type = 'Newshift'
         before  do
-          fill_in 'Shift type', with: valid_shift_type
+          fill_in 'Name', with: valid_shift_type
           click_button 'Edit shift type'
         end
         it { should have_selector('div.alert-success') }
-        specify { expect(shift_type.reload.shift_type).to eq 'Newshift' }
+        specify { expect(shift_type.reload.name).to eq 'Newshift' }
       end
     end
   end

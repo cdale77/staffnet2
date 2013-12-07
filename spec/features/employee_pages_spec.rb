@@ -94,7 +94,7 @@ describe 'EmployeePages' do
           end
           describe 'shifts' do
             it { should have_link('New shift', href: new_employee_shift_path(employee)) }
-            it { should have_content(shift.shift_type.shift_type.titlecase)}
+            it { should have_content(shift.shift_type.name.humanize)}
             it { should have_link('details', href: shift_path(shift)) }
           end
         end

@@ -13,7 +13,7 @@
   <div class="span2">
     <div class="input">
       <%= f.label :shift_type_id, 'Shift type' %>
-      <%= f.select :shift_type_id, options_from_collection_for_select(ShiftType.all, :id, :human_shift_type, shift.shift_type_id) %>
+      <%= f.select :shift_type_id, options_from_collection_for_select(ShiftType.all, :id, :human_name, shift.shift_type_id) %>
     </div>
   </div>
 </div>

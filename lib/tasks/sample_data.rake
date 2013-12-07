@@ -36,9 +36,9 @@ namespace :db do
     end
 
     # shift_types
-    shift_types = ['door', 'street', 'phone', 'office', 'vacation', 'holiday', 'sick' ]
-    shift_types.each do |shift_type|
-      new_type = ShiftType.new(shift_type: shift_type)
+    names = ['door', 'street', 'phone', 'office', 'vacation', 'holiday', 'sick' ]
+    names.each do |name|
+      new_type = ShiftType.new(name: name)
       new_type.save
     end
 

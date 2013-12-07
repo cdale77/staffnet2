@@ -57,7 +57,7 @@ FactoryGirl.define do
   end
 
   factory :shift_type do
-    shift_type      ['street', 'door', 'office', 'phone'].sample
+    name      ['street', 'door', 'office', 'phone'].sample
   end
 
   factory :shift do

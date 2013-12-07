@@ -55,7 +55,7 @@ describe 'ShiftPages' do
     describe 'new shift' do
       before do
         # create a ShiftType
-        shift_type = ShiftType.new(shift_type: 'Door')
+        shift_type = ShiftType.new(name: 'Door')
         shift_type.save
 
         visit new_employee_shift_path(employee)

@@ -2,6 +2,6 @@
   <td><%= shift.employee.full_name %></td>
   <td><%= shift.date %></td>
   <td><%= shift.net_time %></td>
-  <td><%= shift.shift_type.shift_type.titlecase %></td>
+  <td><%= shift.shift_type.name.humanize %></td>
   <td class="buttons"><%= link_to 'details', shift_path(shift), class: 'btn btn-mini', type: 'button' %></td>
 </tr>

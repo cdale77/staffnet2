@@ -1,5 +1,5 @@
 <tr>
-  <td><%= shift_type.shift_type %></td>
+  <td><%= shift_type.name %></td>
   <td><%= shift_type.number_of_shifts %></td>
   <td class="buttons"><%= link_to 'edit', edit_shift_type_path(shift_type), class: 'btn btn-mini', type: 'button' %>
   <%= link_to 'delete', shift_type, method: :delete, data: { confirm: 'You sure?' },
