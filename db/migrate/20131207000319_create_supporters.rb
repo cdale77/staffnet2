@@ -4,7 +4,7 @@ class CreateSupporters < ActiveRecord::Migration
 
       t.integer :external_id
       t.integer :cim_id
-      t.integer :contact_type_id
+      t.integer :supporter_type_id
 
       t.string  :prefix, :default => ''
       t.string  :salutation, :default => ''
