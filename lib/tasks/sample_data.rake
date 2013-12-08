@@ -74,6 +74,12 @@ namespace :db do
                             uri:            Faker::Internet.url )
       client.save
     end
+
+    # supporter types
+    SupporterType.create(name: 'Donor')
+    SupporterType.create(name: 'Media')
+    SupporterType.create(name: 'Staff')
+    
 =begin
 
     # projects

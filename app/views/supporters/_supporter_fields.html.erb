@@ -1,0 +1,215 @@
+<div class="row">
+  <div class="span10">
+    <button type="button" id="contact_prefs_link" class="btn" data-toggle="button">Contact prefs</button>
+    <button type="button" id="emp_fields_link" class="btn" data-toggle="button">Employer</button>
+    <button type="button" id="vol_fields_link" class="btn" data-toggle="button">Volunteer</button>
+    <!--<button type="button" id="sustainer_fields_link" class="btn" data-toggle="button">Sustainer</button>-->
+    <button type="button" id="notes_form_link" class="btn" data-toggle="button">Notes</button>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="span1">
+    <div class="input">
+      <%= f.label :prefix %>
+      <%= f.text_field :prefix %>
+    </div>
+  </div>
+  <div class="span2">
+    <div class="input">
+      <%= f.label :salutation %>
+      <%= f.text_field :salutation %>
+    </div>
+  </div>
+  <div class="span2">
+    <div class="input">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </div>
+  </div>
+  <div class="span3">
+    <div class="input">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div>
+  </div>
+  <div class="span1">
+    <div class="input">
+      <%= f.label :suffix %>
+      <%= f.text_field :suffix %>
+    </div>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="span3">
+    <div class="input">
+      <%= f.label :address_line_1 %>
+      <%= f.text_field :address_line_1 %>
+    </div>
+  </div>
+  <div class="span2">
+    <div class="input">
+      <%= f.label :address_line_2 %>
+      <%= f.text_field :address_line_2 %>
+    </div>
+  </div>
+  <div class="span2">
+    <div class="input">
+      <%= f.label :address_city, 'City' %>
+      <%= f.text_field :address_city %>
+    </div>
+  </div>
+  <div class="span1">
+    <div class="input">
+      <%= f.label :address_state, 'State' %>
+      <%= f.select :address_state, us_states %>
+    </div>
+  </div>
+  <div class="span1">
+    <div class="input">
+      <%= f.label :address_zip, 'Zip' %>
+      <%= f.text_field :address_zip %>
+    </div>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="span3">
+    <div class="input">
+      <%= f.label :email_1, 'Primary email' %>
+      <%= f.text_field :email_1 %>
+    </div>
+  </div>
+  <div class="span1">
+    <div class="input">
+      <%= f.label :email_1_bad, 'Bad?' %>
+      <%= f.check_box :email_1_bad %>
+    </div>
+  </div>
+  <div class="span3">
+    <div class="input">
+      <%= f.label :email_2, 'Secondary email' %>
+      <%= f.text_field :email_2 %>
+    </div>
+  </div>
+  <div class="span1">
+    <div class="input">
+      <%= f.label :email_2_bad, 'Bad?' %>
+      <%= f.check_box :email_2_bad %>
+    </div>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="span2">
+    <div class="input">
+      <%= f.label :phone_mobile, 'Mobile phone' %>
+      <%= f.text_field :phone_mobile %>
+    </div>
+  </div>
+  <div class="span1">
+    <div class="input">
+      <%= f.label :phone_mobile_bad, 'Bad?' %>
+      <%= f.check_box :phone_mobile_bad %>
+    </div>
+  </div>
+  <div class="span2">
+    <div class="input">
+      <%= f.label :phone_home, 'Home phone' %>
+      <%= f.text_field :phone_home %>
+    </div>
+  </div>
+  <div class="span1">
+    <div class="input">
+      <%= f.label :phone_home_bad, 'Bad?' %>
+      <%= f.check_box :phone_home_bad %>
+    </div>
+  </div>
+  <div class="span2">
+    <div class="input">
+      <%= f.label :phone_alt, 'Alt. phone' %>
+      <%= f.text_field :phone_alt %>
+    </div>
+  </div>
+  <div class="span1">
+    <div class="input">
+      <%= f.label :phone_alt_bad, 'Bad?' %>
+      <%= f.check_box :phone_alt_bad %>
+    </div>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="span3">
+    <div class="input">
+      <%= f.label :supporter_type %>
+      <%= f.select :supporter_type_id, options_from_collection_for_select(SupporterType.all, :id, :name, @supporter.supporter_type_id) %>
+    </div>
+  </div>
+  <div class="span3">
+    <div class="input">
+      <%= f.label :source %>
+      <%= f.select :source, options_for_select([['Door', 'door'], ['Street', 'street'], ['Web', 'web']], @supporter.source) %>
+    </div>
+  </div>
+</div>
+<!--<div id="emp_fields" class="collapse">-->
+<div>
+  <hr />
+  <div class="row">
+    <div class="span3">
+      <%= f.label :employer %>
+      <%= f.text_field :employer %>
+    </div>
+    <div class="span3">
+      <%= f.label :occupation %>
+      <%= f.text_field :occupation %>
+    </div>
+  </div>
+</div>
+<!--<div id="contact_pref_fields" class="collapse">-->
+<div>
+  <hr />
+  <div class="row">
+    <div class="span1">
+      <%= f.label :do_not_call %>
+      <%= f.check_box :do_not_call %>
+    </div>
+    <div class="span1">
+      <%= f.label :do_not_mail %>
+      <%= f.check_box :do_not_mail %>
+    </div>
+    <div class="span1">
+      <%= f.label :do_not_email %>
+      <%= f.check_box :do_not_email %>
+    </div>
+  </div>
+</div>
+
+<!--<div id="vol_fields" class="collapse">-->
+<div>
+  <hr />
+  <div class="row">
+    <div class="span1">
+      <%= f.label :keep_informed %>
+      <%= f.check_box :keep_informed %>
+    </div>
+    <div class="span3">
+      <%= f.label :vol_level %>
+      <%= f.select :vol_level, options_for_select([ ['', ''], ['Prospect', 'prospect'],['Regular', 'regular'],
+                                                    ['Core', 'core'] ], @supporter.vol_level) %>
+    </div>
+  </div>
+</div>
+<!-- need div id here -->
+<div>
+  <hr />
+  <div class="row">
+    <div class="span10">
+      <%= f.label :notes %>
+      <%= f.text_area :notes, rows: 3 %>
+    </div>
+  </div>
+</div>
+<hr />
