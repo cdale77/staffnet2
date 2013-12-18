@@ -12,8 +12,8 @@ class CreateSupporters < ActiveRecord::Migration
       t.string  :last_name, :default => ''
       t.string  :suffix, :default => ''
 
-      t.string  :address_line_1, :default => ''
-      t.string  :address_line_2, :default => ''
+      t.string  :address1, :default => ''
+      t.string  :address2, :default => ''
       t.string  :address_city, :default => ''
       t.string  :address_state, :default => ''
       t.string  :address_zip, :default => ''

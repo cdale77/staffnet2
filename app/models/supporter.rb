@@ -92,6 +92,15 @@ class Supporter < ActiveRecord::Base
     result
   end
 
+  def emails
+    email_fields = [:email_1, :email_2]
+    result = {}
+    email_fields.each do |field|
+      email = send(field.to_s)
+      result[field] = email unless email.blank? || send("#{field.to_s}_bad")
+    end
+  end
+
   private
     def downcase_emails
       self.email_1 = email_1.downcase if attribute_present?('email_1')

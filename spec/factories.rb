@@ -92,8 +92,8 @@ FactoryGirl.define do
   factory :supporter do
     first_name            Faker::Name.first_name
     last_name             Faker::Name.last_name
-    address_line_1       Faker::Address.street_address
-    address_line_2        Faker::Address.secondary_address
+    address1       Faker::Address.street_address
+    address2        Faker::Address.secondary_address
     address_city          Faker::Address.city
     address_state         'CA'
     address_zip           '94523'
