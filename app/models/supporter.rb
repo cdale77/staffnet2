@@ -71,15 +71,26 @@ class Supporter < ActiveRecord::Base
             format: { with: STATE_REGEX, message: 'must be 2 characters' },
             allow_blank: true
 
-  validates :address_zip, presence: { message: 'required.' },
+  validates :address_zip,
             length: { is: 5 },
-            numericality: { message: 'must be 5 digits.' }
+            numericality: { message: 'must be 5 digits.' },
+            allow_blank: true
 
   ## CALLBACKS
   before_validation :downcase_emails
   before_validation :format_phone_numbers
   before_validation { self.salutation = first_name if self.salutation.blank? }
 
+
+  def phones
+    phone_fields = [:phone_mobile, :phone_home, :phone_alt]
+    result = {}
+    phone_fields.each do |field|
+      phone_number = send(field.to_s)
+      result[field] = phone_number unless phone_number.blank? || send("#{field.to_s}_bad")
+    end
+    result
+  end
 
   private
     def downcase_emails

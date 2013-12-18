@@ -7,6 +7,8 @@ describe 'SupporterPages' do
   subject { page }
 
   let(:super_admin) { FactoryGirl.create(:super_admin) }
+  let!(:supporter_type) { FactoryGirl.create(:supporter_type) } # so there's a supporter type to pick for #new
+  let(:supporter) { FactoryGirl.create(:supporter) }
 
   ### HELPERS ###
   def fill_in_example_supporter
@@ -30,7 +32,7 @@ describe 'SupporterPages' do
       logout(:super_admin)
     end
 
-    describe 'new supporter' do
+    describe 'new' do
 
       before { visit new_supporter_path }
 
@@ -59,6 +61,20 @@ describe 'SupporterPages' do
           before { click_button 'New supporter' }
 
           it { should have_selector('div.alert') }
+        end
+      end
+    end
+
+    describe 'show' do
+      describe 'page' do
+        before { visit supporter_path(supporter) }
+        describe 'page' do
+          it { should have_content (supporter.first_name) }
+          it { should have_content (supporter.last_name) }
+          describe 'links' do
+            it { should have_link('edit', href: edit_supporter_path(supporter)) }
+            it { should have_link('delete', href: supporter_path(supporter)) }
+          end
         end
       end
     end

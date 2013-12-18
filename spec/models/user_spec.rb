@@ -35,7 +35,6 @@ describe User do
                       password_confirmation: 'foobar7878',
                       role: 'manager' }
 
-  #let(:user) { FactoryGirl.create(:user) }
   before do
     @user = User.new(email: 'test@example.com',
                      password: 'foobar7878',
@@ -74,31 +73,12 @@ describe User do
         @user.should be_valid
       end
     end
-    #it 'should reject users with duplicate emails' do
-    #  @dupe_email_user = @user.dup
-    #  @dupe_email_user.email = @user.email.upcase
-    #  @dupe_email_user.should_not be_valid
-    #end
     it 'should downcase emails before saving' do
       @user.email = 'EXAMPLE@example.com'
       @user.save
       @user.email.should eq 'example@example.com'
     end
   end
-
-  #describe 'organization validations' do
-  #  it 'should reject too-short organization names' do
-  #    short_org = 'a'
-  #    @user.organization = short_org
-  #    @user.should_not be_valid
-  #  end
-  #  it 'should reject too-long organization names' do
-  #    long_org = 'a' * 65
-  #    @user.organization = long_org
-  #    @user.should_not be_valid
-  #  end
-  #end
-
   describe 'passwords' do
     it 'should reject users with no password' do
       @user.password = ''

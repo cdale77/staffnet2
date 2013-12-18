@@ -79,7 +79,7 @@ namespace :db do
     SupporterType.create(name: 'Donor')
     SupporterType.create(name: 'Media')
     SupporterType.create(name: 'Staff')
-    
+
 =begin
 
     # projects

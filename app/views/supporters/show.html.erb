@@ -1,0 +1,120 @@
+<% provide(:title, @supporter.full_name) %>
+<h1>Supporter profile</h1>
+<div class="row">
+  <div class="row">
+    <div class="span12">
+      <div class="span12">
+        <h2 class="page-title"><%= @supporter.full_name %></h2>
+      </div>
+    </div>
+  </div>
+  <div class="span4">
+    <div>
+      <table>
+        <tr height="5px"></tr>
+        <tr>
+          <th>Email:</th>
+          <td><%= @supporter.email %></td>
+        </tr>
+        <% @supporter.phones.each do |key, value| %>
+
+
+        <% end %>
+        <tr>
+          <th>Address:</th>
+          <td><%= @supporter.address1 %></td>
+        </tr>
+        <% if @supporter.address2.present? %>
+          <tr>
+            <th></th>
+            <td><%= @supporter.address2 %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <th></th>
+          <td>
+            <%= @supporter.city + ', ' + @supporter.state + ' ' + @supporter.zip  %>
+          </td>
+        </tr>
+        <tr>
+          <th>DOB</th>
+          <td><%= @supporter.dob %></td>
+        </tr>
+        <tr>
+          <th>Gender</th>
+          <td><%= @supporter.gender %></td>
+        </tr>
+        <tr height="5px"></tr>
+        <tr>
+          <th>Title:</th>
+          <td><%= @supporter.title.humanize %></td>
+        </tr>
+        <% if admin_user? %>
+          <% if @supporter.pay_hourly > 0 %>
+            <tr>
+              <th>Hourly pay:</th>
+              <td><%= number_to_currency(@supporter.pay_hourly) %></td>
+            </tr>
+          <% elsif @supporter.pay_daily > 0 %>
+            <tr>
+              <th>Daily pay:</th>
+              <td><%= number_to_currency(@supporter.pay_daily) %> </td>
+            </tr>
+          <% end %>
+        <% end %>
+        <tr>
+          <th>Hire date:</th>
+          <td><%= @supporter.hire_date %></td>
+        </tr>
+        <% if @supporter.term_date.present? %>
+          <tr>
+            <th>Term. date:</th>
+            <td><%= @supporter.term_date %></td>
+          </tr>
+        <% end %>
+        <tr height="5px"></tr>
+        <tr>
+          <th>Fed tax status:</th>
+          <td><%= @supporter.fed_filing_status %> </td>
+        </tr>
+        <tr>
+          <th>CA tax status:</th>
+          <td><%= @supporter.ca_filing_status %></td>
+        </tr>
+        <tr>
+          <th>Fed allowances:</th>
+          <td><%= @supporter.fed_allowances %></td>
+        </tr>
+        <tr>
+          <th>CA allowances:</th>
+          <td><%= @supporter.ca_allowances %></td>
+        </tr>
+        <tr>
+          <th>Employee ID:</th>
+          <td><%= @supporter.id %></td>
+        </tr>
+        <tr>
+          <th>Created at:</th>
+          <td><%= @supporter.created_at %></td>
+        </tr>
+        <tr>
+          <th>Updated at:</th>
+          <td><%= @supporter.updated_at %></td>
+        </tr>
+      </table>
+      <div class="row">
+        <div class="span2 padtop">
+          <div class="buttons">
+            <% if admin_user? %>
+              <%= link_to 'edit', edit_supporter_path(@supporter), class: 'btn btn-mini', type: 'button' %>
+              <%= link_to 'delete', @supporter, method: :delete,
+                          data: { confirm: 'You sure?' },
+                          class: 'btn btn-mini btn-danger', type: 'button' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render partial: 'supporter_shifts', locals: { shifts: @shifts, supporter: @supporter} %>
+</div>

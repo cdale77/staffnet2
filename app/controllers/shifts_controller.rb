@@ -11,7 +11,7 @@ class ShiftsController < ApplicationController
       authorize @shift
     else
       flash[:error] = 'Could not find employee.'
-      render root_path
+      render root_path  # TODO: Fix. Render probably not correct
     end
 
   end
