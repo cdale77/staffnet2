@@ -21,16 +21,15 @@
             <th>Name</th>
             <td><%= @supporter.full_name %></td>
           </tr>
-          <tr height="5px"></tr>
           <% @supporter.emails.each do |key, value| %>
             <tr>
-              <th><%= key.to_s %></th>
+              <th><%= key.to_s.humanize %></th>
               <td><%= value %></td>
             </tr>
           <% end %>
           <% @supporter.phones.each do |key, value| %>
             <tr>
-              <th><%= key.to_s %></th>
+              <th><%= key.to_s.humanize %></th>
               <td><%= number_to_phone(value.to_i) %></td>
             </tr>
           <% end %>
