@@ -82,6 +82,8 @@ class Supporter < ActiveRecord::Base
   before_validation { self.salutation = first_name if self.salutation.blank? }
 
 
+  ## DISPLAY METHODS
+  ## These methods return collections of attributes for easy views
   def phones
     phone_fields = [:phone_mobile, :phone_home, :phone_alt]
     result = {}
@@ -99,9 +101,22 @@ class Supporter < ActiveRecord::Base
       email = send(field.to_s)
       result[field] = email unless email.blank? || send("#{field.to_s}_bad")
     end
+    result
   end
 
+  def contact_prefs
+    pref_fields = [:do_not_mail, :do_not_call, :do_not_email]
+    result = {}
+    pref_fields.each do |field|
+      result[:field] = field.to_s unless send("#{field.to_s}")
+    end
+  end
+
+
+
   private
+
+    ## DATA CLEANING METHODS
     def downcase_emails
       self.email_1 = email_1.downcase if attribute_present?('email_1')
       self.email_2 = email_2.downcase if attribute_present?('email_2')
