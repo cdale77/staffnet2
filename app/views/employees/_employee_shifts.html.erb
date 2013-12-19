@@ -1,28 +1,34 @@
-<div class="span8" id="employee-shifts">
-  <div class="row">
-    <div class="span6">
-      <h3 class="table-title-right">Shifts</h3>
-    </div>
-    <div class="span2 padtop">
-      <div class="buttons">
-        <%= link_to 'New shift', new_employee_shift_path(employee), class: 'btn btn-mini', type: 'button' %>
+<div class="row">
+  <div class="span12" id="employee-shifts">
+    <div class="row">
+      <div class="span6">
+        <h3 class="table-title-right">Shifts</h3>
+      </div>
+      <div class="span6 padtop">
+        <div class="buttons">
+          <%= link_to 'New shift', new_employee_shift_path(employee), class: 'btn btn-mini', type: 'button' %>
+        </div>
       </div>
     </div>
-  </div>
-  <table class="table table-condensed table-striped">
-    <tr>
-      <th>Date</th>
-      <th>Net hours</th>
-      <th>Type</th>
-      <th></th>
-    </tr>
-    <% shifts.each do |shift| %>
+    <table class="table table-condensed table-striped">
       <tr>
-        <td><%= shift.date %></td>
-        <td><%= shift.net_time %></td>
-        <td><%= shift.shift_type.name.humanize %></td>
-        <td class="buttons"><%= link_to 'details', shift_path(shift), class: 'btn btn-mini', type: 'button' %></td>
+        <th>Date</th>
+        <th>Time in</th>
+        <th>Time out</th>
+        <th>Net hours</th>
+        <th>Type</th>
+        <th></th>
       </tr>
-    <% end %>
-  </table>
+      <% shifts.each do |shift| %>
+        <tr>
+          <td><%= shift.date %></td>
+          <td><%= shift.time_in %></td>
+          <td><%= shift.time_out %></td>
+          <td><%= shift.net_time %></td>
+          <td><%= shift.shift_type.name.humanize %></td>
+          <td class="buttons"><%= link_to 'details', shift_path(shift), class: 'btn btn-mini', type: 'button' %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>

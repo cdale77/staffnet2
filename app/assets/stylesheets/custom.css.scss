@@ -252,14 +252,36 @@ textarea#msg {
 
 /****************** TABLES ****************/
 
+
+
 table {
-  text-align: left;
+  margin-top: 10px;
 }
 
-th,td {
-  padding: 3px 6px 3px 6px
+.table  {
+  .current {
+    padding-right: 12px;
+    background-repeat: no-repeat;
+    background-position: right center;
+  }
+
+  .asc { background-image: url(up_arrow.gif); }
+
+  .desc { background-image: url(down_arrow.gif); }
+
 }
 
+.table-title-right {
+  margin: 10px 0px 0px 0px;
+}
+
+td.buttons {
+  text-align: right;
+}
+
+tr.bold {
+  font-weight: bold
+}
 
 
 /****************** FORMS ****************/
