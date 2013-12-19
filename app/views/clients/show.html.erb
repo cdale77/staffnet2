@@ -1,60 +1,70 @@
 <% provide(:title, @client.name) %>
-<h1>Client profile</h1>
 <div class="row">
-  <div class="span4">
-    <div class="row">
-      <div class="span2">
-        <h2><%= @client.name %></h2>
-      </div>
+  <div class="span12">
+    <h1>Client profile</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="span12 padtop">
+    <div class="buttons">
+      <% if admin_user? %>
+        <%= link_to 'edit', edit_client_path(@client), class: 'btn btn-mini', type: 'button' %>
+        <%= link_to 'delete', @client, method: :delete,
+                    data: { confirm: 'You sure?' },
+                    class: 'btn btn-mini btn-danger', type: 'button' %>
+      <% end %>
     </div>
-    <div>
-      <table>
-        <tr height="5px"></tr>
-        <tr>
-          <th>Address</th>
-          <td><%= @client.address1 %></td>
-        </tr>
-        <% if @client.address2.present? %>
+  </div>
+<div class="row">
+  <div class="span12">
+    <div class="row record-display">
+      <div class="row span4 record-column">
+        <table>
+          <tr>
+            <th>Name</th>
+            <td><%= @client.name %></td>
+          </tr>
+          <tr>
+            <th>Address</th>
+            <td><%= @client.address1 %></td>
+          </tr>
+          <% if @client.address2.present? %>
             <tr>
               <th></th>
               <td><%= @client.address2 %></td>
             </tr>
-        <% end %>
-        <tr>
-          <th></th>
-          <td>
-            <%= @client.city + ', ' + @client.state + ' ' + @client.zip  %>
-          </td>
-        </tr>
-        <tr>
-          <th>Contact</th>
-          <td><%= @client.contact_name %></td>
-        </tr>
-        <tr>
-          <th>Phone</th>
-          <td><%= @client.contact_phone %></td>
-        </tr>
-        <tr>
-          <th>Email</th>
-          <td><%= @client.contact_email %></td>
-        </tr>
-        <tr>
-          <th>Web</th>
-          <td><%= @client.uri %></td>
-        </tr>
-      </table>
-      <div class="row">
-        <div class="span2 padtop">
-          <div class="buttons">
-            <% if admin_user? %>
-                <%= link_to 'edit', edit_client_path(@client), class: 'btn btn-mini', type: 'button' %>
-                <%= link_to 'delete', @client, method: :delete,
-                            data: { confirm: 'You sure?' },
-                            class: 'btn btn-mini btn-danger', type: 'button' %>
-            <% end %>
-          </div>
-        </div>
+          <% end %>
+          <tr>
+            <th></th>
+            <td>
+              <%= @client.city + ', ' + @client.state + ' ' + @client.zip  %>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="row span4 record-column">
+        <table>
+          <tr>
+            <th>Contact</th>
+            <td><%= @client.contact_name %></td>
+          </tr>
+          <tr>
+            <th>Phone</th>
+            <td><%= @client.contact_phone %></td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td><%= @client.contact_email %></td>
+          </tr>
+          <tr>
+            <th>Web</th>
+            <td><%= @client.uri %></td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
 </div>
+
+
+

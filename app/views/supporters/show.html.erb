@@ -19,82 +19,82 @@
 <div class="row" >
   <div class="span12">
     <div class="row record-display">
-    <div class="span4 record-column">
-      <table>
-        <tr>
-          <th>Name:</th>
-          <td><%= @supporter.full_name %></td>
-        </tr>
-        <tr height="5px"></tr>
-        <% @supporter.emails.each do |key, value| %>
+      <div class="span4 record-column">
+        <table>
           <tr>
-            <th><%= key.to_s %></th>
-            <td><%= value %></td>
+            <th>Name</th>
+            <td><%= @supporter.full_name %></td>
           </tr>
-        <% end %>
-        <% @supporter.phones.each do |key, value| %>
+          <tr height="5px"></tr>
+          <% @supporter.emails.each do |key, value| %>
+            <tr>
+              <th><%= key.to_s %></th>
+              <td><%= value %></td>
+            </tr>
+          <% end %>
+          <% @supporter.phones.each do |key, value| %>
+            <tr>
+              <th><%= key.to_s %></th>
+              <td><%= number_to_phone(value.to_i) %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="span4 record-column record-column2">
+        <table>
           <tr>
-            <th><%= key.to_s %></th>
-            <td><%= number_to_phone(value.to_i) %></td>
+            <th>Address</th>
+            <td><%= @supporter.address1 %></td>
           </tr>
-        <% end %>
-      </table>
-    </div>
-    <div class="span4 record-column record-column2">
-      <table>
-        <tr>
-          <th>Address:</th>
-          <td><%= @supporter.address1 %></td>
-        </tr>
-        <% if @supporter.address2.present? %>
+          <% if @supporter.address2.present? %>
+            <tr>
+              <th></th>
+              <td><%= @supporter.address2 %></td>
+            </tr>
+          <% end %>
           <tr>
             <th></th>
-            <td><%= @supporter.address2 %></td>
+            <td>
+              <%= @supporter.address_city + ', ' + @supporter.address_state + ' ' + @supporter.address_zip  %>
+            </td>
           </tr>
-        <% end %>
-        <tr>
-          <th></th>
-          <td>
-            <%= @supporter.address_city + ', ' + @supporter.address_state + ' ' + @supporter.address_zip  %>
-          </td>
-        </tr>
-        <% if @supporter.employer.present? || @supporter.occupation.present? %>
-          <tr>
-            <th>Occupation:</th>
-            <td><%= @supporter.occupation %></td>
-          </tr>
-          <tr>
-            <th>Employer:</th>
-            <td><%= @supporter.employer %></td>
-          </tr>
-        <% end %>
-      </table>
-    </div>
-    <div class="span4 record-column record-column3">
-      <table>
-        <tr>
-          <th>Vol. Level:</th>
-          <td><%= @supporter.vol_level %></td>
-        </tr>
-        <tr>
-          <th>Source:</th>
-          <td><%= @supporter.source %></td>
-        </tr>
-        <tr>
-          <th>Notes:</th>
-          <td><%= @supporter.notes %></td>
-        </tr>
-        <tr>
-          <th>Created at:</th>
-          <td><%= @supporter.created_at %></td>
-        </tr>
-        <tr>
-          <th>Updated at:</th>
-          <td><%= @supporter.updated_at %></td>
-        </tr>
-      </table>
-    </div>
+          <% if @supporter.employer.present? || @supporter.occupation.present? %>
+            <tr>
+              <th>Occupation</th>
+              <td><%= @supporter.occupation %></td>
+            </tr>
+            <tr>
+              <th>Employer</th>
+              <td><%= @supporter.employer %></td>
+            </tr>
+          <% end %>
+        </table>
       </div>
+      <div class="span4 record-column record-column3">
+        <table>
+          <tr>
+            <th>Vol. Level</th>
+            <td><%= @supporter.vol_level %></td>
+          </tr>
+          <tr>
+            <th>Source</th>
+            <td><%= @supporter.source %></td>
+          </tr>
+          <tr>
+            <th>Notes</th>
+            <td><%= @supporter.notes %></td>
+          </tr>
+          <tr>
+            <th>Created at</th>
+            <td><%= @supporter.created_at %></td>
+          </tr>
+          <tr>
+            <th>Updated at</th>
+            <td><%= @supporter.updated_at %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 <div class="row">
