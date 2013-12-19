@@ -1,9 +1,5 @@
 <% provide(:title, @supporter.full_name) %>
-<div class="row">
-  <div class="span12">
-    <h1>Supporter profile</h1>
-  </div>
-</div>
+<%= render 'shared/profile_header', title: 'Supporter' %>
 <div class="row">
   <div class="span12 padtop">
     <div class="buttons">

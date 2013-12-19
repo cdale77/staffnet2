@@ -1,49 +1,53 @@
 <% provide(:title, @project.name) %>
-<h1>Project profile</h1>
 <div class="row">
-  <div class="span4">
-    <div class="row">
-      <div class="span2">
-        <h2><%= @project.name %></h2>
-      </div>
+  <div class="span12">
+    <h1>Project profile</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="span12 padtop">
+    <div class="buttons">
+      <% if admin_user? %>
+        <%= link_to 'edit', edit_project_path(@project), class: 'btn btn-mini', type: 'button' %>
+        <%= link_to 'delete', @project, method: :delete,
+                    data: { confirm: 'You sure?' },
+                    class: 'btn btn-mini btn-danger', type: 'button' %>
+      <% end %>
     </div>
-    <div>
-      <table>
-        <tr height="5px"></tr>
-        <tr>
-          <th>Client</th>
-          <td><%= @client.name %></td>
-        </tr>
-        <tr>
-          <th>Start date</th>
-          <td>
-            <%= @project.start_date %>
-          </td>
-        </tr>
-        <tr>
-          <th>End date</th>
-          <td><%= @project.end_date %></td>
-        </tr>
-        <tr>
-          <th>Description</th>
-          <td><%= @project.desc %></td>
-        </tr>
-        <tr>
-          <th>Notes</th>
-          <td><%= @project.notes %></td>
-        </tr>
-      </table>
-      <div class="row">
-        <div class="span2 padtop">
-          <div class="buttons">
-            <% if admin_user? %>
-              <%= link_to 'edit', edit_project_path(@project), class: 'btn btn-mini', type: 'button' %>
-              <%= link_to 'delete', @project, method: :delete,
-                          data: { confirm: 'You sure?' },
-                          class: 'btn btn-mini btn-danger', type: 'button' %>
-            <% end %>
-          </div>
-        </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span12">
+    <div class="row record-display">
+      <div class="span4 record-column">
+        <table>
+          <tr>
+            <th>Name</th>
+            <td><%= @project.name %></td>
+          </tr>
+          <tr>
+            <th>Client</th>
+            <td><%= @client.name %></td>
+          </tr>
+          <tr>
+            <th>Start date</th>
+            <td>
+              <%= @project.start_date %>
+            </td>
+          </tr>
+          <tr>
+            <th>End date</th>
+            <td><%= @project.end_date %></td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td><%= @project.desc %></td>
+          </tr>
+          <tr>
+            <th>Notes</th>
+            <td><%= @project.notes %></td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
