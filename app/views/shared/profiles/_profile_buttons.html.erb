@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="span12 padtop">
+    <div class="buttons">
+      <% if admin_user? %>
+        <%= link_to 'edit', polymorphic_path(record, action: :edit), class: 'btn btn-mini', type: 'button' %>
+        <%= link_to 'delete', record, method: :delete,
+                    data: { confirm: 'You sure?' },
+                    class: 'btn btn-mini btn-danger', type: 'button' %>
+      <% end %>
+    </div>
+  </div>
+</div>

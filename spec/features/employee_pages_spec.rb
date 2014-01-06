@@ -20,7 +20,7 @@ describe 'EmployeePages' do
     fill_in 'Address line 1',           with: '2017 Mission St'
     fill_in 'Address line 2',           with: '2nd Fl'
     fill_in 'City',                     with: 'Orinda'
-    select 'California',                from: 'employee_state'
+    select 'California',                from: 'employee_address_state'
     fill_in 'Zip',                      with: '94709'
     select 'Organizer',                 from: 'employee_title'
     fill_in 'Pay hrly',                 with: 12

@@ -1,17 +1,6 @@
 <% provide(:title, @employee.full_name) %>
-<%= render 'shared/profile_header', title: 'Employee' %>
-<div class="row">
-  <div class="span12 padtop">
-    <div class="buttons">
-      <% if admin_user? %>
-        <%= link_to 'edit', edit_employee_path(@employee), class: 'btn btn-mini', type: 'button' %>
-        <%= link_to 'delete', @employee, method: :delete,
-                    data: { confirm: 'You sure?' },
-                    class: 'btn btn-mini btn-danger', type: 'button' %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<%= render 'shared/profiles/profile_header', title: 'Employee' %>
+<%= render 'shared/profiles/profile_buttons', record: @employee %>
 <div class="row">
   <div class="span12">
     <div class="row record-display">
@@ -29,22 +18,7 @@
             <th>Phone</th>
             <td><%= @employee.phone %></td>
           </tr>
-          <tr>
-            <th>Address</th>
-            <td><%= @employee.address1 %></td>
-          </tr>
-          <% if @employee.address2.present? %>
-            <tr>
-              <th></th>
-              <td><%= @employee.address2 %></td>
-            </tr>
-          <% end %>
-          <tr>
-            <th></th>
-            <td>
-              <%= @employee.city + ', ' + @employee.state + ' ' + @employee.zip  %>
-            </td>
-          </tr>
+          <%= render 'shared/profiles/address', record: @employee %>
         </table>
       </div>
       <div class="span4 record-column">
@@ -105,17 +79,7 @@
             </tr>
           <% end %>
           <tr>
-            <th>Employee ID:</th>
-            <td><%= @employee.id %></td>
-          </tr>
-          <tr>
-            <th>Created at:</th>
-            <td><%= @employee.created_at %></td>
-          </tr>
-          <tr>
-            <th>Updated at:</th>
-            <td><%= @employee.updated_at %></td>
-          </tr>
+          <%= render 'shared/profiles/magic_columns', record: @employee %>
         </table>
       </div>
 
