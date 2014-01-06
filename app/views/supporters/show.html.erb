@@ -1,17 +1,6 @@
 <% provide(:title, @supporter.full_name) %>
-<%= render 'shared/profile_header', title: 'Supporter' %>
-<div class="row">
-  <div class="span12 padtop">
-    <div class="buttons">
-      <% if admin_user? %>
-        <%= link_to 'edit', edit_supporter_path(@supporter), class: 'btn btn-mini', type: 'button' %>
-        <%= link_to 'delete', @supporter, method: :delete,
-                    data: { confirm: 'You sure?' },
-                    class: 'btn btn-mini btn-danger', type: 'button' %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<%= render 'shared/profiles/profile_header', title: 'Supporter' %>
+<%= render 'shared/profiles/profile_buttons', record: @supporter %>
 <div class="row" >
   <div class="span12">
     <div class="row record-display">
@@ -38,21 +27,7 @@
       <div class="span4 record-column record-column2">
         <table>
           <tr>
-            <th>Address</th>
-            <td><%= @supporter.address1 %></td>
-          </tr>
-          <% if @supporter.address2.present? %>
-            <tr>
-              <th></th>
-              <td><%= @supporter.address2 %></td>
-            </tr>
-          <% end %>
-          <tr>
-            <th></th>
-            <td>
-              <%= @supporter.address_city + ', ' + @supporter.address_state + ' ' + @supporter.address_zip  %>
-            </td>
-          </tr>
+          <%= render 'shared/profiles/address', record: @supporter %>
           <% if @supporter.employer.present? || @supporter.occupation.present? %>
             <tr>
               <th>Occupation</th>
@@ -79,14 +54,7 @@
             <th>Notes</th>
             <td><%= @supporter.notes %></td>
           </tr>
-          <tr>
-            <th>Created at</th>
-            <td><%= @supporter.created_at %></td>
-          </tr>
-          <tr>
-            <th>Updated at</th>
-            <td><%= @supporter.updated_at %></td>
-          </tr>
+          <%= render 'shared/profiles/magic_columns', record: @supporter %>
         </table>
       </div>
     </div>
