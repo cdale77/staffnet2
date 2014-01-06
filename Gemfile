@@ -19,14 +19,14 @@ gem 'bootstrap-sass', '2.3.2.2'
 
 group :development do
   gem 'annotate', '2.6.1'
-  gem 'faker', '1.1.2'
+  gem 'faker', '1.2.0'
   #gem 'flog'
   #gem 'flay'
   #gem 'reek'
 end
 
 group :development, :test do
-  gem 'rspec-rails', '2.14.0'
+  gem 'rspec-rails', '2.14.1'
   #gem 'shoulda-matchers', github: "thoughtbot/shoulda-matchers" , branch: 'dp-rails-four'
   gem 'capybara', '2.1.0'
   gem 'selenium-webdriver', '2.39.0'
