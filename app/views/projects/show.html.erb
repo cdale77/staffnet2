@@ -1,21 +1,6 @@
 <% provide(:title, @project.name) %>
-<div class="row">
-  <div class="span12">
-    <h1>Project profile</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="span12 padtop">
-    <div class="buttons">
-      <% if admin_user? %>
-        <%= link_to 'edit', edit_project_path(@project), class: 'btn btn-mini', type: 'button' %>
-        <%= link_to 'delete', @project, method: :delete,
-                    data: { confirm: 'You sure?' },
-                    class: 'btn btn-mini btn-danger', type: 'button' %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<%= render 'shared/profiles/profile_header', title: 'Project' %>
+<%= render 'shared/profiles/profile_buttons', record: @project %>
 <div class="row">
   <div class="span12">
     <div class="row record-display">
@@ -47,6 +32,7 @@
             <th>Notes</th>
             <td><%= @project.notes %></td>
           </tr>
+          <%= render 'shared/profiles/magic_columns', record: @project %>
         </table>
       </div>
     </div>

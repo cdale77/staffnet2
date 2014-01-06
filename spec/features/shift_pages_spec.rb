@@ -96,7 +96,7 @@ describe 'ShiftPages' do
       before { visit shift_path(shift) }
 
       describe 'page' do
-        it { should have_selector('h1', text: 'Shift details') }
+        it { should have_selector('h1', text: 'Shift profile') }
         it { should have_content(shift.date) }
         it { should have_content(shift.employee.full_name) }
         describe 'links' do

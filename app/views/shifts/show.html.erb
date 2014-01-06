@@ -1,17 +1,6 @@
 <% provide(:title, 'Shift') %>
-<%= render 'shared/profile_header', title: 'Shift' %>
-<div class="row">
-  <div class="span12 padtop">
-    <div class="buttons">
-      <% if true %>
-        <%= link_to 'edit', edit_shift_path(@shift), class: 'btn btn-mini', type: 'button' %>
-        <%= link_to 'delete', @shift, method: :delete,
-                    data: { confirm: 'You sure?' },
-                    class: 'btn btn-mini btn-danger', type: 'button' %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<%= render 'shared/profiles/profile_header', title: 'Shift' %>
+<%= render 'shared/profiles/profile_buttons', record: @shift %>
 <div class="row">
   <div class="span12">
     <div class="row record-display">
@@ -61,6 +50,7 @@
             <th>Notes:</th>
             <td><%= @shift.notes %></td>
           </tr>
+          <%= render 'shared/profiles/magic_columns', record: @shift %>
         </table>
       </div>
     </div>
