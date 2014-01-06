@@ -1,20 +1,6 @@
 <% provide(:title, @client.name) %>
-<div class="row">
-  <div class="span12">
-    <h1>Client profile</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="span12 padtop">
-    <div class="buttons">
-      <% if admin_user? %>
-        <%= link_to 'edit', edit_client_path(@client), class: 'btn btn-mini', type: 'button' %>
-        <%= link_to 'delete', @client, method: :delete,
-                    data: { confirm: 'You sure?' },
-                    class: 'btn btn-mini btn-danger', type: 'button' %>
-      <% end %>
-    </div>
-  </div>
+<%= render 'shared/profiles/profile_header', title: 'Client' %>
+<%= render 'shared/profiles/profile_buttons', record: @client %>
 <div class="row">
   <div class="span12">
     <div class="row record-display">
@@ -24,22 +10,7 @@
             <th>Name</th>
             <td><%= @client.name %></td>
           </tr>
-          <tr>
-            <th>Address</th>
-            <td><%= @client.address1 %></td>
-          </tr>
-          <% if @client.address2.present? %>
-            <tr>
-              <th></th>
-              <td><%= @client.address2 %></td>
-            </tr>
-          <% end %>
-          <tr>
-            <th></th>
-            <td>
-              <%= @client.city + ', ' + @client.state + ' ' + @client.zip  %>
-            </td>
-          </tr>
+          <%= render 'shared/profiles/address', record: @client %>
         </table>
       </div>
       <div class="row span4 record-column">
@@ -60,6 +31,7 @@
             <th>Web</th>
             <td><%= @client.uri %></td>
           </tr>
+          <%= render 'shared/profiles/magic_columns', record: @client %>
         </table>
       </div>
     </div>
