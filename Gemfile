@@ -14,8 +14,8 @@ gem 'raphael-rails', '2.1.2'
 gem 'jquery-rails', '3.0.4'
 
 
-gem 'sass-rails', '~> 4.0.0'
-gem 'bootstrap-sass', '2.3.2.0'
+gem 'sass-rails', '4.0.1'
+gem 'bootstrap-sass', '2.3.2.2'
 
 group :development do
   gem 'annotate', '2.6.1'
