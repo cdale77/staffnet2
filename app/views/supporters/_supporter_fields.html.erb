@@ -10,38 +10,38 @@
 <hr />
 <div class="row">
   <div class="span1">
-    <%= f.input :prefix %>
+    <%= f.input :prefix, placeholder: 'Sir' %>
   </div>
   <div class="span2">
-    <%= f.input :salutation %>
+    <%= f.input :salutation, placeholder: 'Bob' %>
   </div>
   <div class="span2">
-    <%= f.input :first_name %>
+    <%= f.input :first_name, placeholder: 'William' %>
   </div>
   <div class="span3">
-    <%= f.input :last_name %>
+    <%= f.input :last_name, placeholder: 'Jones' %>
   </div>
   <div class="span1">
-    <%= f.input :suffix %>
+    <%= f.input :suffix, placeholder: 'III' %>
   </div>
 </div>
 <hr />
 <div class="row">
   <div class="span3">
-    <%= f.input :address1 %>
+    <%= f.input :address1, placeholder: '123 Main St.' %>
   </div>
   <div class="span2">
-    <%= f.input :address2 %>
+    <%= f.input :address2, placeholder: 'Apt. 320' %>
   </div>
   <div class="span2">
-    <%= f.input :address_city, label: 'City' %>
+    <%= f.input :address_city, label: 'City', placeholder: 'San Francisco' %>
   </div>
   <div class="span1 select">
     <%= f.label :address_state, 'State' %>
     <%= f.select :address_state, us_states %>
   </div>
   <div class="span1">
-    <%= f.input :address_zip, label: 'Zip' %>
+    <%= f.input :address_zip, label: 'Zip', placeholder: '94110' %>
   </div>
 </div>
 <hr />
