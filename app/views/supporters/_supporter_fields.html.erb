@@ -11,32 +11,27 @@
 <div class="row">
   <div class="span1">
     <div class="input">
-      <%= f.label :prefix %>
-      <%= f.text_field :prefix %>
+      <%= f.input :prefix %>
     </div>
   </div>
   <div class="span2">
     <div class="input">
-      <%= f.label :salutation %>
-      <%= f.text_field :salutation %>
+    <%= f.input :salutation %>
     </div>
   </div>
   <div class="span2">
     <div class="input">
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
+      <%= f.input :first_name %>
     </div>
   </div>
   <div class="span3">
     <div class="input">
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
+      <%= f.input :last_name %>
     </div>
   </div>
   <div class="span1">
     <div class="input">
-      <%= f.label :suffix %>
-      <%= f.text_field :suffix %>
+      <%= f.input :suffix %>
     </div>
   </div>
 </div>
@@ -44,32 +39,27 @@
 <div class="row">
   <div class="span3">
     <div class="input">
-      <%= f.label :address_1 %>
-      <%= f.text_field :address1 %>
+      <%= f.input :address1 %>
     </div>
   </div>
   <div class="span2">
     <div class="input">
-      <%= f.label :address_2 %>
-      <%= f.text_field :address2 %>
+      <%= f.input :address2 %>
     </div>
   </div>
   <div class="span2">
     <div class="input">
-      <%= f.label :address_city, 'City' %>
-      <%= f.text_field :address_city %>
+      <%= f.input :address_city, label: 'City' %>
     </div>
   </div>
   <div class="span1">
     <div class="input">
-      <%= f.label :address_state, 'State' %>
       <%= f.select :address_state, us_states %>
     </div>
   </div>
   <div class="span1">
     <div class="input">
-      <%= f.label :address_zip, 'Zip' %>
-      <%= f.text_field :address_zip %>
+      <%= f.input :address_zip, label: 'Zip' %>
     </div>
   </div>
 </div>
@@ -77,26 +67,22 @@
 <div class="row">
   <div class="span3">
     <div class="input">
-      <%= f.label :email_1, 'Primary email' %>
-      <%= f.text_field :email_1 %>
+      <%= f.input :email_1, label: 'Primary email' %>
     </div>
   </div>
   <div class="span1">
     <div class="input">
-      <%= f.label :email_1_bad, 'Bad?' %>
-      <%= f.check_box :email_1_bad %>
+      <%= f.input :email_1_bad, label: 'Bad?' %>
     </div>
   </div>
   <div class="span3">
     <div class="input">
-      <%= f.label :email_2, 'Secondary email' %>
-      <%= f.text_field :email_2 %>
+      <%= f.input :email_2, label: 'Secondary email' %>
     </div>
   </div>
   <div class="span1">
     <div class="input">
-      <%= f.label :email_2_bad, 'Bad?' %>
-      <%= f.check_box :email_2_bad %>
+      <%= f.input :email_2_bad, label: 'Bad?' %>
     </div>
   </div>
 </div>
@@ -104,38 +90,32 @@
 <div class="row">
   <div class="span2">
     <div class="input">
-      <%= f.label :phone_mobile, 'Mobile phone' %>
-      <%= f.text_field :phone_mobile %>
+      <%= f.input :phone_mobile, label: 'Mobile phone' %>
     </div>
   </div>
   <div class="span1">
     <div class="input">
-      <%= f.label :phone_mobile_bad, 'Bad?' %>
-      <%= f.check_box :phone_mobile_bad %>
+      <%= f.input :phone_mobile_bad, label: 'Bad?' %>
     </div>
   </div>
   <div class="span2">
     <div class="input">
-      <%= f.label :phone_home, 'Home phone' %>
-      <%= f.text_field :phone_home %>
+      <%= f.input :phone_home, label: 'Home phone' %>
     </div>
   </div>
   <div class="span1">
     <div class="input">
-      <%= f.label :phone_home_bad, 'Bad?' %>
-      <%= f.check_box :phone_home_bad %>
+      <%= f.input :phone_home_bad, label: 'Bad?' %>
     </div>
   </div>
   <div class="span2">
     <div class="input">
-      <%= f.label :phone_alt, 'Alt. phone' %>
-      <%= f.text_field :phone_alt %>
+      <%= f.input :phone_alt, label: 'Alt phone' %>
     </div>
   </div>
   <div class="span1">
     <div class="input">
-      <%= f.label :phone_alt_bad, 'Bad?' %>
-      <%= f.check_box :phone_alt_bad %>
+      <%= f.input :phone_alt_bad, label: 'Bad?' %>
     </div>
   </div>
 </div>
@@ -159,12 +139,10 @@
   <hr />
   <div class="row">
     <div class="span3">
-      <%= f.label :employer %>
-      <%= f.text_field :employer %>
+      <%= f.input :employer %>
     </div>
     <div class="span3">
-      <%= f.label :occupation %>
-      <%= f.text_field :occupation %>
+      <%= f.input :occupation %>
     </div>
   </div>
 </div>
@@ -173,16 +151,13 @@
   <hr />
   <div class="row">
     <div class="span1">
-      <%= f.label :do_not_call %>
-      <%= f.check_box :do_not_call %>
+      <%= f.input :do_not_call %>
     </div>
     <div class="span1">
-      <%= f.label :do_not_mail %>
-      <%= f.check_box :do_not_mail %>
+      <%= f.input :do_not_email %>
     </div>
     <div class="span1">
-      <%= f.label :do_not_email %>
-      <%= f.check_box :do_not_email %>
+      <%= f.input :do_not_mail %>
     </div>
   </div>
 </div>
@@ -192,8 +167,7 @@
   <hr />
   <div class="row">
     <div class="span1">
-      <%= f.label :keep_informed %>
-      <%= f.check_box :keep_informed %>
+      <%= f.input :keep_informed %>
     </div>
     <div class="span3">
       <%= f.label :vol_level %>
@@ -207,8 +181,7 @@
   <hr />
   <div class="row">
     <div class="span10">
-      <%= f.label :notes %>
-      <%= f.text_area :notes, rows: 3 %>
+      <%= f.input :notes %>
     </div>
   </div>
 </div>

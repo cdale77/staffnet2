@@ -43,10 +43,10 @@ describe 'SupporterPages' do
 
       describe 'with invalid information' do
         it 'should not create a new supporter' do
-          expect { click_button 'New supporter' }.not_to change(Supporter, :count)
+          expect { click_button 'Create Supporter' }.not_to change(Supporter, :count)
         end
         describe 'after clicking' do
-          before { click_button 'New supporter' }
+          before { click_button 'Create Supporter' }
           it { should have_content('error') }
         end
       end
@@ -55,10 +55,10 @@ describe 'SupporterPages' do
         before { fill_in_example_supporter }
 
         it 'should create a new supporter' do
-          expect { click_button 'New supporter' }.to change(Supporter, :count).by(1)
+          expect { click_button 'Create Supporter' }.to change(Supporter, :count).by(1)
         end
         describe 'after saving supporter' do
-          before { click_button 'New supporter' }
+          before { click_button 'Create Supporter' }
 
           it { should have_selector('div.alert') }
         end

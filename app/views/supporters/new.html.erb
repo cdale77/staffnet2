@@ -2,12 +2,12 @@
 <div class="row">
   <div class="span10 offset1">
     <h1>New supporter</h1>
-    <%= form_for(@supporter) do |f| %>
+    <%= simple_form_for(@supporter) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <%= render partial: 'supporter_fields', locals: { supporter: @supporter, supporter_types: @supporter_types, f: f } %>
       <div class="row">
         <div class="span2">
-          <%= f.submit 'New supporter', class: 'btn btn-large btn-primary' %>
+          <%= f.button :submit, input_html: { class: 'btn btn-large btn-primary'} %>
         </div>
       </div>
     <% end %>
