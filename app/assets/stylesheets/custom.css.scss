@@ -252,8 +252,6 @@ textarea#msg {
 
 /****************** TABLES ****************/
 
-
-
 table {
   margin-top: 10px;
 }
@@ -297,6 +295,8 @@ tr.bold {
   @extend .control-group;
   @extend .error;
 }
+
+div.select select { width: 100%; }
 
 div.input {
   select { width: 100%; }
