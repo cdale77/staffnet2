@@ -6,9 +6,9 @@
 #  name          :string(255)      default("")
 #  address1      :string(255)      default("")
 #  address2      :string(255)      default("")
-#  city          :string(255)      default("")
-#  state         :string(255)      default("")
-#  zip           :string(255)      default("")
+#  address_city  :string(255)      default("")
+#  address_state :string(255)      default("")
+#  address_zip   :string(255)      default("")
 #  contact_name  :string(255)      default("")
 #  contact_phone :string(255)      default("")
 #  contact_email :string(255)      default("")
@@ -31,7 +31,7 @@ class Client < ActiveRecord::Base
 
   validates :name, presence: { message: 'required.' }
 
-  validates :state,
+  validates :address_state,
             format: { with: STATE_REGEX, message: 'must be two upper-case letters.' },
             allow_blank: true
 

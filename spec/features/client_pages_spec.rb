@@ -18,7 +18,7 @@ describe 'ClientPages' do
     fill_in 'Address line 1',         with: '123 Main St'
     fill_in 'Address line 2',         with: 'Ste. 350'
     fill_in 'City',                   with: 'Mountain View'
-    select  'California',             from: 'client_state'
+    select  'California',             from: 'client_address_state'
     fill_in 'Zip',                    with: '94509'
     fill_in 'Contact name',           with: 'Larry Page'
     fill_in 'Contact phone',          with: '4158675309'

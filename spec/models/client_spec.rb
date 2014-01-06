@@ -6,9 +6,9 @@
 #  name          :string(255)      default("")
 #  address1      :string(255)      default("")
 #  address2      :string(255)      default("")
-#  city          :string(255)      default("")
-#  state         :string(255)      default("")
-#  zip           :string(255)      default("")
+#  address_city  :string(255)      default("")
+#  address_state :string(255)      default("")
+#  address_zip   :string(255)      default("")
 #  contact_name  :string(255)      default("")
 #  contact_phone :string(255)      default("")
 #  contact_email :string(255)      default("")
@@ -22,8 +22,8 @@ require 'spec_helper'
 
 describe Client do
 
-  client_attributes = { name: 'Acme Co', address1: '2345 College Ave', address2: 'Ste. 200', city: 'Oakland', state: 'CA',
-                        zip: '94609', uri: 'http://www.example.com', contact_name: 'Some Person',
+  client_attributes = { name: 'Acme Co', address1: '2345 College Ave', address2: 'Ste. 200', address_city: 'Oakland',
+                        address_state: 'CA', address_zip: '94609', uri: 'http://www.example.com', contact_name: 'Some Person',
                         contact_phone: '5108459321', contact_email: 'acme@example.com', notes: 'Great client.' }
 
   let(:client) { FactoryGirl.create(:client) }
@@ -50,13 +50,13 @@ describe Client do
 
   describe 'state validations' do
     it 'should allow blank states' do
-      client.state = ''
+      client.address_state = ''
       client.should be_valid
     end
     it 'should require state to be two upper case characters' do
       invalid_states = %w[A AAA aa aaa A4 3 3A 33]
       invalid_states.each do |invalid_state|
-        client.state = invalid_state
+        client.address_state = invalid_state
         client.should_not be_valid
       end
     end
