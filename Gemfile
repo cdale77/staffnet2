@@ -6,6 +6,7 @@ gem 'pg', '0.17.1'
 gem 'devise', '3.2.2'
 gem 'pundit', '0.2.1'
 
+gem 'simple_form', '3.0.1'
 gem 'date_validator', '0.7.0'
 gem 'bootstrap-datepicker-rails', '1.1.1.11'
 gem 'bootstrap-timepicker-rails', '0.1.3'
