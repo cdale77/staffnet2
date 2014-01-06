@@ -40,9 +40,9 @@ FactoryGirl.define do
     email               ('a'..'z').to_a.shuffle[0,10].join + 'employee@example.com'
     address1            Faker::Address.street_address
     address2            Faker::Address.secondary_address
-    city                Faker::Address.city
-    state               Faker::Address.state_abbr
-    zip                 '12345'
+    address_city        Faker::Address.city
+    address_state       Faker::Address.state_abbr
+    address_zip         '12345'
     title               'Organizer'
     pay_hourly          12
     fed_filing_status   'single'

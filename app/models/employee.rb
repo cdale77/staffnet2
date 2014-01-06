@@ -51,17 +51,17 @@ class Employee < ActiveRecord::Base
   validates :phone, presence: { message: 'required.' },
             format: { with: PHONE_REGEX, message: 'must be 10 digits' }
 
-  validates :address1, :city, :fed_filing_status, :ca_filing_status, :hire_date, :dob, :title,
+  validates :address1, :address_city, :fed_filing_status, :ca_filing_status, :hire_date, :dob, :title,
             presence: { message: 'required.' }
 
   validates :term_date,
             date: { after: :hire_date },
             allow_blank: true
 
-  validates :state, presence: { message: 'required.' },
+  validates :address_state, presence: { message: 'required.' },
             format: { with: STATE_REGEX, message: 'must be two upper-case letters.' }
 
-  validates :zip, presence: { message: 'required.' },
+  validates :address_zip, presence: { message: 'required.' },
             length: { is: 5 },
             numericality: { message: 'must be 5 digits.' }
 

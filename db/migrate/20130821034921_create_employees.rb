@@ -8,9 +8,9 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :phone, :default => ''
       t.string :address1, :default => ''
       t.string :address2, :default => ''
-      t.string :city, :default => ''
-      t.string :state, :default => ''
-      t.string :zip, :default => ''
+      t.string :address_city, :default => ''
+      t.string :address_state, :default => ''
+      t.string :address_zip, :default => ''
       t.string :title, :default => ''
       t.decimal :pay_hourly, :scale => 2, :precision=> 8, :default => 0.00
       t.decimal :pay_daily, :scale => 2, :precision=> 8, :default => 0.00

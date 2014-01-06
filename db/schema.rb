@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 20131207003638) do
     t.string   "phone",                                     default: ""
     t.string   "address1",                                  default: ""
     t.string   "address2",                                  default: ""
-    t.string   "city",                                      default: ""
-    t.string   "state",                                     default: ""
-    t.string   "zip",                                       default: ""
+    t.string   "address_city",                              default: ""
+    t.string   "address_state",                             default: ""
+    t.string   "address_zip",                               default: ""
     t.string   "title",                                     default: ""
     t.decimal  "pay_hourly",        precision: 8, scale: 2, default: 0.0
     t.decimal  "pay_daily",         precision: 8, scale: 2, default: 0.0

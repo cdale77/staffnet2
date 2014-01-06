@@ -34,8 +34,9 @@ require 'spec_helper'
 describe Employee do
 
   employee_attributes = { first_name: 'Test', last_name: 'Employee', email: 'test_employee@example.com',
-                          phone: '4155551234', address1: '2017 Mission St.', address2: '2nd Fl', city: 'San Francisco',
-                          state: 'CA', zip: '94110', title: 'Field Manager', pay_hourly: 12, hire_date: Date.today,
+                          phone: '4155551234', address1: '2017 Mission St.', address2: '2nd Fl',
+                          address_city: 'San Francisco', address_state: 'CA', address_zip: '94110',
+                          title: 'Field Manager', pay_hourly: 12, hire_date: Date.today,
                           fed_filing_status: 'single', ca_filing_status: 'single', fed_allowances: 2,
                           ca_allowances: 2, dob: Date.today, gender: 'f', active: true }
 
@@ -151,23 +152,23 @@ describe Employee do
   end
   describe 'city validation' do
     it 'should reject employees without a city' do
-      employee.city = ''
+      employee.address_city = ''
       employee.should_not be_valid
     end
   end
   describe 'state validations' do
     it 'should reject employees without a state' do
-      employee.state = ''
+      employee.address_state = ''
       employee.should_not be_valid
     end
     it 'should require states to be alpha' do
-      employee.state = '4'
+      employee.address_state = '4'
       employee.should_not be_valid
     end
     it 'should require states to be 2 capital letters' do
       invalid_states = %w[A AAA aa aaa A4 3 3A]
       invalid_states.each do |invalid_state|
-        employee.state = invalid_state
+        employee.address_state = invalid_state
         employee.should_not be_valid
       end
     end
@@ -176,7 +177,7 @@ describe Employee do
     it 'should require zip to be 5 digits' do
       bad_zips = %w[1 123 1234 123456 asbcd %$#@% ]
       bad_zips.each do |bad_zip|
-        employee.zip = bad_zip
+        employee.address_zip = bad_zip
         employee.should_not be_valid
       end
     end
