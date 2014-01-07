@@ -1,12 +1,9 @@
 <div class="row">
   <div class="span10">
-    <button type="button" class="btn" data-toggle="collapse" data-target="#contact-prefs">Contact prefs</a>
-
-    <button type="button" id="contact_prefs_link" class="btn" data-toggle="button">Contact prefs</button>
-    <button type="button" id="emp_fields_link" class="btn" data-toggle="button">Employer</button>
-    <button type="button" id="vol_fields_link" class="btn" data-toggle="button">Volunteer</button>
-    <!--<button type="button" id="sustainer_fields_link" class="btn" data-toggle="button">Sustainer</button>-->
-    <button type="button" id="notes_form_link" class="btn" data-toggle="button">Notes</button>
+    <button type="button" class="btn" data-toggle="collapse" data-target="#contact-prefs">Contact prefs</button>
+    <button type="button" class="btn" data-toggle="collapse" data-target="#employer">Employer</button>
+    <button type="button" class="btn" data-toggle="collapse" data-target="#volunteer">Volunteer</button>
+    <button type="button" class="btn" data-toggle="collapse" data-target="#notes">Notes</button>
   </div>
 </div>
 <hr />
@@ -81,8 +78,7 @@
     <%= f.select :source, options_for_select([['Door', 'door'], ['Street', 'street'], ['Web', 'web']], @supporter.source) %>
   </div>
 </div>
-<!--<div id="emp_fields" class="collapse">-->
-<div>
+<div id="employer" class="collapse">
   <hr />
   <div class="row">
     <div class="span3">
@@ -93,7 +89,6 @@
     </div>
   </div>
 </div>
-
 <div id="contact-prefs" class="collapse">
   <hr />
   <div class="row">
@@ -111,9 +106,7 @@
     </div>
   </div>
 </div>
-
-<!--<div id="vol_fields" class="collapse">-->
-<div>
+<div id="volunteer" class="collapse">
   <hr />
   <div class="row">
     <div class="span1">
@@ -127,6 +120,7 @@
     </div>
   </div>
 </div>
-<!-- need div id here -->
-<%= render 'shared/forms/notes_field', f: f %>
+<div id="notes" class="collapse">
+  <%= render 'shared/forms/notes_field', f: f %>
+</div>
 <hr />
