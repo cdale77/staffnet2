@@ -70,10 +70,10 @@ describe 'ShiftPages' do
 
       describe 'with invalid information' do
         it 'should not create a new shift' do
-          expect { click_button 'New shift' }.not_to change(Shift, :count)
+          expect { click_button 'Create Shift' }.not_to change(Shift, :count)
         end
         describe 'after clicking' do
-          before { click_button 'New shift' }
+          before { click_button 'Create Shift' }
           it { should have_content('error') }
         end
       end
@@ -82,10 +82,10 @@ describe 'ShiftPages' do
         before { fill_in_example_shift }
 
         it 'should create a new shift' do
-          expect { click_button 'New shift' }.to change(Shift, :count).by(1)
+          expect { click_button 'Create Shift' }.to change(Shift, :count).by(1)
         end
         describe 'after saving shift' do
-          before { click_button 'New shift' }
+          before { click_button 'Create Shift' }
 
           it { should have_selector('div.alert') }
         end
@@ -143,7 +143,7 @@ describe 'ShiftPages' do
       describe 'with invalid information' do
         before do
           fill_in 'Date', with: ''
-          click_button 'Edit shift'
+          click_button 'Update Shift'
         end
         it { should have_selector('div.alert-error') }
       end
@@ -152,7 +152,7 @@ describe 'ShiftPages' do
         let(:new_note) { 'New note'}
         before do
           fill_in 'Notes', with: new_note
-          click_button 'Edit shift'
+          click_button 'Update Shift'
         end
         it { should have_selector('div.alert.alert-success') }
         specify { expect(shift.reload.notes).to  eq new_note }

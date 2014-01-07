@@ -5,49 +5,30 @@
 </div>
 <div class="row">
   <div class="span2">
-    <div class="input">
-      <%= f.label :date %>
-      <%= f.text_field :date, 'data-behaviour' => 'datepicker' %>
-    </div>
+    <%= f.label :date %>
+    <%= f.text_field :date, 'data-behaviour' => 'datepicker' %>
   </div>
   <div class="span2">
-    <div class="input">
-      <%= f.label :shift_type_id, 'Shift type' %>
-      <%= f.select :shift_type_id, options_from_collection_for_select(ShiftType.all, :id, :human_name, shift.shift_type_id) %>
-    </div>
+    <%= f.label :shift_type_id, 'Shift type' %>
+    <%= f.select :shift_type_id, options_from_collection_for_select(ShiftType.all, :id, :human_name, shift.shift_type_id) %>
   </div>
 </div>
 <div class="row">
   <div class="span2">
-    <div class="input">
-      <%= f.label :time_in %>
-      <%= f.text_field :time_in, 'data-behaviour' => 'timepicker' %>
-    </div>
+    <%= f.label :time_in %>
+    <%= f.text_field :time_in, 'data-behaviour' => 'timepicker' %>
   </div>
   <div class="span2">
-    <div class="input">
-      <%= f.label :time_out %>
-      <%= f.text_field :time_out, 'data-behaviour' => 'timepicker' %>
-    </div>
+    <%= f.label :time_out %>
+    <%= f.text_field :time_out, 'data-behaviour' => 'timepicker' %>
   </div>
   <div class="span2">
-    <div class="input">
-      <%= f.label :break_time %>
-      <%= f.text_field :break_time %>
-    </div>
+    <%= f.input :break_time %>
   </div>
 </div>
 <div class="row">
-  <div class="span4">
-    <div class="input">
-      <%= f.label :notes %>
-      <%= f.text_field :notes %>
-    </div>
-  </div>
   <div class="span2">
-    <div class="input">
-      <%= f.label :travel_reimb %>
-      <%= f.text_field :travel_reimb %>
-    </div>
+    <%= f.input :travel_reimb, label: 'Travel reimbursement' %>
   </div>
 </div>
+<%= render 'shared/forms/notes_field', f: f %>

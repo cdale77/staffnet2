@@ -1,46 +1,27 @@
 <div class="row">
   <div class="span4">
-    <div class="input">
-      <%= f.label :client_id %>
-      <%= f.select :client_id, options_from_collection_for_select(Client.all, :id, :name, project.client_id) %>
-    </div>
+    <%= f.label :client_id %>
+    <%= f.select :client_id, options_from_collection_for_select(Client.all, :id, :name, project.client_id) %>
   </div>
 </div>
 <div class="row">
   <div class="span4">
-    <div class="input">
-      <%= f.label :name, 'Project name' %>
-      <%= f.text_field :name %>
-    </div>
+    <%= f.input :name, label: 'Project name' %>
   </div>
 </div>
 <div class="row">
   <div class="span2">
-    <div class="input">
-      <%= f.label :start_date %>
-      <%= f.text_field :start_date, 'data-behaviour' => 'datepicker' %>
-    </div>
+    <%= f.label :start_date %>
+    <%= f.text_field :start_date, 'data-behaviour' => 'datepicker' %>
   </div>
   <div class="span2">
-    <div class="input">
-      <%= f.label :end_date %>
-      <%= f.text_field :end_date, 'data-behaviour' => 'datepicker' %>
-    </div>
+    <%= f.label :end_date %>
+    <%= f.text_field :end_date, 'data-behaviour' => 'datepicker' %>
   </div>
 </div>
 <div class="row">
   <div class="span4">
-    <div class="input">
-      <%= f.label :desc, 'Description' %>
-      <%= f.text_field :desc %>
-    </div>
+    <%= f.input :desc, label: 'Description' %>
   </div>
 </div>
-<div class="row">
-  <div class="span4">
-    <div class="input">
-      <%= f.label :notes %>
-      <%= f.text_area :notes %>
-    </div>
-  </div>
-</div>
+<%= render 'shared/forms/notes_field', f: f %>

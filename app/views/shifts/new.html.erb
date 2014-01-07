@@ -1,15 +1,11 @@
 <% provide(:title, 'New shift') %>
 <div class="row">
-  <div class="span8 offset2">
+  <div class="span10 offset1">
     <h1>New shift</h1>
-    <%= form_for([@employee, @shift]) do |f| %>
+    <%= simple_form_for([@employee, @shift]) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <%= render partial: 'shift_fields', locals: { shift: @shift, employee: @employee, f: f } %>
-      <div class="row">
-        <div class="span2">
-          <%= f.submit 'New shift', class: 'btn btn-large btn-primary' %>
-        </div>
-      </div>
+      <%= render 'shared/forms/submit_button', f: f %>
     <% end %>
   </div>
 </div>
