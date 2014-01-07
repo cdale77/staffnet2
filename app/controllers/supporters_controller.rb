@@ -27,6 +27,9 @@ class SupportersController < ApplicationController
     @supporter_type = @supporter.supporter_type
   end
 
+  def index
+    @supporters = Supporter.all
+  end
 
   private
 

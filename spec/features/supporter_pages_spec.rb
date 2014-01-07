@@ -78,5 +78,23 @@ describe 'SupporterPages' do
         end
       end
     end
+
+    describe 'index' do
+      before do
+        5.times { FactoryGirl.create(:supporter) }
+        visit supporters_path
+      end
+
+      after { Supporter.delete_all }
+
+      describe 'page' do
+        it 'should list all supporters' do
+          Supporter.all.each do |supporter|
+            expect(page).to have_content(supporter.full_name)
+          end
+        end
+      end
+
+    end
   end
 end
