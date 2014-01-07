@@ -5,3 +5,9 @@ $(document).on("focus", "[data-behaviour~='datepicker']", function(e){
 $(document).on("focus", "[data-behaviour~='timepicker']", function(e){
     $(this).timepicker()
 });
+
+$(document).ready(function() {
+    $(".btn").on("click", function() {
+       $(this).button("toggle");
+    });
+});
