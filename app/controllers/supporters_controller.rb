@@ -1,18 +1,18 @@
 class SupportersController < ApplicationController
 
-  #include Pundit
-  #after_filter :verify_authorized
+  include Pundit
+  after_filter :verify_authorized
 
   def new
     @supporter = Supporter.new
     @supporter_types = SupporterType.all
-    #authorize @supporter
+    authorize @supporter
   end
 
   def create
     supporter_type = SupporterType.find(params[:supporter][:supporter_type_id])
     @supporter = supporter_type.supporters.build(supporter_params)
-    #authorize @supporter
+    authorize @supporter
     if @supporter.save
       flash[:success] = 'Saved new supporter.'
       redirect_to supporter_path(@supporter)
@@ -25,20 +25,24 @@ class SupportersController < ApplicationController
   def show
     @supporter = Supporter.find(params[:id])
     @supporter_type = @supporter.supporter_type
+    authorize @supporter
   end
 
   def index
     @search = Supporter.search(params[:q])
     @supporters = @search.result.paginate(:page => params[:page], per_page: 50)
     @search.build_condition
+    authorize @supporters
   end
 
   def edit
     @supporter = Supporter.find(params[:id])
+    authorize @supporter
   end
 
   def update
     @supporter = Supporter.find(params[:id])
+    authorize @supporter
     if @supporter.update_attributes(supporter_params)
       flash[:success] = 'Supporter updated.'
       redirect_to supporter_path(@supporter)
@@ -49,6 +53,7 @@ class SupportersController < ApplicationController
 
   def destroy
     supporter = Supporter.find(params[:id])
+    authorize supporter
     supporter.destroy
     flash[:success] = 'Supporter destroyed.'
     redirect_to supporters_url
