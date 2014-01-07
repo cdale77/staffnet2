@@ -93,8 +93,45 @@ describe 'SupporterPages' do
             expect(page).to have_content(supporter.full_name)
           end
         end
+        it 'should have the correct links' do
+          Supporter.all.each do |supporter|
+            expect(page).to have_link('details', supporter_path(supporter))
+            expect(page).to have_link('edit', edit_supporter_path(supporter))
+          end
+        end
+      end
+    end
+
+    describe 'edit' do
+      before { visit edit_supporter_path(supporter) }
+
+      describe 'page' do
+        it { should have_selector('h1', text: 'Edit supporter') }
+      end
+      describe 'with invalid information' do
+        before do
+          fill_in 'Primary email', with: 'notarealemail.com'
+          click_button 'Update Supporter'
+        end
+        it { should have_selector('div.alert-error') }
       end
 
+      describe 'with valid information' do
+        let(:new_first_name)  { 'New' }
+        let(:new_last_name)   { 'Name' }
+        let(:new_email) { 'new@example.com' }
+        before do
+          fill_in 'First name',       with: new_first_name
+          fill_in 'Last name',        with: new_last_name
+          fill_in 'Primary email',            with: new_email
+          click_button 'Update Employee'
+
+          it { should have_selector('div.alert.alert-success') }
+          specify { expect(supporter.reload.first_name).to  eq new_first_name }
+          specify { expect(supporter.reload.last_name).to eq new_last_name}
+          specify { expect(supporter.reload.email1).to eq new_email }
+        end
+      end
     end
   end
 end

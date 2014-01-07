@@ -31,7 +31,20 @@ class SupportersController < ApplicationController
     @search = Supporter.search(params[:q])
     @supporters = @search.result.paginate(:page => params[:page], per_page: 50)
     @search.build_condition
+  end
 
+  def edit
+    @supporter = Supporter.find(params[:id])
+  end
+
+  def update
+    @supporter = Supporter.find(params[:id])
+    if @supporter.update_attributes(supporter_params)
+      flash[:success] = 'Supporter updated.'
+      redirect_to supporter_path(@supporter)
+    else
+      render 'edit'
+    end
   end
 
   private

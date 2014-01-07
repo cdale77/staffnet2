@@ -1,0 +1,11 @@
+<% provide(:title, 'Edit supporter') %>
+<div class="row">
+  <div class="span10 offset1">
+    <h1>Edit supporter</h1>
+    <%= simple_form_for(@supporter) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= render 'supporter_fields', supporter: @supporter, f: f  %>
+      <%= render 'shared/forms/submit_button', f: f %>
+    <% end %>
+  </div>
+</div>
