@@ -38,6 +38,8 @@ describe Shift do
   it { should respond_to(:user) }
   it { should respond_to(:shift_type) }
   it { should respond_to(:employee) }
+  it { should respond_to(:donations) }
+  it { should respond_to(:payments) }
   #it { should respond_to(:tasks) }
 
   ## VALIDATIONS

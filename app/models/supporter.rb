@@ -49,6 +49,7 @@ class Supporter < ActiveRecord::Base
 
   ## RELATIONSHIPS
   belongs_to :supporter_type
+  has_many :donations
 
   ## VALIDATIONS
 

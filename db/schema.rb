@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131207003638) do
+ActiveRecord::Schema.define(version: 20140107215009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,25 @@ ActiveRecord::Schema.define(version: 20131207003638) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "donations", force: true do |t|
+    t.integer  "supporter_id"
+    t.integer  "shift_id"
+    t.date     "date"
+    t.string   "donation_type",                                   default: ""
+    t.string   "source",                                          default: ""
+    t.string   "campaign",                                        default: ""
+    t.string   "sub_month",     limit: 1,                         default: ""
+    t.integer  "sub_week",      limit: 2,                         default: 0
+    t.decimal  "amount",                  precision: 8, scale: 2, default: 0.0
+    t.boolean  "cancelled",                                       default: false
+    t.text     "notes",                                           default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "donations", ["shift_id"], name: "index_donations_on_shift_id", using: :btree
+  add_index "donations", ["supporter_id"], name: "index_donations_on_supporter_id", using: :btree
 
   create_table "employees", force: true do |t|
     t.integer  "user_id"
