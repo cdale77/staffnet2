@@ -1,98 +1,41 @@
 <div class="row">
   <div class="span2">
-    <div class="input">
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
-    </div>
+    <%= f.input :first_name %>
   </div>
   <div class="span1"></div>
   <div class="span3">
-    <div class="input">
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
-    </div>
+    <%= f.input :last_name %>
   </div>
 </div>
 <div class="row">
   <div class="span2">
-    <div class="input">
-      <%= f.label :phone %>
-      <%= f.text_field :phone %>
-    </div>
+    <%= f.input :phone %>
   </div>
   <div class="span1"></div>
   <div class="span3">
-    <div class="input">
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-    </div>
+    <%= f.input :email %>
   </div>
 </div>
-<div class="row">
-  <div class="span3">
-    <div class="input">
-      <%= f.label :address1, 'Address line 1' %>
-      <%= f.text_field :address1 %>
-    </div>
-  </div>
-  <div class="span1"></div>
-  <div class="span2">
-    <div class="input">
-      <%= f.label :address2, 'Address line 2' %>
-      <%= f.text_field :address2 %>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="span2">
-    <div class="input">
-      <%= f.label :address_city, 'City' %>
-      <%= f.text_field :address_city %>
-    </div>
-  </div>
-  <div class="span1"></div>
-  <div class="span2">
-    <div class="input">
-      <%= f.label :address_state, 'State' %>
-      <%= f.select :address_state, us_states  %>
-    </div>
-  </div>
-  <div class="span1">
-    <div class="input">
-      <%= f.label :address_zip, 'Zip' %>
-      <%= f.text_field :address_zip, class: 'zip' %>
-    </div>
-  </div>
-</div>
+<%= render 'shared/forms/address_fields', f: f %>
 <hr />
 <div class="row">
   <div class="span2">
-    <div class="input">
-      <%= f.label :title %>
-      <%= f.select :title, options_for_select([ ['Asst. Director', 'asst_director'], ['Director', 'director'],
-                                                ['Organizer', 'organizer'], ['Field Manager', 'field_manager'],
-                                                ['Canvasser', 'canvasser'] ], employee.title )  %>
-    </div>
+    <%= f.label :title %>
+    <%= f.select :title, options_for_select([ ['Asst. Director', 'asst_director'], ['Director', 'director'],
+                                              ['Organizer', 'organizer'], ['Field Manager', 'field_manager'],
+                                              ['Canvasser', 'canvasser'] ], employee.title )  %>
   </div>
   <div class="span1 spacer"></div>
   <div class="span1">
-    <div class="input">
-      <%= f.label :pay_hourly, 'Pay hrly' %>
-      <%= f.text_field :pay_hourly %>
-    </div>
+    <%= f.input :pay_hourly, label: 'Pay hrly' %>
   </div>
   <div class="span1 ">
-    <div class="input">
-      <%= f.label :pay_daily %>
-      <%= f.text_field :pay_daily %>
-    </div>
+    <%= f.input :pay_daily %>
   </div>
   <div class="span1 spacer"></div>
   <div class="span2">
-    <div class="input">
-      <%= f.label :active %>
-      <%= f.check_box :active %>
-    </div>
+    <%= f.label :active %>
+    <%= f.check_box :active %>
   </div>
 </div>
 <hr />
@@ -111,30 +54,20 @@
       </div>
     </div>
   </div>
-  <div class="span2">
-    <div class="input">
-      <%= f.label :fed_filing_status, 'Federal' %>
-      <%= f.select :fed_filing_status, options_for_select(filing_status_options, employee.fed_filing_status) %>
-    </div>
+  <div class="span2 select">
+    <%= f.label :fed_filing_status, 'Federal' %>
+    <%= f.select :fed_filing_status, options_for_select(filing_status_options, employee.fed_filing_status) %>
   </div>
-  <div class="span2">
-    <div class="input">
-      <%= f.label :ca_filing_status, 'California' %>
-      <%= f.select :ca_filing_status, options_for_select(filing_status_options, employee.ca_filing_status) %>
-    </div>
+  <div class="span2 select">
+    <%= f.label :ca_filing_status, 'California' %>
+    <%= f.select :ca_filing_status, options_for_select(filing_status_options, employee.ca_filing_status) %>
   </div>
   <div class="span1 spacer"></div>
   <div class="span1">
-    <div class="input">
-      <%= f.label :fed_allowances, 'Federal' %>
-      <%= f.text_field :fed_allowances %>
-    </div>
+    <%= f.input :fed_allowances, label: 'Federal' %>
   </div>
   <div class="span1">
-    <div class="input">
-      <%= f.label :ca_allowances, 'California' %>
-      <%= f.text_field :ca_allowances %>
-    </div>
+    <%= f.input :ca_allowances, label: 'CA' %>
   </div>
 </div>
 <hr />

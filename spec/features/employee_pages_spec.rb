@@ -61,10 +61,10 @@ describe 'EmployeePages' do
 
       describe 'with invalid information' do
         it 'should not create a new employee' do
-          expect { click_button 'New employee' }.not_to change(Employee, :count)
+          expect { click_button 'Create Employee' }.not_to change(Employee, :count)
         end
         describe 'after clicking' do
-          before { click_button 'New employee' }
+          before { click_button 'Create Employee' }
           it { should have_content('error') }
         end
       end
@@ -73,10 +73,10 @@ describe 'EmployeePages' do
         before { fill_in_example_employee }
 
         it 'should create a new employee' do
-          expect { click_button 'New employee' }.to change(Employee, :count).by(1)
+          expect { click_button 'Create Employee' }.to change(Employee, :count).by(1)
         end
         describe 'after saving employee' do
-          before { click_button 'New employee' }
+          before { click_button 'Create Employee' }
 
           it { should have_selector('div.alert') }
         end
@@ -138,7 +138,7 @@ describe 'EmployeePages' do
       describe 'with invalid information' do
         before do
           fill_in 'Email', with: 'notarealemail.com'
-          click_button 'Edit employee'
+          click_button 'Update Employee'
         end
         it { should have_selector('div.alert-error') }
       end
@@ -151,7 +151,7 @@ describe 'EmployeePages' do
           fill_in 'First name',       with: new_first_name
           fill_in 'Last name',        with: new_last_name
           fill_in 'Email',            with: new_email
-          click_button 'Edit employee'
+          click_button 'Update Employee'
 
           it { should have_selector('div.alert.alert-success') }
           specify { expect(employee.reload.first_name).to  eq new_first_name }

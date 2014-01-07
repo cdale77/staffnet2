@@ -14,7 +14,7 @@ describe 'ClientPages' do
   ### HELPERS ###
 
   def fill_in_example_client
-    fill_in 'Name',                   with: 'Google'
+    fill_in 'Client name',            with: 'Google'
     fill_in 'Address line 1',         with: '123 Main St'
     fill_in 'Address line 2',         with: 'Ste. 350'
     fill_in 'City',                   with: 'Mountain View'
@@ -58,20 +58,20 @@ describe 'ClientPages' do
       end
       describe 'with invalid information' do
         it 'should not create a new client' do
-          expect { click_button 'New client' }.not_to change(Client, :count)
+          expect { click_button 'Create Client' }.not_to change(Client, :count)
         end
         describe 'after clicking' do
-          before { click_button 'New client' }
+          before { click_button 'Create Client' }
           it { should have_content('error') }
         end
       end
       describe 'with valid information' do
         before { fill_in_example_client }
         it 'should create a new client' do
-          expect { click_button 'New client' }.to change(Client, :count).by(1)
+          expect { click_button 'Create Client' }.to change(Client, :count).by(1)
         end
         describe 'after saving client' do
-          before { click_button 'New client' }
+          before { click_button 'Create Client' }
           it { should have_selector('div.alert') }
         end
       end
@@ -125,7 +125,7 @@ describe 'ClientPages' do
       describe 'with invalid information' do
         before do
           fill_in 'Contact email', with: 'notarealemail.com'
-          click_button 'Edit client'
+          click_button 'Update Client'
         end
         it { should have_selector('div.alert-error') }
       end
@@ -138,7 +138,7 @@ describe 'ClientPages' do
           fill_in 'Name',             with: new_name
           fill_in 'Contact name',     with: contact_name
           fill_in 'Contact email',    with: contact_email
-          click_button 'Edit client'
+          click_button 'Update Client'
 
           it { should have_selector('div.alert.alert-success') }
           specify { expect(client.reload.name).to  eq new_name }
