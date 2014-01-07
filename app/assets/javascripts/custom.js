@@ -7,7 +7,7 @@ $(document).on("focus", "[data-behaviour~='timepicker']", function(e){
 });
 
 $(document).ready(function() {
-    $(".btn").on("click", function() {
+    $(".field-toggle").on("click", function() {
        $(this).button("toggle");
     });
 });
