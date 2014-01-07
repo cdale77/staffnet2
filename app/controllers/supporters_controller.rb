@@ -28,7 +28,10 @@ class SupportersController < ApplicationController
   end
 
   def index
-    @supporters = Supporter.paginate(:page => params[:page], per_page: 50)
+    @search = Supporter.search(params[:q])
+    @supporters = @search.result.paginate(:page => params[:page], per_page: 50)
+    @search.build_condition
+
   end
 
   private
