@@ -26,6 +26,10 @@ module ApplicationHelper
     current_user.role? :manager
   end
 
+  def staff_user?
+    current_user.role? :staff
+  end
+
   def current_user_owns?(record)
     record.user == current_user
   end

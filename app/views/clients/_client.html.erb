@@ -3,6 +3,8 @@
   <td><%= client.contact_name %></td>
   <td><%= client.contact_email %></td>
   <td><%= client.contact_phone %></td>
-  <td class="buttons"><%= link_to 'details', client_path(client), class: 'btn btn-mini', type: 'button' %>
-    <%= link_to 'edit', edit_client_path(client), class: 'btn btn-mini', type: 'button' if admin_user? %></td>
+  <td class="buttons">
+    <%= render 'shared/index/details_button', record: client if manager_user? %>
+    <%= render 'shared/index/edit_button', record: client if admin_user? %>
+  </td>
 </tr>

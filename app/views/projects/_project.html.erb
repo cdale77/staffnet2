@@ -3,6 +3,8 @@
   <td><%= project.client.name %></td>
   <td><%= project.start_date %></td>
   <td><%= project.end_date %></td>
-  <td class="buttons"><%= link_to 'details', project_path(project), class: 'btn btn-mini', type: 'button' %>
-    <%= link_to 'edit', edit_project_path(project), class: 'btn btn-mini', type: 'button' if admin_user? %></td>
+  <td class="buttons">
+    <%= render 'shared/index/details_button', record: project if staff_user? %>
+    <%= render 'shared/index/edit_button', record: project if manager_user? %>
+  </td>
 </tr>

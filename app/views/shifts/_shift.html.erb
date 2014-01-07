@@ -3,5 +3,8 @@
   <td><%= shift.date %></td>
   <td><%= shift.net_time %></td>
   <td><%= shift.shift_type.name.humanize %></td>
-  <td class="buttons"><%= link_to 'details', shift_path(shift), class: 'btn btn-mini', type: 'button' %></td>
+  <td class="buttons">
+    <%= render 'shared/index/details_button', record: shift if manager_user? %>
+    <%= render 'shared/index/edit_button', record: shift if admin_user? %>
+  </td>
 </tr>

@@ -5,5 +5,8 @@
   <td><%= number_to_phone(supporter.phone_mobile.to_i) %></td>
   <td><%= supporter.supporter_type.name %></td>
   <td><%= supporter.source %></td>
-  <%= render 'shared/index/buttons', record: supporter if admin_user? %>
+  <td class="buttons">
+    <%= render 'shared/index/details_button', record: supporter if staff_user? %>
+    <%= render 'shared/index/edit_button', record: supporter if manager_user? %>
+  </td>
 </tr>
