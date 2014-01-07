@@ -7,6 +7,6 @@
   <td><%= supporter.source %></td>
   <td class="buttons">
     <%= render 'shared/index/details_button', record: supporter if staff_user? %>
-    <%= render 'shared/index/edit_button', record: supporter if manager_user? %>
+    <%= render 'shared/index/edit_button', record: supporter if admin_user? %>
   </td>
 </tr>
