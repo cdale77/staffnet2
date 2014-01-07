@@ -38,7 +38,7 @@ describe Employee do
                           address_city: 'San Francisco', address_state: 'CA', address_zip: '94110',
                           title: 'Field Manager', pay_hourly: 12, hire_date: Date.today,
                           fed_filing_status: 'single', ca_filing_status: 'single', fed_allowances: 2,
-                          ca_allowances: 2, dob: Date.today, gender: 'f', active: true }
+                          ca_allowances: 2, dob: Date.today, gender: 'f', active: true, notes: 'Notes' }
 
   let(:employee) { FactoryGirl.create(:employee)}
 

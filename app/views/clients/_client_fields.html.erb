@@ -1,84 +1,25 @@
 <div class="row">
   <div class="span6">
-    <div class="input">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
+    <%= f.input :name, label: 'Client name' %>
   </div>
 </div>
-<div class="row">
-  <div class="span3">
-    <div class="input">
-      <%= f.label :address1, 'Address line 1' %>
-      <%= f.text_field :address1 %>
-    </div>
-  </div>
-  <div class="span1"></div>
-  <div class="span2">
-    <div class="input">
-      <%= f.label :address2, 'Address line 2' %>
-      <%= f.text_field :address2 %>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="span2">
-    <div class="input">
-      <%= f.label :address_city, 'City' %>
-      <%= f.text_field :address_city %>
-    </div>
-  </div>
-  <div class="span1"></div>
-  <div class="span2">
-    <div class="input">
-      <%= f.label :address_state, 'State' %>
-      <%= f.select :address_state, us_states  %>
-    </div>
-  </div>
-  <div class="span1">
-    <div class="input">
-      <%= f.label :address_zip, 'Zip' %>
-      <%= f.text_field :address_zip, class: 'zip' %>
-    </div>
-  </div>
-</div>
+<%= render 'shared/forms/address_fields', f: f %>
 <hr />
 <div class="row">
-  <div class="span6">
-    <div class="input">
-      <%= f.label :contact_name %>
-      <%= f.text_field :contact_name %>
-    </div>
+  <div class="span5">
+    <%= f.input :contact_name %>
   </div>
-</div>
-<div class="row">
   <div class="span3">
-    <div class="input">
-      <%= f.label :contact_email %>
-      <%= f.text_field :contact_email %>
-    </div>
+    <%= f.input :contact_email %>
   </div>
-  <div class="span1"></div>
   <div class="span2">
-    <div class="input">
-      <%= f.label :contact_phone %>
-      <%= f.text_field :contact_phone %>
-    </div>
+    <%= f.input :contact_phone %>
   </div>
 </div>
+
 <div class="row">
   <div class="span6">
-    <div class="input">
-      <%= f.label :uri, 'Web address' %>
-      <%= f.text_field :uri %>
-    </div>
+    <%= f.input :uri, label: 'Web address' %>
   </div>
 </div>
-<div class="row">
-  <div class="span6">
-    <div class="input">
-      <%= f.label :notes %>
-      <%= f.text_area :notes %>
-    </div>
-  </div>
-</div>
+<%= render 'shared/forms/notes_field', f: f %>

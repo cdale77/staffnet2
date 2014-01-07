@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20131207003638) do
     t.date     "dob"
     t.string   "gender",                                    default: ""
     t.boolean  "active",                                    default: true
+    t.text     "notes",                                     default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -141,7 +142,7 @@ ActiveRecord::Schema.define(version: 20131207003638) do
     t.string   "employer",          default: ""
     t.string   "occupation",        default: ""
     t.string   "source",            default: ""
-    t.string   "notes",             default: ""
+    t.text     "notes",             default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end

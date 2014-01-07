@@ -42,7 +42,7 @@ class CreateSupporters < ActiveRecord::Migration
       t.string :occupation, :default => ''
 
       t.string :source, :default => ''
-      t.string :notes, :default => ''
+      t.text :notes, :default => ''
 
       t.timestamps
     end

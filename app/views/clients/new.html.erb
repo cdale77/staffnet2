@@ -1,15 +1,11 @@
 <% provide(:title, 'New client') %>
 <div class="row">
-  <div class="span6 offset3">
+  <div class="span10 offset1">
     <h1>New client</h1>
-    <%= form_for(@client) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-        <%= render partial: 'client_fields', locals: { client: @client, f: f } %>
-        <div class="row">
-          <div class="span2">
-            <%= f.submit 'New client', class: 'btn btn-large btn-primary' %>
-          </div>
-        </div>
+    <%= simple_form_for(@client) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= render 'client_fields', client: @client, f: f %>
+      <%= render 'shared/forms/submit_button', f: f %>
     <% end %>
   </div>
 </div>

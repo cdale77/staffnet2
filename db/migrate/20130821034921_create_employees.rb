@@ -23,7 +23,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.date :dob
       t.string :gender, :default => ''
       t.boolean :active, :default => true
-
+      t.text :notes, :default => ''
       t.timestamps
     end
 
