@@ -47,6 +47,13 @@ class SupportersController < ApplicationController
     end
   end
 
+  def destroy
+    supporter = Supporter.find(params[:id])
+    supporter.destroy
+    flash[:success] = 'Supporter destroyed.'
+    redirect_to supporters_url
+  end
+
   private
 
     def supporter_params

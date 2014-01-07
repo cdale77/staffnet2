@@ -133,5 +133,12 @@ describe 'SupporterPages' do
         end
       end
     end
+
+    describe 'destroy' do
+      before { visit supporter_path(supporter) }
+      it 'should destroy a supporter' do
+        expect { click_link 'delete' }.to change(Supporter, :count).by(-1)
+      end
+    end
   end
 end
