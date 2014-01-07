@@ -81,7 +81,7 @@ namespace :db do
     SupporterType.create(name: 'Staff')
 
     SupporterType.all.each do |supporter_type|
-      12.times do
+      100.times do
         supporter = Supporter.new(  first_name:     Faker::Name.first_name,
                       last_name:      Faker::Name.last_name,
                       address1:       Faker::Address.street_address,

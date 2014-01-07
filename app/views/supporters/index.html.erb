@@ -1,6 +1,7 @@
 <% provide(:title, 'All supporters') %>
 <h1>All supporters</h1>
 <table class="table table-condensed table-striped">
+  <%= will_paginate @supporters %>
   <tr>
     <th>Name</th>
     <th>City</th>

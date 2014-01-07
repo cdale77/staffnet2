@@ -28,7 +28,7 @@ class SupportersController < ApplicationController
   end
 
   def index
-    @supporters = Supporter.all
+    @supporters = Supporter.paginate(:page => params[:page], per_page: 50)
   end
 
   private
