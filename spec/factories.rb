@@ -110,6 +110,28 @@ FactoryGirl.define do
     supporter_type
   end
 
+  factory :donation do
+    date              Date.today
+    donation_type     'Credit Card'
+    source            'Mail'
+    campaign          'Energy'
+    amount            10.00
+    supporter
+  end
+
+  factory :payment do
+    processed_at          Time.now
+    payment_type          'Credit Card'
+    captured              true
+    amount                10.00
+    cc_last_4             '1234'
+    cc_type               'visa'
+    cc_month              '01'
+    cc_year               '2014'
+    cim_profile_id        '3445433222'
+    cim_transaction_id    '1122223333'
+    donation
+  end
 
 =begin
   factory :project do

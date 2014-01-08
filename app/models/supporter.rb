@@ -35,7 +35,7 @@
 #  employer          :string(255)      default("")
 #  occupation        :string(255)      default("")
 #  source            :string(255)      default("")
-#  notes             :string(255)      default("")
+#  notes             :text             default("")
 #  created_at        :datetime
 #  updated_at        :datetime
 #

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140107215009) do
+ActiveRecord::Schema.define(version: 20140107215917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,27 @@ ActiveRecord::Schema.define(version: 20140107215009) do
   add_index "employees", ["term_date"], name: "index_employees_on_term_date", using: :btree
   add_index "employees", ["title"], name: "index_employees_on_title", using: :btree
   add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
+
+  create_table "payments", force: true do |t|
+    t.integer "donation_id"
+    t.string  "cim_profile_id",                                       default: ""
+    t.string  "cim_transaction_id",                                   default: ""
+    t.integer "user_id"
+    t.date    "processed"
+    t.string  "payment_type",                                         default: ""
+    t.boolean "capture",                                              default: false
+    t.decimal "amount",                       precision: 8, scale: 2, default: 0.0
+    t.string  "cc_last_4",          limit: 4,                         default: ""
+    t.string  "cc_month",           limit: 2,                         default: ""
+    t.string  "cc_year",            limit: 4,                         default: ""
+    t.string  "cc_type",                                              default: ""
+    t.string  "check_number",                                         default: ""
+  end
+
+  add_index "payments", ["cim_profile_id"], name: "index_payments_on_cim_profile_id", using: :btree
+  add_index "payments", ["cim_transaction_id"], name: "index_payments_on_cim_transaction_id", using: :btree
+  add_index "payments", ["donation_id"], name: "index_payments_on_donation_id", using: :btree
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.integer  "client_id"

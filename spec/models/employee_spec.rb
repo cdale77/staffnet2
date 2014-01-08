@@ -25,6 +25,7 @@
 #  dob               :date
 #  gender            :string(255)      default("")
 #  active            :boolean          default(TRUE)
+#  notes             :text             default("")
 #  created_at        :datetime
 #  updated_at        :datetime
 #
