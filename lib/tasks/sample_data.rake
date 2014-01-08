@@ -96,6 +96,29 @@ namespace :db do
         supporter.supporter_type_id = supporter_type.id
         supporter.save
       end
+
+      # donations
+      Supporter.all.each do |supporter|
+        4.times do
+          donation = supporter.donations.build( date: Date.today,
+                                                source: 'mail',
+                                                campaign: 'energy',
+                                                donation_type: %W[credit check cash].sample,
+                                                amount: [5, 10, 15, 20, 50, 100].sample )
+          donation.shift_id = Shift.all.sample.id
+          donation.save
+        end
+      end
+
+      # payments
+      Donation.all.each do |donation|
+        payment = donation.payments.build(  cim_profile_id: '332213123',
+                                            user_id: 4,
+                                            deposited_at: Date.today,
+                                            amount: donation.amount,
+                                            payment_type: donation.donation_type)
+        payment.save
+      end
     end
 
 =begin
