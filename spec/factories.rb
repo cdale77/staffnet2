@@ -120,7 +120,7 @@ FactoryGirl.define do
   end
 
   factory :payment do
-    processed_at          Time.now
+    deposited_at          Time.now
     payment_type          'Credit Card'
     captured              true
     amount                10.00

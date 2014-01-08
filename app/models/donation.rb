@@ -29,7 +29,6 @@ class Donation < ActiveRecord::Base
   has_many :payments
 
  ## VALIDATIONS
-
   validates :source, presence: { message: 'required.' }
 
   validates :sub_month,

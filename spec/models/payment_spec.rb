@@ -7,9 +7,9 @@
 #  cim_profile_id     :string(255)      default("")
 #  cim_transaction_id :string(255)      default("")
 #  user_id            :integer
-#  processed          :date
+#  deposited_at       :date
 #  payment_type       :string(255)      default("")
-#  capture            :boolean          default(FALSE)
+#  captured           :boolean          default(FALSE)
 #  amount             :decimal(8, 2)    default(0.0)
 #  cc_last_4          :string(4)        default("")
 #  cc_month           :string(2)        default("")
@@ -22,7 +22,7 @@ require 'spec_helper'
 
 describe Payment do
 
-  payment_attributes = { processed: Time.now, payment_type: 'Credit Card', captured: true, amount: 10.00,
+  payment_attributes = { deposited_at: Time.now, payment_type: 'Credit Card', captured: true, amount: 10.00,
                          cim_profile_id: '322134421', cc_last_4: '4321', cc_type: 'Visa', cc_month: '02',
                          cc_year: '2014', check_number: '2122', user_id: 43, cim_transaction_id: '344442211113',
                          notes: 'Notes'}
@@ -38,4 +38,20 @@ describe Payment do
 
   ## RELATIONSHIPS
   it { should respond_to(:donation) }
+
+  ## VALIDATIONS
+  describe 'payment type validations' do
+    it 'should require a payment type' do
+      payment.payment_type = ''
+      payment.should_not be_valid
+    end
+  end
+  describe 'amount validations' do
+    it 'should require a payment amount' do
+      payment.amount = ''
+      payment.should_not be_valid
+    end
+
+  end
+
 end

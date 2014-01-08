@@ -26,6 +26,7 @@ class Shift < ActiveRecord::Base
   delegate :user, to: :employee
   belongs_to :shift_type
   has_many :donations
+  has_many :payments, through: :donations
   #has_many :tasks, dependent: :destroy
 
   ## VALIDATIONS

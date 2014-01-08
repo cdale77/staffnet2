@@ -50,6 +50,7 @@ class Supporter < ActiveRecord::Base
   ## RELATIONSHIPS
   belongs_to :supporter_type
   has_many :donations
+  has_many :payments, through: :donations
 
   ## VALIDATIONS
 

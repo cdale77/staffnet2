@@ -78,6 +78,5 @@ describe Donation do
       donation.sub_week = 4
       donation.should be_valid
     end
-
   end
 end

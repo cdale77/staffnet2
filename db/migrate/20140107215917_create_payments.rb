@@ -5,7 +5,7 @@ class CreatePayments < ActiveRecord::Migration
       t.string  :cim_profile_id, :default => ''
       t.string  :cim_transaction_id, :default => ''
       t.integer :user_id
-      t.date    :processed_at
+      t.date    :deposited_at
       t.string  :payment_type, :default => ''
       t.boolean :captured, :default => false
       t.decimal :amount, :scale => 2, :precision=> 8, :default => 0
@@ -14,6 +14,7 @@ class CreatePayments < ActiveRecord::Migration
       t.string  :cc_year, :limit => 4, :default => ''
       t.string  :cc_type, :default => ''
       t.string  :check_number, :default => ''
+      t.text    :notes, :default => ''
     end
 
     add_index :payments, :donation_id
