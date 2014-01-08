@@ -20,10 +20,25 @@
 
 class Donation < ActiveRecord::Base
 
+  ## SET UP ENVIRONMENT
+  include Regex
+
   ## RELATIONSHIPS
   belongs_to :supporter
   belongs_to :shift
   has_many :payments
 
+ ## VALIDATIONS
 
+  validates :source, presence: { message: 'required.' }
+
+  validates :sub_month,
+            length: { is: 1 },
+            format: { with: ALPHA_ONLY_REGEX, message: 'must be a single aplhpa character.' },
+            allow_blank: true
+
+  validates :sub_week,
+            length: { is: 1},
+            numericality: { message: 'must be a single aplhpa character.' },
+            allow_blank: true
 end

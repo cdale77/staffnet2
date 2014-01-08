@@ -38,4 +38,46 @@ describe Donation do
   it { should respond_to(:supporter) }
   it { should respond_to(:payments) }
   it { should respond_to(:shift) }
+
+  ## VALIDATIONS
+  describe 'source validations' do
+    it 'should require a source' do
+      donation.source = ''
+      donation.should_not be_valid
+    end
+  end
+
+  describe 'sub_month validations' do
+    it 'should allow blank values' do
+      donation.sub_month = ''
+      donation.should be_valid
+    end
+    it 'should require sub_month to be a single character' do
+      donation.sub_month = 'aa'
+      donation.should_not be_valid
+    end
+    it 'should allow correct values' do
+      donation.sub_month = 'a'
+      donation.should be_valid
+    end
+  end
+
+  describe 'sub_week validations' do
+    it 'should allow blank values' do
+      donation.sub_week = ''
+      donation.should be_valid
+    end
+    it 'should require sub_week to be a single integer' do
+      invalid_codes = [ 11, 1111, 'a', 'aa']
+      invalid_codes.each do |code|
+        donation.sub_week = code
+        donation.should_not be_valid
+      end
+    end
+    it 'should accept proper values' do
+      donation.sub_week = 4
+      donation.should be_valid
+    end
+
+  end
 end
