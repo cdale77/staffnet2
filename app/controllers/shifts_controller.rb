@@ -4,7 +4,6 @@ class ShiftsController < ApplicationController
   after_filter :verify_authorized
 
   def new
-
     @employee = Employee.find(params[:employee_id])
     if @employee
       @shift = @employee.shifts.build
@@ -13,7 +12,6 @@ class ShiftsController < ApplicationController
       flash[:error] = 'Could not find employee.'
       render root_path  # TODO: Fix. Render probably not correct
     end
-
   end
 
   def create

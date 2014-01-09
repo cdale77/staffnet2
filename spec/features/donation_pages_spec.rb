@@ -13,6 +13,14 @@ describe 'DonationPages' do
 
   ### HELPERS ###
 
+  def fill_in_example_donation
+    fill_in 'Date',               with: '2014-01-02'
+    fill_in 'Amount',             with: 10.00
+    select 'Cash',                from: 'donation_donation_type'
+    select 'Phone',               from: 'donation_source'
+    select 'Prop 13',             from: 'donation_campaign'
+  end
+
   #### AS SUPERADMIN USER ####
 
   ## log in as superadmin user to test basic functionality of the pages. Authorization is handled in the
@@ -39,6 +47,29 @@ describe 'DonationPages' do
         it { should have_title('Staffnet:New donation') }
         it { should have_selector('h1', text: 'New donation') }
         it { should have_content(supporter.full_name)}
+      end
+
+      describe 'with invalid information' do
+        it 'should not create a new donation' do
+          expect { click_button 'Create Donation' }.not_to change(Donation, :count)
+        end
+        describe 'after clicking' do
+          before { click_button 'Create Donation' }
+          it { should have_content('error') }
+        end
+      end
+
+      describe 'with valid information' do
+        before { fill_in_example_donation }
+
+        it 'should create a new donation' do
+          expect { click_button 'Create Donation' }.to change(Donation, :count).by(1)
+        end
+        describe 'after saving donation' do
+          before { click_button 'Create Donation' }
+
+          it { should have_selector('div.alert') }
+        end
       end
 
     end

@@ -66,7 +66,7 @@ describe 'ShiftPages' do
 
       describe 'page' do
         it { should have_selector('h1', 'New shift') }
-
+        it { should have_content(employee.full_name) }
       end
 
       describe 'with invalid information' do
