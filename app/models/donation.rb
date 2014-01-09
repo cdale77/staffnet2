@@ -33,11 +33,11 @@ class Donation < ActiveRecord::Base
 
   validates :sub_month,
             length: { is: 1 },
-            format: { with: ALPHA_ONLY_REGEX, message: 'must be a single aplhpa character.' },
+            format: { with: ALPHA_ONLY_REGEX, message: 'must be a single alpha character.' },
             allow_blank: true
 
   validates :sub_week,
             length: { is: 1},
-            numericality: { message: 'must be a single aplhpa character.' },
+            numericality: { message: 'must be a single alpha character.' },
             allow_blank: true
 end

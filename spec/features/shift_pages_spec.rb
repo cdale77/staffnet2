@@ -14,7 +14,8 @@ describe 'ShiftPages' do
   let(:staff_employee) { FactoryGirl.create(:employee, first_name: 'Staff', user_id: staff.id) }
   let(:super_admin_employee) { FactoryGirl.create(:employee, first_name: 'SuperAdmin', user_id: super_admin.id) }
 
-  let(:shift) { FactoryGirl.create(:shift) }
+  let!(:shift) { FactoryGirl.create(:shift) }
+  let!(:donation) { FactoryGirl.create(:donation, shift_id: shift.id) }
 
   ## HELPERS
 
@@ -102,6 +103,11 @@ describe 'ShiftPages' do
         describe 'links' do
           it { should have_link('edit', href: edit_shift_path(shift)) }
           it { should have_link('delete', href: shift_path(shift)) }
+        end
+        describe 'donations' do
+          it { should have_content(donation.supporter.full_name) }
+          it { should have_content(donation.amount.to_s) }
+          it { should have_link('details', href: donation_path(donation)) }
         end
       end
     end

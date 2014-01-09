@@ -16,13 +16,17 @@ Staffnet2::Application.routes.draw do
     resources :shifts, except: :new do
       resource :shift_type
       resource :employee
+      resources :donations
       #resources :tasks
     end
 
     resources :clients
 
-    resources :supporters
+    resources :supporters do
+      resources :donations
+    end
 
+    resources :donations
     resources :supporter_types, except: [ :show, :destroy ]
     resources :shift_types, except: [ :show, :destroy ]
 

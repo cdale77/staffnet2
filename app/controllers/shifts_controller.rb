@@ -30,6 +30,7 @@ class ShiftsController < ApplicationController
 
   def show
     @shift = Shift.find(params[:id])
+    @donations = @shift.donations.limit(20)
     @employee = @shift.employee
     authorize @shift
   end
