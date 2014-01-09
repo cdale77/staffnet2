@@ -9,7 +9,9 @@ describe 'SupporterPages' do
   let(:super_admin) { FactoryGirl.create(:super_admin) }
   let(:manager) { FactoryGirl.create(:manager) }
   let!(:supporter_type) { FactoryGirl.create(:supporter_type) } # so there's a supporter type to pick for #new
-  let(:supporter) { FactoryGirl.create(:supporter) }
+
+  let!(:supporter) { FactoryGirl.create(:supporter) }
+  let!(:donation) { FactoryGirl.create(:donation, supporter_id: supporter.id) }
 
   ### HELPERS ###
   def fill_in_example_supporter
@@ -75,6 +77,9 @@ describe 'SupporterPages' do
           describe 'links' do
             it { should have_link('edit', href: edit_supporter_path(supporter)) }
             it { should have_link('delete', href: supporter_path(supporter)) }
+          end
+          describe 'donations' do
+            it { should have_link('details', href: donation_path(donation)) }
           end
         end
       end

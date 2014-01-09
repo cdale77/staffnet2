@@ -24,6 +24,7 @@ class SupportersController < ApplicationController
 
   def show
     @supporter = Supporter.find(params[:id])
+    @donations = @supporter.donations
     @supporter_type = @supporter.supporter_type
     authorize @supporter
   end
