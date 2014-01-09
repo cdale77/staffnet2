@@ -4,7 +4,7 @@ class ShiftsController < ApplicationController
   after_filter :verify_authorized
 
   def new
-    #@shift = Shift.new
+
     @employee = Employee.find(params[:employee_id])
     if @employee
       @shift = @employee.shifts.build
