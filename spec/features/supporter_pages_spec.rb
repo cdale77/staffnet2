@@ -79,6 +79,7 @@ describe 'SupporterPages' do
             it { should have_link('delete', href: supporter_path(supporter)) }
           end
           describe 'donations' do
+            it { should have_link('New donation', href: new_supporter_donation_path(supporter)) }
             it { should have_link('details', href: donation_path(donation)) }
           end
         end
