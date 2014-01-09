@@ -40,4 +40,9 @@ class Donation < ActiveRecord::Base
             length: { is: 1},
             numericality: { message: 'must be a single alpha character.' },
             allow_blank: true
+
+  def is_sustainer?
+    false if sub_month.blank?
+  end
+
 end

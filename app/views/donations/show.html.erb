@@ -1,0 +1,69 @@
+<% provide(:title, 'Donation') %>
+<%= render 'shared/profiles/profile_header', title: 'Donation' %>
+<%= render 'shared/profiles/profile_buttons', record: @donation %>
+
+<div class="row">
+  <div class="span12">
+    <div class="row record-display">
+      <div class="span4 record-column">
+        <table>
+          <tr>
+            <th>Supporter</th>
+            <td><%= @supporter.full_name %></td>
+          </tr>
+          <tr>
+            <th>Date</th>
+            <td><%= @donation.date %></td>
+          </tr>
+          <tr>
+            <th>Amount</th>
+            <td><%= @donation.amount %></td>
+          </tr>
+          <% if @donation.is_sustainer? %>
+            <tr>
+              <th>Month code</th>
+              <td><%= @donation.sub_month %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="span4 record-column">
+        <table>
+          <tr>
+            <th>Type</th>
+            <td><%= @donation.donation_type %></td>
+          </tr>
+          <tr>
+            <th>Source</th>
+            <td><%= @donation.source %></td>
+          </tr>
+          <tr>
+            <th>Campaign</th>
+            <td><%= @donation.campaign %></td>
+          </tr>
+          <% if @donation.is_sustainer? %>
+            <tr>
+              <th>Week code</th>
+              <td><%= @donation.sub_week %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="span4 record-column">
+        <table>
+          <tr>
+            <th>Notes</th>
+            <td><%= @donation.notes %></td>
+          </tr>
+          <%= render 'shared/profiles/magic_columns', record: @donation %>
+          <% if @donation.is_sustainer? %>
+            <tr>
+              <th>Cancelled</th>
+              <td><%= @donation.cancelled %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

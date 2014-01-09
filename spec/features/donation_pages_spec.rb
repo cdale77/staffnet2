@@ -10,7 +10,7 @@ describe 'DonationPages' do
   let(:manager) { FactoryGirl.create(:manager) }
 
   let(:supporter) { FactoryGirl.create(:supporter) }
-
+  let(:donation) { FactoryGirl.create(:donation) }
   ### HELPERS ###
 
   def fill_in_example_donation
@@ -71,10 +71,23 @@ describe 'DonationPages' do
           it { should have_selector('div.alert') }
         end
       end
-
     end
 
-
-
+    describe 'show' do
+      describe 'page' do
+        before { visit donation_path(donation) }
+        describe 'page' do
+          it { should have_content (supporter.full_name) }
+          describe 'links' do
+            it { should have_link('edit', href: edit_donation_path(donation)) }
+            it { should have_link('delete', href: donation_path(donation)) }
+          end
+          describe 'payments' do
+            it { should have_link('New payment', href: new_donation_payment_path(donation)) }
+            it { should have_link('details', href: payment_path(payment)) }
+          end
+        end
+      end
+    end
   end
 end

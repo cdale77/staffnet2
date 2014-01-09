@@ -26,6 +26,13 @@ class DonationsController < ApplicationController
     end
   end
 
+  def show
+    @donation = Donation.find(params[:id])
+    @supporter = @donation.supporter
+    @payments = @donation.payments
+    #authorize @donation
+  end
+
   private
 
     def donation_params

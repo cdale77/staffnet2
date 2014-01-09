@@ -72,8 +72,7 @@ describe 'SupporterPages' do
       describe 'page' do
         before { visit supporter_path(supporter) }
         describe 'page' do
-          it { should have_content (supporter.first_name) }
-          it { should have_content (supporter.last_name) }
+          it { should have_content (supporter.full_name) }
           describe 'links' do
             it { should have_link('edit', href: edit_supporter_path(supporter)) }
             it { should have_link('delete', href: supporter_path(supporter)) }
