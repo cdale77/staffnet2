@@ -29,13 +29,13 @@ class SupporterType < ActiveRecord::Base
   end
 
   def mailchimp_group_names
-    gb = Gibbon::API.new
-    mailchimp_groups = gb.lists.interest_groupings(id: ENV['MAILCHIMP_LIST_ID'])
     names = []
-    mailchimp_groups[0]['groups'].each do |group|
+    gb = Gibbon::API.new
+    mailchimp_groups = gb.lists.interest_groupings(id: ENV['MAILCHIMP_LIST_ID'])[0]['groups']
+    mailchimp_groups.each do |group|
       names << group['name']
     end
-    return names
+    names
   end
 
   def number_of_supporters
