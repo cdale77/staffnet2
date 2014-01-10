@@ -183,4 +183,13 @@ describe Supporter do
       expect(supporter.reload.phone_mobile).to eql clean_phone
     end
   end
+
+  ## MailChimp
+  describe 'MailChimp integration' do
+    it 'should create a new mailchimp account' do
+      supporter.mailchimp_leid = ''
+      supporter.save
+      supporter.mailchimp_leid.should_not be_blank
+    end
+  end
 end

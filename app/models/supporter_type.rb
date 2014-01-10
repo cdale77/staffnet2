@@ -18,6 +18,7 @@ class SupporterType < ActiveRecord::Base
 
   ## CALLBACKS
   after_save :create_mailchimp_group
+  before_destroy :destroy_mailchimp_group
 
   def create_mailchimp_group
     unless mailchimp_group_names.include? self.name
@@ -36,6 +37,13 @@ class SupporterType < ActiveRecord::Base
       names << group['name']
     end
     names
+  end
+
+  def destroy_mailchimp_group
+    gb = Gibbon::API.new
+    gb.lists.interest_group_del( id: ENV['MAILCHIMP_LIST_ID'],
+                                 group_name: self.name,
+                                 group_id: ENV['MAILCHIMP_LIST_SUPPORTER_GROUP_ID']  )
   end
 
   def number_of_supporters

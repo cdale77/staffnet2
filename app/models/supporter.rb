@@ -84,6 +84,7 @@ class Supporter < ActiveRecord::Base
   before_validation :format_phone_numbers
   before_validation { self.salutation = first_name if self.salutation.blank? }
 
+  after_save :update_mailchimp
 
 
 
@@ -91,6 +92,19 @@ class Supporter < ActiveRecord::Base
 
 
   private
+
+    def update_mailchimp
+      if self.mailchimp_leid.blank? && !self.email_1.blank?
+        # create a new record
+        gb = Gibbon::API.new
+        gb.lists.subscribe( id: ENV['MAILCHIMP_LIST_ID'],
+                            email: { email: self.email_1 },
+                            merge_vars: { groupings: [{id: '19241', groups: [supporter_type.name] }] },
+                            double_optin: false)
+      elsif !self.email_1.blank?
+        # update an existing record
+      end
+    end
 
     ## DATA CLEANING METHODS
     def downcase_emails
