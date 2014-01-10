@@ -52,12 +52,5 @@ class SupporterType < ActiveRecord::Base
     end
   end
 
-  def update_mailchimp_sync
-    self.mailchimp_sync_at = Time.now + 1.second
-    if self.save
-      puts 'Updated mailchimp timestamp'
-    else
-      puts 'ERROR updating mailchimp timestamp'
-    end
-  end
+
 end

@@ -81,16 +81,16 @@ namespace :db do
     end
 
     SupporterType.all.each do |supporter_type|
-      100.times do
-        supporter = Supporter.new(  first_name:     Faker::Name.first_name,
-                      last_name:      Faker::Name.last_name,
-                      address1:       Faker::Address.street_address,
-                      address_city:   Faker::Address.city,
-                      address_state:  'CA',
-                      address_zip:    '94709',
-                      email_1:        Faker::Internet.email,
-                      phone_mobile:   '5108493849',
-                      phone_alt:      '4503403123',
+      5.times do
+        supporter =   Supporter.new(  first_name:     Faker::Name.first_name,
+                                      last_name:      Faker::Name.last_name,
+                                      address1:       Faker::Address.street_address,
+                                      address_city:   Faker::Address.city,
+                                      address_state:  'CA',
+                                      address_zip:    '94709',
+                                      email_1:        Faker::Internet.email,
+                                      phone_mobile:   '5108493849',
+                                      phone_alt:      '4503403123',
 
         )
         supporter.supporter_type_id = supporter_type.id

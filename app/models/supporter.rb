@@ -87,8 +87,58 @@ class Supporter < ActiveRecord::Base
   before_validation :format_phone_numbers
   before_validation { self.salutation = first_name if self.salutation.blank? }
 
+  def self.mailchimp_create_records
+    connection = Gibbon::API.new
+    connection.timeout = 60
+    connection.lists.batch_subscribe( id: ENV['MAILCHIMP_LIST_ID'], batch: mailchimp_update_array, double_optin: false)
 
+  end
+
+  def self.mailchimp_update_records
+    #update existing records
+  end
+
+
+
+  def self.mailchimp_update_array
+    array = []
+    mailchimp_records_to_sync.each do |record|
+      array << record.mailchimp_record_hash
+    end
+    array
+  end
+
+  def mailchimp_record_hash
+    {
+        email:      self.mailchimp_email_hash,
+        merge_vars: {
+                      FNAME:  self.first_name,
+                      LNAME:  self.last_name,
+                      zip:    self.address_zip,
+                      groupings:  [{ id: ENV['MAILCHIMP_LIST_SUPPORTER_GROUP_ID'], groups: [self.supporter_type.name] }]
+                    },
+
+        double_optin: false
+    }
+  end
+
+  def mailchimp_email_hash
+    if self.mailchimp_leid.blank?
+      {
+          email: self.email_1
+      }
+    else
+      {
+          #email:  self.email_1,
+          leid:   self.mailchimp_leid
+      }
+    end
+  end
   private
+
+
+
+
 
 =begin
     def destroy_mailchimp_record
