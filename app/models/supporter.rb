@@ -90,15 +90,29 @@ class Supporter < ActiveRecord::Base
   def self.mailchimp_create_records
     connection = Gibbon::API.new
     connection.timeout = 60
-    connection.lists.batch_subscribe( id: ENV['MAILCHIMP_LIST_ID'], batch: mailchimp_update_array, double_optin: false)
-
+    response = connection.lists.batch_subscribe( id: ENV['MAILCHIMP_LIST_ID'],
+                                                 batch: mailchimp_update_array,
+                                                 double_optin: false)
+    store_leid(response)
   end
 
   def self.mailchimp_update_records
-    #update existing records
+    connection = Gibbon::API.new
+    connection.timeout = 60
+    connection.lists.batch_subscribe( id: ENV['MAILCHIMP_LIST_ID'],
+                                                 batch: mailchimp_update_array,
+                                                 update_existing: true,
+                                                 double_optin: false)
   end
 
 
+  def self.store_leid(mailchimp_repsonse)
+    mailchimp_response['adds'].each do |response|
+      supporter = Supporter.find_by_email(response['email'])
+      supporter.mailchimp_leid = response['leid']
+      supporter.save
+    end
+  end
 
   def self.mailchimp_update_array
     array = []
@@ -115,10 +129,11 @@ class Supporter < ActiveRecord::Base
                       FNAME:  self.first_name,
                       LNAME:  self.last_name,
                       zip:    self.address_zip,
-                      groupings:  [{ id: ENV['MAILCHIMP_LIST_SUPPORTER_GROUP_ID'], groups: [self.supporter_type.name] }]
-                    },
-
-        double_optin: false
+                      groupings:  [{
+                                      id: ENV['MAILCHIMP_LIST_SUPPORTER_GROUP_ID'],
+                                      groups: [self.supporter_type.name]
+                                   }]
+                    }
     }
   end
 
@@ -129,40 +144,15 @@ class Supporter < ActiveRecord::Base
       }
     else
       {
-          #email:  self.email_1,
-          leid:   self.mailchimp_leid
+          new_email:  self.email_1,
+          leid:       self.mailchimp_leid
       }
     end
   end
+
+
   private
 
-
-
-
-
-=begin
-    def destroy_mailchimp_record
-      unless self.mailchimp_leid.blank?
-        gb = Gibbon::API.new
-        gb.lists.unsubscribe( id: ENV['MAILCHIMP_LIST_ID'],
-                              email: { leid: self.mailchimp_leid },
-                              delete_member: true )
-      end
-    end
-
-    def update_mailchimp_record
-      if self.mailchimp_leid.blank? && !self.email_1.blank?
-        # create a new record
-        gb = Gibbon::API.new
-        gb.lists.subscribe( id: ENV['MAILCHIMP_LIST_ID'],
-                            email: { email: self.email_1 },
-                            merge_vars: { groupings: [{id: '19241', groups: [supporter_type.name] }] },
-                            double_optin: false)
-      elsif !self.email_1.blank?
-        # update an existing record
-      end
-    end
-=end
 
     ## DATA CLEANING METHODS
     def downcase_emails
