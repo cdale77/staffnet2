@@ -52,6 +52,7 @@ class CreateSupporters < ActiveRecord::Migration
 
     add_index :supporters, :external_id
     add_index :supporters, :cim_id
+    add_index :supporters, :mailchimp_leid
 
   end
 end

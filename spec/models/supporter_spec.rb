@@ -45,7 +45,7 @@ require 'spec_helper'
 
 describe Supporter do
 
-  supporter_attributes = {  external_id: 3421, cim_id: 43300134, supporter_type_id: 1, prefix: 'Mr.', salutation: 'Bob',
+  supporter_attributes = {  external_id: '3421', cim_id: '43300134', supporter_type_id: 1, prefix: 'Mr.', salutation: 'Bob',
                             first_name: 'William', last_name: 'Taft', suffix: 'III', address1: '44 Winter Street',
                             address2: '2nd Floor', address_city: 'Boston', address_state: 'MA', address_zip: '02010',
                             email_1: 'bob@example.com', email_2: 'bobtaft@example.com', phone_mobile: '5554859875',
