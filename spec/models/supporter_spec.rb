@@ -3,9 +3,10 @@
 # Table name: supporters
 #
 #  id                :integer          not null, primary key
-#  external_id       :integer
-#  cim_id            :integer
 #  supporter_type_id :integer
+#  external_id       :string(255)      default("")
+#  cim_id            :string(255)      default("")
+#  mailchimp_leid    :string(255)      default("")
 #  prefix            :string(255)      default("")
 #  salutation        :string(255)      default("")
 #  first_name        :string(255)      default("")
@@ -49,7 +50,8 @@ describe Supporter do
                             address2: '2nd Floor', address_city: 'Boston', address_state: 'MA', address_zip: '02010',
                             email_1: 'bob@example.com', email_2: 'bobtaft@example.com', phone_mobile: '5554859875',
                             phone_home: '5559007845', phone_alt: '5558874952', keep_informed: true, vol_level: 'prospect',
-                            employer: 'Ohio State University', occupation: 'Professor', source: 'door', notes: 'Note.' }
+                            employer: 'Ohio State University', occupation: 'Professor', source: 'door', notes: 'Note.',
+                            mailchimp_leid: '332134' }
 
   let(:supporter) { FactoryGirl.create(:supporter) }
 

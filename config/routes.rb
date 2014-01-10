@@ -26,7 +26,12 @@ Staffnet2::Application.routes.draw do
       resources :donations
     end
 
-    resources :donations
+    resources :donations do
+      resources :payments
+    end
+
+    resources :payments
+
     resources :supporter_types, except: [ :show, :destroy ]
     resources :shift_types, except: [ :show, :destroy ]
 

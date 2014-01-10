@@ -16,6 +16,7 @@
 #  cc_year            :string(4)        default("")
 #  cc_type            :string(255)      default("")
 #  check_number       :string(255)      default("")
+#  notes              :text             default("")
 #
 
 class Payment < ActiveRecord::Base

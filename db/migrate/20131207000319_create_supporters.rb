@@ -2,9 +2,12 @@ class CreateSupporters < ActiveRecord::Migration
   def change
     create_table :supporters do |t|
 
-      t.integer :external_id
-      t.integer :cim_id
       t.integer :supporter_type_id
+
+      t.string :external_id, :default => ''
+      t.string :cim_id, :default => ''
+      t.string :mailchimp_leid, :default => ''
+
 
       t.string  :prefix, :default => ''
       t.string  :salutation, :default => ''

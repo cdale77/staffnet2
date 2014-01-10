@@ -9,8 +9,9 @@ describe 'DonationPages' do
   let(:super_admin) { FactoryGirl.create(:super_admin) }
   let(:manager) { FactoryGirl.create(:manager) }
 
-  let(:supporter) { FactoryGirl.create(:supporter) }
-  let(:donation) { FactoryGirl.create(:donation) }
+  let!(:supporter) { FactoryGirl.create(:supporter) }
+  let!(:donation) { FactoryGirl.create(:donation) }
+  let(:payment) { FactoryGirl.create(:payment) }
   ### HELPERS ###
 
   def fill_in_example_donation
