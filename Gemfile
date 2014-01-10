@@ -6,6 +6,8 @@ gem 'pg', '0.17.1'
 gem 'devise', '3.2.2'
 gem 'pundit', '0.2.1'
 
+gem 'gibbon', '1.1.1'
+
 gem 'simple_form', '3.0.1'
 gem 'will_paginate', '3.0.5'
 gem 'bootstrap-will_paginate', '0.0.10'
