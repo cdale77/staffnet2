@@ -54,18 +54,5 @@ class SupporterType < ActiveRecord::Base
     else
       puts 'ERROR updating mailchimp timestamp'
     end
-
   end
-
-=begin
-
-  def destroy_mailchimp_group
-    gb = Gibbon::API.new
-    gb.lists.interest_group_del( id: ENV['MAILCHIMP_LIST_ID'],
-                                 group_name: self.name,
-                                 group_id: ENV['MAILCHIMP_LIST_SUPPORTER_GROUP_ID']  )
-  end
-=end
-
-
 end
