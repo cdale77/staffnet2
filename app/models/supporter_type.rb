@@ -22,7 +22,7 @@ class SupporterType < ActiveRecord::Base
   has_many :supporters
 
   ## CALLBACKS
-  before_create { self.mailchimp_sync_at = (Time.now - 24.hours) }
+  before_create :set_mailchimp_sync_stamp
 
   def number_of_supporters
     self.supporters.count

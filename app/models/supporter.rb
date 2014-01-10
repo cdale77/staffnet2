@@ -49,6 +49,7 @@ class Supporter < ActiveRecord::Base
   include PeopleMethods
   include DisplayMethods
   include Cleaning
+  include MailChimpMethods
 
   ## RELATIONSHIPS
   belongs_to :supporter_type
@@ -81,6 +82,7 @@ class Supporter < ActiveRecord::Base
             allow_blank: true
 
   ## CALLBACKS
+  before_create :set_mailchimp_sync_stamp
   before_validation :downcase_emails
   before_validation :format_phone_numbers
   before_validation { self.salutation = first_name if self.salutation.blank? }
