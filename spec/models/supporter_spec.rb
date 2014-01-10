@@ -51,8 +51,7 @@ describe Supporter do
                             address2: '2nd Floor', address_city: 'Boston', address_state: 'MA', address_zip: '02010',
                             email_1: 'bob@example.com', email_2: 'bobtaft@example.com', phone_mobile: '5554859875',
                             phone_home: '5559007845', phone_alt: '5558874952', keep_informed: true, vol_level: 'prospect',
-                            employer: 'Ohio State University', occupation: 'Professor', source: 'door', notes: 'Note.',
-                            mailchimp_leid: '332134' }
+                            employer: 'Ohio State University', occupation: 'Professor', source: 'door', notes: 'Note.' }
 
   let(:supporter) { FactoryGirl.create(:supporter) }
 
@@ -191,6 +190,7 @@ describe Supporter do
   end
 
   ## MAILCHIMP
+=begin
   describe 'MailChimp syncing' do
     before { create_records_for_mailchimp }
     after { Supporter.delete_all }
@@ -204,4 +204,5 @@ describe Supporter do
       supporter.mailchimp_sync_at.should_not be_blank
     end
   end
+=end
 end

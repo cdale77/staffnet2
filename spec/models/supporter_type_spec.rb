@@ -53,6 +53,7 @@ describe SupporterType do
   end
 
   ## MAILCHIMP
+=begin
   describe 'MailChimp syncing' do
     before { create_records_for_mailchimp }
     after { SupporterType.delete_all }
@@ -66,5 +67,6 @@ describe SupporterType do
       supporter_type.mailchimp_sync_at.should_not be_blank
     end
   end
+=end
 
 end

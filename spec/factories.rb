@@ -90,7 +90,7 @@ FactoryGirl.define do
   end
 
   factory :supporter do
-    mailchimp_leid        '44552323'
+    #mailchimp_leid        '44552323'
     first_name            Faker::Name.first_name
     last_name             Faker::Name.last_name
     address1              Faker::Address.street_address

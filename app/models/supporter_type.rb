@@ -12,7 +12,7 @@
 class SupporterType < ActiveRecord::Base
 
   ## SETUP ENVIRONMENT
-  include MailChimpMethods
+  #include MailChimpMethods
 
   ## VALIDATIONS
   validates :name, presence: { message: 'required.' },
@@ -22,13 +22,14 @@ class SupporterType < ActiveRecord::Base
   has_many :supporters
 
   ## CALLBACKS
-  before_create :set_mailchimp_sync_stamp
+  #before_create :set_mailchimp_sync_stamp
 
   def number_of_supporters
     self.supporters.count
   end
 
   ## MailChimp
+=begin
   def self.mailchimp_sync_records
 
     connection = Gibbon::API.new
@@ -51,6 +52,7 @@ class SupporterType < ActiveRecord::Base
       sleep 2 # pause to make it easier on MailChimp API
     end
   end
+=end
 
 
 end

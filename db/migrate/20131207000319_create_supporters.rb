@@ -6,7 +6,7 @@ class CreateSupporters < ActiveRecord::Migration
 
       t.string :external_id, :default => ''
       t.string :cim_id, :default => ''
-      t.string :mailchimp_leid, :default => ''
+      #t.string :mailchimp_leid, :default => ''
 
 
       t.string  :prefix, :default => ''
@@ -48,12 +48,12 @@ class CreateSupporters < ActiveRecord::Migration
       t.text :notes, :default => ''
 
       t.timestamps
-      t.datetime    :mailchimp_sync_at
+      #t.datetime    :mailchimp_sync_at
     end
 
     add_index :supporters, :external_id
     add_index :supporters, :cim_id
-    add_index :supporters, :mailchimp_leid
+    #add_index :supporters, :mailchimp_leid
 
   end
 end

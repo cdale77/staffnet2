@@ -4,7 +4,7 @@ class CreateSupporterTypes < ActiveRecord::Migration
       t.string  :name, :default => ''
 
       t.timestamps
-      t.datetime    :mailchimp_sync_at
+      #t.datetime    :mailchimp_sync_at
     end
   end
 end
