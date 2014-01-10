@@ -17,7 +17,7 @@ class SupporterType < ActiveRecord::Base
   has_many :supporters
 
   ## CALLBACKS
-  before_save :create_mailchimp_group
+  after_save :create_mailchimp_group
 
   def create_mailchimp_group
     unless mailchimp_group_names.include? self.name

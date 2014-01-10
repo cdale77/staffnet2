@@ -155,7 +155,6 @@ describe Supporter do
   end
 
   ## METHODS
-
   describe 'salutation setting' do
     it 'should set the salutation correctly' do
       name = 'Kim'
@@ -163,6 +162,23 @@ describe Supporter do
       supporter.first_name = name
       supporter.save
       expect(supporter.reload.salutation).to eql name
+    end
+  end
+  describe 'email downcasing' do
+    it 'should downcase emails' do
+      email = 'UPPERCASEEMAIL@gmail.com'
+      supporter.email_1 = email
+      supporter.save
+      expect(supporter.reload.email_1).to eql email.downcase
+    end
+  end
+  describe 'phone number cleaning' do
+    it 'should clean junk from phone numbers' do
+      dirty_phone = '415-555-1234'
+      clean_phone = '4155551234'
+      supporter.phone_mobile = dirty_phone
+      supporter.save
+      expect(supporter.reload.phone_mobile).to eql clean_phone
     end
   end
 end
