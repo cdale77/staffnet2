@@ -30,20 +30,25 @@ class SupporterType < ActiveRecord::Base
 
   ## MailChimp
   def self.mailchimp_sync_records
-    mailchimp_groups = MailChimp::Group.group_names
+
+    connection = Gibbon::API.new
+
+    # cache the current MailChimp group names so we don't make too many API calls
+    mailchimp_groups = MailChimp::Group.group_names(connection)
+
     mailchimp_records_to_sync.map do |record|
 
       if mailchimp_groups.include? record.name
         puts 'Record exists.'
         record.update_mailchimp_sync
-      elsif MailChimp::Group.add_group(record.name)
-        puts 'Updating record for group ' + record.name
+      elsif MailChimp::Group.add_group(connection, record.name)
         record.update_mailchimp_sync
+        puts 'Updating record for group ' + record.name
       else
         puts 'ERROR - did not update MailChimp group record for ' + record.name
       end
 
-      sleep 2 # pause because MailChimp likes batched calls. This isn't a batch call, and the volume will be low.
+      sleep 2 # pause to make it easier on MailChimp API
     end
   end
 
