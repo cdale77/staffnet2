@@ -30,7 +30,7 @@ class SupporterType < ActiveRecord::Base
 
   ## MailChimp
   def self.mailchimp_sync_records
-    mailchimp_groups = MailChimp::Group.group_names.
+    mailchimp_groups = MailChimp::Group.group_names
     mailchimp_records_to_sync.map do |record|
 
       if mailchimp_groups.include? record.name
