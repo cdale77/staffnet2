@@ -88,8 +88,6 @@ class Supporter < ActiveRecord::Base
   before_validation { self.salutation = first_name if self.salutation.blank? }
 
 
-
-
   private
 
 =begin
