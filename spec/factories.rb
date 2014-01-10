@@ -86,7 +86,7 @@ FactoryGirl.define do
   end
 
   factory :supporter_type do
-    name        Faker::Lorem.word
+    name        ['Supporter-test', 'Donor-test', 'Media-test', 'Official-test', 'Staff-test', 'Volunteer-test'].sample
   end
 
   factory :supporter do

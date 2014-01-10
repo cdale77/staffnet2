@@ -22,31 +22,42 @@ class SupporterType < ActiveRecord::Base
   has_many :supporters
 
   ## CALLBACKS
-  #after_save :create_mailchimp_group
-  #before_destroy :destroy_mailchimp_group
+  before_create { self.mailchimp_sync_at = (Time.now - 24.hours) }
 
+  def number_of_supporters
+    self.supporters.count
+  end
 
+  ## MailChimp
+  def self.mailchimp_sync_records
+    mailchimp_groups = MailChimp::Group.group_names.
+    mailchimp_records_to_sync.map do |record|
+
+      if mailchimp_groups.include? record.name
+        puts 'Record exists.'
+        record.update_mailchimp_sync
+      elsif MailChimp::Group.add_group(record.name)
+        puts 'Updating record for group ' + record.name
+        record.update_mailchimp_sync
+      else
+        puts 'ERROR - did not update MailChimp group record for ' + record.name
+      end
+
+      sleep 2 # pause because MailChimp likes batched calls. This isn't a batch call, and the volume will be low.
+    end
+  end
+
+  def update_mailchimp_sync
+    self.mailchimp_sync_at = Time.now + 1.second
+    if self.save
+      puts 'Updated mailchimp timestamp'
+    else
+      puts 'ERROR updating mailchimp timestamp'
+    end
+
+  end
 
 =begin
-  def create_mailchimp_group
-    # probably should not check the group names every time we make a supporter group. At least in testing.
-    unless mailchimp_group_names.include? self.name
-      gb = Gibbon::API.new
-      gb.lists.interest_group_add(  id: ENV['MAILCHIMP_LIST_ID'],
-                                    group_name: self.name,
-                                    group_id: ENV['MAILCHIMP_LIST_SUPPORTER_GROUP_ID'] )
-    end
-  end
-
-  def mailchimp_group_names
-    names = []
-    gb = Gibbon::API.new
-    mailchimp_groups = gb.lists.interest_groupings(id: ENV['MAILCHIMP_LIST_ID'])[0]['groups']
-    mailchimp_groups.each do |group|
-      names << group['name']
-    end
-    names
-  end
 
   def destroy_mailchimp_group
     gb = Gibbon::API.new
@@ -56,8 +67,5 @@ class SupporterType < ActiveRecord::Base
   end
 =end
 
-  def number_of_supporters
-    self.supporters.count
-  end
 
 end

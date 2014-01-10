@@ -76,9 +76,9 @@ namespace :db do
     end
 
     # supporter types
-    SupporterType.create(name: 'Donor')
-    SupporterType.create(name: 'Media')
-    SupporterType.create(name: 'Staff')
+    ['Supporter-test', 'Donor-test', 'Media-test', 'Official-test', 'Staff-test', 'Volunteer-test'].each do |type|
+      SupporterType.create(name: type)
+    end
 
     SupporterType.all.each do |supporter_type|
       100.times do

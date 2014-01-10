@@ -85,12 +85,12 @@ class Supporter < ActiveRecord::Base
   before_validation :format_phone_numbers
   before_validation { self.salutation = first_name if self.salutation.blank? }
 
-  #after_save :update_mailchimp_record
-  #before_destroy :destroy_mailchimp_record
+
 
 
   private
 
+=begin
     def destroy_mailchimp_record
       unless self.mailchimp_leid.blank?
         gb = Gibbon::API.new
@@ -112,6 +112,7 @@ class Supporter < ActiveRecord::Base
         # update an existing record
       end
     end
+=end
 
     ## DATA CLEANING METHODS
     def downcase_emails

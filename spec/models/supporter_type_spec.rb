@@ -20,9 +20,9 @@ describe SupporterType do
 
   ## HELPERS
   def create_records_for_mailchimp
-    5.times { FactoryGirl.create(:supporter_type) }
-    5.times { FactoryGirl.create(:supporter_type, mailchimp_sync_at: (Time.now - 24.hours)) }
-    5.times { FactoryGirl.create(:supporter_type, mailchimp_sync_at: (Time.now + 24.hours)) }
+    2.times { FactoryGirl.create(:supporter_type) }
+    2.times { FactoryGirl.create(:supporter_type, mailchimp_sync_at: (Time.now - 24.hours)) }
+    2.times { FactoryGirl.create(:supporter_type, mailchimp_sync_at: (Time.now + 24.hours)) }
   end
 
   ## ATTRIBUTES
@@ -54,7 +54,7 @@ describe SupporterType do
   describe 'MailChimp syncing' do
     before { create_records_for_mailchimp }
     it 'should collect the right records for sync' do
-      expect(SupporterType.mailchimp_records_to_sync.count).to eql 5
+      expect(SupporterType.mailchimp_records_to_sync.count).to eql 2
 
     end
   end
