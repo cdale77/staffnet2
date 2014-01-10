@@ -39,6 +39,7 @@
 #  notes             :text             default("")
 #  created_at        :datetime
 #  updated_at        :datetime
+#  mailchimp_sync_at :datetime
 #
 
 require 'spec_helper'
@@ -185,11 +186,11 @@ describe Supporter do
   end
 
   ## MailChimp
-  describe 'MailChimp integration' do
-    it 'should create a new mailchimp account' do
-      supporter.mailchimp_leid = ''
-      supporter.save
-      supporter.mailchimp_leid.should_not be_blank
-    end
-  end
+  #describe 'MailChimp integration' do
+  #  it 'should create a new mailchimp account' do
+  #    supporter.mailchimp_leid = ''
+  #    supporter.save
+  #    supporter.mailchimp_leid.should_not be_blank
+  #  end
+  #end
 end

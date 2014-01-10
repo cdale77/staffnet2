@@ -39,6 +39,7 @@
 #  notes             :text             default("")
 #  created_at        :datetime
 #  updated_at        :datetime
+#  mailchimp_sync_at :datetime
 #
 
 class Supporter < ActiveRecord::Base
@@ -84,16 +85,22 @@ class Supporter < ActiveRecord::Base
   before_validation :format_phone_numbers
   before_validation { self.salutation = first_name if self.salutation.blank? }
 
-  after_save :update_mailchimp
-
-
-
-
+  #after_save :update_mailchimp_record
+  #before_destroy :destroy_mailchimp_record
 
 
   private
 
-    def update_mailchimp
+    def destroy_mailchimp_record
+      unless self.mailchimp_leid.blank?
+        gb = Gibbon::API.new
+        gb.lists.unsubscribe( id: ENV['MAILCHIMP_LIST_ID'],
+                              email: { leid: self.mailchimp_leid },
+                              delete_member: true )
+      end
+    end
+
+    def update_mailchimp_record
       if self.mailchimp_leid.blank? && !self.email_1.blank?
         # create a new record
         gb = Gibbon::API.new

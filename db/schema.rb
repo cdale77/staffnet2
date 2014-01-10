@@ -147,7 +147,10 @@ ActiveRecord::Schema.define(version: 20140107215917) do
   add_index "shifts", ["shift_type_id"], name: "index_shifts_on_shift_type_id", using: :btree
 
   create_table "supporter_types", force: true do |t|
-    t.string "name", default: ""
+    t.string   "name",              default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "mailchimp_sync_at"
   end
 
   create_table "supporters", force: true do |t|
@@ -187,10 +190,12 @@ ActiveRecord::Schema.define(version: 20140107215917) do
     t.text     "notes",             default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "mailchimp_sync_at"
   end
 
   add_index "supporters", ["cim_id"], name: "index_supporters_on_cim_id", using: :btree
   add_index "supporters", ["external_id"], name: "index_supporters_on_external_id", using: :btree
+  add_index "supporters", ["mailchimp_leid"], name: "index_supporters_on_mailchimp_leid", using: :btree
 
   create_table "task_types", force: true do |t|
     t.string "name", default: ""

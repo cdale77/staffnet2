@@ -48,6 +48,7 @@ class CreateSupporters < ActiveRecord::Migration
       t.text :notes, :default => ''
 
       t.timestamps
+      t.datetime    :mailchimp_sync_at
     end
 
     add_index :supporters, :external_id

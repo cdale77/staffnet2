@@ -2,12 +2,17 @@
 #
 # Table name: supporter_types
 #
-#  id   :integer          not null, primary key
-#  name :string(255)      default("")
+#  id                :integer          not null, primary key
+#  name              :string(255)      default("")
+#  created_at        :datetime
+#  updated_at        :datetime
+#  mailchimp_sync_at :datetime
 #
 
 class SupporterType < ActiveRecord::Base
 
+  ## SETUP ENVIRONMENT
+  include MailChimpMethods
 
   ## VALIDATIONS
   validates :name, presence: { message: 'required.' },
@@ -17,10 +22,14 @@ class SupporterType < ActiveRecord::Base
   has_many :supporters
 
   ## CALLBACKS
-  after_save :create_mailchimp_group
-  before_destroy :destroy_mailchimp_group
+  #after_save :create_mailchimp_group
+  #before_destroy :destroy_mailchimp_group
 
+
+
+=begin
   def create_mailchimp_group
+    # probably should not check the group names every time we make a supporter group. At least in testing.
     unless mailchimp_group_names.include? self.name
       gb = Gibbon::API.new
       gb.lists.interest_group_add(  id: ENV['MAILCHIMP_LIST_ID'],
@@ -45,6 +54,7 @@ class SupporterType < ActiveRecord::Base
                                  group_name: self.name,
                                  group_id: ENV['MAILCHIMP_LIST_SUPPORTER_GROUP_ID']  )
   end
+=end
 
   def number_of_supporters
     self.supporters.count

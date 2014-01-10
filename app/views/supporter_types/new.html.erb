@@ -2,6 +2,8 @@
 <div class="row">
   <div class="span8 offset3">
     <h1>New supporter type</h1>
+    <p><em>Note: You <b>must</b> also create a MailChimp Interest Group (Grouping: Supporters) with an identical name.
+    Otherwise supporter records will not be properly updated. </em></p>
     <%= form_for(@supporter_type) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div class="row">

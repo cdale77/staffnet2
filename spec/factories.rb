@@ -86,7 +86,7 @@ FactoryGirl.define do
   end
 
   factory :supporter_type do
-    name        'Media-test'
+    name        Faker::Lorem.word
   end
 
   factory :supporter do
