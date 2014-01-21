@@ -10,22 +10,27 @@ module Cim
   class Profile 
 
     attr_reader :cim_id
-    attr_reader :params
 
-    def initialize(supporter_id, supporter_email = '')
+    def initialize(supporter_id, supporter_email = '', cim_id = '')
       @supporter_id = supporter_id.to_s
       @supporter_email = supporter_email
-      @cim_id = ''
-      @params = {}
+      @cim_id = cim_id
     end
 
     def store
       result = Cim.connection.create_customer_profile(profile: customer_profile)
-      @params = result.params
-      @cim_id = result.params['customer_profile_id']
-      raise Exceptions::CimProfileError unless @cim_id
+      if result.success?
+        @cim_id = result.params['customer_profile_id']
+      else
+        raise Exceptions::CimProfileError if result.params['customer_profile_id'].blank?
+        return false
+      end
     end
 
+    def unstore
+      result = Cim.connection.delete_customer_profile(customer_profile_id: @cim_id)
+      result.success?
+    end
 
     private
       def customer_profile
