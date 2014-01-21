@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="span12" id="donation-payments">
+    <div class="row">
+      <div class="span6">
+        <h4 class="table-title-right">Payments</h4>
+      </div>
+      <%= render 'shared/profiles/new_dependent_record_button', record_name: 'payment', record: donation %>
+    </div>
+    <table class="table table-condensed table-striped">
+      <tr>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Type</th>
+        <th>Captured?</th>
+        <th></th>
+      </tr>
+      <% payments.each do |payment| %>
+        <tr>
+          <td><%= payment.deposited_at %></td>
+          <td><%= payment.amount %></td>
+          <td><%= payment.payment_type %></td>
+          <td><%= payment.captured %></td>
+          <td class="buttons">
+            <%= link_to 'details', payment_path(payment), class: 'btn btn-mini', type: 'button' if manager_user? %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
