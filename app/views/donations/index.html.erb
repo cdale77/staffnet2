@@ -1,0 +1,14 @@
+<% provide(:title, 'All donations') %>
+<h1>All donations</h1>
+<table class="table table-condensed table-striped">
+  <%= will_paginate @donations %>
+  <tr>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Amount</th>
+    <th>Type</th>
+    <th>Source</th>
+    <th></th>
+  </tr>
+  <%= render @donations %>
+</table>

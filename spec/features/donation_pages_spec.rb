@@ -90,5 +90,28 @@ describe 'DonationPages' do
         end
       end
     end
+
+    describe 'index' do
+      before do
+        5.times { FactoryGirl.create(:donation) }
+        visit donations_path
+      end
+
+      after { Donation.delete_all }
+
+      describe 'page' do
+        it 'should list all donations' do
+          Donation.all.each do |donation|
+            expect(page).to have_content(donation.supporter.full_name)
+          end
+        end
+        it 'should have the correct links' do
+          Donation.all.each do |donation|
+            expect(page).to have_link('details', donation_path(donation))
+            expect(page).to have_link('edit', edit_donation_path(donation))
+          end
+        end
+      end
+    end
   end
 end

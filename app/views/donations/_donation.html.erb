@@ -1,0 +1,11 @@
+<tr>
+  <td><%= donation.supporter.full_name %></td>
+  <td><%= donation.date %></td>
+  <td><%= donation.amount %></td>
+  <td><%= donation.donation_type %></td>
+  <td><%= donation.source %></td>
+  <td class="buttons">
+    <%= render 'shared/index/details_button', record: donation if staff_user? %>
+    <%= render 'shared/index/edit_button', record: donation if super_admin_user? %>
+  </td>
+</tr>

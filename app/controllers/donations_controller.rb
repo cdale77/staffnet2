@@ -33,6 +33,10 @@ class DonationsController < ApplicationController
     #authorize @donation
   end
 
+  def index
+    @donations = Donation.all.paginate(:page => params[:page], per_page: 50)
+  end
+
   private
 
     def donation_params
