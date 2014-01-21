@@ -11,7 +11,7 @@ describe 'DonationPages' do
 
   let!(:supporter) { FactoryGirl.create(:supporter) }
   let!(:donation) { FactoryGirl.create(:donation) }
-  let(:payment) { FactoryGirl.create(:payment) }
+  let!(:payment) { FactoryGirl.create(:payment, donation_id: donation.id) }
   ### HELPERS ###
 
   def fill_in_example_donation
