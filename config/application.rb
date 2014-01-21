@@ -31,6 +31,7 @@ module Staffnet2
     config.filter_parameters += [:password, :password_confirmation]
     config.autoload_paths += %W(#{config.root}/lib/validations)
     config.autoload_paths += %W(#{config.root}/lib/mail_chimp)
+    config.autoload_paths += %W(#{config.root}/lib/cim)
 
     config.generators do |g|
       g.test_framework :rspec, fixture: true
