@@ -22,14 +22,17 @@ module Cim
       if result.success?
         @cim_id = result.params['customer_profile_id']
       else
-        raise Exceptions::CimProfileError if result.params['customer_profile_id'].blank?
+        raise Exceptions::CimProfileError
         return false
       end
     end
 
     def unstore
       result = Cim.connection.delete_customer_profile(customer_profile_id: @cim_id)
-      result.success?
+      unless result.success?
+        raise Exceptions::CimProfileError
+        return false
+      end
     end
 
     private

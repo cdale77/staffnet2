@@ -83,9 +83,30 @@ class Supporter < ActiveRecord::Base
 
   ## CALLBACKS
   #before_create :set_mailchimp_sync_stamp
+  after_create :store_cim_profile
+  before_destroy :unstore_cim_profile
   before_validation :downcase_emails
   before_validation :format_phone_numbers
   before_validation { self.salutation = first_name if self.salutation.blank? }
+
+  def store_cim_profile
+    profile = Cim::Profile.new(self.id, self.email_1)
+    begin
+      profile.store
+    rescue
+      puts 'ERROR: Problem creating CIM profile.'
+    end
+    cim_id = profile.cim_id if profile.cim_id
+  end
+
+  def unstore_cim_profile
+    profile = Cim::Profile.new(supporter_id: self.id, cim_id: self.cim_id)
+    begin
+      profile.unstore
+    rescue
+      puts 'ERROR: Problem creating CIM profile.'
+    end
+  end
 
 =begin
   def self.mailchimp_create_records
@@ -154,7 +175,6 @@ class Supporter < ActiveRecord::Base
 
 
   private
-
 
     ## DATA CLEANING METHODS
     def downcase_emails
