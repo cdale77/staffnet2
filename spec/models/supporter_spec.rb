@@ -91,11 +91,6 @@ describe Supporter do
       supporter.first_name = long_name
       supporter.should_not be_valid
     end
-    it 'should reject supporters with too short first names' do
-      short_name = 'a'
-      supporter.first_name = short_name
-      supporter.should_not be_valid
-    end
   end
   describe 'last name validations' do
     it 'should reject supporters with no last name' do
@@ -105,11 +100,6 @@ describe Supporter do
     it 'should reject supporters with too long last names' do
       long_name = 'a' * 36
       supporter.last_name = long_name
-      supporter.should_not be_valid
-    end
-    it 'should reject supporters with too short last names' do
-      short_name = 'a'
-      supporter.last_name = short_name
       supporter.should_not be_valid
     end
   end

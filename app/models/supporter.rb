@@ -58,11 +58,11 @@ class Supporter < ActiveRecord::Base
 
   ## VALIDATIONS
   validates :first_name, :prefix, :salutation,
-            length: { maximum: 25, minimum: 2, message: 'must be between 2 and 25 characters.' },
+            length: { maximum: 25, message: 'must be under 25 characters.' },
             allow_blank: true
 
   validates :last_name, presence: { message: 'required.' },
-            length: { maximum: 25, minimum: 2, message: 'must be between 2 and 25 characters.' }
+            length: { maximum: 25, message: 'must be under 25 characters.' }
 
   validates :email_1, :email_2,
             format: { with: VALID_EMAIL_REGEX },
@@ -83,11 +83,31 @@ class Supporter < ActiveRecord::Base
 
   ## CALLBACKS
   #before_create :set_mailchimp_sync_stamp
-  after_create :store_cim_profile
-  before_destroy :unstore_cim_profile
-  before_validation :downcase_emails
-  before_validation :format_phone_numbers
+  #after_create :store_cim_profile
+  #before_destroy :unstore_cim_profile
   before_validation { self.salutation = first_name if self.salutation.blank? }
+
+  ## WRITERS  
+  def email_1=(email)
+    write_attribute(:email_1, email.downcase)
+  end
+
+  def email_2=(email)
+    write_attribute(:email_2, email.downcase)
+  end
+
+  def phone_mobile=(phone)
+    write_attribute(:phone_mobile, clean_phone(phone))
+  end
+
+  def phone_home=(phone)
+    write_attribute(:phone_home, clean_phone(phone))
+  end
+
+  def phone_alt=(phone)
+    write_attribute(:phone_alt, clean_phone(phone))
+  end
+
 
   def store_cim_profile
     profile = Cim::Profile.new(self.id, self.email_1)
@@ -174,18 +194,4 @@ class Supporter < ActiveRecord::Base
 =end
 
 
-  private
-
-    ## DATA CLEANING METHODS
-    def downcase_emails
-      self.email_1 = email_1.downcase if attribute_present?('email_1')
-      self.email_2 = email_2.downcase if attribute_present?('email_2')
-    end
-
-  # make the phone number 10 digits
-    def format_phone_numbers
-      self.phone_mobile = clean_phone(phone_mobile) if attribute_present?('phone_mobile')
-      self.phone_work = clean_phone(phone_work) if attribute_present?('phone_work')
-      self.phone_alt = clean_phone(phone_alt) if attribute_present?('phone_alt')
-    end
 end
