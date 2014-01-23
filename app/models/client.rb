@@ -43,10 +43,16 @@ class Client < ActiveRecord::Base
             format: { with: VALID_EMAIL_REGEX },
             allow_blank: true
 
-  ## CALLBACKS
+  
+  
+  def contact_phone=(phone)
+    write_attribute(:contact_phone, clean_phone(phone))
+  end
 
-  # make sure the phone number is only 10 characters
-  before_validation { self.contact_phone = clean_phone(contact_phone) if attribute_present?('contact_phone') }
+  def contact_email=(email)
+    write_attribute(:contact_email, email.downcase)
+  end
+
 
 
 end

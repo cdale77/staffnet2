@@ -60,8 +60,9 @@ class User < ActiveRecord::Base
             allow_blank: true
 
 
-  ## CALLBACKS
-  before_save { self.email = email.downcase }
+  def email=(email)
+    write_attribute(:email, email.downcase)
+  end
 
 
   def role?(base_role)

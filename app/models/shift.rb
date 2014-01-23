@@ -53,10 +53,6 @@ class Shift < ActiveRecord::Base
   end
 
 
-  ## CALLBACKS
-
-
-
   private
 
     def shift_time_validator

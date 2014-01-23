@@ -81,11 +81,15 @@ class Employee < ActiveRecord::Base
             length: { is: 1 },
             numericality: { message: 'must be a single digit.' }
 
-  ## CALLBACKS
-  before_save { self.email = email.downcase }
 
-  # make the phone number 10 digits
-  before_validation { self.phone = clean_phone(phone) if attribute_present?('phone') }
+  ## WRITERS
+  def email=(email)
+    write_attribute(:email, email.downcase)
+  end
+
+  def phone=(phone)
+    write_attribute(:phone, clean_phone(phone))
+  end
 
 
   ## METHODS
