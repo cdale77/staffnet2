@@ -32,7 +32,9 @@ module Cim
 
     def unstore
       result = Cim.connection.delete_customer_profile(customer_profile_id: @cim_id)
-      unless result.success?
+      if result.success?
+        return true
+      else
         raise Exceptions::CimProfileError
         return false
       end
