@@ -23,7 +23,7 @@ module Cim
       result = Cim.connection.create_customer_profile(profile: customer_profile)
       @server_message = result.message
       if result.success?
-        @cim_id = result.params['customer_profile_id']
+        @cim_id = result.params['customer_profile_id'] if result.params
       else
         raise Exceptions::CimProfileError
         return false

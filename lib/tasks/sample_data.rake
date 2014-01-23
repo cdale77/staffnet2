@@ -2,6 +2,28 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
 
+    # Webmock
+    require 'webmock'
+
+    WebMock.stub_request( :post, "https://apitest.authorize.net/xml/v1/request.api").
+         with(  headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
+         to_return( status: 200, body: '<?xml version="1.0" encoding="utf-8"?>
+                                        <createCustomerProfileResponse>
+                                          <messages>
+                                            <resultCode>Ok</resultCode>
+                                            <message>
+                                              <code>I00001</code>
+                                              <text>Successful.</text>
+                                            </message>
+                                          </messages>
+                                          <customerProfileId>10793616</customerProfileId>
+                                          <customerPaymentProfileIdList/>
+                                          <customerShippingAddressIdList/>
+                                          <validationDirectResponseList/>
+                                        </createCustomerProfileResponse>', 
+                    headers: { 'Content-Type' => 'text/xml' })
+ 
+
     #create user with each role user for testing
     ['super_admin', 'admin', 'manager', 'staff' ''].each do |role|
       user = User.new(  email:                  "#{role}-example@example.com",
