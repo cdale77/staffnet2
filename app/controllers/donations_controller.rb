@@ -53,6 +53,13 @@ class DonationsController < ApplicationController
     end
   end
 
+  def destroy
+    donation = Donation.find(params[:id])
+    donation.destroy
+    flash[:success] = 'Donatoipn destroyed.'
+    redirect_to donations_path
+  end
+
   private
 
     def donation_params

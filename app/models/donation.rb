@@ -26,7 +26,7 @@ class Donation < ActiveRecord::Base
   ## RELATIONSHIPS
   belongs_to :supporter
   belongs_to :shift
-  has_many :payments
+  has_many :payments, dependent: :destroy
 
  ## VALIDATIONS
   validates :source, :date, presence: { message: 'required.' }

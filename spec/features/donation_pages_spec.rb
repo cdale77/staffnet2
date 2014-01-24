@@ -12,6 +12,8 @@ describe 'DonationPages' do
   let!(:supporter) { FactoryGirl.create(:supporter) }
   let!(:donation) { FactoryGirl.create(:donation) }
   let!(:payment) { FactoryGirl.create(:payment, donation_id: donation.id) }
+
+  
   ### HELPERS ###
 
   def fill_in_example_donation
@@ -140,6 +142,13 @@ describe 'DonationPages' do
         end
         it { should have_selector('div.alert.alert-success') }
         specify { expect(donation.reload.notes).to  eq new_note }
+      end
+    end
+
+    describe 'destroy' do
+      before { visit donation_path(donation) }
+      it 'should destroy a donation' do
+        expect { click_link 'delete' }.to change(Donation, :count).by(-1)
       end
     end
 
