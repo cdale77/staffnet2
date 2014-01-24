@@ -8,14 +8,28 @@
             <%= payment_field.input :payment_type, collection: [['Credit Card', 'credit'], ['Cash', 'cash'], ['Check', 'check']], selected: payment.payment_type %>
           </div>
           <div class="span2">
-            <%= payment_field.input :check_number %>
-          </div>
-          <div class="span2">
             <%= payment_field.input :amount %>
           </div>
+        </div>
+        <hr />
+        <div class="row">
           <div class="span4">
             <%= payment_field.input :cc_number, input_html: { id: 'cc_number' } %>
             <div id="cc_number_error" class="red"></div>
+          </div>
+          <div class="span2">
+            <%= payment_field.input :cc_month, label: 'Exp month', placeholder: '04', input_html: { id: 'cc_month' } %>
+            <div id="cc_month_error" class="red"></div>
+          </div>
+          <div class="span2">
+            <%= payment_field.input :cc_year, label: 'Exp year', placeholder: '2014', input_html: { id: 'cc_year'} %>
+            <div id="exp_year_error" class="red"></div>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="span2">
+            <%= payment_field.input :check_number %>
           </div>
         </div>
         <%= render 'shared/forms/notes_field', f: payment_field %>

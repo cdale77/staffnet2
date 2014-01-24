@@ -19,5 +19,4 @@ $ ->
       else
         $("#cc_number_error").text("Invalid credit card number")
 
-
     
