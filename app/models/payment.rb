@@ -36,7 +36,7 @@ class Payment < ActiveRecord::Base
 
   def store_cc_info
     if self.cc_number
-      #self.cc_last_4 = cc_number[]
+      self.cc_last_4 = cc_number[12..16]
       self.cc_type = Payment.cc_type_by_first_number(cc_number[0])
     end
   end
