@@ -11,6 +11,13 @@ CreditCard =
       total += n
     total % 10 == 0
 
+$ ->
+
+  $("input#cc_number").blur ->
+    if CreditCard.validNumber(@value)
+        $("#cc_number_error").text("")
+      else
+        $("#cc_number_error").text("Invalid credit card number")
 
 
     
