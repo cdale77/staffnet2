@@ -47,6 +47,13 @@ describe Donation do
     end
   end
 
+  describe 'date validations' do 
+    it 'should require a date' do 
+      donation.date = ''
+      donation.should_not be_valid
+    end
+  end
+
   describe 'sub_month validations' do
     it 'should allow blank values' do
       donation.sub_month = ''

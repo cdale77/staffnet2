@@ -1,0 +1,11 @@
+<% provide(:title, 'Edit donation') %>
+<div class="row">
+  <div class="span8 offset2">
+    <h1>Edit donation</h1>
+    <%= simple_form_for([@supporter, @donation]) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= render partial: 'donation_fields', locals: { donation: @donation, supporter: @supporter, f: f } %>
+      <%= render 'shared/forms/submit_button', f: f %>
+    <% end %>
+  </div>
+</div>

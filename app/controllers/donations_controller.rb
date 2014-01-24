@@ -37,6 +37,22 @@ class DonationsController < ApplicationController
     @donations = Donation.all.paginate(:page => params[:page], per_page: 50)
   end
 
+  def edit
+    @donation = Donation.find(params[:id])
+    @supporter = @donation.supporter
+  end
+
+  def update
+    @donation = Donation.find(params[:id])
+    @supporter = @donation.supporter
+    if @donation.update_attributes(donation_params)
+      flash[:success] = 'donation updated.'
+      redirect_to donation_path(@donation)
+    else
+      render 'edit'
+    end
+  end
+
   private
 
     def donation_params

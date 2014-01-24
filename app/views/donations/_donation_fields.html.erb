@@ -6,20 +6,20 @@
 <div class="row">
   <div class="span2">
     <%= f.label :date %>
-    <%= f.text_field :date, 'data-behaviour' => 'datepicker'  %>
+    <%= f.text_field :date, label: 'Date', 'data-behaviour' => 'datepicker'  %>
   </div>
   <div class="span1">
     <%= f.input :amount %>
   </div>
   <div class="span1 spacer"></div>
   <div class="span2">
-    <%= f.input :donation_type, collection: [['Credit Card', 'credit'], ['Cash', 'cash'], ['Check', 'check']] %>
+    <%= f.input :donation_type, collection: [['Credit Card', 'credit'], ['Cash', 'cash'], ['Check', 'check']], selected: donation.donation_type %>
   </div>
   <div class="span2">
-    <%= f.input :source, collection: [['Phone', 'phone'], ['Door', 'door'], ['Street', 'street'], ['Web', 'web']] %>
+    <%= f.input :source, collection: [['Phone', 'phone'], ['Door', 'door'], ['Street', 'street'], ['Web', 'web']], selected: donation.source %>
   </div>
   <div class="span2">
-    <%= f.input :campaign, collection: [['Prop 13', 'prop13']] %>
+    <%= f.input :campaign, collection: [['Prop 13', 'prop13']], selected: donation.campaign %>
   </div>
 </div>
 

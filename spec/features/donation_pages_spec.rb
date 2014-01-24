@@ -113,5 +113,35 @@ describe 'DonationPages' do
         end
       end
     end
+
+    describe 'edit' do
+      before do
+        visit edit_donation_path(donation)
+      end
+
+      describe 'page' do
+        it { should have_title('Edit donation') }
+        it { should have_selector('h1', 'Edit donation') }
+      end
+
+      describe 'with invalid information' do
+        before do
+          fill_in 'Date', with: ''
+          click_button 'Update Donation'
+        end
+        it { should have_selector('div.alert-error') }
+      end
+
+      describe 'with valid information' do
+        let(:new_note) { 'New note'}
+        before do
+          fill_in 'Notes', with: new_note
+          click_button 'Update Donation'
+        end
+        it { should have_selector('div.alert.alert-success') }
+        specify { expect(donation.reload.notes).to  eq new_note }
+      end
+    end
+
   end
 end
