@@ -29,4 +29,6 @@ class Payment < ActiveRecord::Base
 
   validates :amount, presence: { message: 'required.' }
 
+  attr_accessor :cc_number
+
 end

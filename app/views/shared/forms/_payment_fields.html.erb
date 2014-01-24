@@ -13,6 +13,9 @@
           <div class="span2">
             <%= payment_field.input :amount %>
           </div>
+          <div class="span4">
+            <%= payment_field.input :cc_number %>
+          </div>
         </div>
         <%= render 'shared/forms/notes_field', f: payment_field %>
       <% end %>
