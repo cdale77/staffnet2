@@ -8,6 +8,7 @@ describe 'DonationPages' do
 
   let(:super_admin) { FactoryGirl.create(:super_admin) }
   let(:manager) { FactoryGirl.create(:manager) }
+  #let(:staff) { FactoryGirl.create(:staff) }
 
   let!(:supporter) { FactoryGirl.create(:supporter) }
   let!(:donation) { FactoryGirl.create(:donation) }
@@ -153,4 +154,61 @@ describe 'DonationPages' do
     end
 
   end
+
+  ## AS MANAGER USER
+  describe 'as manager user' do 
+   before do
+      visit new_user_session_path
+      fill_in 'Email',    with: manager.email
+      fill_in 'Password', with: manager.password
+      click_button 'Sign in'
+    end
+
+    after do
+      logout(:manager)
+    end
+
+    describe 'show' do
+      describe 'page' do
+        before { visit donation_path(donation) }
+        describe 'page' do
+          it { should have_content (supporter.full_name) }
+          describe 'links' do
+            it { should_not have_link('edit', href: edit_donation_path(donation)) }
+            it { should_not have_link('delete', href: donation_path(donation)) }
+          end
+          describe 'payments' do
+            it { should have_link('New payment', href: new_donation_payment_path(donation)) }
+            it { should have_link('details', href: payment_path(payment)) }
+          end
+        end
+      end
+    end
+
+    describe 'index' do
+      before do
+        5.times { FactoryGirl.create(:donation) }
+        visit donations_path
+      end
+
+      after { Donation.delete_all }
+
+      describe 'page' do
+        it 'should list all donations' do
+          Donation.all.each do |donation|
+            expect(page).to have_content(donation.supporter.full_name)
+          end
+        end
+        it 'should have the correct links' do
+          Donation.all.each do |donation|
+            expect(page).to have_link('details', donation_path(donation))
+            expect(page).to_not have_link('edit', edit_donation_path(donation))
+          end
+        end
+      end
+    end
+
+
+  end
+
 end

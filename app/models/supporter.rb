@@ -53,7 +53,7 @@ class Supporter < ActiveRecord::Base
 
   ## RELATIONSHIPS
   belongs_to :supporter_type
-  has_many :donations, dependentq: :destroy
+  has_many :donations, dependent: :destroy
   has_many :payments, through: :donations
 
   ## VALIDATIONS
