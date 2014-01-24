@@ -27,7 +27,7 @@ class Donation < ActiveRecord::Base
   belongs_to :supporter
   belongs_to :shift
   has_many :payments, dependent: :destroy
-  accepst_nested_attributes_for: :payments
+  accepts_nested_attributes_for :payments
 
  ## VALIDATIONS
   validates :source, :date, presence: { message: 'required.' }

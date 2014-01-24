@@ -28,4 +28,5 @@ class Payment < ActiveRecord::Base
   validates :payment_type, presence: { message: 'required.' }
 
   validates :amount, presence: { message: 'required.' }
+
 end

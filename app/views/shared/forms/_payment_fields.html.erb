@@ -1,0 +1,21 @@
+<div>
+  <hr />
+  <div class="row">
+    <div class="span12">
+      <%= f.simple_fields_for :payments do |payment_field| %>
+        <div class="row">
+          <div class="span2">
+            <%= payment_field.input :payment_type, collection: [['Credit Card', 'credit'], ['Cash', 'cash'], ['Check', 'check']], selected: payment.payment_type %>
+          </div>
+          <div class="span2">
+            <%= payment_field.input :check_number %>
+          </div>
+          <div class="span2">
+            <%= payment_field.input :amount %>
+          </div>
+        </div>
+        <%= render 'shared/forms/notes_field', f: payment_field %>
+      <% end %>
+    </div>
+  </div>
+</div>

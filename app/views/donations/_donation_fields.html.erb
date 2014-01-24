@@ -22,5 +22,5 @@
     <%= f.input :campaign, collection: [['Prop 13', 'prop13']], selected: donation.campaign %>
   </div>
 </div>
-
 <%= render 'shared/forms/notes_field', f: f %>
+<%= render 'shared/forms/payment_fields', payment: payment, f: f %>

@@ -7,6 +7,7 @@ class DonationsController < ApplicationController
     @supporter = Supporter.find(params[:supporter_id])
     if @supporter
       @donation = @supporter.donations.build
+      @payment = @donation.payments.build
       authorize @donation
     else
       flash[:error] = 'Could not find supporter.'
@@ -60,7 +61,7 @@ class DonationsController < ApplicationController
     donation = Donation.find(params[:id])
     authorize donation
     donation.destroy
-    flash[:success] = 'Donatoipn destroyed.'
+    flash[:success] = 'Donation destroyed.'
     redirect_to donations_path
   end
 
@@ -68,6 +69,7 @@ class DonationsController < ApplicationController
 
     def donation_params
       params.require(:donation).permit( :date, :donation_type, :source, :campaign, :sub_month, :sub_week, :amount,
-                                        :cancelled, :notes )
+                                        :cancelled, :notes, payments_attributes: [:cim_profile_id, :user_id, :deposited_at, 
+                                        :payment_type, :captured, :amount, :check_number, :notes] )
     end
 end
