@@ -15,6 +15,8 @@ class CreatePayments < ActiveRecord::Migration
       t.string  :cc_type, :default => ''
       t.string  :check_number, :default => ''
       t.text    :notes, :default => ''
+
+      t.timestamps
     end
 
     add_index :payments, :payment_profile_id

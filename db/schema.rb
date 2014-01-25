@@ -99,20 +99,22 @@ ActiveRecord::Schema.define(version: 20140125005333) do
   add_index "payment_profiles", ["supporter_id"], name: "index_payment_profiles_on_supporter_id", using: :btree
 
   create_table "payments", force: true do |t|
-    t.integer "donation_id"
-    t.integer "payment_profile_id"
-    t.string  "cim_transaction_id",                                   default: ""
-    t.integer "user_id"
-    t.date    "deposited_at"
-    t.string  "payment_type",                                         default: ""
-    t.boolean "captured",                                             default: false
-    t.decimal "amount",                       precision: 8, scale: 2, default: 0.0
-    t.string  "cc_last_4",          limit: 4,                         default: ""
-    t.string  "cc_month",           limit: 2,                         default: ""
-    t.string  "cc_year",            limit: 4,                         default: ""
-    t.string  "cc_type",                                              default: ""
-    t.string  "check_number",                                         default: ""
-    t.text    "notes",                                                default: ""
+    t.integer  "donation_id"
+    t.integer  "payment_profile_id"
+    t.string   "cim_transaction_id",                                   default: ""
+    t.integer  "user_id"
+    t.date     "deposited_at"
+    t.string   "payment_type",                                         default: ""
+    t.boolean  "captured",                                             default: false
+    t.decimal  "amount",                       precision: 8, scale: 2, default: 0.0
+    t.string   "cc_last_4",          limit: 4,                         default: ""
+    t.string   "cc_month",           limit: 2,                         default: ""
+    t.string   "cc_year",            limit: 4,                         default: ""
+    t.string   "cc_type",                                              default: ""
+    t.string   "check_number",                                         default: ""
+    t.text     "notes",                                                default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "payments", ["cim_transaction_id"], name: "index_payments_on_cim_transaction_id", using: :btree

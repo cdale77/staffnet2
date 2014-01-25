@@ -17,6 +17,8 @@
 #  cc_type            :string(255)      default("")
 #  check_number       :string(255)      default("")
 #  notes              :text             default("")
+#  created_at         :datetime
+#  updated_at         :datetime
 #
 
 require 'spec_helper'
