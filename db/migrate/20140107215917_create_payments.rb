@@ -2,7 +2,6 @@ class CreatePayments < ActiveRecord::Migration
   def change
     create_table :payments do |t|
       t.integer :donation_id
-      t.string  :cim_profile_id, :default => ''
       t.string  :cim_transaction_id, :default => ''
       t.integer :user_id
       t.date    :deposited_at
@@ -19,7 +18,6 @@ class CreatePayments < ActiveRecord::Migration
 
     add_index :payments, :donation_id
     add_index :payments, :user_id
-    add_index :payments, :cim_profile_id
     add_index :payments, :cim_transaction_id
 
   end

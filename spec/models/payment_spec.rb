@@ -24,8 +24,8 @@ require 'spec_helper'
 describe Payment do
 
   payment_attributes = { deposited_at: Time.now, payment_type: 'Credit Card', captured: true, amount: 10.00,
-                         cim_profile_id: '322134421', cc_last_4: '4321', cc_type: 'Visa', cc_month: '02',
-                         cc_year: '2014', check_number: '2122', user_id: 43, cim_transaction_id: '344442211113',
+                         cc_last_4: '4321', cc_type: 'Visa', cc_month: '02',
+                         cc_year: '2014', check_number: '2122', user_id: 43,
                          notes: 'Notes'}
 
   let(:payment) { FactoryGirl.create(:payment) }
