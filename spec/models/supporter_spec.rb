@@ -6,7 +6,6 @@
 #  supporter_type_id :integer
 #  external_id       :string(255)      default("")
 #  cim_id            :string(255)      default("")
-#  mailchimp_leid    :string(255)      default("")
 #  prefix            :string(255)      default("")
 #  salutation        :string(255)      default("")
 #  first_name        :string(255)      default("")
@@ -39,7 +38,6 @@
 #  notes             :text             default("")
 #  created_at        :datetime
 #  updated_at        :datetime
-#  mailchimp_sync_at :datetime
 #
 
 require 'spec_helper'

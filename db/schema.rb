@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140107215917) do
+ActiveRecord::Schema.define(version: 20140125005333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,9 +88,19 @@ ActiveRecord::Schema.define(version: 20140107215917) do
   add_index "employees", ["title"], name: "index_employees_on_title", using: :btree
   add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
 
+  create_table "payment_profiles", force: true do |t|
+    t.integer  "supporter_id"
+    t.string   "cim_id",       default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "payment_profiles", ["cim_id"], name: "index_payment_profiles_on_cim_id", using: :btree
+  add_index "payment_profiles", ["supporter_id"], name: "index_payment_profiles_on_supporter_id", using: :btree
+
   create_table "payments", force: true do |t|
     t.integer "donation_id"
-    t.string  "cim_profile_id",                                       default: ""
+    t.integer "payment_profile_id"
     t.string  "cim_transaction_id",                                   default: ""
     t.integer "user_id"
     t.date    "deposited_at"
@@ -105,9 +115,9 @@ ActiveRecord::Schema.define(version: 20140107215917) do
     t.text    "notes",                                                default: ""
   end
 
-  add_index "payments", ["cim_profile_id"], name: "index_payments_on_cim_profile_id", using: :btree
   add_index "payments", ["cim_transaction_id"], name: "index_payments_on_cim_transaction_id", using: :btree
   add_index "payments", ["donation_id"], name: "index_payments_on_donation_id", using: :btree
+  add_index "payments", ["payment_profile_id"], name: "index_payments_on_payment_profile_id", using: :btree
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
   create_table "projects", force: true do |t|

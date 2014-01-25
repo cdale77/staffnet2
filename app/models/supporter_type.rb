@@ -2,11 +2,10 @@
 #
 # Table name: supporter_types
 #
-#  id                :integer          not null, primary key
-#  name              :string(255)      default("")
-#  created_at        :datetime
-#  updated_at        :datetime
-#  mailchimp_sync_at :datetime
+#  id         :integer          not null, primary key
+#  name       :string(255)      default("")
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 class SupporterType < ActiveRecord::Base

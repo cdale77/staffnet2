@@ -4,7 +4,7 @@
 #
 #  id                 :integer          not null, primary key
 #  donation_id        :integer
-#  cim_profile_id     :string(255)      default("")
+#  payment_profile_id :integer
 #  cim_transaction_id :string(255)      default("")
 #  user_id            :integer
 #  deposited_at       :date
