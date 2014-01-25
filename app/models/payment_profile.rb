@@ -15,4 +15,16 @@ class PaymentProfile < ActiveRecord::Base
   belongs_to :supporter 
   has_many :payments
 
+  ## CALLBACKS
+  after_create :store_cim_payment_profile
+  before_destroy :unstore_cim_payment_profile
+
+  def store_cim_payment_profile
+
+  end
+
+  def unstore_cim_payment_profile
+
+  end
+
 end

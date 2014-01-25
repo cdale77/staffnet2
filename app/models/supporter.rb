@@ -108,13 +108,15 @@ class Supporter < ActiveRecord::Base
 
 
   def store_cim_profile
-    profile = Cim::Profile.new(self.id, self.email_1)
-    begin
-      profile.store
-    rescue
-      puts 'ERROR: Problem creating CIM profile.'
+    if cim_id.blank?
+      profile = Cim::Profile.new(self.id, self.email_1)
+      begin
+        profile.store
+      rescue
+        puts 'ERROR: Problem creating CIM profile.'
+      end
+      cim_id = profile.cim_id if profile.cim_id
     end
-    cim_id = profile.cim_id if profile.cim_id
   end
 
   def unstore_cim_profile

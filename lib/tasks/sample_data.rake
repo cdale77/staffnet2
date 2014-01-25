@@ -134,8 +134,7 @@ namespace :db do
 
       # payments
       Donation.all.each do |donation|
-        payment = donation.payments.build(  cim_profile_id: '332213123',
-                                            user_id: 4,
+        payment = donation.payments.build(  user_id: 4,
                                             deposited_at: Date.today,
                                             amount: donation.amount,
                                             payment_type: donation.donation_type)

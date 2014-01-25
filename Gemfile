@@ -36,7 +36,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '2.14.1'
-  gem 'webmock', '1.17.1'
+  #gem 'webmock', '1.17.1'
   gem 'capybara', '2.2.0'
   gem 'selenium-webdriver', '2.39.0'
   gem 'factory_girl_rails', '4.3.0'

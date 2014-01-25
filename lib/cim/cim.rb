@@ -49,5 +49,67 @@ module Cim
       end
   end
 
+  class PaymentProfile
+
+    def initialize(supporter, cc_number = '', cc_month = '', cc_year = '', cc_type = '' )
+      @supporter = supporter
+      @cc_number = cc_number
+      @cc_month = cc_month
+      @cc_year = cc_year
+      @cc_type = cc_type
+      @payment_profile_id = ''
+    end
+
+    def store
+      result = Cim.connection.create_customer_payment_profile({ customer_profile_id: @supporter.cim_id, payment_profile: cim_payment_profile })
+      result
+    end
+
+    #private
+
+      def cim_payment_profile
+        {
+          bill_to: cim_billing_info,
+          payment: cim_payment_info
+        }
+      end
+
+      def cim_billing_info
+        {   
+          first_name: @supporter.first_name,
+          last_name: @supporter.last_name,
+          address: @supporter.address1,
+          city: @supporter.address_city,
+          state: @supporter.address_state,
+          country: 'USA',
+          zip: @supporter.address_zip,
+          phone_number: @supporter.phone_mobile
+        }
+      end
+
+      def cim_payment_info
+        card = credit_card
+        {
+          first_name: card.first_name,
+          last_name: card.last_name,
+          number: card.number,
+          month: card.month,
+          year: card.year,
+          brand: card.brand
+        }
+      end
+
+      def credit_card
+        ActiveMerchant::Billing::CreditCard.new(
+          first_name: @supporter.first_name,
+          last_name: @supporter.last_name,
+          number: @cc_number,
+          month: @cc_month.to_i,
+          year: @cc_year.to_i,
+          brand: @cc_type)
+      end
+
+  end
+
 
 end
