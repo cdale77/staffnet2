@@ -60,7 +60,7 @@ module Cim
       @cc_month = cc_month
       @cc_year = cc_year
       @cc_type = cc_type
-      @cim_profile_id = cim_profile_id
+      @cim_payment_profile_id = cim_profile_id
       @server_message = ''
     end
 
@@ -69,7 +69,7 @@ module Cim
                                                                 payment_profile: cim_payment_profile } )
       @server_message = result.message
       if result.success?
-        @cim_profile_id = result.params['customer_payment_profile_id'] if result.params
+        @cim__payment_profile_id = result.params['customer_payment_profile_id'] if result.params
       else
         raise Exceptions::CimProfileError
         return false
@@ -78,7 +78,7 @@ module Cim
 
     def unstore
       result = Cim.connection.delete_customer_payment_profile(customer_profile_id: @supporter.cim_id,
-                                                              customer_payment_profile_id: @cim_profile_id )
+                                                              customer_payment_profile_id: @cim_payment_profile_id )
       @server_message = result.message
       if result.success?
         return true
@@ -124,6 +124,30 @@ module Cim
           brand: @cc_type)
       end
 
+  end
+
+  class ProfilePayment
+
+     attr_reader :server_message
+
+    def initialize(cim_profile_id, cim_payment_profile_id, amount)
+      @cim_profile_id = cim_profile_id
+      @cim_payment_profile_id = cim_payment_profile_id
+      @server_message = ''
+      @amount = amount
+    end
+
+    def process
+      result = Cim.connection.create_customer_profile_transaction(
+          transaction: {
+                          type: :auth_capture,
+                          amount: @amount,
+                          customer_profile_id: @cim_profile_id,
+                          customer_payment_profile_id: @cim_payment_profile_id,
+                        }
+          )
+      result
+    end
   end
 
 
