@@ -1,10 +1,9 @@
 module Cim	
 
-
   def self.connection
     ActiveMerchant::Billing::AuthorizeNetCimGateway.new(  login: ENV['CIM_LOGIN'],
-                                                            password: ENV['CIM_PASSWORD'],
-                                                            test: true )
+                                                          password: ENV['CIM_PASSWORD'],
+                                                          test: true )
   end
 
   class Profile 
@@ -41,6 +40,7 @@ module Cim
     end
 
     private
+
       def customer_profile
         { 
           merchant_customer_id: @supporter_id,
@@ -115,13 +115,12 @@ module Cim
       end
 
       def credit_card
-        ActiveMerchant::Billing::CreditCard.new(
-          first_name: @supporter.first_name,
-          last_name: @supporter.last_name,
-          number: @cc_number,
-          month: @cc_month.to_i,
-          year: @cc_year.to_i,
-          brand: @cc_type)
+        ActiveMerchant::Billing::CreditCard.new(  first_name: @supporter.first_name,
+                                                  last_name: @supporter.last_name,
+                                                  number: @cc_number,
+                                                  month: @cc_month.to_i,
+                                                  year: @cc_year.to_i,
+                                                  brand: @cc_type)
       end
 
   end
@@ -145,7 +144,7 @@ module Cim
                           customer_profile_id: @cim_profile_id,
                           customer_payment_profile_id: @cim_payment_profile_id,
                         }
-          )
+                                                                  )
       result
     end
   end
