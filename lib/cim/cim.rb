@@ -60,7 +60,7 @@ module Cim
       @cc_month = cc_month
       @cc_year = cc_year
       @cc_type = cc_type
-      @cim_profile_id = ''
+      @cim_profile_id = cim_profile_id
       @server_message = ''
     end
 
@@ -70,6 +70,18 @@ module Cim
       @server_message = result.message
       if result.success?
         @cim_profile_id = result.params['customer_payment_profile_id'] if result.params
+      else
+        raise Exceptions::CimProfileError
+        return false
+      end
+    end
+
+    def unstore
+      result = Cim.connection.delete_customer_payment_profile(customer_profile_id: @supporter.cim_id,
+                                                              customer_payment_profile_id: @cim_profile_id )
+      @server_message = result.message
+      if result.success?
+        return true
       else
         raise Exceptions::CimProfileError
         return false
