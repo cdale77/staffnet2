@@ -27,6 +27,7 @@ class Payment < ActiveRecord::Base
 
   ## RELATIONSHIPS
   belongs_to :donation
+  has_one :payment_profile
 
   ## VALIDATIONS
   validates :payment_type, presence: { message: 'required.' }

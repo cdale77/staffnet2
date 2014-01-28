@@ -54,13 +54,13 @@ module Cim
     attr_reader :cim_profile_id
     attr_reader :server_message
 
-    def initialize(supporter, cc_number = '', cc_month = '', cc_year = '', cc_type = '', cim_profile_id = '')
+    def initialize(supporter, cc_number = '', cc_month = '', cc_year = '', cc_type = '', cim_payment_profile_id = '')
       @supporter = supporter
       @cc_number = cc_number
       @cc_month = cc_month
       @cc_year = cc_year
       @cc_type = cc_type
-      @cim_payment_profile_id = cim_profile_id
+      @cim_payment_profile_id = cim_payment_profile_id
       @server_message = ''
     end
 

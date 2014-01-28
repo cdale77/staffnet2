@@ -129,7 +129,6 @@ FactoryGirl.define do
     cc_type               'visa'
     cc_month              '01'
     cc_year               '2014'
-    cim_profile_id        '3445433222'
     cim_transaction_id    '1122223333'
     donation
   end

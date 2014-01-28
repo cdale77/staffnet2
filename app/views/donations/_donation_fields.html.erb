@@ -23,4 +23,8 @@
   </div>
 </div>
 <%= render 'shared/forms/notes_field', f: f %>
-<%= render 'shared/forms/payment_fields', payment: payment, f: f %>
+<% if payment_fields %>
+  <%= render 'shared/forms/payment_fields', payment: payment, f: f %>
+<% end %>
+
+
