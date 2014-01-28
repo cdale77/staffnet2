@@ -61,7 +61,8 @@ module Cim
     end
 
     def store
-      result = Cim.connection.create_customer_payment_profile({ customer_profile_id: @supporter.cim_id, payment_profile: cim_payment_profile })
+      result = Cim.connection.create_customer_payment_profile({ customer_profile_id: @supporter.cim_id,
+                                                                payment_profile: cim_payment_profile } )
       result
     end
 
@@ -88,14 +89,17 @@ module Cim
       end
 
       def cim_payment_info
-        card = credit_card
+       # card = credit_card
+       # {
+       #   first_name: card.first_name,
+       #   last_name: card.last_name,
+       #   number: card.number,
+       #   month: card.month,
+       #   year: card.year,
+       #   brand: card.brand
+        #}
         {
-          first_name: card.first_name,
-          last_name: card.last_name,
-          number: card.number,
-          month: card.month,
-          year: card.year,
-          brand: card.brand
+            credit_card: credit_card
         }
       end
 
@@ -110,6 +114,72 @@ module Cim
       end
 
   end
+
+  ## old code
+
+
+  class OldCode
+
+    def self.create_payment_profile(supporter, payment, cc)
+      result = connection.create_customer_payment_profile(cim_options(supporter, payment, cc))
+      #payment.authorize_payment_profile_id = result.params['customer_payment_profile_id']
+      #payment.save
+      result.params['customer_payment_profile_id']
+    end
+
+    def self.connection
+      ActiveMerchant::Billing::AuthorizeNetCimGateway.new(login: ENV['CIM_LOGIN'],
+          password: ENV['CIM_PASSWORD'],
+          test: true)
+    end
+
+    def self.billing_info(supporter)
+      supporter = supporter
+      {   :first_name => supporter.first_name,
+          :last_name => supporter.last_name,
+          :address => supporter.address1,
+          :city => supporter.address_city,
+          :state => supporter.address_state,
+          :country => 'USA',
+          :zip => supporter.address_zip,
+          :phone_number => supporter.phone_mobile
+      }
+    end
+
+    def self.credit_card(supporter, payment, cc)
+      new_card = ActiveMerchant::Billing::CreditCard.new(
+          :first_name => supporter.first_name,
+          :last_name => supporter.last_name,
+          :number => cc,
+          :month => payment.cc_month.to_i,
+          :year => payment.cc_year.to_i,
+          :brand => payment.cc_type)
+      {
+          :first_name => new_card.first_name,
+          :last_name => new_card.last_name,
+          :number => new_card.number,
+          :month => new_card.month,
+          :year => new_card.year,
+          :brand => new_card.brand
+      }
+    end
+
+    def self.cim_options(supporter, payment, cc)
+      {
+          :customer_profile_id => supporter.cim_id,
+          :payment_profile => package_cim_profile(supporter, payment, cc)
+      }
+    end
+
+    def self.package_cim_profile(supporter, payment, cc)
+      {
+          :bill_to => billing_info(supporter),
+          :payment => credit_card(supporter, payment, cc)
+      }
+    end
+
+  end
+
 
 
 end
