@@ -3,8 +3,6 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
-require 'webmock/rspec'
-WebMock.disable_net_connect!(allow_localhost: true)
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -24,27 +22,6 @@ RSpec.configure do |config|
   # config.mock_with :rr
   #config.include(EmailSpec::Helpers)
   #config.include(EmailSpec::Matchers)
-  
-  config.before(:each) do
-    stub_request( :post, "https://apitest.authorize.net/xml/v1/request.api").
-         with(  headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
-         to_return( status: 200, body: '<?xml version="1.0" encoding="utf-8"?>
-                                        <createCustomerProfileResponse>
-                                          <messages>
-                                            <resultCode>Ok</resultCode>
-                                            <message>
-                                              <code>I00001</code>
-                                              <text>Successful.</text>
-                                            </message>
-                                          </messages>
-                                          <customerProfileId>10793616</customerProfileId>
-                                          <customerPaymentProfileIdList/>
-                                          <customerShippingAddressIdList/>
-                                          <validationDirectResponseList/>
-                                        </createCustomerProfileResponse>',
-                    headers: { 'Content-Type' => 'text/xml' })
-  end
-
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

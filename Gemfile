@@ -42,10 +42,6 @@ group :development, :test do
   gem 'debugger', '1.6.5'
 end
 
-group :test do
-  gem 'webmock', '1.17.1'
-end
-
 group :production do
   gem 'rails_12factor', '0.0.2'
 end
