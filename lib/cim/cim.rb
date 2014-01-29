@@ -6,7 +6,7 @@ module Cim
                                                           test: true )
   end
 
-  class Profile 
+  class Profile
 
     attr_reader :cim_id
     attr_reader :server_message

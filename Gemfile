@@ -43,7 +43,7 @@ group :development, :test do
 end
 
 group :test do
-  #gem 'webmock', '1.17.1'
+  gem 'webmock', '1.17.1'
 end
 
 group :production do
