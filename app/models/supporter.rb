@@ -113,18 +113,18 @@ class Supporter < ActiveRecord::Base
       begin
         profile.store
       rescue
-        puts 'ERROR: Problem creating CIM profile.'
+        puts 'ERROR: Problem creating CIM profile: ' + profile.server_message
       end
-      cim_id = profile.cim_id if profile.cim_id
+      self.cim_id = profile.cim_id if profile.cim_id
     end
   end
 
   def unstore_cim_profile
-    profile = Cim::Profile.new(supporter_id: self.id, cim_id: self.cim_id)
+    profile = Cim::Profile.new(self.id, self.email_1, self.cim_id.to_s)
     begin
-      profile.unstore
+      self.cim_id = '' if profile.unstore
     rescue
-      puts 'ERROR: Problem creating CIM profile.'
+      puts 'ERROR: Problem destroying CIM profile: ' + profile.server_message
     end
   end
 
