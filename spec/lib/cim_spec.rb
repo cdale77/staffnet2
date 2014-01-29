@@ -2,13 +2,14 @@ require 'spec_helper'
 
 describe Cim do
 
-  let!(:supporter) { FactoryGirl.create(:supporter) }
 
-  before { supporter.unstore_cim_profile }
+#  after { supporter.unstore_cim_profile }
 
   describe Cim::Profile do
-
+    let!(:supporter) { FactoryGirl.create(:supporter) }
     let!(:profile) { Cim::Profile.new(supporter.id) }
+
+    before { supporter.unstore_cim_profile }
 
     describe '#initialize' do
       it 'should create an object' do
@@ -24,7 +25,6 @@ describe Cim do
   end
 
   describe Cim::PaymentProfile do
-
     let!(:supporter) { FactoryGirl.create(:supporter) }
     let!(:payment_profile) { Cim::PaymentProfile.new(supporter, '4111111111111111', '10', '2017', 'visa') }
 
