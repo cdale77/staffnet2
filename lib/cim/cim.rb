@@ -15,7 +15,7 @@ module Cim
       @supporter_id = supporter_id.to_s
       @supporter_email = supporter_email
       @cim_id = cim_id
-      @server_message = ''
+      #@server_message = ''
     end
 
     def store
@@ -41,7 +41,6 @@ module Cim
     end
 
     private
-
       def customer_profile
         { 
           merchant_customer_id: @supporter_id,
@@ -62,7 +61,7 @@ module Cim
       @cc_year = cc_year
       @cc_type = cc_type
       @cim_payment_profile_id = cim_payment_profile_id
-      @server_message = ''
+      #@server_message = ''
     end
 
     def store
@@ -90,7 +89,6 @@ module Cim
     end
 
     private
-
       def cim_payment_profile
         {
           bill_to: cim_billing_info,
@@ -128,13 +126,13 @@ module Cim
 
   class ProfilePayment
 
-     attr_reader :server_message
+    attr_reader :server_message
 
     def initialize(cim_profile_id, cim_payment_profile_id, amount)
       @cim_profile_id = cim_profile_id
       @cim_payment_profile_id = cim_payment_profile_id
-      @server_message = ''
       @amount = amount
+      #@server_message = ''
     end
 
     def process
@@ -146,7 +144,7 @@ module Cim
                           customer_payment_profile_id: @cim_payment_profile_id,
                         }
                                                                   )
-      result
+      @server_message = result.message
     end
   end
 
