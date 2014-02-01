@@ -117,6 +117,16 @@ namespace :db do
                                             payment_type: donation.donation_type)
         payment.save
       end
+
+      # payment_profiles
+      Supporter.all.each do |supporter|
+        profile = supporter.payment_profiles.build( payment_profile_type: 'credit',
+                                                    details: {  cc_type:    'visa',
+                                                                cc_last_4:  '1111',
+                                                                cc_month:   '10',
+                                                                cc_year:    '2017' })
+        profile.save
+      end
     end
 
 =begin

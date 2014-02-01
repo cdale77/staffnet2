@@ -69,6 +69,7 @@ describe Supporter do
   it { should respond_to(:supporter_type) }
   it { should respond_to(:donations) }
   it { should respond_to(:payments) }
+  it { should respond_to(:payment_profiles) }
 
   ## VALIDATIONS
   describe 'prefix validations' do 

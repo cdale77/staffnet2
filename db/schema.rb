@@ -105,7 +105,6 @@ ActiveRecord::Schema.define(version: 20140125005333) do
     t.integer  "donation_id"
     t.integer  "payment_profile_id"
     t.string   "cim_transaction_id",                         default: ""
-    t.integer  "user_id"
     t.date     "deposited_at"
     t.string   "payment_type",                               default: ""
     t.boolean  "captured",                                   default: false
@@ -118,7 +117,6 @@ ActiveRecord::Schema.define(version: 20140125005333) do
   add_index "payments", ["cim_transaction_id"], name: "index_payments_on_cim_transaction_id", using: :btree
   add_index "payments", ["donation_id"], name: "index_payments_on_donation_id", using: :btree
   add_index "payments", ["payment_profile_id"], name: "index_payments_on_payment_profile_id", using: :btree
-  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.integer  "client_id"

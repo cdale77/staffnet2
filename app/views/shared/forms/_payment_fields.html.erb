@@ -13,6 +13,18 @@
         </div>
         <hr />
         <div class="row">
+          <% payment_profiles.each_with_index do |payment_profile, n| %>
+            <div class="payment-profile span3" id="payment-profile<%= n.to_s %>">
+              <table>
+                <tr>
+                  <th>Type</th>
+                  <td><%= payment_profile.payment_profile_type %></td>
+                </tr>
+              </table>
+            </div>
+          <% end %>
+        </div>
+        <div class="row">
           <div class="span4">
             <%# payment_field.input :cc_number, input_html: { id: 'cc_number' } %>
             <div id="cc_number_error" class="red"></div>
@@ -27,11 +39,6 @@
           </div>
         </div>
         <hr />
-        <div class="row">
-          <div class="span2">
-            <%= payment_field.input :check_number %>
-          </div>
-        </div>
         <%= render 'shared/forms/notes_field', f: payment_field %>
       <% end %>
     </div>

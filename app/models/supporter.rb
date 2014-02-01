@@ -53,6 +53,7 @@ class Supporter < ActiveRecord::Base
   belongs_to :supporter_type
   has_many :donations, dependent: :destroy
   has_many :payments, through: :donations
+  has_many :payment_profiles
 
 
   ## CALLBACKS

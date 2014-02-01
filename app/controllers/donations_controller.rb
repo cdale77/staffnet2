@@ -8,6 +8,7 @@ class DonationsController < ApplicationController
     if @supporter
       @donation = @supporter.donations.build
       @payment = @donation.payments.build
+      @payment_profiles = @supporter.payment_profiles.limit(4)
       authorize @donation
     else
       flash[:error] = 'Could not find supporter.'
@@ -69,7 +70,7 @@ class DonationsController < ApplicationController
 
     def donation_params
       params.require(:donation).permit( :date, :donation_type, :source, :campaign, :sub_month, :sub_week, :amount,
-                                        :cancelled, :notes, payments_attributes: [:cim_profile_id, :user_id, :deposited_at, 
-                                        :payment_type, :captured, :amount, :check_number, :notes, :cc_number] )
+                                        :cancelled, :notes, payments_attributes: [:cim_profile_id, :deposited_at,
+                                        :payment_type, :captured, :amount, :notes] )
     end
 end
