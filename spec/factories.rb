@@ -129,6 +129,15 @@ FactoryGirl.define do
     donation
   end
 
+  factory :payment_profile do
+    cim_payment_profile_id    '1234455'
+    payment_profile_type      %W[credit cash check].sample
+    cc_last_4                 '1234'
+    cc_type                   'visa'
+    cc_month                  '10'
+    cc_year                   '2017'
+  end
+
 =begin
   factory :project do
     name            Faker::Lorem.word + ' ' + Faker::Lorem.word

@@ -54,6 +54,14 @@ class Supporter < ActiveRecord::Base
   has_many :donations, dependent: :destroy
   has_many :payments, through: :donations
 
+
+  ## CALLBACKS
+  #before_create :set_mailchimp_sync_stamp
+  after_create :store_cim_profile
+  before_destroy :unstore_cim_profile
+  before_validation { self.salutation = first_name if self.salutation.blank? }
+
+
   ## VALIDATIONS
   validates :first_name, :prefix, :salutation,
             length: { maximum: 25, message: 'must be under 25 characters.' },
@@ -78,12 +86,6 @@ class Supporter < ActiveRecord::Base
             length: { is: 5 },
             numericality: { message: 'must be 5 digits.' },
             allow_blank: true
-
-  ## CALLBACKS
-  #before_create :set_mailchimp_sync_stamp
-  after_create :store_cim_profile
-  before_destroy :unstore_cim_profile
-  before_validation { self.salutation = first_name if self.salutation.blank? }
 
   ## WRITERS  
   def email_1=(email)

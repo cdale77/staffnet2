@@ -5,4 +5,5 @@ module  Regex
   GENDER_REGEX = /\A[mf]\z/i
   PHONE_REGEX = /\A\d{10}\z/
   ZIP_REGEX = /\A\d{5}\z/
+  LAST_4_CC_REGEX = /\A[0-9]{3,4}\z/
 end

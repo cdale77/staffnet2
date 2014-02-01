@@ -13,6 +13,9 @@
 
 class PaymentProfile < ActiveRecord::Base
 
+  ## SET UP ENVIRONMENT
+  include Regex
+
   ## HSTORE
   store_accessor(:details, :cc_last_4, :cc_type, :cc_month, :cc_year)
 
@@ -23,6 +26,12 @@ class PaymentProfile < ActiveRecord::Base
   ## CALLBACKS
   after_create :store_cim_payment_profile
   before_destroy :unstore_cim_payment_profile
+
+  ## VALIDATIONS
+  validates :payment_profile_type, presence: { message: 'required.' }
+  validates :cc_last_4,
+            format: { with: LAST_4_CC_REGEX, message: 'must be 10 digits' },
+            allow_blank: true
 
   def store_cim_payment_profile
 

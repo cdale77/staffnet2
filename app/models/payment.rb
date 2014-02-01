@@ -24,14 +24,16 @@ class Payment < ActiveRecord::Base
   belongs_to :donation
   has_one :payment_profile
 
-  ## VALIDATIONS
-  validates :payment_type, presence: { message: 'required.' }
-
-  validates :amount, presence: { message: 'required.' }
 
   ## CALLBACKS
-  before_save :store_cc_info
+  #before_save :store_cc_info
 
+  ## VALIDATIONS
+  validates :payment_type, presence: { message: 'required.' }
+  validates :amount, presence: { message: 'required.' }
+
+
+=begin
   def store_cc_info
     if self.cc_number
       self.cc_last_4 = cc_number[12..16]
@@ -53,4 +55,5 @@ class Payment < ActiveRecord::Base
         'disc'
     end 
   end
+=end
 end
