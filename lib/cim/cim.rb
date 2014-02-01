@@ -39,7 +39,7 @@ module Cim
 
   class PaymentProfile
 
-    attr_reader :cim_profile_id
+    attr_reader :cim_payment_profile_id
     attr_reader :server_message
 
     def initialize(supporter, cc_number = '', cc_month = '', cc_year = '', cc_type = '', cim_payment_profile_id = '')
@@ -53,7 +53,7 @@ module Cim
 
     def store
       result = Cim.connection.create_customer_payment_profile({ customer_profile_id: @supporter.cim_id,
-                                                                payment_profile: cim_payment_profile } )
+                                                                payment_profile: cim_payment_profile })
       @server_message = result.message
       if result.params
         result.success? ? @cim__payment_profile_id = result.params['customer_payment_profile_id'] : false
@@ -61,7 +61,8 @@ module Cim
     end
 
     def update
-      result = Cim.connection.update_customer_payment_profile()
+      result = Cim.connection.update_customer_payment_profile({ customer_profile_id: @supporter.cim_id,
+                                                                payment_profile: cim_payment_profile })
       @server_message = result.message
       if result.params
         result.success? ? @cim__payment_profile_id = result.params['customer_payment_profile_id']: false

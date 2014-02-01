@@ -45,7 +45,7 @@ describe Cim do
 
     describe '#update' do
       it 'should update an expiry date' do
-        result = payment_profile.update()
+        result = payment_profile.update
       end
     end
   end
