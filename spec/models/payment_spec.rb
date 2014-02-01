@@ -20,8 +20,8 @@ require 'spec_helper'
 
 describe Payment do
 
-  payment_attributes = {  deposited_at: Time.now, payment_type: 'Credit Card', captured: true, amount: 10.00,
-                          user_id: 43, notes: 'Notes' }
+  payment_attributes = {  deposited_at: Time.now, payment_type: 'Credit Card', captured: true,
+                          amount: 10.00, notes: 'Notes' }
 
   let(:payment) { FactoryGirl.create(:payment) }
 

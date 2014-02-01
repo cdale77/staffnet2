@@ -4,7 +4,6 @@ class CreatePayments < ActiveRecord::Migration
       t.integer :donation_id
       t.integer :payment_profile_id
       t.string  :cim_transaction_id, :default => ''
-      t.integer :user_id
       t.date    :deposited_at
       t.string  :payment_type, :default => ''
       t.boolean :captured, :default => false
@@ -16,7 +15,6 @@ class CreatePayments < ActiveRecord::Migration
 
     add_index :payments, :payment_profile_id
     add_index :payments, :donation_id
-    add_index :payments, :user_id
     add_index :payments, :cim_transaction_id
 
   end
