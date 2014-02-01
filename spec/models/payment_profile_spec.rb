@@ -42,6 +42,14 @@ describe PaymentProfile do
     end
   end
 
+  describe 'saving the cc type' do
+    it 'should save the correct cc type' do
+      payment_profile.cc_number = '5111111111111111'
+      payment_profile.save
+      payment_profile.reload.cc_type.should eql 'mc'
+    end
+  end
+
   
   ## VALIDATIONS
   describe 'payment_profile type validations' do
