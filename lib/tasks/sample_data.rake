@@ -22,7 +22,6 @@ namespace :db do
                                           <validationDirectResponseList/>
                                         </createCustomerProfileResponse>', 
                     headers: { 'Content-Type' => 'text/xml' })
- 
 
     #create user with each role user for testing
     ['super_admin', 'admin', 'manager', 'staff' ''].each do |role|

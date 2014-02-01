@@ -92,8 +92,8 @@ ActiveRecord::Schema.define(version: 20140125005333) do
   create_table "payment_profiles", force: true do |t|
     t.integer  "supporter_id"
     t.string   "cim_payment_profile_id", default: ""
-    t.string   "details",                default: "--- {}\n"
-    t.string   "hstore",                 default: "--- {}\n"
+    t.string   "payment_profile_type",   default: ""
+    t.hstore   "details",                default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end

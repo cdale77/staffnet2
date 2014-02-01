@@ -4,7 +4,8 @@ class CreatePaymentProfiles < ActiveRecord::Migration
     create_table :payment_profiles do |t|
       t.integer :supporter_id 
       t.string :cim_payment_profile_id, :default => ''
-      t.string :details, :hstore, :default => {}
+      t.string :payment_profile_type, :default => ''
+      t.hstore :details, :default => {}
       t.timestamps
     end
 
