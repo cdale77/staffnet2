@@ -16,7 +16,8 @@ require 'spec_helper'
 describe PaymentProfile do
 
   payment_profile_attributes = {  supporter_id: 21, cim_payment_profile_id: '32323223', payment_profile_type: 'credit',
-                                  cc_last_4: '4342', cc_type: 'visa', cc_month: '10', cc_year: '2017' }
+                                  cc_last_4: '1111', cc_type: 'visa', cc_month: '10', cc_year: '2017',
+                                  cc_number: '4111111111111111'}
 
   let(:payment_profile) { FactoryGirl.create(:payment_profile) }
 
@@ -31,6 +32,15 @@ describe PaymentProfile do
   ## RELATIONSHIPS
   it { should respond_to(:supporter) }
   it { should respond_to(:payments) }
+
+  ## CALLBACKS
+  describe 'saving cc info' do
+    it 'should save the last 4 cc numbers' do
+      payment_profile.cc_number = '4111111111155555'
+      payment_profile.save
+      payment_profile.reload.cc_last_4.should eql '5555'
+    end
+  end
 
   
   ## VALIDATIONS

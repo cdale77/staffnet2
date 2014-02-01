@@ -13,6 +13,8 @@
 
 class PaymentProfile < ActiveRecord::Base
 
+  attr_accessor :cc_number
+
   ## SET UP ENVIRONMENT
   include Regex
 
@@ -25,6 +27,7 @@ class PaymentProfile < ActiveRecord::Base
 
   ## CALLBACKS
   after_create :store_cim_payment_profile
+  before_save :store_cc_info
   before_destroy :unstore_cim_payment_profile
 
   ## VALIDATIONS
@@ -33,12 +36,32 @@ class PaymentProfile < ActiveRecord::Base
             format: { with: LAST_4_CC_REGEX, message: 'must be 10 digits' },
             allow_blank: true
 
+  def store_cc_info
+    if self.cc_number
+      self.cc_last_4 = cc_number[12..16]
+      self.cc_type = PaymentProfile.cc_type_by_first_number(cc_number[0])
+    end
+  end
+
   def store_cim_payment_profile
 
   end
 
   def unstore_cim_payment_profile
 
+  end
+
+  def self.cc_type_by_first_number(number)
+    case number
+      when '3'
+        'amex'
+      when '4'
+        'visa'
+      when '5'
+        'mc'
+      when '6'
+        'disc'
+    end
   end
 
 end

@@ -43,7 +43,7 @@ FactoryGirl.define do
     address_city        Faker::Address.city
     address_state       Faker::Address.state_abbr
     address_zip         '12345'
-    title               'Organizer'
+    title               'organizer'
     pay_hourly          12
     fed_filing_status   'single'
     ca_filing_status    'single'
@@ -113,16 +113,16 @@ FactoryGirl.define do
 
   factory :donation do
     date              Date.today
-    donation_type     'Credit Card'
-    source            'Mail'
-    campaign          'Energy'
+    donation_type     'credit'
+    source            'mail'
+    campaign          'energy'
     amount            10.00
     supporter
   end
 
   factory :payment do
     deposited_at          Time.now
-    payment_type          'Credit Card'
+    payment_type          'credit'
     captured              true
     amount                10.00
     cim_transaction_id    '1122223333'
