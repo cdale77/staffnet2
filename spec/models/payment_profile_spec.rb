@@ -15,7 +15,7 @@ require 'spec_helper'
 
 describe PaymentProfile do
 
-  payment_profile_attributes = { supporter_id: 21, cim_id: '32323223', payment_profile_type: 'credit'  }
+  payment_profile_attributes = { supporter_id: 21, cim_payment_profile_id: '32323223', payment_profile_type: 'credit' }
 
   let(:payment_profile) { FactoryGirl.create(:payment_profile) }
 
