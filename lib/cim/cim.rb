@@ -15,37 +15,25 @@ module Cim
       @supporter_id = supporter_id.to_s
       @supporter_email = supporter_email
       @cim_id = cim_id
-      #@server_message = ''
     end
 
     def store
       result = Cim.connection.create_customer_profile(profile: customer_profile)
       @server_message = result.message
-      if result.success?
-        @cim_id = result.params['customer_profile_id'] if result.params
-      else
-        raise Exceptions::CimProfileError
-        return false
+      if result.params
+        result.success? ? @cim_id = result.params['customer_profile_id'] : false
       end
     end
 
     def unstore
       result = Cim.connection.delete_customer_profile(customer_profile_id: @cim_id)
       @server_message = result.message
-      if result.success?
-        return true
-      else
-        raise Exceptions::CimProfileError
-        return false
-      end
+      result.success? ? true : false
     end
 
     private
       def customer_profile
-        { 
-          merchant_customer_id: @supporter_id,
-          email: @supporter_email
-        }
+        { merchant_customer_id: @supporter_id, email: @supporter_email }
       end
   end
 
@@ -61,18 +49,22 @@ module Cim
       @cc_year = cc_year
       @cc_type = cc_type
       @cim_payment_profile_id = cim_payment_profile_id
-      #@server_message = ''
     end
 
     def store
       result = Cim.connection.create_customer_payment_profile({ customer_profile_id: @supporter.cim_id,
                                                                 payment_profile: cim_payment_profile } )
       @server_message = result.message
-      if result.success?
-        @cim__payment_profile_id = result.params['customer_payment_profile_id'] if result.params
-      else
-        raise Exceptions::CimProfileError
-        return false
+      if result.params
+        result.success? ? @cim__payment_profile_id = result.params['customer_payment_profile_id'] : false
+      end
+    end
+
+    def update
+      result = Cim.connection.update_customer_payment_profile()
+      @server_message = result.message
+      if result.params
+        result.success? ? @cim__payment_profile_id = result.params['customer_payment_profile_id']: false
       end
     end
 
@@ -80,21 +72,13 @@ module Cim
       result = Cim.connection.delete_customer_payment_profile(customer_profile_id: @supporter.cim_id,
                                                               customer_payment_profile_id: @cim_payment_profile_id )
       @server_message = result.message
-      if result.success?
-        return true
-      else
-        raise Exceptions::CimProfileError
-        return false
-      end
+      result.success? ? true : false
     end
 
 
     private
       def cim_payment_profile
-        {
-          bill_to: cim_billing_info,
-          payment: cim_payment_info
-        }
+        { bill_to: cim_billing_info, payment: cim_payment_info }
       end
 
       def cim_billing_info
@@ -133,7 +117,6 @@ module Cim
       @cim_profile_id = cim_profile_id
       @cim_payment_profile_id = cim_payment_profile_id
       @amount = amount
-      #@server_message = ''
     end
 
     def process
