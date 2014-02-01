@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20140125005333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "clients", force: true do |t|
     t.string   "name",          default: ""
@@ -90,12 +91,14 @@ ActiveRecord::Schema.define(version: 20140125005333) do
 
   create_table "payment_profiles", force: true do |t|
     t.integer  "supporter_id"
-    t.string   "cim_id",       default: ""
+    t.string   "cim_payment_profile_id", default: ""
+    t.string   "details",                default: "--- {}\n"
+    t.string   "hstore",                 default: "--- {}\n"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "payment_profiles", ["cim_id"], name: "index_payment_profiles_on_cim_id", using: :btree
+  add_index "payment_profiles", ["cim_payment_profile_id"], name: "index_payment_profiles_on_cim_payment_profile_id", using: :btree
   add_index "payment_profiles", ["supporter_id"], name: "index_payment_profiles_on_supporter_id", using: :btree
 
   create_table "payments", force: true do |t|

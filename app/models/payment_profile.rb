@@ -2,11 +2,13 @@
 #
 # Table name: payment_profiles
 #
-#  id           :integer          not null, primary key
-#  supporter_id :integer
-#  cim_id       :string(255)      default("")
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id                     :integer          not null, primary key
+#  supporter_id           :integer
+#  cim_payment_profile_id :string(255)      default("")
+#  details                :string(255)      default("--- {}\n")
+#  hstore                 :string(255)      default("--- {}\n")
+#  created_at             :datetime
+#  updated_at             :datetime
 #
 
 class PaymentProfile < ActiveRecord::Base
