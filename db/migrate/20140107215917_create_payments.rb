@@ -9,11 +9,6 @@ class CreatePayments < ActiveRecord::Migration
       t.string  :payment_type, :default => ''
       t.boolean :captured, :default => false
       t.decimal :amount, :scale => 2, :precision=> 8, :default => 0
-      t.string  :cc_last_4, :limit => 4, :default => ''
-      t.string  :cc_month, :limit => 2, :default => ''
-      t.string  :cc_year, :limit => 4, :default => ''
-      t.string  :cc_type, :default => ''
-      t.string  :check_number, :default => ''
       t.text    :notes, :default => ''
 
       t.timestamps

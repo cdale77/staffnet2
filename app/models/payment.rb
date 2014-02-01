@@ -11,11 +11,6 @@
 #  payment_type       :string(255)      default("")
 #  captured           :boolean          default(FALSE)
 #  amount             :decimal(8, 2)    default(0.0)
-#  cc_last_4          :string(4)        default("")
-#  cc_month           :string(2)        default("")
-#  cc_year            :string(4)        default("")
-#  cc_type            :string(255)      default("")
-#  check_number       :string(255)      default("")
 #  notes              :text             default("")
 #  created_at         :datetime
 #  updated_at         :datetime
