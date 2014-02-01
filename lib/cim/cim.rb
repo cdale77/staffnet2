@@ -60,6 +60,7 @@ module Cim
       end
     end
 
+=begin
     def update
       result = Cim.connection.update_customer_payment_profile({ customer_profile_id: @supporter.cim_id,
                                                                 payment_profile: cim_payment_profile })
@@ -68,6 +69,7 @@ module Cim
         result.success? ? @cim__payment_profile_id = result.params['customer_payment_profile_id']: false
       end
     end
+=end
 
     def unstore
       result = Cim.connection.delete_customer_payment_profile(customer_profile_id: @supporter.cim_id,

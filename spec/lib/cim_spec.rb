@@ -43,11 +43,13 @@ describe Cim do
       end
     end
 
+=begin
     describe '#update' do
       it 'should update an expiry date' do
         result = payment_profile.update
       end
     end
+=end
   end
 
   describe Cim::ProfilePayment do
