@@ -88,6 +88,7 @@ module Cim
       end
     end
 
+
     private
       def cim_payment_profile
         {
