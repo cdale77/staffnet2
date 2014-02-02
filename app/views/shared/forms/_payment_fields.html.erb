@@ -6,13 +6,14 @@
         <%= payment_field.input :payment_profile_id, as: :hidden, input_html: { id: 'payment_profile_id', value: ''} %>
         <div class="row">
           <div class="span2">
-            <%= payment_field.input :payment_type, collection: [['Credit Card', 'credit'], ['Cash', 'cash'], ['Check', 'check']], selected: payment.payment_type %>
+            <%= payment_field.input :payment_type, collection: [['Credit Card', 'credit'],
+                                                                ['Cash', 'cash'],
+                                                                ['Check', 'check']], selected: payment.payment_type %>
           </div>
           <div class="span2">
             <%= payment_field.input :amount %>
           </div>
         </div>
-        <hr />
         <div class="row">
           <% payment_profiles.each_with_index do |payment_profile, n| %>
             <div class="payment-profile span2" id="payment-profile<%= n.to_s %>">
@@ -37,13 +38,43 @@
                 <% end %>
               </table>
               <%= radio_button_tag 'radio', payment_profile.id %> Use this profile
-
-
-
             </div>
           <% end %>
         </div>
         <hr />
+        <div class="row">
+          <div class="span10">
+            <%= simple_form_for([supporter, new_payment_profile], remote: true) do |new_payment_field| %>
+              <div class="row">
+                <div class="span2">
+                  <%= new_payment_field.input :payment_profile_type, collection: [['Credit Card', 'credit'],
+                                                                                  ['Cash', 'cash'],
+                                                                                  ['Check', 'check']],
+                                                                     selected: 'credit' %>
+                </div>
+                <div class="span3">
+                  <%= new_payment_field.input :cc_number, label: 'CC number' %>
+                </div>
+                <div class="span2">
+                  <%= new_payment_field.input :cc_month, label: 'Exp month', placeholder: '04' %>
+                </div>
+                <div class="span2">
+                  <%= new_payment_field.input :cc_year, label: 'Exp year', placeholder: '2014' %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="span8">
+                  <div id="credit_card_number_error" class="red"></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="span2">
+                  <%= new_payment_field.button :submit, remote: true, class: 'btn btn-mini' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
         <%= render 'shared/forms/notes_field', f: payment_field %>
       <% end %>
     </div>

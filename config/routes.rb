@@ -24,6 +24,7 @@ Staffnet2::Application.routes.draw do
 
     resources :supporters do
       resources :donations
+      resources :payment_profiles
     end
 
     resources :donations do
