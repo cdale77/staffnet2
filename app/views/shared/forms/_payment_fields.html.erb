@@ -1,8 +1,9 @@
 <div>
   <hr />
   <div class="row">
-    <div class="span12">
+    <div class="span10">
       <%= f.simple_fields_for :payments do |payment_field| %>
+        <%= payment_field.input :payment_profile_id, as: :hidden, input_html: { id: 'payment_profile_id', value: ''} %>
         <div class="row">
           <div class="span2">
             <%= payment_field.input :payment_type, collection: [['Credit Card', 'credit'], ['Cash', 'cash'], ['Check', 'check']], selected: payment.payment_type %>
@@ -14,29 +15,33 @@
         <hr />
         <div class="row">
           <% payment_profiles.each_with_index do |payment_profile, n| %>
-            <div class="payment-profile span3" id="payment-profile<%= n.to_s %>">
-              <table>
+            <div class="payment-profile span2" id="payment-profile<%= n.to_s %>">
+              <table class="table table-condensed">
                 <tr>
                   <th>Type</th>
-                  <td><%= payment_profile.payment_profile_type %></td>
+                  <td><%= payment_profile.payment_profile_type.humanize %></td>
                 </tr>
+                <% if payment_profile.payment_profile_type == 'credit' %>
+                  <tr>
+                    <th>Card</th>
+                    <td><%= payment_profile.cc_type.humanize %></td>
+                  </tr>
+                  <tr>
+                    <th>Last 4</th>
+                    <td><%= payment_profile.cc_last_4 %></td>
+                  </tr>
+                  <tr>
+                    <th>Exp</th>
+                    <td><%= "#{payment_profile.cc_month}/#{payment_profile.cc_year}" %></td>
+                  </tr>
+                <% end %>
               </table>
+              <%= radio_button_tag 'radio', payment_profile.id %> Use this profile
+
+
+
             </div>
           <% end %>
-        </div>
-        <div class="row">
-          <div class="span4">
-            <%# payment_field.input :cc_number, input_html: { id: 'cc_number' } %>
-            <div id="cc_number_error" class="red"></div>
-          </div>
-          <div class="span2">
-            <%# payment_field.input :cc_month, label: 'Exp month', placeholder: '04', input_html: { id: 'cc_month' } %>
-            <div id="cc_month_error" class="red"></div>
-          </div>
-          <div class="span2">
-            <%# payment_field.input :cc_year, label: 'Exp year', placeholder: '2014', input_html: { id: 'cc_year'} %>
-            <div id="exp_year_error" class="red"></div>
-          </div>
         </div>
         <hr />
         <%= render 'shared/forms/notes_field', f: payment_field %>
