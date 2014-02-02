@@ -9,7 +9,6 @@ class DonationsController < ApplicationController
       @donation = @supporter.donations.build
       @payment = @donation.payments.build
       @payment_profiles = @supporter.payment_profiles.limit(5)
-      @new_payment_profile = @supporter.payment_profiles.build
       authorize @donation
     else
       flash[:error] = 'Could not find supporter.'

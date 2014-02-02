@@ -19,6 +19,6 @@ class PaymentProfilesController < ApplicationController
 
   private
     def payment_profile_params
-      params.require(:payment_profile).permit(:payment_profile_type, :cc_number)
+      params.require(:payment_profile).permit(:supporter_id, :payment_profile_type, :cc_number)
     end
 end

@@ -14,40 +14,11 @@
             <%= payment_field.input :amount %>
           </div>
         </div>
-        <p>Select an existing payment profile or <%= link_to 'create a new one', '#' %>.</p>
-        <div class="row">
-          <div class="span10">
-            <%= simple_form_for([supporter, new_payment_profile], remote: true) do |new_payment_field| %>
-              <div class="row">
-                <div class="span2">
-                  <%= new_payment_field.input :payment_profile_type, collection: [['Credit Card', 'credit'],
-                                                                                  ['Cash', 'cash'],
-                                                                                  ['Check', 'check']],
-                                              selected: 'credit' %>
-                </div>
-                <div class="span3">
-                  <%= new_payment_field.input :cc_number, label: 'CC number' %>
-                </div>
-                <div class="span2">
-                  <%= new_payment_field.input :cc_month, label: 'Exp month', placeholder: '04' %>
-                </div>
-                <div class="span2">
-                  <%= new_payment_field.input :cc_year, label: 'Exp year', placeholder: '2014' %>
-                </div>
-              </div>
-              <div class="row">
-                <div class="span8">
-                  <div id="credit_card_number_error" class="red"></div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="span2">
-                  <%= new_payment_field.button :submit, remote: true, class: 'btn btn-mini' %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
+        <hr />
+        <p>Select a payment profile.
+        <%# button_tag 'New profile', type: 'button', class:'btn btn-mini field-toggle', id:'btn-payment-fields',
+                       data: { toggle: 'collapse', target: '#new-payment-profile' } %><p/>
+
         <div class="row">
           <% payment_profiles.each_with_index do |payment_profile, n| %>
             <div class="payment-profile span2" id="payment-profile<%= n.to_s %>">
