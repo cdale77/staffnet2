@@ -32,7 +32,7 @@ Staffnet2::Application.routes.draw do
     end
 
     resources :payments
-    resources :payment_profiles
+    #resources :payment_profiles
 
     resources :supporter_types, except: [ :show, :destroy ]
     resources :shift_types, except: [ :show, :destroy ]

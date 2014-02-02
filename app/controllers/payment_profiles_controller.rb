@@ -6,7 +6,8 @@ class PaymentProfilesController < ApplicationController
   ## AJAX
 
   def new
-    @payment_profile = PaymentProfile.new
+    @supporter = Supporter.find(params[:supporter_id])
+    @payment_profile = @supporter.payment_profiles.build
     #authorize @payment_profile
     respond_to do |format|
       format.js
