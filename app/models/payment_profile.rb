@@ -26,8 +26,8 @@ class PaymentProfile < ActiveRecord::Base
   has_many :payments
 
   ## CALLBACKS
-  after_create :store_cim_payment_profile
   before_save :store_cc_info
+  after_create :store_cim_payment_profile
   before_destroy :unstore_cim_payment_profile
 
   ## VALIDATIONS
