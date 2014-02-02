@@ -16,8 +16,8 @@
         </div>
         <hr />
         <p>Select a payment profile.
-        <%# button_tag 'New profile', type: 'button', class:'btn btn-mini field-toggle', id:'btn-payment-fields',
-                       data: { toggle: 'collapse', target: '#new-payment-profile' } %><p/>
+        <%= link_to 'New profile', new_payment_profile_path,  class: 'btn btn-mini btn-ajax',
+                                                              id:'new-payment-profile', remote: :true %><p/>
 
         <div class="row">
           <% payment_profiles.each_with_index do |payment_profile, n| %>

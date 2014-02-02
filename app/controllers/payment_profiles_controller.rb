@@ -4,6 +4,15 @@ class PaymentProfilesController < ApplicationController
   #after_filter :verify_authorized
 
   ## AJAX
+
+  def new
+    @payment_profile = PaymentProfile.new
+    #authorize @payment_profile
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
     @new_payment_profile = PaymentProfile.new(payment_profile_params)
     #authorize @new_payment_profile
