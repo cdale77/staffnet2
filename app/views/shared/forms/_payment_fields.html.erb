@@ -1,19 +1,10 @@
 <div>
-  <hr />
   <div class="row">
     <div class="span10">
       <%= f.simple_fields_for :payments do |payment_field| %>
-        <%= payment_field.input :payment_profile_id, as: :hidden, input_html: { id: 'payment_profile_id', value: ''} %>
-        <div class="row">
-          <div class="span2">
-            <%= payment_field.input :payment_type, collection: [['Credit Card', 'credit'],
-                                                                ['Cash', 'cash'],
-                                                                ['Check', 'check']], selected: payment.payment_type %>
-          </div>
-          <div class="span2">
-            <%= payment_field.input :amount %>
-          </div>
-        </div>
+        <%= payment_field.input :payment_profile_id, as: :hidden, input_html: { id: 'payment-profile-id', value: ''} %>
+        <%= payment_field.input :payment_type, as: :hidden, input_html: { id: 'payment-type', value: 'credit' } %>
+        <%= payment_field.input :amount, as: :hidden, input_html: { id: 'payment-amount' }%>
         <hr />
         <p>Select a payment profile.
         <%= link_to 'New profile', new_supporter_payment_profile_path(supporter),  class: 'btn btn-mini btn-ajax',

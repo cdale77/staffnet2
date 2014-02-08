@@ -9,14 +9,19 @@
     <%= f.text_field :date, 'data-behaviour' => 'datepicker'  %>
   </div>
   <div class="span1">
-    <%= f.input :amount %>
+    <%= f.input :amount, input_html: { id: 'donation-amount' } %>
   </div>
   <div class="span1 spacer"></div>
   <div class="span2">
-    <%= f.input :donation_type, collection: [['Credit Card', 'credit'], ['Cash', 'cash'], ['Check', 'check']], selected: donation.donation_type %>
+    <%= f.input :donation_type,
+                input_html: { id: 'donation-type' },
+                collection: [['Credit Card', 'credit'], ['Cash', 'cash'], ['Check', 'check']],
+                selected: donation.donation_type %>
   </div>
   <div class="span2">
-    <%= f.input :source, collection: [['Phone', 'phone'], ['Door', 'door'], ['Street', 'street'], ['Web', 'web']], selected: donation.source %>
+    <%= f.input :source,
+                collection: [['Phone', 'phone'], ['Door', 'door'], ['Street', 'street'], ['Web', 'web']],
+                selected: donation.source %>
   </div>
   <div class="span2">
     <%= f.input :campaign, collection: [['Prop 13', 'prop13']], selected: donation.campaign %>

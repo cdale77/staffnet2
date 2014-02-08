@@ -23,27 +23,13 @@ $ ->
   $("[type='radio']").change ->
     id = $(this).val()
     $("#payment_profile_id").val(id)
-###
-
-  $(".btn-pp").click ->
-    console.log("click")
-    btn = $(this)
-    id = btn.attr("id")
-    input = $("#payment_profile_id")
-
-    #btn.button("toggle")
-
-    #console.log(id)
-
-    $(".clicked").each ->
-      $(this).removeClass("clicked")
 
 
-    if btn.attr("clicked") == "clicked"
-      btn.attr("clicked", "")
-      input.val("")
-    else
-      btn.attr("clicked", "clicked")
-      input.val(id)###
-###
-###
+  $("#donation-amount").change ->
+    value = $(this).val()
+    $("#payment-amount").val(value)
+
+
+  $("#donation-type").change ->
+    value = $(this).val()
+    $("#payment-type").val(value)
