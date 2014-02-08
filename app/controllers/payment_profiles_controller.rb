@@ -16,12 +16,13 @@ class PaymentProfilesController < ApplicationController
   end
 
   def create
-    @new_payment_profile = PaymentProfile.new(payment_profile_params)
+    @supporter = Supporter.find(params[:supporter_id])
+    @payment_profile = PaymentProfile.new(payment_profile_params)
     #authorize @new_payment_profile
-    if @new_payment_profile.save
-      @result = true
+    if @payment_profile.save
+      @success = true
     else
-      @result = false
+      @success = false
     end
     respond_to do |format|
       format.js
@@ -31,6 +32,6 @@ class PaymentProfilesController < ApplicationController
 
   private
     def payment_profile_params
-      params.require(:payment_profile).permit(:supporter_id, :payment_profile_type, :cc_number)
+      params.require(:payment_profile).permit(:supporter_id, :payment_profile_type, :cc_number, :cc_month, :cc_year)
     end
 end

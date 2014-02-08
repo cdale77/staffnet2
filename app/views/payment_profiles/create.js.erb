@@ -1,4 +1,6 @@
 (function() {
-  $("#new-payment-profile-fields").html("<%= j render 'shared/forms/payment_profile_alert' %>")
+  $("#new-payment-profile-fields").collapse("hide");
+  $("#flash").html("<%= j render 'shared/forms/payment_profile_alert' %>");
+  $("#payment-profile-0").html("<%= j render 'shared/forms/payment_profile', payment_profile: @payment_profile, n: '0' %>");
 })();
 

@@ -21,33 +21,10 @@
 
         <div class="row">
           <% payment_profiles.each_with_index do |payment_profile, n| %>
-            <div class="payment-profile span2" id="payment-profile<%= n.to_s %>">
-              <table class="table table-condensed">
-                <tr>
-                  <th>Type</th>
-                  <td><%= payment_profile.payment_profile_type.humanize %></td>
-                </tr>
-                <% if payment_profile.payment_profile_type == 'credit' %>
-                  <tr>
-                    <th>Card</th>
-                    <td><%= payment_profile.cc_type.humanize %></td>
-                  </tr>
-                  <tr>
-                    <th>Last 4</th>
-                    <td><%= payment_profile.cc_last_4 %></td>
-                  </tr>
-                  <tr>
-                    <th>Exp</th>
-                    <td><%= "#{payment_profile.cc_month}/#{payment_profile.cc_year}" %></td>
-                  </tr>
-                <% end %>
-              </table>
-              <%= radio_button_tag 'radio', payment_profile.id %> Use this profile
-            </div>
+            <%= render 'shared/forms/payment_profile', payment_profile: payment_profile, n: n %>
           <% end %>
         </div>
         <hr />
-
         <%= render 'shared/forms/notes_field', f: payment_field %>
       <% end %>
     </div>

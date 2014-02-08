@@ -1,6 +1,6 @@
 <div class="row" id="new-payment-profile">
   <div class="span10">
-    <%= simple_form_for(@payment_profile, remote: true, authenticity_token: true) do |f| %>
+    <%= simple_form_for([@supporter, @payment_profile], remote: true, authenticity_token: true) do |f| %>
       <div class="row">
         <div class="span2">
           <%= f.input :payment_profile_type, collection: [['Credit Card', 'credit'],
