@@ -17,7 +17,7 @@ class PaymentProfilesController < ApplicationController
 
   def create
     @supporter = Supporter.find(params[:supporter_id])
-    @payment_profile = PaymentProfile.new(payment_profile_params)
+    @payment_profile = @supporter.payment_profiles.build(payment_profile_params)
     #authorize @new_payment_profile
     if @payment_profile.save
       @success = true
