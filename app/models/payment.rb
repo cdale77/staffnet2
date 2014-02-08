@@ -21,7 +21,6 @@ class Payment < ActiveRecord::Base
   belongs_to :donation
   has_one :payment_profile
 
-
   ## CALLBACKS
   #before_save :store_cc_info
 

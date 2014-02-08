@@ -5,6 +5,7 @@ class PaymentProfilesController < ApplicationController
 
   ## AJAX
 
+
   def new
     @supporter = Supporter.find(params[:supporter_id])
     @payment_profile = @supporter.payment_profiles.build
@@ -26,6 +27,7 @@ class PaymentProfilesController < ApplicationController
       format.js
     end
   end
+
 
   private
     def payment_profile_params

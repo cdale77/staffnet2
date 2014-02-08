@@ -17,7 +17,7 @@
         <hr />
         <p>Select a payment profile.
         <%= link_to 'New profile', new_supporter_payment_profile_path(supporter),  class: 'btn btn-mini btn-ajax',
-                                                              id:'new-payment-profile', remote: :true %><p/>
+                                                              id:'btn-new-payment-profile', remote: :true %><p/>
 
         <div class="row">
           <% payment_profiles.each_with_index do |payment_profile, n| %>
