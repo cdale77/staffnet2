@@ -4,8 +4,7 @@
   $("#flash-ajax").collapse("show");
   <% if @cim_profile.success  %>
     $("#payment-profiles").append("<%= j render 'shared/forms/payment_profile', payment_profile: @payment_profile, n: '4' %>");
-  <% else %>
-    $("#btn-new-payment-profile").show();
   <% end %>
+  $("#btn-new-payment-profile").show();
 })();
 
