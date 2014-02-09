@@ -19,7 +19,7 @@ describe PaymentProfile do
                                   cc_last_4: '1111', cc_type: 'visa', cc_month: '10', cc_year: '2017',
                                   cc_number: '4111111111111111'}
 
-  let(:payment_profile) { FactoryGirl.create(:payment_profile) }
+  let!(:payment_profile) { FactoryGirl.create(:payment_profile) } # eager-eval to limit Cim callbacks
 
   ## ATTRIBUTES
   describe 'payment profile attribute tests' do
@@ -47,6 +47,13 @@ describe PaymentProfile do
       payment_profile.cc_number = '5111111111111111'
       payment_profile.save
       payment_profile.reload.cc_type.should eql 'mc'
+    end
+  end
+
+  ## CIM
+  describe 'cim integration' do
+    it 'should save a payment profile' do
+      payment_profile.cim_payment_profile_id.should_not be_blank
     end
   end
 

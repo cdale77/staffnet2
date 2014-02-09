@@ -51,12 +51,12 @@ describe Supporter do
                             phone_home: '5559007845', phone_alt: '5558874952', keep_informed: true, vol_level: 'prospect',
                             employer: 'Ohio State University', occupation: 'Professor', source: 'door', notes: 'Note.' }
 
-  let(:supporter) { FactoryGirl.create(:supporter) }
+  let!(:supporter) { FactoryGirl.create(:supporter) } # eager-eval to limit Cim callbacks
 
-  def create_records_for_mailchimp
-    5.times { FactoryGirl.create(:supporter) }
-    2.times { FactoryGirl.create(:supporter, mailchimp_sync_at: (Time.now + 24.hours)) }
-  end
+  #def create_records_for_mailchimp
+  #  5.times { FactoryGirl.create(:supporter) }
+  #  2.times { FactoryGirl.create(:supporter, mailchimp_sync_at: (Time.now + 24.hours)) }
+  #end
 
   ## ATTRIBUTES
   describe 'supporter attribute tests' do
@@ -177,6 +177,14 @@ describe Supporter do
       expect(supporter.reload.phone_mobile).to eql clean_phone
     end
   end
+
+  ## CIM
+  describe 'Cim integration' do
+    it 'should store a cim profile' do
+      supporter.cim_id.should_not be_blank
+    end
+  end
+
 
   ## MAILCHIMP
 =begin
