@@ -1,3 +1,3 @@
-<div class="alert alert-<%= @success ? 'success' : 'danger' %>">
-  alert
+<div class="alert alert-<%= @cim_profile.success ? 'success' : 'danger' %>">
+  <%= @cim_profile.server_message ? 'NetFile: ' + @cim_profile.server_message : 'Problem creating profile' %>
 </div>

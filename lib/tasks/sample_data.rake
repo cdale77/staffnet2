@@ -81,7 +81,7 @@ namespace :db do
     end
 
     SupporterType.all.each do |supporter_type|
-      5.times do
+      3.times do
         supporter =   Supporter.new(  first_name:     Faker::Name.first_name,
                                       last_name:      Faker::Name.last_name,
                                       address1:       Faker::Address.street_address,
@@ -99,7 +99,7 @@ namespace :db do
 
       # donations
       Supporter.all.each do |supporter|
-        4.times do
+        2.times do
           donation = supporter.donations.build( date: Date.today,
                                                 source: 'mail',
                                                 campaign: 'energy',
@@ -119,6 +119,7 @@ namespace :db do
       end
 
       # payment_profiles
+=begin
       Supporter.all.each do |supporter|
         profile = supporter.payment_profiles.build( payment_profile_type: 'credit',
                                                     details: {  cc_type:    'visa',
@@ -127,6 +128,7 @@ namespace :db do
                                                                 cc_year:    '2017' })
         profile.save
       end
+=end
     end
 
 =begin

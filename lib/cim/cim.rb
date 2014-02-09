@@ -39,10 +39,12 @@ module Cim
 
   class PaymentProfile
 
+    attr_reader :success
     attr_reader :cim_payment_profile_id
     attr_reader :server_message
 
     def initialize(supporter, cc_number = '', cc_month = '', cc_year = '', cc_type = '', cim_payment_profile_id = '')
+      @success = false
       @supporter = supporter
       @cc_number = cc_number
       @cc_month = cc_month
@@ -56,7 +58,8 @@ module Cim
                                                                 payment_profile: cim_payment_profile })
       @server_message = result.message
       if result.params
-        result.success? ? @cim__payment_profile_id = result.params['customer_payment_profile_id'] : false
+        @success = result.success?
+        result.success? ? @cim_payment_profile_id = result.params['customer_payment_profile_id'] : false
       end
     end
 

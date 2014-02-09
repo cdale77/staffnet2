@@ -27,7 +27,12 @@
       <div class="span4 record-column record-column2">
         <table>
           <tr>
-          <%= render 'shared/profiles/address', record: @supporter %>
+            <%= render 'shared/profiles/address', record: @supporter %>
+          </tr>
+          <tr>
+            <th>Cim ID</th>
+            <td><%= @supporter.cim_id %></td>
+          </tr>
           <% if @supporter.employer.present? || @supporter.occupation.present? %>
             <tr>
               <th>Occupation</th>

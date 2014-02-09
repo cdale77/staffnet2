@@ -19,7 +19,7 @@ class Payment < ActiveRecord::Base
 
   ## RELATIONSHIPS
   belongs_to :donation
-  has_one :payment_profile
+  has_one :payment_profile, dependent: :destroy
 
   ## CALLBACKS
   #before_save :store_cc_info
