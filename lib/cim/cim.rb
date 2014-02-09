@@ -77,12 +77,13 @@ module Cim
     def unstore
       result = Cim.connection.delete_customer_payment_profile(customer_profile_id: @supporter.cim_id,
                                                               customer_payment_profile_id: @cim_payment_profile_id )
-      @server_message = result.message
+      #@server_message = result.message
       result.success? ? true : false
     end
 
 
     private
+
       def cim_payment_profile
         { bill_to: cim_billing_info, payment: cim_payment_info }
       end
