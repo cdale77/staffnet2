@@ -28,7 +28,6 @@ describe PaymentProfile do
     end
   end
 
-
   ## RELATIONSHIPS
   it { should respond_to(:supporter) }
   it { should respond_to(:payments) }
@@ -47,13 +46,6 @@ describe PaymentProfile do
       payment_profile.cc_number = '5111111111111111'
       payment_profile.save
       payment_profile.reload.cc_type.should eql 'mc'
-    end
-  end
-
-  ## CIM
-  describe 'cim integration' do
-    it 'should save a payment profile' do
-      payment_profile.cim_payment_profile_id.should_not be_blank
     end
   end
 
