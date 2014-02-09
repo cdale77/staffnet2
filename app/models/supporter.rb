@@ -58,7 +58,7 @@ class Supporter < ActiveRecord::Base
 
   ## CALLBACKS
   #before_create :set_mailchimp_sync_stamp
-  before_create :store_cim_profile
+  after_create :store_cim_profile
   before_destroy :unstore_cim_profile
   before_validation { self.salutation = first_name if self.salutation.blank? }
 
@@ -119,6 +119,7 @@ class Supporter < ActiveRecord::Base
         puts 'ERROR: Problem creating CIM profile: ' + profile.server_message
       end
       self.cim_id = profile.cim_id if profile.cim_id
+      self.save
     end
   end
 
