@@ -10,7 +10,7 @@
         <%= link_to 'New profile', new_supporter_payment_profile_path(supporter),  class: 'btn btn-mini btn-ajax',
                                                               id:'btn-new-payment-profile', remote: :true %><p/>
 
-        <div class="row">
+        <div class="row" id="payment-profiles">
           <% payment_profiles.each_with_index do |payment_profile, n| %>
             <%= render 'shared/forms/payment_profile', payment_profile: payment_profile, n: n %>
           <% end %>

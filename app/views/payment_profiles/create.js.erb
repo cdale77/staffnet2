@@ -1,8 +1,9 @@
 (function() {
   $("#new-payment-profile-fields").collapse("hide");
-  $("#flash").html("<%= j render 'shared/forms/payment_profile_alert', cim_profile: @cim_profile %>");
+  $("#flash-ajax").html("<%= j render 'shared/forms/payment_profile_alert', cim_profile: @cim_profile %>");
+  $("#flash-ajax").collapse("show");
   <% if @cim_profile.success  %>
-    $("#payment-profile-0").html("<%= j render 'shared/forms/payment_profile', payment_profile: @payment_profile, n: '0' %>");
+    $("#payment-profiles").append("<%= j render 'shared/forms/payment_profile', payment_profile: @payment_profile, n: '4' %>");
   <% else %>
     $("#btn-new-payment-profile").show();
   <% end %>
