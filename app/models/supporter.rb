@@ -58,7 +58,7 @@ class Supporter < ActiveRecord::Base
 
   ## CALLBACKS
   #before_create :set_mailchimp_sync_stamp
-  after_create :store_cim_profile
+  before_create :store_cim_profile
   before_destroy :unstore_cim_profile
   before_validation { self.salutation = first_name if self.salutation.blank? }
 

@@ -27,7 +27,6 @@ class PaymentProfile < ActiveRecord::Base
 
   ## CALLBACKS
   before_save :store_cc_info
-  after_create :store_cim_payment_profile
   before_destroy :unstore_cim_payment_profile
 
   ## VALIDATIONS
@@ -43,12 +42,11 @@ class PaymentProfile < ActiveRecord::Base
     end
   end
 
-  def store_cim_payment_profile
-
-  end
-
   def unstore_cim_payment_profile
-
+    unless self.cim_payment_profile_id.blank?
+      cim_payment_profile = Cim::PaymentProfile.new(self.supporter, '', '', '', '', self.cim_payment_profile_id)
+      cim_payment_profile.unstore
+    end
   end
 
   def self.cc_type_by_first_number(number)
