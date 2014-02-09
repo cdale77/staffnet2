@@ -1,7 +1,7 @@
 class PaymentProfilesController < ApplicationController
 
-  #include Pundit
-  #after_filter :verify_authorized
+  include Pundit
+  after_filter :verify_authorized
 
   ## AJAX
 
@@ -9,7 +9,7 @@ class PaymentProfilesController < ApplicationController
   def new
     @supporter = Supporter.find(params[:supporter_id])
     @payment_profile = @supporter.payment_profiles.build
-    #authorize @payment_profile
+    authorize @payment_profile
     respond_to do |format|
       format.js
     end
@@ -18,7 +18,7 @@ class PaymentProfilesController < ApplicationController
   def create
     @supporter = Supporter.find(params[:supporter_id])
     @payment_profile = @supporter.payment_profiles.build(payment_profile_params)
-    #authorize @new_payment_profile
+    authorize @payment_profile
     @cim_profile = Cim::PaymentProfile.new(@supporter, params[:payment_profile][:cc_number],
                                            params[:payment_profile][:cc_month],
                                            params[:payment_profile][:cc_year] )

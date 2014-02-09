@@ -131,7 +131,7 @@ FactoryGirl.define do
 
   factory :payment_profile do
     cim_payment_profile_id    ''
-    payment_profile_type      %W[credit cash check].sample
+    payment_profile_type      'credit'
     cc_last_4                 '1234'
     cc_type                   'visa'
     cc_month                  '10'
