@@ -136,6 +136,7 @@ module Cim
                         }
                                                                   )
       @server_message = result.message
+      result.success? ? true : false
     end
   end
 

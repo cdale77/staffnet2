@@ -21,8 +21,9 @@ $ ->
 
 
   $("[type='radio']").change ->
+    console.log('fire')
     id = $(this).val()
-    $("#payment_profile_id").val(id)
+    $("#payment-profile-id").val(id)
 
 
   $("#donation-amount").change ->

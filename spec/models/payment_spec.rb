@@ -32,6 +32,7 @@ describe Payment do
   end
 
   ## RELATIONSHIPS
+  it { should respond_to(:supporter) }
   it { should respond_to(:donation) }
   it { should respond_to(:payment_profile)}
 

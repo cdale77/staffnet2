@@ -20,7 +20,7 @@ class DonationsController < ApplicationController
     @supporter = Supporter.find(params[:supporter_id])
     @donation = @supporter.donations.build(donation_params)
     authorize @donation
-    if @supporter.save
+    if @donation.save
       flash[:success] = 'Success.'
       redirect_to supporter_path(@supporter)
     else
@@ -70,7 +70,7 @@ class DonationsController < ApplicationController
 
     def donation_params
       params.require(:donation).permit( :date, :donation_type, :source, :campaign, :sub_month, :sub_week, :amount,
-                                        :cancelled, :notes, payments_attributes: [:cim_profile_id, :deposited_at,
-                                        :payment_type, :captured, :amount, :notes] )
+                                        :cancelled, :notes, payments_attributes: [:payment_profile_id,
+                                        :payment_type, :amount, :notes] )
     end
 end

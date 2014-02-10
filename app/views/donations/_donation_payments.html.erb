@@ -16,7 +16,7 @@
       </tr>
       <% payments.each do |payment| %>
         <tr>
-          <td><%= payment.deposited_at %></td>
+          <td><%= payment.created_at %></td>
           <td><%= payment.amount %></td>
           <td><%= payment.payment_type %></td>
           <td><%= payment.captured %></td>
