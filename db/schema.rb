@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 20140125005333) do
     t.integer  "donation_id"
     t.integer  "payment_profile_id"
     t.string   "cim_transaction_id",                         default: ""
+    t.string   "cim_auth_code",                              default: ""
     t.date     "deposited_at"
     t.string   "payment_type",                               default: ""
     t.boolean  "captured",                                   default: false
@@ -115,6 +116,7 @@ ActiveRecord::Schema.define(version: 20140125005333) do
     t.datetime "updated_at"
   end
 
+  add_index "payments", ["cim_auth_code"], name: "index_payments_on_cim_auth_code", using: :btree
   add_index "payments", ["cim_transaction_id"], name: "index_payments_on_cim_transaction_id", using: :btree
   add_index "payments", ["donation_id"], name: "index_payments_on_donation_id", using: :btree
   add_index "payments", ["payment_profile_id"], name: "index_payments_on_payment_profile_id", using: :btree

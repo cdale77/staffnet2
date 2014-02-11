@@ -122,10 +122,10 @@ FactoryGirl.define do
 
   factory :payment do
     deposited_at          Time.now
-    payment_type          'credit'
+    payment_type          'cash'
     captured              true
     amount                10.00
-    cim_transaction_id    '1122223333'
+    processed             true
     donation
   end
 

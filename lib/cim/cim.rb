@@ -118,12 +118,16 @@ module Cim
 
   class ProfilePayment
 
+    attr_reader :cim_transaction_id
     attr_reader :server_message
+    attr_reader :cim_auth_code
 
     def initialize(cim_profile_id, cim_payment_profile_id, amount)
       @cim_profile_id = cim_profile_id
       @cim_payment_profile_id = cim_payment_profile_id
       @amount = amount
+      @cim_transaction_id = ''
+      @cim_auth_code = ''
     end
 
     def process
@@ -135,6 +139,11 @@ module Cim
                           customer_payment_profile_id: @cim_payment_profile_id,
                         }
                                                                   )
+      if result.params
+        @cim_transaction_id = result.params['direct_response']['transaction_id']
+        @cim_auth_code = result.params['direct_response']['approval_code']
+      end
+
       @server_message = result.message
       result.success? ? true : false
     end

@@ -4,6 +4,7 @@ class CreatePayments < ActiveRecord::Migration
       t.integer :donation_id
       t.integer :payment_profile_id
       t.string  :cim_transaction_id, :default => ''
+      t.string  :cim_auth_code, :default => ''
       t.date    :deposited_at
       t.string  :payment_type, :default => ''
       t.boolean :captured, :default => false
@@ -13,7 +14,7 @@ class CreatePayments < ActiveRecord::Migration
 
       t.timestamps
     end
-
+    add_index :payments, :cim_auth_code
     add_index :payments, :payment_profile_id
     add_index :payments, :donation_id
     add_index :payments, :cim_transaction_id

@@ -38,7 +38,8 @@ class Payment < ActiveRecord::Base
           charge = Cim::ProfilePayment.new(self.supporter.cim_id, self.payment_profile.cim_payment_profile_id, self.amount)
 
           if charge.process
-            self.cim_transaction_id = ''
+            self.cim_transaction_id = charge.cim_transaction_id
+            self.cim_auth_code = charge.cim_auth_code
             self.captured = true
           end
         end
