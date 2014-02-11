@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20140125005333) do
     t.date     "deposited_at"
     t.string   "payment_type",                               default: ""
     t.boolean  "captured",                                   default: false
+    t.boolean  "processed",                                  default: false
     t.decimal  "amount",             precision: 8, scale: 2, default: 0.0
     t.text     "notes",                                      default: ""
     t.datetime "created_at"

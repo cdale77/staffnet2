@@ -23,7 +23,7 @@ class Payment < ActiveRecord::Base
   belongs_to :payment_profile, dependent: :destroy
 
   ## CALLBACKS
-  before_save :charge_cc
+  #before_save :charge_cc
 
   ## VALIDATIONS
   validates :payment_type, presence: { message: 'required.' }

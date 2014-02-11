@@ -7,6 +7,7 @@ class CreatePayments < ActiveRecord::Migration
       t.date    :deposited_at
       t.string  :payment_type, :default => ''
       t.boolean :captured, :default => false
+      t.boolean :processed, :default => false
       t.decimal :amount, :scale => 2, :precision=> 8, :default => 0
       t.text    :notes, :default => ''
 
