@@ -109,7 +109,7 @@ namespace :db do
           donation.save
         end
       end
-
+=begin
       # payments
       Donation.all.each do |donation|
         payment = donation.payments.build(  deposited_at: Date.today,
@@ -119,7 +119,7 @@ namespace :db do
       end
 
       # payment_profiles
-=begin
+
       Supporter.all.each do |supporter|
         profile = supporter.payment_profiles.build( payment_profile_type: 'credit',
                                                     details: {  cc_type:    'visa',
