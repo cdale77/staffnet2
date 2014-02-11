@@ -12,6 +12,12 @@ CreditCard =
     total % 10 == 0
 
 $ ->
+  $(document.body).on "click", ".profile-selector", ->
+    console.log('fire')
+    id = $(this).val()
+    $("#payment-profile-id").val(id)
+
+$ ->
 
   $("input#cc_number").blur ->
     if CreditCard.validNumber(@value)
@@ -20,11 +26,11 @@ $ ->
         $("#cc_number_error").text("Invalid credit card number")
 
 
-  $("[type='radio']").change ->
-    console.log('fire')
-    id = $(this).val()
-    $("#payment-profile-id").val(id)
 
+#  $(".profile-selector").on "click", ->
+#    console.log('fire')
+#    id = $(this).val()
+#    $("#payment-profile-id").val(id)
 
   $("#donation-amount").change ->
     value = $(this).val()
