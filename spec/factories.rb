@@ -113,7 +113,7 @@ FactoryGirl.define do
 
   factory :donation do
     date              Date.today
-    donation_type     'credit'
+    donation_type     'cash'
     source            'mail'
     campaign          'energy'
     amount            10.00
@@ -130,8 +130,8 @@ FactoryGirl.define do
   end
 
   factory :payment_profile do
-    cim_payment_profile_id    ''
-    payment_profile_type      'credit'
+    cim_payment_profile_id    '44432111'
+    payment_profile_type      'cash'
     cc_last_4                 '1234'
     cc_type                   'visa'
     cc_month                  '10'

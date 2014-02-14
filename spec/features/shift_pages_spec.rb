@@ -14,6 +14,8 @@ describe 'ShiftPages' do
   let(:staff_employee) { FactoryGirl.create(:employee, first_name: 'Staff', user_id: staff.id) }
   let(:super_admin_employee) { FactoryGirl.create(:employee, first_name: 'SuperAdmin', user_id: super_admin.id) }
 
+  # pre-create a shift type so its in the database
+  let!(:shift_type) { FactoryGirl.create(:shift_type, name: 'door' )}
   let!(:shift) { FactoryGirl.create(:shift) }
   let!(:donation) { FactoryGirl.create(:donation, shift_id: shift.id) }
 
@@ -56,8 +58,8 @@ describe 'ShiftPages' do
     describe 'new shift' do
       before do
         # create a ShiftType
-        shift_type = ShiftType.new(name: 'Door')
-        shift_type.save
+        #shift_type = ShiftType.new(name: 'Door')
+        #shift_type.save
 
         visit new_employee_shift_path(employee)
       end

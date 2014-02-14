@@ -10,9 +10,10 @@ describe 'DonationPages' do
   let(:manager) { FactoryGirl.create(:manager) }
   #let(:staff) { FactoryGirl.create(:staff) }
 
-  let!(:supporter) { FactoryGirl.create(:supporter) }
+  let(:supporter) { FactoryGirl.create(:supporter) }
   let!(:donation) { FactoryGirl.create(:donation) }
   let!(:payment) { FactoryGirl.create(:payment, donation_id: donation.id) }
+  #let!(:payment_profile) { FactoryGirl.create(:payment_profile, supporter_id: supporter.id) }
 
   
   ### HELPERS ###
@@ -20,18 +21,23 @@ describe 'DonationPages' do
   def fill_in_example_donation
     fill_in 'Date',               with: '2014-01-02'
     fill_in 'Amount',             with: 10.00
-    select 'Cash',                from: 'donation_donation_type'
+    select 'Cash',                from: 'donation[donation_type]'
     select 'Phone',               from: 'donation_source'
     select 'Prop 13',             from: 'donation_campaign'
+
   end
 
   def fill_in_sustainer_donation
     fill_in 'Date',               with: '2014-01-02'
     fill_in 'Amount',             with: 10.00
-    select 'Cash',                from: 'donation_donation_type'
+    select 'Cash',                from: 'Donation type'
     select 'Phone',               from: 'donation_source'
     select 'Prop 13',             from: 'donation_campaign'
-    select 'Quarterly',           from: 'donation_frequency'
+    select 'Quarterly',           from: 'Sustainer frequency'
+    #find("#payment-profile-id", visible: false).set(payment_profile.id)
+    find("#payment-type", visible: false).set('cash')
+    find("#payment-amount", visible: false).set(10.00)
+
   end
 
   #### AS SUPERADMIN USER ####
@@ -80,6 +86,7 @@ describe 'DonationPages' do
         describe 'after saving donation' do
           before { click_button 'Create Donation' }
           it { should have_selector('div.alert') }
+          it { should have_content('Month code') }
         end
       end
 

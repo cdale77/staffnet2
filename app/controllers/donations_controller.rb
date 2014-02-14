@@ -22,8 +22,9 @@ class DonationsController < ApplicationController
     authorize @donation
     if @donation.save
       flash[:success] = 'Success.'
-      redirect_to supporter_path(@supporter)
+      redirect_to donation_path(@donation)
     else
+      @payment_profiles = @supporter.payment_profiles.limit(5)
       render 'new'
     end
   end
