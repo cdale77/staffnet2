@@ -6,25 +6,28 @@ gem 'pg', '0.17.1'
 gem 'devise', '3.2.2'
 gem 'pundit', '0.2.1'
 
-gem 'gibbon', '1.1.1'
 gem 'activemerchant', '1.42.4'
 
-gem 'simple_form', '3.0.1'
+
+## DATES
+gem 'date_validator', '0.7.0'
+gem 'week_of_month', '1.2.2.1'
+
+## UI
+gem 'sass-rails', '4.0.1'
+gem 'bootstrap-sass', '2.3.2.2'
 gem 'will_paginate', '3.0.5'
 gem 'bootstrap-will_paginate', '0.0.10'
-
-gem 'ransack', '1.1.0'
-
-gem 'date_validator', '0.7.0'
 gem 'bootstrap-datepicker-rails', '1.1.1.11'
 gem 'bootstrap-timepicker-rails', '0.1.3'
+gem 'simple_form', '3.0.1'
+gem 'ransack', '1.1.0'
+
+## JS
 gem 'morrisjs-rails', '0.4.3'
 gem 'raphael-rails', '2.1.2'
 gem 'jquery-rails', '3.0.4'
 
-
-gem 'sass-rails', '4.0.1'
-gem 'bootstrap-sass', '2.3.2.2'
 
 group :development do
   gem 'annotate', '2.6.1'

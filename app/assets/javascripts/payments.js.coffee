@@ -13,7 +13,6 @@ CreditCard =
 
 $ ->
   $(document.body).on "click", ".profile-selector", ->
-    console.log('fire')
     id = $(this).val()
     $("#payment-profile-id").val(id)
 

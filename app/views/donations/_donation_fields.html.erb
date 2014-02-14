@@ -5,8 +5,7 @@
 </div>
 <div class="row">
   <div class="span2">
-    <%= f.label :date %>
-    <%= f.text_field :date, 'data-behaviour' => 'datepicker'  %>
+    <%= f.input :date, as: :string, input_html: { class: 'datepicker' }  %>
   </div>
   <div class="span1">
     <%= f.input :amount, input_html: { id: 'donation-amount' } %>
@@ -18,6 +17,15 @@
                 collection: [['Credit Card', 'credit'], ['Cash', 'cash'], ['Check', 'check']],
                 selected: donation.donation_type %>
   </div>
+  <div class="span2">
+    <%= f.input :frequency, label: 'Sustainer frequency',
+                input_html: { id: 'donation-frequency' },
+                collection: [['', ''], ['Quarterly', 'quarterly'], ['Monthly', 'monthly']],
+                selected: donation.frequency %>
+  </div>
+</div>
+<hr />
+<div class="row">
   <div class="span2">
     <%= f.input :source,
                 collection: [['Phone', 'phone'], ['Door', 'door'], ['Street', 'street'], ['Web', 'web']],

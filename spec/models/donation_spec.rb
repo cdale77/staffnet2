@@ -22,7 +22,7 @@ require 'spec_helper'
 
 describe Donation do
 
-  donation_attributes = { date: '2012/12/10', donation_type: 'Ongoing', source: 'Mail', campaign: 'Energy',
+  donation_attributes = { date: '2012/12/10', donation_type: 'Ongoing', source: 'Mail', campaign: 'Energy', frequency: 'One time',
                           sub_month: 'a', sub_week: 3, amount: 10.00, cancelled: false, notes: 'Notes'}
 
   let(:donation) { FactoryGirl.create(:donation) }

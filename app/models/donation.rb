@@ -20,6 +20,8 @@
 
 class Donation < ActiveRecord::Base
 
+  attr_accessor :frequency
+
   ## SET UP ENVIRONMENT
   include Regex
 
@@ -28,6 +30,9 @@ class Donation < ActiveRecord::Base
   belongs_to :shift
   has_many :payments, dependent: :destroy
   accepts_nested_attributes_for :payments
+
+  ## CALLBACKS
+  before_save :set_sustainer_codes
 
  ## VALIDATIONS
   validates :source, :date, presence: { message: 'required.' }
@@ -43,7 +48,43 @@ class Donation < ActiveRecord::Base
             allow_blank: true
 
   def is_sustainer?
-    false if sub_month.blank?
+    sub_month.present? ? true : false
   end
+
+  private
+    def set_sustainer_codes
+      unless self.frequency.blank?
+        set_sub_month
+        set_sub_week
+      end
+    end
+
+    def set_sub_month
+      if self.frequency == 'monthly'
+        'm'
+      elsif self.frequency == 'quarterly'
+        self.sub_month = quarter_code
+      end
+    end
+
+    def set_sub_week
+      self.sub_week = Date.today.week_of_month.to_s
+    end
+
+    def quarter_code
+      month = Date.today.strftime("%B")
+
+      a = ['January', 'April', 'July', 'October' ]
+      b = ['February', 'May', 'August', 'November' ]
+      c = ['March', 'June', 'September', 'December' ]
+
+      if a.include?(month)
+        'a'
+      elsif b.include?(month)
+        'b'
+      elsif c.include?(month)
+        'c'
+      end
+    end
 
 end

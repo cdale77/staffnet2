@@ -70,7 +70,7 @@ class DonationsController < ApplicationController
 
     def donation_params
       params.require(:donation).permit( :date, :donation_type, :source, :campaign, :sub_month, :sub_week, :amount,
-                                        :cancelled, :notes, payments_attributes: [:payment_profile_id,
+                                        :cancelled, :notes, :frequency, payments_attributes: [:payment_profile_id,
                                         :payment_type, :amount, :notes] )
     end
 end
