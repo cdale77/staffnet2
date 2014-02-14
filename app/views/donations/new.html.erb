@@ -6,7 +6,7 @@
     <%= simple_form_for([@supporter, @donation]) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <%= render 'donation_fields', supporter: @supporter, donation: @donation, payment: @payment,
-                                    payment_fields: true, payment_profiles: @payment_profiles, f: f %>
+                                    payment_fields: true, payment_profiles: @payment_profiles, shifts: @shifts, f: f %>
       <%= render 'shared/forms/submit_button', f: f %>
     <% end %>
   </div>

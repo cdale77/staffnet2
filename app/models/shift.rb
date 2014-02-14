@@ -43,7 +43,9 @@ class Shift < ActiveRecord::Base
 
   validate :shift_time_validator
 
-
+  def short_version
+    "#{self.date.strftime('%Y/%m/%d')}-#{self.employee.full_name}"
+  end
 
   def net_time
     self.break_time ||= 0

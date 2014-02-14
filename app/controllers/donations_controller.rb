@@ -9,6 +9,7 @@ class DonationsController < ApplicationController
       @donation = @supporter.donations.build
       @payment = @donation.payments.build
       @payment_profiles = @supporter.payment_profiles.limit(5)
+      @shifts = Shift.all.limit(15)
       authorize @donation
     else
       flash[:error] = 'Could not find supporter.'
@@ -24,6 +25,7 @@ class DonationsController < ApplicationController
       flash[:success] = 'Success.'
       redirect_to donation_path(@donation)
     else
+      @shifts = Shift.all.limit(15)
       @payment_profiles = @supporter.payment_profiles.limit(5)
       render 'new'
     end
