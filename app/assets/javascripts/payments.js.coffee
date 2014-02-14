@@ -11,12 +11,12 @@ CreditCard =
       total += n
     total % 10 == 0
 
-$ ->
+ready = ->
   $(document.body).on "click", ".profile-selector", ->
     id = $(this).val()
     $("#payment-profile-id").val(id)
 
-$ ->
+
 
   $("input#cc_number").blur ->
     if CreditCard.validNumber(@value)
@@ -39,3 +39,6 @@ $ ->
   $("#donation-type").change ->
     value = $(this).val()
     $("#payment-type").val(value)
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

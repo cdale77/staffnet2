@@ -34,7 +34,7 @@ class Donation < ActiveRecord::Base
   ## CALLBACKS
   before_save :set_sustainer_codes
 
- ## VALIDATIONS
+  ## VALIDATIONS
   validates :source, :date, presence: { message: 'required.' }
 
   validates :sub_month,

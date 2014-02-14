@@ -25,6 +25,15 @@ describe 'DonationPages' do
     select 'Prop 13',             from: 'donation_campaign'
   end
 
+  def fill_in_sustainer_donation
+    fill_in 'Date',               with: '2014-01-02'
+    fill_in 'Amount',             with: 10.00
+    select 'Cash',                from: 'donation_donation_type'
+    select 'Phone',               from: 'donation_source'
+    select 'Prop 13',             from: 'donation_campaign'
+    select 'Quarterly',           from: 'donation_frequency'
+  end
+
   #### AS SUPERADMIN USER ####
 
   ## log in as superadmin user to test basic functionality of the pages. Authorization is handled in the
@@ -65,13 +74,22 @@ describe 'DonationPages' do
 
       describe 'with valid information' do
         before { fill_in_example_donation }
-
         it 'should create a new donation' do
           expect { click_button 'Create Donation' }.to change(Donation, :count).by(1)
         end
         describe 'after saving donation' do
           before { click_button 'Create Donation' }
+          it { should have_selector('div.alert') }
+        end
+      end
 
+      describe 'with valid sustainer information' do
+        before { fill_in_sustainer_donation }
+        it 'should create a new donation' do
+          expect { click_button 'Create Donation' }.to change(Donation, :count).by(1)
+        end
+        describe 'after saving donation' do
+          before { click_button 'Create Donation' }
           it { should have_selector('div.alert') }
         end
       end
