@@ -7,6 +7,7 @@ class ShiftsController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     if @employee
       @shift = @employee.shifts.build
+      @shift_types = ShiftType.all
       authorize @shift
     else
       flash[:error] = 'Could not find employee.'

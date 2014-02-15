@@ -1,26 +1,22 @@
 <div class="row">
   <div class="span6">
-    <h4>Employee: <%= @employee.full_name %></h4>
+    <h4>Employee: <%= employee.full_name %></h4>
   </div>
 </div>
 <div class="row">
   <div class="span2">
-    <%= f.label :date %>
-    <%= f.text_field :date, 'data-behaviour' => 'datepicker' %>
+    <%= f.input :date, as: :string, input_html: { class: 'datepicker' } %>
   </div>
   <div class="span2">
-    <%= f.label :shift_type_id, 'Shift type' %>
-    <%= f.select :shift_type_id, options_from_collection_for_select(ShiftType.all, :id, :human_name, shift.shift_type_id) %>
+    <%= f.input :shift_type_id, as: :select, collection: shift_types, label_method: :human_name, selected: shift.shift_type_id %>
   </div>
 </div>
 <div class="row">
   <div class="span2">
-    <%= f.label :time_in %>
-    <%= f.text_field :time_in, 'data-behaviour' => 'timepicker' %>
+    <%= f.input :time_in, as: :string, input_html: { class: 'timepicker' } %>
   </div>
   <div class="span2">
-    <%= f.label :time_out %>
-    <%= f.text_field :time_out, 'data-behaviour' => 'timepicker' %>
+    <%= f.input :time_out, as: :string, input_html: { class: 'timepicker' } %>
   </div>
   <div class="span2">
     <%= f.input :break_time %>

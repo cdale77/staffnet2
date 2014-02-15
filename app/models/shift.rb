@@ -17,6 +17,8 @@
 
 class Shift < ActiveRecord::Base
 
+  default_scope { order(date: :desc) }
+
   ## SET UP ENVIRONMENT
   include Regex
 
