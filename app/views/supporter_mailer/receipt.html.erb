@@ -1,0 +1,52 @@
+<div style="width:550px;">
+  <p><%= @message.supporter_first_name %>,</p>
+
+  <p>Thanks for your donation to Evolve’s campaign to close the corporate loophole in Prop 13!
+    Below is a receipt for your records.</p>
+
+  <p>We rely on the support and action of our grassroots membership and thanks to people like you we
+    are poised to implement real reform on Prop 13. Together we can increase funding for our schools
+    and public services by making huge corporations like Chevron and Disney pay their fair share of
+    property taxes.</p>
+
+  <p>If you want to help out more, visit our
+    <a href="http://www.evolve-ca.org/alerts" title="Evolve alerts">alerts page</a>
+    sign our petition urging the California State Legislature to support Prop 13 reform,
+    and forward it to your friends!</p>
+
+  <p>We'd like your feedback! Please take a few moments to <a href="http://www.evolve-ca.org/survey"
+                                                              title="survey">fill out our brief survey</a>. And finally,
+    the best way to keep up with our progress is to like our <a href="https://www.facebook.com/evolve.ca" title="Facebook">
+    Facebook page.</a></p>
+  <hr />
+  <h3>Donation Receipt</h3>
+  <% unless @message.donation_captured %>
+    <p>Your donation appears to have been declined. We will try again shortly.</p>
+  <% end %>
+  <table style="border:2px solid gray; text-align:right; padding:0px; border-collapse:collapse">
+    <tr>
+      <th style="padding:5px 10px; border:1px solid gray">Amount:</th>
+      <td style="padding:5px 10px; border:1px solid gray"><%= number_to_currency(@message.donation_amount) %></td>
+      <th style="padding:5px 10px; border:1px solid gray">Date:</th>
+      <td style="padding:5px 10px; border:1px solid gray"><%= @message.donation_date %></td>
+    </tr>
+    <tr>
+      <th style="padding:5px 10px; border:1px solid gray">Frequency:</th>
+      <td style="padding:5px 10px; border:1px solid gray">
+        <% if @message.donation_sustainer %>
+          <%= @message.donation_frequency %>
+        <% else %>
+          One-time
+        <% end %>
+      </td>
+      <th style="padding:5px 10px; border:1px solid gray">Type:</th>
+      <td style="padding:5px 10px; border:1px solid gray">
+        <%= @message.donation_type %>
+      </td>
+    </tr>
+  </table>
+  <% if @message.donation_type == 'Website' %>
+    <p><em>Note: Since you gave online, this receipt is a duplicate of one you've received from our web host. </em></p>
+  <% end %>
+  <p><em>Donations to Evolve are not tax-deductible. They are used to influence legislation.</em></p>
+</div>

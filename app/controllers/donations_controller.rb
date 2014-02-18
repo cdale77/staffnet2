@@ -22,6 +22,7 @@ class DonationsController < ApplicationController
     @donation = @supporter.donations.build(donation_params)
     authorize @donation
     if @donation.save
+      @donation.send_receipt(@supporter)
       flash[:success] = 'Success.'
       redirect_to donation_path(@donation)
     else

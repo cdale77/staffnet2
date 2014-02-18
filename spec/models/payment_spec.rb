@@ -6,6 +6,7 @@
 #  donation_id        :integer
 #  payment_profile_id :integer
 #  cim_transaction_id :string(255)      default("")
+#  cim_auth_code      :string(255)      default("")
 #  deposited_at       :date
 #  payment_type       :string(255)      default("")
 #  captured           :boolean          default(FALSE)

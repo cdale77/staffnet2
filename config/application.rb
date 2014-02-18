@@ -32,6 +32,7 @@ module Staffnet2
     config.autoload_paths += %W(#{config.root}/lib/validations)
     config.autoload_paths += %W(#{config.root}/lib/mail_chimp)
     config.autoload_paths += %W(#{config.root}/lib/cim)
+    config.autoload_paths += %W(#{config.root}/app/models/emails)
 
     config.generators do |g|
       g.test_framework :rspec, fixture: true
