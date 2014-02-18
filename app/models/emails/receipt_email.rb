@@ -1,4 +1,4 @@
-def ReceiptEmail
+class ReceiptEmail
   include ActiveModel::Validations
   include ActiveModel::Conversion
   include ActiveModel::Naming
@@ -30,11 +30,10 @@ def ReceiptEmail
           donation_type:        donation.donation_type,
           donation_amount:      donation.amount,
           donation_captured:    payment.captured,
-          donation_sustainer:   donation.is_sustainer,
+          donation_sustainer:   donation.is_sustainer?,
           donation_auth_code:   payment.cim_auth_code,
           donation_date:        donation.date,
-          donation_frequency:   donation.frequency,
-          donation_cc_type:     payment.cc_type
+          donation_frequency:   donation.frequency
       }
     end
 end
