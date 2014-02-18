@@ -8,6 +8,5 @@ module Migration
     def connection
       Migration::LegacyTable.connection
     end
-
   end
 end
