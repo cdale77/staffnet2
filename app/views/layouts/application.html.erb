@@ -2,7 +2,7 @@
 <html>
     <%= render 'layouts/head' %>
     <body>
-      <%= render 'layouts/nav' %>
+      <%= render 'layouts/nav' if current_user %>
       <div id="main-wrapper">
         <div class="container container-main">
           <%= render 'layouts/flash' %>

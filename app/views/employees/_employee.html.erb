@@ -3,7 +3,8 @@
   <td><%= employee.title.humanize %></td>
   <td><%= mail_to employee.email, employee.email, class: 'hover-underline-grey' %></td>
   <td><%= number_to_phone(employee.phone.to_i) %></td>
-  <td><%= employee.active %></td>
+  <td><%= employee.address_city %></td>
+  <td><%= employee.active ? 'Active' : 'Inactive' %></td>
   <td class="buttons">
     <%= render 'shared/index/details_button', record: employee if manager_user? %>
     <%= render 'shared/index/edit_button', record: employee if admin_user? %>
