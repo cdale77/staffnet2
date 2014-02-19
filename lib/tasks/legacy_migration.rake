@@ -1,6 +1,6 @@
 namespace :import do
   task :users_and_staff => :environment do
-    legacy_users = Migration::LegacyUser.all
+    legacy_users = Migration::User.all
     puts "Migrating #{legacy_users.count.to_s} legacy users. . . "
     legacy_users.each do |legacy_user|
       new_password = SecureRandom.hex(7)
