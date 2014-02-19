@@ -15,7 +15,7 @@ namespace :import do
       rescue
         puts "ERROR migrating legacy user #{legacy_user.id.to_s}"
       end
-      puts "New password for #{user.email}: #{new_password}"
+      puts "New password for #{new_user.email}: #{new_password}"
     end
   end
 end
