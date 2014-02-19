@@ -3,6 +3,7 @@ class CreateShifts < ActiveRecord::Migration
     create_table :shifts do |t|
       t.integer :employee_id
       t.integer :shift_type_id
+      t.string  :legacy_id, :default => ''
       t.date    :date
       t.time    :time_in
       t.time    :time_out

@@ -3,6 +3,7 @@ class CreatePayments < ActiveRecord::Migration
     create_table :payments do |t|
       t.integer :donation_id
       t.integer :payment_profile_id
+      t.string  :legacy_id, :default => ''
       t.string  :cim_transaction_id, :default => ''
       t.string  :cim_auth_code, :default => ''
       t.date    :deposited_at

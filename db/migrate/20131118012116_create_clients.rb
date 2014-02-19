@@ -2,6 +2,7 @@ class CreateClients < ActiveRecord::Migration
   def change
     create_table :clients do |t|
       t.string  :name, :default => ''
+      t.string  :legacy_id, :default => ''
       t.string  :address1, :default => ''
       t.string  :address2, :default => ''
       t.string  :address_city, :default => ''

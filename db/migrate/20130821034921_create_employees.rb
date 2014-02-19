@@ -2,6 +2,7 @@ class CreateEmployees < ActiveRecord::Migration
   def change
     create_table(:employees) do |t|
       t.integer :user_id
+      t.string :legacy_id, :default => ''
       t.string :first_name, :default => ''
       t.string :last_name, :default => ''
       t.string :email, :default => ''

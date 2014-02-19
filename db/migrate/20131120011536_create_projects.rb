@@ -2,6 +2,7 @@ class CreateProjects < ActiveRecord::Migration
   def change
     create_table :projects do |t|
       t.integer :client_id
+      t.string  :legacy_id, :default => ''
       t.string  :name, :default => ''
       t.date    :start_date
       t.date    :end_date

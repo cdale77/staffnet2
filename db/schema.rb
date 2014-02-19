@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140125005333) do
 
   create_table "clients", force: true do |t|
     t.string   "name",          default: ""
+    t.string   "legacy_id",     default: ""
     t.string   "address1",      default: ""
     t.string   "address2",      default: ""
     t.string   "address_city",  default: ""
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 20140125005333) do
   create_table "donations", force: true do |t|
     t.integer  "supporter_id"
     t.integer  "shift_id"
+    t.string   "legacy_id",                                       default: ""
     t.date     "date"
     t.string   "donation_type",                                   default: ""
     t.string   "source",                                          default: ""
@@ -54,6 +56,7 @@ ActiveRecord::Schema.define(version: 20140125005333) do
 
   create_table "employees", force: true do |t|
     t.integer  "user_id"
+    t.string   "legacy_id",                                 default: ""
     t.string   "first_name",                                default: ""
     t.string   "last_name",                                 default: ""
     t.string   "email",                                     default: ""
@@ -104,6 +107,7 @@ ActiveRecord::Schema.define(version: 20140125005333) do
   create_table "payments", force: true do |t|
     t.integer  "donation_id"
     t.integer  "payment_profile_id"
+    t.string   "legacy_id",                                  default: ""
     t.string   "cim_transaction_id",                         default: ""
     t.string   "cim_auth_code",                              default: ""
     t.date     "deposited_at"
@@ -123,6 +127,7 @@ ActiveRecord::Schema.define(version: 20140125005333) do
 
   create_table "projects", force: true do |t|
     t.integer  "client_id"
+    t.string   "legacy_id",  default: ""
     t.string   "name",       default: ""
     t.date     "start_date"
     t.date     "end_date"
@@ -143,6 +148,7 @@ ActiveRecord::Schema.define(version: 20140125005333) do
   create_table "shifts", force: true do |t|
     t.integer  "employee_id"
     t.integer  "shift_type_id"
+    t.string   "legacy_id",                             default: ""
     t.date     "date"
     t.time     "time_in"
     t.time     "time_out"
@@ -165,6 +171,7 @@ ActiveRecord::Schema.define(version: 20140125005333) do
 
   create_table "supporters", force: true do |t|
     t.integer  "supporter_type_id"
+    t.string   "legacy_id",         default: ""
     t.string   "external_id",       default: ""
     t.string   "cim_id",            default: ""
     t.string   "prefix",            default: ""
@@ -213,6 +220,7 @@ ActiveRecord::Schema.define(version: 20140125005333) do
     t.integer  "shift_id"
     t.integer  "project_id"
     t.integer  "task_type_id"
+    t.string   "legacy_id",                            default: ""
     t.string   "name",                                 default: ""
     t.decimal  "hours",        precision: 8, scale: 2, default: 0.0
     t.string   "desc",                                 default: ""

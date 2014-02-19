@@ -3,6 +3,7 @@ class CreateDonations < ActiveRecord::Migration
     create_table :donations do |t|
       t.integer :supporter_id
       t.integer :shift_id
+      t.string  :legacy_id, :default => ''
       t.date    :date
       t.string  :donation_type, :default => ''
       t.string  :source, :default => ''

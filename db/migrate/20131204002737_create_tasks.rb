@@ -4,6 +4,7 @@ class CreateTasks < ActiveRecord::Migration
       t.integer :shift_id
       t.integer :project_id
       t.integer :task_type_id
+      t.string  :legacy_id, :default => ''
       t.string  :name, :default => ''
       t.decimal :hours, :scale => 2, :precision=> 8, :default => 0.00
       t.string  :desc, :default => ''

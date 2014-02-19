@@ -9,4 +9,6 @@ module Migration
       Migration::LegacyTable.connection
     end
   end
+
+
 end

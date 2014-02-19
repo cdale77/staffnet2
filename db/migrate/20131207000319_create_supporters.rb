@@ -3,6 +3,7 @@ class CreateSupporters < ActiveRecord::Migration
     create_table :supporters do |t|
 
       t.integer :supporter_type_id
+      t.string  :legacy_id, :default => ''
 
       t.string :external_id, :default => ''
       t.string :cim_id, :default => ''
