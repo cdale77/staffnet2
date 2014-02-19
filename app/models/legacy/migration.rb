@@ -4,7 +4,8 @@ module Migration
     establish_connection(ENV['LEGACY_DATABASE_URL'])
   end
 
-  class User < Migration::LegacyTable
+  class LegacyUser < Migration::LegacyTable
+    set_table_name "user"
     def connection
       Migration::LegacyTable.connection
     end
