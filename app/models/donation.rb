@@ -47,6 +47,8 @@ class Donation < ActiveRecord::Base
             numericality: { message: 'must be a single alpha character.' },
             allow_blank: true
 
+
+
   def is_sustainer?
     sub_month.present? ? true : false
   end
