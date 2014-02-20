@@ -10,5 +10,9 @@ module Migration
     end
   end
 
-
+  class Shift < Migration::LegacyTable
+    def connection
+      Migration::LegacyTable.connection
+    end
+  end
 end

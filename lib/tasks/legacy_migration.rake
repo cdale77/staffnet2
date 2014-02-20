@@ -9,6 +9,7 @@ namespace :import do
                             password_confirmation: new_password, role: 'staff')
       rescue
         puts "ERROR migrating legacy user #{legacy_user.id.to_s}. Could not create new user."
+        next
       end
 
       begin
@@ -20,6 +21,7 @@ namespace :import do
         end
       rescue
         puts "Exception migrating legacy user #{legacy_user.id.to_s}. Could not save user."
+        next
       end
 
       begin
@@ -39,12 +41,61 @@ namespace :import do
                                               )
       rescue
         puts "ERROR creating employee record for #{new_user.email}"
+        next
       end
 
       begin
         new_employee.save
       rescue
         puts "ERROR saving employee record for #{new_user.email}"
+        next
+      end
+    end
+  end
+
+  task :shifts => :environment do
+
+    ## Create shift types
+    names = ['door', 'street', 'phone', 'office', 'vacation', 'holiday', 'sick' ]
+    names.each do |name|
+      new_type = ShiftType.new(name: name)
+      new_type.save
+    end
+
+    legacy_shifts = Migration::Shift.all
+    puts "Migrating #{legacy_shifts.count.to_s} legacy shifts. . . "
+    legacy_shifts.all.each.with_index(1) do |legacy_shift, index|
+      begin
+        legacy_user = Migration::User.find(legacy_shift.user_id)
+      rescue
+        puts "ERROR migrating legacy shift id #{legacy_shift.id.to_s}"
+        next
+      end
+
+      begin
+        employee = Employee.find_by_legacy_id(legacy_user.id.to_s)
+      rescue
+        puts "ERROR looking up new employee record. Legacy shift id #{legacy_shift.id.to_s}"
+        next
+      end
+
+      begin
+        new_shift = employee.shifts.build(shift_type_id: ShiftType.find_by_name(legacy_shift.shift_type),
+                                          date: legacy_shift.date, time_in: legacy_shift.time_in,
+                                          time_out: legacy_shift.time_out, break_time: legacy_shift.break_time,
+                                          notes: legacy_shift.notes, travel_reimb: legacy_shift.reimb_transit,
+                                          created_at: legacy_shift.created_at)
+      rescue
+        puts "ERROR building a new shift. Legacy shift id #{legacy_shift.id.to_s}"
+        next
+      end
+
+      ## Save the shift
+      puts "ERROR saving new shift. Legacy shift id #{legacy_shift.id.to_s}" unless new_shift.save
+
+      ## Check
+      if index == legacy_shifts.count
+        puts "Created #{Shift.all.count.to_s} new shifts from #{legacy_shifts.count.to_s} legacy shifts"
       end
     end
   end
