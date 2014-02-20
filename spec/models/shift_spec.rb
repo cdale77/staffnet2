@@ -2,17 +2,22 @@
 #
 # Table name: shifts
 #
-#  id            :integer          not null, primary key
-#  employee_id   :integer
-#  shift_type_id :integer
-#  date          :date
-#  time_in       :time
-#  time_out      :time
-#  break_time    :integer          default(0)
-#  notes         :text             default("")
-#  travel_reimb  :decimal(8, 2)    default(0.0)
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id                        :integer          not null, primary key
+#  employee_id               :integer
+#  field_manager_employee_id :integer
+#  shift_type_id             :integer
+#  legacy_id                 :string(255)      default("")
+#  date                      :date
+#  time_in                   :time
+#  time_out                  :time
+#  break_time                :integer          default(0)
+#  notes                     :text             default("")
+#  travel_reimb              :decimal(8, 2)    default(0.0)
+#  cv_shift                  :boolean          default(FALSE)
+#  quota_shift               :boolean          default(FALSE)
+#  products                  :hstore           default({})
+#  created_at                :datetime
+#  updated_at                :datetime
 #
 
 require 'spec_helper'
@@ -20,7 +25,8 @@ require 'spec_helper'
 describe Shift do
 
   shift_attributes = {  date: Date.today, time_in: Time.now - 4.hours, time_out: Time.now,
-                        break_time: 30, notes: 'Great shift', travel_reimb: 12.50 }
+                        break_time: 30, notes: 'Great shift', travel_reimb: 12.50, legacy_id: '56', cv_shift: true,
+                        quota_shift: true}
 
 
   let(:shift) { FactoryGirl.create(:shift) }

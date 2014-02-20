@@ -4,6 +4,7 @@
 #
 #  id                :integer          not null, primary key
 #  supporter_type_id :integer
+#  legacy_id         :string(255)      default("")
 #  external_id       :string(255)      default("")
 #  cim_id            :string(255)      default("")
 #  prefix            :string(255)      default("")

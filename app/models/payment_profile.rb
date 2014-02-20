@@ -19,7 +19,7 @@ class PaymentProfile < ActiveRecord::Base
   include Regex
 
   ## HSTORE
-  store_accessor(:details, :cc_last_4, :cc_type, :cc_month, :cc_year)
+  store_accessor :details, :cc_last_4, :cc_type, :cc_month, :cc_year
 
   ## RELATIONSHIPS
   belongs_to :supporter 

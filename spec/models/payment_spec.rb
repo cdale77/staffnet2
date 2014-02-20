@@ -5,6 +5,7 @@
 #  id                 :integer          not null, primary key
 #  donation_id        :integer
 #  payment_profile_id :integer
+#  legacy_id          :string(255)      default("")
 #  cim_transaction_id :string(255)      default("")
 #  cim_auth_code      :string(255)      default("")
 #  deposited_at       :date

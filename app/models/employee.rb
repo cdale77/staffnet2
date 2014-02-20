@@ -4,6 +4,7 @@
 #
 #  id                :integer          not null, primary key
 #  user_id           :integer
+#  legacy_id         :string(255)      default("")
 #  first_name        :string(255)      default("")
 #  last_name         :string(255)      default("")
 #  email             :string(255)      default("")
@@ -95,6 +96,10 @@ class Employee < ActiveRecord::Base
   ## METHODS
   def self.active
     Employee.where(active: true)
+  end
+
+  def self.field_managers
+    Employee.where(title: 'field_manager')
   end
 
   private

@@ -4,6 +4,7 @@
 #
 #  id                :integer          not null, primary key
 #  user_id           :integer
+#  legacy_id         :string(255)      default("")
 #  first_name        :string(255)      default("")
 #  last_name         :string(255)      default("")
 #  email             :string(255)      default("")
@@ -39,7 +40,7 @@ describe Employee do
                           address_city: 'San Francisco', address_state: 'CA', address_zip: '94110',
                           title: 'Field Manager', pay_hourly: 12, hire_date: Date.today,
                           fed_filing_status: 'single', ca_filing_status: 'single', fed_allowances: 2,
-                          ca_allowances: 2, dob: Date.today, gender: 'f', active: true, notes: 'Notes' }
+                          ca_allowances: 2, dob: Date.today, gender: 'f', active: true, notes: 'Notes', legacy_id: '34' }
 
   let(:employee) { FactoryGirl.create(:employee)}
 

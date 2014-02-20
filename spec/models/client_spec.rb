@@ -4,6 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  name          :string(255)      default("")
+#  legacy_id     :string(255)      default("")
 #  address1      :string(255)      default("")
 #  address2      :string(255)      default("")
 #  address_city  :string(255)      default("")

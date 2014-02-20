@@ -2,22 +2,30 @@
 #
 # Table name: shifts
 #
-#  id            :integer          not null, primary key
-#  employee_id   :integer
-#  shift_type_id :integer
-#  date          :date
-#  time_in       :time
-#  time_out      :time
-#  break_time    :integer          default(0)
-#  notes         :text             default("")
-#  travel_reimb  :decimal(8, 2)    default(0.0)
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id                        :integer          not null, primary key
+#  employee_id               :integer
+#  field_manager_employee_id :integer
+#  shift_type_id             :integer
+#  legacy_id                 :string(255)      default("")
+#  date                      :date
+#  time_in                   :time
+#  time_out                  :time
+#  break_time                :integer          default(0)
+#  notes                     :text             default("")
+#  travel_reimb              :decimal(8, 2)    default(0.0)
+#  cv_shift                  :boolean          default(FALSE)
+#  quota_shift               :boolean          default(FALSE)
+#  products                  :hstore           default({})
+#  created_at                :datetime
+#  updated_at                :datetime
 #
 
 class Shift < ActiveRecord::Base
 
   default_scope { order(date: :desc) }
+
+  ## HSTORE
+  store_accessor :products, :phones, :emails, :signatures, :contacts
 
   ## SET UP ENVIRONMENT
   include Regex

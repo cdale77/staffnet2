@@ -5,6 +5,7 @@ class ShiftsController < ApplicationController
 
   def new
     @employee = Employee.find(params[:employee_id])
+    @field_managers = Employee.field_managers
     if @employee
       @shift = @employee.shifts.build
       @shift_types = ShiftType.all
@@ -74,7 +75,7 @@ class ShiftsController < ApplicationController
   private
 
     def shift_params
-      params.require(:shift).permit(:shift_type_id, :time_in, :time_out, :break_time, :notes,
+      params.require(:shift).permit(:shift_type_id, :field_manager_employee_id, :time_in, :time_out, :break_time, :notes,
                                     :date, :travel_reimb)
     end
 end

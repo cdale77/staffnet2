@@ -5,6 +5,7 @@
 #  id            :integer          not null, primary key
 #  supporter_id  :integer
 #  shift_id      :integer
+#  legacy_id     :string(255)      default("")
 #  date          :date
 #  donation_type :string(255)      default("")
 #  source        :string(255)      default("")

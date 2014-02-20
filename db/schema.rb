@@ -147,20 +147,24 @@ ActiveRecord::Schema.define(version: 20140125005333) do
 
   create_table "shifts", force: true do |t|
     t.integer  "employee_id"
+    t.integer  "field_manager_employee_id"
     t.integer  "shift_type_id"
-    t.string   "legacy_id",                             default: ""
+    t.string   "legacy_id",                                         default: ""
     t.date     "date"
     t.time     "time_in"
     t.time     "time_out"
-    t.integer  "break_time",                            default: 0
-    t.text     "notes",                                 default: ""
-    t.decimal  "travel_reimb",  precision: 8, scale: 2, default: 0.0
+    t.integer  "break_time",                                        default: 0
+    t.text     "notes",                                             default: ""
+    t.decimal  "travel_reimb",              precision: 8, scale: 2, default: 0.0
+    t.boolean  "cv_shift",                                          default: false
+    t.boolean  "quota_shift",                                       default: false
+    t.hstore   "products",                                          default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "shifts", ["date"], name: "index_shifts_on_date", using: :btree
   add_index "shifts", ["employee_id"], name: "index_shifts_on_employee_id", using: :btree
+  add_index "shifts", ["field_manager_employee_id"], name: "index_shifts_on_field_manager_employee_id", using: :btree
   add_index "shifts", ["shift_type_id"], name: "index_shifts_on_shift_type_id", using: :btree
 
   create_table "supporter_types", force: true do |t|

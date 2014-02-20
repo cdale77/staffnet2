@@ -37,7 +37,7 @@ namespace :import do
                                                 ca_filing_status: legacy_user.filing_status, fed_allowances: legacy_user.w_holding,
                                                 ca_allowances: legacy_user.w_holding, dob: legacy_user.dob,
                                                 gender: legacy_user.gender, active: legacy_user.active,
-                                                created_at: legacy_user.created_at, legacy_id: legacy_user.id.to_s
+                                                created_at: legacy_user.created_at, legacy_id: legacy_user.id.to_s,
                                               )
       rescue
         puts "ERROR creating employee record for #{new_user.email}"
@@ -84,7 +84,8 @@ namespace :import do
                                           date: legacy_shift.date, time_in: legacy_shift.time_in,
                                           time_out: legacy_shift.time_out, break_time: legacy_shift.break_time,
                                           notes: legacy_shift.notes, travel_reimb: legacy_shift.reimb_transit,
-                                          created_at: legacy_shift.created_at)
+                                          created_at: legacy_shift.created_at, legacy_id: legacy_shift.id.to_s,
+                                          cv_shift: legacy_shift.cv_shift)
       rescue
         puts "ERROR building a new shift. Legacy shift id #{legacy_shift.id.to_s}"
         next
@@ -97,6 +98,31 @@ namespace :import do
       if index == legacy_shifts.count
         puts "Created #{Shift.all.count.to_s} new shifts from #{legacy_shifts.count.to_s} legacy shifts"
       end
+    end
+  end
+
+  task :supporters => :environment do
+    legacy_supporters = Migration::Supporter.all
+    puts "Migrating #{legacy_supporters.count.to_s} legacy supporters. . . "
+
+    ## Create supporter types
+    ['supporter', 'donor', 'media', 'official', 'staff', 'volunteer'].each do |type|
+      SupporterType.create(name: type)
+    end
+
+    default_supporter_type = SupporterType.find_by_name('donor')
+
+    legacy_supporters.all.each_with_index do |legacy_supporter, index|
+
+      begin
+        new_supporter = Supporter.new(legacy_id: legacy_supporter.id.to_s, cim_id: legacy_supporter.authorize_id
+                                      )
+      rescue
+        puts "ERROR creating new supporter object. Legacy supporter id #{legacy_supporter.id}"
+        next
+      end
+
+
     end
   end
 end
