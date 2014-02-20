@@ -3,7 +3,7 @@ namespace :db do
   task populate: :environment do
 
     #create user with each role user for testing
-    ['super_admin', 'admin', 'manager', 'staff' ''].each do |role|
+    ['super_admin', 'admin', 'manager', 'staff', ''].each do |role|
       user = User.new(  email:                  "#{role}-example@example.com",
                         role:                   role,
                         password:               'foobar7878',
@@ -22,7 +22,7 @@ namespace :db do
                                 address_city:       Faker::Address.city,
                                 address_state:      'CA',
                                 address_zip:        '94'+ (1..3).to_a.shuffle.join.to_s,
-                                title:              ['caller', 'canvasser','director'].sample,
+                                title:              ['caller', 'field_manager','director'].sample,
                                 pay_hourly:         [11.50, 12.25, 12, 13.50].sample,
                                 hire_date:          Date.today,
                                 fed_filing_status:  ['single', 'married'].sample,
