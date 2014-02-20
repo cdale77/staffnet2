@@ -43,6 +43,8 @@
 
 class Supporter < ActiveRecord::Base
 
+  default_scope { order('created_at') }
+
   ## SET UP ENVIRONMENT
   include Regex
   include PeopleMethods

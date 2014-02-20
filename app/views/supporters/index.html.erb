@@ -1,22 +1,31 @@
 <% provide(:title, 'All supporters') %>
 <h1>All supporters</h1>
 <div class="row">
+  <div class="span2">
+    <%= button_tag 'Search form', class: 'btn btn-mini', id: 'btn-search-form-toggle' %>
+  </div>
+</div>
+<div class="row">
   <div class="span12">
-    <%= search_form_for @search do |f| %>
-      <%= f.condition_fields do |c| %>
-        <%= render 'shared/forms/condition_fields', f: c %>
-      <% end %>
-      <p><%= link_to_add_fields "Add conditions", f, :condition %></p>
-      <div class="row">
-        <div class="span12">
-          <%= f.submit "Search", class: 'btn' %>
+    <div class="collapse" id="search-form">
+      <%= search_form_for @search do |f| %>
+        <%= f.condition_fields do |c| %>
+          <%= render 'shared/forms/condition_fields', f: c %>
+        <% end %>
+        <p><%= link_to_add_fields "Add conditions", f, :condition %></p>
+        <div class="row">
+          <div class="span12">
+            <%= f.submit "Search", class: 'btn' %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 <table class="table table-condensed table-striped">
-  <%= will_paginate @supporters %>
+  <div class="span5 will-paginate">
+    <%= will_paginate @supporters %>
+  </div>
   <tr>
     <th>Name</th>
     <th>City</th>

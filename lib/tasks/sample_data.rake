@@ -76,12 +76,12 @@ namespace :db do
     end
 
     # supporter types
-    ['Supporter-test', 'Donor-test', 'Media-test', 'Official-test', 'Staff-test', 'Volunteer-test'].each do |type|
+    ['supporter', 'donor', 'media', 'official', 'staff', 'volunteer'].each do |type|
       SupporterType.create(name: type)
     end
 
     SupporterType.all.each do |supporter_type|
-      3.times do
+      30.times do
         supporter =   Supporter.new(  first_name:     Faker::Name.first_name,
                                       last_name:      Faker::Name.last_name,
                                       address1:       Faker::Address.street_address,
@@ -91,6 +91,7 @@ namespace :db do
                                       email_1:        Faker::Internet.email,
                                       phone_mobile:   '5108493849',
                                       phone_alt:      '4503403123',
+                                      source:         %W[door street phone web].sample
 
         )
         supporter.supporter_type_id = supporter_type.id

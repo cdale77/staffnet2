@@ -3,8 +3,8 @@
   <td><%= supporter.address_city %></td>
   <td><%= mail_to supporter.email_1, supporter.email_1, class: 'hover-underline-grey' %></td>
   <td><%= number_to_phone(supporter.phone_mobile.to_i) %></td>
-  <td><%= supporter.supporter_type.name if supporter.supporter_type %></td>
-  <td><%= supporter.source %></td>
+  <td><%= supporter.supporter_type.name.humanize if supporter.supporter_type %></td>
+  <td><%= supporter.source.humanize %></td>
   <td class="buttons">
     <%= render 'shared/index/details_button', record: supporter if staff_user? %>
     <%= render 'shared/index/edit_button', record: supporter if admin_user? %>
