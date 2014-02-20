@@ -17,9 +17,9 @@
       <% donations.each do |donation| %>
         <tr>
           <td><%= donation.date %></td>
-          <td><%= donation.amount %></td>
-          <td><%= donation.donation_type %></td>
-          <td><%= donation.source %></td>
+          <td><%= number_to_currency donation.amount %></td>
+          <td><%= donation.donation_type.humanize %></td>
+          <td><%= donation.source.humanize %></td>
           <td class="buttons">
             <%= link_to 'details', donation_path(donation), class: 'btn btn-mini', type: 'button' if manager_user? %>
           </td>

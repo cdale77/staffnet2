@@ -12,13 +12,13 @@
           </tr>
           <% @supporter.emails.each do |key, value| %>
             <tr>
-              <th><%= key.to_s.humanize %></th>
+              <th><%= 'Email' %></th>
               <td><%= value %></td>
             </tr>
           <% end %>
           <% @supporter.phones.each do |key, value| %>
             <tr>
-              <th><%= key.to_s.humanize %></th>
+              <th><%= key.to_s.split("_").last.humanize %></th>
               <td><%= number_to_phone(value.to_i) %></td>
             </tr>
           <% end %>
@@ -36,7 +36,7 @@
           <% if @supporter.employer.present? || @supporter.occupation.present? %>
             <tr>
               <th>Occupation</th>
-              <td><%= @supporter.occupation %></td>
+              <td><%= @supporter.occupation.humanize %></td>
             </tr>
             <tr>
               <th>Employer</th>
@@ -53,7 +53,7 @@
           </tr>
           <tr>
             <th>Source</th>
-            <td><%= @supporter.source %></td>
+            <td><%= @supporter.source.humanize %></td>
           </tr>
           <tr>
             <th>Notes</th>
