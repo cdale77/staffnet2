@@ -10,8 +10,6 @@ Staffnet2::Application.routes.draw do
       resources :shifts
     end
 
-
-
     # new shifts can only be made through the employee association
     resources :shifts, except: :new do
       resource :shift_type
@@ -36,6 +34,8 @@ Staffnet2::Application.routes.draw do
 
     resources :supporter_types, except: [ :show, :destroy ]
     resources :shift_types, except: [ :show, :destroy ]
+
+    resources :sendy_lists
 
     #resources :clients do
     #  resources :projects

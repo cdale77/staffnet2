@@ -4,6 +4,7 @@
 #
 #  id                :integer          not null, primary key
 #  supporter_type_id :integer
+#  sendy_list_id     :integer
 #  legacy_id         :string(255)      default("")
 #  external_id       :string(255)      default("")
 #  cim_id            :string(255)      default("")
@@ -37,6 +38,8 @@
 #  occupation        :string(255)      default("")
 #  source            :string(255)      default("")
 #  notes             :text             default("")
+#  sendy_status      :string(255)      default("")
+#  sendy_updated_at  :datetime
 #  created_at        :datetime
 #  updated_at        :datetime
 #

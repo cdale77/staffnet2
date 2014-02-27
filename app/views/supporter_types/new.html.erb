@@ -1,24 +1,16 @@
 <% provide(:title, 'New supporter type') %>
 <div class="row">
   <div class="span8 offset3">
-    <h1>New supporter type</h1>
-    <p><em>Note: You <b>must</b> also create a MailChimp Interest Group (Grouping: Supporters) with an identical name.
-    Otherwise supporter records will not be properly updated. </em></p>
-    <%= form_for(@supporter_type) do |f| %>
+    <%= simple_form_for(@supporter_type) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div class="row">
         <div class="span3">
-          <div class="input">
-            <%= f.label :name %>
-            <%= f.text_field :name %>
-          </div>
+          <%= f.input :name %>
         </div>
       </div>
       <div class="row">
         <div class="span3">
-          <div class="input">
-            <%= f.submit 'New supporter type', class: 'btn btn-large btn-primary' %>
-          </div>
+          <%= f.submit 'New supporter type', class: 'btn btn-large btn-primary' %>
         </div>
       </div>
     <% end %>
