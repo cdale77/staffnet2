@@ -50,7 +50,8 @@ describe Supporter do
                             address2: '2nd Floor', address_city: 'Boston', address_state: 'MA', address_zip: '02010',
                             email_1: 'bob@example.com', email_2: 'bobtaft@example.com', phone_mobile: '5554859875',
                             phone_home: '5559007845', phone_alt: '5558874952', keep_informed: true, vol_level: 'prospect',
-                            employer: 'Ohio State University', occupation: 'Professor', source: 'door', notes: 'Note.' }
+                            employer: 'Ohio State University', occupation: 'Professor', source: 'door', notes: 'Note.',
+                            sendy_updated_at: Time.now, sendy_status: 'subscribed', sendy_list_id: 3 }
 
   let!(:supporter) { FactoryGirl.create(:supporter) } # eager-eval to limit Cim callbacks
 
@@ -71,6 +72,7 @@ describe Supporter do
   it { should respond_to(:donations) }
   it { should respond_to(:payments) }
   it { should respond_to(:payment_profiles) }
+  it { should respond_to(:sendy_list) }
 
   ## VALIDATIONS
   describe 'prefix validations' do 

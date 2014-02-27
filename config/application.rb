@@ -30,10 +30,10 @@ module Staffnet2
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.filter_parameters += [:password, :password_confirmation, :cc_number]
     config.autoload_paths += %W(#{config.root}/lib/validations)
-    config.autoload_paths += %W(#{config.root}/lib/mail_chimp)
     config.autoload_paths += %W(#{config.root}/lib/cim)
     config.autoload_paths += %W(#{config.root}/app/models/emails)
     config.autoload_paths += %W(#{config.root}/app/models/legacy)
+    config.autoload_paths += %W(#{config.root}/app/models/sendy)
 
     config.generators do |g|
       g.test_framework :rspec, fixture: true

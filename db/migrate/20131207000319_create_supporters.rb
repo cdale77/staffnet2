@@ -3,6 +3,7 @@ class CreateSupporters < ActiveRecord::Migration
     create_table :supporters do |t|
 
       t.integer :supporter_type_id
+      t.integer :sendy_list_id
       t.string  :legacy_id, :default => ''
 
       t.string :external_id, :default => ''
@@ -46,9 +47,14 @@ class CreateSupporters < ActiveRecord::Migration
       t.string :source, :default => ''
       t.text :notes, :default => ''
 
+      t.string :sendy_status, :default => ''
+
+      t.datetime :sendy_updated_at
       t.timestamps
     end
 
+    add_index :supporters, :supporter_type_id
+    add_index :supporters, :sendy_list_id
     add_index :supporters, :external_id
     add_index :supporters, :cim_id
   end

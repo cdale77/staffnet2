@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140125005333) do
+ActiveRecord::Schema.define(version: 20140227020418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,6 +139,17 @@ ActiveRecord::Schema.define(version: 20140125005333) do
 
   add_index "projects", ["client_id"], name: "index_projects_on_client_id", using: :btree
 
+  create_table "sendy_lists", force: true do |t|
+    t.integer  "supporter_type_id"
+    t.string   "sendy_list_identifier", default: ""
+    t.string   "name",                  default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sendy_lists", ["sendy_list_identifier"], name: "index_sendy_lists_on_sendy_list_identifier", using: :btree
+  add_index "sendy_lists", ["supporter_type_id"], name: "index_sendy_lists_on_supporter_type_id", using: :btree
+
   create_table "shift_types", force: true do |t|
     t.string   "name",       default: ""
     t.datetime "created_at"
@@ -175,6 +186,7 @@ ActiveRecord::Schema.define(version: 20140125005333) do
 
   create_table "supporters", force: true do |t|
     t.integer  "supporter_type_id"
+    t.integer  "sendy_list_id"
     t.string   "legacy_id",         default: ""
     t.string   "external_id",       default: ""
     t.string   "cim_id",            default: ""
@@ -208,12 +220,16 @@ ActiveRecord::Schema.define(version: 20140125005333) do
     t.string   "occupation",        default: ""
     t.string   "source",            default: ""
     t.text     "notes",             default: ""
+    t.string   "sendy_status",      default: ""
+    t.datetime "sendy_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "supporters", ["cim_id"], name: "index_supporters_on_cim_id", using: :btree
   add_index "supporters", ["external_id"], name: "index_supporters_on_external_id", using: :btree
+  add_index "supporters", ["sendy_list_id"], name: "index_supporters_on_sendy_list_id", using: :btree
+  add_index "supporters", ["supporter_type_id"], name: "index_supporters_on_supporter_type_id", using: :btree
 
   create_table "task_types", force: true do |t|
     t.string "name", default: ""

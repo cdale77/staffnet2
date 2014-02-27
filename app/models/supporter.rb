@@ -54,16 +54,22 @@ class Supporter < ActiveRecord::Base
 
   ## RELATIONSHIPS
   belongs_to :supporter_type
+  belongs_to :sendy_list
   has_many :donations, dependent: :destroy
   has_many :payments, through: :donations
   has_many :payment_profiles
 
 
   ## CALLBACKS
-  #before_create :set_mailchimp_sync_stamp
-  after_create :store_cim_profile
-  before_destroy :unstore_cim_profile
+  # data cleaning
   before_validation { self.salutation = first_name if self.salutation.blank? }
+  # API
+  before_create :store_cim_profile
+  #after_create :subscribe_to_sendy
+  #before_update :update_sendy_subscription
+  before_destroy :unstore_cim_profile
+  #before_destroy :unsubscribe_from_sendy
+
 
 
   ## VALIDATIONS

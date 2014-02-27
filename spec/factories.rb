@@ -86,11 +86,15 @@ FactoryGirl.define do
   end
 
   factory :supporter_type do
-    name        ['Supporter-test', 'Donor-test', 'Media-test', 'Official-test', 'Staff-test', 'Volunteer-test'].sample
+    name        'supporter'
+  end
+
+  factory :sendy_list do
+    name      'supporters'
+    sendy_list_identifier '23413rq3t985'
   end
 
   factory :supporter do
-    #mailchimp_leid        '44552323'
     first_name            Faker::Name.first_name
     last_name             Faker::Name.last_name
     address1              Faker::Address.street_address
@@ -137,6 +141,8 @@ FactoryGirl.define do
     cc_month                  '10'
     cc_year                   '2017'
   end
+
+
 
 =begin
   factory :project do
