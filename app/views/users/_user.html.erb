@@ -1,7 +1,7 @@
 <tr>
   <td><%= mail_to user.email, user.email, class: 'hover-underline-grey' %></td>
   <td><%= user.role.humanize %></td>
-  <td><%= user.created_at %></td>
+  <td><%= user.created_at.strftime("%Y-%m-%d") %></td>
   <td class="buttons">
     <%= render 'shared/index/details_button', record: user if admin_user? %>
     <%= render 'shared/index/edit_button', record: user if super_admin_user? %>

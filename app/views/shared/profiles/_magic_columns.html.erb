@@ -1,7 +1,8 @@
-<th>Created at:</th>
-<td><%= record.created_at %></td>
+<tr>
+  <th>Created at</th>
+  <td><%= record.created_at.strftime("%Y-%m-%d %l:%M %P") %></td>
 </tr>
 <tr>
-  <th>Updated at:</th>
-  <td><%= record.updated_at %></td>
+  <th>Updated at</th>
+  <td><%= record.updated_at.strftime("%Y-%m-%d %l:%M %P") %></td>
 </tr>

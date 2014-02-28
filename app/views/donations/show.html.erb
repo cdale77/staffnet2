@@ -17,7 +17,7 @@
           </tr>
           <tr>
             <th>Amount</th>
-            <td><%= @donation.amount %></td>
+            <td><%= number_to_currency @donation.amount %></td>
           </tr>
           <% if @donation.is_sustainer? %>
             <tr>
@@ -31,15 +31,15 @@
         <table>
           <tr>
             <th>Type</th>
-            <td><%= @donation.donation_type %></td>
+            <td><%= @donation.donation_type.humanize %></td>
           </tr>
           <tr>
             <th>Source</th>
-            <td><%= @donation.source %></td>
+            <td><%= @donation.source.humanize %></td>
           </tr>
           <tr>
             <th>Campaign</th>
-            <td><%= @donation.campaign %></td>
+            <td><%= @donation.campaign.humanize %></td>
           </tr>
           <% if @donation.is_sustainer? %>
             <tr>
@@ -59,7 +59,7 @@
           <% if @donation.is_sustainer? %>
             <tr>
               <th>Cancelled</th>
-              <td><%= @donation.cancelled %></td>
+              <td><%= @donation.cancelled.humanize %></td>
             </tr>
           <% end %>
         </table>
