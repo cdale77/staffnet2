@@ -18,6 +18,11 @@ class SendyList < ActiveRecord::Base
 
   ## VALIDATIONS
   validates :name, presence: { message: 'required.' }
-
   validates :sendy_list_identifier, presence: { message: 'required.' }
+
+  ## WRITERS
+  def name=(name)
+    write_attribute(:name, name.downcase)
+  end
+
 end

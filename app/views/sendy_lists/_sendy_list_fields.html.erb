@@ -4,7 +4,7 @@
   </div>
   <div class="span3">
     <%= f.input :supporter_type_id, as: :select,
-                                    collection: supporter_types,
+                                    collection: SupporterType.all,
                                     label_method: :name,
                                     selected: sendy_list.supporter_type_id %>
   </div>

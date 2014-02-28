@@ -43,4 +43,12 @@ describe SendyList do
       sendy_list.should_not be_valid
     end
   end
+
+  ## WRITERS
+  describe 'name writer'do
+    it 'should downcase list names' do
+      sendy_list.name = 'Supporters'
+      sendy_list.name.should eql 'supporters'
+    end
+  end
 end

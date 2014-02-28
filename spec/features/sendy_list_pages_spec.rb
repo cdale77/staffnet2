@@ -11,7 +11,7 @@ describe 'SendyListPages' do
   let(:staff) { FactoryGirl.create(:staff) }
 
   def fill_in_example_sendy_list
-
+    fill_in 'Name',     with: 'supporters'
   end
 
   #### AS SUPERADMIN USER ####
@@ -57,7 +57,7 @@ describe 'SendyListPages' do
           expect { click_button 'Create Sendy list' }.to change(SendyList, :count).by(1)
         end
         describe 'after saving a sendy list' do
-          before { click_button 'Create Sendy List' }
+          before { click_button 'Create Sendy list' }
 
           it { should have_selector('div.alert') }
         end

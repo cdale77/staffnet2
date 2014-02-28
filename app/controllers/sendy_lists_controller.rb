@@ -5,7 +5,6 @@ class SendyListsController < ApplicationController
 
   def new
     @sendy_list = SendyList.new
-    @supporter_types = SupporterType.all
   end
 
   def create
