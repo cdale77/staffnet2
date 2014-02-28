@@ -10,6 +10,10 @@ describe 'SendyListPages' do
   let(:manager) { FactoryGirl.create(:manager) }
   let(:staff) { FactoryGirl.create(:staff) }
 
+  def fill_in_example_sendy_list
+
+  end
+
   #### AS SUPERADMIN USER ####
 
   ## log in as superadmin user to test basic functionality of the pages. Authorization is handled in the
@@ -34,6 +38,29 @@ describe 'SendyListPages' do
       describe 'page' do
         it { should have_title('Staffnet:New Sendy list') }
         it { should have_selector('h1', text: 'New Sendy list') }
+      end
+
+      describe 'with invalid information' do
+        it 'should not create a new supporter' do
+          expect { click_button 'Create Sendy list' }.not_to change(SendyList, :count)
+        end
+        describe 'after clicking' do
+          before { click_button 'Create Sendy list' }
+          it { should have_content('error') }
+        end
+      end
+
+      describe 'with valid information' do
+        before { fill_in_example_sendy_list }
+
+        it 'should create a new sendy list' do
+          expect { click_button 'Create Sendy list' }.to change(SendyList, :count).by(1)
+        end
+        describe 'after saving a sendy list' do
+          before { click_button 'Create Sendy List' }
+
+          it { should have_selector('div.alert') }
+        end
       end
     end
   end

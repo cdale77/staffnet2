@@ -29,7 +29,7 @@
   <div class="span3">
     <%= f.input :field_manager_employee_id, as: :select, collection: field_managers, label_method: :full_name,
                                             selected: shift.field_manager_employee_id, label: 'Field manager',
-                                            include_blank: true%>
+                                            include_blank: true %>
   </div>
 </div>
 <%= render 'shared/forms/notes_field', f: f %>

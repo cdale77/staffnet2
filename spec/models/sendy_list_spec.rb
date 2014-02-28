@@ -28,4 +28,19 @@ describe SendyList do
   ## RELATIONSHIPS
   it { should respond_to(:supporter_type) }
   it { should respond_to(:supporters) }
+
+  ## VALIDATIONS
+  describe 'name validations' do
+    it 'should require a list name' do
+      sendy_list.name = ''
+      sendy_list.should_not be_valid
+    end
+  end
+
+  describe 'sendy list identifier validations' do
+    it 'should require a sendy list identifier' do
+      sendy_list.sendy_list_identifier = ''
+      sendy_list.should_not be_valid
+    end
+  end
 end

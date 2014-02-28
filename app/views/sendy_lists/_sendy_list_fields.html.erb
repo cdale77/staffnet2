@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="span3">
+    <%= f.input :name %>
+  </div>
+  <div class="span3">
+    <%= f.input :supporter_type_id, as: :select,
+                                    collection: supporter_types,
+                                    label_method: :name,
+                                    selected: sendy_list.supporter_type_id %>
+  </div>
+</div>
+<div class="row">
+  <div class="span6">
+    <%= f.input :sendy_list_identifier %>
+  </div>
+</div>

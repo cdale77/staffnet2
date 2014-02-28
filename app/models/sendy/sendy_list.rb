@@ -15,4 +15,9 @@ class SendyList < ActiveRecord::Base
   ## RELATIONSHIPS
   belongs_to :supporter_type
   has_many :supporters
+
+  ## VALIDATIONS
+  validates :name, presence: { message: 'required.' }
+
+  validates :sendy_list_identifier, presence: { message: 'required.' }
 end
