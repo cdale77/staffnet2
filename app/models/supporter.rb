@@ -122,6 +122,7 @@ class Supporter < ActiveRecord::Base
   end
 
 
+=begin
   def store_cim_profile
     if cim_id.blank?
       profile = Cim::Profile.new(self.id, self.email_1)
@@ -134,6 +135,7 @@ class Supporter < ActiveRecord::Base
       self.save
     end
   end
+=end
 
   def unstore_cim_profile
     profile = Cim::Profile.new(self.id, self.email_1, self.cim_id.to_s)
