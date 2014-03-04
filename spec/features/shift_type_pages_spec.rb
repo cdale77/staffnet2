@@ -85,7 +85,7 @@ describe 'ShiftTypePages' do
           end
         end
 
-        it 'should have edit and delete links for each shift type' do
+        it 'should have edit links for each shift type' do
           ShiftType.all.each do |shift_type|
             expect(page).to have_link('edit', edit_shift_type_path(shift_type))
           end

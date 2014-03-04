@@ -1,0 +1,10 @@
+<tr>
+  <td><%= sendy_list.name %></td>
+  <td><%= sendy_list.sendy_list_identifier %></td>
+  <td class="buttons">
+    <% if admin_user? %>
+      <%= render 'shared/index/edit_button', record: sendy_list %>
+      <%= render 'shared/index/delete_button', record: sendy_list %>
+    <% end %>
+  </td>
+</tr>

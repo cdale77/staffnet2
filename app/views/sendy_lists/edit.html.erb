@@ -1,0 +1,11 @@
+<% provide(:title, 'Edit Sendy list') %>
+<div class="row">
+  <div class="span8 offset2">
+    <h1>Edit Sendy list</h1>
+    <%= simple_form_for @sendy_list do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= render 'sendy_list_fields', sendy_list: @sendy_list, f: f %>
+      <%= render 'shared/forms/submit_button', f: f %>
+    <% end %>
+  </div>
+</div>

@@ -11,6 +11,7 @@ describe 'SendyListPages' do
   let(:staff) { FactoryGirl.create(:staff) }
 
   let!(:supporter_type) { FactoryGirl.create(:supporter_type, name: 'supporter') } # so there's a supporter type to pick for #new
+  let(:sendy_list) { FactoryGirl.create(:sendy_list) }
 
   ## HELPERS ##
 
@@ -95,8 +96,35 @@ describe 'SendyListPages' do
         it 'should have edit and delete links for each list' do
           SendyList.all.each do |list|
             expect(page).to have_link('edit', edit_sendy_list_path(list))
+            expect(page).to have_link('delete', sendy_list_path(list))
           end
         end
+      end
+    end
+
+    describe 'edit' do
+      before { visit edit_sendy_list_path(sendy_list) }
+
+      describe 'page' do
+        it { should have_selector('h1', text: 'Edit Sendy list') }
+
+      end
+
+      describe 'with invalid information' do
+        before  do
+          fill_in 'Sendy list identifier',  with: ''
+          click_button 'Update Sendy list'
+        end
+        it { should have_selector('div.alert-error') }
+      end
+
+      describe 'with valid information' do
+        before  do
+          fill_in 'Name',                   with: 'donors'
+          click_button 'Update Sendy list'
+        end
+        it { should have_selector('div.alert-success') }
+        specify { expect(sendy_list.reload.name).to eq 'donors' }
       end
     end
   end

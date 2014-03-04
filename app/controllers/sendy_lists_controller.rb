@@ -22,6 +22,20 @@ class SendyListsController < ApplicationController
     @sendy_lists = SendyList.all
   end
 
+  def edit
+    @sendy_list = SendyList.find(params[:id])
+  end
+
+  def update
+    @sendy_list = SendyList.find(params[:id])
+    if @sendy_list.update_attributes(sendy_list_params)
+      flash[:success] = 'Sendy list updated.'
+      redirect_to sendy_lists_path
+    else
+      render 'edit'
+    end
+  end
+
   def sendy_list_params
     params.require(:sendy_list).permit(:supporter_type_id, :name, :sendy_list_identifier)
   end
