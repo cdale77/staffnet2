@@ -121,7 +121,7 @@ describe 'ShiftTypePages' do
       end
     end
   end
-=begin
+
 
   ## AS ADMIN USER
   describe 'as admin user' do
@@ -234,29 +234,16 @@ describe 'ShiftTypePages' do
       logout(:manager)
     end
 
-    describe 'new shift type' do
-      before { visit new_shift_type_path }
 
-      describe 'page' do
-        it { should_not have_selector('h1', text: 'New shift type') }
-      end
-    end
 
     describe 'index' do
       before { visit shift_types_path }
 
       describe 'page' do
-        it { should_not have_selector('h1', text: 'Shift types') }
+        it { should have_selector('h1', text: 'Shift types') }
       end
     end
 
-    describe 'edit' do
-      before { visit edit_shift_type_path(shift_type) }
-
-      describe 'page' do
-        it { should_not have_selector('h1', text: 'Edit shift type') }
-      end
-    end
   end
 
   ## AS STAFF USER
@@ -272,68 +259,15 @@ describe 'ShiftTypePages' do
       logout(:staff)
     end
 
-    describe 'new shift type' do
-      before { visit new_shift_type_path }
 
-      describe 'page' do
-        it { should_not have_selector('h1', text: 'New shift type') }
-      end
-    end
 
     describe 'index' do
       before { visit shift_types_path }
 
       describe 'page' do
-        it { should_not have_selector('h1', text: 'Shift types') }
+        it { should have_selector('h1', text: 'Shift types') }
       end
     end
 
-    describe 'edit' do
-      before { visit edit_shift_type_path(shift_type) }
-
-      describe 'page' do
-        it { should_not have_selector('h1', text: 'Edit shift type') }
-      end
-    end
   end
-
-  ## AS REGULAR USER
-  describe 'as regular user' do
-    before do
-      visit new_user_session_path
-      fill_in 'Email',    with: user.email
-      fill_in 'Password', with: user.password
-      click_button 'Sign in'
-    end
-
-    after do
-      logout(:user)
-    end
-
-    describe 'new shift type' do
-      before { visit new_shift_type_path }
-
-      describe 'page' do
-        it { should_not have_selector('h1', text: 'New shift type') }
-      end
-    end
-
-    describe 'index' do
-      before { visit shift_types_path }
-
-      describe 'page' do
-        it { should_not have_selector('h1', text: 'Shift types') }
-      end
-    end
-
-    describe 'edit' do
-      before { visit edit_shift_type_path(shift_type) }
-
-      describe 'page' do
-        it { should_not have_selector('h1', text: 'Edit shift type') }
-      end
-    end
-  end
-=end
-
 end
