@@ -74,7 +74,7 @@ describe 'ShiftTypePages' do
         visit shift_types_path
       end
 
-      after { ShiftType.delete_all }
+      after { ShiftType.destroy_all }
 
       describe 'page' do
         it { should have_selector('h1', text: 'Shift types') }

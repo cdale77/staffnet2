@@ -10,8 +10,19 @@ describe 'SendyListPages' do
   let(:manager) { FactoryGirl.create(:manager) }
   let(:staff) { FactoryGirl.create(:staff) }
 
+  let!(:supporter_type) { FactoryGirl.create(:supporter_type, name: 'supporter') } # so there's a supporter type to pick for #new
+
+  ## HELPERS ##
+
+  def create_sample_sendy_lists
+    %w[members donors officials].each do |list|
+      FactoryGirl.create(:sendy_list, name: list)
+    end
+  end
+
   def fill_in_example_sendy_list
-    fill_in 'Name',     with: 'supporters'
+    fill_in 'Name',                   with: 'supporters'
+    fill_in 'Sendy list identifier',  with: '2243432er23d12'
   end
 
   #### AS SUPERADMIN USER ####
@@ -32,7 +43,7 @@ describe 'SendyListPages' do
       logout(:super_admin)
     end
 
-    describe 'new list' do
+    describe 'new' do
       before { visit new_sendy_list_path }
 
       describe 'page' do
@@ -60,6 +71,31 @@ describe 'SendyListPages' do
           before { click_button 'Create Sendy list' }
 
           it { should have_selector('div.alert') }
+        end
+      end
+    end
+
+    describe 'index' do
+      before do
+        create_sample_sendy_lists
+        visit sendy_lists_path
+      end
+
+      after { SendyList.destroy_all }
+
+      describe 'page' do
+        it { should have_selector('h1', text: 'Sendy lists') }
+
+        it 'should list each list' do
+          SendyList.all.each do |list|
+            expect(page).to have_content(list.name)
+          end
+        end
+
+        it 'should have edit and delete links for each list' do
+          SendyList.all.each do |list|
+            expect(page).to have_link('edit', edit_sendy_list_path(list))
+          end
         end
       end
     end

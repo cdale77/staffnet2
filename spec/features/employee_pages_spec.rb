@@ -73,7 +73,7 @@ describe 'EmployeePages' do
         before { fill_in_example_employee }
 
         it 'should create a new employee' do
-          expect { click_button 'Create Employee' }.to change(Employee, :count).by(1)
+          expect { click_button 'Create Empl<oyee' }.to change(Employee, :count).by(1)
         end
         describe 'after saving employee' do
           before { click_button 'Create Employee' }
