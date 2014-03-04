@@ -142,33 +142,14 @@ FactoryGirl.define do
     cc_year                   '2017'
   end
 
-
-
-=begin
-  factory :project do
-    name            Faker::Lorem.word + ' ' + Faker::Lorem.word
-    start_date      Date.today - 20.days
-    end_date        Date.yesterday
-    desc            Faker::Lorem.sentence
-    notes           Faker::Lorem.sentence
-    client
+  factory :sendy_update do
+    sendy_email     'example@example.com'
+    new_sendy_email 'new_example@example.com'
+    new_sendy_status  'subscribed'
+    action          'subscribe'
+    success         true
   end
 
-  factory :task_type do
-    name          Faker::Lorem.word
-    desc          Faker::Lorem.sentence
-  end
-
-  factory :task do
-    name          Faker::Lorem.word + ' ' + Faker::Lorem.word
-    hours          2.00
-    desc          Faker::Lorem.word + ' ' + Faker::Lorem.word
-    notes         Faker::Lorem.sentence
-    shift
-    project
-    task_type
-  end
-=end
 
 
 
