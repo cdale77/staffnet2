@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227020418) do
+ActiveRecord::Schema.define(version: 20140304184521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,25 @@ ActiveRecord::Schema.define(version: 20140227020418) do
 
   add_index "sendy_lists", ["sendy_list_identifier"], name: "index_sendy_lists_on_sendy_list_identifier", using: :btree
   add_index "sendy_lists", ["supporter_type_id"], name: "index_sendy_lists_on_supporter_type_id", using: :btree
+
+  create_table "sendy_updates", force: true do |t|
+    t.integer  "supporter_id"
+    t.integer  "sendy_list_id"
+    t.integer  "sendy_batch_id"
+    t.string   "sendy_email",      default: ""
+    t.string   "new_sendy_email",  default: ""
+    t.string   "new_sendy_status", default: ""
+    t.string   "action",           default: ""
+    t.boolean  "success",          default: false
+    t.datetime "completed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sendy_updates", ["sendy_batch_id"], name: "index_sendy_updates_on_sendy_batch_id", using: :btree
+  add_index "sendy_updates", ["sendy_list_id"], name: "index_sendy_updates_on_sendy_list_id", using: :btree
+  add_index "sendy_updates", ["success"], name: "index_sendy_updates_on_success", using: :btree
+  add_index "sendy_updates", ["supporter_id"], name: "index_sendy_updates_on_supporter_id", using: :btree
 
   create_table "shift_types", force: true do |t|
     t.string   "name",       default: ""
