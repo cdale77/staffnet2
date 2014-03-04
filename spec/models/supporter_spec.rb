@@ -58,11 +58,6 @@ describe Supporter do
 
   let!(:supporter) { FactoryGirl.create(:supporter) } # eager-eval to limit Cim callbacks
 
-  #def create_records_for_mailchimp
-  #  5.times { FactoryGirl.create(:supporter) }
-  #  2.times { FactoryGirl.create(:supporter, mailchimp_sync_at: (Time.now + 24.hours)) }
-  #end
-
   ## ATTRIBUTES
   describe 'supporter attribute tests' do
     supporter_attributes.each do |key, value|
@@ -192,20 +187,4 @@ describe Supporter do
   end
 
 
-  ## MAILCHIMP
-=begin
-  describe 'MailChimp syncing' do
-    before { create_records_for_mailchimp }
-    after { Supporter.delete_all }
-    it 'should collect the right records for sync' do
-      expect(Supporter.mailchimp_records_to_sync.count).to eql 5
-    end
-  end
-
-  describe 'MailChimp sync stamp' do
-    it 'should set the sync stamp on create' do
-      supporter.mailchimp_sync_at.should_not be_blank
-    end
-  end
-=end
 end

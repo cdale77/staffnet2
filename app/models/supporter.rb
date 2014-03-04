@@ -67,10 +67,10 @@ class Supporter < ActiveRecord::Base
   # data cleaning
   before_validation { self.salutation = first_name if self.salutation.blank? }
   # API
-  before_create :store_cim_profile
+  #before_create :store_cim_profile
   #after_create :subscribe_to_sendy
   #before_update :update_sendy_subscription
-  before_destroy :unstore_cim_profile
+  #before_destroy :unstore_cim_profile
   #before_destroy :unsubscribe_from_sendy
 
 
