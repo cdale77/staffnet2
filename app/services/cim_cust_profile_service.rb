@@ -1,13 +1,23 @@
-module CimCustProfileService
+class CimCustProfileService < ServiceBase
 
-  def self.create(supporter_id, supporter_email)
-    profile = Cim::Profile.new(supporter_id, supporter_email)
+  attr_reader :cim_id
+
+  def initialize(supporter_id, supporter_email = '')
+    @success = false
+    @message = ''
+    @supporter_id = supporter_id
+    @supporter_email = supporer_email
+    @cim_id = ''
+  end
+
+  def create
+    profile = Cim::Profile.new(@supporter_id, @supporter_email)
     begin
       profile.store
     rescue
-      puts 'ERROR: Problem creating CIM profile: ' + profile.server_message
+      @message = 'ERROR: Problem creating CIM profile: ' + profile.server_message
     end
-    return profile.cim_id
+
   end
 
   def self.destroy

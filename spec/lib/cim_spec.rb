@@ -4,7 +4,7 @@ describe Cim do
 
 
   describe Cim::Profile do
-    let!(:supporter) { FactoryGirl.create(:supporter) }
+    let(:supporter) { FactoryGirl.create(:supporter) }
     let(:profile) { Cim::Profile.new(supporter.id) }
 
     #before { supporter.unstore_cim_profile }
@@ -17,17 +17,17 @@ describe Cim do
     end
 
     describe '#store' do
+      before { profile.store }
       it 'should store a profile' do
-        #store returns a string (cim id) if successful, false if not successful.
-        result = profile.store
-        result.should be_an_instance_of String
+        profile.success.should be_true
+        profile.cim_id.should_not be_blank
       end
     end
   end
 
   describe Cim::PaymentProfile do
     let!(:supporter) { FactoryGirl.create(:supporter) }
-    let!(:payment_profile) { Cim::PaymentProfile.new(supporter, '4111111111111111', '10', '2017', 'visa') }
+    let(:payment_profile) { Cim::PaymentProfile.new(supporter, '4111111111111111', '10', '2017', 'visa') }
 
     describe '#initialize' do
       it 'should create an object' do
@@ -36,20 +36,17 @@ describe Cim do
     end
 
     describe '#store' do
+      before do
+        profile = Cim::Profile.new(supporter.id)
+        profile.store
+        supporter.cim_id = profile.cim_id
+      end
       it 'should store a payment profile' do
         #store returns a string (cim id) if successful, false if not successful
         result = payment_profile.store
         result.should be_an_instance_of String
       end
     end
-
-=begin
-    describe '#update' do
-      it 'should update an expiry date' do
-        result = payment_profile.update
-      end
-    end
-=end
   end
 
   describe Cim::ProfilePayment do

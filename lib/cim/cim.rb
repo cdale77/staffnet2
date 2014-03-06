@@ -10,18 +10,21 @@ module Cim
 
     attr_reader :cim_id
     attr_reader :server_message
+    attr_reader :success
 
     def initialize(supporter_id, supporter_email = '', cim_id = '')
       @supporter_id = supporter_id.to_s
       @supporter_email = supporter_email
       @cim_id = cim_id
+      @success = false
     end
 
     def store
       result = Cim.connection.create_customer_profile(profile: customer_profile)
       @server_message = result.message
-      if result.params
-        result.success? ? @cim_id = result.params['customer_profile_id'] : false
+      if result.params && result.success?
+        @success = true
+        @cim_id = result.params['customer_profile_id']
       end
     end
 
