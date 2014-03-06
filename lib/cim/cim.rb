@@ -31,7 +31,7 @@ module Cim
     def unstore
       result = Cim.connection.delete_customer_profile(customer_profile_id: @cim_id)
       @server_message = result.message
-      result.success? ? true : false
+      @success = result.success?
     end
 
     private

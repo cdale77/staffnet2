@@ -14,10 +14,10 @@ class SupportersController < ApplicationController
     @supporter = supporter_type.supporters.build(supporter_params)
     authorize @supporter
     if @supporter.save
-      flash[:success] = 'Saved new supporter.'
+      new_supporter_tasks
       redirect_to supporter_path(@supporter)
     else
-      flash[:error] = 'Something went wrong.'
+      flash[:error] = 'Error saving new supporter.'
       render 'new'
     end
   end
@@ -61,6 +61,11 @@ class SupportersController < ApplicationController
   end
 
   private
+
+    def new_supporter_tasks
+      service = SupporterService.new(@supporter.id, @supporter.email_1)
+      service.new_supporter ? flash[:success] = 'Saved new supporter.' : flash[:error] = "Error: #{service.message}"
+    end
 
     def supporter_params
       params.require(:supporter).permit(  :prefix, :salutation, :first_name, :last_name, :suffix, :address_line_1,
