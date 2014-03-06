@@ -6,7 +6,7 @@ class CimCustProfileService < ServiceBase
     @success = false
     @message = ''
     @supporter_id = supporter_id
-    @supporter_email = supporer_email
+    @supporter_email = supporter_email
     @cim_id = ''
   end
 
@@ -15,9 +15,11 @@ class CimCustProfileService < ServiceBase
     begin
       profile.store
     rescue
-      @message = 'ERROR: Problem creating CIM profile: ' + profile.server_message
+      @message = "ERROR: Problem creating CIM profile: #{profile.server_message}"
     end
-
+    @success = profile.success
+    @message = profile.server_message
+    puts @message
   end
 
   def self.destroy
