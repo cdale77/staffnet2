@@ -1,6 +1,6 @@
 class SendyUpdateService < ServiceBase
 
-  def initialize(supporter_id, sendy_list_id, supporter_email, old_email = '')
+  def initialize(supporter_id, sendy_list_id, supporter_email, old_email)
     @success = false
     @message = ''
     @supporter_id = supporter_id
