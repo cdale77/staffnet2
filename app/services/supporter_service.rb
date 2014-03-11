@@ -49,5 +49,4 @@ class SupporterService < ServiceBase
       supporter.cim_id = @cim_id
       supporter.save
     end
-
 end
