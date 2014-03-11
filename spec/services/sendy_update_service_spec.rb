@@ -11,4 +11,16 @@ describe SendyUpdateService do
       sendy_service.should be_an_instance_of SendyUpdateService
     end
   end
+
+  describe '#subscribe' do
+    it 'should create a SendyUpdate record' do
+      expect { sendy_service.subscribe }.to change(SendyUpdate, :count).by(1)
+    end
+  end
+
+  describe '#unsubscribe' do
+    it 'should create a SendyUpdate record' do
+      expect { sendy_service.subscribe }.to change(SendyUpdate, :count).by(1)
+    end
+  end
 end
