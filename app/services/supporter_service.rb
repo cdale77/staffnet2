@@ -2,12 +2,14 @@ class SupporterService < ServiceBase
 
   attr_reader :cim_id
 
-  def initialize(supporter_id, sendy_list_id, supporter_email = '', old_email = '')
+  def initialize(supporter_id, sendy_list_id, supporter_email = '', old_email = '', new_status = '')
     @message = ''
     @success = false
     @cim_id = ''
-    @cim_profile = CimCustProfileService.new(supporter_id, supporter_email)
-    @sendy_update = SendyUpdateService.new(supporter_id, sendy_list_id, supporter_email, old_email)
+    @new_status = new_status
+    @supporter_id = supporter_id
+    @cim_profile = CimCustProfileService.new(@supporter_id, supporter_email)
+    @sendy_update = SendyUpdateService.new(@supporter_id, sendy_list_id, supporter_email, old_email)
   end
 
   def new_supporter
@@ -16,8 +18,14 @@ class SupporterService < ServiceBase
     end
   end
 
-  def destroy
+  def destroy_supporter
     if unstore_cim_profile && queue_sendy_update('unsubscribe')
+      @success = true
+    end
+  end
+
+  def update_supporter
+    if queue_sendy_update(@new_status)
       @success = true
     end
   end
@@ -30,7 +38,7 @@ class SupporterService < ServiceBase
     end
 
     def unstore_cim_profile
-      @cim_profile.unstore
+      @cim_profile.destroy
       cim_profile_result
     end
 
