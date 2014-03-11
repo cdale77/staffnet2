@@ -12,15 +12,13 @@ describe SendyUpdateService do
     end
   end
 
-  describe '#subscribe' do
+  describe '#update' do
     it 'should create a SendyUpdate record' do
-      expect { sendy_service.subscribe }.to change(SendyUpdate, :count).by(1)
+      expect { sendy_service.update('subscribe') }.to change(SendyUpdate, :count).by(1)
     end
-  end
-
-  describe '#unsubscribe' do
-    it 'should create a SendyUpdate record' do
-      expect { sendy_service.subscribe }.to change(SendyUpdate, :count).by(1)
+    it 'should set success to true' do
+      sendy_service.update('subscribe')
+      sendy_service.success.should be_true
     end
   end
 end
