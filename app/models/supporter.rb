@@ -53,7 +53,6 @@ class Supporter < ActiveRecord::Base
   include PeopleMethods
   include DisplayMethods
   include Cleaning
-  #include MailChimpMethods
 
   ## RELATIONSHIPS
   belongs_to :supporter_type
@@ -66,11 +65,9 @@ class Supporter < ActiveRecord::Base
   ## CALLBACKS
   # data cleaning
   before_validation { self.salutation = first_name if self.salutation.blank? }
-  # API
-  #before_create :store_cim_profile
+
   #after_create :subscribe_to_sendy
   #before_update :update_sendy_subscription
-  #before_destroy :unstore_cim_profile
   #before_destroy :unsubscribe_from_sendy
 
 
@@ -120,22 +117,6 @@ class Supporter < ActiveRecord::Base
   def phone_alt=(phone)
     write_attribute(:phone_alt, clean_phone(phone))
   end
-
-
-=begin
-  def store_cim_profile
-    if cim_id.blank?
-      profile = Cim::Profile.new(self.id, self.email_1)
-      begin
-        profile.store
-      rescue
-        puts 'ERROR: Problem creating CIM profile: ' + profile.server_message
-      end
-      self.cim_id = profile.cim_id if profile.cim_id
-      self.save
-    end
-  end
-=end
 
   def unstore_cim_profile
     profile = Cim::Profile.new(self.id, self.email_1, self.cim_id.to_s)
