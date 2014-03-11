@@ -18,7 +18,10 @@ describe SupporterService do
   end
 
   describe '#destroy_supporter' do
-    before { supporter_service.destroy_supporter }
+    before do
+      supporter_service.new_supporter
+      supporter_service.destroy_supporter 
+    end
     it 'should be successful' do
       supporter_service.success.should be_true
     end
