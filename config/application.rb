@@ -33,8 +33,10 @@ module Staffnet2
     config.autoload_paths += %W(#{config.root}/lib/cim)
     config.autoload_paths += %W(#{config.root}/lib/sendy)
     config.autoload_paths += %W(#{config.root}/app/models/emails)
-    config.autoload_paths += %W(#{config.root}/app/models/legacy)
     config.autoload_paths += %W(#{config.root}/app/models/sendy)
+
+    # legacy db models
+     config.autoload_paths += %W(#{config.root}/app/models/legacy)
 
     config.generators do |g|
       g.test_framework :rspec, fixture: true
