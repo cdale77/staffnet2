@@ -1,7 +1,5 @@
 module Sendy
 
-
-
   class UpdateStatus
 
     ## This class represents a list stored on the Sendy server. For now it does one thing -- pull data from Sendy,
@@ -9,21 +7,11 @@ module Sendy
 
     ## Sendyr forces a connection to Sendy based on list.
 
-    ## needs to be updated to reference the sendy list db table. SendyUpdate::create needs a sendy list id paramater
-
-
-
     def self.queue_updates_from_sendy(sendy_list)
 
       client = Sendyr::Client.new(sendy_list.sendy_list_identifier)
 
       supporters = sendy_list.supporters.where("email_1 <> '' AND do_not_email IS FALSE")
-
-=begin
-      supporter_type = SupporterType.find_by_sendy_list_id(@client.list_id)
-
-      supporters = supporter_type.supporters.where("email_1 <> '' AND do_not_email IS FALSE")
-=end
 
       supporters.find_each do |supporter|
 
@@ -56,6 +44,54 @@ module Sendy
         end
       end
     end
+  end
 
+  class PerformUpdates
+
+    def self.perform
+
+      updates = Staffnet2::SendyUpdate.where(success: false)
+
+      updates.find_each do |update|
+
+        begin
+          supporter = Supporter.find(update.supporter_id)
+        rescue
+          puts "Error finding supporter"
+          next
+        end
+
+        case update.action
+
+          when 'update_database'
+            unless supporter.sendy_status == update.new_sendy_status
+              supporter.sendy_status = update.new_sendy_status
+              supporter.save
+            end
+
+          when 'subscribe'
+            unless supporter.do_not_email || supporter.email_1_bad
+              subscribe_to_sendy(supporter)
+              supporter.sendy_status = 'subscribed'
+              supporter.save
+            end
+        end
+      end
+    end
+
+    private
+
+      def self.subscribe_to_sendy(supporter)
+        sendy_list = supporter.sendy_list
+        client = Sendyr::Client.new(sendy_list.sendy_list_identifier)
+        client.subscribe(:email => supporter.email_1, :name => supporter.full_name,
+                         'FirstName' => supporter.first_name, 'StaffnetID' => supporter.id.to_s )
+      end
+
+      def self.mark_as_completed(update)
+        update.success = true
+        update.completed_at = Time.now
+        update.save
+      end
   end
 end
