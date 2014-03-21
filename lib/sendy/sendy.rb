@@ -25,7 +25,7 @@ module Sendy
       supporters = supporter_type.supporters.where("email_1 <> '' AND do_not_email IS FALSE")
 =end
 
-      supporters.each do |supporter|
+      supporters.find_each do |supporter|
 
         puts "Updating #{supporters.count.to_s} supporters. . . "
 
