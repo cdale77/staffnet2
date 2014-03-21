@@ -6,8 +6,9 @@ gem 'pg', '0.17.1'
 gem 'devise', '3.2.2'
 gem 'pundit', '0.2.1'
 
+## APIs
 gem 'activemerchant', '1.42.4'
-
+gem 'sendyr', '0.2.1'
 
 ## DATES
 gem 'date_validator', '0.7.0'
