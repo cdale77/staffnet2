@@ -44,7 +44,7 @@ class SupporterService < ServiceBase
 
     def cim_profile_result
       @cim_id = @cim_profile.cim_id
-      @message = "#{@message} : #{@cim_profile.message}"
+      @message = "#{@message} : AuthNet: #{@cim_profile.message}"
       @cim_profile.success
     end
 

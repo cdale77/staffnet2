@@ -1,13 +1,19 @@
 module Sendy
-  class List < Sendy::Base
+  class UpdateStatus
+
+    ## This class represents a list stored on the Sendy server. For now it does one thing -- pull data from Sendy,
+    ## compare it to the database, and queue an update to be made later.
+
+    ## Sendyr forces a connection to Sendy based on list.
 
     ## needs to be updated to reference the sendy list db table. SendyUpdate::create needs a sendy list id paramater
 
-=begin
-    def initialize(list_id)
-      @client = Sendyr::Client.new(list_id)
+
+    def initialize(sendy_list_identifier)
+      @client = Sendyr::Client.new(sendy_list_identifier)
     end
 
+=begin
     def active_subscriber_count
       @client.active_subscriber_count
     end

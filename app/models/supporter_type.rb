@@ -19,6 +19,7 @@ class SupporterType < ActiveRecord::Base
 
   ## RELATIONSHIPS
   has_many :supporters
+  has_many :sendy_lists
 
   def number_of_supporters
     self.supporters.count

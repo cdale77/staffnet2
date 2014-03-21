@@ -10,8 +10,8 @@ class SupportersController < ApplicationController
   end
 
   def create
-    supporter_type = SupporterType.find(params[:supporter][:supporter_type_id])
-    @supporter = supporter_type.supporters.build(supporter_params)
+    @supporter_type = SupporterType.find(params[:supporter][:supporter_type_id])
+    @supporter = @supporter_type.supporters.build(supporter_params)
     authorize @supporter
     if @supporter.save
       new_supporter_tasks
@@ -63,7 +63,8 @@ class SupportersController < ApplicationController
   private
 
     def new_supporter_tasks
-      service = SupporterService.new(@supporter.id, @supporter.email_1)
+      sendy_list = @supporter_type.sendy_lists.first
+      service = SupporterService.new(@supporter.id, sendy_list.id, @supporter.email_1 )
       service.new_supporter ? flash[:success] = 'Saved new supporter.' : flash[:error] = "Error: #{service.message}"
     end
 
