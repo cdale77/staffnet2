@@ -55,6 +55,7 @@ class SupporterService < ServiceBase
     def update_record
       supporter = Supporter.find(@supporter_id)
       supporter.cim_id = @cim_id
+      supporter.sendy_list_id = @sendy_update.sendy_list_id
       supporter.save
     end
 end

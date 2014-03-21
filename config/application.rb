@@ -51,5 +51,11 @@ module Staffnet2
     ## SETTINGS
     config.user_roles = %w[staff manager admin super_admin]
     config.minimum_wage = 10.55
+
+     Sendyr.configure do |c|
+       c.url     = ENV['SENDY_URL']
+       c.api_key = ENV['SENDY_API_KEY']
+     end
+
   end
 end
