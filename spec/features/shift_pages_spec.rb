@@ -8,7 +8,6 @@ describe 'ShiftPages' do
 
   let(:staff) { FactoryGirl.create(:staff) }
   let(:super_admin) { FactoryGirl.create(:super_admin) }
-
   # use bang on the first employee create because it is assumed to exist in some examples. let is lazy-evaluated.
   let!(:employee) { FactoryGirl.create(:employee, first_name: 'Jason') }
   let(:staff_employee) { FactoryGirl.create(:employee, first_name: 'Staff', user_id: staff.id) }

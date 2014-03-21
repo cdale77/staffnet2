@@ -18,10 +18,12 @@
             <th>Type</th>
             <td><%= @shift.shift_type.name.humanize %></td>
           </tr>
-          <tr>
-            <th>Field manager</th>
-            <td><%= @shift.field_manager.full_name %></td>
-          </tr>
+          <% if @shift.field_manager %>
+            <tr>
+              <th>Field manager</th>
+              <td><%= @shift.field_manager.full_name %></td>
+            </tr>
+          <% end  %>
         </table>
       </div>
       <div class="span4 record-column">

@@ -4,7 +4,7 @@ describe SendyUpdateService do
 
   let!(:supporter) { FactoryGirl.create(:supporter) }
   let(:sendy_list) { FactoryGirl.create(:sendy_list) }
-  let(:sendy_service) { SendyUpdateService.new(supporter.id, supporter.email_1, sendy_list.id) }
+  let(:sendy_service) { SendyUpdateService.new(supporter.id, supporter.email_1, sendy_list.id, 'oldemail@example.com') }
 
   describe '#initialize' do
     it 'should create an object' do

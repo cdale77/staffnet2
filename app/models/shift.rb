@@ -54,7 +54,7 @@ class Shift < ActiveRecord::Base
   validate :shift_time_validator
 
   def field_manager
-    Employee.find(self.field_manager_employee_id)
+    Employee.find(self.field_manager_employee_id) if self.field_manager_employee_id.present?
   end
 
   def short_version

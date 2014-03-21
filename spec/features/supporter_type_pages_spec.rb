@@ -33,7 +33,7 @@ describe 'SupporterTypePages' do
     before { visit new_supporter_type_path }
 
     describe 'page' do
-      it { should have_selector('h1', text: 'New supporter type') }
+      it { should have_title('New supporter type') }
     end
 
     describe 'with invalid information' do
