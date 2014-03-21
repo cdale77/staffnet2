@@ -49,11 +49,7 @@ module Staffnet2
     end
 
     ## SETTINGS
-
     config.user_roles = %w[staff manager admin super_admin]
-
     config.minimum_wage = 10.55
-
-
   end
 end
