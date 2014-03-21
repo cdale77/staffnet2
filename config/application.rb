@@ -55,6 +55,5 @@ module Staffnet2
     config.minimum_wage = 10.55
 
 
-
   end
 end

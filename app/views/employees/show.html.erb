@@ -12,11 +12,11 @@
           </tr>
           <tr>
             <th>Email</th>
-            <td><%= @employee.email %></td>
+            <td><%= mail_to @employee.email %></td>
           </tr>
           <tr>
             <th>Phone</th>
-            <td><%= @employee.phone %></td>
+            <td><%= number_to_phone @employee.phone.to_i %></td>
           </tr>
           <%= render 'shared/profiles/address', record: @employee %>
         </table>
@@ -33,11 +33,11 @@
           </tr>
           <tr>
             <th>Fed tax status:</th>
-            <td><%= @employee.fed_filing_status %> </td>
+            <td><%= @employee.fed_filing_status.humanize %> </td>
           </tr>
           <tr>
             <th>CA tax status:</th>
-            <td><%= @employee.ca_filing_status %></td>
+            <td><%= @employee.ca_filing_status.humanize %></td>
           </tr>
           <tr>
             <th>Fed allowances:</th>
