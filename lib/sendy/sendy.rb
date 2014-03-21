@@ -48,9 +48,7 @@ module Sendy
 
   class PerformUpdates
 
-    def self.perform
-
-      updates = Staffnet2::SendyUpdate.where(success: false)
+    def self.perform(updates)
 
       updates.find_each do |update|
 
@@ -66,14 +64,16 @@ module Sendy
           when 'update_database'
             unless supporter.sendy_status == update.new_sendy_status
               supporter.sendy_status = update.new_sendy_status
-              supporter.save
+              mark_as_completed(update) if supporter.save
             end
 
           when 'subscribe'
-            unless supporter.do_not_email || supporter.email_1_bad
+            if supporter.do_not_email || supporter.email_1_bad
+              mark_as_completed(update)
+            else
               subscribe_to_sendy(supporter)
               supporter.sendy_status = 'subscribed'
-              supporter.save
+              mark_as_completed(update) if supporter.save
             end
         end
       end
