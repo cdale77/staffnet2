@@ -54,7 +54,7 @@ module Sendy
         end
 
         case update.action
-          
+
           when 'update_database'
             unless supporter.sendy_status == update.new_sendy_status
               supporter.sendy_status = update.new_sendy_status
