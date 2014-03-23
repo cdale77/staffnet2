@@ -107,6 +107,8 @@ namespace :import do
 
     Migration::Supporter.all.limit(10) do |legacy_supporter|
 
+      puts "Migrating first legacy supporter id #{legacy_supporter.id.to_s}"
+
       new_supporter_attributes = {
           #supporter_type_id:    default_supporter_type.id,
           legacy_id:            legacy_supporter.id,
@@ -143,12 +145,11 @@ namespace :import do
       if legacy_supporter.political
         new_supporter_type_id = SupporterType.where(name: 'political').id
         new_sendy_list_id = SendyList.where(name: 'political_contacts').id
+        puts "Found new political contact"
       elsif legacy_supporter.major_donor
         new_supporter_type_id = SupporterType.where(name: 'major_donor').id
         new_sendy_list_id = SendyList.where(name: 'major_donors').id
-      elsif
-        new_supporter_type_id = SupporterType.where(name: 'donor').id
-        new_sendy_list_id = SendyList.where(name: 'donors').id
+        puts "Found new major donor contact"
       end
 
       new_supporter_attributes[:supporter_type_id] = new_supporter_type_id
