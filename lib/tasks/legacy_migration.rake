@@ -102,27 +102,73 @@ namespace :import do
   end
 
   task :supporters => :environment do
-    legacy_supporters = Migration::Supporter.all
-    puts "Migrating #{legacy_supporters.count.to_s} legacy supporters. . . "
 
-    ## Create supporter types
-    ['supporter', 'donor', 'media', 'official', 'staff', 'volunteer'].each do |type|
-      SupporterType.create(name: type)
-    end
+    ## before running the migration, create supporter types and sendy lists.
 
-    default_supporter_type = SupporterType.find_by_name('donor')
+    Migration::Supporter.all.limit(10) do |legacy_supporter|
 
-    legacy_supporters.all.each_with_index do |legacy_supporter, index|
+      new_supporter_attributes = {
+          #supporter_type_id:    default_supporter_type.id,
+          legacy_id:            legacy_supporter.id,
+          cim_id:               legacy_supporter.authorize_id,
+          prefix:               legacy_supporter.prefix,
+          salutation:           legacy_supporter.salutation,
+          first_name:           legacy_supporter.first_name,
+          last_name:            legacy_supporter.last_name,
+          suffix:               legacy_supporter.suffix,
+          address1:             legacy_supporter.billing_street,
+          address2:             legacy_supporter.billing_street2,
+          address_city:         legacy_supporter.billing_city,
+          address_state:        legacy_supporter.billing_state,
+          address_zip:          legacy_supporter.billing_zip,
+          email_1:              legacy_supporter.email,
+          phone_mobile:         legacy_supporter.mobile_phone,
+          phone_home:           legacy_supporter.home_phone,
+          phone_alt:            legacy_supporter.work_phone,
+          do_not_mail:          legacy_supporter.do_not_mail,
+          do_not_call:          legacy_supporter.do_not_call,
+          do_not_email:         legacy_supporter.do_not_email,
+          keep_informed:        legacy_supporter.keep_informed,
+          vol_level:            legacy_supporter.vol_level,
+          employer:             legacy_supporter.employer,
+          occupation:           legacy_supporter.occupation,
+          source:               legacy_supporter.source,
+          notes:                legacy_supporter.notes
+      }
 
-      begin
-        new_supporter = Supporter.new(legacy_id: legacy_supporter.id.to_s, cim_id: legacy_supporter.authorize_id
-                                      )
-      rescue
-        puts "ERROR creating new supporter object. Legacy supporter id #{legacy_supporter.id}"
-        next
+      ## Assign the new supporter id and sendy listbased on legacy flags or donations
+      new_supporter_type_id = SupporterType.where(name: 'supporter').id #default
+      new_sendy_list_id = SendyList.where(name: 'supporters').id #default
+
+      if legacy_supporter.political
+        new_supporter_type_id = SupporterType.where(name: 'political').id
+        new_sendy_list_id = SendyList.where(name: 'political_contacts').id
+      elsif legacy_supporter.major_donor
+        new_supporter_type_id = SupporterType.where(name: 'major_donor').id
+        new_sendy_list_id = SendyList.where(name: 'major_donors').id
+      elsif
+        new_supporter_type_id = SupporterType.where(name: 'donor').id
+        new_sendy_list_id = SendyList.where(name: 'donors').id
       end
 
+      new_supporter_attributes[:supporter_type_id] = new_supporter_type_id
+      new_supporter_attributes[:sendy_list_id] = new_sendy_list_id
 
+
+      ## save. if save successful: create sendy update record, attempt to update cim profile
+
+      new_supporter = Supporter.new(new_supporter_attributes)
+
+      if new_supporter.save
+        
+        #do api stuff
+        if new_supporter.email_1.present? && !new_supporter_attributes.do_not_email
+          sendy_update = SendyUpdateService.new(new_supporter.id, new_sendy_list_id, new_supporter.email_1)
+          sendy_update.update('subscribe')
+        end
+      else
+        puts "ERROR migrating legacy supporter id #{legacy_supporter.id.to_s} !"
+      end
     end
   end
 end
