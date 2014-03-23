@@ -15,4 +15,10 @@ module Migration
       Migration::LegacyTable.connection
     end
   end
+
+  class Supporter < Migration::LegacyTable
+    def connection
+      Migration::LegacyTable.connection
+    end
+  end
 end
