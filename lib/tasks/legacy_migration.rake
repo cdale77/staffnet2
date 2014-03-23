@@ -159,7 +159,7 @@ namespace :import do
       new_supporter = Supporter.new(new_supporter_attributes)
 
       if new_supporter.save
-        puts "Saved new supporter. New id: #{supporter.id.to_s}, legacy id: #{legacy_supporter.id.to_s}"
+        puts "Saved new supporter. New id: #{new_supporter.id.to_s}, legacy id: #{legacy_supporter.id.to_s}"
         #do api stuff
         if new_supporter.email_1.present? && !new_supporter_attributes.do_not_email
           sendy_update = SendyUpdateService.new(new_supporter.id, new_sendy_list_id, new_supporter.email_1)
