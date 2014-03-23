@@ -117,7 +117,7 @@ namespace :import do
           last_name:            legacy_supporter.last_name,
           suffix:               legacy_supporter.suffix,
           address1:             legacy_supporter.billing_street,
-          address2:             legacy_supporter.billing_street2,
+          address2:             legacy_supporter.billing_street_2,
           address_city:         legacy_supporter.billing_city,
           address_state:        legacy_supporter.billing_state,
           address_zip:          legacy_supporter.billing_zip,
