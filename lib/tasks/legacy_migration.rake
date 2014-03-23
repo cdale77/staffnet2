@@ -137,16 +137,16 @@ namespace :import do
       }
 
       ## Assign the new supporter id and sendy listbased on legacy flags or donations
-      new_supporter_type_id = SupporterType.where(name: 'supporter').id #default
-      new_sendy_list_id = SendyList.where(name: 'supporters').id #default
+      new_supporter_type_id = SupporterType.find_by_name('supporter').id #default
+      new_sendy_list_id = SendyList.find_by_name('supporters').id #default
 
       if legacy_supporter.political
-        new_supporter_type_id = SupporterType.where(name: 'political').id
-        new_sendy_list_id = SendyList.where(name: 'political_contacts').id
+        new_supporter_type_id = SupporterType.find_by_name('political').id
+        new_sendy_list_id = SendyList.find_by_name('political_contacts').id
         puts "Found new political contact"
       elsif legacy_supporter.major_donor
-        new_supporter_type_id = SupporterType.where(name: 'major_donor').id
-        new_sendy_list_id = SendyList.where(name: 'major_donors').id
+        new_supporter_type_id = SupporterType.find_by_name('major_donor').id
+        new_sendy_list_id = SendyList.find_by_name('major_donors').id
         puts "Found new major donor contact"
       end
 
