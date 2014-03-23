@@ -112,7 +112,6 @@ namespace :import do
       new_supporter_attributes = {
           legacy_id:            legacy_supporter.id,
           cim_id:               legacy_supporter.authorize_id,
-          prefix:               legacy_supporter.prefix,
           salutation:           legacy_supporter.salutation,
           first_name:           legacy_supporter.first_name,
           last_name:            legacy_supporter.last_name,
