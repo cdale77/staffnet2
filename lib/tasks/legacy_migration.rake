@@ -1,4 +1,27 @@
 namespace :import do
+
+  task :prepare => :environment do
+
+    supporter_type = SupporterType.create(name: 'supporter')
+    major_donor_type = SupporterType.create(name: 'major_donor')
+    political_type = SupporterType.create(name: 'political')
+
+    puts "What is the Sendy list id for the supporters list?"
+    sendy_list_id = STDIN.gets.chomp
+    supporter_type.sendy_lists.create(name: 'supporters', sendy_list_identifier: sendy_list_id )
+
+
+    puts "What is the Sendy list id for the major_donors list?"
+    sendy_list_id = STDIN.gets.chomp
+    major_donor_type.sendy_lists.create(name: 'major_donors', sendy_list_identifier: sendy_list_id)
+
+
+    puts "What is the Sendy list id for the political contacts list?"
+    sendy_list_id = STDIN.gets.chomp
+    political_type.sendy_lists.create(name: 'political_contacts', sendy_list_identifier: sendy_list_id)
+  end
+
+
   task :users_and_employees => :environment do
     legacy_users = Migration::User.all
     puts "Migrating #{legacy_users.count.to_s} legacy users. . . "
