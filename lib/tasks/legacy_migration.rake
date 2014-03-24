@@ -21,7 +21,6 @@ namespace :import do
     political_type.sendy_lists.create(name: 'political_contacts', sendy_list_identifier: sendy_list_id)
   end
 
-
   task :users_and_employees => :environment do
     legacy_users = Migration::User.all
     puts "Migrating #{legacy_users.count.to_s} legacy users. . . "
@@ -128,7 +127,7 @@ namespace :import do
 
     ## before running the migration, create supporter types and sendy lists.
 
-    Migration::Supporter.find_each.each do |legacy_supporter|
+    Migration::Supporter.find_each do |legacy_supporter|
 
       puts "Migrating first legacy supporter id #{legacy_supporter.id.to_s}"
 
