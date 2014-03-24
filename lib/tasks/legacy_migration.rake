@@ -128,7 +128,7 @@ namespace :import do
 
     ## before running the migration, create supporter types and sendy lists.
 
-    Migration::Supporter.all.limit(10).each do |legacy_supporter|
+    Migration::Supporter.find_each.each do |legacy_supporter|
 
       puts "Migrating first legacy supporter id #{legacy_supporter.id.to_s}"
 
