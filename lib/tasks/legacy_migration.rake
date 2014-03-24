@@ -84,9 +84,9 @@ namespace :import do
       new_type.save
     end
 
-    legacy_shifts = Migration::Shift.all
-    puts "Migrating #{legacy_shifts.count.to_s} legacy shifts. . . "
-    legacy_shifts.all.each.with_index(1) do |legacy_shift, index|
+    legacy_shifts = Migration::Shift.find_each do |legacy_shift|
+
+      # look up the old user associated with the shift
       begin
         legacy_user = Migration::User.find(legacy_shift.user_id)
       rescue
@@ -94,12 +94,14 @@ namespace :import do
         next
       end
 
+      # find the migrated employee record for the old user
       begin
         employee = Employee.find_by_legacy_id(legacy_user.id.to_s)
       rescue
         puts "ERROR looking up new employee record. Legacy shift id #{legacy_shift.id.to_s}"
         next
       end
+
 
       begin
         new_shift = employee.shifts.build(shift_type_id: ShiftType.find_by_name(legacy_shift.shift_type),
@@ -114,18 +116,15 @@ namespace :import do
       end
 
       ## Save the shift
-      puts "ERROR saving new shift. Legacy shift id #{legacy_shift.id.to_s}" unless new_shift.save
-
-      ## Check
-      if index == legacy_shifts.count
-        puts "Created #{Shift.all.count.to_s} new shifts from #{legacy_shifts.count.to_s} legacy shifts"
+      if new_shift.save
+        puts "Saved new shift id #{new_shift.id.to_s}"
+      else
+        puts "ERROR saving new shift. Legacy shift id #{legacy_shift.id.to_s}"
       end
     end
   end
 
   task :supporters => :environment do
-
-    ## before running the migration, create supporter types and sendy lists.
 
     Migration::Supporter.find_each do |legacy_supporter|
 
