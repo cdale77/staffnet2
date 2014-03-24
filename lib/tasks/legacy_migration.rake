@@ -105,10 +105,14 @@ namespace :import do
 
       begin
         new_shift = employee.shifts.build(shift_type_id: ShiftType.find_by_name(legacy_shift.shift_type),
-                                          date: legacy_shift.date, time_in: legacy_shift.time_in,
-                                          time_out: legacy_shift.time_out, break_time: legacy_shift.break_time,
-                                          notes: legacy_shift.notes, travel_reimb: legacy_shift.reimb_transit,
-                                          created_at: legacy_shift.created_at, legacy_id: legacy_shift.id.to_s,
+                                          date: legacy_shift.date,
+                                          time_in: legacy_shift.time_in,
+                                          time_out: legacy_shift.time_out,
+                                          break_time: legacy_shift.break_time,
+                                          notes: legacy_shift.notes,
+                                          travel_reimb: legacy_shift.reimb_transit,
+                                          created_at: legacy_shift.created_at,
+                                          legacy_id: legacy_shift.id.to_s,
                                           cv_shift: legacy_shift.cv_shift)
       rescue
         puts "ERROR building a new shift. Legacy shift id #{legacy_shift.id.to_s}"
