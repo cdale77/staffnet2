@@ -74,6 +74,6 @@ class SupportersController < ApplicationController
                                           :email_1, :email_1_bad, :email_2, :email_2_bad, :phone_mobile,
                                           :phone_mobile_bad, :phone_home, :phone_home_bad, :supporter_type_id,
                                           :do_not_call, :do_not_email, :do_not_mail, :keep_informed, :vol_level,
-                                          :employer, :occupation, :tag_list)
+                                          :employer, :occupation, :tag_list, :address_county)
     end
 end

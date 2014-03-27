@@ -54,7 +54,8 @@ describe Supporter do
                             email_1: 'bob@example.com', email_2: 'bobtaft@example.com', phone_mobile: '5554859875',
                             phone_home: '5559007845', phone_alt: '5558874952', keep_informed: true, vol_level: 'prospect',
                             employer: 'Ohio State University', occupation: 'Professor', source: 'door', notes: 'Note.',
-                            sendy_updated_at: Time.now, sendy_status: 'subscribed', sendy_list_id: 3 }
+                            sendy_updated_at: Time.now, sendy_status: 'subscribed', sendy_list_id: 3,
+                            address_county: 'Alameda' }
 
   let!(:supporter) { FactoryGirl.create(:supporter) } # eager-eval to limit Cim callbacks
 

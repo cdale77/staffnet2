@@ -20,6 +20,7 @@ class CreateSupporters < ActiveRecord::Migration
       t.string  :address_city, :default => ''
       t.string  :address_state, :default => ''
       t.string  :address_zip, :default => ''
+      t.string  :address_county, :default => ''
       t.boolean :address_bad, :default => FALSE
 
       t.string  :email_1, :default => ''

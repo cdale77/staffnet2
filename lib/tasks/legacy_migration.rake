@@ -13,9 +13,17 @@ namespace :import do
 
   task :prepare => :environment do
 
+    ## Create shift types
+    names = ['door', 'street', 'phone', 'office', 'vacation', 'holiday', 'sick' ]
+    names.each do |name|
+      new_type = ShiftType.new(name: name)
+      new_type.save
+    end
+
     supporter_type = SupporterType.create(name: 'supporter')
     major_donor_type = SupporterType.create(name: 'major_donor')
-    political_type = SupporterType.create(name: 'political')
+    city_council_type = SupporterType.create(name: 'city_council')
+    school_board_type = SupporterType.create(name: 'school_board')
 
     puts "What is the Sendy list id for the supporters list?"
     sendy_list_id = STDIN.gets.chomp
@@ -27,9 +35,13 @@ namespace :import do
     major_donor_type.sendy_lists.create(name: 'major_donors', sendy_list_identifier: sendy_list_id)
 
 
-    puts "What is the Sendy list id for the political contacts list?"
+    puts "What is the Sendy list id for the city_council list?"
     sendy_list_id = STDIN.gets.chomp
-    political_type.sendy_lists.create(name: 'political_contacts', sendy_list_identifier: sendy_list_id)
+    political_type.sendy_lists.create(name: 'city_council', sendy_list_identifier: sendy_list_id)
+
+    puts "What is the Sendy list id for the school_board list?"
+    sendy_list_id = STDIN.gets.chomp
+    political_type.sendy_lists.create(name: 'school_board', sendy_list_identifier: sendy_list_id)
   end
 
   task :users_and_employees => :environment do
@@ -94,13 +106,6 @@ namespace :import do
   end
 
   task :shifts => :environment do
-
-    ## Create shift types
-    names = ['door', 'street', 'phone', 'office', 'vacation', 'holiday', 'sick' ]
-    names.each do |name|
-      new_type = ShiftType.new(name: name)
-      new_type.save
-    end
 
     Migration::Shift.find_each do |legacy_shift|
 
@@ -306,7 +311,7 @@ namespace :import do
     end
   end
 
-  task :update_emails => :environment do
+  task :nb => :environment do
 
     AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
                                          secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
@@ -316,7 +321,6 @@ namespace :import do
 
     CSV.parse(file, headers: true) do |row|
       data = row.to_hash
-      puts "found a row"
 
       emails = []
       emails << data['email1']
@@ -340,12 +344,39 @@ namespace :import do
       end
     end
 
+  end
 
-    # look for those addresses in the new db
+  task :city_council => :environment do
+    AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+                                         secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
 
-      #if found, check the subscription status and update if necessar
+    file = AWS::S3::S3Object.value('city_council.csv', 'staffnet2-import')
 
-      #if not found, create a new record/sendy subscription, if the address is subscribed
+    CSV.parse(file, headers: true) do |row|
+      data = row.to_hash
+      new_supporter_attributes = {
+          prefix:               data['title'],
+          first_name:           data['first_name'],
+          last_name:            data['last_name'],
+          address_city:         data['city'],
+          address_county:       data['county'],
+          email_1:              legacy_supporter.email,
+          phone_mobile:         legacy_supporter.mobile_phone,
+          phone_home:           legacy_supporter.home_phone,
+          phone_alt:            legacy_supporter.work_phone,
+          do_not_mail:          legacy_supporter.do_not_mail,
+          do_not_call:          legacy_supporter.do_not_call,
+          do_not_email:         legacy_supporter.do_not_email,
+          keep_informed:        legacy_supporter.keep_informed,
+          vol_level:            legacy_supporter.vol_level,
+          employer:             legacy_supporter.employer,
+          occupation:           legacy_supporter.occupation,
+          source:               legacy_supporter.source,
+          notes:                legacy_supporter.notes
+      }
+
+
+    end
   end
 
 end
