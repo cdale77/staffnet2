@@ -313,13 +313,33 @@ namespace :import do
 
     file = AWS::S3::S3Object.value('nb_import.csv', 'staffnet2-import')
 
-    CSV.foreach(file, headers: true) do |row|
-      import_data = row.to_hash
-      puts "found a row"
-    end
-    # open the nb import file from S3
 
-    # make an array of email addresses
+    CSV.parse(file, headers: true) do |row|
+      data = row.to_hash
+      puts "found a row"
+
+      emails = []
+      emails << data['email1']
+      emails << data['email2']
+      emails << data['email3']
+
+      emails.each do |email|
+        supporter = Supporter.find_by_email_1(email)
+        if supporter
+          if data['email_opt_in'] == 'false'
+            supporter.email_1_bad = true
+            supporter.save
+            puts "Found unsub"
+          end
+          if data['do_not_contact'] == 'true'
+            supporter.do_not_contact = true
+            supporter.save
+            puts "found dnc"
+          end
+        end
+      end
+    end
+
 
     # look for those addresses in the new db
 
