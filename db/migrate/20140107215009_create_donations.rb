@@ -1,9 +1,9 @@
 class CreateDonations < ActiveRecord::Migration
   def change
     create_table :donations do |t|
+      t.integer :legacy_id
       t.integer :supporter_id
       t.integer :shift_id
-      t.string  :legacy_id, :default => ''
       t.date    :date
       t.string  :donation_type, :default => ''
       t.string  :source, :default => ''

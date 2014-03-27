@@ -21,4 +21,10 @@ module Migration
       Migration::LegacyTable.connection
     end
   end
+
+  class Donation < Migration::LegacyTable
+    def connection
+      Migration::LegacyTable.connection
+    end
+  end
 end

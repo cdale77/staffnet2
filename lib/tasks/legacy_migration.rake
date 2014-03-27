@@ -145,7 +145,7 @@ namespace :import do
 
     Migration::Supporter.find_each do |legacy_supporter|
 
-      puts "Migrating first legacy supporter id #{legacy_supporter.id.to_s}"
+      puts "Migrating legacy supporter id #{legacy_supporter.id.to_s}"
 
       new_supporter_attributes = {
           legacy_id:            legacy_supporter.id,
@@ -198,6 +198,7 @@ namespace :import do
 
       if new_supporter.save
         puts "Saved new supporter. New id: #{new_supporter.id.to_s}, legacy id: #{legacy_supporter.id.to_s}"
+
         #do api stuff
         if new_supporter.email_1.present? && !new_supporter.do_not_email
           sendy_update = SendyUpdateService.new(new_supporter.id, new_sendy_list_id, new_supporter.email_1, new_supporter.email_1)
@@ -213,4 +214,34 @@ namespace :import do
       end
     end
   end
+
+  task :donations => :environment do
+
+    Migration::Donation.find_each do |legacy_donation|
+      legacy_supporter = Migration::Supporter.find(legacy_donation.supporter_id)
+      new_supporter = Supporer.find_by_legacy_id(legacy_supporter.id)
+
+      new_donation_attributes = {
+          legacy_id:      legacy_donation.id,
+          date:           legacy_donation.date,
+          donation_type:  legacy_donation.donation_type,
+          source:         legacy_donation.source,
+          campaign:       legacy_donation.campaign,
+          cancelled:      legacy_donation.canceled,
+          notes:          legacy_donation.notes,
+          amount:         legacy_donation.amount,
+          sub_month:      legacy_donation.sub_month,
+          sub_week:       legacy_donation.sub_week,
+      }
+
+
+      new_donation = new_supporter.donations.build(new_donation_attributes)
+
+      unless new_donation.save
+        save_error_record(legacy_donation.id, 'legacy_donation', 'error saving legacy donation')
+      end
+    end
+  end
+
+
 end
