@@ -4,6 +4,11 @@ namespace :import do
     MigrationError.create(record_id: record_id, record_name: record_name, message: message)
   end
 
+  def mark_as_migrated(record)
+    record.migrated = true
+    record.save
+  end
+
   task :prepare => :environment do
 
     supporter_type = SupporterType.create(name: 'supporter')
@@ -42,6 +47,7 @@ namespace :import do
       begin
         if new_user.save
           puts "New password for #{new_user.email}: #{new_password}"
+          mark_as_migrated(legacy_user)
         else
           puts "Could not save user record for #{new_user.email}"
           save_error_record(new_user.id, 'new_user', 'Could not save new user')
@@ -74,12 +80,13 @@ namespace :import do
         next
       end
 
-      begin
-        new_employee.save
-      rescue
+
+      if new_employee.save
+        puts "Saved new employee record id #{new_employee.id.to_s}"
+        mark_as_migrated(legacy_employee)
+      else
         puts "ERROR saving employee record for #{new_user.email}"
         save_error_record(new_user.id, 'new_user', 'error while saving a new employee record')
-        next
       end
     end
   end
@@ -134,6 +141,7 @@ namespace :import do
       ## Save the shift
       if new_shift.save
         puts "Saved new shift id #{new_shift.id.to_s}"
+        mark_as_migrated(legacy_shift)
       else
         puts "ERROR saving new shift. Legacy shift id #{legacy_shift.id.to_s}"
         save_error_record(legacy_shift.id, 'legacy_shift', 'Error saving the new shift')
@@ -198,6 +206,7 @@ namespace :import do
 
       if new_supporter.save
         puts "Saved new supporter. New id: #{new_supporter.id.to_s}, legacy id: #{legacy_supporter.id.to_s}"
+        mark_as_migrated(legacy_supporter)
 
         #do api stuff
         if new_supporter.email_1.present? && !new_supporter.do_not_email
@@ -245,6 +254,7 @@ namespace :import do
 
       if new_donation.save
         puts "Created new donation id #{new_donation.id.to_s}"
+        mark_as_migrated(legacy_donation)
       else
         save_error_record(legacy_donation.id, 'legacy_donation', 'error saving legacy donation')
       end
@@ -283,6 +293,7 @@ namespace :import do
 
         if new_payment.save
           puts "Saved new payment id #{new_payment.id.to_s}"
+          mark_as_migrated(legacy_payment)
         else
           save_error_record(legacy_payment, 'legacy_payment', 'Could not save legacy payment. Payment profile id ' + new_payment_profile.id.to_s)
         end
