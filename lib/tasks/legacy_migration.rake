@@ -93,13 +93,14 @@ namespace :import do
       new_type.save
     end
 
-    legacy_shifts = Migration::Shift.find_each do |legacy_shift|
+    Migration::Shift.find_each do |legacy_shift|
 
       # look up the old user associated with the shift
       begin
         legacy_user = Migration::User.find(legacy_shift.user_id)
       rescue
         puts "ERROR migrating legacy shift id #{legacy_shift.id.to_s}"
+        save_error_record(legacy_shift.id, 'legacy_shift', 'Could not find the legacy user')
         next
       end
 
@@ -108,6 +109,7 @@ namespace :import do
         employee = Employee.find_by_legacy_id(legacy_user.id.to_s)
       rescue
         puts "ERROR looking up new employee record. Legacy shift id #{legacy_shift.id.to_s}"
+        save_error_record(legacy_shift.id, 'legacy_shift', 'Could not find the legacy employee')
         next
       end
 
@@ -125,6 +127,7 @@ namespace :import do
                                           cv_shift: legacy_shift.cv_shift)
       rescue
         puts "ERROR building a new shift. Legacy shift id #{legacy_shift.id.to_s}"
+        save_error_record(legacy_shift.id, 'legacy_shift', 'Error building the new shift')
         next
       end
 
@@ -133,6 +136,7 @@ namespace :import do
         puts "Saved new shift id #{new_shift.id.to_s}"
       else
         puts "ERROR saving new shift. Legacy shift id #{legacy_shift.id.to_s}"
+        save_error_record(legacy_shift.id, 'legacy_shift', 'Error saving the new shift')
       end
     end
   end
@@ -199,10 +203,13 @@ namespace :import do
           sendy_update = SendyUpdateService.new(new_supporter.id, new_sendy_list_id, new_supporter.email_1, new_supporter.email_1)
           if sendy_update.update('subscribe')
             puts "Saved SendyUpdate record"
+          else
+            save_error_record(legacy_supporter.id , 'legacy_supporter', 'failed to save Sendy update record')
           end
         end
       else
-        puts "ERROR migrating legacy supporter id #{legacy_supporter.id.to_s} !"
+        puts "ERROR migrating legacy supporter id #{legacy_supporter.id.to_s}"
+        save_error_record(legacy_supporter.id, 'legacy_supporter', 'Error migrating legacy supporter')
       end
     end
   end
