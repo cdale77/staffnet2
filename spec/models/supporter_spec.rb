@@ -65,12 +65,19 @@ describe Supporter do
     end
   end
 
+  describe 'tagging atribute' do
+    it {should respond_to(:tag_list) }
+  end
+
   ## RELATIONSHIPS
   it { should respond_to(:supporter_type) }
   it { should respond_to(:donations) }
   it { should respond_to(:payments) }
   it { should respond_to(:payment_profiles) }
   it { should respond_to(:sendy_list) }
+  it { should respond_to(:taggings) }
+  it { should respond_to(:tags) }
+
 
   ## VALIDATIONS
   describe 'prefix validations' do 

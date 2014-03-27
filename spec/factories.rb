@@ -150,7 +150,14 @@ FactoryGirl.define do
     success         true
   end
 
+  factory :tag do
+    name "MyString"
+  end
 
+  factory :tagging do
+    tag nil
+    article nil
+  end
 
 
 end

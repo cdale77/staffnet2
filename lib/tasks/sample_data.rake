@@ -81,6 +81,13 @@ namespace :db do
     end
 
     SupporterType.all.each do |supporter_type|
+      sendy_list = supporter_type.sendy_lists.build
+      sendy_list.name = supporter_type.name.pluralize
+      sendy_list.sendy_list_identifier = '23r23'
+      sendy_list.save
+    end
+
+    SupporterType.all.each do |supporter_type|
       10.times do
         supporter =   Supporter.new(  first_name:     Faker::Name.first_name,
                                       last_name:      Faker::Name.last_name,

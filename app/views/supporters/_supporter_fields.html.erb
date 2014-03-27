@@ -3,6 +3,7 @@
     <button type="button" class="btn field-toggle" data-toggle="collapse" data-target="#contact-prefs">Contact prefs</button>
     <button type="button" class="btn field-toggle" data-toggle="collapse" data-target="#employer">Employer</button>
     <button type="button" class="btn field-toggle" data-toggle="collapse" data-target="#volunteer">Volunteer</button>
+    <button type="button" class="btn field-toggle" data-toggle="collapse" data-target="#tags">Tags</button>
     <button type="button" class="btn field-toggle" data-toggle="collapse" data-target="#notes">Notes</button>
   </div>
 </div>
@@ -117,6 +118,14 @@
       <%= f.label :vol_level %>
       <%= f.select :vol_level, options_for_select([ ['', ''], ['Prospect', 'prospect'],['Regular', 'regular'],
                                                     ['Core', 'core'] ], @supporter.vol_level) %>
+    </div>
+  </div>
+</div>
+<div id="tags" class="collapse">
+  <hr />
+  <div class="row">
+    <div class="span3">
+      <%= f.input :tag_list, label: 'Tag list (comma separated)' %>
     </div>
   </div>
 </div>

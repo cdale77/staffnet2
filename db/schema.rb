@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327003046) do
+ActiveRecord::Schema.define(version: 20140327220552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 20140327003046) do
   end
 
   create_table "donations", force: true do |t|
+    t.integer  "legacy_id"
     t.integer  "supporter_id"
     t.integer  "shift_id"
-    t.string   "legacy_id",                                       default: ""
     t.date     "date"
     t.string   "donation_type",                                   default: ""
     t.string   "source",                                          default: ""
@@ -257,6 +257,22 @@ ActiveRecord::Schema.define(version: 20140327003046) do
   add_index "supporters", ["external_id"], name: "index_supporters_on_external_id", using: :btree
   add_index "supporters", ["sendy_list_id"], name: "index_supporters_on_sendy_list_id", using: :btree
   add_index "supporters", ["supporter_type_id"], name: "index_supporters_on_supporter_type_id", using: :btree
+
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "supporter_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "taggings", ["supporter_id"], name: "index_taggings_on_supporter_id", using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "task_types", force: true do |t|
     t.string "name", default: ""
