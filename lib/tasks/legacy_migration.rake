@@ -243,7 +243,9 @@ namespace :import do
 
       new_donation = new_supporter.donations.build(new_donation_attributes)
 
-      unless new_donation.save
+      if new_donation.save
+        puts "Created new donation id #{new_donation.id.to_s}"
+      else
         save_error_record(legacy_donation.id, 'legacy_donation', 'error saving legacy donation')
       end
     end
@@ -279,7 +281,9 @@ namespace :import do
 
         new_payment = new_donation.payments.build(new_payment_attributes)
 
-        unless new_payment.save
+        if new_payment.save
+          puts "Saved new payment id #{new_payment.id.to_s}"
+        else
           save_error_record(legacy_payment, 'legacy_payment', 'Could not save legacy payment. Payment profile id ' + new_payment_profile.id.to_s)
         end
 
