@@ -208,6 +208,10 @@ namespace :import do
             save_error_record(legacy_supporter.id , 'legacy_supporter', 'failed to save Sendy update record')
           end
         end
+
+        ## update CIM customer id
+
+
       else
         puts "ERROR migrating legacy supporter id #{legacy_supporter.id.to_s}"
         save_error_record(legacy_supporter.id, 'legacy_supporter', 'Error migrating legacy supporter')
@@ -218,10 +222,12 @@ namespace :import do
   task :donations => :environment do
 
     Migration::Donation.find_each do |legacy_donation|
-      legacy_supporter = Migration::Supporter.find(legacy_donation.supporter_id)
-      new_supporter = Supporer.find_by_legacy_id(legacy_supporter.id)
+
+      new_supporter = Supporer.find_by_legacy_id(legacy_donation.supporter_id)
+      new_shift = Shift.find_by_legacy_id(legacy_donation.shift_id)
 
       new_donation_attributes = {
+          shift_id:       new_shift.id,
           legacy_id:      legacy_donation.id,
           date:           legacy_donation.date,
           donation_type:  legacy_donation.donation_type,
@@ -243,5 +249,44 @@ namespace :import do
     end
   end
 
+  task :payments => :environment do
+
+    Migration::Payment.find_each do |legacy_payment|
+      new_donation = Donation.find_by_legacy_id(legacy_payment.donation_id)
+      new_supporter = new_donation.supporter
+
+      new_payment_profile_attributes = {
+          supporter_id:           new_supporter.id,
+          payment_profile_type:   legacy_payment.payment_type,
+          cc_last_4:              legacy_payment.cc_last_4,
+          cc_type:                legacy_payment.cc_type,
+          cc_month:               legacy_payment.cc_month,
+          cc_year:                legacy_payment.cc_year
+      }
+
+      if new_payment_profile = PaymentProfile.create(new_payment_profile_attributes)
+
+        new_payment_attributes = {
+            payment_profile_id: new_payment_profile.id,
+            legacy_id:          legacy_payment.id,
+            cim_auth_code:      legacy_payment.authorization_code,
+            deposited_at:       legacy_payment.submit_time,
+            payment_type:       legacy_payment.payment_type,
+            captured:           legacy_payment.captured,
+            processed:          legacy_payment.processed,
+            amount:             legacy_payment.amount
+        }
+
+        new_payment = new_donation.payments.build(new_payment_attributes)
+
+        unless new_payment.save
+          save_error_record(legacy_payment, 'legacy_payment', 'Could not save legacy payment. Payment profile id ' + new_payment_profile.id.to_s)
+        end
+
+      else
+        save_error_record(legacy_payment.id, 'legacy_payment', 'Could not create new payment profile')
+      end
+    end
+  end
 
 end
