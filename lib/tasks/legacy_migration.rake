@@ -1,3 +1,5 @@
+include 'csv'
+
 namespace :import do
 
   def save_error_record(record_id, record_name, message)
