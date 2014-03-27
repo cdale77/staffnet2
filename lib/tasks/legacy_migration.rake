@@ -1,5 +1,9 @@
 namespace :import do
 
+  def save_error_record(record_id, record_name, message)
+    MigrationError.create(record_id: record_id, record_name: record_name, message: message)
+  end
+
   task :prepare => :environment do
 
     supporter_type = SupporterType.create(name: 'supporter')
@@ -31,6 +35,7 @@ namespace :import do
                             password_confirmation: new_password, role: 'staff')
       rescue
         puts "ERROR migrating legacy user #{legacy_user.id.to_s}. Could not create new user."
+        save_error_record(legacy_user.id, 'legacy_user', 'Could not instantiate new user object')
         next
       end
 
@@ -39,10 +44,12 @@ namespace :import do
           puts "New password for #{new_user.email}: #{new_password}"
         else
           puts "Could not save user record for #{new_user.email}"
+          save_error_record(new_user.id, 'new_user', 'Could not save new user')
           puts new_user.errors.full_messages
         end
       rescue
         puts "Exception migrating legacy user #{legacy_user.id.to_s}. Could not save user."
+        save_error_record(legacy_user.id, 'legacy_user', 'Exception while saving new user record')
         next
       end
 
@@ -63,6 +70,7 @@ namespace :import do
                                               )
       rescue
         puts "ERROR creating employee record for #{new_user.email}"
+        save_error_record(new_user.id, 'new_user', 'error while building a new employee record')
         next
       end
 
@@ -70,6 +78,7 @@ namespace :import do
         new_employee.save
       rescue
         puts "ERROR saving employee record for #{new_user.email}"
+        save_error_record(new_user.id, 'new_user', 'error while saving a new employee record')
         next
       end
     end
