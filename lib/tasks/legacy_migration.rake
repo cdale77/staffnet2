@@ -309,7 +309,7 @@ namespace :import do
     AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
                                          secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
 
-    file = AWS::S3::S3Object.value('nb_import.csv', 'staffnet2-importfiles')
+    file = AWS::S3::S3Object.value('nb_import.csv', 'staffnet2-import')
 
     CSV.foreach(file, headers: true) do |row|
       import_data = row.to_hash
