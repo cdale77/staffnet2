@@ -304,4 +304,26 @@ namespace :import do
     end
   end
 
+  task :update_emails => :environment do
+
+    AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+                                         secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
+
+    file = AWS::S3::S3Object.value('nb_import.csv', 'staffnet2-importfiles')
+
+    CSV.foreach(file, headers: true) do |row|
+      import_data = row.to_hash
+      puts "found a row"
+    end
+    # open the nb import file from S3
+
+    # make an array of email addresses
+
+    # look for those addresses in the new db
+
+      #if found, check the subscription status and update if necessar
+
+      #if not found, create a new record/sendy subscription, if the address is subscribed
+  end
+
 end

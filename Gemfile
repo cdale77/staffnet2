@@ -10,6 +10,10 @@ gem 'pundit', '0.2.1'
 gem 'activemerchant', '1.42.4'
 gem 'sendyr', '0.2.1'
 
+# data storage
+gem 'aws-s3', '0.6.3'
+gem 'pgbackups-archive', '0.2.1'
+
 ## DATES
 gem 'date_validator', '0.7.0'
 gem 'week_of_month', '1.2.2.1'
