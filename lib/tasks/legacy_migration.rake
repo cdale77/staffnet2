@@ -310,7 +310,7 @@ namespace :import do
   task :city_council => :environment do
 
     supporter_type = SupporterType.find_by_name('city_council')
-    sendy_list = SendyList.find_by_name:('city_council')
+    sendy_list = SendyList.find_by_name('city_council')
 
     AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
                                          secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
@@ -356,7 +356,7 @@ namespace :import do
   task :school_board => :environment do
 
     supporter_type = SupporterType.find_by_name('school_board')
-    sendy_list = SendyList.find_by_name:('school_board')
+    sendy_list = SendyList.find_by_name('school_board')
 
     AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
                                          secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
