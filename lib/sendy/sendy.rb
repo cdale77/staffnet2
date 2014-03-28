@@ -79,8 +79,7 @@ module Sendy
       def self.subscribe_to_sendy(supporter)
         sendy_list = supporter.sendy_list
         client = Sendyr::Client.new(sendy_list.sendy_list_identifier)
-        client.subscribe(:email => supporter.email_1, :name => supporter.full_name,
-                         'FirstName' => supporter.first_name, 'StaffnetID' => supporter.id.to_s )
+        client.subscribe(:email => supporter.email_1, :name => supporter.full_name )
       end
 
       def self.mark_as_completed(update)
