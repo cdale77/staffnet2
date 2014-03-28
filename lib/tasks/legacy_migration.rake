@@ -35,14 +35,11 @@ namespace :import do
     major_donor_type.sendy_lists.create(name: 'major_donors', sendy_list_identifier: sendy_list_id)
 
 
-    puts "What is the Sendy list id for the city_council list?"
+    puts "What is the Sendy list id for the political_contacts list?"
     sendy_list_id = STDIN.gets.chomp
-    political_type.sendy_lists.create(name: 'city_council', sendy_list_identifier: sendy_list_id)
+    political_type.sendy_lists.create(name: 'political_contacts', sendy_list_identifier: sendy_list_id)
 
-    puts "What is the Sendy list id for the school_board list?"
-    sendy_list_id = STDIN.gets.chomp
-    political_type.sendy_lists.create(name: 'school_board', sendy_list_identifier: sendy_list_id)
-  end
+
 
   task :users_and_employees => :environment do
     legacy_users = Migration::User.all
@@ -191,13 +188,17 @@ namespace :import do
 
       ## Assign the new supporter id and sendy listbased on legacy flags or donations
       new_supporter_type_id = SupporterType.find_by_name('supporter').id #default
-      new_sendy_list_id = SendyList.find_by_name('supporter').id #default
+      new_sendy_list_id = SendyList.find_by_name('supporters').id #default
 
       if legacy_supporter.major_donor
         new_supporter_type_id = SupporterType.find_by_name('major_donor').id
-        new_sendy_list_id = SendyList.find_by_name('major_donor').id
+        new_sendy_list_id = SendyList.find_by_name('major_donors').id
         puts "Found new major donor contact"
-      end
+      elsif legacy_supporter.political
+        new_supporter_type_id = SupporterType.find_by_name('political_contact').id
+        new_sendy_list_id = SendyList.find_by_name('political_contacts').id
+        puts "Found new major political contact"
+        end
 
       new_supporter_attributes[:supporter_type_id] = new_supporter_type_id
       new_supporter_attributes[:sendy_list_id] = new_sendy_list_id
@@ -307,6 +308,7 @@ namespace :import do
     end
   end
 
+=begin
   task :city_council => :environment do
 
     supporter_type = SupporterType.find_by_name('city_council')
@@ -399,6 +401,7 @@ namespace :import do
 
     end
   end
+=end
 
   task :nb => :environment do
 
