@@ -39,7 +39,7 @@ namespace :import do
     sendy_list_id = STDIN.gets.chomp
     political_type.sendy_lists.create(name: 'political_contacts', sendy_list_identifier: sendy_list_id)
 
-
+  end
 
   task :users_and_employees => :environment do
     legacy_users = Migration::User.all
@@ -198,7 +198,7 @@ namespace :import do
         new_supporter_type_id = SupporterType.find_by_name('political_contact').id
         new_sendy_list_id = SendyList.find_by_name('political_contacts').id
         puts "Found new major political contact"
-        end
+      end
 
       new_supporter_attributes[:supporter_type_id] = new_supporter_type_id
       new_supporter_attributes[:sendy_list_id] = new_sendy_list_id
