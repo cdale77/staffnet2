@@ -1,6 +1,6 @@
 desc 'Heroku scheduler file'
 
-task :update_mailchimp => :environment do
-  SupporterType.mailchimp_sync_records
-
+task :update_sendy => :environment do
+  updates = SendyUpdate.where(success: false)
+  Sendy::PerformUpdates.perform(updates)
 end
