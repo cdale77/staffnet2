@@ -191,15 +191,11 @@ namespace :import do
 
       ## Assign the new supporter id and sendy listbased on legacy flags or donations
       new_supporter_type_id = SupporterType.find_by_name('supporter').id #default
-      new_sendy_list_id = SendyList.find_by_name('supporters').id #default
+      new_sendy_list_id = SendyList.find_by_name('supporter').id #default
 
-      if legacy_supporter.political
-        new_supporter_type_id = SupporterType.find_by_name('political').id
-        new_sendy_list_id = SendyList.find_by_name('political_contacts').id
-        puts "Found new political contact"
-      elsif legacy_supporter.major_donor
+      if legacy_supporter.major_donor
         new_supporter_type_id = SupporterType.find_by_name('major_donor').id
-        new_sendy_list_id = SendyList.find_by_name('major_donors').id
+        new_sendy_list_id = SendyList.find_by_name('major_donor').id
         puts "Found new major donor contact"
       end
 
@@ -311,6 +307,99 @@ namespace :import do
     end
   end
 
+  task :city_council => :environment do
+
+    supporter_type = SupporterType.find_by_name('city_council')
+    sendy_list = SendyList.find_by_name:('city_council')
+
+    AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+                                         secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
+
+    file = AWS::S3::S3Object.value('city_council.csv', 'staffnet2-import')
+
+    CSV.parse(file, headers: true) do |row|
+      data = row.to_hash
+      new_supporter_attributes = {
+          prefix:               data['title'],
+          first_name:           data['first_name'],
+          last_name:            data['last_name'],
+          address_city:         data['city'],
+          address_county:       data['county'],
+          email_1:              data['email']
+      }
+
+      if data['phone_type'] == 'work'
+        new_supporter_attributes[:phone_alt] = data['phone']
+      else
+        new_supporter_attributes[:phone_mobile] = data['phone']
+      end
+
+      new_supporter = supporter_type.supporters.build(new_supporter_attributes)
+
+      if new_supporter.save
+        puts "saved new city council person id #{new_supporter.id.to_s}"
+        if new_supporter.email_1.present?
+          sendy_update = SendyUpdateService.new(new_supporter.id, new_sendy_list_id, new_supporter.email_1, new_supporter.email_1)
+          if sendy_update.update('subscribe')
+            puts "Saved SendyUpdate record"
+          else
+            save_error_record(0, 'city_council', "problem saving city council person #{data['last_name']}")
+          end
+        end
+      else
+        save_error_record(0, 'city_council', "problem saving city council person #{data['last_name']}")
+      end
+
+    end
+  end
+
+  task :school_board => :environment do
+
+    supporter_type = SupporterType.find_by_name('school_board')
+    sendy_list = SendyList.find_by_name:('school_board')
+
+    AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+                                         secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
+
+    file = AWS::S3::S3Object.value('school_board.csv', 'staffnet2-import')
+
+    CSV.parse(file, headers: true) do |row|
+      data = row.to_hash
+      new_supporter_attributes = {
+          prefix:               data['title'],
+          first_name:           data['first_name'],
+          last_name:            data['last_name'],
+          address_city:         data['city'],
+          address_county:       data['county'],
+          email_1:              data['email'],
+          notes:                data['district']
+      }
+
+      if data['phone_type'] == 'work'
+        new_supporter_attributes[:phone_alt] = data['phone']
+      else
+        new_supporter_attributes[:phone_mobile] = data['phone']
+      end
+
+      new_supporter = supporter_type.supporters.build(new_supporter_attributes)
+
+      if new_supporter.save
+        puts "saved new school board person id #{new_supporter.id.to_s}"
+        if new_supporter.email_1.present?
+          sendy_update = SendyUpdateService.new(new_supporter.id, new_sendy_list_id, new_supporter.email_1, new_supporter.email_1)
+          if sendy_update.update('subscribe')
+            puts "Saved SendyUpdate record"
+          else
+            save_error_record(0, 'school_board', "problem saving school board person #{data['last_name']}")
+          end
+        end
+      else
+        save_error_record(0, 'city_council', "problem saving school board person #{data['last_name']}")
+      end
+
+    end
+  end
+
   task :nb => :environment do
 
     AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
@@ -344,39 +433,6 @@ namespace :import do
       end
     end
 
-  end
-
-  task :city_council => :environment do
-    AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-                                         secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
-
-    file = AWS::S3::S3Object.value('city_council.csv', 'staffnet2-import')
-
-    CSV.parse(file, headers: true) do |row|
-      data = row.to_hash
-      new_supporter_attributes = {
-          prefix:               data['title'],
-          first_name:           data['first_name'],
-          last_name:            data['last_name'],
-          address_city:         data['city'],
-          address_county:       data['county'],
-          email_1:              legacy_supporter.email,
-          phone_mobile:         legacy_supporter.mobile_phone,
-          phone_home:           legacy_supporter.home_phone,
-          phone_alt:            legacy_supporter.work_phone,
-          do_not_mail:          legacy_supporter.do_not_mail,
-          do_not_call:          legacy_supporter.do_not_call,
-          do_not_email:         legacy_supporter.do_not_email,
-          keep_informed:        legacy_supporter.keep_informed,
-          vol_level:            legacy_supporter.vol_level,
-          employer:             legacy_supporter.employer,
-          occupation:           legacy_supporter.occupation,
-          source:               legacy_supporter.source,
-          notes:                legacy_supporter.notes
-      }
-
-
-    end
   end
 
 end
