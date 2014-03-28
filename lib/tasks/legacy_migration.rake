@@ -22,8 +22,7 @@ namespace :import do
 
     supporter_type = SupporterType.create(name: 'supporter')
     major_donor_type = SupporterType.create(name: 'major_donor')
-    city_council_type = SupporterType.create(name: 'city_council')
-    school_board_type = SupporterType.create(name: 'school_board')
+    political_type = SupporterType.create(name: 'political_contact')
 
     puts "What is the Sendy list id for the supporters list?"
     sendy_list_id = STDIN.gets.chomp
