@@ -59,6 +59,7 @@ describe Supporter do
                             address_county: 'Alameda' }
 
   let!(:supporter) { FactoryGirl.create(:supporter) } # eager-eval to limit Cim callbacks
+  subject { supporter }
 
   ## ATTRIBUTES
   describe 'supporter attribute tests' do

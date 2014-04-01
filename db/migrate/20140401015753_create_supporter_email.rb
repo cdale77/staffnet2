@@ -4,6 +4,7 @@ class CreateSupporterEmail < ActiveRecord::Migration
       t.integer     :supporter_id, index: true
       t.integer     :employee_id, index: true
       t.integer     :donation_id
+      t.string      :email_type, default: ''
       t.text        :body, default: ''
       t.boolean     :success, default: false
 

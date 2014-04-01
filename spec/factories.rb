@@ -150,6 +150,11 @@ FactoryGirl.define do
     success         true
   end
 
+  factory :supporter_email do
+    body          'An email'
+    success       true
+  end
+
   factory :tag do
     name "MyString"
   end

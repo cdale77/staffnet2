@@ -209,6 +209,7 @@ ActiveRecord::Schema.define(version: 20140401015753) do
     t.integer  "supporter_id"
     t.integer  "employee_id"
     t.integer  "donation_id"
+    t.string   "email_type",   default: ""
     t.text     "body",         default: ""
     t.boolean  "success",      default: false
     t.datetime "created_at"
