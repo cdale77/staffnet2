@@ -18,6 +18,7 @@
 #  address_city      :string(255)      default("")
 #  address_state     :string(255)      default("")
 #  address_zip       :string(255)      default("")
+#  address_county    :string(255)      default("")
 #  address_bad       :boolean          default(FALSE)
 #  email_1           :string(255)      default("")
 #  email_1_bad       :boolean          default(FALSE)

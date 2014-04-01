@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327220552) do
+ActiveRecord::Schema.define(version: 20140401015753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20140327220552) do
     t.integer  "supporter_id"
     t.string   "cim_payment_profile_id", default: ""
     t.string   "payment_profile_type",   default: ""
-    t.hstore   "details",                default: {}
+    t.hstore   "details",                default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -196,7 +196,7 @@ ActiveRecord::Schema.define(version: 20140327220552) do
     t.decimal  "travel_reimb",              precision: 8, scale: 2, default: 0.0
     t.boolean  "cv_shift",                                          default: false
     t.boolean  "quota_shift",                                       default: false
-    t.hstore   "products",                                          default: {}
+    t.hstore   "products",                                          default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -204,6 +204,16 @@ ActiveRecord::Schema.define(version: 20140327220552) do
   add_index "shifts", ["employee_id"], name: "index_shifts_on_employee_id", using: :btree
   add_index "shifts", ["field_manager_employee_id"], name: "index_shifts_on_field_manager_employee_id", using: :btree
   add_index "shifts", ["shift_type_id"], name: "index_shifts_on_shift_type_id", using: :btree
+
+  create_table "supporter_emails", force: true do |t|
+    t.integer  "supporter_id"
+    t.integer  "employee_id"
+    t.integer  "donation_id"
+    t.text     "body",         default: ""
+    t.boolean  "success",      default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "supporter_types", force: true do |t|
     t.string   "name",       default: ""
@@ -227,6 +237,7 @@ ActiveRecord::Schema.define(version: 20140327220552) do
     t.string   "address_city",      default: ""
     t.string   "address_state",     default: ""
     t.string   "address_zip",       default: ""
+    t.string   "address_county",    default: ""
     t.boolean  "address_bad",       default: false
     t.string   "email_1",           default: ""
     t.boolean  "email_1_bad",       default: false

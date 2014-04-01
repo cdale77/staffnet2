@@ -6,7 +6,7 @@ class SupporterMailer < ActionMailer::Base
     mail( to:       supporter.email_1,
           from:     "Evolve Team <campaign@evolve-ca.org>",
           subject:  "Receipt and thanks!")
-
-
   end
+
+
 end
