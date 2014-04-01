@@ -25,7 +25,7 @@ class SupporterEmail < ActiveRecord::Base
     def send
       case self.email_type
         when 'receipt'
-          if SupporterMailer.receipt(self.supporter, self.donation).deliver
+          if SupporterMailer.receipt(self).deliver
             self.success = true
           end
         when 'prospect'

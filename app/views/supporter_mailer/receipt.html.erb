@@ -1,5 +1,5 @@
 <div style="width:550px;">
-  <p><%= @message.supporter_first_name %>,</p>
+  <p><%= @message.supporter.first_name %>,</p>
 
   <p>Thanks for your donation to Evolve’s campaign to close the corporate loophole in Prop 13!
     Below is a receipt for your records.</p>
@@ -20,7 +20,7 @@
     Facebook page.</a></p>
   <hr />
   <h3>Donation Receipt</h3>
-  <% unless @message.donation_captured %>
+  <% unless @message.donation.captured %>
     <p>Your donation appears to have been declined. We will try again shortly.</p>
   <% end %>
   <table style="border:2px solid gray; text-align:right; padding:0px; border-collapse:collapse">
@@ -32,21 +32,10 @@
     </tr>
     <tr>
       <th style="padding:5px 10px; border:1px solid gray">Frequency:</th>
-      <td style="padding:5px 10px; border:1px solid gray">
-        <% if @message.donation_sustainer %>
-          <%= @message.donation_frequency %>
-        <% else %>
-          One-time
-        <% end %>
-      </td>
+      <td style="padding:5px 10px; border:1px solid gray"><% @message.donation.frequency.humanize %></td>
       <th style="padding:5px 10px; border:1px solid gray">Type:</th>
-      <td style="padding:5px 10px; border:1px solid gray">
-        <%= @message.donation_type %>
-      </td>
+      <td style="padding:5px 10px; border:1px solid gray"><%= @message.donation.donation_type.humanize %></td>
     </tr>
   </table>
-  <% if @message.donation_type == 'Website' %>
-    <p><em>Note: Since you gave online, this receipt is a duplicate of one you've received from our web host. </em></p>
-  <% end %>
   <p><em>Donations to Evolve are not tax-deductible. They are used to influence legislation.</em></p>
 </div>
