@@ -18,4 +18,24 @@ class SupporterEmail < ActiveRecord::Base
   belongs_to :supporter
   belongs_to :employee
 
+  before_save :send
+
+  private
+
+    def send
+      case self.email_type
+        when 'receipt'
+          if SupporterMailer.receipt(self.supporter, self.donation).deliver
+            self.success = true
+          end
+        when 'prospect'
+          if SupporterMailer.prospect(self).deliver
+            self.success = true
+          end
+        when 'pledge'
+          if SupporterMailer.pledge(self).deliver
+            self.success = true
+          end
+      end
+    end
 end

@@ -8,5 +8,19 @@ class SupporterMailer < ActionMailer::Base
           subject:  "Receipt and thanks!")
   end
 
+  def prospect(message)
+    @message = message
+    if @message.supporter.email_
+      mail( to:       @message.supporter.email_1,
+            from:     @message.employee.email,
+            subject:  "Help Reform Prop 13!")
+    end
+  end
+
+  def pledge(message)
+    @message = message
+
+  end
+
 
 end
