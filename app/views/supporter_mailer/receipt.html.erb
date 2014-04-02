@@ -1,5 +1,5 @@
 <div style="width:550px;">
-  <p><%= @message.supporter.first_name %>,</p>
+  <p><%= @message.supporter_first_name %>,</p>
 
   <p>Thanks for your donation to Evolve’s campaign to close the corporate loophole in Prop 13!
     Below is a receipt for your records.</p>
@@ -20,7 +20,7 @@
     Facebook page.</a></p>
   <hr />
   <h3>Donation Receipt</h3>
-  <% unless @message.donation.captured %>
+  <% unless @message.donation_captured %>
     <p>Your donation appears to have been declined. We will try again shortly.</p>
   <% end %>
   <table style="border:2px solid gray; text-align:right; padding:0px; border-collapse:collapse">
@@ -32,9 +32,9 @@
     </tr>
     <tr>
       <th style="padding:5px 10px; border:1px solid gray">Frequency:</th>
-      <td style="padding:5px 10px; border:1px solid gray"><% @message.donation.frequency.humanize %></td>
+      <td style="padding:5px 10px; border:1px solid gray"><% @message.donation_frequency.humanize %></td>
       <th style="padding:5px 10px; border:1px solid gray">Type:</th>
-      <td style="padding:5px 10px; border:1px solid gray"><%= @message.donation.donation_type.humanize %></td>
+      <td style="padding:5px 10px; border:1px solid gray"><%= @message.donation_type.humanize %></td>
     </tr>
   </table>
   <p><em>Donations to Evolve are not tax-deductible. They are used to influence legislation.</em></p>
