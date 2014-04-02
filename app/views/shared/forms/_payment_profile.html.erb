@@ -7,7 +7,7 @@
     <% if payment_profile.payment_profile_type == 'credit' %>
       <tr>
         <th>Card</th>
-        <td><%= payment_profile.cc_type.humanize %></td>
+        <td><%= payment_profile.cc_type.humanize if payment_profile.cc_type %></td>
       </tr>
       <tr>
         <th>Last 4</th>
