@@ -47,7 +47,7 @@ namespace :import do
       new_password = SecureRandom.hex(7)
       begin
         new_user = User.new(email: legacy_user.email, password: new_password,
-                            password_confirmation: new_password, role: 'staff')
+                            password_confirmation: new_password, role: legacy_user.role)
       rescue
         puts "ERROR migrating legacy user #{legacy_user.id.to_s}. Could not create new user."
         save_error_record(legacy_user.id, 'legacy_user', 'Could not instantiate new user object')
@@ -93,7 +93,6 @@ namespace :import do
 
       if new_employee.save
         puts "Saved new employee record id #{new_employee.id.to_s}"
-        mark_as_migrated(legacy_employee)
       else
         puts "ERROR saving employee record for #{new_user.email}"
         save_error_record(new_user.id, 'new_user', 'error while saving a new employee record')
