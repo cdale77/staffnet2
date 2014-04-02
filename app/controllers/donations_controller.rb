@@ -19,6 +19,7 @@ class DonationsController < ApplicationController
 
   def create
     @supporter = Supporter.find(params[:supporter_id])
+    #params[:donation][:payments_attributes]['0'][:amount] = params[:donation][:amount]
     @donation = @supporter.donations.build(donation_params)
     authorize @donation
     if @donation.save
