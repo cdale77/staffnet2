@@ -82,4 +82,15 @@ Staffnet2::Application.configure do
   config.serve_static_assets = true
   config.assets.compile = true
   config.assets.digest = true
+
+  # Email setup
+  ActionMailer::Base.smtp_settings = {
+      :address        => 'smtp.gmail.com',
+      :port           => '587',
+      :authentication => :plain,
+      :user_name      => ENV['GMAIL_USERNAME'],
+      :password       => ENV['GMAIL_PASSWORD'],
+      :domain         => 'evolve-ca.org',
+      :enable_starttls_auto => true
+  }
 end
