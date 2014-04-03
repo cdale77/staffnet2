@@ -10,14 +10,15 @@ CreditCard =
         n = if n*2 > 9 then n*2 - 9 else n*2
       total += n
     total % 10 == 0
-
+    
 $ ->
+
   $(document.body).on "click", ".profile-selector", ->
-    console.log('fire')
-    id = $(this).val()
-    $("#payment-profile-id").val(id)
+  console.log('fire')
+  id = $(this).val()
+  $("#payment-profile-id").val(id)
 
-$ ->
+
   $("input#cc_number").blur ->
     if CreditCard.validNumber(@value)
       $("#cc_number_error").text("")
