@@ -10,7 +10,7 @@ class SupporterMailer < ActionMailer::Base
 
   def prospect(message)
     @message = message
-    if @message.supporter.email_
+    if @message.supporter.email_1
       mail( to:       @message.supporter.email_1,
             from:     @message.employee.email,
             subject:  "Help Reform Prop 13!")

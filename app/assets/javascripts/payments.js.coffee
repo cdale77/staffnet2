@@ -10,7 +10,7 @@ CreditCard =
         n = if n*2 > 9 then n*2 - 9 else n*2
       total += n
     total % 10 == 0
-    
+
 $ ->
 
   $(document.body).on "click", ".profile-selector", ->
