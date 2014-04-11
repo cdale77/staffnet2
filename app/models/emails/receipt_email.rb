@@ -3,9 +3,6 @@ class ReceiptEmail
   include ActiveModel::Conversion
   include ActiveModel::Naming
 
-  ## SETUP ENVIRONMENT
-  include Regex
-
   attr_accessor :supporter_first_name, :supporter_last_name,
                 :donation_type, :donation_amount, :donation_captured, :donation_sustainer, :donation_auth_code,
                 :donation_date, :donation_frequency, :donation_cc_type

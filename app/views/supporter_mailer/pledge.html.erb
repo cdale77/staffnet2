@@ -1,0 +1,26 @@
+<div style="width:550px;">
+
+  Hi <%= @message.supporter.first_name %>,<br /><br />
+
+  <p>With your support we are one step closer to reforming Prop 13 and increasing funding for schools and vital services.</p>
+
+
+  <p>Thanks for your pledge of $<%= @message.pledge_amount %> to Evolve’s campaign to close the corporate loophole in
+    Prop 13. You can expect to receive a pledge packet in the mail in the next day or two, or you can fulfill your pledge
+    online with our secure donate page by <a href="https://evolve.nationbuilder.com/donate" title="donate">clicking here</a>.</p>
+
+  <p>Following our recent success at the CA Democratic Party statewide convention we are poised to keep the pressure on
+    Sacramento to finally reform Prop 13 and fully fund our schools and public services.</p>
+
+  <p>The next month of our campaign is critical. We are asking all our donors to have
+    their pledges back to us by <%= DateTime.parse(@message.due_date).strftime("%A, %B %e") %>. If you want to help out more,
+    <a href="http://www.evolve-ca.org/alerts" title="Alerts">click here</a>
+    to sign our petition urging the California Legislature to support Prop 13 reform.</p>
+
+  <p>Thanks again for your support,</p><br />
+
+  <%= @message.employee.first_name + " " + @message.employee.last_name %><br />
+  Evolve Membership Outreach<br />
+  membership@evolve-ca.org<br />
+  <a href="http://www.facebook.com/evolve.ca" title="Facebook">facebook.com/evolve.ca</a>
+</div>
