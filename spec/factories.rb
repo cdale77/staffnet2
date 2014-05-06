@@ -67,9 +67,22 @@ FactoryGirl.define do
     break_time          30
     travel_reimb        12.5
     notes               'Great shift'
+    reported_raised     335
+    cash_qty            2
+    cash_amt            25
+    check_qty           1
+    check_amt           100
+    one_time_cc_qty     1
+    one_time_cc_amt     50
+    monthly_cc_qty      1
+    monthly_cc_amt      10
+    quarterly_cc_qty    2
+    quarterly_cc_amt    30
     employee
     shift_type
   end
+
+
 
   factory :client do
     name            Faker::Company.name

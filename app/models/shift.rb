@@ -16,6 +16,17 @@
 #  cv_shift                  :boolean          default(FALSE)
 #  quota_shift               :boolean          default(FALSE)
 #  products                  :hstore           default({})
+#  reported_raised           :decimal(8, 2)    default(0.0)
+#  cash_qty                  :integer          default(0)
+#  cash_amt                  :decimal(8, 2)    default(0.0)
+#  check_qty                 :integer          default(0)
+#  check_amt                 :decimal(8, 2)    default(0.0)
+#  one_time_cc_qty           :integer          default(0)
+#  one_time_cc_amt           :decimal(8, 2)    default(0.0)
+#  monthly_cc_qty            :integer          default(0)
+#  monthly_cc_amt            :decimal(8, 2)    default(0.0)
+#  quarterly_cc_amt          :integer          default(0)
+#  quarterly_cc_qty          :decimal(8, 2)    default(0.0)
 #  created_at                :datetime
 #  updated_at                :datetime
 #
@@ -44,15 +55,19 @@ class Shift < ActiveRecord::Base
             presence: { message: 'required.' }
 
   validates :break_time,
-            numericality: { less_than_or_equal_to: 120 },
+            numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 120, message: 'must be less than 121 minutes.' },
             allow_blank: true
 
   validates :travel_reimb,
-            numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 },
+            numericality: { greater_than_or_equal_to: 0, message: 'must be a positive number.'  },
             allow_blank: true
 
   validate :shift_time_validator
 
+  validate :reported_raised_validator
+
+
+  ## INSTANCE METHODS
   def field_manager
     Employee.find(self.field_manager_employee_id) if self.field_manager_employee_id.present?
   end
@@ -70,6 +85,12 @@ class Shift < ActiveRecord::Base
 
 
   private
+
+    ## CUSTOM VALIDATORS
+
+    def reported_raised_validator
+
+    end
 
     def shift_time_validator
       errors.add(:time_out, 'You cannot have zero or negative hours.') unless (2..24).include?(net_time)

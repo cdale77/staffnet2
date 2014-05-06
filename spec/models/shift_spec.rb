@@ -16,6 +16,17 @@
 #  cv_shift                  :boolean          default(FALSE)
 #  quota_shift               :boolean          default(FALSE)
 #  products                  :hstore           default({})
+#  reported_raised           :decimal(8, 2)    default(0.0)
+#  cash_qty                  :integer          default(0)
+#  cash_amt                  :decimal(8, 2)    default(0.0)
+#  check_qty                 :integer          default(0)
+#  check_amt                 :decimal(8, 2)    default(0.0)
+#  one_time_cc_qty           :integer          default(0)
+#  one_time_cc_amt           :decimal(8, 2)    default(0.0)
+#  monthly_cc_qty            :integer          default(0)
+#  monthly_cc_amt            :decimal(8, 2)    default(0.0)
+#  quarterly_cc_amt          :integer          default(0)
+#  quarterly_cc_qty          :decimal(8, 2)    default(0.0)
 #  created_at                :datetime
 #  updated_at                :datetime
 #
@@ -26,7 +37,9 @@ describe Shift do
 
   shift_attributes = {  date: Date.today, time_in: Time.now - 4.hours, time_out: Time.now,
                         break_time: 30, notes: 'Great shift', travel_reimb: 12.50, legacy_id: '56', cv_shift: true,
-                        quota_shift: true}
+                        quota_shift: true, reported_raised: 335, cash_qty: 2, cash_amt: 25, check_qty: 1, check_amt: 100,
+                        one_time_cc_qty: 1, one_time_cc_amt: 50, monthly_cc_qty: 1, monthly_cc_amt: 10,
+                        quarterly_cc_qty: 2, quarterly_cc_amt: 30 }
 
 
   let(:shift) { FactoryGirl.create(:shift) }
@@ -57,18 +70,16 @@ describe Shift do
   end
 
   describe 'break time validations' do
+    it 'should reject negative values' do
+      negative_break = -9
+      shift.break_time = negative_break
+      shift.should_not be_valid
+    end
     it 'should reject too high break times' do
       large_break = 121
       shift.break_time = large_break
       shift.should_not be_valid
     end
-
-    #using the numericality validator for this seems to reject break times of 0. Comment out for now. 13-9-11
-    #it 'should reject too short break times' do
-    #  short_break = 4
-    #  shift.break_time = short_break
-    #  shift.should_not be_valid
-    #end
   end
 
   describe 'travel reimb validations' do
@@ -90,9 +101,10 @@ describe Shift do
       shift.time_out = Time.now
     end
 
-    describe 'travel_reimb validations' do
-      it 'should reject too large travel reimbursements' do
-        shift.travel_reimb = 101
+
+    describe 'reported_raised validations' do
+      it 'should require reported_raised to match the sub amounts' do
+        shift.reported_raised = 10
         shift.should_not be_valid
       end
     end
