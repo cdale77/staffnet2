@@ -39,6 +39,8 @@ namespace :db do
     names = ['door', 'street', 'phone', 'office', 'vacation', 'holiday', 'sick' ]
     names.each do |name|
       new_type = ShiftType.new(name: name)
+      new_type.monthly_cc_multiplier = 7
+      new_type.quarterly_cc_multiplier = 3
       new_type.save
     end
 
@@ -48,8 +50,6 @@ namespace :db do
         #shift_type = ShiftType.create!(shift_type: shift_types.sample)
         shift_type = ShiftType.order("RANDOM()").first
         s = employee.shifts.build(  date:           Date.today,
-                                    #time_in:        Time.now - 5.hours,
-                                    #time_out:       Time.now,
                                     time_in:        '9:00',
                                     time_out:       '17:00',
                                     break_time:     30,

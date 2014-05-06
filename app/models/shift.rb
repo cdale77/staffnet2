@@ -83,13 +83,24 @@ class Shift < ActiveRecord::Base
     ((self.time_out - self.time_in)/3600) - ((self.break_time.to_f)/60.to_f)
   end
 
+  def reported_monthly_value
+    monthly_cc_amt * shift_type.monthly_cc_multiplier
+  end
+
+  def reported_quarterly_value
+    quarterly_cc_amt * shift_type.quarterly_cc_multiplier
+  end
+
+
 
   private
 
     ## CUSTOM VALIDATORS
 
     def reported_raised_validator
-
+      unless (cash_amt + check_amt + one_time_cc_amt + reported_monthly_value + reported_quarterly_value ) == reported_raised
+        errors.add(:reported_raised, 'Raised amount must equal itemized amounts.')
+      end
     end
 
     def shift_time_validator

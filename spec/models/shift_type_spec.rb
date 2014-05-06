@@ -18,6 +18,8 @@ describe ShiftType do
 
   ## ATTRIBUTES
   it { should respond_to(:name) }
+  it { should respond_to(:monthly_cc_multiplier) }
+  it { should respond_to(:quarterly_cc_multiplier) }
 
   ## RELATIONSHIPS
   it { should respond_to(:shifts) }

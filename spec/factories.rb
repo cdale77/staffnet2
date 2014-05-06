@@ -57,7 +57,9 @@ FactoryGirl.define do
   end
 
   factory :shift_type do
-    name      ['street', 'door', 'office', 'phone'].sample
+    name                  ['street', 'door', 'office', 'phone'].sample
+    monthly_cc_multiplier    7
+    quarterly_cc_multiplier  3
   end
 
   factory :shift do

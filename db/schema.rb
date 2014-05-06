@@ -178,7 +178,9 @@ ActiveRecord::Schema.define(version: 20140327220552) do
   add_index "sendy_updates", ["supporter_id"], name: "index_sendy_updates_on_supporter_id", using: :btree
 
   create_table "shift_types", force: true do |t|
-    t.string   "name",       default: ""
+    t.string   "name",                                            default: ""
+    t.decimal  "monthly_cc_multiplier",   precision: 8, scale: 2, default: 0.0
+    t.decimal  "quarterly_cc_multiplier", precision: 8, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
