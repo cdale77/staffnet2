@@ -28,14 +28,15 @@ module Staffnet2
     config.i18n.enforce_available_locales = true
 
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
-     config.assets.initialize_on_precompile
+    config.assets.initialize_on_precompile
 
-     config.filter_parameters += [:password, :password_confirmation, :cc_number]
+    config.filter_parameters += [:password, :password_confirmation, :cc_number]
     config.autoload_paths += %W(#{config.root}/lib/validations)
     config.autoload_paths += %W(#{config.root}/lib/cim)
     config.autoload_paths += %W(#{config.root}/lib/sendy)
     config.autoload_paths += %W(#{config.root}/app/models/emails)
     config.autoload_paths += %W(#{config.root}/app/models/sendy)
+
 
     # legacy db models
      config.autoload_paths += %W(#{config.root}/app/models/legacy)

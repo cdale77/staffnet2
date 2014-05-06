@@ -2,7 +2,8 @@ Staffnet2::Application.routes.draw do
 
   root  'static_pages#home'
 
-  devise_for :users#, :controllers => { :registrations => 'users/registrations' }
+  devise_for :users
+
   scope '/admin' do
     resources :users
 
@@ -15,14 +16,13 @@ Staffnet2::Application.routes.draw do
       resource :shift_type
       resource :employee
       resources :donations
-      #resources :tasks
     end
 
-    resources :clients
 
     resources :supporters do
       resources :donations
       resources :payment_profiles
+      resources :pledge_emails, only: [:new, :create]
     end
 
     resources :donations do
@@ -36,24 +36,5 @@ Staffnet2::Application.routes.draw do
     resources :shift_types, except: [ :show, :destroy ]
 
     resources :sendy_lists
-
-    #resources :clients do
-    #  resources :projects
-    #end
-
-    #resources :projects do
-    #  resource :client
-    #  resources :tasks
-    #end
-
-    #resources :tasks do
-    #  resource :project
-    #  resource :shift
-    #end
-
-    #resources :task_types
-
   end
-
-
 end
