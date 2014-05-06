@@ -200,16 +200,16 @@ ActiveRecord::Schema.define(version: 20140327220552) do
     t.boolean  "quota_shift",                                       default: false
     t.hstore   "products",                                          default: ""
     t.decimal  "reported_raised",           precision: 8, scale: 2, default: 0.0
-    t.integer  "cash_qty",                                          default: 0
-    t.decimal  "cash_amt",                  precision: 8, scale: 2, default: 0.0
-    t.integer  "check_qty",                                         default: 0
-    t.decimal  "check_amt",                 precision: 8, scale: 2, default: 0.0
-    t.integer  "one_time_cc_qty",                                   default: 0
-    t.decimal  "one_time_cc_amt",           precision: 8, scale: 2, default: 0.0
-    t.integer  "monthly_cc_qty",                                    default: 0
-    t.decimal  "monthly_cc_amt",            precision: 8, scale: 2, default: 0.0
-    t.integer  "quarterly_cc_amt",                                  default: 0
-    t.decimal  "quarterly_cc_qty",          precision: 8, scale: 2, default: 0.0
+    t.integer  "reported_cash_qty",                                 default: 0
+    t.decimal  "reported_cash_amt",         precision: 8, scale: 2, default: 0.0
+    t.integer  "reported_check_qty",                                default: 0
+    t.decimal  "reported_check_amt",        precision: 8, scale: 2, default: 0.0
+    t.integer  "reported_one_time_cc_qty",                          default: 0
+    t.decimal  "reported_one_time_cc_amt",  precision: 8, scale: 2, default: 0.0
+    t.integer  "reported_monthly_cc_qty",                           default: 0
+    t.decimal  "reported_monthly_cc_amt",   precision: 8, scale: 2, default: 0.0
+    t.integer  "reported_quarterly_cc_amt",                         default: 0
+    t.decimal  "reported_quarterly_cc_qty", precision: 8, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

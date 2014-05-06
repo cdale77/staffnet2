@@ -84,11 +84,11 @@ class Shift < ActiveRecord::Base
   end
 
   def reported_monthly_value
-    monthly_cc_amt * shift_type.monthly_cc_multiplier
+    reported_monthly_cc_amt * shift_type.monthly_cc_multiplier
   end
 
   def reported_quarterly_value
-    quarterly_cc_amt * shift_type.quarterly_cc_multiplier
+    reported_quarterly_cc_amt * shift_type.quarterly_cc_multiplier
   end
 
 
@@ -98,7 +98,7 @@ class Shift < ActiveRecord::Base
     ## CUSTOM VALIDATORS
 
     def reported_raised_validator
-      unless (cash_amt + check_amt + one_time_cc_amt + reported_monthly_value + reported_quarterly_value ) == reported_raised
+      unless (reported_cash_amt + reported_check_amt + reported_one_time_cc_amt + reported_monthly_value + reported_quarterly_value ) == reported_raised
         errors.add(:reported_raised, 'Raised amount must equal itemized amounts.')
       end
     end

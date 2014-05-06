@@ -16,16 +16,16 @@ class CreateShifts < ActiveRecord::Migration
       t.boolean     :quota_shift, default: false
       t.hstore      :products, default: {}
       t.decimal     :reported_raised, scale: 2, precision: 8, default: 0.00
-      t.integer     :cash_qty, default: 0
-      t.decimal     :cash_amt, scale: 2, precision: 8, default: 0.00
-      t.integer     :check_qty, default: 0
-      t.decimal     :check_amt, scale: 2, precision: 8, default: 0.00
-      t.integer     :one_time_cc_qty, default: 0
-      t.decimal     :one_time_cc_amt, scale: 2, precision: 8, default: 0.00
-      t.integer     :monthly_cc_qty, default: 0
-      t.decimal     :monthly_cc_amt, scale: 2, precision: 8, default: 0.00
-      t.integer     :quarterly_cc_amt, default: 0
-      t.decimal     :quarterly_cc_qty, scale: 2, precision: 8, default: 0.00
+      t.integer     :reported_cash_qty, default: 0
+      t.decimal     :reported_cash_amt, scale: 2, precision: 8, default: 0.00
+      t.integer     :reported_check_qty, default: 0
+      t.decimal     :reported_check_amt, scale: 2, precision: 8, default: 0.00
+      t.integer     :reported_one_time_cc_qty, default: 0
+      t.decimal     :reported_one_time_cc_amt, scale: 2, precision: 8, default: 0.00
+      t.integer     :reported_monthly_cc_qty, default: 0
+      t.decimal     :reported_monthly_cc_amt, scale: 2, precision: 8, default: 0.00
+      t.integer     :reported_quarterly_cc_amt, default: 0
+      t.decimal     :reported_quarterly_cc_qty, scale: 2, precision: 8, default: 0.00
 
       t.timestamps
     end

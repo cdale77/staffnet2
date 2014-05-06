@@ -37,9 +37,10 @@ describe Shift do
 
   shift_attributes = {  date: Date.today, time_in: Time.now - 4.hours, time_out: Time.now,
                         break_time: 30, notes: 'Great shift', travel_reimb: 12.50, legacy_id: '56', cv_shift: true,
-                        quota_shift: true, reported_raised: 335, cash_qty: 2, cash_amt: 25, check_qty: 1, check_amt: 100,
-                        one_time_cc_qty: 1, one_time_cc_amt: 50, monthly_cc_qty: 1, monthly_cc_amt: 10,
-                        quarterly_cc_qty: 2, quarterly_cc_amt: 30 }
+                        quota_shift: true, reported_raised: 335, reported_cash_qty: 2, reported_cash_amt: 25,
+                        reported_check_qty: 1, reported_check_amt: 100, reported_one_time_cc_qty: 1,
+                        reported_one_time_cc_amt: 50, reported_monthly_cc_qty: 1, reported_monthly_cc_amt: 10,
+                        reported_quarterly_cc_qty: 2, reported_quarterly_cc_amt: 30 }
 
 
   let(:shift) { FactoryGirl.create(:shift) }
