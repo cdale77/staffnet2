@@ -8,7 +8,9 @@
     <%= f.input :date, as: :string, input_html: { class: 'datepicker' } %>
   </div>
   <div class="span2">
-    <%= f.input :shift_type_id, as: :select, collection: shift_types, label_method: :human_name, selected: shift.shift_type_id %>
+    <%= f.input :shift_type_id, as: :select, collection: ShiftType.all,
+                                label_method: :human_name, value_method: :id,
+                                selected: shift.shift_type_id, input_html: { class: 'input-shift_data'} %>
   </div>
   <div class="span2">
     <%= f.input :reported_total_yes, as: :string, label: 'Total yes' %>
@@ -33,7 +35,8 @@
     <%= f.input :travel_reimb, as: :string, label: 'Travel reimbursement' %>
   </div>
   <div class="span3">
-    <%= f.input :field_manager_employee_id, as: :select, collection: field_managers, label_method: :full_name,
+    <%= f.input :field_manager_employee_id, as: :select, collection: Employee.field_managers,
+                                            label_method: :full_name, value_method: :id,
                                             selected: shift.field_manager_employee_id, label: 'Field manager',
                                             include_blank: true %>
   </div>
@@ -41,42 +44,52 @@
 <hr />
 <div class="row">
   <div class="span2">
-    <%= f.input :reported_cash_qty, as: :string, label: 'Cash quantity' %>
+    <%= f.input :reported_cash_qty, as: :string, label: 'Cash quantity',
+                                    input_html: { class: 'input-shift-data'} %>
   </div>
   <div class="span2">
-    <%= f.input :reported_cash_amt, as: :string, label: 'Cash amount' %>
-  </div>
-</div>
-<div class="row">
-  <div class="span2">
-    <%= f.input :reported_check_qty, as: :string, label: 'Check quantity' %>
-  </div>
-  <div class="span2">
-    <%= f.input :reported_check_amt, as: :string, label: 'Check amount' %>
+    <%= f.input :reported_cash_amt, as: :string, label: 'Cash amount',
+                                    input_html: { class: 'input-shift-data'} %>
   </div>
 </div>
 <div class="row">
   <div class="span2">
-    <%= f.input :reported_one_time_cc_qty, as: :string, label: '1x CC quantity' %>
+    <%= f.input :reported_check_qty,  as: :string, label: 'Check quantity',
+                                      input_html: { class: 'input-shift-data'} %>
   </div>
   <div class="span2">
-    <%= f.input :reported_one_time_cc_amt, as: :string, label: '1x CC amount' %>
-  </div>
-</div>
-<div class="row">
-  <div class="span2">
-    <%= f.input :reported_monthly_cc_qty, as: :string, label: 'Monthly CC quantity' %>
-  </div>
-  <div class="span2">
-    <%= f.input :reported_monthly_cc_amt, as: :string, label: 'Monthly CC amount' %>
+    <%= f.input :reported_check_amt,  as: :string, label: 'Check amount',
+                                      input_html: { class: 'input-shift-data'} %>
   </div>
 </div>
 <div class="row">
   <div class="span2">
-    <%= f.input :reported_quarterly_cc_qty, as: :string, label: 'Quarterly CC quantity' %>
+    <%= f.input :reported_one_time_cc_qty, as: :string, label: '1x CC quantity',
+                                           input_html: { class: 'input-shift-data'} %>
   </div>
   <div class="span2">
-    <%= f.input :reported_quarterly_cc_amt, as: :string, label: 'Quarterly CC amount' %>
+    <%= f.input :reported_one_time_cc_amt,  as: :string, label: '1x CC amount',
+                                            input_html: { class: 'input-shift-data'} %>
+  </div>
+</div>
+<div class="row">
+  <div class="span2">
+    <%= f.input :reported_monthly_cc_qty, as: :string, label: 'Monthly CC quantity',
+                                          input_html: { class: 'input-shift-data'} %>
+  </div>
+  <div class="span2">
+    <%= f.input :reported_monthly_cc_amt, as: :string, label: 'Monthly CC amount',
+                                          input_html: { class: 'input-shift-data'} %>
+  </div>
+</div>
+<div class="row">
+  <div class="span2">
+    <%= f.input :reported_quarterly_cc_qty, as: :string, label: 'Quarterly CC quantity',
+                                            input_html: { class: 'input-shift-data'} %>
+  </div>
+  <div class="span2">
+    <%= f.input :reported_quarterly_cc_amt, as: :string, label: 'Quarterly CC amount',
+                                            input_html: { class: 'input-shift-data'} %>
   </div>
 </div>
 
