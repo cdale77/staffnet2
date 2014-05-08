@@ -21,9 +21,7 @@ gem 'week_of_month', '1.2.3.1'
 
 ## UI
 gem 'sass-rails', '4.0.3'
-#gem 'bootstrap-sass', '3.1.1.1'
 gem 'bootstrap-sass', '2.3.2.0'
-#gem 'sprockets', '2.11.0'
 gem 'will_paginate', '3.0.5'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'bootstrap-datepicker-rails', '1.3.0.2'

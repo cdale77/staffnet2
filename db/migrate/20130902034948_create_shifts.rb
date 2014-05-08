@@ -16,6 +16,7 @@ class CreateShifts < ActiveRecord::Migration
       t.boolean     :quota_shift, default: false
       t.hstore      :products, default: {}
       t.decimal     :reported_raised, scale: 2, precision: 8, default: 0.00
+      t.integer     :reported_total_yes, default: 0
       t.integer     :reported_cash_qty, default: 0
       t.decimal     :reported_cash_amt, scale: 2, precision: 8, default: 0.00
       t.integer     :reported_check_qty, default: 0

@@ -200,6 +200,7 @@ ActiveRecord::Schema.define(version: 20140327220552) do
     t.boolean  "quota_shift",                                       default: false
     t.hstore   "products",                                          default: ""
     t.decimal  "reported_raised",           precision: 8, scale: 2, default: 0.0
+    t.integer  "reported_total_yes",                                default: 0
     t.integer  "reported_cash_qty",                                 default: 0
     t.decimal  "reported_cash_amt",         precision: 8, scale: 2, default: 0.0
     t.integer  "reported_check_qty",                                default: 0

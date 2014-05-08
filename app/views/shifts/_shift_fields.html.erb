@@ -10,6 +10,12 @@
   <div class="span2">
     <%= f.input :shift_type_id, as: :select, collection: shift_types, label_method: :human_name, selected: shift.shift_type_id %>
   </div>
+  <div class="span2">
+    <%= f.input :reported_total_yes, as: :string, label: 'Total yes' %>
+  </div>
+  <div class="span2">
+    <%= f.input :reported_raised, as: :string, label: 'Raised' %>
+  </div>
 </div>
 <div class="row">
   <div class="span2">
@@ -19,12 +25,12 @@
     <%= f.input :time_out, as: :string, input_html: { class: 'timepicker' } %>
   </div>
   <div class="span2">
-    <%= f.input :break_time %>
+    <%= f.input :break_time, as: :string %>
   </div>
 </div>
 <div class="row">
   <div class="span2">
-    <%= f.input :travel_reimb, label: 'Travel reimbursement' %>
+    <%= f.input :travel_reimb, as: :string, label: 'Travel reimbursement' %>
   </div>
   <div class="span3">
     <%= f.input :field_manager_employee_id, as: :select, collection: field_managers, label_method: :full_name,
@@ -32,4 +38,46 @@
                                             include_blank: true %>
   </div>
 </div>
+<hr />
+<div class="row">
+  <div class="span2">
+    <%= f.input :reported_cash_qty, as: :string, label: 'Cash quantity' %>
+  </div>
+  <div class="span2">
+    <%= f.input :reported_cash_amt, as: :string, label: 'Cash amount' %>
+  </div>
+</div>
+<div class="row">
+  <div class="span2">
+    <%= f.input :reported_check_qty, as: :string, label: 'Check quantity' %>
+  </div>
+  <div class="span2">
+    <%= f.input :reported_check_amt, as: :string, label: 'Check amount' %>
+  </div>
+</div>
+<div class="row">
+  <div class="span2">
+    <%= f.input :reported_one_time_cc_qty, as: :string, label: '1x CC quantity' %>
+  </div>
+  <div class="span2">
+    <%= f.input :reported_one_time_cc_amt, as: :string, label: '1x CC amount' %>
+  </div>
+</div>
+<div class="row">
+  <div class="span2">
+    <%= f.input :reported_monthly_cc_qty, as: :string, label: 'Monthly CC quantity' %>
+  </div>
+  <div class="span2">
+    <%= f.input :reported_monthly_cc_amt, as: :string, label: 'Monthly CC amount' %>
+  </div>
+</div>
+<div class="row">
+  <div class="span2">
+    <%= f.input :reported_quarterly_cc_qty, as: :string, label: 'Quarterly CC quantity' %>
+  </div>
+  <div class="span2">
+    <%= f.input :reported_quarterly_cc_amt, as: :string, label: 'Quarterly CC amount' %>
+  </div>
+</div>
+
 <%= render 'shared/forms/notes_field', f: f %>

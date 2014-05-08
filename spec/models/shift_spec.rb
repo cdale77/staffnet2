@@ -17,16 +17,17 @@
 #  quota_shift               :boolean          default(FALSE)
 #  products                  :hstore           default({})
 #  reported_raised           :decimal(8, 2)    default(0.0)
-#  cash_qty                  :integer          default(0)
-#  cash_amt                  :decimal(8, 2)    default(0.0)
-#  check_qty                 :integer          default(0)
-#  check_amt                 :decimal(8, 2)    default(0.0)
-#  one_time_cc_qty           :integer          default(0)
-#  one_time_cc_amt           :decimal(8, 2)    default(0.0)
-#  monthly_cc_qty            :integer          default(0)
-#  monthly_cc_amt            :decimal(8, 2)    default(0.0)
-#  quarterly_cc_amt          :integer          default(0)
-#  quarterly_cc_qty          :decimal(8, 2)    default(0.0)
+#  reported_total_yes        :integer          default(0)
+#  reported_cash_qty         :integer          default(0)
+#  reported_cash_amt         :decimal(8, 2)    default(0.0)
+#  reported_check_qty        :integer          default(0)
+#  reported_check_amt        :decimal(8, 2)    default(0.0)
+#  reported_one_time_cc_qty  :integer          default(0)
+#  reported_one_time_cc_amt  :decimal(8, 2)    default(0.0)
+#  reported_monthly_cc_qty   :integer          default(0)
+#  reported_monthly_cc_amt   :decimal(8, 2)    default(0.0)
+#  reported_quarterly_cc_amt :integer          default(0)
+#  reported_quarterly_cc_qty :decimal(8, 2)    default(0.0)
 #  created_at                :datetime
 #  updated_at                :datetime
 #
@@ -40,7 +41,7 @@ describe Shift do
                         quota_shift: true, reported_raised: 335, reported_cash_qty: 2, reported_cash_amt: 25,
                         reported_check_qty: 1, reported_check_amt: 100, reported_one_time_cc_qty: 1,
                         reported_one_time_cc_amt: 50, reported_monthly_cc_qty: 1, reported_monthly_cc_amt: 10,
-                        reported_quarterly_cc_qty: 2, reported_quarterly_cc_amt: 30 }
+                        reported_quarterly_cc_qty: 2, reported_quarterly_cc_amt: 30, reported_total_yes: 7 }
 
 
   let(:shift) { FactoryGirl.create(:shift) }
