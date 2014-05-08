@@ -7,6 +7,8 @@ gem 'pg', '0.17.1'
 gem 'devise', '3.2.4'
 gem 'pundit', '0.2.3'
 
+gem 'gon', '5.0.4'
+
 ## APIs
 gem 'activemerchant', '1.43.1'
 gem 'sendyr', '0.2.1'
@@ -35,6 +37,7 @@ gem 'raphael-rails', '2.1.2'
 gem 'morrisjs-rails', '0.5.0'
 
 group :development do
+  gem 'pry-rails', '0.3.2'
   gem 'annotate', '2.6.3'
   gem 'faker', '1.3.0'
   #gem 'flog'

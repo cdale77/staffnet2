@@ -13,10 +13,10 @@
                                 selected: shift.shift_type_id, input_html: { class: 'input-shift_data'} %>
   </div>
   <div class="span2">
-    <%= f.input :reported_total_yes, as: :string, label: 'Total yes' %>
+    <%= f.input :reported_total_yes, as: :string, label: 'Total yes', input_html: { class: 'input-shift_data'} %>
   </div>
   <div class="span2">
-    <%= f.input :reported_raised, as: :string, label: 'Raised' %>
+    <%= f.input :reported_raised, as: :string, label: 'Raised', input_html: { class: 'input-shift_data'} %>
   </div>
 </div>
 <div class="row">
@@ -94,3 +94,6 @@
 </div>
 
 <%= render 'shared/forms/notes_field', f: f %>
+
+
+<%= content_tag "div", id: "shift-type-data", data: {  } %>

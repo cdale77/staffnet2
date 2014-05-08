@@ -7,6 +7,7 @@ class ShiftsController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     if @employee
       @shift = @employee.shifts.build
+      gon.shift_types = ShiftType.multipliers # send the ShiftType data to the client for the raised calculator
       authorize @shift
     else
       flash[:error] = 'Could not find employee.'

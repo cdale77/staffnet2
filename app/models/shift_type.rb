@@ -19,6 +19,15 @@ class ShiftType < ActiveRecord::Base
   ## RELATIONSHIPS
   has_many :shifts
 
+  def self.multipliers
+    result = {}
+    all.each do |shift_type|
+      multipliers = { monthly: shift_type.monthly_cc_multiplier, quarterly: shift_type.quarterly_cc_multiplier }
+      result[shift_type.id] = multipliers
+    end
+    return result
+  end
+
   def number_of_shifts
     self.shifts.count
   end

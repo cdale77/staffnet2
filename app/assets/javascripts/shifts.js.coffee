@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 
-## code for the calculator that tells users if they've entered reasonable values for raised amounts
+## calculator that tells users if they've entered reasonable values for raised amounts
 $ ->
 
   # initialize and set all variables to 0
@@ -19,6 +19,9 @@ $ ->
   creditAmt = 0
   monthlyAmt = 0
   quarterlyAmt = 0
+
+  monthlyMultiplier = 7.0
+  quarterlyMultiplier = 3.0
 
   # when any of the input fields are blurred, re-grab all the variables.
   # Would be better to just grab the effected field, but performance is not an issue.
@@ -36,9 +39,14 @@ $ ->
     monthlyAmt = $("input#shift_reported_monthly_amt").val()
     quarterlyAmt = $("input#shift_reported_quarterly_amt").val()
 
+    shiftTypeID = $("select#shift_shift_type_id").val()
 
+    monthlyMultiplier = gon.shift_types[shiftTypeID]["monthly"]
+    quarterlyMultiplier = gon.shift_types[shiftTypeID]["quarterly"]
 
-#    shiftType = $("select#shift_shift_type").val()
+    console.log monthlyMultiplier
+    console.log quarterlyMultiplier
+
 #
 #    if shiftType == 'door' or shiftType == 'street'
 #      monthlyAmt = monthlyAmt * 7
