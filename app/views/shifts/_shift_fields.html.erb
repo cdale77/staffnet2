@@ -10,13 +10,13 @@
   <div class="span2">
     <%= f.input :shift_type_id, as: :select, collection: ShiftType.all,
                                 label_method: :human_name, value_method: :id,
-                                selected: shift.shift_type_id, input_html: { class: 'input-shift_data'} %>
+                                selected: shift.shift_type_id, input_html: { class: 'input-shift-data'} %>
   </div>
-  <div class="span2">
-    <%= f.input :reported_total_yes, as: :string, label: 'Total yes', input_html: { class: 'input-shift_data'} %>
+  <div class="span2" class="calculator-error-qty">
+    <%= f.input :reported_total_yes, as: :string, label: 'Total yes', input_html: { class: 'input-shift-data' } %>
   </div>
-  <div class="span2">
-    <%= f.input :reported_raised, as: :string, label: 'Raised', input_html: { class: 'input-shift_data'} %>
+  <div class="span2" class="calculator-error-amt">
+    <%= f.input :reported_raised, as: :string, label: 'Raised', input_html: { class: 'input-shift-data' } %>
   </div>
 </div>
 <div class="row">
@@ -43,57 +43,55 @@
 </div>
 <hr />
 <div class="row">
-  <div class="span2">
+  <div class="span2 calculator-error-qty">
     <%= f.input :reported_cash_qty, as: :string, label: 'Cash quantity',
-                                    input_html: { class: 'input-shift-data'} %>
+                                    input_html: { class: 'input-shift-data' } %>
   </div>
-  <div class="span2">
+  <div class="span2 calculator-error-amt">
     <%= f.input :reported_cash_amt, as: :string, label: 'Cash amount',
                                     input_html: { class: 'input-shift-data'} %>
   </div>
 </div>
 <div class="row">
-  <div class="span2">
+  <div class="span2 calculator-error-qty">
     <%= f.input :reported_check_qty,  as: :string, label: 'Check quantity',
-                                      input_html: { class: 'input-shift-data'} %>
+                                      input_html: { class: 'input-shift-data' } %>
   </div>
-  <div class="span2">
+  <div class="span2 calculator-error-amt">
     <%= f.input :reported_check_amt,  as: :string, label: 'Check amount',
                                       input_html: { class: 'input-shift-data'} %>
   </div>
 </div>
 <div class="row">
-  <div class="span2">
+  <div class="span2 calculator-error-qty">
     <%= f.input :reported_one_time_cc_qty, as: :string, label: '1x CC quantity',
-                                           input_html: { class: 'input-shift-data'} %>
+                                           input_html: { class: 'input-shift-data' } %>
   </div>
-  <div class="span2">
+  <div class="span2 calculator-error-amt">
     <%= f.input :reported_one_time_cc_amt,  as: :string, label: '1x CC amount',
                                             input_html: { class: 'input-shift-data'} %>
   </div>
 </div>
 <div class="row">
-  <div class="span2">
+  <div class="span2 calculator-error-qty">
     <%= f.input :reported_monthly_cc_qty, as: :string, label: 'Monthly CC quantity',
-                                          input_html: { class: 'input-shift-data'} %>
+                                          input_html: { class: 'input-shift-data' } %>
   </div>
-  <div class="span2">
+  <div class="span2 calculator-error-amt">
     <%= f.input :reported_monthly_cc_amt, as: :string, label: 'Monthly CC amount',
-                                          input_html: { class: 'input-shift-data'} %>
+                                          input_html: { class: 'input-shift-data' } %>
   </div>
 </div>
 <div class="row">
-  <div class="span2">
+  <div class="span2 calculator-error-qty">
     <%= f.input :reported_quarterly_cc_qty, as: :string, label: 'Quarterly CC quantity',
-                                            input_html: { class: 'input-shift-data'} %>
+                                            input_html: { class: 'input-shift-data' } %>
   </div>
-  <div class="span2">
+  <div class="span2 calculator-error-amt">
     <%= f.input :reported_quarterly_cc_amt, as: :string, label: 'Quarterly CC amount',
-                                            input_html: { class: 'input-shift-data'} %>
+                                            input_html: { class: 'input-shift-data calculator-error-qty' } %>
   </div>
 </div>
 
 <%= render 'shared/forms/notes_field', f: f %>
 
-
-<%= content_tag "div", id: "shift-type-data", data: {  } %>
