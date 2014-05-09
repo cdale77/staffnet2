@@ -63,8 +63,12 @@ class Shift < ActiveRecord::Base
             numericality: { greater_than_or_equal_to: 0, message: 'must be a positive number.'  },
             allow_blank: true
 
+  validates :time_in, :time_out,
+            presence: { message: 'required' }
+
   validate :shift_time_validator
 
+  validate :reported_yes_validator
   validate :reported_raised_validator
 
 
@@ -97,6 +101,12 @@ class Shift < ActiveRecord::Base
   private
 
     ## CUSTOM VALIDATORS
+
+    def reported_yes_validator
+      unless (reported_cash_qty + reported_check_qty + reported_one_time_cc_qty + reported_monthly_cc_qty + reported_quarterly_cc_qty) == reported_total_yes
+        errors.add(:reported_raised, 'Raised amount must equal itemized amounts.')
+      end
+    end
 
     def reported_raised_validator
       unless (reported_cash_amt + reported_check_amt + reported_one_time_cc_amt + reported_monthly_value + reported_quarterly_value ) == reported_raised
