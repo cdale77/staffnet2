@@ -103,10 +103,20 @@ describe Shift do
       shift.time_out = Time.now
     end
 
-
     describe 'reported_raised validations' do
       it 'should require reported_raised to match the sub amounts' do
         shift.reported_raised = 10
+        shift.should_not be_valid
+      end
+    end
+
+    describe 'total raised validations' do
+      it 'should require total yes to equal itemized amounts' do
+        shift.reported_total_yes = 0
+        shift.should_not be_valid
+      end
+      it 'should require total raised to equal itemized amounts' do
+        shift.reported_raised = 0
         shift.should_not be_valid
       end
     end

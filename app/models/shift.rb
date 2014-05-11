@@ -67,7 +67,6 @@ class Shift < ActiveRecord::Base
             presence: { message: 'required' }
 
   validate :shift_time_validator
-
   validate :reported_yes_validator
   validate :reported_raised_validator
 

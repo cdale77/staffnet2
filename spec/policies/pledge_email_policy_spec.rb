@@ -3,8 +3,9 @@ require 'spec_helper'
 describe PledgeEmailPolicy do
 
   subject { PledgeEmailPolicy.new(user, pledge_email) }
-
-  let(:pledge_email) { PledgeEmail.new }
+  let!(:supporter) { FactoryGirl.create(:supporter) }
+  let!(:employee) { FactoryGirl.create(:employee) }
+  let(:pledge_email) { PledgeEmail.new(supporter, employee) }
 
   context 'for a regular user' do
     let(:user) { FactoryGirl.create(:user) }

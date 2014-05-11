@@ -13,5 +13,5 @@ require 'spec_helper'
 describe Tag do
   it { should respond_to(:name) }
   it { should respond_to(:taggings) }
-  it { should respond_to(:suporters) }
+  it { should respond_to(:supporters) }
 end
