@@ -6,7 +6,8 @@ describe 'ClientPages' do
 
   subject { page }
 
-  let(:super_admin) { FactoryGirl.create(:super_admin) }
+  let!(:super_admin) { FactoryGirl.create(:super_admin) }
+  let!(:employee) { FactoryGirl.create(:employee, user_id: super_admin.id) }
   let(:manager) { FactoryGirl.create(:manager) }
   let(:client) { FactoryGirl.create(:client) }
 
