@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe "AuthenticationPages" do
-  let(:user) { FactoryGirl.create(:user) }
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:employee) { FactoryGirl.create(:employee) }
+
   subject { page }
 
   describe 'sign in' do

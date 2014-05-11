@@ -6,8 +6,13 @@ describe 'EmployeePages' do
 
   subject { page }
 
-  let(:super_admin) { FactoryGirl.create(:super_admin) }
-  let(:manager) { FactoryGirl.create(:manager) }
+  let!(:super_admin) { FactoryGirl.create(:super_admin) }
+  let!(:manager) { FactoryGirl.create(:manager) }
+
+  let!(:super_admin_employee) { FactoryGirl.create(:employee, user: super_admin) }
+  let!(:manager_employee) { FactoryGirl.create(:employee, user: manager) }
+
+
   let!(:employee) { FactoryGirl.create(:employee) }
   let!(:shift) { FactoryGirl.create(:shift, employee_id: employee.id) }
 

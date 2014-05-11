@@ -7,8 +7,10 @@ describe 'SupporterTypePages' do
   subject { page }
 
   let(:supporter_type) { FactoryGirl.create(:supporter_type) }
-  let(:super_admin) { FactoryGirl.create(:super_admin) }
+  let!(:super_admin) { FactoryGirl.create(:super_admin) }
 
+
+  let!(:super_admin_employee) { FactoryGirl.create(:employee, user: super_admin) }
   ## HELPERS ##
 
   def create_sample_supporter_types

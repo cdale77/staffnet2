@@ -6,9 +6,13 @@ describe 'SendyListPages' do
 
   subject { page }
 
-  let(:super_admin) { FactoryGirl.create(:super_admin) }
-  let(:manager) { FactoryGirl.create(:manager) }
-  let(:staff) { FactoryGirl.create(:staff) }
+  let!(:super_admin) { FactoryGirl.create(:super_admin) }
+  let!(:manager) { FactoryGirl.create(:manager) }
+  let!(:staff) { FactoryGirl.create(:staff) }
+
+  let!(:super_admin_employee) { FactoryGirl.create(:employee, user: super_admin) }
+  let!(:manager_employee) { FactoryGirl.create(:employee, user: manager) }
+  let!(:staff_employee) { FactoryGirl.create(:employee, user: staff) }
 
   let!(:supporter_type) { FactoryGirl.create(:supporter_type, name: 'supporter') } # so there's a supporter type to pick for #new
   let(:sendy_list) { FactoryGirl.create(:sendy_list) }

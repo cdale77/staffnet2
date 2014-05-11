@@ -6,9 +6,12 @@ describe 'SupporterPages' do
 
   subject { page }
 
-  let(:super_admin) { FactoryGirl.create(:super_admin) }
-  let(:manager) { FactoryGirl.create(:manager) }
+  let!(:super_admin) { FactoryGirl.create(:super_admin) }
+  let!(:manager) { FactoryGirl.create(:manager) }
   let!(:supporter_type) { FactoryGirl.create(:supporter_type) } # so there's a supporter type to pick for #new
+
+  let!(:super_admin_employee) { FactoryGirl.create(:employee, user: super_admin) }
+  let!(:manager_employee) { FactoryGirl.create(:employee, user: manager) }
 
   let!(:supporter) { FactoryGirl.create(:supporter) }
   let!(:donation) { FactoryGirl.create(:donation, supporter_id: supporter.id) }

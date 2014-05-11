@@ -6,12 +6,13 @@ describe 'ShiftPages' do
 
   subject { page }
 
-  let(:staff) { FactoryGirl.create(:staff) }
-  let(:super_admin) { FactoryGirl.create(:super_admin) }
-  # use bang on the first employee create because it is assumed to exist in some examples. let is lazy-evaluated.
+  let!(:staff) { FactoryGirl.create(:staff) }
+  let!(:super_admin) { FactoryGirl.create(:super_admin) }
+
   let!(:employee) { FactoryGirl.create(:employee, first_name: 'Jason') }
-  let(:staff_employee) { FactoryGirl.create(:employee, first_name: 'Staff', user_id: staff.id) }
-  let(:super_admin_employee) { FactoryGirl.create(:employee, first_name: 'SuperAdmin', user_id: super_admin.id) }
+  let!(:super_admin_employee) { FactoryGirl.create(:employee, first_name: 'SuperAdmin', user: super_admin) }
+  let!(:staff_employee) { FactoryGirl.create(:employee, first_name: 'Staff', user: staff) }
+
 
   # pre-create a shift type so its in the database
   let!(:shift_type) { FactoryGirl.create(:shift_type, name: 'door' )}

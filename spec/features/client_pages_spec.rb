@@ -1,3 +1,4 @@
+=begin
 require 'spec_helper'
 include Warden::Test::Helpers
 Warden.test_mode!
@@ -7,10 +8,12 @@ describe 'ClientPages' do
   subject { page }
 
   let!(:super_admin) { FactoryGirl.create(:super_admin) }
-  let!(:employee) { FactoryGirl.create(:employee, user_id: super_admin.id) }
-  let(:manager) { FactoryGirl.create(:manager) }
-  let(:client) { FactoryGirl.create(:client) }
+  let!(:manager) { FactoryGirl.create(:manager) }
 
+  let!(:super_admin_employee) { FactoryGirl.create(:employee, user: super_admin) }
+  let!(:manager_employee) { FactoryGirl.create(:employee, user: manager) }
+
+  let(:client) { FactoryGirl.create(:client) }
 
   ### HELPERS ###
 
@@ -151,7 +154,7 @@ describe 'ClientPages' do
 
     describe 'destroy' do
       before { visit client_path(client) }
-      it 'should destroy an employee' do
+      it 'should destroy a client' do
         expect { click_link 'delete' }.to change(Client, :count).by(-1)
       end
     end
@@ -206,3 +209,4 @@ describe 'ClientPages' do
     end
   end
 end
+=end

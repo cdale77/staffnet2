@@ -6,13 +6,18 @@ describe "UserPages" do
 
   subject { page }
 
-  let(:super_admin) { FactoryGirl.create(:super_admin) }
-  let(:admin) { FactoryGirl.create(:admin) }
-  let(:manager) { FactoryGirl.create(:manager) }
-  let(:staff) { FactoryGirl.create(:staff) }
-  let(:user) { FactoryGirl.create(:user) }
+  let!(:super_admin) { FactoryGirl.create(:super_admin) }
+  let!(:admin) { FactoryGirl.create(:admin) }
+  let!(:manager) { FactoryGirl.create(:manager) }
+  let!(:staff) { FactoryGirl.create(:staff) }
+  let!(:user) { FactoryGirl.create(:user) }
 
   let!(:employee) { FactoryGirl.create(:employee, first_name: 'Jason') }
+  let!(:super_admin_employee) { FactoryGirl.create(:employee, user: super_admin) }
+  let!(:admin_employee) { FactoryGirl.create(:employee, user: admin) }
+  let!(:manager_employee) { FactoryGirl.create(:employee, user: manager) }
+  let!(:staff_employee) { FactoryGirl.create(:employee, user: staff) }
+  let!(:user_employee) { FactoryGirl.create(:employee, user: user) }
 
   ### HELPERS ###
   def fill_in_example_user
