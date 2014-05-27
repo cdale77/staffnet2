@@ -32,9 +32,11 @@ Staffnet2::Application.routes.draw do
     resources :payments
     resources :payment_profiles
 
-    resources :supporter_types, except: [ :show, :destroy ]
-    resources :shift_types, except: [ :show, :destroy ]
+    resources :supporter_types, except: [:show, :destroy]
+    resources :shift_types, except: [:show, :destroy]
 
     resources :sendy_lists
+
+    resources :deposit_batches
   end
 end

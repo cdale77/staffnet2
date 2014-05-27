@@ -141,7 +141,6 @@ FactoryGirl.define do
   end
 
   factory :payment do
-    deposited_at          Time.now
     payment_type          'cash'
     captured              true
     amount                10.00

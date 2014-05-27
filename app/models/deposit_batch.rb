@@ -15,4 +15,14 @@ class DepositBatch < ActiveRecord::Base
   belongs_to :employee
   has_many :payments
 
+  ## CALLBACKS
+  after_initialize :associate_payments
+
+
+  private
+
+    def associate_payments
+
+    end
+
 end

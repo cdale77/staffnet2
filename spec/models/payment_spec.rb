@@ -41,6 +41,14 @@ describe Payment do
   it { should respond_to(:payment_profile) }
   it { should respond_to(:deposit_batch) }
 
+  ## CLASS METHODS
+  describe 'payments to be deposited' do
+    before { 5.times { FactoryGirl.create(:payment) } }
+    it 'should return the right payments' do
+      Payment.to_be_deposited.count.should eql 5
+    end
+  end
+
   ## VALIDATIONS
   describe 'payment type validations' do
     it 'should require a payment type' do

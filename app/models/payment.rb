@@ -34,6 +34,10 @@ class Payment < ActiveRecord::Base
   validates :payment_type, presence: { message: 'required.' }
   validates :amount, presence: { message: 'required.' }
 
+  def self.to_be_deposited
+    where(deposited_at: nil)
+  end
+
   def process_payment
     unless self.processed
       if self.payment_type == 'credit'

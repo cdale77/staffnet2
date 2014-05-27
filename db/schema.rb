@@ -35,9 +35,10 @@ ActiveRecord::Schema.define(version: 20140511214722) do
   end
 
   create_table "deposit_batches", force: true do |t|
-    t.string   "batch_type", default: ""
+    t.integer  "employee_id"
+    t.string   "batch_type",  default: ""
     t.date     "date"
-    t.boolean  "deposited",  default: false
+    t.boolean  "deposited",   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
