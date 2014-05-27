@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327220552) do
+ActiveRecord::Schema.define(version: 20140511214722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 20140327220552) do
     t.string   "contact_email", default: ""
     t.string   "uri",           default: ""
     t.text     "notes",         default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "deposit_batches", force: true do |t|
+    t.string   "batch_type", default: ""
+    t.date     "date"
+    t.boolean  "deposited",  default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -115,6 +123,7 @@ ActiveRecord::Schema.define(version: 20140327220552) do
   create_table "payments", force: true do |t|
     t.integer  "donation_id"
     t.integer  "payment_profile_id"
+    t.integer  "deposit_batch_id"
     t.string   "legacy_id",                                  default: ""
     t.string   "cim_transaction_id",                         default: ""
     t.string   "cim_auth_code",                              default: ""
@@ -130,6 +139,7 @@ ActiveRecord::Schema.define(version: 20140327220552) do
 
   add_index "payments", ["cim_auth_code"], name: "index_payments_on_cim_auth_code", using: :btree
   add_index "payments", ["cim_transaction_id"], name: "index_payments_on_cim_transaction_id", using: :btree
+  add_index "payments", ["deposit_batch_id"], name: "index_payments_on_deposit_batch_id", using: :btree
   add_index "payments", ["donation_id"], name: "index_payments_on_donation_id", using: :btree
   add_index "payments", ["payment_profile_id"], name: "index_payments_on_payment_profile_id", using: :btree
 

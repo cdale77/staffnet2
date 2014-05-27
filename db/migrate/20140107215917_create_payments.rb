@@ -3,6 +3,7 @@ class CreatePayments < ActiveRecord::Migration
     create_table :payments do |t|
       t.integer :donation_id
       t.integer :payment_profile_id
+      t.integer :deposit_batch_id
       t.string  :legacy_id, :default => ''
       t.string  :cim_transaction_id, :default => ''
       t.string  :cim_auth_code, :default => ''
@@ -19,6 +20,6 @@ class CreatePayments < ActiveRecord::Migration
     add_index :payments, :payment_profile_id
     add_index :payments, :donation_id
     add_index :payments, :cim_transaction_id
-
+    add_index :payments, :deposit_batch_id
   end
 end

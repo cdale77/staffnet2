@@ -5,6 +5,7 @@
 #  id                 :integer          not null, primary key
 #  donation_id        :integer
 #  payment_profile_id :integer
+#  deposit_batch_id   :integer
 #  legacy_id          :string(255)      default("")
 #  cim_transaction_id :string(255)      default("")
 #  cim_auth_code      :string(255)      default("")
@@ -37,7 +38,8 @@ describe Payment do
   ## RELATIONSHIPS
   it { should respond_to(:supporter) }
   it { should respond_to(:donation) }
-  it { should respond_to(:payment_profile)}
+  it { should respond_to(:payment_profile) }
+  it { should respond_to(:deposit_batch) }
 
   ## VALIDATIONS
   describe 'payment type validations' do

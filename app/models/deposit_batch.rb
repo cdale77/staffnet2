@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: deposit_batches
+#
+#  id         :integer          not null, primary key
+#  batch_type :string(255)      default("")
+#  date       :date
+#  deposited  :boolean          default(FALSE)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+class DepositBatch < ActiveRecord::Base
+
+
+  has_many :payments
+
+end

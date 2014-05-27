@@ -5,6 +5,7 @@
 #  id                 :integer          not null, primary key
 #  donation_id        :integer
 #  payment_profile_id :integer
+#  deposit_batch_id   :integer
 #  legacy_id          :string(255)      default("")
 #  cim_transaction_id :string(255)      default("")
 #  cim_auth_code      :string(255)      default("")
@@ -24,6 +25,7 @@ class Payment < ActiveRecord::Base
   delegate :supporter, to: :donation
   belongs_to :donation
   belongs_to :payment_profile, dependent: :destroy
+  belongs_to :deposit_batch
 
   ## CALLBACKS
   before_save :process_payment
