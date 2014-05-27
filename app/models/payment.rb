@@ -41,6 +41,7 @@ class Payment < ActiveRecord::Base
         if charge.process
           self.cim_transaction_id = charge.cim_transaction_id
           self.cim_auth_code = charge.cim_auth_code
+          self.deposited_at = Date.today
           self.captured = true
         end
         self.notes = charge.server_message + "--" + self.notes
