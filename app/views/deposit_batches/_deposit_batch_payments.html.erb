@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="span12" id="supporter-donations">
+    <div class="row">
+      <div class="span6">
+        <h4 class="table-title-right">Payments</h4>
+      </div>
+    </div>
+    <table class="table table-condensed table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Type</th>
+        <th>Source</th>
+      </tr>
+      <% payments.each do |payments| %>
+        <tr>
+          <td><%= payment.donation.supporter.full_name %></td>
+          <td><%= payment.donation.date %></td>
+          <td><%= number_to_currency paymentamount %></td>
+          <td><%= payment_type.humanize %></td>
+          <td><%= payment.donation.source.humanize %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

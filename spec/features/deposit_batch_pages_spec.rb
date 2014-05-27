@@ -10,6 +10,10 @@ describe 'DepositBatchPages' do
   let!(:manager) { FactoryGirl.create(:manager) }
   let!(:staff) { FactoryGirl.create(:staff) }
 
+  let!(:super_admin_employee) { FactoryGirl.create(:employee, user: super_admin) }
+  let!(:manager_employee) { FactoryGirl.create(:employee, user: manager) }
+  let!(:staff_employee) { FactoryGirl.create(:employee, user: staff) }
+
   #### AS SUPERADMIN USER ####
 
   ## log in as superadmin user to test basic functionality of the pages. Authorization is handled in the

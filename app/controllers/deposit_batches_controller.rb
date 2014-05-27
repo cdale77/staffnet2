@@ -5,5 +5,7 @@ class DepositBatchesController < ApplicationController
 
   def new
     @deposit_batch = DepositBatch.new
+    @payments = Payment.to_be_deposited
+    authorize @deposit_batch
   end
 end
