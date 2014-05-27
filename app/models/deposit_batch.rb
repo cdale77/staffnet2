@@ -12,7 +12,7 @@
 
 class DepositBatch < ActiveRecord::Base
 
-
+  belongs_to :employee
   has_many :payments
 
 end

@@ -56,6 +56,7 @@ describe Employee do
   ## RELATIONSHIPS
   it { should respond_to(:shifts) }
   it { should respond_to(:user) }
+  it { should respond_to(:deposit_batches) }
   
   ## VALIDATIONS
   describe 'first name validations' do
