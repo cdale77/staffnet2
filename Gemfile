@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.1'
 gem 'rails', '4.1.1'
-gem 'rake', '10.3.1'
+gem 'rake', '10.3.2'
 gem 'pg', '0.17.1'
 gem 'devise', '3.2.4'
 gem 'pundit', '0.2.3'
@@ -10,7 +10,7 @@ gem 'pundit', '0.2.3'
 gem 'gon', '5.0.4'
 
 ## APIs
-gem 'activemerchant', '1.43.1'
+gem 'activemerchant', '1.43.2'
 gem 'sendyr', '0.2.1'
 
 # data storage
@@ -23,9 +23,9 @@ gem 'week_of_month', '1.2.3.1'
 
 ## UI
 gem 'sass-rails', '4.0.3'
-gem 'bootstrap-sass', '2.3.2.0'
-gem 'will_paginate', '3.0.5'
-gem 'bootstrap-will_paginate', '0.0.10'
+gem 'bootstrap-sass', '3.1.1.1'
+gem 'kaminari', '0.15.1'
+gem 'bootstrap-kaminari-views', '0.0.3'
 gem 'bootstrap-datepicker-rails', '1.3.0.2'
 gem 'bootstrap-timepicker-rails', '0.1.3'
 gem 'simple_form', '3.0.2'
@@ -34,7 +34,6 @@ gem 'ransack', '1.2.3'
 ## JS
 gem 'jquery-rails', '3.1.0'
 gem 'raphael-rails', '2.1.2'
-gem 'morrisjs-rails', '0.5.0'
 
 group :development do
   gem 'pry-rails', '0.3.2'
