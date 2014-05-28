@@ -13,12 +13,12 @@
         <th>Type</th>
         <th>Source</th>
       </tr>
-      <% payments.each do |payments| %>
+      <% payments.each do |payment| %>
         <tr>
           <td><%= payment.donation.supporter.full_name %></td>
           <td><%= payment.donation.date %></td>
-          <td><%= number_to_currency paymentamount %></td>
-          <td><%= payment_type.humanize %></td>
+          <td><%= number_to_currency payment.amount %></td>
+          <td><%= payment.payment_type.humanize %></td>
           <td><%= payment.donation.source.humanize %></td>
         </tr>
       <% end %>

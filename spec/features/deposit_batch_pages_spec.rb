@@ -10,6 +10,8 @@ describe 'DepositBatchPages' do
   let!(:manager) { FactoryGirl.create(:manager) }
   let!(:staff) { FactoryGirl.create(:staff) }
 
+  let!(:payment) { FactoryGirl.create(:payment) }
+
   let!(:super_admin_employee) { FactoryGirl.create(:employee, user: super_admin) }
   let!(:manager_employee) { FactoryGirl.create(:employee, user: manager) }
   let!(:staff_employee) { FactoryGirl.create(:employee, user: staff) }
@@ -33,11 +35,17 @@ describe 'DepositBatchPages' do
     end
 
     describe 'new' do
-      before { visit new_deposit_batch_path }
+      before do
+        visit new_deposit_batch_path
+      end
 
       describe 'page' do
         it { should have_title('Staffnet:New deposit batch') }
         it { should have_selector('h1', text: 'New deposit batch') }
+      end
+
+      describe 'associated payments' do
+        it { should have_content(payment.payment_type.humanize) }
       end
 
     end
