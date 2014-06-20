@@ -1,13 +1,13 @@
 <% provide(:title, 'Supporters') %>
 <h1>Supporters</h1>
 <div class="row">
-  <div class="span2">
-    <%= button_tag 'Search form', class: 'btn btn-mini field-toggle', id: 'btn-search-form-toggle',
+  <div class="col-md-2">
+    <%= button_tag 'Search form', class: 'btn-xs btn-default field-toggle', id: 'btn-search-form-toggle',
                                   data: { toggle: 'collapse', target: "#search-form" }%>
   </div>
 </div>
 <div class="row">
-  <div class="span12">
+  <div class="col-md-12">
     <div class="collapse" id="search-form">
       <%= search_form_for @search do |f| %>
         <%= f.condition_fields do |c| %>
@@ -15,18 +15,15 @@
         <% end %>
         <p><%= link_to_add_fields "Add conditions", f, :condition %></p>
         <div class="row">
-          <div class="span12">
-            <%= f.submit "Search", class: 'btn' %>
+          <div class="col-md-2">
+            <%= f.submit "Search", class: 'btn btn-primary' %>
           </div>
         </div>
       <% end %>
     </div>
   </div>
 </div>
-<table class="table table-condensed table-striped">
-  <div class="span12 will-paginate">
-    <%= will_paginate @supporters %>
-  </div>
+<table class="table table-hover">
   <tr>
     <th>Name</th>
     <th>City</th>
@@ -34,7 +31,6 @@
     <th>Mobile</th>
     <th>Type</th>
     <th>Source</th>
-    <th></th>
   </tr>
   <%= render @supporters %>
 </table>
