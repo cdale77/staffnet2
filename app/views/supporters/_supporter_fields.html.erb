@@ -1,107 +1,107 @@
 <div class="row">
-  <div class="span10">
-    <button type="button" class="btn field-toggle" data-toggle="collapse" data-target="#contact-prefs">Contact prefs</button>
-    <button type="button" class="btn field-toggle" data-toggle="collapse" data-target="#employer">Employer</button>
-    <button type="button" class="btn field-toggle" data-toggle="collapse" data-target="#volunteer">Volunteer</button>
-    <button type="button" class="btn field-toggle" data-toggle="collapse" data-target="#tags">Tags</button>
-    <button type="button" class="btn field-toggle" data-toggle="collapse" data-target="#notes">Notes</button>
+  <div class="col-md-12">
+    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#contact-prefs">Contact prefs</button>
+    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#employer">Employer</button>
+    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#volunteer">Volunteer</button>
+    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#tags">Tags</button>
+    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#notes">Notes</button>
   </div>
 </div>
 <hr />
-<div class="row">
-  <div class="span1">
+<div class="form-group row">
+  <div class="col-md-2">
     <%= f.input :prefix, placeholder: 'Sir' %>
   </div>
-  <div class="span2">
+  <div class="col-md-2">
     <%= f.input :salutation, placeholder: 'Bob' %>
   </div>
-  <div class="span2">
+  <div class="col-md-3">
     <%= f.input :first_name, placeholder: 'William' %>
   </div>
-  <div class="span3">
+  <div class="col-md-4">
     <%= f.input :last_name, placeholder: 'Jones' %>
   </div>
-  <div class="span1">
+  <div class="col-md-1">
     <%= f.input :suffix, placeholder: 'III' %>
   </div>
 </div>
 <hr />
-<%= render 'shared/forms/address_fields', f: f %>
+<%= render 'shared/forms/address_fields', f: f, record: supporter %>
 <hr />
-<div class="row">
-  <div class="span3">
+<div class="form-group row">
+  <div class="col-md-4">
     <%= f.input :email_1, label: 'Primary email' %>
   </div>
-  <div class="span1">
+  <div class="col-md-1">
     <%= f.label :email_1_bad, 'Bad?' %>
     <%= f.check_box :email_1_bad %>
   </div>
-  <div class="span3">
+  <div class="col-md-4">
     <%= f.input :email_2, label: 'Secondary email' %>
   </div>
-  <div class="span1">
+  <div class="col-md-1">
     <%= f.label :email_2_bad, 'Bad?' %>
     <%= f.check_box :email_2_bad %>
   </div>
 </div>
 <hr />
-<div class="row">
-  <div class="span2">
+<div class="form-group row">
+  <div class="col-md-3">
     <%= f.input :phone_mobile, label: 'Mobile phone' %>
   </div>
-  <div class="span1">
+  <div class="col-md-1">
     <%= f.label :phone_mobile_bad, 'Bad?' %>
     <%= f.check_box :phone_mobile_bad %>
   </div>
-  <div class="span2">
+  <div class="col-md-3">
     <%= f.input :phone_home, label: 'Home phone' %>
   </div>
-  <div class="span1">
+  <div class="col-md-1">
     <%= f.label :phone_home_bad, label: 'Bad?' %>
     <%= f.check_box :phone_home_bad %>
   </div>
-  <div class="span2">
+  <div class="col-md-3">
     <%= f.input :phone_alt, label: 'Alt phone' %>
   </div>
-  <div class="span1">
+  <div class="col-md-1">
     <%= f.label :phone_alt_bad, 'Bad?' %>
     <%= f.check_box :phone_alt_bad %>
   </div>
 </div>
 <hr />
-<div class="row">
-  <div class="span3">
-    <%= f.label :supporter_type %>
-    <%= f.select :supporter_type_id, options_from_collection_for_select(SupporterType.all, :id, :name, @supporter.supporter_type_id) %>
+<div class="form-group row">
+  <div class="col-md-3">
+    <%= f.input :supporter_type_id, as: :select, collection: SupporterType.all, label_method: :name,
+                                    value_method: :id, selected: @supporter.supporter_type_id  %>
   </div>
-  <div class="span3">
-    <%= f.label :source %>
-    <%= f.select :source, options_for_select([['Door', 'door'], ['Street', 'street'], ['Web', 'web']], @supporter.source) %>
+  <div class="col-md-3">
+    <%= f.input :source, as: :select, collection: [['Door', 'door'], ['Street', 'street'], ['Web', 'web']],
+                          selected: @supporter.source %>
   </div>
 </div>
 <div id="employer" class="collapse">
   <hr />
   <div class="row">
-    <div class="span3">
+    <div class="col-md-4">
       <%= f.input :employer %>
     </div>
-    <div class="span3">
+    <div class="col-md-4">
       <%= f.input :occupation %>
     </div>
   </div>
 </div>
 <div id="contact-prefs" class="collapse">
   <hr />
-  <div class="row">
-    <div class="span1">
+  <div class="form-group row">
+    <div class="col-md-2">
       <%= f.label :do_not_call %>
       <%= f.check_box :do_not_call %>
     </div>
-    <div class="span1">
+    <div class="col-md-2">
       <%= f.label :do_not_email %>
       <%= f.check_box :do_not_email %>
     </div>
-    <div class="span1">
+    <div class="col-md-2">
       <%= f.label :do_not_mail %>
       <%= f.check_box :do_not_mail %>
     </div>
@@ -109,22 +109,24 @@
 </div>
 <div id="volunteer" class="collapse">
   <hr />
-  <div class="row">
-    <div class="span1">
+  <div class="form-group row">
+    <div class="col-md-2">
       <%= f.label :keep_informed %>
       <%= f.check_box :keep_informed %>
     </div>
-    <div class="span3">
-      <%= f.label :vol_level %>
-      <%= f.select :vol_level, options_for_select([ ['', ''], ['Prospect', 'prospect'],['Regular', 'regular'],
-                                                    ['Core', 'core'] ], @supporter.vol_level) %>
+    <div class="col-md-4">
+      <%= f.input :vol_level, as: :select, collection: [ ['', ''],
+                                                         ['Prospect', 'prospect'],
+                                                         ['Regular', 'regular'],
+                                                         ['Core', 'core'] ],
+                              selected: @supporter.vol_level %>
     </div>
   </div>
 </div>
 <div id="tags" class="collapse">
   <hr />
   <div class="row">
-    <div class="span3">
+    <div class="col-md-12">
       <%= f.input :tag_list, label: 'Tag list (comma separated)' %>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <div>
-  <div class="row">
-    <div class="span10">
+  <div class="form-group row">
+    <div class="col-md-10">
       <%= f.simple_fields_for :payments do |payment_field| %>
         <%= payment_field.input :payment_profile_id, as: :hidden, input_html: { id: 'payment-profile-id', value: ''} %>
         <%= payment_field.input :payment_type, as: :hidden, input_html: { id: 'payment-type', value: 'credit' } %>

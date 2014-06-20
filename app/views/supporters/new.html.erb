@@ -1,6 +1,6 @@
 <% provide(:title, 'New supporter') %>
 <div class="row">
-  <div class="span10 offset1">
+  <div class="col-md-12">
     <h1>New supporter</h1>
     <%= simple_form_for(@supporter) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
