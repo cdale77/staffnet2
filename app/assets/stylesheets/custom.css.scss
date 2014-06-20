@@ -126,12 +126,11 @@ textarea {
 
 /************** HEADER ********************/
 header {
-  margin-top: 5px;
-  height: 80px;
+  padding-left: 4%;
+  padding-right: 4%;
   background-color: $white;
-  position: relative;
-
-  /*z-index: 20;                      */
+  min-height: 70px;
+  border-bottom: 1px solid grey;
   box-shadow: 0px 1px 1px
   rgba(0, 0, 0, .35), 0px -1px 1px
   rgba(0, 0, 0, .15);
@@ -143,62 +142,23 @@ header {
   rgba(0, 0, 0, .15);
 }
 
-div.logo a {
-  color: $grayLight;
-  text-decoration: none;
-  font-size: 26px;
-  line-height: 68px;
-}
-
-div.navbar {
-  float: right;
-  background: none !important;
+.navbar-default {
+  background-color: $white;
   border: none;
-  padding: 0xp;
-  margin: 0px;
-  box-shadow: none;
-  -webkit-box-shadow: none;
 }
 
-ul.nav {
-  list-style: none;
-}
-
-ul.nav li {
-  line-height: 20px;
-  float: left;
-}
-
-ul.nav li a.nav-link {
+.navbar-brand {
   color: $gray;
-  text-shadow: none;
-  font-size: 16px;
-  padding: 28px 20px;
+  font-size: 2em;
 }
 
-.menu {
-  padding-bottom: 10px;
-  .menu-link-active {
-    text-decoration: none;
-    color: $grayDark;
-    curor: pointer;
-  }
+.navbar-dropdown {
+  float: right;
 }
 
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: $white;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  line-height: 1;
-  &:hover {
-    color: $white;
-    text-decoration: none;
-  }
+.navbar-default {
+  margin-bottom: 0px;
+
 }
 
 /******************* FOOTER ***************/
@@ -249,38 +209,18 @@ textarea#msg {
 
 }
 
+/****************** TABLES *************/
+h4.table-title-right { display: inline; }
 
-/****************** TABLES ****************/
+.btn-new-record { float: right; }
 
-table {
-  margin-top: 10px;
-}
-
-.table  {
-  .current {
-    padding-right: 12px;
-    background-repeat: no-repeat;
-    background-position: right center;
-  }
-
-  .asc { background-image: url(up_arrow.gif); }
-
-  .desc { background-image: url(down_arrow.gif); }
-
-}
-
-.table-title-right {
-  margin: 10px 0px 0px 0px;
+tr.clickable-row:hover {
+  cursor: pointer;
 }
 
 td.buttons {
   text-align: right;
 }
-
-tr.bold {
-  font-weight: bold
-}
-
 
 /****************** FORMS ****************/
 #error_explanation {
@@ -313,15 +253,22 @@ textarea.record-notes {
 }
 
 /*************** PAGES *****************/
+
 h2.page-title { text-align: left; }
 
+div.button-container { padding-top: 10px; }
 div.buttons { float: right; }
 
 div.record-display {
+  margin-bottom: 20px;
   th {
     text-align: left;
     padding-right: 10px;
   }
+}
+
+div.table-header {
+  margin-bottom: 10px;
 }
 
 /************** INDEX *****************/

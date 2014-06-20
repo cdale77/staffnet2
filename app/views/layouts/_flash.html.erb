@@ -1,6 +1,9 @@
-<div id = "flash">
+<div id="flash">
   <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+    <div class="alert alert-<%= key %>">
+      <span><%= value %></span>
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    </div>
   <% end %>
 </div>
 <div id="flash-ajax"></div>

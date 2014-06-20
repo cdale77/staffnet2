@@ -11,3 +11,10 @@ $(document).ready(function() {
        $(this).button("toggle");
     });
 });
+
+$(document).ready(function() {
+   $(".clickable-row").on("click", function() {
+       window.document.location = $(this).attr("url");
+   });
+});
+
