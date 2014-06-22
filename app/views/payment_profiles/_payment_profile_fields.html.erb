@@ -1,31 +1,33 @@
 <div class="row" id="new-payment-profile">
-  <div class="span10">
+  <div class="col-md-12">
     <%= simple_form_for([@supporter, @payment_profile], remote: true, authenticity_token: true) do |f| %>
-      <div class="row">
-        <div class="span2">
-          <%= f.input :payment_profile_type, collection: [['Credit Card', 'credit'],
-                                                                          ['Cash', 'cash'],
-                                                                          ['Check', 'check']],
-                                      selected: 'credit' %>
+      <div class="form-group row">
+        <div class="col-md-3">
+          <%= f.input :payment_profile_type,
+                      as: :select,
+                      collection: [['Credit Card', 'credit'],
+                                   ['Cash', 'cash'],
+                                   ['Check', 'check']],
+                      selected: 'credit' %>
         </div>
-        <div class="span3">
+        <div class="col-md-3">
           <%= f.input :cc_number, label: 'CC number' %>
         </div>
-        <div class="span2">
+        <div class="col-md-2">
           <%= f.input :cc_month, label: 'Exp month', placeholder: '04' %>
         </div>
-        <div class="span2">
+        <div class="col-md-2">
           <%= f.input :cc_year, label: 'Exp year', placeholder: '2014' %>
         </div>
       </div>
-      <div class="row">
-        <div class="span8">
+      <div class="form-group row">
+        <div class="col-md-8">
           <div id="credit_card_number_error" class="red"></div>
         </div>
       </div>
-      <div class="row">
-        <div class="span2">
-          <%= f.button :submit, remote: true, class: 'btn btn-mini btn-ajax',
+      <div class="form-group row">
+        <div class="col-md-2">
+          <%= f.button :submit, remote: true, class: 'btn btn-xs btn-default btn-ajax',
                                        data: { 'loading-text' => 'Updating ...'} %>
         </div>
       </div>

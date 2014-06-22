@@ -1,10 +1,20 @@
 <div class="row">
   <div class="col-md-12">
-    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#contact-prefs">Contact prefs</button>
-    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#employer">Employer</button>
-    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#volunteer">Volunteer</button>
-    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#tags">Tags</button>
-    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#notes">Notes</button>
+    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#contact-prefs">
+      Contact prefs
+    </button>
+    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#employer">
+      Employer
+    </button>
+    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#volunteer">
+      Volunteer
+    </button>
+    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#tags">
+      Tags
+    </button>
+    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#notes">
+      Notes
+    </button>
   </div>
 </div>
 <hr />
@@ -71,12 +81,18 @@
 <hr />
 <div class="form-group row">
   <div class="col-md-3">
-    <%= f.input :supporter_type_id, as: :select, collection: SupporterType.all, label_method: :name,
-                                    value_method: :id, selected: @supporter.supporter_type_id  %>
+    <%= f.input :supporter_type_id,
+                as: :select,
+                collection: SupporterType.all,
+                label_method: :name,
+                value_method: :id,
+                selected: @supporter.supporter_type_id  %>
   </div>
   <div class="col-md-3">
-    <%= f.input :source, as: :select, collection: [['Door', 'door'], ['Street', 'street'], ['Web', 'web']],
-                          selected: @supporter.source %>
+    <%= f.input :source,
+                as: :select,
+                collection: [['Door', 'door'], ['Street', 'street'], ['Web', 'web']],
+                selected: @supporter.source %>
   </div>
 </div>
 <div id="employer" class="collapse">
