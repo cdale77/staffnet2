@@ -41,13 +41,14 @@ class DonationsController < ApplicationController
   end
 
   def index
-    @donations = Donation.all.paginate(:page => params[:page], per_page: 50)
+    @donations = Donation.all
     authorize @donations
   end
 
   def edit
     @donation = Donation.find(params[:id])
     @supporter = @donation.supporter
+    @shifts = Shift.all
     authorize @donation
   end
 

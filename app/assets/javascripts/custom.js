@@ -7,14 +7,14 @@ $(document).on("focus", ".timepicker", function(e){
 });
 
 $(document).ready(function() {
+
+    $(".clickable-row").on("click", function() {
+        window.document.location = $(this).attr("url");
+    });
+
     $(".field-toggle").on("click", function() {
        $(this).button("toggle");
     });
 });
 
-$(document).ready(function() {
-   $(".clickable-row").on("click", function() {
-       window.document.location = $(this).attr("url");
-   });
-});
 
