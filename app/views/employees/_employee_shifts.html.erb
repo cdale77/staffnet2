@@ -1,30 +1,25 @@
-<div class="row">
-  <div class="span12" id="employee-shifts">
-    <div class="row">
-      <div class="span6">
-        <h3 class="table-title-right">Shifts</h3>
-      </div>
-      <%= render 'shared/profiles/new_dependent_record_button', record_name: 'shift', record: employee%>
-    </div>
-    <table class="table table-condensed table-striped">
-      <tr>
-        <th>Date</th>
-        <th>Time in</th>
-        <th>Time out</th>
-        <th>Net hours</th>
-        <th>Type</th>
-        <th></th>
-      </tr>
-      <% shifts.each do |shift| %>
-        <tr>
-          <td><%= shift.date %></td>
-          <td><%= shift.time_in.strftime("%l:%M %P") %></td>
-          <td><%= shift.time_out.strftime("%l:%M %P") %></td>
-          <td><%= shift.net_time %></td>
-          <td><%= shift.shift_type.name.humanize %></td>
-          <td class="buttons"><%= link_to 'details', shift_path(shift), class: 'btn btn-mini', type: 'button' %></td>
-        </tr>
-      <% end %>
-    </table>
+<div class="col-md-12 row" id="employee-shifts">
+  <div class="table-header">
+    <h4 class="table-title-right">Shifts</h4>
+    <%= render 'shared/profiles/new_dependent_record_button', record_name: 'shift', record: employee %>
   </div>
+  <table class="table table-condensed table-striped">
+    <tr>
+      <th>Date</th>
+      <th>Time in</th>
+      <th>Time out</th>
+      <th>Net hours</th>
+      <th>Type</th>
+    </tr>
+    <% shifts.each do |shift| %>
+      <tr class="clickable-row" id="shift_<%= shift.id %>" url="<%= shift_path(shift) %>">
+        <td><%= shift.date %></td>
+        <td><%= shift.time_in.strftime("%l:%M %P") %></td>
+        <td><%= shift.time_out.strftime("%l:%M %P") %></td>
+        <td><%= shift.net_time %></td>
+        <td><%= shift.shift_type.name.humanize %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>
+

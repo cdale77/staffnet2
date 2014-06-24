@@ -1,12 +1,8 @@
-<tr>
+<tr class="clickable-row" id="employee_<%= employee.id %>" url="<%= employee_path(employee) %>">
   <td><%= employee.full_name %></td>
   <td><%= employee.title.humanize %></td>
   <td><%= mail_to employee.email, employee.email, class: 'hover-underline-grey' %></td>
   <td><%= number_to_phone(employee.phone.to_i) %></td>
   <td><%= employee.address_city %></td>
   <td><%= employee.active ? 'Active' : 'Inactive' %></td>
-  <td class="buttons">
-    <%= render 'shared/index/details_button', record: employee if manager_user? %>
-    <%= render 'shared/index/edit_button', record: employee if admin_user? %>
-  </td>
 </tr>

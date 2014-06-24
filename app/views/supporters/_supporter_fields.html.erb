@@ -18,7 +18,7 @@
   </div>
 </div>
 <hr />
-<div class="form-group row">
+<div class="row">
   <div class="col-md-2">
     <%= f.input :prefix, placeholder: 'Sir' %>
   </div>
@@ -38,7 +38,7 @@
 <hr />
 <%= render 'shared/forms/address_fields', f: f, record: supporter %>
 <hr />
-<div class="form-group row">
+<div class="row">
   <div class="col-md-4">
     <%= f.input :email_1, label: 'Primary email' %>
   </div>
@@ -55,7 +55,7 @@
   </div>
 </div>
 <hr />
-<div class="form-group row">
+<div class="row">
   <div class="col-md-3">
     <%= f.input :phone_mobile, label: 'Mobile phone' %>
   </div>
@@ -79,7 +79,7 @@
   </div>
 </div>
 <hr />
-<div class="form-group row">
+<div class="row">
   <div class="col-md-3">
     <%= f.input :supporter_type_id,
                 as: :select,
@@ -92,6 +92,7 @@
     <%= f.input :source,
                 as: :select,
                 collection: [['Door', 'door'], ['Street', 'street'], ['Web', 'web']],
+                include_blank: true,
                 selected: @supporter.source %>
   </div>
 </div>
@@ -108,7 +109,7 @@
 </div>
 <div id="contact-prefs" class="collapse">
   <hr />
-  <div class="form-group row">
+  <div class="row">
     <div class="col-md-2">
       <%= f.label :do_not_call %>
       <%= f.check_box :do_not_call %>
@@ -125,17 +126,19 @@
 </div>
 <div id="volunteer" class="collapse">
   <hr />
-  <div class="form-group row">
+  <div class="row">
     <div class="col-md-2">
       <%= f.label :keep_informed %>
       <%= f.check_box :keep_informed %>
     </div>
     <div class="col-md-4">
-      <%= f.input :vol_level, as: :select, collection: [ ['', ''],
-                                                         ['Prospect', 'prospect'],
-                                                         ['Regular', 'regular'],
-                                                         ['Core', 'core'] ],
-                              selected: @supporter.vol_level %>
+      <%= f.input :vol_level,
+                  as: :select,
+                  collection: [['Prospect', 'prospect'],
+                              ['Regular', 'regular'],
+                              ['Core', 'core'] ],
+                  include_blank: true,
+                  selected: @supporter.vol_level %>
     </div>
   </div>
 </div>
