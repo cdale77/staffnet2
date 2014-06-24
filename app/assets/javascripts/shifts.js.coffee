@@ -72,6 +72,4 @@ $ ->
       clear_amt_cells()
     else
       flag_amt_cells()
-      console.log(reportedRaised)
-      console.log(totalRaised)
 

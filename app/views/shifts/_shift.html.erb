@@ -1,10 +1,6 @@
-<tr>
+<tr class="clickable-row" id="shift_<%= shift.id %>" url="<%= shift_path(shift) %>">
   <td><%= shift.employee.full_name %></td>
   <td><%= shift.date %></td>
   <td><%= shift.net_time %></td>
   <td><%= shift.shift_type.name.humanize %></td>
-  <td class="buttons">
-    <%= render 'shared/index/details_button', record: shift if manager_user? %>
-    <%= render 'shared/index/edit_button', record: shift if admin_user? %>
-  </td>
 </tr>

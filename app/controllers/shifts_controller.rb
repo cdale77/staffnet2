@@ -38,6 +38,7 @@ class ShiftsController < ApplicationController
     # Pundit policy scopes don't seem to work since user is delegated/user_id isn't in the Shifts table.
     if current_user.role? :manager
       @shifts = Shift.all
+
     elsif current_user.role? :staff
       @shifts = current_user.shifts
     end
@@ -47,6 +48,7 @@ class ShiftsController < ApplicationController
   def edit
     @shift = Shift.find(params[:id])
     @employee = @shift.employee
+    gon.shift_types = ShiftType.multipliers # send the ShiftType data to the client for the raised calculator
     authorize @shift
   end
 

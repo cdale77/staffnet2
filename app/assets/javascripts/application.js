@@ -19,6 +19,6 @@
 //= require_tree .
 //= require raphael
 //= require morris
-//= require custom.js
+//= require custom
 
 //= require bootstrap-datepicker

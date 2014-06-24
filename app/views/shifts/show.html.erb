@@ -1,66 +1,56 @@
 <% provide(:title, 'Shift') %>
-<%= render 'shared/profiles/profile_header', title: 'Shift' %>
+<h1>Shift profile</h1>
 <%= render 'shared/profiles/profile_buttons', record: @shift %>
-<div class="row">
-  <div class="span12">
-    <div class="row record-display">
-      <div class="span4 record-column">
-        <table>
-          <tr>
-            <th>Employee</th>
-            <td><%= @employee.full_name %></td>
-          </tr>
-          <tr>
-            <th>Date</th>
-            <td><%= @shift.date %></td>
-          </tr>
-          <tr>
-            <th>Type</th>
-            <td><%= @shift.shift_type.name.humanize %></td>
-          </tr>
-          <% if @shift.field_manager %>
-            <tr>
-              <th>Field manager</th>
-              <td><%= @shift.field_manager.full_name %></td>
-            </tr>
-          <% end  %>
-        </table>
-      </div>
-      <div class="span4 record-column">
-        <table>
-          <tr>
-            <th>Time in</th>
-            <td><%= @shift.time_in %></td>
-          </tr>
-          <tr>
-            <th>Time out</th>
-            <td><%= @shift.time_out %></td>
-          </tr>
-          <tr>
-            <th>Break time</th>
-            <td><%= @shift.break_time %> minutes</td>
-          </tr>
-          <tr>
-            <th>Net hours</th>
-            <td><%= @shift.net_time %></td>
-          </tr>
-        </table>
-      </div>
-      <div class="span4 record-column">
-        <table>
-          <tr>
-            <th>Travel reimb</th>
-            <td><%= number_to_currency(@shift.travel_reimb) %></td>
-          </tr>
-          <tr>
-            <th>Notes</th>
-            <td><%= @shift.notes %></td>
-          </tr>
-          <%= render 'shared/profiles/magic_columns', record: @shift %>
-        </table>
-      </div>
-    </div>
-  </div>
+<div class="col-md-12 row record-display">
+  <div class="col-md-4 record-column"><table>
+    <tr>
+      <th>Employee</th>
+      <td><%= @employee.full_name %></td>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <td><%= @shift.date %></td>
+    </tr>
+    <tr>
+      <th>Type</th>
+      <td><%= @shift.shift_type.name.humanize %></td>
+    </tr>
+    <% if @shift.field_manager %>
+      <tr>
+        <th>Field manager</th>
+        <td><%= @shift.field_manager.full_name %></td>
+      </tr>
+    <% end  %>
+  </table></div>
+  <div class="col-md-4 record-column"><table>
+    <tr>
+      <th>Time in</th>
+      <td><%= @shift.time_in %></td>
+    </tr>
+    <tr>
+      <th>Time out</th>
+      <td><%= @shift.time_out %></td>
+    </tr>
+    <tr>
+      <th>Break time</th>
+      <td><%= @shift.break_time %> minutes</td>
+    </tr>
+    <tr>
+      <th>Net hours</th>
+      <td><%= @shift.net_time %></td>
+    </tr>
+  </table></div>
+  <div class="col-md-4 record-column"> <table>
+    <tr>
+      <th>Travel reimb</th>
+      <td><%= number_to_currency(@shift.travel_reimb) %></td>
+    </tr>
+    <tr>
+      <th>Notes</th>
+      <td><%= @shift.notes %></td>
+    </tr>
+    <%= render 'shared/profiles/magic_columns', record: @shift %>
+  </table></div>
 </div>
 <hr />
 <%= render 'shift_donations', donations: @donations %>
