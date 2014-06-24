@@ -13,7 +13,7 @@ class SendyListsController < ApplicationController
       flash[:success] = 'Saved new Sendy list.'
       redirect_to sendy_lists_path
     else
-      flash[:error] = 'Something went wrong.'
+      flash[:alert] = 'Something went wrong.'
       render 'new'
     end
   end

@@ -127,6 +127,12 @@ textarea {
   resize: vertical;
 }
 
+/* provide bootstrap alert danger styles to alert alert, for backwards compatibility with devise */
+.alert-alert {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+}
 
 /************** HEADER ********************/
 header {

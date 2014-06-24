@@ -17,7 +17,6 @@ class SupportersController < ApplicationController
       new_supporter_tasks
       redirect_to supporter_path(@supporter)
     else
-      flash[:error] = 'Error saving new supporter.'
       render 'new'
     end
   end

@@ -1,17 +1,18 @@
 
 <div class="row">
-  <div class="span4">
-    <div class="input">
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-    </div>
+  <div class="col-md-4">
+    <%= f.input :email %>
   </div>
-  <div class="span2">
-    <div class="input select">
-      <%= f.label :role %>
-      <%= f.select :role, options_for_select([ ['None', ''], ['Superadmin', 'super_admin'],
-                                               ['Admin', 'admin'], ['Manager', 'manager'],
-                                               ['Staff', 'staff'] ], user.role) %>
+  <div class="col-md-3">
+    <div class="select">
+      <%= f.input :role,
+                  as: :select,
+                  collection: [['None', ''],
+                               ['Superadmin', 'super_admin'],
+                               ['Admin', 'admin'],
+                               ['Manager', 'manager'],
+                               ['Staff', 'staff'] ],
+                  selected: user.role %>
     </div>
   </div>
 </div>

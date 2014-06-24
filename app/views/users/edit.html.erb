@@ -1,15 +1,11 @@
 <% provide(:title, 'Edit user') %>
 <div class="row">
-  <div class="span8 offset2">
+  <div class="col-md-10 col-md-offset-1">
     <h1>Edit user</h1>
-    <%= form_for(@user) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-        <%= render partial: 'user_fields', locals: { user: @user, f: f} %>
-        <div class="row">
-          <div class="span8">
-            <%= f.submit 'Edit user', class: 'btn btn-large btn-primary' %>
-          </div>
-        </div>
+    <%= simple_form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= render partial: 'user_fields', locals: { user: @user, f: f} %>
+      <%= render 'shared/forms/submit_button', f: f %>
     <% end %>
   </div>
 </div>

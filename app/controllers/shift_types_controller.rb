@@ -36,7 +36,7 @@ class ShiftTypesController < ApplicationController
       flash[:success] = 'Success.'
       redirect_to shift_types_path
     else
-      flash[:error] = 'Problem updating shift type.'
+      flash[:alert] = 'Problem updating shift type.'
       render 'edit'
     end
   end

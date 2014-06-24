@@ -36,7 +36,7 @@ class SupporterTypesController < ApplicationController
       flash[:success] = 'Success.'
       redirect_to supporter_types_path
     else
-      flash[:error] = 'Problem updating supportertype.'
+      flash[:alert] = 'Problem updating supporter type.'
       render 'edit'
     end
   end

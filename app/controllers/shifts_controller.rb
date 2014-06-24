@@ -10,7 +10,7 @@ class ShiftsController < ApplicationController
       gon.shift_types = ShiftType.multipliers # send the ShiftType data to the client for the raised calculator
       authorize @shift
     else
-      flash[:error] = 'Could not find employee.'
+      flash[:alert] = 'Could not find employee.'
       render root_path  # TODO: Fix. Render probably not correct
     end
   end
