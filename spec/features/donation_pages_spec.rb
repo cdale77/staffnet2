@@ -6,27 +6,20 @@ describe 'DonationPages' do
 
   subject { page }
 
-  let!(:super_admin) { FactoryGirl.create(:super_admin) }
-  let!(:manager) { FactoryGirl.create(:manager) }
-  let!(:staff) { FactoryGirl.create(:staff) }
+  super_admin = FactoryGirl.create(:super_admin)
+  manager = FactoryGirl.create(:manager)
+  #staff = FactoryGirl.create(:staff)
 
-  let!(:super_admin_employee) { FactoryGirl.create(:employee,
-                                                   user: super_admin) }
-  let!(:manager_employee) { FactoryGirl.create(:employee,
-                                               user: manager) }
-  let!(:staff_employee) { FactoryGirl.create(:employee,
-                                             user: staff) }
-  let!(:shift) { FactoryGirl.create(:shift,
-                                    employee: super_admin_employee) }
+  super_admin_employee = FactoryGirl.create(:employee, user: super_admin)
+  #manager_employee = FactoryGirl.create(:employee, user: manager)
+  #staff_employee = FactoryGirl.create(:employee, user: staff)
+  shift = FactoryGirl.create(:shift, employee: super_admin_employee)
 
-  let!(:supporter) { FactoryGirl.create(:supporter) }
-  let!(:donation) { FactoryGirl.create(:donation,
-                                       shift: shift) }
-  let!(:payment_profile) { FactoryGirl.create(:payment_profile,
-                                              supporter: supporter) }
-  let!(:payment) { FactoryGirl.create(:payment,
-                                      donation: donation,
-                                      payment_profile: payment_profile) }
+  supporter = FactoryGirl.create(:supporter)
+  donation = FactoryGirl.create(:donation, shift: shift)
+  #payment_profile = FactoryGirl.create(:payment_profile, supporter: supporter)
+  #payment = FactoryGirl.create(:payment, donation: donation,
+  #                                      payment_profile: payment_profile)
 
 
   

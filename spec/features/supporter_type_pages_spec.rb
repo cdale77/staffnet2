@@ -100,7 +100,7 @@ describe 'SupporterTypePages' do
         fill_in 'Name', with: invalid_name
         click_button 'Edit supporter type'
       end
-      it { should have_selector('div.alert-error') }
+      it { should have_selector('div.alert-alert') }
     end
 
     describe 'with valid information' do
