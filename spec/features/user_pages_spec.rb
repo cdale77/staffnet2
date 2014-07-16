@@ -50,11 +50,11 @@ describe "UserPages" do
 
       describe 'with invalid information' do
         it 'should not create a new user' do
-          expect { click_button 'New user' }.not_to change(User, :count)
+          expect { click_button 'Create User' }.not_to change(User, :count)
         end
         describe 'after clicking' do
-          before { click_button 'New user' }
-          it { should have_content('error') }
+          before { click_button 'Create User' }
+          it { should have_content("error") }
         end
       end
 
@@ -65,10 +65,10 @@ describe "UserPages" do
         end
 
         it 'should create a new user' do
-          expect { click_button 'New user' }.to change(User, :count).by(1)
+          expect { click_button 'Create User' }.to change(User, :count).by(1)
         end
         describe 'after saving user' do
-          before { click_button 'New user' }
+          before { click_button 'Create User' }
 
           it { should have_content('Admin') }
           it { should have_selector('div.alert') }
@@ -87,12 +87,6 @@ describe "UserPages" do
           expect(page).to have_selector('td', text: user.email)
         end
       end
-      it 'should have show and edit links for users' do
-        User.all.each do |user|
-          expect(page).to have_link('details', user_path(user))
-          expect(page).to have_link('edit', edit_user_path(user))
-        end
-      end
     end
 
     describe 'edit user' do
@@ -106,7 +100,7 @@ describe "UserPages" do
       describe 'with invalid information' do
         before do
           fill_in 'Email', with: 'notarealemail.com'
-          click_button 'Edit user'
+          click_button 'Update User'
         end
         it { should have_selector('div.alert-error') }
       end
@@ -118,7 +112,7 @@ describe "UserPages" do
         before do
           fill_in 'Email',            with: new_email
           select 'Admin',             from: 'user_role'
-          click_button 'Edit user'
+          click_button 'Update User'
         end
 
 
@@ -185,12 +179,6 @@ describe "UserPages" do
           expect(page).to have_selector('td', text: user.email)
         end
       end
-      it 'should have show and edit links for users' do
-        User.all.each do |user|
-          expect(page).to have_link('details', user_path(user))
-          expect(page).to_not have_link('edit', edit_user_path(user))
-        end
-      end
     end
 
     describe 'edit user' do
@@ -207,7 +195,7 @@ describe "UserPages" do
         it { should have_content (admin.email) }
         describe 'links' do
           it { should_not have_link('edit', href: edit_user_path(admin)) }
-          it { should have_link('delete', href: user_path(admin)) }
+          it { should_not have_link('delete', href: user_path(admin)) }
         end
       end
     end
@@ -218,15 +206,8 @@ describe "UserPages" do
         it { should have_content (user.email) }
         describe 'links' do
           it { should_not have_link('edit', href: edit_user_path(user)) }
-          it { should have_link('delete', href: user_path(user)) }
+          it { should_not have_link('delete', href: user_path(user)) }
         end
-      end
-    end
-
-    describe 'delete' do
-      before { visit user_path(user) }
-      it 'should delete a user' do
-        expect { click_link 'delete' }.to change(User, :count).by(-1)
       end
     end
   end

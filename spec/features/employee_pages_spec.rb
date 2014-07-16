@@ -100,8 +100,7 @@ describe 'EmployeePages' do
           end
           describe 'shifts' do
             it { should have_link('New shift', href: new_employee_shift_path(employee)) }
-            it { should have_content(shift.shift_type.name.humanize)}
-            it { should have_link('details', href: shift_path(shift)) }
+            it { should have_content(shift.shift_type.name.humanize) }
           end
         end
       end
@@ -122,12 +121,6 @@ describe 'EmployeePages' do
           Employee.all.each do |employee|
             expect(page).to have_content(employee.full_name)
             expect(page).to have_content(employee.email)
-          end
-        end
-        it 'should have show and edit links for users' do
-          Employee.all.each do |employee|
-            expect(page).to have_link('details', employee_path(employee))
-            expect(page).to have_link('edit', edit_employee_path(employee))
           end
         end
       end
@@ -195,24 +188,6 @@ describe 'EmployeePages' do
           describe 'links' do
             it { should_not have_link('edit', href: edit_employee_path(employee)) }
             it { should_not have_link('delete', href: employee_path(employee)) }
-          end
-        end
-      end
-    end
-
-    describe 'index' do
-      before do
-        5.times { FactoryGirl.create(:employee) }
-        visit employees_path
-      end
-
-      after { Employee.delete_all }
-
-      describe 'page' do
-        it 'should have the right links' do
-          Employee.all.each do |employee|
-            expect(page).to have_link('details', employee_path(employee))
-            expect(page).to_not have_link('edit', edit_employee_path(employee))
           end
         end
       end

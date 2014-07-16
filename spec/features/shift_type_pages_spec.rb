@@ -112,7 +112,7 @@ describe 'ShiftTypePages' do
           fill_in 'Name', with: invalid_shift_type
           click_button 'Edit shift type'
         end
-        it { should have_selector('div.alert-error') }
+        it { should have_selector('div.alert-alert') }
       end
 
       describe 'with valid information' do
@@ -211,7 +211,7 @@ describe 'ShiftTypePages' do
           fill_in 'Name', with: invalid_shift_type
           click_button 'Edit shift type'
         end
-        it { should have_selector('div.alert-error') }
+        it { should have_selector('div.alert-alert') }
       end
 
       describe 'with valid information' do

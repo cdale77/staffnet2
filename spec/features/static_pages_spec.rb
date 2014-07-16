@@ -29,12 +29,8 @@ describe 'StaticPages' do
       before { visit root_path }
 
       describe 'page' do
-        describe 'links' do
-          it { should have_link('View profile', employee_path(employee))}
-        end
 
         describe 'footer' do
-          it { should have_selector('h1', 'Staffnet home') }
           it { should have_link('Home', root_path) }
           it { should have_link('Sign out', destroy_user_session_path(super_admin)) }
         end
@@ -61,12 +57,7 @@ describe 'StaticPages' do
       before { visit root_path }
 
       describe 'page' do
-        describe 'links' do
-          it { should have_link('View profile', employee_path(staff_employee))}
-        end
-
         describe 'footer' do
-          it { should have_selector('h1', 'Staffnet home') }
           it { should have_link('Home', root_path) }
           it { should have_link('Sign out', destroy_user_session_path(staff)) }
         end

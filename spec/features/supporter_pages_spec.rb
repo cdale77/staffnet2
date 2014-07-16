@@ -9,6 +9,7 @@ describe 'SupporterPages' do
   let!(:super_admin) { FactoryGirl.create(:super_admin) }
   let!(:manager) { FactoryGirl.create(:manager) }
   let!(:supporter_type) { FactoryGirl.create(:supporter_type) } # so there's a supporter type to pick for #new
+  let!(:sendy_list) { FactoryGirl.create(:sendy_list, supporter_type: supporter_type) }
 
   let!(:super_admin_employee) { FactoryGirl.create(:employee, user: super_admin) }
   let!(:manager_employee) { FactoryGirl.create(:employee, user: manager) }
@@ -82,7 +83,6 @@ describe 'SupporterPages' do
           end
           describe 'donations' do
             it { should have_link('New donation', href: new_supporter_donation_path(supporter)) }
-            it { should have_link('details', href: donation_path(donation)) }
           end
         end
       end
@@ -100,12 +100,6 @@ describe 'SupporterPages' do
         it 'should list all supporters' do
           Supporter.all.each do |supporter|
             expect(page).to have_content(supporter.full_name)
-          end
-        end
-        it 'should have the correct links' do
-          Supporter.all.each do |supporter|
-            expect(page).to have_link('details', supporter_path(supporter))
-            expect(page).to have_link('edit', edit_supporter_path(supporter))
           end
         end
       end
@@ -173,24 +167,6 @@ describe 'SupporterPages' do
           describe 'links' do
             it { should_not have_link('edit', href: edit_supporter_path(supporter)) }
             it { should_not have_link('delete', href: supporter_path(supporter)) }
-          end
-        end
-      end
-    end
-
-    describe 'index' do
-      before do
-        5.times { FactoryGirl.create(:supporter) }
-        visit supporters_path
-      end
-
-      after { Supporter.delete_all }
-
-      describe 'page' do
-        it 'should have the right links' do
-          Supporter.all.each do |supporter|
-            expect(page).to have_link('details', supporter_path(supporter))
-            expect(page).to_not have_link('edit', edit_supporter_path(supporter))
           end
         end
       end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe DepositBatchPolicy do
-  subject { DepositBatchPolicyh.new(user, deposit_batch) }
+  subject { DepositBatchPolicy.new(user, deposit_batch) }
 
   let(:deposit_batch) { DepositBatch.new }
 

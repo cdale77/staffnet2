@@ -96,13 +96,6 @@ describe 'SendyListPages' do
             expect(page).to have_content(list.name)
           end
         end
-
-        it 'should have edit and delete links for each list' do
-          SendyList.all.each do |list|
-            expect(page).to have_link('edit', edit_sendy_list_path(list))
-            expect(page).to have_link('delete', sendy_list_path(list))
-          end
-        end
       end
     end
 

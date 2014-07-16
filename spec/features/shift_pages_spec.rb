@@ -109,7 +109,6 @@ describe 'ShiftPages' do
         describe 'donations' do
           it { should have_content(donation.supporter.full_name) }
           it { should have_content(donation.amount.to_s) }
-          it { should have_link('details', href: donation_path(donation)) }
         end
       end
     end
@@ -128,11 +127,6 @@ describe 'ShiftPages' do
           Shift.all.each do |shift|
             expect(page).to have_content(shift.date)
             expect(page).to have_content(shift.employee.last_name)
-          end
-        end
-        it 'should have details and edit links for each shift do' do
-          Shift.all.each do |shift|
-            expect(page).to have_link('details', shift_path(shift))
           end
         end
       end
