@@ -19,8 +19,11 @@ class DonationsController < ApplicationController
 
   def create
     @supporter = Supporter.find(params[:supporter_id])
-    #params[:donation][:payments_attributes]['0'][:amount] = params[:donation][:amount]
+
+    # set the payment_type to the same as the donation_type
+    donation_params[:payments_attributes][:payment_type] = donation_params[:donation_type]
     @donation = @supporter.donations.build(donation_params)
+
     authorize @donation
     if @donation.save
       @donation.send_receipt(@supporter) if @supporter.email_1

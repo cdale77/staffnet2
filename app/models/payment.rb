@@ -40,7 +40,7 @@ class Payment < ActiveRecord::Base
 
   def process_payment
     unless self.processed
-      if self.payment_type == 'credit'
+      if self.payment_type == "credit"
         charge = Cim::ProfilePayment.new(self.supporter.cim_id, self.payment_profile.cim_payment_profile_id, self.amount)
         if charge.process
           self.cim_transaction_id = charge.cim_transaction_id

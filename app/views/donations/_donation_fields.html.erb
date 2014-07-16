@@ -35,6 +35,7 @@
     <%= f.input :campaign,
                 as: :select,
                 collection: [['Prop 13', 'prop13']],
+                include_blank: true,
                 selected: donation.campaign %>
   </div>
   <div class="col-md-5">
@@ -42,6 +43,7 @@
                 as: :select,
                 collection: shifts,
                 label_method: :short_version,
+                include_blank: true,
                 selected: donation.shift_id  %>
   </div>
 </div>

@@ -10,14 +10,24 @@ describe 'DonationPages' do
   let!(:manager) { FactoryGirl.create(:manager) }
   let!(:staff) { FactoryGirl.create(:staff) }
 
-  let!(:super_admin_employee) { FactoryGirl.create(:employee, user: super_admin) }
-  let!(:manager_employee) { FactoryGirl.create(:employee, user: manager) }
-  let!(:staff_employee) { FactoryGirl.create(:employee, user: staff) }
+  let!(:super_admin_employee) { FactoryGirl.create(:employee,
+                                                   user: super_admin) }
+  let!(:manager_employee) { FactoryGirl.create(:employee,
+                                               user: manager) }
+  let!(:staff_employee) { FactoryGirl.create(:employee,
+                                             user: staff) }
+  let!(:shift) { FactoryGirl.create(:shift,
+                                    employee: super_admin_employee) }
 
-  let(:supporter) { FactoryGirl.create(:supporter) }
-  let!(:donation) { FactoryGirl.create(:donation) }
-  let!(:payment) { FactoryGirl.create(:payment, donation_id: donation.id) }
-  #let!(:payment_profile) { FactoryGirl.create(:payment_profile, supporter_id: supporter.id) }
+  let!(:supporter) { FactoryGirl.create(:supporter) }
+  let!(:donation) { FactoryGirl.create(:donation,
+                                       shift: shift) }
+  let!(:payment_profile) { FactoryGirl.create(:payment_profile,
+                                              supporter: supporter) }
+  let!(:payment) { FactoryGirl.create(:payment,
+                                      donation: donation,
+                                      payment_profile: payment_profile) }
+
 
   
   ### HELPERS ###
@@ -46,8 +56,9 @@ describe 'DonationPages' do
 
   #### AS SUPERADMIN USER ####
 
-  ## log in as superadmin user to test basic functionality of the pages. Authorization is handled in the
-  ## policy specs
+  # log in as superadmin user to test basic functionality of the pages.
+  # Authorization is handled in the
+  # policy specs
 
   describe 'as super_admin user' do
 
@@ -115,10 +126,6 @@ describe 'DonationPages' do
             it { should have_link('edit', href: edit_donation_path(donation)) }
             it { should have_link('delete', href: donation_path(donation)) }
           end
-          describe 'payments' do
-            it { should have_link('New payment', href: new_donation_payment_path(donation)) }
-            it { should have_link('details', href: payment_path(payment)) }
-          end
         end
       end
     end
@@ -135,12 +142,6 @@ describe 'DonationPages' do
         it 'should list all donations' do
           Donation.all.each do |donation|
             expect(page).to have_content(donation.supporter.full_name)
-          end
-        end
-        it 'should have the correct links' do
-          Donation.all.each do |donation|
-            expect(page).to have_link('details', donation_path(donation))
-            expect(page).to have_link('edit', edit_donation_path(donation))
           end
         end
       end
@@ -206,10 +207,6 @@ describe 'DonationPages' do
             it { should_not have_link('edit', href: edit_donation_path(donation)) }
             it { should_not have_link('delete', href: donation_path(donation)) }
           end
-          describe 'payments' do
-            it { should have_link('New payment', href: new_donation_payment_path(donation)) }
-            it { should have_link('details', href: payment_path(payment)) }
-          end
         end
       end
     end
@@ -228,16 +225,7 @@ describe 'DonationPages' do
             expect(page).to have_content(donation.supporter.full_name)
           end
         end
-        it 'should have the correct links' do
-          Donation.all.each do |donation|
-            expect(page).to have_link('details', donation_path(donation))
-            expect(page).to_not have_link('edit', edit_donation_path(donation))
-          end
-        end
       end
     end
-
-
   end
-
 end
