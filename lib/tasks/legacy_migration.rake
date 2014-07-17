@@ -3,7 +3,8 @@ require 'csv'
 namespace :import do
 
   def save_error_record(record_id, record_name, message)
-    MigrationError.create(record_id: record_id, record_name: record_name, message: message)
+    MigrationError.create!(record_id: record_id, record_name:
+        record_name, message: message)
   end
 
   def mark_as_migrated(record)
@@ -16,27 +17,26 @@ namespace :import do
     ## Create shift types
     names = ['door', 'street', 'phone', 'office', 'vacation', 'holiday', 'sick' ]
     names.each do |name|
-      new_type = ShiftType.new(name: name)
-      new_type.save
+      new_type = ShiftType.create!(name: name)
     end
 
-    supporter_type = SupporterType.create(name: 'supporter')
-    major_donor_type = SupporterType.create(name: 'major_donor')
-    political_type = SupporterType.create(name: 'political_contact')
+    supporter_type = SupporterType.create!(name: 'supporter')
+    major_donor_type = SupporterType.create!(name: 'major_donor')
+    political_type = SupporterType.create!(name: 'political_contact')
 
     puts "What is the Sendy list id for the supporters list?"
     sendy_list_id = STDIN.gets.chomp
-    supporter_type.sendy_lists.create(name: 'supporters', sendy_list_identifier: sendy_list_id )
+    supporter_type.sendy_lists.create!(name: 'supporters', sendy_list_identifier: sendy_list_id )
 
 
     puts "What is the Sendy list id for the major_donors list?"
     sendy_list_id = STDIN.gets.chomp
-    major_donor_type.sendy_lists.create(name: 'major_donors', sendy_list_identifier: sendy_list_id)
+    major_donor_type.sendy_lists.create!(name: 'major_donors', sendy_list_identifier: sendy_list_id)
 
 
     puts "What is the Sendy list id for the political_contacts list?"
     sendy_list_id = STDIN.gets.chomp
-    political_type.sendy_lists.create(name: 'political_contacts', sendy_list_identifier: sendy_list_id)
+    political_type.sendy_lists.create!(name: 'political_contacts', sendy_list_identifier: sendy_list_id)
 
   end
 

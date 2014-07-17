@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 20140511214722) do
     t.integer  "supporter_id"
     t.string   "cim_payment_profile_id", default: ""
     t.string   "payment_profile_type",   default: ""
-    t.hstore   "details",                default: ""
+    t.hstore   "details",                default: {}
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -209,7 +209,7 @@ ActiveRecord::Schema.define(version: 20140511214722) do
     t.decimal  "travel_reimb",              precision: 8, scale: 2, default: 0.0
     t.boolean  "cv_shift",                                          default: false
     t.boolean  "quota_shift",                                       default: false
-    t.hstore   "products",                                          default: ""
+    t.hstore   "products",                                          default: {}
     t.decimal  "reported_raised",           precision: 8, scale: 2, default: 0.0
     t.integer  "reported_total_yes",                                default: 0
     t.integer  "reported_cash_qty",                                 default: 0
