@@ -16,7 +16,8 @@
                 selected: donation.donation_type %>
   </div>
   <div class="col-md-3">
-    <%= f.input :frequency, label: 'Sustainer frequency',
+    <%= f.input :sustainer_type,
+                label: 'Sustainer frequency',
                 as: :select,
                 input_html: { id: 'donation-frequency' },
                 collection: [['', ''], ['Quarterly', 'quarterly'], ['Monthly', 'monthly']],
