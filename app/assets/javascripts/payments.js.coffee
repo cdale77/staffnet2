@@ -11,7 +11,7 @@ CreditCard =
       total += n
     total % 10 == 0
 
-$ ->
+$(document).on 'page:load', ->
 
   $(document.body).on "click", ".profile-selector", ->
     id = $(this).val()
