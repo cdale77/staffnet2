@@ -1,8 +1,14 @@
 module Cim	
 
   def self.connection
-    ActiveMerchant::Billing::AuthorizeNetCimGateway.new(  login: ENV['CIM_LOGIN'],
+    if Rails.env.production?
+      ActiveMerchant::Billing::AuthorizeNetCimGateway.new(  login: ENV['CIM_LOGIN'],
                                                           password: ENV['CIM_PASSWORD'])
+    else
+      ActiveMerchant::Billing::AuthorizeNetCimGateway.new(  login: ENV['CIM_LOGIN'],
+                                                            password: ENV['CIM_PASSWORD'],
+                                                            test: true)
+    end
   end
 
   class Profile
