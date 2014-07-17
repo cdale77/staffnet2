@@ -141,6 +141,7 @@ class Supporter < ActiveRecord::Base
     end
   end
 
+=begin
   def unstore_cim_profile
     profile = Cim::Profile.new(self.id, self.email_1, self.cim_id.to_s)
     begin
@@ -149,5 +150,6 @@ class Supporter < ActiveRecord::Base
       puts 'ERROR: Problem destroying CIM profile: ' + profile.server_message
     end
   end
+=end
 
 end

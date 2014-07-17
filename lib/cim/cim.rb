@@ -2,8 +2,7 @@ module Cim
 
   def self.connection
     ActiveMerchant::Billing::AuthorizeNetCimGateway.new(  login: ENV['CIM_LOGIN'],
-                                                          password: ENV['CIM_PASSWORD'],
-                                                          test: true )
+                                                          password: ENV['CIM_PASSWORD'])
   end
 
   class Profile
