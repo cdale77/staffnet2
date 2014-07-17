@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
 ruby '2.1.2'
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.4'
 gem 'rake', '10.3.2'
 gem 'pg', '0.17.1'
 gem 'devise', '3.2.4'
 gem 'pundit', '0.2.3'
 
-gem 'gon', '5.0.4'
+gem 'gon', '5.1.0'
 
 ## APIs
 gem 'activemerchant', '1.43.1'
@@ -15,7 +15,7 @@ gem 'sendyr', '0.2.1'
 
 # data storage
 #gem 'aws-s3', '0.6.3'
-#gem 'pgbackups-archive', '0.2.1'
+gem 'pgbackups-archive', '0.2.1'
 
 ## DATES
 gem 'date_validator', '0.7.0'
@@ -23,7 +23,7 @@ gem 'week_of_month', '1.2.3.1'
 
 ## UI
 gem 'sass-rails', '4.0.3'
-gem 'bootstrap-sass', '3.1.1.1'
+gem 'bootstrap-sass', '3.2.0.0'
 gem 'kaminari', '0.16.1'
 gem 'bootstrap-kaminari-views', '0.0.3'
 gem 'bootstrap-datepicker-rails', '1.3.0.2'
