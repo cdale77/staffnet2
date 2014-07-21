@@ -1,13 +1,12 @@
 <% provide(:title, 'Edit supporter type') %>
 <div class="row">
-  <div class="span8 offset2">
+  <div class="col-md-4 col-md-offset-4">
     <h1>Edit supporter type</h1>
     <%= form_for(@supporter_type) do |f| %>
       <div class="row">
-        <div class="span3">
+        <div class="col-md-12">
           <div class="input">
-            <%= f.label :name %>
-            <%= f.text_field :name %>
+            <%= f.input :name %>
           </div>
         </div>
       </div>

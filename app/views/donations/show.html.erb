@@ -56,7 +56,7 @@
       <% if @donation.is_sustainer? %>
         <tr>
           <th>Cancelled</th>
-          <td><%= @donation.cancelled.humanize %></td>
+          <td><%= @donation.cancelled ? "Yes" : "No" %></td>
         </tr>
       <% end %>
     </table>

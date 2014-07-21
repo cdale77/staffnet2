@@ -21,7 +21,9 @@
 
 class Donation < ActiveRecord::Base
 
-  attr_accessor :frequency
+  # this comes from the donation new form, the result of the select box for
+  # monthly or quarterly sustainers
+  attr_accessor :sustainer_type
 
   ## SET UP ENVIRONMENT
   include Regex
@@ -79,9 +81,9 @@ class Donation < ActiveRecord::Base
     end
 
     def set_sub_month
-      if self.frequency == 'monthly'
-        'm'
-      elsif self.frequency == 'quarterly'
+      if self.sustainer_type == 'monthly'
+        self.sub_month = 'm'
+      elsif self.sustainer_type == 'quarterly'
         self.sub_month = quarter_code
       end
     end

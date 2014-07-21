@@ -1,16 +1,17 @@
 <% provide(:title, 'New supporter type') %>
 <div class="row">
-  <div class="span8 offset3">
+  <div class="col-md-4 col-md-offset-4">
     <%= simple_form_for(@supporter_type) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div class="row">
-        <div class="span3">
+        <div class="col-md-12">
           <%= f.input :name %>
         </div>
       </div>
       <div class="row">
-        <div class="span3">
-          <%= f.submit 'New supporter type', class: 'btn btn-large btn-primary' %>
+        <div class="col-md-12">
+          <%= f.submit 'New supporter type',
+                       class: 'btn btn-large btn-primary' %>
         </div>
       </div>
     <% end %>
