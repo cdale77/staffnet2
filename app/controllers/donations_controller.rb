@@ -12,7 +12,7 @@ class DonationsController < ApplicationController
       @shifts = Shift.all.limit(15)
       authorize @donation
     else
-      flash[:error] = 'Could not find supporter.'
+      flash[:danger] = 'Could not find supporter.'
       render root_path  # TODO: Fix. Render probably not correct
     end
   end

@@ -18,7 +18,7 @@ ready = ->
     $("#payment-profile-id").val(id)
 
   $(document.body).on "blur", "input#payment_profile_cc_number", ->
-    console.log "fire"
+
     if CreditCard.validNumber(@value)
       $("#cc_number_error").text("")
     else

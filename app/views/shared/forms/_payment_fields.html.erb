@@ -2,17 +2,27 @@
   <div class="form-group row">
     <div class="col-md-10">
       <%= f.simple_fields_for :payments do |payment_field| %>
-        <%= payment_field.input :payment_profile_id, as: :hidden, input_html: { id: 'payment-profile-id', value: ''} %>
-        <%= payment_field.input :payment_type, as: :hidden, input_html: { id: 'payment-type', value: 'credit' } %>
-        <%= payment_field.input :amount, as: :hidden, input_html: { id: 'payment-amount' }%>
+        <%= payment_field.input :payment_profile_id,
+                                as: :hidden,
+                                input_html: { id: 'payment-profile-id',
+                                              value: '' } %>
+        <%= payment_field.input :payment_type,
+                                as: :hidden,
+                                input_html: { id: 'payment-type',
+                                              value: 'credit' } %>
+        <%= payment_field.input :amount,
+                                as: :hidden,
+                                input_html: { id: 'payment-amount' }%>
         <hr />
         <p>Select a payment profile.
-        <%= link_to 'New profile', new_supporter_payment_profile_path(supporter),  class: 'btn btn-mini btn-ajax',
-                                                              id:'btn-new-payment-profile', remote: :true %><p/>
+        <%= link_to 'New profile', new_supporter_payment_profile_path(supporter),
+                    class: 'btn btn-default btn-xs btn-ajax',
+                    id:'btn-new-payment-profile', remote: :true %><p/>
 
         <div class="row" id="payment-profiles">
           <% payment_profiles.each_with_index do |payment_profile, n| %>
-            <%= render 'shared/forms/payment_profile', payment_profile: payment_profile, n: n %>
+            <%= render 'shared/forms/payment_profile',
+                       payment_profile: payment_profile, n: n %>
           <% end %>
         </div>
       <% end %>
