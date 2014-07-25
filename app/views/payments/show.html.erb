@@ -1,3 +1,70 @@
 <% provide(:title, 'Payment') %>
 <h1>Payment</h1>
-<%= render 'shared/profiles/profile_buttons', record: @payment %>
+<%# render 'shared/profiles/profile_buttons', record: @payment %>
+<div class="cold-md-12 row record-display">
+  <div class="col-md-4 record-column">
+    <table>
+      <tr>
+        <th>Supporter</th>
+        <td><%= @supporter.full_name %></td>
+      </tr>
+      <tr>
+        <th>Donation date</th>
+        <td><%= @donation.date %></td>
+      </tr>
+      <tr>
+        <th>Donation amount</th>
+        <td><%= number_to_currency @donation.amount %></td>
+      </tr>
+      <tr>
+        <th>Donation source</th>
+        <td><%= @donation.source.humanize %></td>
+      </tr>
+      <% if @donation.is_sustainer? %>
+        <tr>
+          <th>Donation Month code</th>
+          <td><%= @donation.sub_month %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="col-md-4 record-columnn">
+    <table>
+      <tr>
+        <th>Amount</th>
+        <td><%= number_to_currency @payment.amount %></td>
+      </tr>
+      <tr>
+        <th>Type</th>
+        <td><%= @payment.payment_type.humanize %></td>
+      </tr>
+      <% if @payment.payment_type == "credit" %>
+        <tr>
+          <th>Result</th>
+          <td><%= @payment.captured ? "Captured" : "Declined" %></td>
+        </tr>
+        <tr>
+          <th>Auth code</th>
+          <td><%= @payment.cim_auth_code %></td>
+        </tr>
+        <tr>
+          <th>CIM payment profile</th>
+          <td><%= @payment_profile.cim_payment_profile_id %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="col-md-4 record-columnn">
+    <table>
+      <tr>
+        <th>Status</th>
+        <td><%= @payment.processed ? "Processed" : "Not processed" %></td>
+      </tr>
+      <tr>
+        <th>Deposited at</th>
+        <td><%= @payment.deposited_at %></td>
+      </tr>
+      <%= render 'shared/profiles/magic_columns', record: @payment %>
+    </table>
+  </div>
+</div>

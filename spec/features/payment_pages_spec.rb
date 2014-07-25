@@ -52,6 +52,11 @@ describe 'PaymentPages' do
         describe 'page' do
           it { should have_content (supporter.full_name) }
         end
+        # no way to edit or delete payments for now
+        # describe 'links' do
+        #   it { should have_link('edit', href: edit_payment_path(payment)) }
+        #   it { should have_link('delete', href: payment_path(payment)) }
+        # end
       end
     end
   end
