@@ -1,0 +1,58 @@
+require 'spec_helper'
+include Warden::Test::Helpers
+Warden.test_mode!
+
+describe 'PaymentPages' do
+  
+  subject { page }
+
+  super_admin = FactoryGirl.create(:super_admin)
+  manager = FactoryGirl.create(:manager)
+  #staff = FactoryGirl.create(:staff)
+
+  super_admin_employee = FactoryGirl.create(:employee, user: super_admin)
+  #manager_employee = FactoryGirl.create(:employee, user: manager)
+  #staff_employee = FactoryGirl.create(:employee, user: staff)
+  shift = FactoryGirl.create(:shift, employee: super_admin_employee)
+
+  supporter = FactoryGirl.create(:supporter)
+  donation = FactoryGirl.create(:donation, shift: shift)
+  payment = FactoryGirl.create(:payment, donation: donation)
+  #payment_profile = FactoryGirl.create(:payment_profile, supporter: supporter)
+  #payment = FactoryGirl.create(:payment, donation: donation,
+  #                                      payment_profile: payment_profile)
+
+  #### AS SUPERADMIN USER ####
+
+  # log in as superadmin user to test basic functionality of the pages.
+  # Authorization is handled in the
+  # policy specs
+
+
+  describe 'as super_admin user' do
+    before do
+      visit new_user_session_path
+      fill_in 'Email',    with: super_admin.email
+      fill_in 'Password', with: super_admin.password
+      click_button 'Sign in'
+    end
+
+    after do
+      logout(:super_admin)
+    end
+
+    describe 'new' do
+
+
+    end
+
+    describe 'show' do
+      describe 'page' do
+        before { visit payment_path(payment) }
+        describe 'page' do
+          it { should have_content (supporter.full_name) }
+        end
+      end
+    end
+  end
+end
