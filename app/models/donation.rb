@@ -32,7 +32,6 @@ class Donation < ActiveRecord::Base
   belongs_to :supporter
   belongs_to :shift
   has_many :payments, dependent: :destroy
-  accepts_nested_attributes_for :payments
 
   ## CALLBACKS
   before_save :set_sustainer_codes

@@ -6,13 +6,6 @@
                                 as: :hidden,
                                 input_html: { id: 'payment-profile-id',
                                               value: '' } %>
-        <%# payment_field.input :payment_type,
-                                as: :hidden,
-                                input_html: { id: 'payment-type',
-                                              value: 'credit' } %>
-        <%# payment_field.input :amount,
-                                as: :hidden,
-                                input_html: { id: 'payment-amount' }%>
         <hr />
         <p>Select a payment profile.
         <%= link_to 'New profile', new_supporter_payment_profile_path(supporter),

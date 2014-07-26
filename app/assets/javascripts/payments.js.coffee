@@ -24,15 +24,5 @@ ready = ->
     else
       $("#cc_number_error").text("Invalid credit card number")
 
-#  $("#donation-amount").change ->
-#    value = $(this).val()
-#    $("#payment-amount").val(value)
-
-
-#  $("#donation-type").change ->
-#    value = $(this).val()
-#    $("#payment-type").val(value)
-
-
 $(document).ready(ready)
 $(document).on('page:load', ready)

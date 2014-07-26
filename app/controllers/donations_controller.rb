@@ -18,23 +18,27 @@ class DonationsController < ApplicationController
   end
 
   def create
+    new_donation_params = donation_params
+    new_donation_params.delete(:payments)
     @supporter = Supporter.find(params[:supporter_id])
-
-    # set the payment_type and amount to the same as the donation
-    donation_params[:payments_attributes][:payment_type] = donation_params[:donation_type]
-    donation_params[:payments_attributes][:amount] = donation_params[:amount]
-
-    @donation = @supporter.donations.build(donation_params)
-
-    authorize @donation
-    if @donation.save
-      @donation.send_receipt(@supporter) if @supporter.email_1
-      flash[:success] = 'Success.'
-      redirect_to donation_path(@donation)
-    else
-      @shifts = Shift.all.limit(15)
-      @payment_profiles = @supporter.payment_profiles.limit(5)
-      render 'new'
+    if @supporter
+      @donation = @supporter.donations.build(new_donation_params)
+      authorize @donation
+      if @donation.save
+        @payment = @donation.payments.build
+        @payment.payment_profile_id = donation_params[:payments][:payment_profile_id]
+        @payment.payment_type = @donation.donation_type
+        @payment.amount = @donation.amount
+        if @payment.save
+          @donation.send_receipt(@supporter) if @supporter.email_1
+          flash[:success] = 'Success.'
+          redirect_to donation_path(@donation)
+        end
+      else
+        @shifts = Shift.all.limit(15)
+        @payment_profiles = @supporter.payment_profiles.limit(5)
+        render 'new'
+      end
     end
   end
 
@@ -91,7 +95,7 @@ class DonationsController < ApplicationController
                                         :notes,
                                         :sustainer_type,
                                         :shift_id,
-                                        payments_attributes:
+                                        payments:
                                             [:payment_profile_id,
                                              :payment_type,
                                              :amount,
