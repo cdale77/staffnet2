@@ -73,7 +73,7 @@ describe 'DonationPages' do
       describe 'page' do
         it { should have_title('Staffnet:New donation') }
         it { should have_selector('h1', text: 'New donation') }
-        it { should have_content(supporter.full_name)}
+        it { should have_content(supporter.full_name) }
       end
 
       describe 'with invalid information' do

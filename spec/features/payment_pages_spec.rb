@@ -16,7 +16,7 @@ describe 'PaymentPages' do
   shift = FactoryGirl.create(:shift, employee: super_admin_employee)
 
   supporter = FactoryGirl.create(:supporter)
-  donation = FactoryGirl.create(:donation, shift: shift)
+  donation = FactoryGirl.create(:donation, shift: shift, supporter: supporter)
   payment = FactoryGirl.create(:payment, donation: donation)
   #payment_profile = FactoryGirl.create(:payment_profile, supporter: supporter)
   #payment = FactoryGirl.create(:payment, donation: donation,
@@ -42,13 +42,18 @@ describe 'PaymentPages' do
     end
 
     describe 'new' do
-
-
+      before { visit new_donation_payment_path(donation) }
+      describe 'page' do
+        it { should have_title('Staffnet:New payment') }
+        it { should have_selector('h1', text: 'New payment') }
+        it { should have_content(supporter.full_name) }
+        it { should have_content(donation.date) }
+      end
     end
 
     describe 'show' do
+      before { visit donation_payment_path(donation, payment) }
       describe 'page' do
-        before { visit payment_path(payment) }
         describe 'page' do
           it { should have_content (supporter.full_name) }
         end
