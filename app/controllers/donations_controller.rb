@@ -20,8 +20,10 @@ class DonationsController < ApplicationController
   def create
     @supporter = Supporter.find(params[:supporter_id])
 
-    # set the payment_type to the same as the donation_type
+    # set the payment_type and amount to the same as the donation
     donation_params[:payments_attributes][:payment_type] = donation_params[:donation_type]
+    donation_params[:payments_attributes][:amount] = donation_params[:amount]
+
     @donation = @supporter.donations.build(donation_params)
 
     authorize @donation
@@ -78,8 +80,21 @@ class DonationsController < ApplicationController
   private
 
     def donation_params
-      params.require(:donation).permit( :date, :donation_type, :source, :campaign, :sub_month, :sub_week, :amount,
-                                        :cancelled, :notes, :sustainer_type, :shift_id,
-                                        payments_attributes: [:payment_profile_id, :payment_type, :amount, :notes] )
+      params.require(:donation).permit( :date,
+                                        :donation_type,
+                                        :source,
+                                        :campaign,
+                                        :sub_month,
+                                        :sub_week,
+                                        :amount,
+                                        :cancelled,
+                                        :notes,
+                                        :sustainer_type,
+                                        :shift_id,
+                                        payments_attributes:
+                                            [:payment_profile_id,
+                                             :payment_type,
+                                             :amount,
+                                             :notes] )
     end
 end
