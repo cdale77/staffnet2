@@ -19,14 +19,14 @@ class DonationsController < ApplicationController
 
   def create
     new_donation_params = donation_params
-    new_donation_params.delete(:payments)
+    new_donation_params.delete(:payment_profile_id)
     @supporter = Supporter.find(params[:supporter_id])
     if @supporter
       @donation = @supporter.donations.build(new_donation_params)
       authorize @donation
       if @donation.save
         @payment = @donation.payments.build
-        @payment.payment_profile_id = donation_params[:payments][:payment_profile_id]
+        @payment.payment_profile_id = donation_params[:payment_profile_id]
         @payment.payment_type = @donation.donation_type
         @payment.amount = @donation.amount
         if @payment.save
@@ -94,10 +94,6 @@ class DonationsController < ApplicationController
                                         :notes,
                                         :sustainer_type,
                                         :shift_id,
-                                        payments:
-                                            [:payment_profile_id,
-                                             :payment_type,
-                                             :amount,
-                                             :notes] )
+                                        :payment_profile_id)
     end
 end

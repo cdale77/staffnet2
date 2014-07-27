@@ -2,7 +2,7 @@
 // inserts the newly-created payment profile into the payment profile select
 
 (function() {
-  console.log("in the template");
+
   // hide the new payment profile form, as we no longer need it
   $("#new-payment-profile-fields").collapse("hide");
 
@@ -15,12 +15,13 @@
   $("#flash-ajax").collapse("show");
 
   <% if @cim_profile.success  %>
-    console.log("in the if statement");
+
     // prepend the new profile item to the select
+    var profileId = <%= @payment_profile.id %>;
+    var profileDescription = "<%= @payment_profile.short_version %>";
     $("#donation_payment_profile_id").prepend(
-        $('<option></option>').val(12345).html("some new thing")
+        $('<option></option>').val(profileId).html(profileDescription)
     );
-    //$("#payment-profiles").append("<%# j render 'shared/forms/payment_profile', payment_profile: @payment_profile, n: '4' %>");
   <% end %>
 
   // re-display the new payment profile button

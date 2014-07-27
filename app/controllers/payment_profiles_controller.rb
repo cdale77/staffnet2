@@ -19,7 +19,8 @@ class PaymentProfilesController < ApplicationController
     @supporter = Supporter.find(params[:supporter_id])
     @payment_profile = @supporter.payment_profiles.build(payment_profile_params)
     authorize @payment_profile
-    @cim_profile = Cim::PaymentProfile.new(@supporter, params[:payment_profile][:cc_number],
+    @cim_profile = Cim::PaymentProfile.new(@supporter,
+                                           params[:payment_profile][:cc_number],
                                            params[:payment_profile][:cc_month],
                                            params[:payment_profile][:cc_year] )
     if @cim_profile.store
@@ -35,6 +36,10 @@ class PaymentProfilesController < ApplicationController
 
   private
     def payment_profile_params
-      params.require(:payment_profile).permit(:supporter_id, :payment_profile_type, :cc_number, :cc_month, :cc_year)
+      params.require(:payment_profile).permit(:supporter_id,
+                                              :payment_profile_type,
+                                              :cc_number,
+                                              :cc_month,
+                                              :cc_year)
     end
 end
