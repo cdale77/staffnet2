@@ -61,10 +61,12 @@ class Payment < ActiveRecord::Base
   end
 
   def send_receipt
-    supporter = self.donation.supporter
-    if supporter.email_1.present?
-      if SupporterMailer.receipt(supporter, self.donation).deliver
-        self.receipt_sent_at = Time.now
+    unless self.receipt_sent_at.present?
+      supporter = self.donation.supporter
+      if supporter.email_1.present?
+        if SupporterMailer.receipt(supporter, self.donation).deliver
+          self.receipt_sent_at = Time.now
+        end
       end
     end
   end

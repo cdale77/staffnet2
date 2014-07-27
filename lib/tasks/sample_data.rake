@@ -117,13 +117,17 @@ namespace :db do
           donation.save
         end
       end
-=begin
+
       # payments
       Donation.all.each do |donation|
-        payment = donation.payments.build(  deposited_at: Date.today,
+        donation.payments.create!(  deposited_at: Date.today,
                                             amount: donation.amount,
-                                            payment_type: donation.donation_type)
-        payment.save
+                                            payment_type: donation.donation_type,
+                                            captured: true,
+                                            processed: true,
+                                            receipt_sent_at: Time.now,
+                                            deposited_at: Date.today)
+
       end
 
       # payment_profiles
@@ -136,7 +140,7 @@ namespace :db do
                                                                 cc_year:    '2017' })
         profile.save
       end
-=end
+
     end
 
 =begin
