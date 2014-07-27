@@ -1,6 +1,8 @@
 <div class="col-md-12 row" id="donation-payments">
   <div class="table-header">
     <h4 class="table-title-right">Payments</h4>
+    <%= render 'shared/profiles/new_dependent_record_button',
+               record_name: 'payment', record: donation %>
   </div>
   <table class="table table-hover">
       <tr>
@@ -10,7 +12,7 @@
         <th>Captured?</th>
       </tr>
       <% payments.each do |payment| %>
-        <tr class="clickable-row" id="payment_<%= payment.id %>" url="<%= donation_payment_path(payment.donation, payment) %>">
+        <tr class="clickable-row <%= payment.captured ? '' : 'red' %>" id="payment_<%= payment.id %>" url="<%= donation_payment_path(payment.donation, payment) %>">
           <td><%= payment.created_at %></td>
           <td><%= payment.amount %></td>
           <td><%= payment.payment_type %></td>

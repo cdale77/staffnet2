@@ -64,6 +64,10 @@
         <th>Deposited at</th>
         <td><%= @payment.deposited_at %></td>
       </tr>
+      <tr>
+        <th>Receipt sent at</th>
+        <td><%= @payment.receipt_sent_at %></td>
+      </tr>
       <%= render 'shared/profiles/magic_columns', record: @payment %>
     </table>
   </div>

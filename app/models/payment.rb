@@ -17,6 +17,7 @@
 #  notes              :text             default("")
 #  created_at         :datetime
 #  updated_at         :datetime
+#  receipt_sent_at    :datetime
 #
 
 class Payment < ActiveRecord::Base
@@ -29,7 +30,7 @@ class Payment < ActiveRecord::Base
 
   ## CALLBACKS
   before_save :process_payment
-  after_save :send_receipt
+  before_save :send_receipt
 
   ## VALIDATIONS
   validates :payment_type, presence: { message: 'required.' }
@@ -62,7 +63,9 @@ class Payment < ActiveRecord::Base
   def send_receipt
     supporter = self.donation.supporter
     if supporter.email_1.present?
-      SupporterMailer.receipt(supporter, self.donation).deliver
+      if SupporterMailer.receipt(supporter, self.donation).deliver
+        self.recept_sent_at = Time.now
+      end
     end
   end
 end

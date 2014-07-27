@@ -17,6 +17,7 @@
 #  notes              :text             default("")
 #  created_at         :datetime
 #  updated_at         :datetime
+#  receipt_sent_at    :datetime
 #
 
 require 'spec_helper'
