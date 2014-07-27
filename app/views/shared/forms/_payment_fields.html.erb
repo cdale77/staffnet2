@@ -2,7 +2,7 @@
   <div class="form-group row">
     <div class="col-md-10">
       <%= f.simple_fields_for :payments do |payment_field| %>
-        <%= payment_field.input :payment_profile_id,
+        <%# payment_field.input :payment_profile_id,
                                 as: :hidden,
                                 input_html: { id: 'payment-profile-id',
                                               value: '' } %>
@@ -12,9 +12,20 @@
                     class: 'btn btn-default btn-xs btn-ajax',
                     id:'btn-new-payment-profile', remote: :true %><p/>
 
+        <div class="row">
+          <%= payment_field.input :payment_profile_id,
+                                  as: :select,
+                                  collection: payment_profiles,
+                                  label_method: :short_version,
+                                  include_blank: true,
+                                  selected: payment.payment_profile_id
+          %>
+        </div>
+
+
         <div class="row" id="payment-profiles">
           <% payment_profiles.each_with_index do |payment_profile, n| %>
-            <%= render 'shared/forms/payment_profile',
+            <%# render 'shared/forms/payment_profile',
                        payment_profile: payment_profile, n: n %>
           <% end %>
         </div>

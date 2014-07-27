@@ -35,6 +35,10 @@ class PaymentProfile < ActiveRecord::Base
             format: { with: LAST_4_CC_REGEX, message: 'must be 10 digits' },
             allow_blank: true
 
+  def short_version
+    "#{self.payment_profile_type.humanize} - #{self.details}"
+  end
+
   def store_cc_info
     if self.cc_number
       self.cc_last_4 = cc_number[12..16]
