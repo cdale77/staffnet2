@@ -1,3 +1,6 @@
+# This code does a bit of dynamic credit card number validation when
+# creating a new payment profile
+
 CreditCard =
   cleanNumber: (number) -> number.replace /[- ]/g, ""
 
@@ -13,10 +16,6 @@ CreditCard =
 
 ready = ->
 
-  $(document.body).on "click", ".profile-selector", ->
-    id = $(this).val()
-    $("#payment-profile-id").val(id)
-
   $(document.body).on "blur", "input#payment_profile_cc_number", ->
 
     if CreditCard.validNumber(@value)
@@ -24,5 +23,6 @@ ready = ->
     else
       $("#cc_number_error").text("Invalid credit card number")
 
+# compatability with turbolinks
 $(document).ready(ready)
 $(document).on('page:load', ready)

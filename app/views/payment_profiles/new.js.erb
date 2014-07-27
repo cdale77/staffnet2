@@ -1,5 +1,6 @@
+// renders the new payment_profile form
+
 (function() {
-  //$("#new-payment-profile").hide().after('');
   $("#btn-new-payment-profile").hide();
   $("#new-payment-profile-fields").html("<%= j render("payment_profile_fields") %>");
   $("#new-payment-profile-fields").collapse("show")

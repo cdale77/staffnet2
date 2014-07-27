@@ -1,10 +1,28 @@
+// this is rendered after the payment profiles controller create action. It
+// inserts the newly-created payment profile into the payment profile select
+
 (function() {
+  console.log("in the template");
+  // hide the new payment profile form, as we no longer need it
   $("#new-payment-profile-fields").collapse("hide");
-  $("#flash-ajax").html("<%= j render 'shared/forms/payment_profile_alert', cim_profile: @cim_profile %>");
+
+  // render a flash notification to the user. this function fills the div with
+  // content. the function below causes it to be shown to the user
+  $("#flash-ajax").html("<%= j render 'shared/forms/payment_profile_alert',
+                                                cim_profile: @cim_profile %>");
+
+  // cause the flash div to be shown
   $("#flash-ajax").collapse("show");
+
   <% if @cim_profile.success  %>
-    $("#payment-profiles").append("<%= j render 'shared/forms/payment_profile', payment_profile: @payment_profile, n: '4' %>");
+    console.log("in the if statement");
+    // prepend the new profile item to the select
+    $("#donation_payment_profile_id").prepend(
+        $('<option></option>').val(12345).html("some new thing")
+    );
+    //$("#payment-profiles").append("<%# j render 'shared/forms/payment_profile', payment_profile: @payment_profile, n: '4' %>");
   <% end %>
+
+  // re-display the new payment profile button
   $("#btn-new-payment-profile").show();
 })();
-
