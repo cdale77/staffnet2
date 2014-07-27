@@ -30,7 +30,6 @@ class DonationsController < ApplicationController
         @payment.payment_type = @donation.donation_type
         @payment.amount = @donation.amount
         if @payment.save
-          @donation.send_receipt(@supporter) if @supporter.email_1
           flash[:success] = 'Success.'
           redirect_to donation_path(@donation)
         end

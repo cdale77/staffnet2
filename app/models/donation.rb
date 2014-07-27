@@ -55,10 +55,6 @@ class Donation < ActiveRecord::Base
     sub_month.present? ? true : false
   end
 
-  def send_receipt(supporter)
-    SupporterMailer.receipt(supporter, self).deliver
-  end
-
   def frequency
     case self.sub_month
       when ''

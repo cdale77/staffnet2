@@ -29,6 +29,7 @@ class Payment < ActiveRecord::Base
 
   ## CALLBACKS
   before_save :process_payment
+  after_save :send_receipt
 
   ## VALIDATIONS
   validates :payment_type, presence: { message: 'required.' }
@@ -41,7 +42,9 @@ class Payment < ActiveRecord::Base
   def process_payment
     unless self.processed
       if self.payment_type == "credit"
-        charge = Cim::ProfilePayment.new(self.supporter.cim_id, self.payment_profile.cim_payment_profile_id, self.amount)
+        charge = Cim::ProfilePayment.new(self.supporter.cim_id,
+                                         self.payment_profile.cim_payment_profile_id,
+                                         self.amount)
         if charge.process
           self.cim_transaction_id = charge.cim_transaction_id
           self.cim_auth_code = charge.cim_auth_code
@@ -53,6 +56,13 @@ class Payment < ActiveRecord::Base
         self.captured = true # anything but a credit payment considered captured
       end
       self.processed = true
+    end
+  end
+
+  def send_receipt
+    supporter = self.donation.supporter
+    if supporter.email_1.present?
+      SupporterMailer.receipt(supporter, self.donation).deliver
     end
   end
 end
