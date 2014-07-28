@@ -41,7 +41,7 @@ class DepositBatch < ActiveRecord::Base
       if type_batch
         date_batches = type_batch.group_by { |payment| payment.donation.date }
         date_batches.each do |k,v|
-          batch = DepositBatch.create(batch_type: "cash", date: k)
+          batch = DepositBatch.create(batch_type: type_name, date: k)
           v.each do |payment|
             payment.deposit_batch_id = batch.id
             payment.save

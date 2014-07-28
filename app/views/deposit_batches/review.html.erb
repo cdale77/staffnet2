@@ -1,1 +1,12 @@
 <% provide(:title, 'Review batches') %>
+<h1>Deposit batches</h1>
+<table class="table">
+  <tr>
+    <th>Type</th>
+    <th>Date</th>
+    <th>Payments</th>
+    <th>Total</th>
+    <th>Approved by</th>
+  </tr>
+  <%= render @deposit_batches %>
+</table>
