@@ -23,8 +23,8 @@ require 'spec_helper'
 
 describe Donation do
 
-  donation_attributes = { date: '2012/12/10', donation_type: 'Ongoing', source: 'Mail', campaign: 'Energy', frequency: 'One time',
-                          sub_month: 'a', sub_week: 3, amount: 10.00, cancelled: false, notes: 'Notes'}
+  donation_attributes = { date: '2012/12/10', donation_type: 'Ongoing', source: 'Mail', campaign: 'Energy', frequency: 'Monthly',
+                          sub_month: 'm', sub_week: 3, amount: 10.00, cancelled: false, notes: 'Notes'}
 
   let(:donation) { FactoryGirl.create(:donation) }
 
@@ -86,5 +86,24 @@ describe Donation do
       donation.sub_week = 4
       donation.should be_valid
     end
+  end
+
+  ## INSTANCE METHODS
+  describe '#is_sustainer?' do
+    it 'should return the correct result for a sustainer' do
+      donation.sub_month = 'm'
+      donation.sub_week = 2
+      donation.cancelled = false
+      expect(donation.is_sustainer?).to be_true
+    end
+    it 'should return the correct result for a non sustainer' do
+      donation.sub_week = ''
+      expect(donation.is_sustainer?).to be_false
+    end
+    it 'should return the correct result for a cancelled sustainer do' do
+      donation.cancelled = true
+      expect(donation.is_sustainer?).to be_false
+    end
+
   end
 end

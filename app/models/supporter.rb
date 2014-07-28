@@ -100,6 +100,7 @@ class Supporter < ActiveRecord::Base
             numericality: { message: 'must be 5 digits.' },
             allow_blank: true
 
+
   ## WRITERS  
   def email_1=(email)
     write_attribute(:email_1, email.downcase)
@@ -141,6 +142,18 @@ class Supporter < ActiveRecord::Base
     end
   end
 
+  ## CLASS METHODS
+  def self.current_sustainers
+
+  end
+
+  def is_sustainer?
+    flag = false
+    self.donations.each do |donation|
+      flag = true if donation.is_susatainer?
+    end
+    return flag
+  end
 =begin
   # no longer using this code, using a service object instead
   def unstore_cim_profile

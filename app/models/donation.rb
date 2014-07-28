@@ -50,9 +50,18 @@ class Donation < ActiveRecord::Base
             allow_blank: true
 
 
+  ## Class methods
+  def self.sustaining_donations
+    where("sub_month <> '' AND canceled = false")
+  end
+
 
   def is_sustainer?
-    sub_month.present? ? true : false
+    if sub_month.present? && sub_week.present? && cancelled == false
+      true
+    else
+      false
+    end
   end
 
   def frequency
