@@ -32,31 +32,24 @@ class DepositBatch < ActiveRecord::Base
     payments = Payment.to_be_batched
 
     # sort by type. example - types["check"] gives the check payments
-    types = payments.group_by { |payment| payment.payment_type }
+    type_batches = payments.group_by { |payment| payment.payment_type }
 
-    # batch up the cash and credit types
-    cash_payments = types.delete("cash")
-    one_time_cc_payments = types.delete("credit")
+    type_names = %w[credit cash check]
 
-    if cash_payments
-      batches = cash_payments.group_by { |payment| payment.donation.date }
-      batches.each do |k,v|
-        batch = DepositBatch.create(batch_type: "cash", date: k)
-        v.each do |payment|
-          payment.deposit_batch_id = batch.id
-          payment.save
+    type_names.each do |type_name|
+      type_batch = type_batches.delete(type_name)
+      if type_batch
+        date_batches = type_batch.group_by { |payment| payment.donation.date }
+        date_batches.each do |k,v|
+          batch = DepositBatch.create(batch_type: "cash", date: k)
+          v.each do |payment|
+            payment.deposit_batch_id = batch.id
+            payment.save
+          end
         end
       end
     end
 
-    if one_time_cc_payments
-      batches = cash_payments.group_by { |payment| payment.donation.date }
-      batches.each do |k,v|
-        batch = DepositBatch.create(batch_type: "credit", date: k)
-        v.deposit_batch_id = batch.id
-        v.save
-      end
-    end
 
     # deal with the other types (installment, retry, etc)
   end
