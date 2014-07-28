@@ -1,7 +1,4 @@
-<div class="col-md-12 row">
-  <h4>Supporter: <%= supporter.full_name %></h4>
-  <h4>Donation: <%= "#{number_to_currency(donation.amount)} on #{donation.date}" %></h4>
-</div>
+
 <div class="row">
   <div class="col-md-2">
     <%= render 'shared/forms/payment_fields', payment: payment,

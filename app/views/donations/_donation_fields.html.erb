@@ -1,6 +1,4 @@
-<div class="col-md-12 row">
-  <h4>Supporter: <%= supporter.full_name %></h4>
-</div>
+
 <div class="row">
   <div class="col-md-2">
     <%= f.input :date, as: :string, input_html: { class: 'datepicker' }  %>
@@ -25,6 +23,14 @@
   </div>
 </div>
 <hr />
+<% if payment_fields %>
+  <%= render 'shared/forms/payment_fields', payment: payment,
+             supporter: supporter,
+             payment_profiles: payment_profiles,
+             f: f %>
+  <hr />
+<% end %>
+
 <div class="row">
   <div class="col-md-3">
     <%= f.input :source,
@@ -49,11 +55,6 @@
   </div>
 </div>
 <%= render 'shared/forms/notes_field', f: f %>
-<% if payment_fields %>
-  <%= render 'shared/forms/payment_fields', payment: payment,
-                                            supporter: supporter,
-                                            payment_profiles: payment_profiles,
-                                            f: f %>
-<% end %>
+
 
 
