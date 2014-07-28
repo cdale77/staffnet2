@@ -144,13 +144,13 @@ class Supporter < ActiveRecord::Base
 
   ## CLASS METHODS
   def self.current_sustainers
-
+    all.select { |supporter| supporter.is_sustainer? }
   end
 
   def is_sustainer?
     flag = false
     self.donations.each do |donation|
-      flag = true if donation.is_susatainer?
+      flag = true if donation.is_sustainer?
     end
     return flag
   end

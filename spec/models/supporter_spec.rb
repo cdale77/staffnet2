@@ -59,6 +59,10 @@ describe Supporter do
                             address_county: 'Alameda' }
 
   let!(:supporter) { FactoryGirl.create(:supporter) } # eager-eval to limit Cim callbacks
+  let!(:sustainer) { FactoryGirl.create(:supporter) }
+  let!(:donation) { FactoryGirl.create(:donation, supporter: sustainer,
+                                                  sub_month: 'm',
+                                                  sub_week: 3) }
   subject { supporter }
 
   ## ATTRIBUTES
@@ -186,6 +190,14 @@ describe Supporter do
       supporter.phone_mobile = dirty_phone
       supporter.save
       expect(supporter.reload.phone_mobile).to eql clean_phone
+    end
+  end
+  describe '#is_sustainer?' do
+    it 'should return true if the supporter has a sustaining donation' do
+      expect(sustainer.is_sustainer?).to be_true
+    end
+    it 'should return false if the supporter does not have a sustaining donation' do
+      expect(supporter.is_sustainer?).to be_false
     end
   end
 
