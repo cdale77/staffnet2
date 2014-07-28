@@ -22,7 +22,7 @@ class DepositBatch < ActiveRecord::Base
   # combine results from batch up, with sustainer payments that need
   # to be created, with non-approved existing batches
   def self.to_be_approved
-    []
+    where(approved: false)
   end
 
   # create new batches from un-batched payments
@@ -34,7 +34,7 @@ class DepositBatch < ActiveRecord::Base
     # sort by type. example - types["check"] gives the check payments
     type_batches = payments.group_by { |payment| payment.payment_type }
 
-    type_names = %w[credit cash check]
+    type_names = %w[credit cash check retry installment]
 
     type_names.each do |type_name|
       type_batch = type_batches.delete(type_name)
@@ -49,10 +49,5 @@ class DepositBatch < ActiveRecord::Base
         end
       end
     end
-
-
-    # deal with the other types (installment, retry, etc)
   end
-
-
 end
