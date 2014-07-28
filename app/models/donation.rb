@@ -52,7 +52,7 @@ class Donation < ActiveRecord::Base
 
   ## Class methods
   def self.sustaining_donations
-    where("sub_month <> '' AND canceled = false")
+    where("sub_month <> '' AND cancelled = false")
   end
 
 

@@ -88,6 +88,19 @@ describe Donation do
     end
   end
 
+  ## CLASS METHODS
+  describe '::sustaining_donations' do
+    before do
+      FactoryGirl.create(:donation, sub_week: 3, sub_month: 'm', cancelled: false)
+      FactoryGirl.create(:donation, sub_week: 3, sub_month: 'm', cancelled: false)
+      FactoryGirl.create(:donation, sub_week: 3, sub_month: 'm', cancelled: true)
+      FactoryGirl.create(:donation, sub_week: 0, sub_month: '', cancelled: false)
+    end
+    it 'should return the sustaining donations' do
+      expect(Donation.sustaining_donations.count).to eq 2
+    end
+  end
+
   ## INSTANCE METHODS
   describe '#is_sustainer?' do
     it 'should return the correct result for a sustainer' do
