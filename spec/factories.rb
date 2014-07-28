@@ -9,6 +9,8 @@ FactoryGirl.define do
   factory :user do
     email
     role                  ''
+    confirmation_sent_at  Time.now
+    confirmed_at          Time.now
     password              'foobar7878'
     password_confirmation 'foobar7878'
 
@@ -145,6 +147,7 @@ FactoryGirl.define do
     captured              true
     amount                10.00
     processed             true
+    receipt_sent_at       Time.now
     donation
   end
 

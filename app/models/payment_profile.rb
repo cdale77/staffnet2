@@ -36,7 +36,13 @@ class PaymentProfile < ActiveRecord::Base
             allow_blank: true
 
   def short_version
-    "#{self.payment_profile_type.humanize} - #{self.details}"
+    if self.payment_profile_type == "credit"
+      "#{self.payment_profile_type.humanize} - #{self.cc_type.humanize} \
+        x#{self.cc_last_4} #{self.cc_month}/#{self.cc_year}"
+    else
+      "#{self.payment_profile_type.humanize}"
+    end
+
   end
 
   def store_cc_info
