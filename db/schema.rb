@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 20140728185013) do
     t.integer  "supporter_id"
     t.string   "cim_payment_profile_id", default: ""
     t.string   "payment_profile_type",   default: ""
-    t.hstore   "details",                default: {}
+    t.hstore   "details",                default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -212,7 +212,7 @@ ActiveRecord::Schema.define(version: 20140728185013) do
     t.decimal  "travel_reimb",              precision: 8, scale: 2, default: 0.0
     t.boolean  "cv_shift",                                          default: false
     t.boolean  "quota_shift",                                       default: false
-    t.hstore   "products",                                          default: {}
+    t.hstore   "products",                                          default: ""
     t.decimal  "reported_raised",           precision: 8, scale: 2, default: 0.0
     t.integer  "reported_total_yes",                                default: 0
     t.integer  "reported_cash_qty",                                 default: 0
@@ -232,12 +232,6 @@ ActiveRecord::Schema.define(version: 20140728185013) do
   add_index "shifts", ["employee_id"], name: "index_shifts_on_employee_id", using: :btree
   add_index "shifts", ["field_manager_employee_id"], name: "index_shifts_on_field_manager_employee_id", using: :btree
   add_index "shifts", ["shift_type_id"], name: "index_shifts_on_shift_type_id", using: :btree
-
-  create_table "supporter_types", force: true do |t|
-    t.string   "name",       default: ""
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "supporters", force: true do |t|
     t.integer  "supporter_type_id"
@@ -324,35 +318,5 @@ ActiveRecord::Schema.define(version: 20140728185013) do
   add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree
   add_index "tasks", ["shift_id"], name: "index_tasks_on_shift_id", using: :btree
   add_index "tasks", ["task_type_id"], name: "index_tasks_on_task_type_id", using: :btree
-
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        default: 0
-    t.string   "unlock_token"
-    t.datetime "locked_at"
-    t.string   "authentication_token"
-    t.string   "role",                   default: ""
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
 end
