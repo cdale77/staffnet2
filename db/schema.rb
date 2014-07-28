@@ -36,13 +36,13 @@ ActiveRecord::Schema.define(version: 20140728185013) do
 
   create_table "deposit_batches", force: true do |t|
     t.integer  "employee_id"
-    t.string   "batch_type",     default: ""
+    t.string   "batch_type",      default: ""
     t.date     "date"
-    t.boolean  "deposited",      default: false
+    t.boolean  "deposited",       default: false
+    t.boolean  "approved",        default: false
+    t.string   "receipt_number",  default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "approved",       default: false
-    t.string   "receipt_number", default: ""
   end
 
   create_table "donations", force: true do |t|
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 20140728185013) do
     t.integer  "supporter_id"
     t.string   "cim_payment_profile_id", default: ""
     t.string   "payment_profile_type",   default: ""
-    t.hstore   "details",                default: ""
+    t.hstore   "details",                default: {}
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -212,7 +212,7 @@ ActiveRecord::Schema.define(version: 20140728185013) do
     t.decimal  "travel_reimb",              precision: 8, scale: 2, default: 0.0
     t.boolean  "cv_shift",                                          default: false
     t.boolean  "quota_shift",                                       default: false
-    t.hstore   "products",                                          default: ""
+    t.hstore   "products",                                          default: {}
     t.decimal  "reported_raised",           precision: 8, scale: 2, default: 0.0
     t.integer  "reported_total_yes",                                default: 0
     t.integer  "reported_cash_qty",                                 default: 0
@@ -232,6 +232,12 @@ ActiveRecord::Schema.define(version: 20140728185013) do
   add_index "shifts", ["employee_id"], name: "index_shifts_on_employee_id", using: :btree
   add_index "shifts", ["field_manager_employee_id"], name: "index_shifts_on_field_manager_employee_id", using: :btree
   add_index "shifts", ["shift_type_id"], name: "index_shifts_on_shift_type_id", using: :btree
+
+  create_table "supporter_types", force: true do |t|
+    t.string   "name",       default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "supporters", force: true do |t|
     t.integer  "supporter_type_id"
