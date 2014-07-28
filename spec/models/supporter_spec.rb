@@ -165,6 +165,14 @@ describe Supporter do
     end
   end
 
+  ## CLASS METHODS
+  describe '::current_sustainers' do
+    it 'should return the current sustainers' do
+      current_sustainers = Supporter.current_sustainers
+      expect(current_sustainers.first).to eql sustainer
+    end
+  end
+
   ## METHODS
   describe 'salutation setting' do
     it 'should set the salutation correctly' do
