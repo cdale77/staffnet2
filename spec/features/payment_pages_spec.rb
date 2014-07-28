@@ -22,6 +22,8 @@ describe 'PaymentPages' do
   #payment = FactoryGirl.create(:payment, donation: donation,
   #                                      payment_profile: payment_profile)
 
+
+
   #### AS SUPERADMIN USER ####
 
   # log in as superadmin user to test basic functionality of the pages.
@@ -48,6 +50,19 @@ describe 'PaymentPages' do
         it { should have_selector('h1', text: 'New payment') }
         it { should have_content(supporter.full_name) }
         it { should have_content(donation.date) }
+      end
+
+
+      # for now there is no case of invalid info. You just click to add
+      describe 'with valid information' do
+        it 'should create a new donation' do
+          expect { click_button 'Create Payment' }.to change(Payment, :count).by(1)
+        end
+        describe 'after saving a payment' do
+          before { click_button 'Create Payment' }
+          it { should have_selector('div.alert') }
+          it { should have_content('Month code') }
+        end
       end
     end
 

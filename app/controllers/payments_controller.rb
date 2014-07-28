@@ -21,4 +21,27 @@ class PaymentsController < ApplicationController
     @supporter = @donation.supporter if @donation
     authorize @payment
   end
+
+  def create
+    @donation = Donation.find(params[:donation_id])
+    if @donation
+      @payment = @donation.payments.build(payment_params)
+      @payment.amount = @donation.amount
+      @payment.payment_type = @donation.donation_type
+      authorize @payment
+      if @payment.save
+        flash[:success] = 'Success.'
+        redirect_to donation_path(@donation)
+      end
+    else
+      @supporter = @donation.supporter
+      @payment_profiles = @supporter.payment_profiles.limit(5)
+      render 'new'
+    end
+  end
+
+  private
+    def payment_params
+      params.require(:payment).permit(:payment_profile_id)
+    end
 end
