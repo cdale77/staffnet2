@@ -37,5 +37,6 @@ Staffnet2::Application.routes.draw do
     resources :sendy_lists
 
     get "deposit_batches/review", to: "deposit_batches#review", as: :deposit_batches_review
+    get "installments/review", to: "installments#review", as: :installments_review
   end
 end
