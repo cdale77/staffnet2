@@ -34,16 +34,12 @@ describe 'DepositBatchPages' do
       logout(:super_admin)
     end
 
-    describe 'new' do
+    describe 'review' do
       before do
-        visit new_deposit_batch_path
+        visit deposit_batches_review_path
       end
       describe 'page' do
-        it { should have_title('Staffnet:New deposit batch') }
-#        it { should have_selector('h1', text: 'New deposit batch') }
-      end
-      describe 'associated payments' do
-        it { should have_content(payment.payment_type.humanize) }
+        it { should have_title('Staffnet:Review batches') }
       end
 
     end

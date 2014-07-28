@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140727014954) do
+ActiveRecord::Schema.define(version: 20140728185013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,11 +36,13 @@ ActiveRecord::Schema.define(version: 20140727014954) do
 
   create_table "deposit_batches", force: true do |t|
     t.integer  "employee_id"
-    t.string   "batch_type",  default: ""
+    t.string   "batch_type",     default: ""
     t.date     "date"
-    t.boolean  "deposited",   default: false
+    t.boolean  "deposited",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "approved",       default: false
+    t.string   "receipt_number", default: ""
   end
 
   create_table "donations", force: true do |t|

@@ -43,10 +43,10 @@ describe Payment do
   it { should respond_to(:deposit_batch) }
 
   ## CLASS METHODS
-  describe 'payments to be deposited' do
+  describe 'payments to be batched' do
     before { 5.times { FactoryGirl.create(:payment) } }
     it 'should return the right payments' do
-      Payment.to_be_deposited.count.should eql 5
+      Payment.to_be_batched.count.should eql 5
     end
   end
 

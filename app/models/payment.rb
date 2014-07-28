@@ -36,8 +36,8 @@ class Payment < ActiveRecord::Base
   validates :payment_type, presence: { message: 'required.' }
   validates :amount, presence: { message: 'required.' }
 
-  def self.to_be_deposited
-    where(deposited_at: nil)
+  def self.to_be_batched
+    where(deposit_batch_id: nil)
   end
 
   def process_payment

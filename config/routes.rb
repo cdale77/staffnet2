@@ -1,10 +1,10 @@
 Staffnet2::Application.routes.draw do
 
-  root  'static_pages#home'
+  root  "static_pages#home"
 
   devise_for :users
 
-  scope '/admin' do
+  scope "/admin" do
     resources :users
 
     resources :employees do
@@ -36,6 +36,6 @@ Staffnet2::Application.routes.draw do
 
     resources :sendy_lists
 
-    resources :deposit_batches
+    get "deposit_batches/review", to: "deposit_batches#review", as: :deposit_batches_review
   end
 end
