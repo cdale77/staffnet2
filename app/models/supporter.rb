@@ -142,6 +142,7 @@ class Supporter < ActiveRecord::Base
   end
 
 =begin
+  # no longer using this code, using a service object instead
   def unstore_cim_profile
     profile = Cim::Profile.new(self.id, self.email_1, self.cim_id.to_s)
     begin

@@ -14,7 +14,7 @@ class SupportersController < ApplicationController
     @supporter = @supporter_type.supporters.build(supporter_params)
     authorize @supporter
     if @supporter.save
-      new_supporter_tasks
+      new_supporter_tasks(@supporter)
       redirect_to supporter_path(@supporter)
     else
       render 'new'
@@ -54,17 +54,23 @@ class SupportersController < ApplicationController
   def destroy
     supporter = Supporter.find(params[:id])
     authorize supporter
+    destroy_supporter_tasks(supporter)
     supporter.destroy
-    flash[:success] = 'Supporter destroyed.'
     redirect_to supporters_url
   end
 
   private
 
-    def new_supporter_tasks
-      sendy_list = @supporter_type.sendy_lists.first
-      service = SupporterService.new(@supporter.id, sendy_list.id, @supporter.email_1 )
-      service.new_supporter ? flash[:success] = 'Saved new supporter.' : flash[:error] = "Error: #{service.message}"
+    def new_supporter_tasks(supporter)
+      sendy_list = supporter.supporter_type.sendy_lists.first
+      service = SupporterService.new(supporter.id, sendy_list.id, supporter.email_1 )
+      service.new_supporter ? flash[:success] = 'Saved new supporter.' : flash[:alert] = "Error: #{service.message}"
+    end
+
+    def destroy_supporter_tasks(supporter)
+      sendy_list = supporter.supporter_type.sendy_lists.first
+      service = SupporterService.new(supporter.id, sendy_list.id, supporter.email_1, '', '', supporter.cim_id )
+      service.destroy_supporter ? flash[:success] = 'Supporter record destroyed.' : flash[:alert] = "Error: #{service.message}"
     end
 
     def supporter_params

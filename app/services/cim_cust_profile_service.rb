@@ -2,12 +2,12 @@ class CimCustProfileService < ServiceBase
 
   attr_reader :cim_id
 
-  def initialize(supporter_id, supporter_email)
+  def initialize(supporter_id, supporter_email, supporter_cim_id = '')
     @success = false
     @message = ''
     @supporter_id = supporter_id
     @supporter_email = supporter_email
-    @cim_id = ''
+    @cim_id = supporter_cim_id
   end
 
   def create
@@ -22,7 +22,8 @@ class CimCustProfileService < ServiceBase
   end
 
   def destroy
-    profile = Cim::Profile.new(@supporter_id)
+    # need to supply the cim profile id when destroying a profile
+    profile = Cim::Profile.new(@supporter_id, '', @cim_id)
     begin
       profile.unstore
     rescue
