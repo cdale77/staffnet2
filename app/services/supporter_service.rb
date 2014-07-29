@@ -2,17 +2,17 @@ class SupporterService < ServiceBase
 
   attr_reader :cim_id
 
-  def initialize(supporter_id, sendy_list_id, supporter_email = '',
+  def initialize(supporter, sendy_list_id, supporter_email = '',
                  old_email = '', new_status = '', cim_id = '')
+    @supporter = supporter
     @message = ''
     @success = false
     @cim_id = cim_id
     @new_status = new_status
-    @supporter_id = supporter_id
-    @cim_profile = CimCustProfileService.new(@supporter_id,
+    @cim_profile = CimCustProfileService.new(@supporter.cim_customer_id,
                                              supporter_email,
                                              @cim_id)
-    @sendy_update = SendyUpdateService.new(@supporter_id,
+    @sendy_update = SendyUpdateService.new(@supporter.cim_customer_id,
                                            sendy_list_id,
                                            supporter_email,
                                            old_email)
@@ -59,9 +59,8 @@ class SupporterService < ServiceBase
     end
 
     def update_record
-      supporter = Supporter.find(@supporter_id)
-      supporter.cim_id = @cim_id
-      supporter.sendy_list_id = @sendy_update.sendy_list_id
-      supporter.save
+      @supporter.cim_id = @cim_id
+      @supporter.sendy_list_id = @sendy_update.sendy_list_id
+      @supporter.save
     end
 end

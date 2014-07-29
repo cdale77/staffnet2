@@ -43,6 +43,7 @@
 #  sendy_updated_at  :datetime
 #  created_at        :datetime
 #  updated_at        :datetime
+#  cim_customer_id   :string(255)      default("")
 #
 
 class Supporter < ActiveRecord::Base
@@ -154,6 +155,12 @@ class Supporter < ActiveRecord::Base
     end
     return flag
   end
+
+  ## CIM
+  def generate_cim_customer_id
+    self.cim_customer_id = ( self.id + 20000 ).to_s
+  end
+
 =begin
   # no longer using this code, using a service object instead
   def unstore_cim_profile

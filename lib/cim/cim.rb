@@ -17,8 +17,8 @@ module Cim
     attr_reader :server_message
     attr_reader :success
 
-    def initialize(supporter_id, supporter_email = '', cim_id = '')
-      @supporter_id = supporter_id.to_s
+    def initialize(cim_customer_id, supporter_email = '', cim_id = '')
+      @cim_customer_id = cim_customer_id.to_s
       @supporter_email = supporter_email
       @cim_id = cim_id
       @success = false
@@ -41,7 +41,7 @@ module Cim
 
     private
       def customer_profile
-        { merchant_customer_id: @supporter_id, email: @supporter_email }
+        { merchant_customer_id: @cim_customer_id, email: @supporter_email }
       end
   end
 
