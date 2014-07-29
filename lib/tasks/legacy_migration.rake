@@ -185,7 +185,8 @@ namespace :import do
             employer:             legacy_supporter.employer,
             occupation:           legacy_supporter.occupation,
             source:               legacy_supporter.source,
-            notes:                legacy_supporter.notes
+            notes:                legacy_supporter.notes,
+            cim_customer_id:      legacy_supporter.id.to_s
         }
 
         ## Assign the new supporter id and sendy listbased on legacy flags or donations
