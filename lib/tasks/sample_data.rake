@@ -129,7 +129,7 @@ namespace :db do
                                             deposited_at: Date.today)
 
       end
-  
+
 
       # payment_profiles
 

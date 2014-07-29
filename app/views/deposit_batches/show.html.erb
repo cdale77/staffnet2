@@ -1,0 +1,29 @@
+<% provide(:title, 'Batch details') %>
+<h1>Payment</h1>
+<div class="cold-md-12 row record-display">
+  <div class="col-md-4 record-column">
+    <table>
+      <tr>
+        <th>Type</th>
+        <td><%= @deposit_batch.batch_type.humanize %></td>
+      </tr>
+      <tr>
+        <th>Date</th>
+        <td><%= @deposit_batch.date %></td>
+      </tr>
+      <tr>
+        <th>Approved by</th>
+        <td><%= @deposit_batch.employee.full_name if @deposit_batch.employee %></td>
+      </tr>
+      <tr>
+        <th>Receipt number</th>
+        <td><%= @deposit_batch.receipt_number %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-4 record-column">
+    <table>
+      <%= render 'shared/profiles/magic_columns', record: @deposit_batch %>
+    </table>
+  </div>
+</div>

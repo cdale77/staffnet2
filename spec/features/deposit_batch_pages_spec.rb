@@ -6,15 +6,11 @@ describe 'DepositBatchPages' do
 
   subject { page }
 
-  let!(:super_admin) { FactoryGirl.create(:super_admin) }
-  let!(:manager) { FactoryGirl.create(:manager) }
-  let!(:staff) { FactoryGirl.create(:staff) }
+  let(:super_admin) { FactoryGirl.create(:super_admin) }
+  let(:manager) { FactoryGirl.create(:manager) }
+  let(:staff) { FactoryGirl.create(:staff) }
 
-  let!(:payment) { FactoryGirl.create(:payment) }
-
-  let!(:super_admin_employee) { FactoryGirl.create(:employee, user: super_admin) }
-  let!(:manager_employee) { FactoryGirl.create(:employee, user: manager) }
-  let!(:staff_employee) { FactoryGirl.create(:employee, user: staff) }
+  let(:deposit_batch) { FactoryGirl.create(:deposit_batch) }
 
   #### AS SUPERADMIN USER ####
 
@@ -36,14 +32,20 @@ describe 'DepositBatchPages' do
 
     describe 'review' do
       before do
-        visit deposit_batches_review_path
+        visit deposit_batches_path
       end
       describe 'page' do
         it { should have_title('Staffnet:Review batches') }
       end
-
     end
 
+    describe 'show' do
+      before { visit deposit_batch_path(deposit_batch) }
+      describe 'page' do
+        it { should have_title('Staffnet:Batch details') }
+        it { should have_content(deposit_batch.batch_type.humanize) }
+      end
+    end
   end
 
 
