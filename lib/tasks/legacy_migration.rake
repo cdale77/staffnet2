@@ -153,80 +153,86 @@ namespace :import do
 
   task :supporters => :environment do
 
+
     Migration::Supporter.find_each do |legacy_supporter|
 
-      puts "Migrating legacy supporter id #{legacy_supporter.id.to_s}"
+      # do nothing if the supporter has been migrated already
+      unless legacy_supporter.migrated
 
-      new_supporter_attributes = {
-          legacy_id:            legacy_supporter.id,
-          cim_id:               legacy_supporter.authorize_id,
-          salutation:           legacy_supporter.salutation,
-          first_name:           legacy_supporter.first_name,
-          last_name:            legacy_supporter.last_name,
-          suffix:               legacy_supporter.suffix,
-          address1:             legacy_supporter.billing_street,
-          address2:             legacy_supporter.billing_street_2,
-          address_city:         legacy_supporter.billing_city,
-          address_state:        legacy_supporter.billing_state,
-          address_zip:          legacy_supporter.billing_zip,
-          email_1:              legacy_supporter.email,
-          phone_mobile:         legacy_supporter.mobile_phone,
-          phone_home:           legacy_supporter.home_phone,
-          phone_alt:            legacy_supporter.work_phone,
-          do_not_mail:          legacy_supporter.do_not_mail,
-          do_not_call:          legacy_supporter.do_not_call,
-          do_not_email:         legacy_supporter.do_not_email,
-          keep_informed:        legacy_supporter.keep_informed,
-          vol_level:            legacy_supporter.vol_level,
-          employer:             legacy_supporter.employer,
-          occupation:           legacy_supporter.occupation,
-          source:               legacy_supporter.source,
-          notes:                legacy_supporter.notes
-      }
+        puts "Migrating legacy supporter id #{legacy_supporter.id.to_s}"
 
-      ## Assign the new supporter id and sendy listbased on legacy flags or donations
-      new_supporter_type_id = SupporterType.find_by_name('supporter').id #default
-      new_sendy_list_id = SendyList.find_by_name('supporters').id #default
+        new_supporter_attributes = {
+            legacy_id:            legacy_supporter.id,
+            cim_id:               legacy_supporter.authorize_id,
+            salutation:           legacy_supporter.salutation,
+            first_name:           legacy_supporter.first_name,
+            last_name:            legacy_supporter.last_name,
+            suffix:               legacy_supporter.suffix,
+            address1:             legacy_supporter.billing_street,
+            address2:             legacy_supporter.billing_street_2,
+            address_city:         legacy_supporter.billing_city,
+            address_state:        legacy_supporter.billing_state,
+            address_zip:          legacy_supporter.billing_zip,
+            email_1:              legacy_supporter.email,
+            phone_mobile:         legacy_supporter.mobile_phone,
+            phone_home:           legacy_supporter.home_phone,
+            phone_alt:            legacy_supporter.work_phone,
+            do_not_mail:          legacy_supporter.do_not_mail,
+            do_not_call:          legacy_supporter.do_not_call,
+            do_not_email:         legacy_supporter.do_not_email,
+            keep_informed:        legacy_supporter.keep_informed,
+            vol_level:            legacy_supporter.vol_level,
+            employer:             legacy_supporter.employer,
+            occupation:           legacy_supporter.occupation,
+            source:               legacy_supporter.source,
+            notes:                legacy_supporter.notes
+        }
 
-      if legacy_supporter.major_donor
-        new_supporter_type_id = SupporterType.find_by_name('major_donor').id
-        new_sendy_list_id = SendyList.find_by_name('major_donors').id
-        puts "Found new major donor contact"
-      elsif legacy_supporter.political
-        new_supporter_type_id = SupporterType.find_by_name('political_contact').id
-        new_sendy_list_id = SendyList.find_by_name('political_contacts').id
-        puts "Found new major political contact"
-      end
+        ## Assign the new supporter id and sendy listbased on legacy flags or donations
+        new_supporter_type_id = SupporterType.find_by_name('supporter').id #default
+        new_sendy_list_id = SendyList.find_by_name('supporters').id #default
 
-      new_supporter_attributes[:supporter_type_id] = new_supporter_type_id
-      new_supporter_attributes[:sendy_list_id] = new_sendy_list_id
-
-
-      ## save. if save successful: create sendy update record, attempt to update cim profile
-
-      new_supporter = Supporter.new(new_supporter_attributes)
-
-      if new_supporter.save
-        puts "Saved new supporter. New id: #{new_supporter.id.to_s}, legacy id: #{legacy_supporter.id.to_s}"
-        mark_as_migrated(legacy_supporter)
-
-        #do api stuff
-        if new_supporter.email_1.present? && !new_supporter.do_not_email
-          sendy_update = SendyUpdateService.new(new_supporter.id, new_sendy_list_id, new_supporter.email_1, new_supporter.email_1)
-          if sendy_update.update('subscribe')
-            puts "Saved SendyUpdate record"
-          else
-            save_error_record(legacy_supporter.id , 'legacy_supporter', 'failed to save Sendy update record')
-          end
+        if legacy_supporter.major_donor
+          new_supporter_type_id = SupporterType.find_by_name('major_donor').id
+          new_sendy_list_id = SendyList.find_by_name('major_donors').id
+          puts "Found new major donor contact"
+        elsif legacy_supporter.political
+          new_supporter_type_id = SupporterType.find_by_name('political_contact').id
+          new_sendy_list_id = SendyList.find_by_name('political_contacts').id
+          puts "Found new major political contact"
         end
 
-        ## update CIM customer id
+        new_supporter_attributes[:supporter_type_id] = new_supporter_type_id
+        new_supporter_attributes[:sendy_list_id] = new_sendy_list_id
 
 
-      else
-        puts "ERROR migrating legacy supporter id #{legacy_supporter.id.to_s}"
-        save_error_record(legacy_supporter.id, 'legacy_supporter', 'Error migrating legacy supporter')
+        ## save. if save successful: create sendy update record, attempt to update cim profile
+
+        new_supporter = Supporter.new(new_supporter_attributes)
+
+        if new_supporter.save
+          puts "Saved new supporter. New id: #{new_supporter.id.to_s}, legacy id: #{legacy_supporter.id.to_s}"
+          mark_as_migrated(legacy_supporter)
+
+          #do api stuff
+          if new_supporter.email_1.present? && !new_supporter.do_not_email
+            sendy_update = SendyUpdateService.new(new_supporter.id, new_sendy_list_id, new_supporter.email_1, new_supporter.email_1)
+            if sendy_update.update('subscribe')
+              puts "Saved SendyUpdate record"
+            else
+              save_error_record(legacy_supporter.id , 'legacy_supporter', 'failed to save Sendy update record')
+            end
+          end
+
+          ## update CIM customer id
+
+
+        else
+          puts "ERROR migrating legacy supporter id #{legacy_supporter.id.to_s}"
+          save_error_record(legacy_supporter.id, 'legacy_supporter', 'Error migrating legacy supporter')
+        end
       end
+
     end
   end
 
@@ -402,6 +408,8 @@ namespace :import do
 =end
 
   task :nb => :environment do
+
+    ## need to check Sendy subscription status when marking an email as bad?
 
     AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
                                          secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
