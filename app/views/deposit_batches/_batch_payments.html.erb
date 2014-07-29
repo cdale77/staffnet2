@@ -1,0 +1,22 @@
+<div class="col-md-12 row" id="batch-payments">
+  <div class="table-header">
+    <h4 class="table-title-right">Payments</h4>
+  </div>
+  <table class="table table-hover">
+    <tr>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Type</th>
+      <th>Captured?</th>
+    </tr>
+    <% payments.each do |payment| %>
+      <tr class="clickable-row <%= payment.captured ? '' : 'red' %>" id="payment_<%= payment.id %>" url="<%= donation_payment_path(payment.donation, payment) %>">
+        <td><%= payment.created_at %></td>
+        <td><%= number_to_currency payment.amount %></td>
+        <td><%= payment.payment_type.humanize %></td>
+        <td><%= payment.captured %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+</div>

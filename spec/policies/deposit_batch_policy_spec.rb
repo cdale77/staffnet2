@@ -10,6 +10,8 @@ describe DepositBatchPolicy do
 
     it { should_not permit(:show) }
     it { should_not permit(:index) }
+    it { should_not permit(:update) }
+    it { should_not permit(:edit) }
   end
 
   context 'for a staff user' do
@@ -17,6 +19,8 @@ describe DepositBatchPolicy do
 
     it { should_not permit(:show) }
     it { should_not permit(:index) }
+    it { should_not permit(:update) }
+    it { should_not permit(:edit) }
   end
 
   context 'for a manager user' do
@@ -24,12 +28,16 @@ describe DepositBatchPolicy do
 
     it { should_not permit(:show) }
     it { should_not permit(:index) }
+    it { should_not permit(:update) }
+    it { should_not permit(:edit) }
   end
 
   context 'for an admin user' do
     let(:user) { FactoryGirl.create(:admin) }
     it { should permit(:show) }
     it { should permit(:index) }
+    it { should permit(:update) }
+    it { should permit(:edit) }
   end
 
   context 'for a super_admin user' do
@@ -37,5 +45,7 @@ describe DepositBatchPolicy do
 
     it { should permit(:show) }
     it { should permit(:index) }
+    it { should permit(:update) }
+    it { should permit(:edit) }
   end
 end

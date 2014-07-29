@@ -30,7 +30,7 @@ describe 'DepositBatchPages' do
       logout(:super_admin)
     end
 
-    describe 'review' do
+    describe 'index' do
       before do
         visit deposit_batches_path
       end
@@ -44,6 +44,29 @@ describe 'DepositBatchPages' do
       describe 'page' do
         it { should have_title('Staffnet:Batch details') }
         it { should have_content(deposit_batch.batch_type.humanize) }
+      end
+    end
+
+    describe 'edit' do
+      before { visit edit_deposit_batch_path(deposit_batch) }
+      describe 'page' do
+        it { should have_title('Approve batch') }
+        it { should have_selector('h1', 'Approve batch') }
+      end
+
+      describe 'with invalid information' do
+        before do
+          click_button 'Approve Batch'
+        end
+        it { should have_selector('div.alert-error') }
+      end
+
+      describe 'with valid information' do
+        before do
+          click_button 'Approve Batch'
+        end
+        it { should have_selector('div.alert.alert-success') }
+        specify { expect(deposit_batch.reload.approved).to be_true }
       end
     end
   end

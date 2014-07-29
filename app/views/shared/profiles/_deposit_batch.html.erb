@@ -1,5 +1,5 @@
 <% deposit_batches.each do |deposit_batch| %>
-  <tr>
+  <tr class="clickable-row" id="donation_<%= deposit_batch.id %>" url="<%= deposit_batch_path(deposit_batch) %>">
     <td><%= deposit_batch.batch_type.humanize %></td>
     <td><%= deposit_batch.date %></td>
     <td><%= deposit_batch.payments.count %></td>

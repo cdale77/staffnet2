@@ -1,5 +1,5 @@
 <% provide(:title, 'Batch details') %>
-<h1>Payment</h1>
+<h1>Batch details</h1>
 <div class="cold-md-12 row record-display">
   <div class="col-md-4 record-column">
     <table>
@@ -12,6 +12,18 @@
         <td><%= @deposit_batch.date %></td>
       </tr>
       <tr>
+        <th>Donations</th>
+        <td><%= @deposit_batch.payments.count %></td>
+      </tr>
+      <tr>
+        <th>Total</th>
+        <td><%= number_to_currency @deposit_batch.payments.sum(:amount) %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-4 record-column">
+    <table>
+      <tr>
         <th>Approved by</th>
         <td><%= @deposit_batch.employee.full_name if @deposit_batch.employee %></td>
       </tr>
@@ -19,11 +31,8 @@
         <th>Receipt number</th>
         <td><%= @deposit_batch.receipt_number %></td>
       </tr>
-    </table>
-  </div>
-  <div class="col-md-4 record-column">
-    <table>
       <%= render 'shared/profiles/magic_columns', record: @deposit_batch %>
     </table>
   </div>
 </div>
+<%= render 'batch_payments', payments: @payments %>
