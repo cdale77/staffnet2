@@ -25,6 +25,10 @@ class DepositBatch < ActiveRecord::Base
     where(approved: false)
   end
 
+  def self.installment_batches_to_be_approved
+    where("batch_type = 'installment' AND approved = false")
+  end
+
   # create new batches from un-batched payments
   def self.batch_up
 

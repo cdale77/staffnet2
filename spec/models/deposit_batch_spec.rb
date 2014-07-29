@@ -43,8 +43,10 @@ describe DepositBatch do
     it 'should respond to the method' do
       expect(DepositBatch.to_be_approved).to be_truthy
     end
-    it 'should return an array' do
-      expect(DepositBatch.to_be_approved).to be_an_instance_of Array
+  end
+  describe '::installment_batches_to_be_approved' do
+    it 'should respond to the method' do
+      expect(DepositBatch.installment_batches_to_be_approved).to be_truthy
     end
   end
 

@@ -5,12 +5,15 @@
     <table>
       <tr>
         <th>Total sustainers</th>
-        <td><%=  %></td>
+        <td><%= Supporter.current_sustainers.count %></td>
       </tr>
       <tr>
         <th>Sustaining donations</th>
-        <td><%= Donation.sustaining_donations.sum(:amount) %></td>
+        <td><%= Donation.sustaining_donations.count %></td>
       </tr>
+
     </table>
   </div>
 </div>
+<hr />
+<%= render 'installment_batches', deposit_batches: @deposit_batches %>

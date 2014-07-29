@@ -34,6 +34,7 @@ describe 'InstallmentPages' do
 
     describe 'review' do
       before do
+        5.times { FactoryGirl.create(:deposit_batch, batch_type: "installment") }
         visit installments_review_path
       end
       describe 'page' do

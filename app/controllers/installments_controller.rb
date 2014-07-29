@@ -4,5 +4,6 @@ class InstallmentsController < ApplicationController
   before_filter :admin, only: [:review]
 
   def review
+    @deposit_batches = DepositBatch.installment_batches_to_be_approved
   end
 end
