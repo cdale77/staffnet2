@@ -347,7 +347,7 @@ namespace :import do
           end
 
         else
-          message = "Could not find new donation record. legacy payment id #{legachy_payment.id}"
+          message = "Could not find new donation record. legacy payment id #{legacy_payment.id}"
         end
 
 
