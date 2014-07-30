@@ -250,8 +250,8 @@ namespace :import do
 
     Migration::Donation.find_each do |legacy_donation|
 
-      new_supporter = Supporter.find_by_legacy_id(legacy_donation.supporter_id)
-      new_shift = Shift.find_by_legacy_id(legacy_donation.shift_id)
+      new_supporter = Supporter.find_by legacy_id: legacy_donation.supporter_id.to_s
+      new_shift = Shift.find_by legacy_id: legacy_donation.shift_id.to_s
 
       new_donation_attributes = {
           shift_id:       new_shift.id,
