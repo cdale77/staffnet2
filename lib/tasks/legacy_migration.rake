@@ -102,54 +102,61 @@ namespace :import do
 
   task :shifts => :environment do
 
+
+
     Migration::Shift.find_each do |legacy_shift|
 
-      # look up the old user associated with the shift
-      begin
-        legacy_user = Migration::User.find(legacy_shift.user_id)
-      rescue
-        puts "ERROR migrating legacy shift id #{legacy_shift.id.to_s}"
-        save_error_record(legacy_shift.id, 'legacy_shift', 'Could not find the legacy user')
-        next
+      # do nothing if the shift has been migrated already
+
+      unless legacy_shift.migrated
+        # look up the old user associated with the shift
+        begin
+          legacy_user = Migration::User.find(legacy_shift.user_id)
+        rescue
+          puts "ERROR migrating legacy shift id #{legacy_shift.id.to_s}"
+          save_error_record(legacy_shift.id, 'legacy_shift', 'Could not find the legacy user')
+          next
+        end
+
+        # find the migrated employee record for the old user
+        begin
+          employee = Employee.find_by_legacy_id(legacy_user.id.to_s)
+        rescue
+          puts "ERROR looking up new employee record. Legacy shift id #{legacy_shift.id.to_s}"
+          save_error_record(legacy_shift.id, 'legacy_shift', 'Could not find the legacy employee')
+          next
+        end
+
+        # look up the shift type
+        shift_type = ShiftType.find_by_name(legacy_shift.shift_type)
+
+        begin
+          new_shift = employee.shifts.build(shift_type_id: shift_type.id,
+                                            date: legacy_shift.date,
+                                            time_in: legacy_shift.time_in,
+                                            time_out: legacy_shift.time_out,
+                                            break_time: legacy_shift.break_time,
+                                            notes: legacy_shift.notes,
+                                            travel_reimb: legacy_shift.reimb_transit,
+                                            created_at: legacy_shift.created_at,
+                                            legacy_id: legacy_shift.id.to_s,
+                                            cv_shift: legacy_shift.cv_shift)
+        rescue
+          puts "ERROR building a new shift. Legacy shift id #{legacy_shift.id.to_s}"
+          save_error_record(legacy_shift.id, 'legacy_shift', 'Error building the new shift')
+          next
+        end
+
+        ## Save the shift
+        if new_shift.save
+          puts "Saved new shift id #{new_shift.id.to_s}"
+          mark_as_migrated(legacy_shift)
+        else
+          puts "ERROR saving new shift. Legacy shift id #{legacy_shift.id.to_s}"
+          save_error_record(legacy_shift.id, 'legacy_shift', 'Error saving the new shift')
+        end
       end
 
-      # find the migrated employee record for the old user
-      begin
-        employee = Employee.find_by_legacy_id(legacy_user.id.to_s)
-      rescue
-        puts "ERROR looking up new employee record. Legacy shift id #{legacy_shift.id.to_s}"
-        save_error_record(legacy_shift.id, 'legacy_shift', 'Could not find the legacy employee')
-        next
-      end
-
-      # look up the shift type
-      shift_type = ShiftType.find_by_name(legacy_shift.shift_type)
-
-      begin
-        new_shift = employee.shifts.build(shift_type_id: shift_type.id,
-                                          date: legacy_shift.date,
-                                          time_in: legacy_shift.time_in,
-                                          time_out: legacy_shift.time_out,
-                                          break_time: legacy_shift.break_time,
-                                          notes: legacy_shift.notes,
-                                          travel_reimb: legacy_shift.reimb_transit,
-                                          created_at: legacy_shift.created_at,
-                                          legacy_id: legacy_shift.id.to_s,
-                                          cv_shift: legacy_shift.cv_shift)
-      rescue
-        puts "ERROR building a new shift. Legacy shift id #{legacy_shift.id.to_s}"
-        save_error_record(legacy_shift.id, 'legacy_shift', 'Error building the new shift')
-        next
-      end
-
-      ## Save the shift
-      if new_shift.save
-        puts "Saved new shift id #{new_shift.id.to_s}"
-        mark_as_migrated(legacy_shift)
-      else
-        puts "ERROR saving new shift. Legacy shift id #{legacy_shift.id.to_s}"
-        save_error_record(legacy_shift.id, 'legacy_shift', 'Error saving the new shift')
-      end
     end
   end
 
