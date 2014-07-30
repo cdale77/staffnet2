@@ -307,19 +307,20 @@ namespace :import do
       unless legacy_payment.migrated
 
         new_donation = Donation.find_by_legacy_id(legacy_payment.donation_id)
-        new_supporter = new_donation.supporter
-
-        new_payment_profile_attributes = {
-            supporter_id:           new_supporter.id,
-            cim_payment_profile_id: legacy_payment.authorize_payment_profile_id,
-            payment_profile_type:   legacy_payment.payment_type,
-            cc_last_4:              legacy_payment.cc_last_4,
-            cc_type:                legacy_payment.cc_type,
-            cc_month:               legacy_payment.cc_month,
-            cc_year:                legacy_payment.cc_year
-        }
 
         if new_donation
+
+          new_supporter = new_donation.supporter
+
+          new_payment_profile_attributes = {
+              supporter_id:           new_supporter.id,
+              cim_payment_profile_id: legacy_payment.authorize_payment_profile_id,
+              payment_profile_type:   legacy_payment.payment_type,
+              cc_last_4:              legacy_payment.cc_last_4,
+              cc_type:                legacy_payment.cc_type,
+              cc_month:               legacy_payment.cc_month,
+              cc_year:                legacy_payment.cc_year
+          }
           if new_payment_profile = PaymentProfile.create(new_payment_profile_attributes)
 
             new_payment_attributes = {
