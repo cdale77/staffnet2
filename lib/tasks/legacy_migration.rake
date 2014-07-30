@@ -261,10 +261,10 @@ namespace :import do
         new_shift = Shift.find_by legacy_id: legacy_donation.shift_id.to_s
 
         if new_supporter
-          if new_shift
+
 
             new_donation_attributes = {
-                shift_id:       new_shift.id,
+                shift_id:       (new_shift ? new_shift.id.to_s : ""),
                 legacy_id:      legacy_donation.id,
                 date:           legacy_donation.date,
                 donation_type:  legacy_donation.donation_type,
@@ -282,10 +282,6 @@ namespace :import do
             if new_donation.save
               success = true
             end
-            
-          else
-            message = "Could not find the new shift record. shift id #{legacy_donation.shift_id}"
-          end
 
         else
           message = "Could not find the new supporter record. Supporter id #{legacy_donation.supporter_id}"
