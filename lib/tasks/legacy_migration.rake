@@ -250,31 +250,53 @@ namespace :import do
 
     Migration::Donation.find_each do |legacy_donation|
 
-      new_supporter = Supporter.find_by legacy_id: legacy_donation.supporter_id.to_s
-      new_shift = Shift.find_by legacy_id: legacy_donation.shift_id.to_s
+      ## flags and message. reset for each donation
+      success = false
+      message = ""
 
-      new_donation_attributes = {
-          shift_id:       new_shift.id,
-          legacy_id:      legacy_donation.id,
-          date:           legacy_donation.date,
-          donation_type:  legacy_donation.donation_type,
-          source:         legacy_donation.source,
-          campaign:       legacy_donation.campaign,
-          cancelled:      legacy_donation.canceled,
-          notes:          legacy_donation.notes,
-          amount:         legacy_donation.amount,
-          sub_month:      legacy_donation.sub_month,
-          sub_week:       legacy_donation.sub_week,
-      }
+      # skip the record if it has already been migrated
+      unless legacy_donation.migrated
 
+        new_supporter = Supporter.find_by legacy_id: legacy_donation.supporter_id.to_s
+        new_shift = Shift.find_by legacy_id: legacy_donation.shift_id.to_s
 
-      new_donation = new_supporter.donations.build(new_donation_attributes)
+        if new_supporter
+          if new_shift
 
-      if new_donation.save
-        puts "Created new donation id #{new_donation.id.to_s}"
-        mark_as_migrated(legacy_donation)
-      else
-        save_error_record(legacy_donation.id, 'legacy_donation', 'error saving legacy donation')
+            new_donation_attributes = {
+                shift_id:       new_shift.id,
+                legacy_id:      legacy_donation.id,
+                date:           legacy_donation.date,
+                donation_type:  legacy_donation.donation_type,
+                source:         legacy_donation.source,
+                campaign:       legacy_donation.campaign,
+                cancelled:      legacy_donation.canceled,
+                notes:          legacy_donation.notes,
+                amount:         legacy_donation.amount,
+                sub_month:      legacy_donation.sub_month,
+                sub_week:       legacy_donation.sub_week,
+            }
+
+            new_donation = new_supporter.donations.build(new_donation_attributes)
+
+            if new_donation.save
+              success = true
+            end
+            
+          else
+            message = "Could not find the new shift record. shift id #{legacy_donation.shift_id}"
+          end
+
+        else
+          message = "Could not find the new supporter record. Supporter id #{legacy_donation.supporter_id}"
+        end
+
+        if success
+          puts "Created new donation id #{new_donation.id.to_s} legacy donation id #{legacy_donation.id}"
+          mark_as_migrated(legacy_donation)
+        else
+          save_error_record(legacy_donation.id, 'legacy_donation', message)
+        end
       end
     end
   end
