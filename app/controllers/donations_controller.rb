@@ -49,7 +49,7 @@ class DonationsController < ApplicationController
   end
 
   def index
-    @donations = Donation.all
+    @donations = Donation.all.paginate(page: params[:page])
     authorize @donations
   end
 
