@@ -330,7 +330,8 @@ namespace :import do
                 payment_type:       legacy_payment.payment_type,
                 captured:           legacy_payment.captured,
                 processed:          legacy_payment.processed,
-                amount:             legacy_payment.amount
+                amount:             legacy_payment.amount,
+                receipt_sent_at:    Time.now
             }
 
             new_payment = new_donation.payments.build(new_payment_attributes)
