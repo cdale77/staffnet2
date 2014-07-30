@@ -30,7 +30,7 @@ class SupportersController < ApplicationController
 
   def index
     @search = Supporter.search(params[:q])
-    @supporters = @search.result
+    @supporters = @search.result.paginate(page: params[:page])
     @search.build_condition
     authorize @supporters
   end
