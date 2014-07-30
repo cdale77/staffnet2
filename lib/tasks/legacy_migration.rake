@@ -236,7 +236,6 @@ namespace :import do
 
           ## update CIM customer id
 
-
         else
           puts "ERROR migrating legacy supporter id #{legacy_supporter.id.to_s}"
           save_error_record(legacy_supporter.id, 'legacy_supporter', 'Error migrating legacy supporter')
@@ -300,42 +299,62 @@ namespace :import do
   task :payments => :environment do
 
     Migration::Payment.find_each do |legacy_payment|
-      new_donation = Donation.find_by_legacy_id(legacy_payment.donation_id)
-      new_supporter = new_donation.supporter
 
-      new_payment_profile_attributes = {
-          supporter_id:           new_supporter.id,
-          payment_profile_type:   legacy_payment.payment_type,
-          cc_last_4:              legacy_payment.cc_last_4,
-          cc_type:                legacy_payment.cc_type,
-          cc_month:               legacy_payment.cc_month,
-          cc_year:                legacy_payment.cc_year
-      }
+      ## flags and message. reset for each donation
+      success = false
+      message = ""
 
-      if new_payment_profile = PaymentProfile.create(new_payment_profile_attributes)
+      unless legacy_payment.migrated
 
-        new_payment_attributes = {
-            payment_profile_id: new_payment_profile.id,
-            legacy_id:          legacy_payment.id,
-            cim_auth_code:      legacy_payment.authorization_code,
-            deposited_at:       legacy_payment.submit_time,
-            payment_type:       legacy_payment.payment_type,
-            captured:           legacy_payment.captured,
-            processed:          legacy_payment.processed,
-            amount:             legacy_payment.amount
+        new_donation = Donation.find_by_legacy_id(legacy_payment.donation_id)
+        new_supporter = new_donation.supporter
+
+        new_payment_profile_attributes = {
+            supporter_id:           new_supporter.id,
+            cim_payment_profile_id: legacy_payment.authorize_payment_profile_id,
+            payment_profile_type:   legacy_payment.payment_type,
+            cc_last_4:              legacy_payment.cc_last_4,
+            cc_type:                legacy_payment.cc_type,
+            cc_month:               legacy_payment.cc_month,
+            cc_year:                legacy_payment.cc_year
         }
 
-        new_payment = new_donation.payments.build(new_payment_attributes)
+        if new_donation
+          if new_payment_profile = PaymentProfile.create(new_payment_profile_attributes)
 
-        if new_payment.save
+            new_payment_attributes = {
+                payment_profile_id: new_payment_profile.id,
+                legacy_id:          legacy_payment.id,
+                cim_auth_code:      legacy_payment.authorization_code,
+                deposited_at:       legacy_payment.submit_time,
+                payment_type:       legacy_payment.payment_type,
+                captured:           legacy_payment.captured,
+                processed:          legacy_payment.processed,
+                amount:             legacy_payment.amount
+            }
+
+            new_payment = new_donation.payments.build(new_payment_attributes)
+
+            if new_payment.save
+              success = true
+
+            end
+
+          else
+            message = "Could not create new payment profile. legacy payment id #{legacy_payment.id}"
+          end
+
+        else
+          message = "Could not find new donation record. legacy payment id #{legachy_payment.id}"
+        end
+
+
+        if success
           puts "Saved new payment id #{new_payment.id.to_s}"
           mark_as_migrated(legacy_payment)
         else
-          save_error_record(legacy_payment, 'legacy_payment', 'Could not save legacy payment. Payment profile id ' + new_payment_profile.id.to_s)
+          save_error_record(legacy_payment.id, 'legacy_payment', message)
         end
-
-      else
-        save_error_record(legacy_payment.id, 'legacy_payment', 'Could not create new payment profile')
       end
     end
   end

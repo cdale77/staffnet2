@@ -37,10 +37,10 @@ class ShiftsController < ApplicationController
   def index
     # Pundit policy scopes don't seem to work since user is delegated/user_id isn't in the Shifts table.
     if current_user.role? :manager
-      @shifts = Shift.all
+      @shifts = Shift.all.paginate(page: params[:page])
 
     elsif current_user.role? :staff
-      @shifts = current_user.shifts
+      @shifts = current_user.shifts.paginate(page: params[:page])
     end
     authorize @shifts
   end
