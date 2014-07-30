@@ -122,9 +122,11 @@ namespace :import do
         next
       end
 
+      # look up the shift type
+      shift_type = ShiftType.find_by_name(legacy_shift.shift_type)
 
       begin
-        new_shift = employee.shifts.build(shift_type_id: ShiftType.find_by_name(legacy_shift.shift_type),
+        new_shift = employee.shifts.build(shift_type_id: shift_type.id,
                                           date: legacy_shift.date,
                                           time_in: legacy_shift.time_in,
                                           time_out: legacy_shift.time_out,
