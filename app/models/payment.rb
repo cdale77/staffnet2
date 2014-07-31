@@ -29,7 +29,7 @@ class Payment < ActiveRecord::Base
   belongs_to :deposit_batch
 
   ## CALLBACKS
-  #before_save :process_payment
+  before_save :process_payment
   #before_save :send_receipt
 
   ## VALIDATIONS
