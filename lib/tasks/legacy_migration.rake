@@ -467,6 +467,7 @@ namespace :import do
       puts "downloaded import file"
 
       CSV.parse(file, headers: true) do |row|
+        "reading first row"
         data = row.to_hash
 
         emails = []
@@ -475,7 +476,8 @@ namespace :import do
         emails << data['email3']
 
         emails.each do |email|
-          supporter = Supporter.find_by_email_1(email)
+          puts "looking up #{email}"
+          supporter = Supporter.find_by email_1: email
           if supporter
             "Found supporter #{supporter.full_name} id #{supporter.id}"
             if data['do_not_contact'] == 'true'
@@ -491,6 +493,8 @@ namespace :import do
 
               end
             end
+          else
+            puts "did not find supporter"
           end
         end
       end
