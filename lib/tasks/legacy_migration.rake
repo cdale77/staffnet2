@@ -507,7 +507,7 @@ namespace :import do
                       secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
 
     #file = AWS::S3::S3Object.value('nb_dnc.csv', 'staffnet2-import')
-    file = s3.buckets['staffnet2-import'].objects['nb_dnc.csv'].read
+    file = s3.buckets['staffnet2-import'].objects['nb_unsubs.csv'].read
 
     if file
       puts "downloaded import file"
