@@ -483,6 +483,8 @@ namespace :import do
                 puts "Successfuly marked as dnc"
               else
                 puts "Problem saving supporter record"
+              end
+              
             end
           end
         end
