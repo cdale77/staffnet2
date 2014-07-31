@@ -457,10 +457,11 @@ namespace :import do
 
   task :nb_dnc => :environment do
 
-    AWS::S3.new( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+    s3 = AWS::S3.new( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
                                          secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
 
-    file = AWS::S3::S3Object.value('nb_dnc.csv', 'staffnet2-import')
+    #file = AWS::S3::S3Object.value('nb_dnc.csv', 'staffnet2-import')
+    file = s3.buckets['staffnet2-import'].objects['nb_dnc.csv']
 
     if file
       puts "downloaded import file"
