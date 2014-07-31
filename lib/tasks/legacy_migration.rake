@@ -462,34 +462,40 @@ namespace :import do
 
     file = AWS::S3::S3Object.value('nb_dnc.csv', 'staffnet2-import')
 
-    CSV.parse(file, headers: true) do |row|
-      data = row.to_hash
+    if file
+      puts "downloaded import file"
 
-      emails = []
-      emails << data['email1']
-      emails << data['email2']
-      emails << data['email3']
+      CSV.parse(file, headers: true) do |row|
+        data = row.to_hash
 
-      emails.each do |email|
-        supporter = Supporter.find_by_email_1(email)
-        if supporter
-          "Found supporter #{supporter.full_name} id #{supporter.id}"
-          if data['do_not_contact'] == 'true'
-            if supporter.do_not_contact
-              puts "Already a dnc"
-            else
-              supporter.do_not_contact = true
-              if supporter.save
-                puts "Successfuly marked as dnc"
+        emails = []
+        emails << data['email1']
+        emails << data['email2']
+        emails << data['email3']
+
+        emails.each do |email|
+          supporter = Supporter.find_by_email_1(email)
+          if supporter
+            "Found supporter #{supporter.full_name} id #{supporter.id}"
+            if data['do_not_contact'] == 'true'
+              if supporter.do_not_contact
+                puts "Already a dnc"
               else
-                puts "Problem saving supporter record"
+                supporter.do_not_contact = true
+                if supporter.save
+                  puts "Successfuly marked as dnc"
+                else
+                  puts "Problem saving supporter record"
+                end
+
               end
-              
             end
           end
         end
       end
     end
+
+
 
   end
 
