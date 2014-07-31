@@ -14,7 +14,7 @@ gem 'activemerchant', '1.43.1'
 gem 'sendyr', '0.2.1'
 
 # data storage
-gem 'aws-s3'#, '0.6.3'
+gem 'aws-s3', '0.6.2'
 gem 'pgbackups-archive', '0.2.1'
 
 ## DATES
