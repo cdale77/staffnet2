@@ -500,44 +500,49 @@ namespace :import do
       end
     end
 
-
-
   end
 
-  task :nb => :environment do
+  task :nb_unsubs => :environment do
+    s3 = AWS::S3.new( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+                      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
 
-    ## need to check Sendy subscription status when marking an email as bad?
+    #file = AWS::S3::S3Object.value('nb_dnc.csv', 'staffnet2-import')
+    file = s3.buckets['staffnet2-import'].objects['nb_dnc.csv'].read
 
-    AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-                                         secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
+    if file
+      puts "downloaded import file"
 
-    file = AWS::S3::S3Object.value('nb_import.csv', 'staffnet2-import')
+      CSV.parse(file, headers: true) do |row|
+        "reading first row"
+        data = row.to_hash
 
+        emails = []
+        emails << data['email1']
+        emails << data['email2']
+        emails << data['email3']
 
-    CSV.parse(file, headers: true) do |row|
-      data = row.to_hash
+        emails.each do |email|
+          puts "looking up #{email}"
+          supporter = Supporter.find_by email_1: email
+          if supporter
+            "Found supporter #{supporter.full_name} id #{supporter.id}"
 
-      emails = []
-      emails << data['email1']
-      emails << data['email2']
-      emails << data['email3']
-
-      emails.each do |email|
-        supporter = Supporter.find_by_email_1(email)
-        if supporter
-          if data['email_opt_in'] == 'false'
-            supporter.email_1_bad = true
-            supporter.save
-            puts "Found unsub"
-          end
-          if data['do_not_contact'] == 'true'
-            supporter.do_not_contact = true
-            supporter.save
-            puts "found dnc"
+            if SendyUpdate.create(  supporter_id:     supporter_id,
+                                  sendy_list_id:    "NMpznzCK8qu892xT6Hupo7kg",   #supporters list
+                                  sendy_email:      email,
+                                  new_sendy_email:  email,
+                                  action:           "unsubscribe")
+              puts "created sendy update"
+            else
+              puts "problem creating sendy update"
+            end
+          else
+            puts "did not find supporter"
           end
         end
       end
     end
+
 
   end
 

@@ -70,6 +70,10 @@ module Sendy
               mark_as_completed(update) if supporter.save
             end
 
+          when 'unsubscribe'
+            unsubscribe_from_sendy(supporter)
+            supporter.sendy_status = 'unsubscribed'
+            mark_as_complete(update) if supporter.save
         end
       end
     end
@@ -80,6 +84,12 @@ module Sendy
         sendy_list = supporter.sendy_list
         client = Sendyr::Client.new(sendy_list.sendy_list_identifier)
         client.subscribe(:email => supporter.email_1, :name => supporter.full_name )
+      end
+
+      def self.unsubscribe_from_sendy(supporter)
+        sendy_list = supporter.sendy_list
+        client = Sendyr::Client.new(sendy_list.sendy_list_identifier)
+        client.unsubscribe(:email => supporter.email_1, :name => supporter.full_name )
       end
 
       def self.mark_as_completed(update)
