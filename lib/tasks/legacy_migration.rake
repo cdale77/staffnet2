@@ -473,10 +473,17 @@ namespace :import do
       emails.each do |email|
         supporter = Supporter.find_by_email_1(email)
         if supporter
+          "Found supporter #{supporter.full_name} id #{supporter.id}"
           if data['do_not_contact'] == 'true'
-            supporter.do_not_contact = true
-            supporter.save
-            puts "found dnc"
+            if supporter.do_not_contact
+              puts "Already a dnc"
+            else
+              supporter.do_not_contact = true
+              if supporter.save
+                puts "Successfuly marked as dnc"
+              else
+                puts "Problem saving supporter record"
+            end
           end
         end
       end
