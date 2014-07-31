@@ -30,7 +30,7 @@ class Payment < ActiveRecord::Base
 
   ## CALLBACKS
   before_save :process_payment
-  #before_save :send_receipt
+  before_save :send_receipt
 
   ## VALIDATIONS
   validates :payment_type, presence: { message: 'required.' }
