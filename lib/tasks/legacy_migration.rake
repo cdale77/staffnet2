@@ -527,7 +527,7 @@ namespace :import do
           if supporter
             "Found supporter #{supporter.full_name} id #{supporter.id}"
 
-            if SendyUpdate.create(  supporter_id:     supporter_id,
+            if SendyUpdate.create(  supporter_id:     supporter.id,
                                   sendy_list_id:    "NMpznzCK8qu892xT6Hupo7kg",   #supporters list
                                   sendy_email:      email,
                                   new_sendy_email:  email,
