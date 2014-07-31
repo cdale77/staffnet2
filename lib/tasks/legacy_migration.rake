@@ -361,7 +361,7 @@ namespace :import do
     end
   end
 
-=begin
+
   task :city_council => :environment do
 
     supporter_type = SupporterType.find_by_name('city_council')
@@ -454,7 +454,35 @@ namespace :import do
 
     end
   end
-=end
+
+  task :nb_dnc => :environment do
+
+    AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+                                         secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
+
+    file = AWS::S3::S3Object.value('nb_dnc.csv', 'staffnet2-import')
+
+    CSV.parse(file, headers: true) do |row|
+      data = row.to_hash
+
+      emails = []
+      emails << data['email1']
+      emails << data['email2']
+      emails << data['email3']
+
+      emails.each do |email|
+        supporter = Supporter.find_by_email_1(email)
+        if supporter
+          if data['do_not_contact'] == 'true'
+            supporter.do_not_contact = true
+            supporter.save
+            puts "found dnc"
+          end
+        end
+      end
+    end
+
+  end
 
   task :nb => :environment do
 
