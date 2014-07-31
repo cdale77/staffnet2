@@ -73,7 +73,7 @@ module Sendy
           when 'unsubscribe'
             unsubscribe_from_sendy(supporter)
             supporter.sendy_status = 'unsubscribed'
-            mark_as_complete(update) if supporter.save
+            mark_as_completed(update) if supporter.save
         end
       end
     end

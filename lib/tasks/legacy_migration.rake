@@ -485,6 +485,9 @@ namespace :import do
                 puts "Already a dnc"
               else
                 supporter.do_not_contact = true
+
+                ## also must unsub from sendy!
+
                 if supporter.save
                   puts "Successfuly marked as dnc"
                 else
