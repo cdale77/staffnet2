@@ -56,8 +56,12 @@ namespace :import do
     legacy_users.each do |legacy_user|
       new_password = SecureRandom.hex(7)
       begin
-        new_user = User.new(email: legacy_user.email, password: new_password,
-                            password_confirmation: new_password, role: legacy_user.role)
+        new_user = User.new(email: legacy_user.email,
+                            password: new_password,
+                            password_confirmation: new_password,
+                            role: legacy_user.role,
+                            created_at: legacy_user.created_at,
+                            updated_at: legacy_user.updated_at)
       rescue
         puts "ERROR migrating legacy user #{legacy_user.id.to_s}. Could not create new user."
         save_error_record(legacy_user.id, 'legacy_user', 'Could not instantiate new user object')
