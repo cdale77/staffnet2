@@ -34,7 +34,6 @@
 #  do_not_call       :boolean          default(FALSE)
 #  do_not_email      :boolean          default(FALSE)
 #  keep_informed     :boolean          default(FALSE)
-#  vol_level         :integer          default(0)
 #  employer          :string(255)      default("")
 #  occupation        :string(255)      default("")
 #  source            :string(255)      default("")
@@ -44,6 +43,7 @@
 #  created_at        :datetime
 #  updated_at        :datetime
 #  cim_customer_id   :string(255)      default("")
+#  vol_level         :string(255)      default("")
 #
 
 class Supporter < ActiveRecord::Base
