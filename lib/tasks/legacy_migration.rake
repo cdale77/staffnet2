@@ -23,6 +23,8 @@ namespace :import do
     supporter_type = SupporterType.create!(name: 'supporter')
     major_donor_type = SupporterType.create!(name: 'major_donor')
     political_type = SupporterType.create!(name: 'political_contact')
+    school_board_type = SupporterType.create!(name: 'school_board')
+    city_council_type = SupporterType.create!(name: 'city_council')
 
     puts "What is the Sendy list id for the supporters list?"
     sendy_list_id = STDIN.gets.chomp
@@ -37,6 +39,14 @@ namespace :import do
     puts "What is the Sendy list id for the political_contacts list?"
     sendy_list_id = STDIN.gets.chomp
     political_type.sendy_lists.create!(name: 'political_contacts', sendy_list_identifier: sendy_list_id)
+
+    puts "What is the Sendy list id for the school board list?"
+    sendy_list_id = STDIN.gets.chomp
+    political_type.sendy_lists.create!(name: 'school_board', sendy_list_identifier: sendy_list_id)
+
+    puts "What is the Sendy list id for the city council list?"
+    sendy_list_id = STDIN.gets.chomp
+    political_type.sendy_lists.create!(name: 'city_council', sendy_list_identifier: sendy_list_id)
 
   end
 
