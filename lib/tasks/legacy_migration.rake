@@ -461,6 +461,55 @@ namespace :import do
     end
   end
 
+  task :nb_extras => :environment do
+
+    new_sendy_list_id = SendyList.find_by_name('supporters').id #default
+
+    
+    s3 = AWS::S3.new( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+                      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
+
+    #file = AWS::S3::S3Object.value('nb_dnc.csv', 'staffnet2-import')
+    file = s3.buckets['staffnet2-import'].objects['nb_extras.csv'].read
+
+    if file
+      puts "downloaded import file"
+      CSV.parse(file, headers: true) do |row|
+
+        puts "reading first row"
+        data = row.to_hash
+
+        emails = []
+        emails << data['email1']
+        emails << data['email2']
+        emails << data['email3']
+
+        emails.each do |email|
+          puts "looking up #{email}"
+          supporter = Supporter.find_by email_1: email
+          if supporter
+            puts "found existing supporter"
+          else
+            new_supporter = Supporter.build( email_1: email )
+            new_supporter.first_name = data['first_name'] if data['first_name']
+            new_supporter.last_name = data['last_name'] if data['last_name']
+            if new_supporter.save
+              puts "created new supporter"
+              sendy_update = SendyUpdateService.new(new_supporter.id, new_sendy_list_id, new_supporter.email_1, new_supporter.email_1)
+              if sendy_update.update('subscribe')
+                puts "Saved SendyUpdate record"
+              end
+            else
+              puts "problem creating new suppporter. email #{email}"
+
+            end
+          end
+        end
+      end
+
+    end
+  end
+
   task :nb_dnc => :environment do
 
     s3 = AWS::S3.new( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
@@ -473,7 +522,7 @@ namespace :import do
       puts "downloaded import file"
 
       CSV.parse(file, headers: true) do |row|
-        "reading first row"
+        puts "reading first row"
         data = row.to_hash
 
         emails = []
