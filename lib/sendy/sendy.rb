@@ -53,6 +53,13 @@ module Sendy
           next
         end
 
+        begin
+          sendy_list = SendyList.find(update.sendy_list_id)
+        rescue
+          puts "Error finding sendy list db record"
+          next
+        end
+
         case update.action
 
           when 'update_database'
@@ -65,13 +72,13 @@ module Sendy
             if supporter.do_not_email || supporter.email_1_bad
               mark_as_completed(update)
             else
-              subscribe_to_sendy(supporter)
+              subscribe_to_sendy(supporter, sendy_list.sendy_list_identifier)
               supporter.sendy_status = 'subscribed'
               mark_as_completed(update) if supporter.save
             end
 
           when 'unsubscribe'
-            unsubscribe_from_sendy(supporter)
+            unsubscribe_from_sendy(supporter, sendy_list.sendy_list_identifier)
             supporter.sendy_status = 'unsubscribed'
             mark_as_completed(update) if supporter.save
         end
@@ -80,15 +87,13 @@ module Sendy
 
     private
 
-      def self.subscribe_to_sendy(supporter)
-        sendy_list = supporter.sendy_list
-        client = Sendyr::Client.new(sendy_list.sendy_list_identifier)
+      def self.subscribe_to_sendy(supporter, sendy_list_identifier)
+        client = Sendyr::Client.new(sendy_list_identifier)
         client.subscribe(:email => supporter.email_1, :name => supporter.full_name )
       end
 
-      def self.unsubscribe_from_sendy(supporter)
-        sendy_list = supporter.sendy_list
-        client = Sendyr::Client.new(sendy_list.sendy_list_identifier)
+      def self.unsubscribe_from_sendy(supporter, sendy_list_identifier)
+        client = Sendyr::Client.new(sendy_list_identifier)
         client.unsubscribe(:email => supporter.email_1, :name => supporter.full_name )
       end
 

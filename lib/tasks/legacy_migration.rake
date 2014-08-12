@@ -398,7 +398,7 @@ namespace :import do
       if new_supporter.save
         puts "saved new city council person id #{new_supporter.id.to_s}"
         if new_supporter.email_1.present?
-          sendy_update = SendyUpdateService.new(new_supporter.id, sendy_list.sendy_list_identifier, new_supporter.email_1, new_supporter.email_1)
+          sendy_update = SendyUpdateService.new(new_supporter.id, sendy_list.id, new_supporter.email_1, new_supporter.email_1)
           if sendy_update.update('subscribe')
             puts "Saved SendyUpdate record"
           else
@@ -447,7 +447,7 @@ namespace :import do
       if new_supporter.save
         puts "saved new school board person id #{new_supporter.id.to_s}"
         if new_supporter.email_1.present?
-          sendy_update = SendyUpdateService.new(new_supporter.id, sendy_list_identifier, new_supporter.email_1, new_supporter.email_1)
+          sendy_update = SendyUpdateService.new(new_supporter.id, sendy_list.id, new_supporter.email_1, new_supporter.email_1)
           if sendy_update.update('subscribe')
             puts "Saved SendyUpdate record"
           else
