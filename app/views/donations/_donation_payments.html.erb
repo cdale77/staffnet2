@@ -13,7 +13,7 @@
       </tr>
       <% payments.each do |payment| %>
         <tr class="clickable-row <%= payment.captured ? '' : 'red' %>" id="payment_<%= payment.id %>" url="<%= donation_payment_path(payment.donation, payment) %>">
-          <td><%= payment.created_at %></td>
+          <td><%= payment.deposited_at %></td>
           <td><%= number_to_currency payment.amount %></td>
           <td><%= payment.payment_type.humanize %></td>
           <td><%= payment.captured %></td>
