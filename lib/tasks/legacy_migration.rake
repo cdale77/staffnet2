@@ -383,18 +383,22 @@ namespace :import do
           email_1:              data['email']
       }
 
+
+
       if data['phone_type'] == 'work'
         new_supporter_attributes[:phone_alt] = data['phone']
       else
         new_supporter_attributes[:phone_mobile] = data['phone']
       end
 
+      new_supporter_attributes[:sendy_list_id] = sendy_list.id
+
       new_supporter = supporter_type.supporters.build(new_supporter_attributes)
 
       if new_supporter.save
         puts "saved new city council person id #{new_supporter.id.to_s}"
         if new_supporter.email_1.present?
-          sendy_update = SendyUpdateService.new(new_supporter.id, new_sendy_list_id, new_supporter.email_1, new_supporter.email_1)
+          sendy_update = SendyUpdateService.new(new_supporter.id, sendy_list.sendy_list_identifier, new_supporter.email_1, new_supporter.email_1)
           if sendy_update.update('subscribe')
             puts "Saved SendyUpdate record"
           else
@@ -436,12 +440,14 @@ namespace :import do
         new_supporter_attributes[:phone_mobile] = data['phone']
       end
 
+      new_supporter_attributes[:sendy_list_id] = sendy_list.id
+
       new_supporter = supporter_type.supporters.build(new_supporter_attributes)
 
       if new_supporter.save
         puts "saved new school board person id #{new_supporter.id.to_s}"
         if new_supporter.email_1.present?
-          sendy_update = SendyUpdateService.new(new_supporter.id, new_sendy_list_id, new_supporter.email_1, new_supporter.email_1)
+          sendy_update = SendyUpdateService.new(new_supporter.id, sendy_list_identifier, new_supporter.email_1, new_supporter.email_1)
           if sendy_update.update('subscribe')
             puts "Saved SendyUpdate record"
           else
