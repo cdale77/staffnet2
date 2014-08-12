@@ -96,7 +96,9 @@ namespace :import do
                                                 ca_filing_status: legacy_user.filing_status, fed_allowances: legacy_user.w_holding,
                                                 ca_allowances: legacy_user.w_holding, dob: legacy_user.dob,
                                                 gender: legacy_user.gender, active: legacy_user.active,
-                                                created_at: legacy_user.created_at, legacy_id: legacy_user.id.to_s,
+                                                created_at: legacy_user.created_at,
+                                                updated_at: legacy_user.updated_at,
+                                                legacy_id: legacy_user.id.to_s,
                                               )
       rescue
         puts "ERROR creating employee record for #{new_user.email}"
@@ -153,6 +155,7 @@ namespace :import do
                                             notes: legacy_shift.notes,
                                             travel_reimb: legacy_shift.reimb_transit,
                                             created_at: legacy_shift.created_at,
+                                            updated_at: legacy_shift.updated_at,
                                             legacy_id: legacy_shift.id.to_s,
                                             cv_shift: legacy_shift.cv_shift)
         rescue
@@ -209,7 +212,9 @@ namespace :import do
             occupation:           legacy_supporter.occupation,
             source:               legacy_supporter.source,
             notes:                legacy_supporter.notes,
-            cim_customer_id:      legacy_supporter.id.to_s
+            cim_customer_id:      legacy_supporter.id.to_s,
+            created_at:           legacy_supporter.created_at,
+            updated_at:           legacy_supporter.updated_at
         }
 
         ## Assign the new supporter id and sendy listbased on legacy flags or donations
@@ -288,6 +293,8 @@ namespace :import do
                 amount:         legacy_donation.amount,
                 sub_month:      legacy_donation.sub_month,
                 sub_week:       legacy_donation.sub_week,
+                created_at:     legacy_donation.created_at,
+                updated_at:     legacy_donation.updated_at
             }
 
             new_donation = new_supporter.donations.build(new_donation_attributes)
@@ -346,6 +353,8 @@ namespace :import do
                 captured:           legacy_payment.captured,
                 processed:          legacy_payment.processed,
                 amount:             legacy_payment.amount,
+                created_at:         legacy_payment.created_at,
+                updated_at:         legacy_payment.updated_at,
                 receipt_sent_at:    Time.now
             }
 
