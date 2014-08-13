@@ -34,7 +34,7 @@ class Donation < ActiveRecord::Base
   has_many :payments, dependent: :destroy
 
   ## CALLBACKS
-  before_save :set_sustainer_codes
+  #before_save :set_sustainer_codes
 
   ## VALIDATIONS
   validates :source, :date, presence: { message: 'required.' }
@@ -78,7 +78,7 @@ class Donation < ActiveRecord::Base
   private
 
     def set_sustainer_codes
-      unless self.frequency.blank?
+      if self.sub_month.blank?
         set_sub_month
         set_sub_week
       end
