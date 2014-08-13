@@ -54,7 +54,7 @@ module Sendy
         end
 
         begin
-          sendy_list = Staffnet2::SendyList.find(update.sendy_list_id)
+          sendy_list = SendyList.find(update.sendy_list_id)
         rescue
           puts "Error finding sendy list db record"
           next
