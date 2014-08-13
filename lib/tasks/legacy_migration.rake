@@ -382,7 +382,6 @@ namespace :import do
     end
   end
 
-
   task :city_council => :environment do
 
     supporter_type = SupporterType.find_by_name('city_council')
