@@ -35,7 +35,6 @@ module Staffnet2
     config.autoload_paths += %W(#{config.root}/lib/cim)
     config.autoload_paths += %W(#{config.root}/lib/sendy)
     config.autoload_paths += %W(#{config.root}/app/models/emails)
-    config.autoload_paths += %W(#{config.root}/app/models/sendy)
 
 
     # legacy db models

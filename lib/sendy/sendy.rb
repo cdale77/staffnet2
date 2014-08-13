@@ -25,7 +25,7 @@ module Sendy
         #if the status recieved from Sendy matches the existing status, no updates
         if sendy_status != supporter.sendy_status
 
-          if Staffnet2::SendyUpdate.create( supporter_id: supporter.id,
+          if SendyUpdate.create( supporter_id: supporter.id,
                                             sendy_list_id: sendy_list.id,
                                             sendy_email: supporter.email_1,
                                             new_sendy_email: supporter.email_1,
