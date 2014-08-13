@@ -70,10 +70,6 @@ class Supporter < ActiveRecord::Base
   # data cleaning
   before_validation { self.salutation = first_name if self.salutation.blank? }
 
-  #after_create :subscribe_to_sendy
-  #before_update :update_sendy_subscription
-  #before_destroy :unsubscribe_from_sendy
-
 
 
   ## VALIDATIONS

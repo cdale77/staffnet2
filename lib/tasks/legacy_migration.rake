@@ -253,8 +253,6 @@ namespace :import do
             end
           end
 
-          ## update CIM customer id
-
         else
           puts "ERROR migrating legacy supporter id #{legacy_supporter.id.to_s}"
           save_error_record(legacy_supporter.id, 'legacy_supporter', 'Error migrating legacy supporter')

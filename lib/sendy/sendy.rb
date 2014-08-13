@@ -89,7 +89,10 @@ module Sendy
 
       def self.subscribe_to_sendy(supporter, sendy_list_identifier)
         client = Sendyr::Client.new(sendy_list_identifier)
-        client.subscribe(:email => supporter.email_1, :name => supporter.full_name )
+        client.subscribe(:email => supporter.email_1,
+                         :name => supporter.full_name,
+                         "FirstName" => supporter.first_name,
+                         "LastName" => supporter.last_name)
       end
 
       def self.unsubscribe_from_sendy(supporter, sendy_list_identifier)
