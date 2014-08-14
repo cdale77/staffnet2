@@ -15,6 +15,14 @@
       <th>Type</th>
       <td><%= @shift.shift_type.name.humanize %></td>
     </tr>
+    <tr>
+      <th>Reported yes</th>
+      <td><%= @shift.reported_total_yes %></td>
+    </tr>
+    <tr>
+      <th>Reported raised</th>
+      <td><%= number_to_currency @shift.reported_raised %></td>
+    </tr>
     <% if @shift.field_manager %>
       <tr>
         <th>Field manager</th>
