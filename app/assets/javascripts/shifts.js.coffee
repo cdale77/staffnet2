@@ -54,11 +54,11 @@ $ ->
 
     shiftTypeID = $("select#shift_shift_type_id").val()
 
-    monthlyMultiplier = gon.shift_types[shiftTypeID]["monthly"]
-    quarterlyMultiplier = gon.shift_types[shiftTypeID]["quarterly"]
+    #monthlyMultiplier = gon.shift_types[shiftTypeID]["monthly"]
+    #quarterlyMultiplier = gon.shift_types[shiftTypeID]["quarterly"]
 
-    monthlyValue = monthlyAmt * monthlyMultiplier
-    quarterlyValue = quarterlyAmt * quarterlyMultiplier
+    monthlyValue = monthlyAmt * 7
+    quarterlyValue = quarterlyAmt * 3
 
     totalYes = +cashQty + +checkQty + +creditQty + +monthlyQty + +quarterlyQty
     totalRaised = +cashAmt + +creditAmt + +checkAmt + +monthlyValue + +quarterlyValue
