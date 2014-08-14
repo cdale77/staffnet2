@@ -387,10 +387,10 @@ namespace :import do
     supporter_type = SupporterType.find_by_name('city_council')
     sendy_list = SendyList.find_by_name('city_council')
 
-    AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-                                         secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
+    s3 = AWS::S3.new( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+                      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
 
-    file = AWS::S3::S3Object.value('city_council.csv', 'staffnet2-import')
+    file = s3.buckets['staffnet2-import'].objects['city_council.csv'].read
 
     CSV.parse(file, headers: true) do |row|
       data = row.to_hash
@@ -452,7 +452,7 @@ namespace :import do
     AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
                                          secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
 
-    file = AWS::S3::S3Object.value('school_board.csv', 'staffnet2-import')
+    #file = AWS::S3::S3Object.value('school_board.csv', 'staffnet2-import')
 
     CSV.parse(file, headers: true) do |row|
       data = row.to_hash
