@@ -583,7 +583,7 @@ namespace :import do
           if supporter
             puts "found existing supporter"
           else
-            new_supporter = Supporter.build( email_1: email )
+            new_supporter = Supporter.create( email_1: email )
             new_supporter.first_name = data['first_name'] if data['first_name']
             new_supporter.last_name = data['last_name'] if data['last_name']
             new_supporter.phone_mobile = data['mobile_number'] if data['mobile_number']
