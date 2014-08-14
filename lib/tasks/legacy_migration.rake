@@ -396,11 +396,11 @@ namespace :import do
       data = row.to_hash
       new_supporter_attributes = {
           prefix:               data['title'],
-          first_name:           data['first_name'].titlecase,
-          last_name:            data['last_name'].titlecase,
-          address_city:         data['city'].titlecase,
-          address_county:       data['county'].titlecase,
-          email_1:              data['email'].downcase
+          first_name:           (data['first_name'].titlecase if data['first_name']),
+          last_name:            (data['last_name'].titlecase if data['last_name']),
+          address_city:         (data['city'].titlecase if data['city']),
+          address_county:       (data['county'].titlecase if data['county']),
+          email_1:              (data['email'].downcase if data['email'])
       }
 
 
