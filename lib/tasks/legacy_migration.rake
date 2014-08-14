@@ -429,7 +429,7 @@ namespace :import do
         end
 
         # create a CIM record
-        cim_record = CimCustProfileService.new(new_supporter.cim_customer_id, new_supporter.email, '')
+        cim_record = CimCustProfileService.new(new_supporter.cim_customer_id, new_supporter.email_1, '')
         if cim_record.create
           new_supporter.cim_id = cim_record.cim_id
           new_supporter.save
