@@ -447,20 +447,20 @@ namespace :import do
     supporter_type = SupporterType.find_by_name('school_board')
     sendy_list = SendyList.find_by_name('school_board')
 
-    AWS::S3::Base.establish_connection!( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-                                         secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
+    s3 = AWS::S3.new( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+                      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
 
-    #file = AWS::S3::S3Object.value('school_board.csv', 'staffnet2-import')
+    file = s3.buckets['staffnet2-import'].objects['school_board.csv'].read
 
     CSV.parse(file, headers: true) do |row|
       data = row.to_hash
       new_supporter_attributes = {
           prefix:               data['title'],
-          first_name:           data['first_name'],
-          last_name:            data['last_name'],
-          address_city:         data['city'],
-          address_county:       data['county'],
-          email_1:              data['email'],
+          first_name:           (data['first_name'].titlecase if data['first_name']),
+          last_name:            (data['last_name'].titlecase if data['last_name']),
+          address_city:         (data['city'].titlecase if data['city']),
+          address_county:       (data['county'].titlecase if data['county']),
+          email_1:              (data['email'].downcase if data['email']),
           notes:                data['district']
       }
 
@@ -484,6 +484,13 @@ namespace :import do
             save_error_record(0, 'school_board', "problem saving school board person #{data['last_name']}")
           end
         end
+        # create a CIM record
+        new_supporter.generate_cim_customer_id
+        cim_record = CimCustProfileService.new(new_supporter.cim_customer_id, new_supporter.email_1, '')
+        cim_record.create
+        new_supporter.cim_id = cim_record.cim_id
+        new_supporter.save
+        puts "Created CIM profile for id #{new_supporter.id}. CIM id #{new_supporter.cim_id}"
       else
         save_error_record(0, 'city_council', "problem saving school board person #{data['last_name']}")
       end
