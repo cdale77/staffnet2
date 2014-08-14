@@ -89,12 +89,12 @@ class Shift < ActiveRecord::Base
 
   def reported_monthly_value
     #reported_monthly_cc_amt * self.shift_type.monthly_cc_multiplier
-    reported_monthly_cc_amt * 7
+    reported_monthly_cc_amt() * 7
   end
 
   def reported_quarterly_value
     #reported_quarterly_cc_amt * self.shift_type.quarterly_cc_multiplier
-    reported_quarterly_cc_amt *3
+    reported_quarterly_cc_amt() * 3
   end
 
 
