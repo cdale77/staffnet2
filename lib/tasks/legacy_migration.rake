@@ -690,15 +690,20 @@ namespace :import do
           if supporter
             "Found supporter #{supporter.full_name} id #{supporter.id}"
 
-            if SendyUpdate.create(  supporter_id:     supporter.id,
-                                  sendy_list_id:    supporter.sendy_list.id,
-                                  sendy_email:      email,
-                                  new_sendy_email:  email,
-                                  action:           "unsubscribe")
-              puts "created sendy update"
+            if supporter.sendy_list
+              if SendyUpdate.create(  supporter_id:     supporter.id,
+                                      sendy_list_id:    supporter.sendy_list.id,
+                                      sendy_email:      email,
+                                      new_sendy_email:  email,
+                                      action:           "unsubscribe")
+                puts "created sendy update"
+              else
+                puts "problem creating sendy update"
+              end
             else
-              puts "problem creating sendy update"
+              puts "supporter is not part of a list"
             end
+
           else
             puts "did not find supporter"
           end
