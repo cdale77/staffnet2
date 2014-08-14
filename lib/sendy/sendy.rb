@@ -49,16 +49,18 @@ module Sendy
         begin
           supporter = Supporter.find(update.supporter_id)
         rescue
-          puts "Error finding supporter"
+          puts "Error finding supporter. Sendy update id #{update.id}"
           next
         end
 
         begin
           sendy_list = SendyList.find(update.sendy_list_id)
         rescue
-          puts "Error finding sendy list db record"
+          puts "Error finding sendy list db record. Sendy update id #{update.id}"
           next
         end
+
+        puts "Performing update id #{update.id}"
 
         case update.action
 
