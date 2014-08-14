@@ -85,6 +85,16 @@ class ShiftsController < ApplicationController
                                     :date,
                                     :travel_reimb,
                                     :reported_raised,
-                                    :reported_total_yes)
+                                    :reported_total_yes,
+                                    :reported_cash_qty,
+                                    :reported_cash_amt,
+                                    :reported_check_qty,
+                                    :reported_check_amt,
+                                    :reported_one_time_cc_qty,
+                                    :reported_one_time_cc_amt,
+                                    :reported_monthly_cc_qty,
+                                    :reported_monthly_cc_amt,
+                                    :reported_quarterly_cc_qty,
+                                    :reported_quarterly_cc_amt,)
     end
 end
