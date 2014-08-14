@@ -429,13 +429,13 @@ namespace :import do
         end
 
         # create a CIM record
-        cim_record = CimCustProfileService.new(supporter.cim_customer_id, supporter.email, '')
+        cim_record = CimCustProfileService.new(new_supporter.cim_customer_id, new_supporter.email, '')
         if cim_record.create
-          supporter.cim_id = cim_record.cim_id
-          supporter.save
-          puts "Created CIM profile for id #{supporter.id}"
+          new_supporter.cim_id = cim_record.cim_id
+          new_supporter.save
+          puts "Created CIM profile for id #{new_supporter.id}"
         else
-          puts "problem creating CIM profile for id #{supporter.id}"
+          puts "problem creating CIM profile for id #{new_supporter.id}"
         end
       else
         save_error_record(0, 'city_council', "problem saving city council person #{data['last_name']}")
