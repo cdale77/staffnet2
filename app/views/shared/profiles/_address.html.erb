@@ -1,16 +1,16 @@
 <tr>
   <th>Address</th>
-  <td><%= record.address1 %></td>
+  <td><%= record.address1 if record.address1%></td>
 </tr>
-<% if record.address2.present? %>
-  <tr>
-    <th></th>
-    <td><%= record.address2 %></td>
-  </tr>
-<% end %>
 <tr>
   <th></th>
-  <td>
-    <%= record.address_city + ', ' + record.address_state + ' ' + record.address_zip  %>
-  </td>
+  <td><%= record.address2 if record.address2 %></td>
 </tr>
+<% if record.address_city && record.address_state && record.address_zip %>
+  <tr>
+    <th></th>
+    <td>
+      <%= "#{record.address_city}, #{record.address_state} #{record.address_zip}"  %>
+    </td>
+  </tr>
+<% end %>
