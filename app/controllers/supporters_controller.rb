@@ -77,11 +77,34 @@ class SupportersController < ApplicationController
     end
 
     def supporter_params
-      params.require(:supporter).permit(  :prefix, :salutation, :first_name, :last_name, :suffix, :address_line_1,
-                                          :address_line_2, :address_city, :address_state, :address_zip, :address_bad,
-                                          :email_1, :email_1_bad, :email_2, :email_2_bad, :phone_mobile,
-                                          :phone_mobile_bad, :phone_home, :phone_home_bad, :supporter_type_id,
-                                          :do_not_call, :do_not_email, :do_not_mail, :keep_informed, :vol_level,
-                                          :employer, :occupation, :tag_list, :address_county)
+      params.require(:supporter).permit(  :prefix,
+                                          :salutation,
+                                          :first_name,
+                                          :last_name,
+                                          :suffix,
+                                          :address1,
+                                          :address2,
+                                          :address_city,
+                                          :address_state,
+                                          :address_zip,
+                                          :address_bad,
+                                          :email_1,
+                                          :email_1_bad,
+                                          :email_2,
+                                          :email_2_bad,
+                                          :phone_mobile,
+                                          :phone_mobile_bad,
+                                          :phone_home,
+                                          :phone_home_bad,
+                                          :supporter_type_id,
+                                          :do_not_call,
+                                          :do_not_email,
+                                          :do_not_mail,
+                                          :keep_informed,
+                                          :vol_level,
+                                          :employer,
+                                          :occupation,
+                                          :tag_list,
+                                          :address_county)
     end
 end
