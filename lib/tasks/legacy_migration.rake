@@ -390,7 +390,7 @@ namespace :import do
     s3 = AWS::S3.new( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
                       secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
 
-    file = s3.buckets['staffnet2-import'].objects['city_council.csv'].read
+    file = s3.buckets['staffnet2-import'].objects['city_council_2.csv'].read
 
     CSV.parse(file, headers: true) do |row|
       data = row.to_hash
@@ -431,13 +431,10 @@ namespace :import do
         # create a CIM record
         new_supporter.generate_cim_customer_id
         cim_record = CimCustProfileService.new(new_supporter.cim_customer_id, new_supporter.email_1, '')
-        if cim_record.create
+        cim_record.create
           new_supporter.cim_id = cim_record.cim_id
           new_supporter.save
-          puts "Created CIM profile for id #{new_supporter.id}"
-        else
-          puts "problem creating CIM profile for id #{new_supporter.id}"
-        end
+          puts "Created CIM profile for id #{new_supporter.id}. CIM id #{new_supporter.cim_id}"
       else
         save_error_record(0, 'city_council', "problem saving city council person #{data['last_name']}")
       end
