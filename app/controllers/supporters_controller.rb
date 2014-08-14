@@ -105,6 +105,8 @@ class SupportersController < ApplicationController
                                           :employer,
                                           :occupation,
                                           :tag_list,
-                                          :address_county)
+                                          :address_county,
+                                          :source,
+                                          :notes)
     end
 end
