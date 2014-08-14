@@ -597,6 +597,13 @@ namespace :import do
               if sendy_update.update('subscribe')
                 puts "Saved SendyUpdate record"
               end
+              # create a CIM record
+              new_supporter.generate_cim_customer_id
+              cim_record = CimCustProfileService.new(new_supporter.cim_customer_id, new_supporter.email_1, '')
+              cim_record.create
+              new_supporter.cim_id = cim_record.cim_id
+              new_supporter.save
+              puts "Created CIM profile for id #{new_supporter.id}. CIM id #{new_supporter.cim_id}"
             else
               puts "problem creating new supporter. email #{email}"
 
