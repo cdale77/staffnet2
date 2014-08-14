@@ -569,7 +569,7 @@ namespace :import do
       puts "downloaded import file"
       CSV.parse(file, headers: true) do |row|
 
-        puts "reading first row"
+        puts "reading row"
         data = row.to_hash
 
         emails = []
@@ -586,6 +586,9 @@ namespace :import do
             new_supporter = Supporter.build( email_1: email )
             new_supporter.first_name = data['first_name'] if data['first_name']
             new_supporter.last_name = data['last_name'] if data['last_name']
+            new_supporter.phone_mobile = data['mobile_number'] if data['mobile_number']
+            new_supporter.phone_home = data['phone_number'] if data['phone_number']
+            new_supporter.phone_work = data['work_number'] if data['work_number']
             if new_supporter.save
               puts "created new supporter"
               sendy_update = SendyUpdateService.new(new_supporter.id, new_sendy_list_id, new_supporter.email_1, new_supporter.email_1)
@@ -593,7 +596,7 @@ namespace :import do
                 puts "Saved SendyUpdate record"
               end
             else
-              puts "problem creating new suppporter. email #{email}"
+              puts "problem creating new supporter. email #{email}"
 
             end
           end
