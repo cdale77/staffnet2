@@ -589,6 +589,8 @@ namespace :import do
             new_supporter.phone_mobile = data['mobile_number'] if data['mobile_number']
             new_supporter.phone_home = data['phone_number'] if data['phone_number']
             new_supporter.phone_work = data['work_number'] if data['work_number']
+            new_supporter.employer = data['employer'] if data['employer']
+            new_supporter.occupation = data['occupation'] if data['occupation']
             if new_supporter.save
               puts "created new supporter"
               sendy_update = SendyUpdateService.new(new_supporter.id, new_sendy_list_id, new_supporter.email_1, new_supporter.email_1)
