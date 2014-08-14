@@ -436,6 +436,7 @@ namespace :import do
           puts "Created CIM profile for id #{supporter.id}"
         else
           puts "problem creating CIM profile for id #{supporter.id}"
+        end
       else
         save_error_record(0, 'city_council', "problem saving city council person #{data['last_name']}")
       end
