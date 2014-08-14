@@ -691,7 +691,7 @@ namespace :import do
             "Found supporter #{supporter.full_name} id #{supporter.id}"
 
             if SendyUpdate.create(  supporter_id:     supporter.id,
-                                  sendy_list_id:    "NMpznzCK8qu892xT6Hupo7kg",   #supporters list
+                                  sendy_list_id:    supporter.sendy_list.id,
                                   sendy_email:      email,
                                   new_sendy_email:  email,
                                   action:           "unsubscribe")
