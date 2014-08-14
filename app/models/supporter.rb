@@ -100,23 +100,23 @@ class Supporter < ActiveRecord::Base
 
   ## WRITERS  
   def email_1=(email)
-    write_attribute(:email_1, email.downcase)
+    write_attribute(:email_1, email.downcase) if email
   end
 
   def email_2=(email)
-    write_attribute(:email_2, email.downcase)
+    write_attribute(:email_2, email.downcase) if email
   end
 
   def phone_mobile=(phone)
-    write_attribute(:phone_mobile, clean_phone(phone))
+    write_attribute(:phone_mobile, clean_phone(phone)) if phone
   end
 
   def phone_home=(phone)
-    write_attribute(:phone_home, clean_phone(phone))
+    write_attribute(:phone_home, clean_phone(phone)) if phone
   end
 
   def phone_alt=(phone)
-    write_attribute(:phone_alt, clean_phone(phone))
+    write_attribute(:phone_alt, clean_phone(phone)) if phone
   end
 
   ## TAGS
