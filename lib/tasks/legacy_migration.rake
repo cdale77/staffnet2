@@ -396,11 +396,11 @@ namespace :import do
       data = row.to_hash
       new_supporter_attributes = {
           prefix:               data['title'],
-          first_name:           data['first_name'],
-          last_name:            data['last_name'],
-          address_city:         data['city'],
-          address_county:       data['county'],
-          email_1:              data['email']
+          first_name:           data['first_name'].titlecase,
+          last_name:            data['last_name'].titlecase,
+          address_city:         data['city'].titlecase,
+          address_county:       data['county'].titlecase,
+          email_1:              data['email'].downcase
       }
 
 
@@ -429,7 +429,7 @@ namespace :import do
         end
 
         # create a CIM record
-        cim_record = CimCustProfileService.new(support.cim_customer_id, supporter.email, '')
+        cim_record = CimCustProfileService.new(supporter.cim_customer_id, supporter.email, '')
         if cim_record.create
           supporter.cim_id = cim_record.cim_id
           supporter.save
