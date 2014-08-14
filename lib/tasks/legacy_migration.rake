@@ -417,6 +417,8 @@ namespace :import do
 
       if new_supporter.save
         puts "saved new city council person id #{new_supporter.id.to_s}"
+
+        # create a Sendy record
         if new_supporter.email_1.present?
           sendy_update = SendyUpdateService.new(new_supporter.id, sendy_list.id, new_supporter.email_1, new_supporter.email_1)
           if sendy_update.update('subscribe')
@@ -425,6 +427,15 @@ namespace :import do
             save_error_record(0, 'city_council', "problem saving city council person #{data['last_name']}")
           end
         end
+
+        # create a CIM record
+        cim_record = CimCustProfileService.new(support.cim_customer_id, supporter.email, '')
+        if cim_record.create
+          supporter.cim_id = cim_record.cim_id
+          supporter.save
+          puts "Created CIM profile for id #{supporter.id}"
+        else
+          puts "problem creating CIM profile for id #{supporter.id}"
       else
         save_error_record(0, 'city_council', "problem saving city council person #{data['last_name']}")
       end
