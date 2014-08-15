@@ -12,7 +12,8 @@
                 input_html: { id: 'donation-type' },
                 collection: [['Credit Card', 'credit'],
                              ['Cash', 'cash'],
-                             ['Check', 'check']],
+                             ['Check', 'check'],
+                             ['Web', 'web']],
                 selected: donation.donation_type %>
   </div>
   <div class="col-md-3">
@@ -37,7 +38,10 @@
   <div class="col-md-3">
     <%= f.input :source,
                 as: :select,
-                collection: [['Phone', 'phone'], ['Door', 'door'], ['Street', 'street'], ['Web', 'web']],
+                collection: [['Phone', 'phone'],
+                             ['Door', 'door'],
+                             ['Street', 'street'],
+                             ['NationBuilder', 'nationbuilder']],
                 selected: donation.source %>
   </div>
   <div class="col-md-3">
