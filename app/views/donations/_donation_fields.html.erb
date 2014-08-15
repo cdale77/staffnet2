@@ -10,7 +10,9 @@
     <%= f.input :donation_type,
                 as: :select,
                 input_html: { id: 'donation-type' },
-                collection: [['Credit Card', 'credit'], ['Cash', 'cash'], ['Check', 'check']],
+                collection: [['Credit Card', 'credit'],
+                             ['Cash', 'cash'],
+                             ['Check', 'check']],
                 selected: donation.donation_type %>
   </div>
   <div class="col-md-3">
