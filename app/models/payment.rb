@@ -29,8 +29,8 @@ class Payment < ActiveRecord::Base
   belongs_to :deposit_batch
 
   ## CALLBACKS
-  #before_save :process_payment
-  #before_save :send_receipt
+  before_save :process_payment
+  before_save :send_receipt
 
   ## VALIDATIONS
   validates :payment_type, presence: { message: 'required.' }
