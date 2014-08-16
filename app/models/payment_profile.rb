@@ -13,6 +13,8 @@
 
 class PaymentProfile < ActiveRecord::Base
 
+  has_paper_trail
+
   attr_accessor :cc_number
 
   ## SET UP ENVIRONMENT

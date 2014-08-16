@@ -21,6 +21,8 @@
 
 class Donation < ActiveRecord::Base
 
+  has_paper_trail
+
   # this comes from the donation new form, the result of the select box for
   # monthly or quarterly sustainers
   attr_accessor :sustainer_type

@@ -33,6 +33,8 @@
 
 class Employee < ActiveRecord::Base
 
+  has_paper_trail
+
   ## SET UP ENVIRONMENT
   include Regex
   include PeopleMethods

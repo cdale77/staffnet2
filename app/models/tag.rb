@@ -9,6 +9,9 @@
 #
 
 class Tag < ActiveRecord::Base
+
+  # no paper trail
+
   has_many :taggings
   has_many :supporters, through: :taggings
 end

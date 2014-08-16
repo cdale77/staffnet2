@@ -27,6 +27,9 @@
 #
 
 class User < ActiveRecord::Base
+
+  has_paper_trail
+  
   # Include default devise modules. Others available are:
   #:token_authenticatable,  :registerable, :confirmable,
   #:trackable, and :omniauthable

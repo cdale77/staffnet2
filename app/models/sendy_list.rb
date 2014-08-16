@@ -12,6 +12,8 @@
 
 class SendyList < ActiveRecord::Base
 
+  has_paper_trail
+
   ## RELATIONSHIPS
   belongs_to :supporter_type
   has_many :supporters

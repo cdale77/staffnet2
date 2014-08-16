@@ -10,8 +10,8 @@
 
 class SupporterType < ActiveRecord::Base
 
-  ## SETUP ENVIRONMENT
-  #include MailChimpMethods
+  has_paper_trail
+
 
   ## VALIDATIONS
   validates :name, presence: { message: 'required.' },

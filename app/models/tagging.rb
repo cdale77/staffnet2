@@ -10,6 +10,9 @@
 #
 
 class Tagging < ActiveRecord::Base
+
+  # no paper trail
+
   belongs_to :tag
   belongs_to :article
 end

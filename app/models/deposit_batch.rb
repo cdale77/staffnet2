@@ -15,6 +15,8 @@
 
 class DepositBatch < ActiveRecord::Base
 
+  has_paper_trail
+
   belongs_to :employee
   has_many :payments
 

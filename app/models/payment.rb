@@ -22,6 +22,8 @@
 
 class Payment < ActiveRecord::Base
 
+  has_paper_trail
+
   ## RELATIONSHIPS
   delegate :supporter, to: :donation
   belongs_to :donation

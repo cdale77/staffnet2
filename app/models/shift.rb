@@ -34,6 +34,8 @@
 
 class Shift < ActiveRecord::Base
 
+  has_paper_trail
+
   default_scope { order(date: :desc) }
 
   ## HSTORE
