@@ -12,7 +12,7 @@ class SupporterService < ServiceBase
     @cim_profile = CimCustProfileService.new(@supporter.cim_customer_id,
                                              supporter_email,
                                              @cim_id)
-    @sendy_update = SendyUpdateService.new(@supporter.cim_customer_id,
+    @sendy_update = SendyUpdateService.new(@supporter.id,
                                            sendy_list_id,
                                            supporter_email,
                                            old_email)
