@@ -36,9 +36,12 @@ namespace :db do
     end
 
     # shift_types
-    names = ['door', 'street', 'phone', 'office', 'vacation', 'holiday', 'sick' ]
+    names = ["door", "street", "phone", "vacation" ]
     names.each do |name|
       new_type = ShiftType.new(name: name)
+      unless name == "vacation"
+        new_type.fundraising_shift = true
+      end
       new_type.monthly_cc_multiplier = 7
       new_type.quarterly_cc_multiplier = 3
       new_type.save

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140816053227) do
+ActiveRecord::Schema.define(version: 20140819171846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 20140816053227) do
     t.integer  "supporter_id"
     t.string   "cim_payment_profile_id", default: ""
     t.string   "payment_profile_type",   default: ""
-    t.hstore   "details",                default: ""
+    t.hstore   "details",                default: {}
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -197,7 +197,10 @@ ActiveRecord::Schema.define(version: 20140816053227) do
     t.decimal  "quarterly_cc_multiplier", precision: 8, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "fundraising_shift",                               default: false
   end
+
+  add_index "shift_types", ["fundraising_shift"], name: "index_shift_types_on_fundraising_shift", using: :btree
 
   create_table "shifts", force: true do |t|
     t.integer  "employee_id"
@@ -212,7 +215,7 @@ ActiveRecord::Schema.define(version: 20140816053227) do
     t.decimal  "travel_reimb",              precision: 8, scale: 2, default: 0.0
     t.boolean  "cv_shift",                                          default: false
     t.boolean  "quota_shift",                                       default: false
-    t.hstore   "products",                                          default: ""
+    t.hstore   "products",                                          default: {}
     t.decimal  "reported_raised",           precision: 8, scale: 2, default: 0.0
     t.integer  "reported_total_yes",                                default: 0
     t.integer  "reported_cash_qty",                                 default: 0
