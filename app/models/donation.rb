@@ -77,6 +77,11 @@ class Donation < ActiveRecord::Base
     end
   end
 
+  def captured
+    # this is mapped to the first payment - if it's captured, so is the donation
+    self.payments.first.captured
+  end
+
   def total_value
     case self.frequency
       when "one-time"

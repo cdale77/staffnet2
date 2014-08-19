@@ -36,10 +36,13 @@ describe Donation do
 
   let!(:shift_type) { FactoryGirl.create(:shift_type) }
   let!(:shift) { FactoryGirl.create(:shift, shift_type: shift_type) }
-  let(:donation) { FactoryGirl.create(:donation,
+  let!(:donation) { FactoryGirl.create(:donation,
                                       sub_month: "a",
                                       sub_week: 4,
                                       shift: shift) }
+  let!(:payment) { FactoryGirl.create(:payment,
+                                      donation: donation,
+                                      captured: true) }
 
   ## ATTRIBUTES
   describe 'donation attribute tests' do
@@ -89,7 +92,7 @@ describe Donation do
       donation.should be_valid
     end
     it 'should require sub_week to be a single integer' do
-      invalid_codes = [ 11, 1111, 'a', 'aa']
+      invalid_codes = [ 11, 1111, "a", "aa"]
       invalid_codes.each do |code|
         donation.sub_week = code
         donation.should_not be_valid
@@ -104,17 +107,35 @@ describe Donation do
   ## CLASS METHODS
   describe '::sustaining_donations' do
     before do
-      FactoryGirl.create(:donation, sub_week: 3, sub_month: 'm', cancelled: false)
-      FactoryGirl.create(:donation, sub_week: 3, sub_month: 'm', cancelled: false)
-      FactoryGirl.create(:donation, sub_week: 3, sub_month: 'm', cancelled: true)
-      FactoryGirl.create(:donation, sub_week: 0, sub_month: '', cancelled: false)
+      FactoryGirl.create(:donation,
+                         sub_week: 3,
+                         sub_month: "m",
+                         cancelled: false)
+      FactoryGirl.create(:donation,
+                         sub_week: 3,
+                         sub_month: "m",
+                         cancelled: false)
+      FactoryGirl.create(:donation,
+                         sub_week: 3,
+                         sub_month: "m",
+                         cancelled: true)
+      FactoryGirl.create(:donation,
+                         sub_week: 0,
+                         sub_month: "",
+                         cancelled: false)
     end
     it 'should return the sustaining donations' do
-      expect(Donation.sustaining_donations.count).to eq 2
+      # include the original donation created by let!
+      expect(Donation.sustaining_donations.count).to eq 3
     end
   end
 
   ## INSTANCE METHODS
+  describe '#captured' do
+    it 'should return true' do
+      expect(donation.captured).to be_truthy
+    end
+  end
   describe '#total_value' do
     it 'should return the correct result' do
       # using to_s to make the results human readable
@@ -124,18 +145,18 @@ describe Donation do
 
   describe '#is_sustainer?' do
     it 'should return the correct result for a sustainer' do
-      donation.sub_month = 'm'
+      donation.sub_month = "m"
       donation.sub_week = 2
       donation.cancelled = false
-      expect(donation.is_sustainer?).to be_true
+      expect(donation.is_sustainer?).to be_truthy
     end
     it 'should return the correct result for a non sustainer' do
-      donation.sub_week = ''
-      expect(donation.is_sustainer?).to be_false
+      donation.sub_week = ""
+      expect(donation.is_sustainer?).to be_falsey
     end
     it 'should return the correct result for a cancelled sustainer do' do
       donation.cancelled = true
-      expect(donation.is_sustainer?).to be_false
+      expect(donation.is_sustainer?).to be_falsey
     end
 
   end
