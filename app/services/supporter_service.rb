@@ -56,7 +56,7 @@ class SupporterService < ServiceBase
     end
 
     def queue_sendy_update(action)
-      @sendy_update.update(action) unless @supporter_email
+      @sendy_update.update(action) unless @supporter_email.blank?
     end
 
     def update_record
