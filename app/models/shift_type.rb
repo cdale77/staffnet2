@@ -8,6 +8,7 @@
 #  quarterly_cc_multiplier :decimal(8, 2)    default(0.0)
 #  created_at              :datetime
 #  updated_at              :datetime
+#  fundraising_shift       :boolean          default(FALSE)
 #
 
 class ShiftType < ActiveRecord::Base
@@ -16,7 +17,8 @@ class ShiftType < ActiveRecord::Base
 
   ## VALIDATIONS
   validates :name, presence: { message: 'required.' },
-            length: { maximum: 56, minimum: 2, message: 'must be between 2 and 56 characters.' }
+            length: { maximum: 56, minimum: 2,
+                      message: 'must be between 2 and 56 characters.' }
 
   ## RELATIONSHIPS
   has_many :shifts
@@ -24,7 +26,8 @@ class ShiftType < ActiveRecord::Base
   def self.multipliers
     result = {}
     all.each do |shift_type|
-      multipliers = { monthly: shift_type.monthly_cc_multiplier, quarterly: shift_type.quarterly_cc_multiplier }
+      multipliers = { monthly: shift_type.monthly_cc_multiplier,
+                      quarterly: shift_type.quarterly_cc_multiplier }
       result[shift_type.id] = multipliers
     end
     return result

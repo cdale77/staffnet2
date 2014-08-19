@@ -8,6 +8,7 @@
 #  quarterly_cc_multiplier :decimal(8, 2)    default(0.0)
 #  created_at              :datetime
 #  updated_at              :datetime
+#  fundraising_shift       :boolean          default(FALSE)
 #
 
 require 'spec_helper'
@@ -20,6 +21,7 @@ describe ShiftType do
 
   ## ATTRIBUTES
   it { should respond_to(:name) }
+  it { should respond_to(:fundraising_shift) }
   it { should respond_to(:monthly_cc_multiplier) }
   it { should respond_to(:quarterly_cc_multiplier) }
 
