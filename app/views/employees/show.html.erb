@@ -86,7 +86,7 @@
       </tr>
       <tr>
         <th>Fundraising shifts</th>
-        <td><%= @employee.fundraising_shifts_count %></td>
+        <td><%= @employee.fundraising_shifts.count %></td>
       </tr>
       <tr>
         <th>Donations</th>
@@ -115,7 +115,7 @@
       </tr>
       <tr>
         <th>Donations</th>
-        <td><%=  %></td>
+        <td><%= @employee.donations_this_week %></td>
       </tr>
       <tr>
         <th>Raised</th>

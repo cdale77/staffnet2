@@ -107,6 +107,10 @@ class Employee < ActiveRecord::Base
     Employee.where(title: 'field_manager')
   end
 
+  def fundraising_shifts
+    self.shifts.select { |s| s.fundraising_shift }
+  end
+
   def shifts_this_week
     self.shifts.where(date: (Date.today.beginning_of_week..Date.today))
   end
@@ -116,9 +120,8 @@ class Employee < ActiveRecord::Base
     fundraising_shifts.count
   end
 
-  def fundraising_shifts_count
-    fundraising_shifts = self.shifts.select { |s| s.fundraising_shift }
-    fundraising_shifts.count
+  def donations_this_week
+    fundraising_shifts
   end
 
   def donations_total
@@ -131,7 +134,7 @@ class Employee < ActiveRecord::Base
   end
 
   def fundraising_average
-    self.fundraising_total / self.fundraising_shifts_count
+    self.fundraising_total / self.fundraising_shifts.count
   end
 
 

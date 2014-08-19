@@ -42,4 +42,7 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  # use deprecated behavior to infer spec type
+  config.infer_spec_type_from_file_location!
+
 end

@@ -308,9 +308,9 @@ describe Employee do
   end
 
   ## INSTANCE METHODS
-  describe '#fundraising_shifts_count' do
+  describe '#fundraising_shift' do
     it 'should return the correct number' do
-      expect(employee.fundraising_shifts_count).to eq 1
+      expect(employee.fundraising_shifts.count).to eq 1
     end
   end
   describe '#donations_count' do
