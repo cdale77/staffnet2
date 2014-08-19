@@ -145,11 +145,21 @@ class Employee < ActiveRecord::Base
   end
 
   def fundraising_average
-    self.fundraising_total / self.fundraising_shifts.count
+    if self.fundraising_shifts.any?
+      self.fundraising_total / self.fundraising_shifts.count
+    else
+      0
+    end
+
   end
 
   def fundraising_average_this_week
-    self.fundraising_total_this_week / self.fundraising_shifts_this_week.count
+    if self.fundraising_shifts_this_week.any?
+      self.fundraising_total_this_week / self.fundraising_shifts_this_week.count
+    else
+      0
+    end
+
   end
 
 
