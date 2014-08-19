@@ -90,7 +90,11 @@
       </tr>
       <tr>
         <th>Donations</th>
-        <td><%= @employee.donations_total %></td>
+        <td><%= @employee.donations.count %></td>
+      </tr>
+      <tr>
+        <th>Successful donations</th>
+        <td><%= @employee.successful_donations.count %></td>
       </tr>
       <tr>
         <th>Raised</th>
@@ -111,19 +115,23 @@
       </tr>
       <tr>
         <th>Fundraising shifts</th>
-        <td><%= @employee.fundraising_shifts_this_week %></td>
+        <td><%= @employee.fundraising_shifts_this_week.count %></td>
       </tr>
       <tr>
         <th>Donations</th>
-        <td><%= @employee.donations_this_week %></td>
+        <td><%= @employee.donations_this_week.count %></td>
+      </tr>
+      <tr>
+        <th>Successful donations</th>
+        <td><%= @employee.successful_donations_this_week.count %></td>
       </tr>
       <tr>
         <th>Raised</th>
-        <td><%=  %></td>
+        <td><%= number_to_currency @employee.fundraising_total_this_week %></td>
       </tr>
       <tr>
         <th>Average</th>
-        <td><%=  %></td>
+        <td><%= number_to_currency @employee.fundraising_average_this_week %></td>
       </tr>
     </table>
   </div>

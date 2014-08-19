@@ -308,14 +308,14 @@ describe Employee do
   end
 
   ## INSTANCE METHODS
-  describe '#fundraising_shift' do
+  describe '#successful_donations' do
     it 'should return the correct number' do
-      expect(employee.fundraising_shifts.count).to eq 1
+      expect(employee.successful_donations.count).to eq 2
     end
   end
-  describe '#donations_count' do
+  describe '#fundraising_shifts' do
     it 'should return the correct number' do
-      expect(employee.donations_total).to eq 2
+      expect(employee.fundraising_shifts.count).to eq 1
     end
   end
   describe '#fundraising_total' do

@@ -116,25 +116,40 @@ class Employee < ActiveRecord::Base
   end
 
   def fundraising_shifts_this_week
-    fundraising_shifts = self.shifts_this_week.select { |s| s.fundraising_shift }
-    fundraising_shifts.count
+    self.shifts_this_week.select { |s| s.fundraising_shift }
   end
 
   def donations_this_week
-    fundraising_shifts
+    self.donations.select do |d|
+        (Date.today.beginning_of_week..Date.today).include?(d.shift.date)
+    end
   end
 
-  def donations_total
-    self.donations.count
+  def successful_donations
+    self.donations.select { |d| d.captured }
+  end
+
+  def successful_donations_this_week
+    self.successful_donations.select do |d|
+      (Date.today.beginning_of_week..Date.today).include?(d.shift.date)
+    end
   end
 
   def fundraising_total
-    successful_donations = self.donations.select { |d| d.captured }
-    successful_donations.sum(&:total_value)
+    self.successful_donations.sum(&:total_value)
+  end
+
+
+  def fundraising_total_this_week
+    self.successful_donations_this_week.sum(&:total_value)
   end
 
   def fundraising_average
     self.fundraising_total / self.fundraising_shifts.count
+  end
+
+  def fundraising_average_this_week
+    self.fundraising_total_this_week / self.fundraising_shifts_this_week.count
   end
 
 
