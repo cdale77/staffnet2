@@ -32,7 +32,7 @@
   <div class="col-md-2">
     <%= f.input :break_time, as: :string %>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-2">
     <%= f.input :field_manager_employee_id,
                 as: :select,
                 collection: Employee.field_managers,
@@ -41,6 +41,9 @@
                 selected: shift.field_manager_employee_id,
                 label: 'Field manager',
                 include_blank: true %>
+  </div>
+  <div class="col-md-2">
+    <%= f.input :contacts %>
   </div>
 </div>
 <hr />

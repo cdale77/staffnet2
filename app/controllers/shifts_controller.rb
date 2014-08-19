@@ -95,6 +95,10 @@ class ShiftsController < ApplicationController
                                     :reported_monthly_cc_qty,
                                     :reported_monthly_cc_amt,
                                     :reported_quarterly_cc_qty,
-                                    :reported_quarterly_cc_amt,)
+                                    :reported_quarterly_cc_amt,
+                                    :phones,
+                                    :emails,
+                                    :signatures,
+                                    :contacts)
     end
 end
