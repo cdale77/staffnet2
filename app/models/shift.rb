@@ -45,24 +45,25 @@ class Shift < ActiveRecord::Base
   include Regex
 
   ## RELATIONSHIPS
-  #belongs_to :user
   belongs_to :employee
   delegate :user, to: :employee
   belongs_to :shift_type
   has_many :donations
   has_many :payments, through: :donations
-  #has_many :tasks, dependent: :destroy
 
   ## VALIDATIONS
   validates :date,
             presence: { message: 'required.' }
 
   validates :break_time,
-            numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 120, message: 'must be less than 121 minutes.' },
+            numericality: { greater_than_or_equal_to: 0,
+                            less_than_or_equal_to: 120,
+                            message: 'must be less than 121 minutes.' },
             allow_blank: true
 
   validates :travel_reimb,
-            numericality: { greater_than_or_equal_to: 0, message: 'must be a positive number.'  },
+            numericality: { greater_than_or_equal_to: 0,
+                            message: 'must be a positive number.'  },
             allow_blank: true
 
   validates :time_in, :time_out,

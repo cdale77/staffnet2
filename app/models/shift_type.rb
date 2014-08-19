@@ -9,6 +9,7 @@
 #  created_at              :datetime
 #  updated_at              :datetime
 #  fundraising_shift       :boolean          default(FALSE)
+#  quota_shift             :boolean          default(TRUE)
 #
 
 class ShiftType < ActiveRecord::Base

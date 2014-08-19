@@ -9,6 +9,7 @@
 #  created_at              :datetime
 #  updated_at              :datetime
 #  fundraising_shift       :boolean          default(FALSE)
+#  quota_shift             :boolean          default(TRUE)
 #
 
 require 'spec_helper'
@@ -22,6 +23,7 @@ describe ShiftType do
   ## ATTRIBUTES
   it { should respond_to(:name) }
   it { should respond_to(:fundraising_shift) }
+  it { should respond_to(:quota_shift) }
   it { should respond_to(:monthly_cc_multiplier) }
   it { should respond_to(:quarterly_cc_multiplier) }
 

@@ -42,6 +42,9 @@ namespace :db do
       unless name == "vacation"
         new_type.fundraising_shift = true
       end
+      if name == "vacation"
+        new_type.quota_shift = false
+      end
       new_type.monthly_cc_multiplier = 7
       new_type.quarterly_cc_multiplier = 3
       new_type.save

@@ -45,7 +45,9 @@ class ShiftTypesController < ApplicationController
   private
 
     def shift_type_params
-      params.require(:shift_type).permit(:name, :fundraising_shift)
+      params.require(:shift_type).permit(:name,
+                                         :fundraising_shift,
+                                         :quota_shift)
     end
 
 end
