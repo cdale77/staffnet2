@@ -8,6 +8,7 @@
       <th>Date</th>
       <th>Amount</th>
       <th>Type</th>
+      <th>Frequency</th>
       <th>Captured?</th>
       <th>Source</th>
     </tr>
@@ -17,6 +18,7 @@
         <td><%= donation.date %></td>
         <td><%= donation.amount %></td>
         <td><%= donation.donation_type %></td>
+        <td><%= donation.frequency.humanize %></td>
         <td><%= donation.captured %></td>
         <td><%= donation.source %></td>
       </tr>
