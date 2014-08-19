@@ -107,6 +107,15 @@ class Employee < ActiveRecord::Base
     Employee.where(title: 'field_manager')
   end
 
+  def shifts_this_week
+    self.shifts.where(date: (Date.today.beginning_of_week..Date.today))
+  end
+
+  def fundraising_shifts_this_week
+    fundraising_shifts = self.shifts_this_week.select { |s| s.fundraising_shift }
+    fundraising_shifts.count
+  end
+
   def fundraising_shifts_count
     fundraising_shifts = self.shifts.select { |s| s.fundraising_shift }
     fundraising_shifts.count

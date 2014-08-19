@@ -78,9 +78,10 @@
 <h4>Stats</h4>
 <div class="col-md-12 row record-display">
   <div class="col-md-4 record_column">
+    <h5>Lifetime</h5>
     <table>
       <tr>
-        <th>Total shifts</th>
+        <th>Shifts</th>
         <td><%= @employee.shifts.count %></td>
       </tr>
       <tr>
@@ -88,19 +89,42 @@
         <td><%= @employee.fundraising_shifts_count %></td>
       </tr>
       <tr>
-        <th>Total donations</th>
+        <th>Donations</th>
         <td><%= @employee.donations_total %></td>
+      </tr>
+      <tr>
+        <th>Raised</th>
+        <td><%= number_to_currency @employee.fundraising_total %></td>
+      </tr>
+      <tr>
+        <th>Average</th>
+        <td><%= number_to_currency @employee.fundraising_average %></td>
       </tr>
     </table>
   </div>
   <div class="col-md-4 record_column">
+    <h5>This week</h5>
     <table>
-
-    </table>
-  </div>
-  <div class="col-md-4 record_column">
-    <table>
-
+      <tr>
+        <th>Shifts</th>
+        <td><%= @employee.shifts_this_week.count %></td>
+      </tr>
+      <tr>
+        <th>Fundraising shifts</th>
+        <td><%= @employee.fundraising_shifts_this_week %></td>
+      </tr>
+      <tr>
+        <th>Donations</th>
+        <td><%=  %></td>
+      </tr>
+      <tr>
+        <th>Raised</th>
+        <td><%=  %></td>
+      </tr>
+      <tr>
+        <th>Average</th>
+        <td><%=  %></td>
+      </tr>
     </table>
   </div>
 </div>
