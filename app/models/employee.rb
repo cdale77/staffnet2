@@ -122,7 +122,7 @@ class Employee < ActiveRecord::Base
   end
 
   def fundraising_average
-
+    self.fundraising_total / self.fundraising_shifts_count
   end
 
 

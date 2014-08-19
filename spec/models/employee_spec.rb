@@ -325,7 +325,7 @@ describe Employee do
   end
   describe '#fundraising_average' do
     it 'should calculate the correct average' do
-      expect(employee.fundraising_average).to eq 5
+      expect(employee.fundraising_average).to eq 10
     end
   end
 

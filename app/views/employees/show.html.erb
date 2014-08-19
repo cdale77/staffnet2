@@ -75,5 +75,34 @@
       <%= render 'shared/profiles/magic_columns', record: @employee %>
   </table></div>
 </div>
+<h4>Stats</h4>
+<div class="col-md-12 row record-display">
+  <div class="col-md-4 record_column">
+    <table>
+      <tr>
+        <th>Total shifts</th>
+        <td><%= @employee.shifts.count %></td>
+      </tr>
+      <tr>
+        <th>Fundraising shifts</th>
+        <td><%= @employee.fundraising_shifts_count %></td>
+      </tr>
+      <tr>
+        <th>Total donations</th>
+        <td><%= @employee.donations_total %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-4 record_column">
+    <table>
+
+    </table>
+  </div>
+  <div class="col-md-4 record_column">
+    <table>
+
+    </table>
+  </div>
+</div>
 <hr />
 <%= render 'employee_shifts', shifts: @shifts, employee: @employee %>
