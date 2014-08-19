@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819174019) do
+ActiveRecord::Schema.define(version: 20140819174627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -215,8 +215,6 @@ ActiveRecord::Schema.define(version: 20140819174019) do
     t.integer  "break_time",                                        default: 0
     t.text     "notes",                                             default: ""
     t.decimal  "travel_reimb",              precision: 8, scale: 2, default: 0.0
-    t.boolean  "cv_shift",                                          default: false
-    t.boolean  "quota_shift",                                       default: false
     t.hstore   "products",                                          default: {}
     t.decimal  "reported_raised",           precision: 8, scale: 2, default: 0.0
     t.integer  "reported_total_yes",                                default: 0

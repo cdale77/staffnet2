@@ -13,8 +13,6 @@
 #  break_time                :integer          default(0)
 #  notes                     :text             default("")
 #  travel_reimb              :decimal(8, 2)    default(0.0)
-#  cv_shift                  :boolean          default(FALSE)
-#  quota_shift               :boolean          default(FALSE)
 #  products                  :hstore           default({})
 #  reported_raised           :decimal(8, 2)    default(0.0)
 #  reported_total_yes        :integer          default(0)
