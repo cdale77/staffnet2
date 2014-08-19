@@ -72,7 +72,10 @@ describe Shift do
   it { should respond_to(:employee) }
   it { should respond_to(:donations) }
   it { should respond_to(:payments) }
-  #it { should respond_to(:tasks) }
+
+  ## DELEGATED METHODS
+  it { should respond_to(:fundraising_shift) }
+  it { should respond_to(:quota_shift) }
 
   ## VALIDATIONS
   describe 'date validations' do

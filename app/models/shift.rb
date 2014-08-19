@@ -49,6 +49,10 @@ class Shift < ActiveRecord::Base
   has_many :donations
   has_many :payments, through: :donations
 
+  ## METHOD DELEGATIONS
+  delegate :fundraising_shift, to: :shift_type
+  delegate :quota_shift, to: :shift_type
+
   ## VALIDATIONS
   validates :date,
             presence: { message: 'required.' }
