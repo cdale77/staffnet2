@@ -35,14 +35,58 @@ require 'spec_helper'
 
 describe Employee do
 
-  employee_attributes = { first_name: 'Test', last_name: 'Employee', email: 'test_employee@example.com',
-                          phone: '4155551234', address1: '2017 Mission St.', address2: '2nd Fl',
-                          address_city: 'San Francisco', address_state: 'CA', address_zip: '94110',
-                          title: 'Field Manager', pay_hourly: 12, hire_date: Date.today,
-                          fed_filing_status: 'single', ca_filing_status: 'single', fed_allowances: 2,
-                          ca_allowances: 2, dob: Date.today, gender: 'f', active: true, notes: 'Notes', legacy_id: '34' }
+  employee_attributes = { first_name: 'Test',
+                          last_name: 'Employee',
+                          email: 'test_employee@example.com',
+                          phone: '4155551234',
+                          address1: '2017 Mission St.',
+                          address2: '2nd Fl',
+                          address_city: 'San Francisco',
+                          address_state: 'CA',
+                          address_zip: '94110',
+                          title: 'Field Manager',
+                          pay_hourly: 12,
+                          hire_date: Date.today,
+                          fed_filing_status: 'single',
+                          ca_filing_status: 'single',
+                          fed_allowances: 2,
+                          ca_allowances: 2,
+                          dob: Date.today,
+                          gender: 'f',
+                          active: true,
+                          notes: 'Notes',
+                          legacy_id: '34' }
 
+  # SETUP ENVIRONMNET
   let!(:employee) { FactoryGirl.create(:employee) }
+
+  let!(:shift) { FactoryGirl.create(:shift,
+                                    employee: employee,
+                                    cv_shift: true) }
+
+  let!(:supporter) { FactoryGirl.create(:supporter) }
+
+  let!(:donation1) { FactoryGirl.create(:donation,
+                                       shift: shift,
+                                       supporter: supporter,
+                                       amount: 5.0) }
+
+  let!(:payment1) { FactoryGirl.create(:payment,
+                                      donation: donation1,
+                                      amount: donation1.amount,
+                                      processed: true,
+                                      captured: true) }
+
+  let!(:donation2) { FactoryGirl.create(:donation,
+                                        shift: shift,
+                                        supporter: supporter,
+                                        amount: 5.0) }
+
+  let!(:payment2) { FactoryGirl.create(:payment,
+                                       donation: donation2,
+                                       amount: donation2.amount,
+                                       processed: true,
+                                       captured: true) }
 
 
   subject { employee }
@@ -55,8 +99,10 @@ describe Employee do
   end
 
   ## RELATIONSHIPS
-  it { should respond_to(:shifts) }
   it { should respond_to(:user) }
+  it { should respond_to(:shifts) }
+  it { should respond_to(:donations) }
+  it { should respond_to(:payments) }
   it { should respond_to(:deposit_batches) }
   
   ## VALIDATIONS
@@ -96,7 +142,11 @@ describe Employee do
 
   describe 'email validations' do
     it 'should reject invalid emails' do
-      addresses = %w[user@foo,com user_at_foo.org example.user@foo. foo@bar_baz.com foo@bar+baz.com]
+      addresses = ["user@foo,com",
+                   "user_at_foo.org",
+                   "example.user@foo.",
+                   "foo@bar_baz.com",
+                   "foo@bar+baz.com"]
       addresses.each do |invalid_address|
         employee.email = invalid_address
         employee.should_not be_valid
@@ -254,9 +304,24 @@ describe Employee do
   end
 
   ## INSTANCE METHODS
-  describe 'fundraising average' do
-    it 'should return a big decimal' do
-      expect(employee.fundraising_average).to be_an_instance_of BigDecimal
+  describe '#fundraising_shifts_count' do
+    it 'should return the correct number' do
+      expect(employee.fundraising_shifts_count).to eq 1
+    end
+  end
+  describe '#donations_count' do
+    it 'should return the correct number' do
+      expect(employee.donations_total).to eq 2
+    end
+  end
+  describe '#fundraising_total' do
+    it 'should return the correct number' do
+      expect(employee.fundraising_total).to eq 10
+    end
+  end
+  describe '#fundraising_average' do
+    it 'should calculate the correct average' do
+      expect(employee.fundraising_average).to eq 5
     end
   end
 

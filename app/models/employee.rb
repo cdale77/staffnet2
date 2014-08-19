@@ -43,6 +43,8 @@ class Employee < ActiveRecord::Base
   ## RELATIONSHIPS
   belongs_to :user
   has_many :shifts, dependent: :destroy
+  has_many :donations, through: :shifts
+  has_many :payments, through: :shifts
   has_many :deposit_batches
 
   ## VALIDATIONS
@@ -104,6 +106,26 @@ class Employee < ActiveRecord::Base
   def self.field_managers
     Employee.where(title: 'field_manager')
   end
+
+  def fundraising_shifts_count
+    fundraising_shifts = self.shifts.where(cv_shift: true)
+    fundraising_shifts.count
+  end
+
+  def donations_total
+    self.donations.count
+  end
+
+  def fundraising_total
+    successful_payments = self.payments.where(captured: true)
+    successful_payments.sum(:amount)
+  end
+
+  def fundraising_average
+
+  end
+
+
 
   private
     def pay_validator
