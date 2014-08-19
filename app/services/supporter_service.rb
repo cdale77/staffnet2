@@ -9,12 +9,13 @@ class SupporterService < ServiceBase
     @success = false
     @cim_id = cim_id
     @new_status = new_status
+    @supporter_email = supporter_email
     @cim_profile = CimCustProfileService.new(@supporter.cim_customer_id,
                                              supporter_email,
                                              @cim_id)
     @sendy_update = SendyUpdateService.new(@supporter.id,
                                            sendy_list_id,
-                                           supporter_email,
+                                           @supporter_email,
                                            old_email)
   end
 
@@ -55,7 +56,7 @@ class SupporterService < ServiceBase
     end
 
     def queue_sendy_update(action)
-      @sendy_update.update(action)
+      @sendy_update.update(action) unless @supporter_email
     end
 
     def update_record
