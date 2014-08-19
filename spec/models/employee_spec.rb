@@ -60,9 +60,13 @@ describe Employee do
   # SETUP ENVIRONMNET
   let!(:employee) { FactoryGirl.create(:employee) }
 
+  let!(:shift_type) { FactoryGirl.create(:shift_type,
+                                         fundraising_shift: true,
+                                         quota_shift: true) }
+
   let!(:shift) { FactoryGirl.create(:shift,
-                                    employee: employee,
-                                    cv_shift: true) }
+                                    shift_type: shift_type,
+                                    employee: employee) }
 
   let!(:supporter) { FactoryGirl.create(:supporter) }
 

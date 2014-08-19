@@ -108,7 +108,7 @@ class Employee < ActiveRecord::Base
   end
 
   def fundraising_shifts_count
-    fundraising_shifts = self.shifts.where(cv_shift: true)
+    fundraising_shifts = self.shifts.select { |s| s.fundraising_shift }
     fundraising_shifts.count
   end
 
