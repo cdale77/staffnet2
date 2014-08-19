@@ -42,7 +42,8 @@ describe Employee do
                           fed_filing_status: 'single', ca_filing_status: 'single', fed_allowances: 2,
                           ca_allowances: 2, dob: Date.today, gender: 'f', active: true, notes: 'Notes', legacy_id: '34' }
 
-  let(:employee) { FactoryGirl.create(:employee)}
+  let!(:employee) { FactoryGirl.create(:employee) }
+
 
   subject { employee }
 
@@ -249,6 +250,13 @@ describe Employee do
         employee.phone = bad_phone
         employee.should_not be_valid
       end
+    end
+  end
+
+  ## INSTANCE METHODS
+  describe 'fundraising average' do
+    it 'should return a big decimal' do
+      expect(employee.fundraising_average).to be_an_instance_of BigDecimal
     end
   end
 
