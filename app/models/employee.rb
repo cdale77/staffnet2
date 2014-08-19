@@ -126,8 +126,8 @@ class Employee < ActiveRecord::Base
   end
 
   def fundraising_total
-    successful_payments = self.payments.where(captured: true)
-    successful_payments.sum(:amount)
+    successful_donations = self.donations.select { |d| d.captured }
+    successful_donations.sum(&:total_value)
   end
 
   def fundraising_average
