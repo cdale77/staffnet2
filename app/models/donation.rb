@@ -69,12 +69,20 @@ class Donation < ActiveRecord::Base
 
   def frequency
     case self.sub_month
+      when nil
+        "one-time"
       when ""
         "one-time"
       when "m"
         "monthly"
-      else
+      when "a"
         "quarterly"
+      when "b"
+        "quarterly"
+      when "c"
+        "quarterly"
+      else
+        "error"
     end
   end
 
