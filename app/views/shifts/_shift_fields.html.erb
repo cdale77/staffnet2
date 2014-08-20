@@ -1,7 +1,7 @@
 <h4>Employee: <%= employee.full_name %></h4>
 <div class="form-group row">
   <div class="col-md-2">
-    <%= f.input :date, as: :string, input_html: { class: 'datepicker' } %>
+    <%= f.input :date, as: :string, input_html: { type: "date" } %>
   </div>
   <div class="col-md-2">
     <%= f.input :shift_type_id,
