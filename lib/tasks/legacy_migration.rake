@@ -723,9 +723,9 @@ namespace :import do
     Donation.find_each do |donation|
 
       if donation.shift_id.blank?
-        
+
         if donation.legacy_id.present?
-          legacy_donation = Migration::Donation.find(donation.legacy_id)
+          legacy_donation = Migration::Donation.find(donation.legacy_id.to_i)
 
           if legacy_donation
 
