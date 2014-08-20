@@ -730,7 +730,7 @@ namespace :import do
           if legacy_donation
 
             if legacy_donation.shift_id.present?
-              shift = Shift.find_by(legacy_id: legacy_donation.shift_id)
+              shift = Shift.find_by(legacy_id: legacy_donation.shift_id.to_s)
 
               donation.shift_id = shift.id
 
