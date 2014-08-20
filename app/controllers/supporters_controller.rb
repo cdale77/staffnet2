@@ -96,6 +96,8 @@ class SupportersController < ApplicationController
                                           :phone_mobile_bad,
                                           :phone_home,
                                           :phone_home_bad,
+                                          :phone_alt,
+                                          :phone_alt_bad,
                                           :supporter_type_id,
                                           :do_not_call,
                                           :do_not_email,
