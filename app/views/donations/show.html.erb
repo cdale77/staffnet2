@@ -16,7 +16,7 @@
         <th>Amount</th>
         <td><%= number_to_currency @donation.amount %></td>
       </tr>
-      <% if @donation.is_sustainer? %>
+      <% if @donation.sub_month.present? %>
         <tr>
           <th>Month code</th>
           <td><%= @donation.sub_month %></td>
@@ -38,7 +38,7 @@
         <th>Campaign</th>
         <td><%= @donation.campaign.humanize %></td>
       </tr>
-      <% if @donation.is_sustainer? %>
+      <% if @donation.sub_week > 0 %>
         <tr>
           <th>Week code</th>
           <td><%= @donation.sub_week %></td>
@@ -53,12 +53,10 @@
         <td><%= @donation.notes %></td>
       </tr>
       <%= render 'shared/profiles/magic_columns', record: @donation %>
-      <% if @donation.is_sustainer? %>
-        <tr>
-          <th>Cancelled</th>
-          <td><%= @donation.cancelled ? "Yes" : "No" %></td>
-        </tr>
-      <% end %>
+      <tr>
+        <th>Cancelled</th>
+        <td><%= @donation.cancelled ? "Yes" : "No" %></td>
+      </tr>
     </table>
   </div>
 </div>
