@@ -4,6 +4,6 @@
     <td><%= deposit_batch.date %></td>
     <td><%= deposit_batch.payments.count %></td>
     <td><%= number_to_currency deposit_batch.payments.sum(:amount) %></td>
-    <td></td>
+    <td><%= deposit_batch.approved_by %></td>
   </tr>
 <% end %>
