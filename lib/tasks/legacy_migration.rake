@@ -12,6 +12,8 @@ namespace :import do
     record.save
   end
 
+  ## ORIGINAL MIGRATION TASKS
+
   task :prepare => :environment do
 
     ## Create shift types
@@ -714,4 +716,49 @@ namespace :import do
 
   end
 
+  ## ERROR CORRECTING TASKS
+
+  task :attach_donations_to_shifts => :environment do
+
+    Donation.find_each do |donation|
+
+      if donation.shift_id.blank?
+        
+        if donation.legacy_id.present?
+          legacy_donation = Migration::Donation.find(donation.legacy_id)
+
+          if legacy_donation
+
+            if legacy_donation.shift_id.present?
+              shift = Shift.find_by(legacy_id: legacy_donation.shift_id)
+
+              donation.shift_id = shift.id
+
+              if donation.save
+                puts "Fixe ddonation id #{donation.id}"
+
+              else
+                puts "%" * 30
+                puts "ERROR: Could not save donation id #{donation.id}"
+                puts "%" * 30
+              end
+            else
+              puts "WARN: legacy donation does not have a shift id"
+            end
+
+          else
+            puts "%" * 30
+            puts "ERROR: Could not find legacy donation for id #{donation.id}"
+            puts "%" * 30
+          end
+
+        else
+          puts "%" * 30
+          puts "ERROR: Donation id #{donation.id} did not have a legacy ID"
+          puts "%" * 30
+        end
+      end
+
+    end
+  end
 end
