@@ -20,5 +20,3 @@
 //= require raphael
 //= require morris
 //= require custom
-
-//= require bootstrap-datepicker
