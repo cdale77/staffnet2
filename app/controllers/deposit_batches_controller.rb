@@ -10,6 +10,7 @@ class DepositBatchesController < ApplicationController
   end
 
   def index
+    DepositBatch.batch_up
     @deposit_batches = DepositBatch.to_be_approved
     authorize @deposit_batches
   end

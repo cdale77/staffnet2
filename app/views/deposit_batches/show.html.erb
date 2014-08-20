@@ -1,5 +1,14 @@
 <% provide(:title, 'Batch details') %>
 <h1>Batch details</h1>
+<div class="col-md-12 row button-container">
+  <div class="buttons">
+    <% if admin_user? && !@deposit_batch.approved %>
+      <%= link_to 'approve', edit_deposit_batch_path(@deposit_batch),
+                  class: 'btn btn-md btn-primary',
+                  type: 'button' %>
+    <% end %>
+  </div>
+</div>
 <div class="cold-md-12 row record-display">
   <div class="col-md-4 record-column">
     <table>
