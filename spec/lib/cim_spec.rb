@@ -19,7 +19,7 @@ describe Cim do
     describe '#store' do
       before { profile.store }
       it 'should store a profile' do
-        profile.success.should be_true
+        profile.success.should be_truthy
         profile.cim_id.should_not be_blank
       end
     end

@@ -13,7 +13,7 @@ describe CimCustProfileService do
   describe '#create' do
     before { profile_service.create }
     it 'should create a profile' do
-      profile_service.success.should be_true
+      profile_service.success.should be_truthy
       profile_service.cim_id.should_not be_blank
     end
   end

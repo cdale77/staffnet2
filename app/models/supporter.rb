@@ -50,7 +50,7 @@ class Supporter < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope { order('created_at') }
+  default_scope { order("created_at") }
 
   ## SET UP ENVIRONMENT
   include Regex
@@ -76,27 +76,27 @@ class Supporter < ActiveRecord::Base
 
   ## VALIDATIONS
   validates :first_name, :prefix, :salutation,
-            length: { maximum: 25, message: 'must be under 25 characters.' },
+            length: { maximum: 25, message: "must be under 25 characters" },
             allow_blank: true
 
-  validates :last_name, presence: { message: 'required.' },
-            length: { maximum: 25, message: 'must be under 25 characters.' }
+  validates :last_name, presence: { message: "required." },
+            length: { maximum: 25, message: "must be under 25 characters" }
 
   validates :email_1, :email_2,
             format: { with: VALID_EMAIL_REGEX },
             allow_blank: true
 
   validates :phone_mobile, :phone_home, :phone_alt,
-            format: { with: PHONE_REGEX, message: 'must be 10 digits' },
+            format: { with: PHONE_REGEX, message: "must be 10 digits" },
             allow_blank: true
 
   validates :address_state,
-            format: { with: STATE_REGEX, message: 'must be 2 characters' },
+            format: { with: STATE_REGEX, message: "must be 2 characters" },
             allow_blank: true
 
   validates :address_zip,
             length: { is: 5 },
-            numericality: { message: 'must be 5 digits.' },
+            numericality: { message: "must be 5 digits" },
             allow_blank: true
 
 
@@ -158,17 +158,4 @@ class Supporter < ActiveRecord::Base
   def generate_cim_customer_id
     self.cim_customer_id = ( self.id + 20000 ).to_s
   end
-
-=begin
-  # no longer using this code, using a service object instead
-  def unstore_cim_profile
-    profile = Cim::Profile.new(self.id, self.email_1, self.cim_id.to_s)
-    begin
-      self.cim_id = '' if profile.unstore
-    rescue
-      puts 'ERROR: Problem destroying CIM profile: ' + profile.server_message
-    end
-  end
-=end
-
 end

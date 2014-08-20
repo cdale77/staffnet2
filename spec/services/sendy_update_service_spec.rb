@@ -18,7 +18,7 @@ describe SendyUpdateService do
     end
     it 'should set success to true' do
       sendy_service.update('subscribe')
-      sendy_service.success.should be_true
+      sendy_service.success.should be_truthy
     end
   end
 end

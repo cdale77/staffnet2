@@ -49,16 +49,18 @@ class User < ActiveRecord::Base
 
   ## VALIDATIONS
 
-  validates :email, presence: { message: 'required' },
-            format: { with: VALID_EMAIL_REGEX, message: 'invalid email.' },
+  validates :email, presence: { message: "required" },
+            format: { with: VALID_EMAIL_REGEX, message: "invalid email" },
             uniqueness: { case_sensitive: false }
 
-  validates :password, presence: { message: 'required' },
-            length: { minimum: 10, message: 'must be be at least 10 characters.' },
+  validates :password, presence: { message: "required" },
+            length: { minimum: 10,
+                      message: "must be be at least 10 characters" },
             on: :create
 
   validates :password,
-            length: { minimum: 10, message: 'must be be at least 10 characters.' },
+            length: { minimum: 10,
+                      message: "must be be at least 10 characters" },
             on: :update,
             allow_blank: true
 

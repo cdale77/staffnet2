@@ -30,13 +30,13 @@ class PaymentsController < ApplicationController
       @payment.payment_type = @donation.donation_type
       authorize @payment
       if @payment.save
-        flash[:success] = 'Success.'
+        flash[:success] = "Success"
         redirect_to donation_path(@donation)
       end
     else
       @supporter = @donation.supporter
       @payment_profiles = @supporter.payment_profiles.limit(5)
-      render 'new'
+      render "new"
     end
   end
 

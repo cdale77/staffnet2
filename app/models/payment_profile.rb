@@ -32,10 +32,7 @@ class PaymentProfile < ActiveRecord::Base
   before_destroy :unstore_cim_payment_profile
 
   ## VALIDATIONS
-  validates :payment_profile_type, presence: { message: 'required.' }
-  validates :cc_last_4,
-            format: { with: LAST_4_CC_REGEX, message: 'must be 10 digits' },
-            allow_blank: true
+  validates :payment_profile_type, presence: { message: "required" }
 
   def short_version
     if self.payment_profile_type == "credit"
@@ -56,21 +53,23 @@ class PaymentProfile < ActiveRecord::Base
 
   def unstore_cim_payment_profile
     unless self.cim_payment_profile_id.blank?
-      cim_payment_profile = Cim::PaymentProfile.new(self.supporter, '', '', '', '', self.cim_payment_profile_id)
+      cim_payment_profile = Cim::PaymentProfile.new(self.supporter,
+                                                    "", "", "", "",
+                                                    self.cim_payment_profile_id)
       cim_payment_profile.unstore
     end
   end
 
   def self.cc_type_by_first_number(number)
     case number
-      when '3'
-        'amex'
-      when '4'
-        'visa'
-      when '5'
-        'mc'
-      when '6'
-        'disc'
+      when "3"
+        "amex"
+      when "4"
+        "visa"
+      when "5"
+        "mc"
+      when "6"
+        "disc"
     end
   end
 

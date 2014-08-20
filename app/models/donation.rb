@@ -39,16 +39,17 @@ class Donation < ActiveRecord::Base
   before_save :set_sustainer_codes
 
   ## VALIDATIONS
-  validates :source, :date, presence: { message: 'required.' }
+  validates :source, :date, presence: { message: "required" }
 
   validates :sub_month,
             length: { is: 1 },
-            format: { with: ALPHA_ONLY_REGEX, message: 'must be a single alpha character.' },
+            format: { with: ALPHA_ONLY_REGEX, 
+                      message: "must be a single alpha character" },
             allow_blank: true
 
   validates :sub_week,
             length: { is: 1},
-            numericality: { message: 'must be a single alpha character.' },
+            numericality: { message: "must be a single alpha character" },
             allow_blank: true
 
 
@@ -78,7 +79,7 @@ class Donation < ActiveRecord::Base
   end
 
   def captured
-    # this is mapped to the first payment - if it's captured, so is the donation
+    # this is mapped to the first payment - if it"s captured, so is the donation
     self.payments.first.captured
   end
 
@@ -105,9 +106,9 @@ class Donation < ActiveRecord::Base
     end
 
     def set_sub_month
-      if self.sustainer_type == 'monthly'
-        self.sub_month = 'm'
-      elsif self.sustainer_type == 'quarterly'
+      if self.sustainer_type == "monthly"
+        self.sub_month = "m"
+      elsif self.sustainer_type == "quarterly"
         self.sub_month = quarter_code
       end
     end
@@ -119,16 +120,16 @@ class Donation < ActiveRecord::Base
     def quarter_code
       month = Date.today.strftime("%B")
 
-      a = ['January', 'April', 'July', 'October' ]
-      b = ['February', 'May', 'August', 'November' ]
-      c = ['March', 'June', 'September', 'December' ]
+      a = ["January", "April", "July", "October" ]
+      b = ["February", "May", "August", "November" ]
+      c = ["March", "June", "September", "December" ]
 
       if a.include?(month)
-        'a'
+        "a"
       elsif b.include?(month)
-        'b'
+        "b"
       elsif c.include?(month)
-        'c'
+        "c"
       end
     end
 

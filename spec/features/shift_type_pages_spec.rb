@@ -185,7 +185,7 @@ describe 'ShiftTypePages' do
 
         it 'should list each shift type' do
           ShiftType.all.each do |shift_type|
-            expect(page).to have_content(shift_type.name)
+            expect(page).to have_content(shift_type.name.humanize)
           end
         end
 

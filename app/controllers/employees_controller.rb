@@ -12,10 +12,10 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
     authorize @employee
     if @employee.save
-      flash[:success] = 'Success.'
+      flash[:success] = "Success"
       redirect_to employee_path(@employee)
     else
-      flash[:error] = 'Error.'
+      flash[:error] = "Error"
       render 'new'
     end
   end
@@ -40,7 +40,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
     authorize @employee
     if @employee.update_attributes(employee_params)
-      flash[:success] = 'Employee updated.'
+      flash[:success] = "Employee updated"
       redirect_to employee_path(@employee)
     else
       render 'edit'
@@ -51,21 +51,40 @@ class EmployeesController < ApplicationController
     employee = Employee.find(params[:id])
     authorize employee
     employee.destroy
-    flash[:success] = 'Employee destroyed.'
+    flash[:success] = "Employee destroyed"
     redirect_to employees_url
   end
 
   private
 
     def employee_params
-      params.require(:employee).permit( :first_name, :last_name, :email, :phone, :address1, :address2, :address_city,
-                                        :address_state, :address_zip, :title, :pay_hourly, :pay_daily, :hire_date,
-                                        :term_date, :fed_filing_status, :ca_filing_status, :fed_allowances,
-                                        :ca_allowances, :dob, :gender, :active )
+      params.require(:employee).permit( :first_name,
+                                        :last_name,
+                                        :email,
+                                        :phone,
+                                        :address1,
+                                        :address2,
+                                        :address_city,
+                                        :address_state,
+                                        :address_zip,
+                                        :title,
+                                        :pay_hourly,
+                                        :pay_daily,
+                                        :hire_date,
+                                        :term_date,
+                                        :fed_filing_status,
+                                        :ca_filing_status,
+                                        :fed_allowances,
+                                        :ca_allowances,
+                                        :dob,
+                                        :gender,
+                                        :active )
     end
 
     def check_owner
-      redirect_to root_path unless (current_user == Employee.find(params[:id]).user || current_user.role?(:manager))
+      unless (current_user == Employee.find(params[:id]).user || current_user.role?(:manager))
+        redirect_to root_path
+      end
     end
 
 end

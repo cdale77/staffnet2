@@ -66,20 +66,6 @@ namespace :db do
       end
     end
 
-    # clients
-    5.times do |n|
-      client = Client.new(  name:           Faker::Company.name,
-                            address1:       Faker::Address.street_address,
-                            address2:       Faker::Address.secondary_address,
-                            address_city:   Faker::Address.city,
-                            address_state:  'CA',
-                            address_zip:    '94'+ (1..3).to_a.shuffle.join.to_s,
-                            contact_name:   Faker::Name.name,
-                            contact_phone:  (0..9).to_a.shuffle.join.to_s,
-                            contact_email:  Faker::Internet.email,
-                            uri:            Faker::Internet.url )
-      client.save
-    end
 
     # supporter types
     ['supporter', 'donor', 'media', 'official'].each do |type|
@@ -137,16 +123,16 @@ namespace :db do
       end
 
 
-      # payment_profiles
-
-      Supporter.all.each do |supporter|
-        profile = supporter.payment_profiles.build( payment_profile_type: 'credit',
-                                                    details: {  cc_type:    'visa',
-                                                                cc_last_4:  '1111',
-                                                                cc_month:   '10',
-                                                                cc_year:    '2017' })
-        profile.save
-      end
+      # # payment_profiles
+      #
+      # Supporter.all.each do |supporter|
+      #   profile = supporter.payment_profiles.build( payment_profile_type: 'credit',
+      #                                               details: {  cc_type:    'visa',
+      #                                                           cc_last_4:  '1111',
+      #                                                           cc_month:   '10',
+      #                                                           cc_year:    '2017' })
+      #   profile.save
+      # end
 
     end
 

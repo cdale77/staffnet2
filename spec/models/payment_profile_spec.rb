@@ -57,23 +57,4 @@ describe PaymentProfile do
       payment_profile.should_not be_valid
     end
   end
-
-  describe 'cc_last_4 validations' do
-    it 'should reject bad values' do
-      bad_values = %W[abcd abc ab 3 12 12345 123456]
-      bad_values.each do |bad_value|
-        payment_profile.cc_last_4 = bad_value
-        payment_profile.should_not be_valid
-      end
-    end
-    it 'should accept good values' do
-      good_values = %W[123 1234 0000]
-      good_values.each do |good_value|
-        payment_profile.cc_last_4 = good_value
-        payment_profile.should be_valid
-      end
-    end
-  end
-
-
 end

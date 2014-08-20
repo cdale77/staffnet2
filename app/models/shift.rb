@@ -55,21 +55,21 @@ class Shift < ActiveRecord::Base
 
   ## VALIDATIONS
   validates :date,
-            presence: { message: 'required.' }
+            presence: { message: "required." }
 
   validates :break_time,
             numericality: { greater_than_or_equal_to: 0,
                             less_than_or_equal_to: 120,
-                            message: 'must be less than 121 minutes.' },
+                            message: "must be less than 121 minutes" },
             allow_blank: true
 
   validates :travel_reimb,
             numericality: { greater_than_or_equal_to: 0,
-                            message: 'must be a positive number.'  },
+                            message: "must be a positive number"  },
             allow_blank: true
 
   validates :time_in, :time_out,
-            presence: { message: 'required' }
+            presence: { message: "required" }
 
   validate :shift_time_validator
   validate :reported_yes_validator
@@ -78,11 +78,13 @@ class Shift < ActiveRecord::Base
 
   ## INSTANCE METHODS
   def field_manager
-    Employee.find(self.field_manager_employee_id) if self.field_manager_employee_id.present?
+    if self.field_manager_employee_id.present?
+      Employee.find(self.field_manager_employee_id)
+    end
   end
 
   def short_version
-    "#{self.date.strftime('%Y/%m/%d')}-#{self.employee.full_name}"
+    "#{self.date.strftime("%Y/%m/%d")}-#{self.employee.full_name}"
   end
 
   def net_time
@@ -110,18 +112,18 @@ class Shift < ActiveRecord::Base
 
     def reported_yes_validator
       unless (reported_cash_qty + reported_check_qty + reported_one_time_cc_qty + reported_monthly_cc_qty + reported_quarterly_cc_qty) == reported_total_yes
-        errors.add(:reported_raised, 'Raised amount must equal itemized amounts.')
+        errors.add(:reported_raised, "Raised amount must equal itemized amounts.")
       end
     end
 
     def reported_raised_validator
       unless (reported_cash_amt + reported_check_amt + reported_one_time_cc_amt + reported_monthly_value + reported_quarterly_value ) == reported_raised
-        errors.add(:reported_raised, 'Raised amount must equal itemized amounts.')
+        errors.add(:reported_raised, "Raised amount must equal itemized amounts.")
       end
     end
 
     def shift_time_validator
-      errors.add(:time_out, 'You cannot have zero or negative hours.') unless (2..24).include?(net_time)
+      errors.add(:time_out, "You cannot have zero or negative hours.") unless (2..24).include?(net_time)
     end
 
 end

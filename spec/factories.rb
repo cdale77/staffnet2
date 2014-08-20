@@ -87,22 +87,6 @@ FactoryGirl.define do
     shift_type
   end
 
-
-
-  factory :client do
-    name            Faker::Company.name
-    address1        Faker::Address.street_address
-    address2        Faker::Address.secondary_address
-    address_city    Faker::Address.city
-    address_state   Faker::Address.state_abbr
-    address_zip     '94104'
-    contact_name    Faker::Name.name
-    contact_phone   '5105551234'
-    contact_email   Faker::Internet.email
-    uri             Faker::Internet.url
-    notes           Faker::Lorem.sentence
-  end
-
   factory :supporter_type do
     name        'supporter'
   end

@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 
   # using before_filters for authorization here because it is awkward in Pundit.
-  # Tests for this code are in
-  # the user features spec.
+  # Tests for this code are in the user features spec.
   before_filter :super_admin, only: [:new, :create, :edit, :update]
   before_filter :admin, only: [:index, :destroy]
   before_filter :authorize_user, only: :show
@@ -53,14 +52,24 @@ class UsersController < ApplicationController
   private
     def user_params
       if params[:user][:password].blank?
-        params.require(:user).permit(:first_name, :last_name, :email, :role, :employee_id)
+        params.require(:user).permit(:first_name,
+                                     :last_name,
+                                     :email,
+                                     :role,
+                                     :employee_id)
       else
-        params.require(:user).permit(:first_name, :last_name, :email, :role, :employee_id, :password, :password_confirmation)
+        params.require(:user).permit(:first_name,
+                                     :last_name,
+                                     :email,
+                                     :role,
+                                     :employee_id,
+                                     :password,
+                                     :password_confirmation)
       end
     end
 
-    #kind of hacky 1-time method to make sure the user is looking at their own records. Implemented differently in other
-    #models
+    # kind of hacky 1-time method to make sure the user is looking at their own r
+    # ecords. Implemented differently in other models
     def authorize_user
       redirect_to root_path unless ( current_user == User.find(params[:id]) || current_user.role?(:admin) )
     end

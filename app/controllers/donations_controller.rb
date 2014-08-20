@@ -12,8 +12,8 @@ class DonationsController < ApplicationController
       @shifts = Shift.all.limit(15)
       authorize @donation
     else
-      flash[:danger] = 'Could not find supporter.'
-      render root_path  # TODO: Fix. Render probably not correct
+      flash[:danger] = "Could not find supporter"
+      redirect_to root_path
     end
   end
 
@@ -30,13 +30,13 @@ class DonationsController < ApplicationController
         @payment.payment_type = @donation.donation_type
         @payment.amount = @donation.amount
         if @payment.save
-          flash[:success] = 'Success.'
+          flash[:success] = "Success"
           redirect_to donation_path(@donation)
         end
       else
         @shifts = Shift.all.limit(15)
         @payment_profiles = @supporter.payment_profiles.limit(5)
-        render 'new'
+        render "new"
       end
     end
   end
@@ -65,10 +65,10 @@ class DonationsController < ApplicationController
     @supporter = @donation.supporter
     authorize @donation
     if @donation.update_attributes(donation_params)
-      flash[:success] = 'donation updated.'
+      flash[:success] = "Donation updated"
       redirect_to donation_path(@donation)
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -76,7 +76,7 @@ class DonationsController < ApplicationController
     donation = Donation.find(params[:id])
     authorize donation
     donation.destroy
-    flash[:success] = 'Donation destroyed.'
+    flash[:success] = "Donation destroyed"
     redirect_to donations_path
   end
 

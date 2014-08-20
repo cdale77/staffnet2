@@ -7,8 +7,6 @@ gem 'pg', '0.17.1'
 gem 'devise', '3.2.4'
 gem 'pundit', '0.2.3'
 
-gem 'gon', '5.1.0'
-
 ## APIs
 gem 'activemerchant', '1.43.1'
 gem 'sendyr', '0.2.1'

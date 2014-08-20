@@ -12,10 +12,10 @@ class SupporterTypesController < ApplicationController
     @supporter_type = SupporterType.new(supporter_type_params)
     authorize @supporter_type
     if @supporter_type.save
-      flash[:success] = 'Success.'
+      flash[:success] = "Success"
       redirect_to supporter_types_path
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -33,11 +33,11 @@ class SupporterTypesController < ApplicationController
     @supporter_type = SupporterType.find(params[:id])
     authorize @supporter_type
     if @supporter_type.update_attributes(supporter_type_params)
-      flash[:success] = 'Success.'
+      flash[:success] = "Success"
       redirect_to supporter_types_path
     else
-      flash[:alert] = 'Problem updating supporter type.'
-      render 'edit'
+      flash[:alert] = "Problem updating supporter type"
+      render "edit"
     end
   end
 

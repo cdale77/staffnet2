@@ -17,7 +17,7 @@ class SupportersController < ApplicationController
       new_supporter_tasks(@supporter)
       redirect_to supporter_path(@supporter)
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -44,10 +44,10 @@ class SupportersController < ApplicationController
     @supporter = Supporter.find(params[:id])
     authorize @supporter
     if @supporter.update_attributes(supporter_params)
-      flash[:success] = 'Supporter updated.'
+      flash[:success] = "Supporter updated"
       redirect_to supporter_path(@supporter)
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -62,8 +62,8 @@ class SupportersController < ApplicationController
   private
 
     def new_supporter_tasks(supporter)
-      # generate an id for the cim customer id field. add 20,000 to the supporter id
-      # the service object will save the new supporter
+      # generate an id for the cim customer id field. add 20,000 to the
+      # supporter id the service object will save the new supporter
       supporter.generate_cim_customer_id
       sendy_list = supporter.supporter_type.sendy_lists.first
       service = SupporterService.new(supporter, sendy_list.id, supporter.email_1 )
@@ -72,8 +72,8 @@ class SupportersController < ApplicationController
 
     def destroy_supporter_tasks(supporter)
       sendy_list = supporter.supporter_type.sendy_lists.first
-      service = SupporterService.new(supporter, sendy_list.id, supporter.email_1, '', '', supporter.cim_id )
-      service.destroy_supporter ? flash[:success] = 'Supporter record destroyed.' : flash[:alert] = "Error: #{service.message}"
+      service = SupporterService.new(supporter, sendy_list.id, supporter.email_1, "", "", supporter.cim_id )
+      service.destroy_supporter ? flash[:success] = "Supporter record destroyed" : flash[:alert] = "Error: #{service.message}"
     end
 
     def supporter_params

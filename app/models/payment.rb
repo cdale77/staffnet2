@@ -35,8 +35,8 @@ class Payment < ActiveRecord::Base
   before_save :send_receipt
 
   ## VALIDATIONS
-  validates :payment_type, presence: { message: 'required.' }
-  validates :amount, presence: { message: 'required.' }
+  validates :payment_type, presence: { message: "required" }
+  validates :amount, presence: { message: "required" }
 
   def self.to_be_batched
     where(deposit_batch_id: nil)

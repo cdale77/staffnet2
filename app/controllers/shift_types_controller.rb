@@ -12,10 +12,10 @@ class ShiftTypesController < ApplicationController
     @shift_type = ShiftType.new(shift_type_params)
     authorize @shift_type
     if @shift_type.save
-      flash[:success] = 'Success.'
+      flash[:success] = "Success"
       redirect_to shift_types_path
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -33,11 +33,11 @@ class ShiftTypesController < ApplicationController
     @shift_type = ShiftType.find(params[:id])
     authorize @shift_type
     if @shift_type.update_attributes(shift_type_params)
-      flash[:success] = 'Success.'
+      flash[:success] = "Success"
       redirect_to shift_types_path
     else
-      flash[:alert] = 'Problem updating shift type.'
-      render 'edit'
+      flash[:alert] = "Problem updating shift type"
+      render "edit"
     end
   end
 

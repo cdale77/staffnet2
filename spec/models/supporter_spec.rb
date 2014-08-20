@@ -203,10 +203,10 @@ describe Supporter do
   end
   describe '#is_sustainer?' do
     it 'should return true if the supporter has a sustaining donation' do
-      expect(sustainer.is_sustainer?).to be_true
+      expect(sustainer.is_sustainer?).to be_truthy
     end
     it 'should return false if the supporter does not have a sustaining donation' do
-      expect(supporter.is_sustainer?).to be_false
+      expect(supporter.is_sustainer?).to be_falsey
     end
   end
 

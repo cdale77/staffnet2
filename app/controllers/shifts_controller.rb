@@ -7,10 +7,9 @@ class ShiftsController < ApplicationController
     @employee = Employee.find(params[:employee_id])
     if @employee
       @shift = @employee.shifts.build
-      #gon.shift_types = ShiftType.multipliers # send the ShiftType data to the client for the raised calculator
       authorize @shift
     else
-      flash[:alert] = 'Could not find employee.'
+      flash[:alert] = "Could not find employee"
       render root_path  # TODO: Fix. Render probably not correct
     end
   end
@@ -20,10 +19,10 @@ class ShiftsController < ApplicationController
     @shift = @employee.shifts.build(shift_params)
     authorize @shift
     if @shift.save
-      flash[:success] = 'Success.'
+      flash[:success] = "Success"
       redirect_to shift_path(@shift)
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -35,10 +34,10 @@ class ShiftsController < ApplicationController
   end
 
   def index
-    # Pundit policy scopes don't seem to work since user is delegated/user_id isn't in the Shifts table.
+    # Pundit policy scopes don't seem to work since user is delegated/user_id
+    # isn't in the Shifts table.
     if current_user.role? :manager
       @shifts = Shift.all.paginate(page: params[:page])
-
     elsif current_user.role? :staff
       @shifts = current_user.shifts.paginate(page: params[:page])
     end
@@ -48,7 +47,6 @@ class ShiftsController < ApplicationController
   def edit
     @shift = Shift.find(params[:id])
     @employee = @shift.employee
-    gon.shift_types = ShiftType.multipliers # send the ShiftType data to the client for the raised calculator
     authorize @shift
   end
 
@@ -57,10 +55,10 @@ class ShiftsController < ApplicationController
     @employee = @shift.employee
     authorize @shift
     if @shift.update_attributes(shift_params)
-      flash[:success] = 'Shift updated.'
+      flash[:success] = "Shift updated"
       redirect_to shift_path(@shift)
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -68,7 +66,7 @@ class ShiftsController < ApplicationController
     shift = Shift.find(params[:id])
     authorize shift
     shift.destroy
-    flash[:success] = 'Shift destroyed.'
+    flash[:success] = "Shift destroyed"
     redirect_to shifts_path
   end
 

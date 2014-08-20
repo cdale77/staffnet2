@@ -18,6 +18,7 @@ describe 'ShiftPages' do
   let!(:shift_type) { FactoryGirl.create(:shift_type, name: 'door' )}
   let!(:shift) { FactoryGirl.create(:shift) }
   let!(:donation) { FactoryGirl.create(:donation, shift_id: shift.id) }
+  let!(:payment) { FactoryGirl.create(:payment, donation: donation) }
 
   ## HELPERS
 

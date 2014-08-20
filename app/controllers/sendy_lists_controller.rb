@@ -12,11 +12,11 @@ class SendyListsController < ApplicationController
     @sendy_list = SendyList.new(sendy_list_params)
     authorize @sendy_list
     if @sendy_list.save
-      flash[:success] = 'Saved new Sendy list.'
+      flash[:success] = "Saved new Sendy list"
       redirect_to sendy_lists_path
     else
-      flash[:alert] = 'Something went wrong.'
-      render 'new'
+      flash[:alert] = "Something went wrong"
+      render "new"
     end
   end
 
@@ -34,15 +34,17 @@ class SendyListsController < ApplicationController
     @sendy_list = SendyList.find(params[:id])
     authorize @sendy_list
     if @sendy_list.update_attributes(sendy_list_params)
-      flash[:success] = 'Sendy list updated.'
+      flash[:success] = "Sendy list updated"
       redirect_to sendy_lists_path
     else
-      render 'edit'
+      render "edit"
     end
   end
 
   private
     def sendy_list_params
-      params.require(:sendy_list).permit(:supporter_type_id, :name, :sendy_list_identifier)
+      params.require(:sendy_list).permit(:supporter_type_id,
+                                         :name,
+                                         :sendy_list_identifier)
     end
 end
