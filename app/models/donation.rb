@@ -114,7 +114,9 @@ class Donation < ActiveRecord::Base
     end
 
     def set_sub_week
-      self.sub_week = Date.today.week_of_month.to_s
+      if self.sustainer_type == 'monthly' || self.sustainer_type == 'quarterly'
+        self.sub_week = Date.today.week_of_month.to_s
+      end
     end
 
     def quarter_code
