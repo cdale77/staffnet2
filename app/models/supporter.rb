@@ -50,7 +50,7 @@ class Supporter < ActiveRecord::Base
 
   has_paper_trail
 
-  default_scope { order("created_at") }
+  default_scope { order(created_at: :desc) }
 
   ## SET UP ENVIRONMENT
   include Regex

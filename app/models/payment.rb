@@ -24,6 +24,8 @@ class Payment < ActiveRecord::Base
 
   has_paper_trail
 
+  default_scope { order(created_at: :desc) }
+
   ## RELATIONSHIPS
   delegate :supporter, to: :donation
   belongs_to :donation
