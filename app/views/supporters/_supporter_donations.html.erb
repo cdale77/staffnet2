@@ -9,6 +9,8 @@
       <th>Date</th>
       <th>Amount</th>
       <th>Type</th>
+      <th>Frequency</th>
+      <th>Captured?</th>
       <th>Source</th>
     </tr>
     <% donations.each do |donation| %>
@@ -16,6 +18,8 @@
         <td><%= donation.date %></td>
         <td><%= number_to_currency donation.amount %></td>
         <td><%= donation.donation_type.humanize %></td>
+        <td><%= donation.frequency.humanize %></td>
+        <td><%= human_boolean donation.captured %></td>
         <td><%= donation.source.humanize %></td>
       </tr>
     <% end %>

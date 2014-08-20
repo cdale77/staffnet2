@@ -19,7 +19,7 @@
         <td><%= donation.amount %></td>
         <td><%= donation.donation_type %></td>
         <td><%= donation.frequency.humanize %></td>
-        <td><%= donation.captured %></td>
+        <td><%= human_boolean donation.captured %></td>
         <td><%= donation.source %></td>
       </tr>
     <% end %>

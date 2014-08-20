@@ -26,7 +26,6 @@ gem 'bootstrap-sass', '3.2.0.1'
 gem 'will_paginate', '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'bootstrap-datepicker-rails', '1.3.0.2'
-gem 'bootstrap-timepicker-rails', '0.1.3'
 gem 'simple_form', '3.0.2'
 gem 'ransack', '1.2.3'
 
