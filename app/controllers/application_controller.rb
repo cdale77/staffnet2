@@ -6,11 +6,6 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
 
   private
-
-    #def correct_user(resource)
-    #  redirect_to root_path unless current_user == resource.user || current_user.role?(:manager) )
-    #end
-
     def super_admin
       redirect_to root_path unless current_user.role? :super_admin
     end
