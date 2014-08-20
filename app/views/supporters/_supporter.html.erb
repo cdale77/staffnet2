@@ -1,8 +1,27 @@
-<tr class="clickable-row" id="supporter_<%= supporter.id %>" url="<%= supporter_path(supporter) %>">
-  <td><%= supporter.full_name %></td>
-  <td><%= supporter.address_city %></td>
-  <td><%= mail_to supporter.email_1, supporter.email_1, class: 'hover-underline-grey' %></td>
-  <td><%= number_to_phone(supporter.phone_mobile.to_i) %></td>
-  <td><%= supporter.supporter_type.name.humanize if supporter.supporter_type %></td>
-  <td><%= supporter.source.humanize %></td>
+<tr>
+  <td>
+    <%= supporter.full_name %>
+  </td>
+  <td>
+    <%= supporter.address_city %>
+  </td>
+  <td>
+    <%= mail_to supporter.email_1, supporter.email_1,
+                class: "hover-underline-grey" %>
+  </td>
+  <td>
+    <%= number_to_phone(supporter.phone_mobile.to_i) %>
+  </td>
+  <td>
+    <%= supporter.supporter_type.name.humanize if supporter.supporter_type %>
+  </td>
+  <td>
+    <%= supporter.source.humanize %>
+  </td>
+  <td class="buttons">
+    <%= link_to 'details', supporter_path(supporter),
+                class: 'btn btn-xs btn-default', type: "button" %>
+    <%= link_to 'edit', edit_supporter_path(supporter),
+                class: 'btn btn-xs btn-default', type: "button" %>
+  </td>
 </tr>
