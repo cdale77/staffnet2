@@ -6,7 +6,7 @@
     <table>
       <tr>
         <th>Supporter</th>
-        <td><%= @supporter.full_name %></td>
+        <td><%= link_to @supporter.full_name, supporter_path(@supporter) %></td>
       </tr>
       <tr>
         <th>Date</th>

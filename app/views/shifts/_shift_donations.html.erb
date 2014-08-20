@@ -16,11 +16,11 @@
       <tr class="clickable-row" id="donation_<%= donation.id %>" url="<%= donation_path(donation) %>">
         <td><%= donation.supporter.full_name %></td>
         <td><%= donation.date %></td>
-        <td><%= donation.amount %></td>
-        <td><%= donation.donation_type %></td>
+        <td><%= number_to_currency donation.amount %></td>
+        <td><%= donation.donation_type.humanize %></td>
         <td><%= donation.frequency.humanize %></td>
         <td><%= human_boolean donation.captured %></td>
-        <td><%= donation.source %></td>
+        <td><%= donation.source.humanize %></td>
       </tr>
     <% end %>
   </table>

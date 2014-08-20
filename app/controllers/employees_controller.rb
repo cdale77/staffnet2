@@ -27,7 +27,7 @@ class EmployeesController < ApplicationController
   end
 
   def index
-    @employees = Employee.all
+    @employees = Employee.active
     authorize @employees
   end
 

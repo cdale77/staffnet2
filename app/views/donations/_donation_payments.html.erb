@@ -16,7 +16,7 @@
           <td><%= payment.deposited_at %></td>
           <td><%= number_to_currency payment.amount %></td>
           <td><%= payment.payment_type.humanize %></td>
-          <td><%= payment.captured %></td>
+          <td><%= human_boolean payment.captured %></td>
         </tr>
       <% end %>
     </table>
