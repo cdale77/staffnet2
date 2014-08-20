@@ -5,7 +5,7 @@ class DepositBatchesController < ApplicationController
 
   def show
     @deposit_batch = DepositBatch.find(params[:id])
-    @payments = @deposit_batch.payments
+    @payments = @deposit_batch.payments_by_employee
     authorize @deposit_batch
   end
 

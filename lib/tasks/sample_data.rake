@@ -123,55 +123,8 @@ namespace :db do
       end
 
 
-      # # payment_profiles
-      #
-      # Supporter.all.each do |supporter|
-      #   profile = supporter.payment_profiles.build( payment_profile_type: 'credit',
-      #                                               details: {  cc_type:    'visa',
-      #                                                           cc_last_4:  '1111',
-      #                                                           cc_month:   '10',
-      #                                                           cc_year:    '2017' })
-      #   profile.save
-      # end
-
     end
 
-=begin
-
-    # projects
-    Client.all.each do |client|
-      4.times do |n|
-        project = client.projects.build(  name:       Faker::Company.catch_phrase,
-                                          start_date: Date.today - 23.days,
-                                          end_date:   Date.yesterday,
-                                          desc:       Faker::Lorem.sentence,
-                                          notes:      Faker::Lorem.sentence )
-        project.save
-
-      end
-    end
-
-    # task types
-    8.times do |n|
-      task_type = TaskType.new( name: Faker::Lorem.word, desc: Faker::Lorem.sentence )
-      task_type.save
-    end
-
-    # tasks
-    Shift.all.each do |shift|
-      7.times do |n|
-        task = shift.tasks.build(       name:       Faker::Lorem.word,
-                                        hours:      [1, 2, 3, 2.25, 4, 3.75, 1.5].sample,
-                                        desc:       Faker::Lorem.word,
-                                        notes:      Faker::Lorem.sentence )
-
-        # assign the task to a random project and task_type
-        task.project_id = (1..Project.count).to_a.sort{ rand() - 0.5}[0]
-        task.task_type_id = (1..TaskType.count).to_a.sort{ rand() - 0.5}[0]
-        task.save
-      end
-    end
-=end
 
   end
 end

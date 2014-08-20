@@ -31,6 +31,10 @@ class DepositBatch < ActiveRecord::Base
     where("batch_type = 'installment' AND approved = false")
   end
 
+  def payments_by_employee
+    self.payments.sort { |payment| payment.donation.shift.employee.id }
+  end
+
   def approved_by
     unless self.employee_id.blank?
       Employee.find(self.employee_id).full_name
