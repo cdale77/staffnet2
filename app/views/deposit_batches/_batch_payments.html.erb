@@ -4,16 +4,24 @@
   </div>
   <table class="table table-hover">
     <tr>
-      <th>Date</th>
+      <th>Payment date</th>
+      <th>Employee</th>
+      <th>Shift</th>
+      <th>Supporter</th>
       <th>Amount</th>
       <th>Type</th>
+      <th>Source</th>
       <th>Captured?</th>
     </tr>
     <% payments.each do |payment| %>
       <tr class="clickable-row <%= payment.captured ? '' : 'red' %>" id="payment_<%= payment.id %>" url="<%= donation_payment_path(payment.donation, payment) %>">
         <td><%= l payment.created_at %></td>
+        <td><%= payment.donation.shift.employee.full_name %></td>
+        <td><%= payment.donation.shift.date %></td>
+        <td><%= payment.supporter.full_name %></td>
         <td><%= number_to_currency payment.amount %></td>
         <td><%= payment.payment_type.humanize %></td>
+        <td><%= payment.donation.source.humanize %></td>
         <td><%= human_boolean payment.captured %></td>
       </tr>
     <% end %>

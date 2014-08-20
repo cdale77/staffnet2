@@ -28,6 +28,6 @@ en:
 
   time:
     formats:
-      default: "%Y-%m-%d at %l:%M %P"
+      default: "%Y-%m-%d"
       short: "%l:%M %P"
       long: "%Y-%m-%d at %l:%M %P"
