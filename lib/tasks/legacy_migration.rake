@@ -730,18 +730,28 @@ namespace :import do
           if legacy_donation
 
             if legacy_donation.shift_id.present?
+
               shift = Shift.find_by(legacy_id: legacy_donation.shift_id.to_s)
 
-              donation.shift_id = shift.id
+              if shift
 
-              if donation.save
-                puts "Fixe ddonation id #{donation.id}"
+                donation.shift_id = shift.id
+
+                if donation.save
+                  puts "Fixed ddonation id #{donation.id}"
+
+                else
+                  puts "%" * 30
+                  puts "ERROR: Could not save donation id #{donation.id}"
+                  puts "%" * 30
+                end
 
               else
                 puts "%" * 30
-                puts "ERROR: Could not save donation id #{donation.id}"
+                puts "ERROR: Could not find the old shift donation id #{donation.id}"
                 puts "%" * 30
               end
+
             else
               puts "WARN: legacy donation does not have a shift id"
             end
