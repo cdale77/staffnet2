@@ -17,6 +17,8 @@ class DepositBatch < ActiveRecord::Base
 
   has_paper_trail
 
+  default_scope { order(date: :desc) }
+
   belongs_to :employee
   has_many :payments
 
