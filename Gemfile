@@ -1,28 +1,28 @@
 source 'https://rubygems.org'
 
 ruby '2.1.2'
-gem 'rails', '4.1.4'
+gem 'rails', '4.1.5'
 gem 'rake', '10.3.2'
 gem 'pg', '0.17.1'
-gem 'devise', '3.2.4'
+gem 'devise', '3.3.0'
 gem 'pundit', '0.2.3'
 
 ## APIs
-gem 'activemerchant', '1.43.1'
+gem 'activemerchant', '1.43.3'
 gem 'sendyr', '0.2.1'
 
 # data storage
-gem 'aws-sdk', '1.49.0'
+gem 'aws-sdk', '1.51.0'
 gem 'pgbackups-archive', '0.2.1'
 gem 'paper_trail', '3.0.3'
 
 ## DATES
 gem 'date_validator', '0.7.0'
-gem 'week_of_month', '1.2.3.1'
+gem 'week_of_month', '1.2.3.2'
 
 ## UI
 gem 'sass-rails', '4.0.3'
-gem 'bootstrap-sass', '3.2.0.0'
+gem 'bootstrap-sass', '3.2.0.1'
 gem 'will_paginate', '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'bootstrap-datepicker-rails', '1.3.0.2'
@@ -31,14 +31,14 @@ gem 'simple_form', '3.0.2'
 gem 'ransack', '1.2.3'
 
 ## JS
-gem 'jquery-rails', '3.1.0'
+gem 'jquery-rails', '3.1.1'
 gem 'raphael-rails', '2.1.2'
-gem 'morrisjs-rails', '0.5.0'
+gem 'morrisjs-rails', '0.5.1'
 
 group :development do
   gem 'pry-rails', '0.3.2'
   gem 'annotate', '2.6.5'
-  gem 'faker', '1.3.0'
+  gem 'faker', '1.4.3'
   gem 'metric_fu', '4.11.1'
 end
 
@@ -55,7 +55,7 @@ group :production do
 end
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '2.5.1'
+gem 'uglifier', '2.5.3'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '4.0.1'
@@ -67,10 +67,10 @@ gem 'coffee-rails', '4.0.1'
 #gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '2.2.2'
+gem 'turbolinks', '2.2.3'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '2.1.1'
+gem 'jbuilder', '2.1.3'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
