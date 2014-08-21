@@ -34,7 +34,7 @@ class DepositBatch < ActiveRecord::Base
   end
 
   def payments_by_shift
-    self.payments.sort_by { |payment| payment.shift }
+    self.payments.group_by { |payment| payment.shift }
   end
 
   def approved_by
@@ -57,7 +57,7 @@ class DepositBatch < ActiveRecord::Base
     type_names.each do |type_name|
       type_batch = type_batches.delete(type_name)
       if type_batch
-        date_batches = type_batch.group_by { |payment| payment.donation.date }
+        date_batches = type_batch.group_by { |payment| payment.date }
         date_batches.each do |k,v|
           batch = DepositBatch.create(batch_type: type_name, date: k)
           v.each do |payment|
