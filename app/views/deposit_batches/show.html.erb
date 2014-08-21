@@ -26,7 +26,7 @@
       </tr>
       <tr>
         <th>Total</th>
-        <td><%= number_to_currency @deposit_batch.payments.sum(:amount) %></td>
+        <td><%= number_to_currency @deposit_batch.total %></td>
       </tr>
     </table>
   </div>

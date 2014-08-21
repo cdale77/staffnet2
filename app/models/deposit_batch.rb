@@ -43,6 +43,10 @@ class DepositBatch < ActiveRecord::Base
     end
   end
 
+  def total
+    self.payments.where(captured: true).sum(:amount)
+  end
+
   # create new batches from un-batched payments
   def self.batch_up
 
