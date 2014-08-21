@@ -1,4 +1,4 @@
-<% provide(:title, 'All donations') %>
+<% provide(:title, "All donations") %>
 <h1>All donations</h1>
 <table class="table table-hover">
   <tr>
@@ -8,6 +8,8 @@
     <th>Type</th>
     <th>Source</th>
   </tr>
+
   <%= render @donations %>
+
 </table>
 <%= will_paginate %>

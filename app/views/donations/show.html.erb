@@ -1,4 +1,4 @@
-<% provide(:title, 'Donation') %>
+<% provide(:title, "Donation") %>
 <h1>Donation profile</h1>
 <%= render 'shared/profiles/profile_buttons', record: @donation %>
 <div class="cold-md-12 row record-display">
@@ -52,7 +52,10 @@
         <th>Notes</th>
         <td><%= @donation.notes %></td>
       </tr>
-      <%= render 'shared/profiles/magic_columns', record: @donation %>
+
+      <%= render "shared/profiles/magic_columns",
+                 record: @donation %>
+
       <tr>
         <th>Cancelled</th>
         <td><%= @donation.cancelled ? "Yes" : "No" %></td>
@@ -61,4 +64,8 @@
   </div>
 </div>
 <hr />
-<%= render 'donation_payments', donation: @donation, payments: @payments %>
+
+<%= render 'donation_payments',
+           donation: @donation,
+           payments: @payments %>
+
