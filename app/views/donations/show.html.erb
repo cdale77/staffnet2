@@ -38,7 +38,7 @@
         <th>Campaign</th>
         <td><%= @donation.campaign.humanize %></td>
       </tr>
-      <% if @donation.sub_week > 0 %>
+      <% if @donation.sub_week && @donation.sub_week > 0 %>
         <tr>
           <th>Week code</th>
           <td><%= @donation.sub_week %></td>
