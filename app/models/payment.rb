@@ -33,16 +33,22 @@ class Payment < ActiveRecord::Base
   belongs_to :payment_profile, dependent: :destroy
   belongs_to :deposit_batch
 
-  ## CALLBACKS
-  #before_save :process_payment
-  #before_save :send_receipt
-
   ## VALIDATIONS
   validates :payment_type, presence: { message: "required" }
   validates :amount, presence: { message: "required" }
 
   def self.to_be_batched
     where(deposit_batch_id: nil)
+  end
+
+  def self.create_installment_payments
+    current_sustainers = Donation.sustaining_donations
+    current_quarter_code = Donation.current_quarter_code
+    current_week_code = Date.today.week_of_month.to_s
+    sustainers_to_process = current_sustainers.select do |sustainer|
+      sustainer.sub_month == current_quarter_code && \
+      sustainer.sub_week == current_week_code
+    end
   end
 
   def process_payment

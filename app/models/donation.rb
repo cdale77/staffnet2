@@ -60,6 +60,21 @@ class Donation < ActiveRecord::Base
     where("sub_month <> '' AND cancelled = false")
   end
 
+  def self.current_quarter_code
+    month = Date.today.strftime("%B")
+
+    a = ["January", "April", "July", "October" ]
+    b = ["February", "May", "August", "November" ]
+    c = ["March", "June", "September", "December" ]
+
+    if a.include?(month)
+      "a"
+    elsif b.include?(month)
+      "b"
+    elsif c.include?(month)
+      "c"
+    end
+  end
 
   def is_sustainer?
     if sub_month.present? && sub_week.present? && cancelled == false
@@ -119,7 +134,7 @@ class Donation < ActiveRecord::Base
       if self.sustainer_type == "monthly"
         self.sub_month = "m"
       elsif self.sustainer_type == "quarterly"
-        self.sub_month = quarter_code
+        self.sub_month = Donation.current_quarter_code
       end
     end
 
@@ -129,20 +144,5 @@ class Donation < ActiveRecord::Base
       end
     end
 
-    def quarter_code
-      month = Date.today.strftime("%B")
-
-      a = ["January", "April", "July", "October" ]
-      b = ["February", "May", "August", "November" ]
-      c = ["March", "June", "September", "December" ]
-
-      if a.include?(month)
-        "a"
-      elsif b.include?(month)
-        "b"
-      elsif c.include?(month)
-        "c"
-      end
-    end
 
 end
