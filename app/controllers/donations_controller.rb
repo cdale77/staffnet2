@@ -9,7 +9,7 @@ class DonationsController < ApplicationController
       @donation = @supporter.donations.build
       @payment = @donation.payments.build
       @payment_profiles = @supporter.payment_profiles.limit(5)
-      @shifts = Shift.all.limit(15)
+      @shifts = Shift.first(25)
       authorize @donation
     else
       flash[:danger] = "Could not find supporter"
