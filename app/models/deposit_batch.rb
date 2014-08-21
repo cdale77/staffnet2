@@ -34,7 +34,7 @@ class DepositBatch < ActiveRecord::Base
   end
 
   def payments_by_shift
-    self.payments.sort { |payment| payment.donation.shift.id }
+    self.payments.sort { |payment| payment.shift }
   end
 
   def approved_by

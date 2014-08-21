@@ -29,6 +29,7 @@ class Payment < ActiveRecord::Base
   ## RELATIONSHIPS
   delegate :supporter, to: :donation
   belongs_to :donation
+  delegate :shift, do: :donation
   belongs_to :payment_profile, dependent: :destroy
   belongs_to :deposit_batch
 

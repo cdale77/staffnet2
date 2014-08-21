@@ -45,6 +45,7 @@ describe Payment do
   ## RELATIONSHIPS
   it { should respond_to(:supporter) }
   it { should respond_to(:donation) }
+  it { should respond_to(:shift) }
   it { should respond_to(:payment_profile) }
   it { should respond_to(:deposit_batch) }
 
