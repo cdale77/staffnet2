@@ -1,33 +1,35 @@
 
 <div class="row">
   <div class="col-md-2">
-    <%= f.input :date, as: :string, input_html: { class: 'datepicker' }  %>
+    <%= f.input :date, as: :string, input_html: { type: "date" }  %>
   </div>
   <div class="col-md-2">
-    <%= f.input :amount, as: :string, input_html: { id: 'donation-amount' } %>
+    <%= f.input :amount, as: :string, input_html: { id: "donation-amount" } %>
   </div>
   <div class="col-md-3">
     <%= f.input :donation_type,
                 as: :select,
-                input_html: { id: 'donation-type' },
-                collection: [['Credit Card', 'credit'],
-                             ['Cash', 'cash'],
-                             ['Check', 'check'],
-                             ['Web', 'web']],
+                input_html: { id: "donation-type" },
+                collection: [["Credit Card", "credit"],
+                             ["Cash", "cash"],
+                             ["Check", "check"],
+                             ["Web", "web"]],
                 selected: donation.donation_type %>
   </div>
   <div class="col-md-3">
     <%= f.input :sustainer_type,
-                label: 'Sustainer frequency',
+                label: "Sustainer frequency",
                 as: :select,
-                input_html: { id: 'donation-frequency' },
-                collection: [['', ''], ['Quarterly', 'quarterly'], ['Monthly', 'monthly']],
+                input_html: { id: "donation-frequency" },
+                collection: [["", ""],
+                             ["Quarterly", "quarterly"],
+                             ["Monthly", "monthly"]],
                 selected: donation.frequency %>
   </div>
 </div>
 <hr />
 <% if payment_fields %>
-  <%= render 'shared/forms/payment_fields', payment: payment,
+  <%= render "shared/forms/payment_fields", payment: payment,
              supporter: supporter,
              payment_profiles: payment_profiles,
              f: f %>
@@ -38,16 +40,16 @@
   <div class="col-md-3">
     <%= f.input :source,
                 as: :select,
-                collection: [['Phone', 'phone'],
-                             ['Door', 'door'],
-                             ['Street', 'street'],
-                             ['NationBuilder', 'nationbuilder']],
+                collection: [["Phone", "phone"],
+                             ["Door", "door"],
+                             ["Street", "street"],
+                             ["NationBuilder", "nationbuilder"]],
                 selected: donation.source %>
   </div>
   <div class="col-md-3">
     <%= f.input :campaign,
                 as: :select,
-                collection: [['Prop 13', 'prop13']],
+                collection: [["Prop 13", "prop13"]],
                 include_blank: true,
                 selected: donation.campaign %>
   </div>
@@ -60,7 +62,7 @@
                 selected: donation.shift_id  %>
   </div>
 </div>
-<%= render 'shared/forms/notes_field', f: f %>
+<%= render "shared/forms/notes_field", f: f %>
 
 
 

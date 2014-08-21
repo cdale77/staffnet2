@@ -8,9 +8,9 @@ class CimCustProfileService < ServiceBase
 
   attr_reader :cim_id
 
-  def initialize(cim_customer_id, supporter_email, supporter_cim_id = '')
+  def initialize(cim_customer_id, supporter_email, supporter_cim_id = "")
     @success = false
-    @message = ''
+    @message = ""
     @cim_customer_id = cim_customer_id
     @supporter_email = supporter_email
     @cim_id = supporter_cim_id
@@ -21,7 +21,7 @@ class CimCustProfileService < ServiceBase
     begin
       profile.store
     rescue
-      @message = "ERROR: Problem creating CIM profile: #{profile.server_message}"
+      @message = "Problem creating CIM profile: #{profile.server_message}"
     end
     transfer_messages(profile)
     puts @message
@@ -33,7 +33,7 @@ class CimCustProfileService < ServiceBase
     begin
       profile.unstore
     rescue
-      @message = "ERROR: Problem unstoring CIM profile: #{profile.server_message}"
+      @message = "Problem unstoring CIM profile: #{profile.server_message}"
     end
     transfer_messages(profile)
     puts @message

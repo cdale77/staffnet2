@@ -10,24 +10,36 @@
                 label_method: :human_name,
                 value_method: :id,
                 selected: shift.shift_type_id,
-                input_html: { class: 'input-shift-data'} %>
+                input_html: { class: "input-shift-data" } %>
   </div>
   <div class="col-md-2 calculator-error-qty">
-    <%= f.input :reported_total_yes, as: :string, label: 'Total yes', input_html: { class: 'input-shift-data' } %>
+    <%= f.input :reported_total_yes,
+                as: :string,
+                label: "Total yes",
+                input_html: { class: "input-shift-data" } %>
   </div>
   <div class="col-md-2 calculator-error-amt">
-    <%= f.input :reported_raised, as: :string, label: 'Raised', input_html: { class: 'input-shift-data' } %>
+    <%= f.input :reported_raised,
+                as: :string,
+                label: "Raised",
+                input_html: { class: "input-shift-data" } %>
   </div>
   <div class="col-md-2">
-    <%= f.input :travel_reimb, as: :string, label: 'Travel reimbursement' %>
+    <%= f.input :travel_reimb,
+                as: :string,
+                label: "Travel reimbursement" %>
   </div>
 </div>
 <div class="form-group row">
   <div class="col-md-2">
-    <%= f.input :time_in, as: :string, input_html: { type: "time" } %>
+    <%= f.input :time_in,
+                as: :string,
+                input_html: { type: "time" } %>
   </div>
   <div class="col-md-2">
-    <%= f.input :time_out, as: :string, input_html: { type: "time" } %>
+    <%= f.input :time_out,
+                as: :string,
+                input_html: { type: "time" } %>
   </div>
   <div class="col-md-2">
     <%= f.input :break_time, as: :string %>
@@ -49,22 +61,30 @@
 <hr />
 <div class="form-group row">
   <div class="col-md-2 calculator-error-qty">
-    <%= f.input :reported_cash_qty, as: :string, label: 'Cash quantity',
-                                    input_html: { class: 'input-shift-data' } %>
+    <%= f.input :reported_cash_qty,
+                as: :string,
+                label: "Cash quantity",
+                input_html: { class: "input-shift-data" } %>
   </div>
   <div class="col-md-2 calculator-error-amt">
-    <%= f.input :reported_cash_amt, as: :string, label: 'Cash amount',
-                                    input_html: { class: 'input-shift-data'} %>
+    <%= f.input :reported_cash_amt,
+                as: :string,
+                label: "Cash amount",
+                input_html: { class: "input-shift-data" } %>
   </div>
 </div>
 <div class="row">
   <div class="col-md-2 calculator-error-qty">
-    <%= f.input :reported_check_qty,  as: :string, label: 'Check quantity',
-                                      input_html: { class: 'input-shift-data' } %>
+    <%= f.input :reported_check_qty,
+                as: :string,
+                label: "Check quantity",
+                input_html: { class: "input-shift-data" } %>
   </div>
   <div class="col-md-2 calculator-error-amt">
-    <%= f.input :reported_check_amt,  as: :string, label: 'Check amount',
-                                      input_html: { class: 'input-shift-data'} %>
+    <%= f.input :reported_check_amt,
+                as: :string,
+                label: "Check amount",
+                input_html: { class: "input-shift-data" } %>
   </div>
 </div>
 <div class="row">

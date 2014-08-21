@@ -1,7 +1,7 @@
-<% provide(:title, 'Approve batch') %>
+<% provide(:title, "Approve batch") %>
 <h1>Approve batch</h1>
 <%= simple_form_for @deposit_batch do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+  <%= render "shared/error_messages", object: f.object %>
   <div class="col-md-12 row">
     <div class="col-md-3">
       <%= f.input :receipt_number %>
@@ -13,7 +13,7 @@
   <hr />
   <div class="form-group row">
     <div class="col-md-2">
-      <%= f.button :submit, "Approve Batch", class: 'btn-primary' %>
+      <%= f.button :submit, "Approve Batch", class: "btn-primary" %>
     </div>
   </div>
 <% end %>

@@ -4,7 +4,7 @@ class SendyUpdateService < ServiceBase
 
   def initialize(supporter_id, sendy_list_id, supporter_email, old_email)
     @success = false
-    @message = ''
+    @message = ""
     @supporter_id = supporter_id
     @sendy_list_id = sendy_list_id
     @supporter_email = supporter_email
@@ -18,10 +18,11 @@ class SendyUpdateService < ServiceBase
 
   private
     def queue_sendy_update(action)
-      SendyUpdate.create( supporter_id:     @supporter_id,
-                          sendy_list_id:    @sendy_list_id,
-                          sendy_email:      (@old_email.present? ? @old_email : @supporter_email),
-                          new_sendy_email:  (@old_email.present? ? @supporer_email : ''),
-                          action:           action)
+      SendyUpdate.create(
+        supporter_id:     @supporter_id,
+        sendy_list_id:    @sendy_list_id,
+        sendy_email:      (@old_email.present? ? @old_email : @supporter_email),
+        new_sendy_email:  (@old_email.present? ? @supporer_email : ""),
+        action:           action)
     end
 end

@@ -19,13 +19,13 @@ class SupporterService < ServiceBase
   end
 
   def new_supporter
-    if store_cim_profile && queue_sendy_update('subscribe') && update_record
+    if store_cim_profile && queue_sendy_update("subscribe") && update_record
       @success = true
     end
   end
 
   def destroy_supporter
-    if unstore_cim_profile && queue_sendy_update('unsubscribe')
+    if unstore_cim_profile && queue_sendy_update("unsubscribe")
       @success = true
     end
   end

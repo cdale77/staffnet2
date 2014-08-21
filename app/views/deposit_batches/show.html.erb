@@ -1,11 +1,11 @@
-<% provide(:title, 'Batch details') %>
+<% provide(:title, "Batch details") %>
 <h1>Batch details</h1>
 <div class="col-md-12 row button-container">
   <div class="buttons">
     <% if admin_user? && !@deposit_batch.approved %>
-      <%= link_to 'approve', edit_deposit_batch_path(@deposit_batch),
-                  class: 'btn btn-md btn-primary',
-                  type: 'button' %>
+      <%= link_to "approve", edit_deposit_batch_path(@deposit_batch),
+                  class: "btn btn-md btn-primary",
+                  type: "button" %>
     <% end %>
   </div>
 </div>
@@ -40,8 +40,8 @@
         <th>Receipt number</th>
         <td><%= @deposit_batch.receipt_number %></td>
       </tr>
-      <%= render 'shared/profiles/magic_columns', record: @deposit_batch %>
+      <%= render "shared/profiles/magic_columns", record: @deposit_batch %>
     </table>
   </div>
 </div>
-<%= render 'batch_payments', payments: @payments %>
+<%= render "batch_payments", payments: @payments %>
