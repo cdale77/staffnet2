@@ -33,8 +33,8 @@ class DepositBatch < ActiveRecord::Base
     where("batch_type = 'installment' AND approved = false")
   end
 
-  def payments_by_employee
-    self.payments.sort { |payment| payment.donation.shift.employee.id }
+  def payments_by_shift
+    self.payments.sort { |payment| payment.donation.shift.id }
   end
 
   def approved_by
