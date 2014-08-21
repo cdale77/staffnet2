@@ -29,6 +29,8 @@ class DonationsController < ApplicationController
         @payment.payment_profile_id = donation_params[:payment_profile_id]
         @payment.payment_type = @donation.donation_type
         @payment.amount = @donation.amount
+        @payment.process_payment
+        @payment.send_receipt
         if @payment.save
           flash[:success] = "Success"
           redirect_to donation_path(@donation)

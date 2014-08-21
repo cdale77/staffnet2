@@ -34,8 +34,8 @@ class Payment < ActiveRecord::Base
   belongs_to :deposit_batch
 
   ## CALLBACKS
-  before_save :process_payment
-  before_save :send_receipt
+  #before_save :process_payment
+  #before_save :send_receipt
 
   ## VALIDATIONS
   validates :payment_type, presence: { message: "required" }
@@ -60,8 +60,8 @@ class Payment < ActiveRecord::Base
         self.notes = charge.server_message + "--" + self.notes
       else
         self.captured = true # anything but a credit payment considered captured
+        self.processed = true
       end
-      self.processed = true
     end
   end
 
