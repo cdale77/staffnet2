@@ -5,8 +5,7 @@ class DepositBatchesController < ApplicationController
 
   def show
     @deposit_batch = DepositBatch.find(params[:id])
-    #@payments = @deposit_batch.payments_by_shift
-    @payments = @deposit_batch.payments.order(shift: :desc)
+    @payments = @deposit_batch.payments_by_shift
     authorize @deposit_batch
   end
 
