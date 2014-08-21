@@ -11,7 +11,7 @@ class DepositBatchesController < ApplicationController
 
   def index
     DepositBatch.batch_up
-    @deposit_batches = DepositBatch.where(approved: false)
+    @deposit_batches = DepositBatch.first(20)
     authorize @deposit_batches
   end
 
