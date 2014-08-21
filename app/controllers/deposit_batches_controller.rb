@@ -24,7 +24,7 @@ class DepositBatchesController < ApplicationController
     @deposit_batch = DepositBatch.find(params[:id])
     authorize @deposit_batch
     new_attributes = deposit_batch_params
-    new_attributes[:employee_id] = current_user.id
+    new_attributes[:employee_id] = current_user.employee.id
     if @deposit_batch.update_attributes(new_attributes)
       flash[:success] = "Batch approved"
       redirect_to deposit_batches_path
