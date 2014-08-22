@@ -43,7 +43,8 @@ class Payment < ActiveRecord::Base
 
   def self.create_installment_payments
     current_sustainers = Donation.sustaining_donations
-    deposit_batch = DepositBatch.create(batch_type: "installment")
+    deposit_batch = DepositBatch.create(batch_type: "installment",
+                                        date: Date.today)
 
     sustaining_donations_to_process = current_sustainers.select do |sustainer|
       sustainer.sub_month == Donation.current_quarter_code && \

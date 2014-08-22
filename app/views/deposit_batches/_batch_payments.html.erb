@@ -10,6 +10,7 @@
       <th>Supporter</th>
       <th>Amount</th>
       <th>Type</th>
+      <th>Frequency</th>
       <th>Source</th>
       <th>Captured?</th>
     </tr>
@@ -34,6 +35,9 @@
         </td>
         <td>
           <%= payment.payment_type.humanize %>
+        </td>
+        <td>
+          <%= payment.donation.frequency %>
         </td>
         <td>
           <%= payment.donation.source.humanize %>
