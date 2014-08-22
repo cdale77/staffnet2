@@ -43,17 +43,21 @@ class Payment < ActiveRecord::Base
 
   def self.create_installment_payments
     current_sustainers = Donation.sustaining_donations
-    current_quarter_code = Donation.current_quarter_code
-    current_week_code = Date.today.week_of_month
+    deposit_batch = DepositBatch.create(batch_type: "installment")
+
     sustaining_donations_to_process = current_sustainers.select do |sustainer|
-      sustainer.sub_month == current_quarter_code && \
-      sustainer.sub_week == current_week_code
+      sustainer.sub_month == Donation.current_quarter_code && \
+      sustainer.sub_week == Date.today.week_of_month
     end
 
     sustaining_donations_to_process.each do |sustaining_donation|
       previous_payment = donation.payments.first
       payment = donation.payments.build
-      payment.payment_profile_id =
+      payment.deposit_batch_id = deposit_batch.id
+      payment.payment_profile_id = previous_payment.payment_profile_id
+      payment.payment_type = "installment"
+      payment.amount = sustaining_donation.amount
+      payment.save
     end
   end
 
