@@ -52,7 +52,7 @@ class Payment < ActiveRecord::Base
 
     sustaining_donations_to_process.each do |sustaining_donation|
       puts "creating installment payment for donation id #{sustaining_donation.id}"
-      previous_payment = donation.payments.first
+      previous_payment = sustaining_donation.payments.first
       payment = donation.payments.build
       payment.deposit_batch_id = deposit_batch.id
       payment.payment_profile_id = previous_payment.payment_profile_id

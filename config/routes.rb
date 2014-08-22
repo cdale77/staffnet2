@@ -37,7 +37,5 @@ Staffnet2::Application.routes.draw do
     resources :sendy_lists
 
     resources :deposit_batches, only: [:show, :index, :edit, :update]
-
-    get "installments/review", to: "installments#review", as: :installments_review
   end
 end
