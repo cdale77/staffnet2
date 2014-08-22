@@ -12,21 +12,25 @@
     <%= f.input :email %>
   </div>
 </div>
-<%= render 'shared/forms/address_fields', f: f, record: employee %>
+
+<%= render "shared/forms/address_fields",
+           record: employee,
+           f: f %>
+
 <hr />
 <div class="row">
   <div class="col-md-3">
     <%= f.input :title,
                 as: :select,
-                collection: [['Asst. Director', 'asst_director'],
-                             ['Director', 'director'],
-                             ['Organizer', 'organizer'],
-                             ['Field Manager', 'field_manager'],
-                             ['Canvasser', 'canvasser'] ],
+                collection: [["Asst. Director", "asst_director"],
+                             ["Director", "director"],
+                             ["Organizer", "organizer"],
+                             ["Field Manager", "field_manager"],
+                             ["Canvasser", "canvasser"] ],
                 selected: employee.title   %>
   </div>
   <div class="col-md-2">
-    <%= f.input :pay_hourly, label: 'Pay hrly' %>
+    <%= f.input :pay_hourly, label: "Pay hrly" %>
   </div>
   <div class="col-md-2">
     <%= f.input :pay_daily %>
@@ -51,22 +55,22 @@
   <div class="col-md-2 select">
     <%= f.input :fed_filing_status,
                  as: :select,
-                 label: 'Federal',
+                 label: "Federal",
                  collection: filing_status_options,
                  selected: employee.fed_filing_status %>
   </div>
   <div class="col-md-2 select">
     <%= f.input :ca_filing_status,
                  as: :select,
-                 label: 'Federal',
+                 label: "Federal",
                  collection: filing_status_options,
                  selected: employee.ca_filing_status %>
   </div>
   <div class="col-md-2">
-    <%= f.input :fed_allowances, label: 'Federal' %>
+    <%= f.input :fed_allowances, label: "Federal" %>
   </div>
   <div class="col-md-2">
-    <%= f.input :ca_allowances, label: 'CA' %>
+    <%= f.input :ca_allowances, label: "CA" %>
   </div>
 </div>
 <hr />
@@ -74,15 +78,19 @@
   <div class="col-md-2">
     <%= f.input :gender,
                 as: :select,
-                collection: [['Female', 'f'],
-                             ['Male', 'm']],
+                collection: [["Female", "f"],
+                             ["Male", "m"]],
                 include_blank: true,
                 selected: employee.gender %>
   </div>
   <div class="col-md-2">
-    <%= f.input :dob, as: :string, input_html: { class: 'datepicker' } %>
+    <%= f.input :dob,
+                as: :string,
+                input_html: { type: "date" } %>
   </div>
   <div class="col-md-2">
-    <%= f.input :hire_date, as: :string, input_html: { class: 'datepicker' } %>
+    <%= f.input :hire_date,
+                as: :string,
+                input_html: { type: "date" } %>
   </div>
 </div>

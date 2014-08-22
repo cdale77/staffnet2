@@ -3,9 +3,17 @@
   <div class="col-md-12">
     <h1>New employee</h1>
     <%= simple_form_for(@employee) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <%= render 'employee_fields', employee: @employee, f: f  %>
-      <%= render 'shared/forms/submit_button', f: f %>
+
+      <%= render "shared/error_messages",
+                 object: f.object %>
+
+      <%= render "employee_fields",
+                 employee: @employee,
+                 f: f  %>
+
+      <%= render "shared/forms/submit_button",
+                 f: f %>
+
     <% end %>
   </div>
 </div>

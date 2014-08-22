@@ -1,79 +1,93 @@
 <% provide(:title, @employee.full_name) %>
 <h1>Employee profile</h1>
-<%= render 'shared/profiles/profile_buttons', record: @employee %>
+
+<%= render "shared/profiles/profile_buttons",
+           record: @employee %>
+
 <div class="col-md-12 row record-display">
-  <div class="col-md-4 record-column"><table>
-    <tr>
-      <th>Name</th>
-      <td><%= @employee.full_name %></td>
-    </tr>
-    <tr>
-      <th>Email</th>
-      <td><%= mail_to @employee.email %></td>
-    </tr>
-    <tr>
-      <th>Phone</th>
-      <td><%= number_to_phone @employee.phone.to_i %></td>
-    </tr>
-    <%= render 'shared/profiles/address', record: @employee %>
-  </table></div>
-  <div class="col-md-4 record-column"> <table>
-    <tr>
-      <th>DOB</th>
-      <td><%= @employee.dob %></td>
-    </tr>
-    <tr>
-      <th>Gender</th>
-      <td><%= @employee.gender %></td>
-    </tr>
-    <tr>
-      <th>Fed tax status:</th>
-      <td><%= @employee.fed_filing_status.humanize %> </td>
-    </tr>
-    <tr>
-      <th>CA tax status:</th>
-      <td><%= @employee.ca_filing_status.humanize %></td>
-    </tr>
-    <tr>
-      <th>Fed allowances:</th>
-      <td><%= @employee.fed_allowances %></td>
-    </tr>
-    <tr>
-      <th>CA allowances:</th>
-      <td><%= @employee.ca_allowances %></td>
-    </tr>
-  </table></div>
-  <div class="col-md-4 record-column"><table>
-    <tr>
-      <th>Title:</th>
-      <td><%= @employee.title.humanize %></td>
-    </tr>
-    <% if admin_user? %>
-      <% if @employee.pay_hourly > 0 %>
+  <div class="col-md-4 record-column">
+    <table>
+      <tr>
+        <th>Name</th>
+        <td><%= @employee.full_name %></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%= mail_to @employee.email %></td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td><%= number_to_phone @employee.phone.to_i %></td>
+      </tr>
+
+      <%= render "shared/profiles/address",
+                 record: @employee %>
+
+    </table>
+  </div>
+  <div class="col-md-4 record-column">
+    <table>
+      <tr>
+        <th>DOB</th>
+        <td><%= @employee.dob %></td>
+      </tr>
+      <tr>
+        <th>Gender</th>
+        <td><%= @employee.gender %></td>
+      </tr>
+      <tr>
+        <th>Fed tax status:</th>
+        <td><%= @employee.fed_filing_status.humanize %> </td>
+      </tr>
+      <tr>
+        <th>CA tax status:</th>
+        <td><%= @employee.ca_filing_status.humanize %></td>
+      </tr>
+      <tr>
+        <th>Fed allowances:</th>
+        <td><%= @employee.fed_allowances %></td>
+      </tr>
+      <tr>
+        <th>CA allowances:</th>
+        <td><%= @employee.ca_allowances %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-4 record-column">
+    <table>
+      <tr>
+        <th>Title:</th>
+        <td><%= @employee.title.humanize %></td>
+      </tr>
+      <% if admin_user? %>
+        <% if @employee.pay_hourly > 0 %>
+          <tr>
+            <th>Hourly pay:</th>
+            <td><%= number_to_currency(@employee.pay_hourly) %></td>
+          </tr>
+        <% elsif @employee.pay_daily > 0 %>
+          <tr>
+            <th>Daily pay:</th>
+            <td><%= number_to_currency(@employee.pay_daily) %> </td>
+          </tr>
+        <% end %>
+      <% end %>
+      <tr>
+        <th>Hire date:</th>
+        <td><%= @employee.hire_date %></td>
+      </tr>
+      <% if @employee.term_date.present? %>
         <tr>
-          <th>Hourly pay:</th>
-          <td><%= number_to_currency(@employee.pay_hourly) %></td>
-        </tr>
-      <% elsif @employee.pay_daily > 0 %>
-        <tr>
-          <th>Daily pay:</th>
-          <td><%= number_to_currency(@employee.pay_daily) %> </td>
+          <th>Term. date:</th>
+          <td><%= @employee.term_date %></td>
         </tr>
       <% end %>
-    <% end %>
-    <tr>
-      <th>Hire date:</th>
-      <td><%= @employee.hire_date %></td>
-    </tr>
-    <% if @employee.term_date.present? %>
-      <tr>
-        <th>Term. date:</th>
-        <td><%= @employee.term_date %></td>
-      </tr>
-    <% end %>
-    <tr>
-      <%= render 'shared/profiles/magic_columns', record: @employee %>
-  </table></div>
+
+      <%= render "shared/profiles/magic_columns",
+                 record: @employee %>
+
+  </table>
+  </div>
 </div>
 <h4>Stats</h4>
 <div class="col-md-12 row record-display">
@@ -137,4 +151,8 @@
   </div>
 </div>
 <hr />
-<%= render 'employee_shifts', shifts: @shifts, employee: @employee %>
+
+<%= render "employee_shifts",
+           shifts: @shifts,
+           employee: @employee %>
+

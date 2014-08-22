@@ -1,7 +1,10 @@
 <div class="col-md-12 row" id="employee-shifts">
   <div class="table-header">
     <h4 class="table-title-right">Shifts</h4>
-    <%= render 'shared/profiles/new_dependent_record_button', record_name: 'shift', record: employee %>
+
+    <%= render "shared/profiles/new_dependent_record_button",
+               record_name: "shift",
+               record: employee %>
   </div>
   <table class="table table-hover">
     <tr>
@@ -12,14 +15,15 @@
       <th>Type</th>
     </tr>
     <% shifts.each do |shift| %>
-      <tr class="clickable-row" id="shift_<%= shift.id %>" url="<%= shift_path(shift) %>">
+      <tr class="clickable-row"
+          id="shift_<%= shift.id %>"
+          url="<%= shift_path(shift) %>">
         <td><%= shift.date %></td>
-        <td><%= shift.time_in.strftime("%l:%M %P") %></td>
-        <td><%= shift.time_out.strftime("%l:%M %P") %></td>
+        <td><%= l(shift.time_in, format: :short) %></td>
+        <td><%= l(shift.time_out, format: :short) %></td>
         <td><%= shift.net_time %></td>
         <td><%= shift.shift_type.name.humanize %></td>
       </tr>
     <% end %>
   </table>
 </div>
-
