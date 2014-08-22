@@ -47,7 +47,7 @@ class Payment < ActiveRecord::Base
                                         date: Date.today)
 
     sustaining_donations_to_process = current_sustainers.select do |sustainer|
-      sustainer.sub_month == Donation.current_quarter_code && \
+      ( sustainer.sub_month == Donation.current_quarter_code || sustainer.sub_month == "m") && \
       sustainer.sub_week == Date.today.week_of_month
     end
 
