@@ -46,6 +46,7 @@ group :development, :test do
   gem 'selenium-webdriver', '2.42.0'
   gem 'factory_girl_rails', '4.4.1'
   gem 'byebug', '3.1.2'
+  gem 'codeclimate-test-reporter'
 end
 
 group :production do
