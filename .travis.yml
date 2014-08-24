@@ -1,0 +1,19 @@
+language: ruby
+cache: bundler
+
+rvm:
+  - 2.1.2
+
+script: 'bundle exec rake'
+
+notifications:
+  email:
+    recipients:
+      - cdale77@gmail.com
+    on_failure: change
+    on_success: never
+
+
+addons:
+  code_climate:
+    repo_token: OYrd1CO3IXx3D4D+5MtNFnk1azdjrMM2M5SotE1kbi4oW0AGJTaGCT/3CKVLjd006ANUjebaOhO4HgYgFq4+/g1NOH26Yu6yfwq0OHaCe68I3Lx1Uc7bdYtpKYFlXKvWyqsVFaqHBMeblOgbRh3VYiB65N4AbDffa6WC4zUc2pw=
