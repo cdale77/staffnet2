@@ -59,13 +59,17 @@ class Payment < ActiveRecord::Base
       payment.payment_profile_id = previous_payment.payment_profile_id
       payment.payment_type = "installment"
       payment.amount = sustaining_donation.amount
-      payment.save
+      if payment.save
+        puts "successfully saved payment"
+      else
+        puts "error saving payment"
+      end
     end
   end
 
   def process_payment
     unless self.processed
-      if self.payment_type == "credit"
+      if self.payment_type == "credit" || self.payment_type == "installment"
         charge = Cim::ProfilePayment.new(self.supporter.cim_id,
                                          self.payment_profile.cim_payment_profile_id,
                                          self.amount)
@@ -76,10 +80,9 @@ class Payment < ActiveRecord::Base
           self.captured = true
         end
         self.notes = charge.server_message + "--" + self.notes
-      else
-        self.captured = true # anything but a credit payment considered captured
-        self.processed = true
       end
+    self.captured = true # anything but a credit payment considered captured
+    self.processed = true
     end
   end
 
