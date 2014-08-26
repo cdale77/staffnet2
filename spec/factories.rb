@@ -172,6 +172,8 @@ FactoryGirl.define do
   end
 
   factory :payroll do
+        start_date  ( Date.today.at_beginning_of_week - 15.days )
+        end_date    ( Date.today.at_beginning_of_week - 2.days )
         check_quantity            8
         shift_quantity            80
         cv_shift_quantity         74

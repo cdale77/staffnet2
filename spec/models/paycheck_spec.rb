@@ -41,14 +41,42 @@ describe Paycheck do
       total_fundraising_credit: 10764
   }
 
+  let!(:payroll) { FactoryGirl.create(:payroll) }
+  let!(:paycheck) { FactoryGirl.create(:paycheck,
+                                       employee: employee,
+                                       payroll: payroll) }
   let!(:employee) { FactoryGirl.create(:employee) }
-  let!(:shift) { FactoryGirl.create(:shift, employee: employee) }
-  let!(:paycheck) { FactoryGirl.create(:paycheck) }
+  let!(:shift_type) { FactoryGirl.create(:shift_type) }
+  let!(:shift) { FactoryGirl.create(:shift,
+                                    paycheck: paycheck,
+                                    employee: employee,
+                                    shift_type: shift_type) }
+  let!(:donation) { FactoryGirl.create(:donation,
+                                       amount: 10,
+                                       donation_type: "cash",
+                                       shift: shift) }
+  let!(:donation2) { FactoryGirl.create(:donation,
+                                        amount: 10,
+                                        donation_type: "credit",
+                                        sub_week: 1,
+                                        sub_month: "m",
+                                        shift: shift) }
+  let!(:payment) { FactoryGirl.create(:payment,
+                                      amount: 10,
+                                      captured: true,
+                                      donation: donation) }
+  let!(:payment2) { FactoryGirl.create(:payment,
+                                       amount: 10,
+                                       captured: true,
+                                       donation: donation2) }
+
+
+  before(:all) { paycheck.calculate_values }
 
   subject { paycheck }
 
   ## ATTRIBUTES
-  describe 'payroll attribute tests' do
+  describe 'attribute tests' do
     paycheck_attributes.each do |key, value|
       it { should respond_to(key)}
     end
@@ -58,4 +86,19 @@ describe Paycheck do
   it { should respond_to(:employee) }
   it { should respond_to(:payroll) }
   it { should respond_to(:shifts) }
+
+  ## CALLBACKS
+  describe 'paycheck calculations' do
+    it 'should have the correct amounts' do
+      expect(paycheck.shift_quantity.to_s).to eq 1.to_s
+      expect(paycheck.cv_shift_quantity.to_s).to eq 1.to_s
+      expect(paycheck.quota_shift_quantity.to_s).to eq 1.to_s
+      expect(paycheck.office_shift_quantity.to_s).to eq 1.to_s
+      expect(paycheck.sick_shift_quantity.to_s).to eq 1.to_s
+      expect(paycheck.holiday_shift_quantity.to_s).to eq 1.to_s
+      expect(paycheck.vacation_shift_quantity.to_s).to eq 1.to_s
+      expect(paycheck.total_deposit.to_s).to eq 20.to_s
+      expect(paycheck.fundraising_credit.to_s).to eq 80.to_s
+    end
+  end
 end

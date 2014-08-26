@@ -34,4 +34,11 @@ class Paycheck < ActiveRecord::Base
   belongs_to :employee
   belongs_to :payroll
   has_many :shifts
+
+  def calculate_values
+    self.shift_quantity = self.shifts.count
+  end
+
+
+
 end

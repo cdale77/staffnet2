@@ -49,6 +49,7 @@ class Shift < ActiveRecord::Base
   belongs_to :shift_type
   has_many :donations
   has_many :payments, through: :donations
+  belongs_to :paycheck
 
   ## METHOD DELEGATIONS
   delegate :fundraising_shift, to: :shift_type

@@ -38,11 +38,7 @@ describe Payroll do
       total_fundraising_credit: 10764
   }
 
-  let!(:old_payroll) { FactoryGirl.create(:payroll,
-                        start_date: (Date.today.at_beginning_of_week - 15.days),
-                        end_date: Date.today.at_beginning_of_week - 2.days) }
   let!(:payroll) { FactoryGirl.create(:payroll) }
-
 
   subject { payroll }
 
@@ -56,13 +52,4 @@ describe Payroll do
   ## RELATIONSHIPS
   it { should respond_to(:paychecks) }
 
-  ## CALLBACKS
-  describe 'start and end dates' do
-    it 'should set the start date correctly' do
-      expect(payroll.start_date).to eq (old_payroll.end_date + 1.day)
-    end
-    it 'should set the end date correctly' do
-      expect(payroll.end_date).to eq (old_payroll.end_date + 14.days)
-    end
-  end
 end
