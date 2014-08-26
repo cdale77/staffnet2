@@ -55,8 +55,19 @@ describe Shift do
                         reported_total_yes: 7 }
 
 
-  let(:shift) { FactoryGirl.create(:shift) }
-
+  let!(:shift_type) { FactoryGirl.create(:shift_type) }
+  let!(:shift) { FactoryGirl.create(:shift,
+                                    shift_type: shift_type) }
+  let!(:donation) { FactoryGirl.create(:donation,
+                                        amount: 10,
+                                        donation_type: "cash",
+                                        shift: shift) }
+  let!(:donation2) { FactoryGirl.create(:donation,
+                                         amount: 10,
+                                         donation_type: "credit",
+                                         sub_week: 1,
+                                         sub_month: "m",
+                                         shift: shift) }
   subject { shift }
 
   ## ATTRIBUTES
@@ -137,7 +148,17 @@ describe Shift do
   end
 
   ## METHODS
-  describe 'net_time method' do
+  describe '#total_deposit' do
+    it 'should return the deposit total for associated donations' do
+      shift.total_deposit.should eq 20
+    end
+  end
+  describe '#total_fundraising_credit' do
+    it 'should return the total fundraising credit' do
+      shift.total_fundraising_credit.should eq 80
+    end
+  end
+  describe '#net_time' do
     it 'should have a net time method' do
       shift.time_in = Time.now.beginning_of_day
       shift.time_out = Time.now.beginning_of_day + 5.hours

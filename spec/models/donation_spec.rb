@@ -130,6 +130,18 @@ describe Donation do
     end
   end
 
+  describe '::captured_donations' do
+    it 'should return an array' do
+      expect(Donation.captured_donations).to be_an_instance_of Array
+    end
+  end
+
+  describe '::uncaptured_donations' do
+    it 'should return an array' do
+      expect(Donation.uncaptured_donations).to be_an_instance_of Array
+    end
+  end
+
   ## INSTANCE METHODS
   describe '#captured' do
     it 'should return true' do

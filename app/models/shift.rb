@@ -104,7 +104,14 @@ class Shift < ActiveRecord::Base
     reported_quarterly_cc_amt() * 3
   end
 
+  def total_deposit
 
+    self.donations.sum(&:amount)
+  end
+
+  def total_fundraising_credit
+
+  end
 
   private
 

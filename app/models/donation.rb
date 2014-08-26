@@ -60,6 +60,14 @@ class Donation < ActiveRecord::Base
     where("sub_month <> '' AND cancelled = false")
   end
 
+  def self.captured_donations
+    all.select { |d| d.captured }
+  end
+
+  def self.uncaptured_donations
+    all.select { |d| !d.captured }
+  end
+
   def self.current_quarter_code
     month = Date.today.strftime("%B")
 
@@ -104,7 +112,7 @@ class Donation < ActiveRecord::Base
   end
 
   def captured
-    # this is mapped to the first payment - if it"s captured, so is the donation
+    # this is mapped to the first payment - if it's captured, so is the donation
     self.payments.first.captured
   end
 
