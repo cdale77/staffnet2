@@ -6,12 +6,13 @@
 #  payroll_id               :integer
 #  employee_id              :integer
 #  check_date               :date
-#  cv_shift_quantity        :integer          default(0)
-#  quota_shift_quantity     :integer          default(0)
-#  office_shift_quantity    :integer          default(0)
-#  sick_shift_quantity      :integer          default(0)
-#  vacation_shift_quantity  :integer          default(0)
-#  holiday_shift_quantity   :integer          default(0)
+#  shift_quantity           :decimal(8, 2)    default(0.0)
+#  cv_shift_quantity        :decimal(8, 2)    default(0.0)
+#  quota_shift_quantity     :decimal(8, 2)    default(0.0)
+#  office_shift_quantity    :decimal(8, 2)    default(0.0)
+#  sick_shift_quantity      :decimal(8, 2)    default(0.0)
+#  vacation_shift_quantity  :decimal(8, 2)    default(0.0)
+#  holiday_shift_quantity   :decimal(8, 2)    default(0.0)
 #  total_deposit            :decimal(8, 2)    default(0.0)
 #  total_fundraising_credit :decimal(8, 2)    default(0.0)
 #  old_buffer               :decimal(8, 2)    default(0.0)
@@ -28,4 +29,7 @@ class Paycheck < ActiveRecord::Base
   has_paper_trail
 
   default_scope { order(check_date: :desc) }
+
+  ## RELATIONSHIPS
+  belongs_to :payroll
 end

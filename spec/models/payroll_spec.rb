@@ -6,17 +6,17 @@
 #  start_date               :date
 #  end_date                 :date
 #  check_quantity           :integer          default(0)
-#  shift_quantity           :integer          default(0)
-#  cv_shift_quantity        :integer          default(0)
-#  quota_shift_quantity     :integer          default(0)
-#  office_shift_quantity    :integer          default(0)
-#  sick_shift_quantity      :integer          default(0)
-#  vacation_shift_quantity  :integer          default(0)
+#  shift_quantity           :decimal(8, 2)    default(0.0)
+#  cv_shift_quantity        :decimal(8, 2)    default(0.0)
+#  quota_shift_quantity     :decimal(8, 2)    default(0.0)
+#  office_shift_quantity    :decimal(8, 2)    default(0.0)
+#  sick_shift_quantity      :decimal(8, 2)    default(0.0)
+#  holiday_shift_quantity   :decimal(8, 2)    default(0.0)
 #  total_deposit            :decimal(8, 2)    default(0.0)
 #  total_fundraising_credit :decimal(8, 2)    default(0.0)
 #  created_at               :datetime
 #  updated_at               :datetime
-#  holiday_shift_quantity   :integer          default(0)
+#  vacation_shift_quantity  :decimal(8, 2)    default(0.0)
 #
 
 require "spec_helper"
@@ -53,7 +53,7 @@ describe Payroll do
   end
 
   ## RELATIONSHIPS
-  #it { should respond_to(:paychecks) }
+  it { should respond_to(:paychecks) }
 
   ## CALLBACKS
   describe 'start and end dates' do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140820174607) do
+ActiveRecord::Schema.define(version: 20140826215234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,31 @@ ActiveRecord::Schema.define(version: 20140820174607) do
     t.datetime "updated_at"
   end
 
+  create_table "paychecks", force: true do |t|
+    t.integer  "payroll_id"
+    t.integer  "employee_id"
+    t.date     "check_date"
+    t.decimal  "shift_quantity",           precision: 8, scale: 2, default: 0.0
+    t.decimal  "cv_shift_quantity",        precision: 8, scale: 2, default: 0.0
+    t.decimal  "quota_shift_quantity",     precision: 8, scale: 2, default: 0.0
+    t.decimal  "office_shift_quantity",    precision: 8, scale: 2, default: 0.0
+    t.decimal  "sick_shift_quantity",      precision: 8, scale: 2, default: 0.0
+    t.decimal  "vacation_shift_quantity",  precision: 8, scale: 2, default: 0.0
+    t.decimal  "holiday_shift_quantity",   precision: 8, scale: 2, default: 0.0
+    t.decimal  "total_deposit",            precision: 8, scale: 2, default: 0.0
+    t.decimal  "total_fundraising_credit", precision: 8, scale: 2, default: 0.0
+    t.decimal  "old_buffer",               precision: 8, scale: 2, default: 0.0
+    t.decimal  "new_buffer",               precision: 8, scale: 2, default: 0.0
+    t.decimal  "total_pay",                precision: 8, scale: 2, default: 0.0
+    t.decimal  "bonus",                    precision: 8, scale: 2, default: 0.0
+    t.decimal  "travel_reimb",             precision: 8, scale: 2, default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "paychecks", ["employee_id"], name: "index_paychecks_on_employee_id", using: :btree
+  add_index "paychecks", ["payroll_id"], name: "index_paychecks_on_payroll_id", using: :btree
+
   create_table "payment_profiles", force: true do |t|
     t.integer  "supporter_id"
     t.string   "cim_payment_profile_id", default: ""
@@ -129,6 +154,23 @@ ActiveRecord::Schema.define(version: 20140820174607) do
   add_index "payments", ["deposit_batch_id"], name: "index_payments_on_deposit_batch_id", using: :btree
   add_index "payments", ["donation_id"], name: "index_payments_on_donation_id", using: :btree
   add_index "payments", ["payment_profile_id"], name: "index_payments_on_payment_profile_id", using: :btree
+
+  create_table "payrolls", force: true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "check_quantity",                                   default: 0
+    t.decimal  "shift_quantity",           precision: 8, scale: 2, default: 0.0
+    t.decimal  "cv_shift_quantity",        precision: 8, scale: 2, default: 0.0
+    t.decimal  "quota_shift_quantity",     precision: 8, scale: 2, default: 0.0
+    t.decimal  "office_shift_quantity",    precision: 8, scale: 2, default: 0.0
+    t.decimal  "sick_shift_quantity",      precision: 8, scale: 2, default: 0.0
+    t.decimal  "holiday_shift_quantity",   precision: 8, scale: 2, default: 0.0
+    t.decimal  "total_deposit",            precision: 8, scale: 2, default: 0.0
+    t.decimal  "total_fundraising_credit", precision: 8, scale: 2, default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "vacation_shift_quantity",  precision: 8, scale: 2, default: 0.0
+  end
 
   create_table "sendy_lists", force: true do |t|
     t.integer  "supporter_type_id"

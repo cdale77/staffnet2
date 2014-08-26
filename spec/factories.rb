@@ -183,4 +183,7 @@ FactoryGirl.define do
         total_deposit             9876
         total_fundraising_credit  10764
   end
+
+  factory :paycheck do
+  end
 end

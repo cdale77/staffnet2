@@ -6,12 +6,13 @@
 #  payroll_id               :integer
 #  employee_id              :integer
 #  check_date               :date
-#  cv_shift_quantity        :integer          default(0)
-#  quota_shift_quantity     :integer          default(0)
-#  office_shift_quantity    :integer          default(0)
-#  sick_shift_quantity      :integer          default(0)
-#  vacation_shift_quantity  :integer          default(0)
-#  holiday_shift_quantity   :integer          default(0)
+#  shift_quantity           :decimal(8, 2)    default(0.0)
+#  cv_shift_quantity        :decimal(8, 2)    default(0.0)
+#  quota_shift_quantity     :decimal(8, 2)    default(0.0)
+#  office_shift_quantity    :decimal(8, 2)    default(0.0)
+#  sick_shift_quantity      :decimal(8, 2)    default(0.0)
+#  vacation_shift_quantity  :decimal(8, 2)    default(0.0)
+#  holiday_shift_quantity   :decimal(8, 2)    default(0.0)
 #  total_deposit            :decimal(8, 2)    default(0.0)
 #  total_fundraising_credit :decimal(8, 2)    default(0.0)
 #  old_buffer               :decimal(8, 2)    default(0.0)
@@ -39,4 +40,20 @@ describe Paycheck do
       total_deposit: 9876,
       total_fundraising_credit: 10764
   }
+
+  let!(:employee) { FactoryGirl.create(:employee) }
+  let!(:shift) { FactoryGirl.create(:shift, employee: employee) }
+  let!(:paycheck) { FactoryGirl.create(:paycheck) }
+
+  subject { paycheck }
+
+  ## ATTRIBUTES
+  describe 'payroll attribute tests' do
+    paycheck_attributes.each do |key, value|
+      it { should respond_to(key)}
+    end
+  end
+
+  ## RELATIONSHIPS
+  it { should respond_to(:payroll) }
 end
