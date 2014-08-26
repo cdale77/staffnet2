@@ -5,12 +5,13 @@ class CreatePayrolls < ActiveRecord::Migration
       t.date :end_date
 
       t.integer :check_quantity, default: 0
-      t.integer :shift_quantity, default: 0
-      t.integer :cv_shift_quantity, default: 0
-      t.integer :quota_shift_quantity, default: 0
-      t.integer :office_shift_quantity, default: 0
-      t.integer :sick_shift_quantity, default: 0
-      t.integer :vacation_shift_quantity, default: 0
+      t.decimal :shift_quantity, scale: 2, precision: 8, default: 0.00
+      t.decimal :cv_shift_quantity, scale: 2, precision: 8, default: 0.00
+      t.decimal :quota_shift_quantity, scale: 2, precision: 8, default: 0.00
+      t.decimal :office_shift_quantity, scale: 2, precision: 8, default: 0.00
+      t.decimal :sick_shift_quantity, scale: 2, precision: 8, default: 0.00
+      t.decimal :holiday_shift_quantity, scale: 2, precision: 8, default: 0.00
+      t.decimal :holiday_shift_quantity, scale: 2, precision: 8, default: 0.00
 
       t.decimal :total_deposit, scale: 2, precision: 8, default: 0.00
       t.decimal :total_fundraising_credit, scale: 2, precision: 8, default: 0.00
