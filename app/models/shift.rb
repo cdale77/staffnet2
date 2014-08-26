@@ -52,6 +52,7 @@ class Shift < ActiveRecord::Base
   belongs_to :paycheck
 
   ## METHOD DELEGATIONS
+  delegate :name, to: :shift_type, prefix: true
   delegate :fundraising_shift, to: :shift_type
   delegate :quota_shift, to: :shift_type
 

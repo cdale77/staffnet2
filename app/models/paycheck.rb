@@ -36,7 +36,19 @@ class Paycheck < ActiveRecord::Base
   has_many :shifts
 
   def calculate_values
-    self.shift_quantity = self.shifts.count
+    total_shifts = self.shifts
+    cv_shifts = total_shifts.select { |s| s.fundraising_shift }
+    quota_shifts = total_shifts.select { |s| s.quota_shift }
+    office_shifts = total_shifts.select { |s| s.shift_type_name == "office" }
+    sick_shifts = total_shifts.select { |s| s.shift_type_name == "sick" }
+    vactation_shifts = total_shifts.select { |s| s.shift_type_name == "vacation" }
+    office_shifts = total_shifts.select { |s| s.shift_type_name == "holiday" }
+
+    self.shift_quantity = total_shifts.count
+    self.cv_shift_quantity = cv_shifts.count
+    self.quota_shift_quantity = quota_shifts.count
+    self.office_shift_quantity = office_shifts.count
+
   end
 
 

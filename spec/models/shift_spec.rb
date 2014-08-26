@@ -92,9 +92,10 @@ describe Shift do
   it { should respond_to(:employee) }
   it { should respond_to(:donations) }
   it { should respond_to(:payments) }
-  it { should respond_to(:paychecks) }
+  it { should respond_to(:paycheck) }
 
   ## DELEGATED METHODS
+  it { should respond_to(:shift_type_name) }
   it { should respond_to(:fundraising_shift) }
   it { should respond_to(:quota_shift) }
 
