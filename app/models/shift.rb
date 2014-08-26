@@ -99,18 +99,21 @@ class Shift < ActiveRecord::Base
     reported_monthly_cc_amt() * 7
   end
 
+  def captured_donations
+    self.donations.select { |d| d.captured }
+  end
+
   def reported_quarterly_value
     #reported_quarterly_cc_amt * self.shift_type.quarterly_cc_multiplier
     reported_quarterly_cc_amt() * 3
   end
 
   def total_deposit
-
-    self.donations.sum(&:amount)
+    self.captured_donations.sum(&:amount)
   end
 
   def total_fundraising_credit
-
+    self.captured_donations.sum(&:total_value)
   end
 
   private

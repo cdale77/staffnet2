@@ -68,6 +68,14 @@ describe Shift do
                                          sub_week: 1,
                                          sub_month: "m",
                                          shift: shift) }
+  let!(:payment) { FactoryGirl.create(:payment,
+                                       amount: 10,
+                                       captured: true,
+                                       donation: donation) }
+  let!(:payment2) { FactoryGirl.create(:payment,
+                                        amount: 10,
+                                        captured: true,
+                                        donation: donation2) }
   subject { shift }
 
   ## ATTRIBUTES
@@ -148,6 +156,14 @@ describe Shift do
   end
 
   ## METHODS
+  describe '#captured_donations' do
+    it 'should return an array' do
+      expect(shift.captured_donations).to be_an_instance_of Array
+    end
+    it 'should return two donations' do
+      expect(shift.captured_donations.count).to eq 2
+    end
+  end
   describe '#total_deposit' do
     it 'should return the deposit total for associated donations' do
       shift.total_deposit.should eq 20
