@@ -40,8 +40,9 @@ class Payroll < ActiveRecord::Base
       shift_groups = payroll_shifts.group_by { |shift| shift.employee_id }
       shift_groups.each do |shift_group|
         employee_id = shift_group.first
-        employee = Employee.find(employee_id)
-        employee.paychecks.create(check_date: check_date, payroll_id: self.id)
+        Paycheck.create(payroll_id: self.id,
+                        employee_id: employee_id,
+                        check_date: check_date, )
       end
     end
 
