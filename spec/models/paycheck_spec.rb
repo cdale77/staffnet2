@@ -56,4 +56,5 @@ describe Paycheck do
 
   ## RELATIONSHIPS
   it { should respond_to(:payroll) }
+  it { should respond_to(:shifts) }
 end

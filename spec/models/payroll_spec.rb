@@ -43,6 +43,7 @@ describe Payroll do
                         end_date: Date.today.at_beginning_of_week - 2.days) }
   let!(:payroll) { FactoryGirl.create(:payroll) }
 
+
   subject { payroll }
 
   ## ATTRIBUTES

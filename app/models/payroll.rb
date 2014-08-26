@@ -30,10 +30,22 @@ class Payroll < ActiveRecord::Base
 
   ## CALLBACKS
   before_save :set_start_and_end_dates
+  #before_save :create_paychecks
+
+  #private
+
+    def create_paychecks
+      check_date = self.end_date + 6.days
+      payroll_shifts = Shift.where(date: self.start_date..self.end_date)
+      shift_groups = payroll_shifts.group_by { |shift| shift.employee_id }
+      shift_groups.each do |shift_group|
+        employee_id = shift_group.first
+        employee = Employee.find(employee_id)
+        employee.paychecks.create(check_date: check_date, payroll_id: self.id)
+      end
+    end
 
 
-
-  private
     def set_start_and_end_dates
       last_payroll = Payroll.first
       if last_payroll

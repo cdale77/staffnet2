@@ -28,6 +28,7 @@
 #  reported_quarterly_cc_qty :decimal(8, 2)    default(0.0)
 #  created_at                :datetime
 #  updated_at                :datetime
+#  paycheck_id               :integer
 #
 
 class Shift < ActiveRecord::Base

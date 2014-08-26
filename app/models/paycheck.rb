@@ -32,4 +32,5 @@ class Paycheck < ActiveRecord::Base
 
   ## RELATIONSHIPS
   belongs_to :payroll
+  has_many :shifts
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826215234) do
+ActiveRecord::Schema.define(version: 20140826220317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -241,10 +241,12 @@ ActiveRecord::Schema.define(version: 20140826215234) do
     t.decimal  "reported_quarterly_cc_qty", precision: 8, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "paycheck_id"
   end
 
   add_index "shifts", ["employee_id"], name: "index_shifts_on_employee_id", using: :btree
   add_index "shifts", ["field_manager_employee_id"], name: "index_shifts_on_field_manager_employee_id", using: :btree
+  add_index "shifts", ["paycheck_id"], name: "index_shifts_on_paycheck_id", using: :btree
   add_index "shifts", ["shift_type_id"], name: "index_shifts_on_shift_type_id", using: :btree
 
   create_table "supporter_types", force: true do |t|
