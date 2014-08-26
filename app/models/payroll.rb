@@ -25,4 +25,21 @@ class Payroll < ActiveRecord::Base
 
   default_scope { order(end_date: :desc) }
 
+  ## CALLBACKS
+
+  before_save :set_start_and_end_dates
+
+
+
+  private
+    def set_start_and_end_dates
+      last_payroll = Payroll.first
+      if last_payroll
+        new_start_date = last_payroll.end_date + 1.day
+        new_end_date = last_payroll.end_date + 14.days
+        self.start_date = new_start_date
+        self.end_date = new_end_date
+      end
+    end
+
 end
