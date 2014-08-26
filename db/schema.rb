@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140820174607) do
+ActiveRecord::Schema.define(version: 20140826202432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +129,22 @@ ActiveRecord::Schema.define(version: 20140820174607) do
   add_index "payments", ["deposit_batch_id"], name: "index_payments_on_deposit_batch_id", using: :btree
   add_index "payments", ["donation_id"], name: "index_payments_on_donation_id", using: :btree
   add_index "payments", ["payment_profile_id"], name: "index_payments_on_payment_profile_id", using: :btree
+
+  create_table "payrolls", force: true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "check_quantity",                                   default: 0
+    t.integer  "shift_quantity",                                   default: 0
+    t.integer  "cv_shift_quantity",                                default: 0
+    t.integer  "quota_shift_quantity",                             default: 0
+    t.integer  "office_shift_quantity",                            default: 0
+    t.integer  "sick_shift_quantity",                              default: 0
+    t.integer  "vacation_shift_quantity",                          default: 0
+    t.decimal  "total_deposit",            precision: 8, scale: 2, default: 0.0
+    t.decimal  "total_fundraising_credit", precision: 8, scale: 2, default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sendy_lists", force: true do |t|
     t.integer  "supporter_type_id"
