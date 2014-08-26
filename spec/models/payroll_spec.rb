@@ -19,10 +19,37 @@
 #  holiday_shift_quantity   :integer          default(0)
 #
 
-class Payroll < ActiveRecord::Base
+require "spec_helper"
 
-  has_paper_trail
+describe Payroll do
 
-  default_scope { order(end_date: :desc) }
+  payroll_attributes = {
+      start_date: (Date.today - 2.weeks),
+      end_date: Date.today,
+      check_quantity: 8,
+      shift_quantity: 80,
+      cv_shift_quantity: 74,
+      quota_shift_quantity: 80,
+      office_shift_quantity: 16,
+      sick_shift_quantity: 0,
+      vacation_shift_quantity: 0,
+      holiday_shift_quantity: 0,
+      total_deposit: 9876,
+      total_fundraising_credit: 10764
+  }
+
+  let!(:payroll) { FactoryGirl.create(:payroll) }
+
+  subject { payroll }
+
+  ## ATTRIBUTES
+  describe 'payroll attribute tests' do
+    payroll_attributes.each do |key, value|
+      it { should respond_to(key)}
+    end
+  end
+
+  ## RELATIONSHIPS
+  #it { should respond_to(:paychecks) }
 
 end
