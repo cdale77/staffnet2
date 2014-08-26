@@ -108,6 +108,7 @@ describe Employee do
   it { should respond_to(:donations) }
   it { should respond_to(:payments) }
   it { should respond_to(:deposit_batches) }
+  it { should respond_to(:paychecks) }
   
   ## VALIDATIONS
   describe 'first name validations' do

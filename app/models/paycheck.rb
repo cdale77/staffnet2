@@ -31,6 +31,7 @@ class Paycheck < ActiveRecord::Base
   default_scope { order(check_date: :desc) }
 
   ## RELATIONSHIPS
+  belongs_to :employee
   belongs_to :payroll
   has_many :shifts
 end

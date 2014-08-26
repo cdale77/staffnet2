@@ -48,6 +48,7 @@ class Employee < ActiveRecord::Base
   has_many :donations, through: :shifts
   has_many :payments, through: :shifts
   has_many :deposit_batches
+  has_many :paychecks
 
   ## VALIDATIONS
 
