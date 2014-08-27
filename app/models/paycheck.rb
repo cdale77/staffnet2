@@ -41,14 +41,26 @@ class Paycheck < ActiveRecord::Base
     quota_shifts = total_shifts.select { |s| s.quota_shift }
     office_shifts = total_shifts.select { |s| s.shift_type_name == "office" }
     sick_shifts = total_shifts.select { |s| s.shift_type_name == "sick" }
-    vactation_shifts = total_shifts.select { |s| s.shift_type_name == "vacation" }
-    office_shifts = total_shifts.select { |s| s.shift_type_name == "holiday" }
+    vacation_shifts = total_shifts.select { |s| s.shift_type_name == "vacation" }
+    holiday_shifts = total_shifts.select { |s| s.shift_type_name == "holiday" }
+
+    total_deposit = total_shifts.sum(&:total_deposit)
+    total_fundraising_credit = total_shifts.sum(&:total_fundraising_credit)
+
+    total_pay = total_shifts.count * self.employee.pay_daily
+    travel_reimb = total_shifts.sum(&:travel_reimb)
 
     self.shift_quantity = total_shifts.count
     self.cv_shift_quantity = cv_shifts.count
     self.quota_shift_quantity = quota_shifts.count
     self.office_shift_quantity = office_shifts.count
-
+    self.sick_shift_quantity = sick_shifts.count
+    self.vacation_shift_quantity = vacation_shifts.count
+    self.holiday_shift_quantity = holiday_shifts.count
+    self.total_deposit = total_deposit
+    self.total_fundraising_credit = total_fundraising_credit
+    self.total_pay = total_pay
+    self.travel_reimb = travel_reimb
   end
 
 
