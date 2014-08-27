@@ -13,7 +13,9 @@
       <th>Source</th>
     </tr>
     <% donations.each do |donation| %>
-      <tr class="clickable-row" id="donation_<%= donation.id %>" url="<%= donation_path(donation) %>">
+      <tr class="clickable-row <%= donation.captured ? "red" : "" %>"
+          id="donation_<%= donation.id %>"
+          url="<%= donation_path(donation) %>">
         <td><%= donation.supporter.full_name %></td>
         <td><%= donation.date %></td>
         <td><%= number_to_currency donation.amount %></td>
