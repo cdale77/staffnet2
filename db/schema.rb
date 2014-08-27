@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826220317) do
+ActiveRecord::Schema.define(version: 20140827205518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20140826220317) do
     t.text     "notes",                                     default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "daily_quota",       precision: 8, scale: 2, default: 0.0
   end
 
   add_index "employees", ["active"], name: "index_employees_on_active", using: :btree
@@ -106,7 +107,6 @@ ActiveRecord::Schema.define(version: 20140826220317) do
     t.decimal  "vacation_shift_quantity",  precision: 8, scale: 2, default: 0.0
     t.decimal  "holiday_shift_quantity",   precision: 8, scale: 2, default: 0.0
     t.decimal  "total_deposit",            precision: 8, scale: 2, default: 0.0
-    t.decimal  "total_fundraising_credit", precision: 8, scale: 2, default: 0.0
     t.decimal  "old_buffer",               precision: 8, scale: 2, default: 0.0
     t.decimal  "new_buffer",               precision: 8, scale: 2, default: 0.0
     t.decimal  "total_pay",                precision: 8, scale: 2, default: 0.0
@@ -114,6 +114,13 @@ ActiveRecord::Schema.define(version: 20140826220317) do
     t.decimal  "travel_reimb",             precision: 8, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "notes",                                            default: ""
+    t.decimal  "gross_fundraising_credit", precision: 8, scale: 2, default: 0.0
+    t.decimal  "credits",                  precision: 8, scale: 2, default: 0.0
+    t.decimal  "docks",                    precision: 8, scale: 2, default: 0.0
+    t.decimal  "total_quota",              precision: 8, scale: 2, default: 0.0
+    t.decimal  "net_fundraising_credit",   precision: 8, scale: 2, default: 0.0
+    t.decimal  "over_quota",               precision: 8, scale: 2, default: 0.0
   end
 
   add_index "paychecks", ["employee_id"], name: "index_paychecks_on_employee_id", using: :btree
@@ -166,10 +173,11 @@ ActiveRecord::Schema.define(version: 20140826220317) do
     t.decimal  "sick_shift_quantity",      precision: 8, scale: 2, default: 0.0
     t.decimal  "holiday_shift_quantity",   precision: 8, scale: 2, default: 0.0
     t.decimal  "total_deposit",            precision: 8, scale: 2, default: 0.0
-    t.decimal  "total_fundraising_credit", precision: 8, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "vacation_shift_quantity",  precision: 8, scale: 2, default: 0.0
+    t.text     "notes",                                            default: ""
+    t.decimal  "gross_fundraising_credit", precision: 8, scale: 2, default: 0.0
   end
 
   create_table "sendy_lists", force: true do |t|

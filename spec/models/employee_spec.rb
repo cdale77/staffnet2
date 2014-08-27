@@ -29,6 +29,7 @@
 #  notes             :text             default("")
 #  created_at        :datetime
 #  updated_at        :datetime
+#  daily_quota       :decimal(8, 2)    default(0.0)
 #
 
 require 'spec_helper'

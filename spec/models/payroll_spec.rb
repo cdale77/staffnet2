@@ -13,10 +13,11 @@
 #  sick_shift_quantity      :decimal(8, 2)    default(0.0)
 #  holiday_shift_quantity   :decimal(8, 2)    default(0.0)
 #  total_deposit            :decimal(8, 2)    default(0.0)
-#  total_fundraising_credit :decimal(8, 2)    default(0.0)
 #  created_at               :datetime
 #  updated_at               :datetime
 #  vacation_shift_quantity  :decimal(8, 2)    default(0.0)
+#  notes                    :text             default("")
+#  gross_fundraising_credit :decimal(8, 2)    default(0.0)
 #
 
 require "spec_helper"
