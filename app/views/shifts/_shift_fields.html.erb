@@ -1,5 +1,5 @@
 <h4>Employee: <%= employee.full_name %></h4>
-<div class="form-group row">
+<div class="row">
   <div class="col-md-2">
     <%= f.input :date, as: :string, input_html: { type: "date" } %>
   </div>
@@ -12,25 +12,26 @@
                 selected: shift.shift_type_id,
                 input_html: { class: "input-shift-data" } %>
   </div>
-  <div class="col-md-2 calculator-error-qty">
-    <%= f.input :reported_total_yes,
-                as: :string,
-                label: "Total yes",
-                input_html: { class: "input-shift-data" } %>
-  </div>
-  <div class="col-md-2 calculator-error-amt">
-    <%= f.input :reported_raised,
-                as: :string,
-                label: "Raised",
-                input_html: { class: "input-shift-data" } %>
+
+
+  <div class="col-md-2">
+    <%= f.input :contacts %>
   </div>
   <div class="col-md-2">
-    <%= f.input :travel_reimb,
-                as: :string,
-                label: "Travel reimbursement" %>
+    <%= f.input :site %>
+  </div>
+  <div class="col-md-2">
+    <%= f.input :field_manager_employee_id,
+                as: :select,
+                collection: Employee.field_managers,
+                label_method: :full_name,
+                value_method: :id,
+                selected: shift.field_manager_employee_id,
+                label: 'Field manager',
+                include_blank: true %>
   </div>
 </div>
-<div class="form-group row">
+<div class="row">
   <div class="col-md-2">
     <%= f.input :time_in,
                 as: :string,
@@ -45,21 +46,29 @@
     <%= f.input :break_time, as: :string %>
   </div>
   <div class="col-md-2">
-    <%= f.input :field_manager_employee_id,
-                as: :select,
-                collection: Employee.field_managers,
-                label_method: :full_name,
-                value_method: :id,
-                selected: shift.field_manager_employee_id,
-                label: 'Field manager',
-                include_blank: true %>
+    <%= f.input :travel_reimb,
+                as: :string,
+                label: "Travel reimbursement" %>
   </div>
-  <div class="col-md-2">
-    <%= f.input :contacts %>
-  </div>
+
+
 </div>
 <hr />
-<div class="form-group row">
+<div class="row">
+  <div class="col-md-2 calculator-error-qty">
+    <%= f.input :reported_total_yes,
+                as: :string,
+                label: "Total yes",
+                input_html: { class: "input-shift-data" } %>
+  </div>
+  <div class="col-md-2 calculator-error-amt">
+    <%= f.input :reported_raised,
+                as: :string,
+                label: "Raised",
+                input_html: { class: "input-shift-data" } %>
+  </div>
+</div>
+<div class="row">
   <div class="col-md-2 calculator-error-qty">
     <%= f.input :reported_cash_qty,
                 as: :string,

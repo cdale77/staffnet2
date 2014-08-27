@@ -16,17 +16,14 @@
       <td><%= @shift.shift_type.name.humanize %></td>
     </tr>
     <tr>
-      <th>Contacts</th>
-      <td><%= @shift.contacts %></td>
+      <th>Site</th>
+      <td><%= @shift.site %></td>
     </tr>
     <tr>
-      <th>Reported yes</th>
-      <td><%= @shift.reported_total_yes %></td>
+      <th>Travel reimb</th>
+      <td><%= number_to_currency(@shift.travel_reimb) %></td>
     </tr>
-    <tr>
-      <th>Reported raised</th>
-      <td><%= number_to_currency @shift.reported_raised %></td>
-    </tr>
+
     <% if @shift.field_manager %>
       <tr>
         <th>Field manager</th>
@@ -51,17 +48,32 @@
       <th>Net hours</th>
       <td><%= @shift.net_time %></td>
     </tr>
-  </table></div>
-  <div class="col-md-4 record-column"> <table>
-    <tr>
-      <th>Travel reimb</th>
-      <td><%= number_to_currency(@shift.travel_reimb) %></td>
-    </tr>
     <tr>
       <th>Notes</th>
       <td><%= @shift.notes %></td>
     </tr>
-    <%= render 'shared/profiles/magic_columns', record: @shift %>
+  </table></div>
+  <div class="col-md-4 record-column"> <table>
+    <tr>
+      <th>Reported raised</th>
+      <td><%= number_to_currency @shift.reported_raised %></td>
+    </tr>
+    <tr>
+      <th>Fundraising credit</th>
+      <td><%= number_to_currency @shift.gross_fundraising_credit %></td>
+    </tr>
+    <tr>
+      <th>Deposit</th>
+      <td><%= number_to_currency @shift.total_deposit %></td>
+    </tr>
+    <tr>
+      <th>Reported yes</th>
+      <td><%= @shift.reported_total_yes %></td>
+    </tr>
+    <tr>
+      <th>Contacts</th>
+      <td><%= @shift.contacts %></td>
+    </tr>
   </table></div>
 </div>
 <hr />

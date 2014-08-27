@@ -97,6 +97,7 @@ class ShiftsController < ApplicationController
                                     :phones,
                                     :emails,
                                     :signatures,
-                                    :contacts)
+                                    :contacts,
+                                    :site)
     end
 end
