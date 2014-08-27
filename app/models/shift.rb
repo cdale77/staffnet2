@@ -29,6 +29,7 @@
 #  created_at                :datetime
 #  updated_at                :datetime
 #  paycheck_id               :integer
+#  site                      :string(255)      default("")
 #
 
 class Shift < ActiveRecord::Base

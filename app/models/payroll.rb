@@ -18,6 +18,7 @@
 #  vacation_shift_quantity  :decimal(8, 2)    default(0.0)
 #  notes                    :text             default("")
 #  gross_fundraising_credit :decimal(8, 2)    default(0.0)
+#  net_fundraising_credit   :decimal(8, 2)    default(0.0)
 #
 
 class Payroll < ActiveRecord::Base

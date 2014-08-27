@@ -84,6 +84,7 @@ FactoryGirl.define do
     reported_monthly_cc_amt     10
     reported_quarterly_cc_qty   2
     reported_quarterly_cc_amt   30
+    site                        "Whole Foods"
     employee
     shift_type
   end

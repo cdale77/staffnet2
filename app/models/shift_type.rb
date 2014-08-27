@@ -10,6 +10,7 @@
 #  updated_at              :datetime
 #  fundraising_shift       :boolean          default(FALSE)
 #  quota_shift             :boolean          default(TRUE)
+#  workers_comp_type       :string(255)      default("")
 #
 
 class ShiftType < ActiveRecord::Base

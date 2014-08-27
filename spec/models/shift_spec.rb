@@ -29,6 +29,7 @@
 #  created_at                :datetime
 #  updated_at                :datetime
 #  paycheck_id               :integer
+#  site                      :string(255)      default("")
 #
 
 require 'spec_helper'
@@ -53,7 +54,8 @@ describe Shift do
                         reported_monthly_cc_amt: 10,
                         reported_quarterly_cc_qty: 2,
                         reported_quarterly_cc_amt: 30,
-                        reported_total_yes: 7 }
+                        reported_total_yes: 7,
+                        site: "94709" }
 
 
   let!(:shift_type) { FactoryGirl.create(:shift_type) }
