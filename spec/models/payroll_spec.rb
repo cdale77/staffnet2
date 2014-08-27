@@ -36,7 +36,9 @@ describe Payroll do
       vacation_shift_quantity: 0,
       holiday_shift_quantity: 0,
       total_deposit: 9876,
-      gross_fundraising_credit: 10764
+      gross_fundraising_credit: 10764,
+      notes: "some note",
+      net_fundraising_credit: 10500
   }
 
   let!(:payroll) { FactoryGirl.create(:payroll) }

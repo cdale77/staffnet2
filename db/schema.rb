@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827205518) do
+ActiveRecord::Schema.define(version: 20140827211507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(version: 20140827205518) do
     t.decimal  "vacation_shift_quantity",  precision: 8, scale: 2, default: 0.0
     t.text     "notes",                                            default: ""
     t.decimal  "gross_fundraising_credit", precision: 8, scale: 2, default: 0.0
+    t.decimal  "net_fundraising_credit",   precision: 8, scale: 2, default: 0.0
   end
 
   create_table "sendy_lists", force: true do |t|
