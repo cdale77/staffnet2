@@ -72,5 +72,4 @@ class PaymentProfile < ActiveRecord::Base
         "disc"
     end
   end
-
 end

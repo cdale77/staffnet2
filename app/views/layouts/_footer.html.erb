@@ -3,10 +3,13 @@
     <div class="row">
       <div class="col-md-3">
         <h3>Evolve</h3>
+        2017 Mission Street<br />
+        San Francisco, CA  94110
       </div>
       <div class="col-md-3">
         <h3>My Account</h3>
-        <%= link_to "Home", "/", class:" 'nav-link'" %><br />
+        <%= link_to "Profile", employee_path(current_user.employee),
+                    class:"nav-link" %><br />
         <%= link_to "Sign out", destroy_user_session_path,
                     method: "delete",
                     class: "nav-link" %>
