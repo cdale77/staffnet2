@@ -26,8 +26,8 @@ describe ShiftType do
   it { should respond_to(:quota_shift) }
   it { should respond_to(:monthly_cc_multiplier) }
   it { should respond_to(:quarterly_cc_multiplier) }
+  it { should respond_to(:workers_comp_type) }
 
   ## RELATIONSHIPS
   it { should respond_to(:shifts) }
-
 end

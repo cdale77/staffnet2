@@ -41,6 +41,8 @@ class Paycheck < ActiveRecord::Base
   belongs_to :payroll
   has_many :shifts
 
+
+
   def calculate_values
     total_shifts = self.shifts
     cv_shifts = total_shifts.select { |s| s.fundraising_shift }
@@ -68,7 +70,4 @@ class Paycheck < ActiveRecord::Base
     self.total_pay = total_pay
     self.travel_reimb = travel_reimb
   end
-
-
-
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827211507) do
+ActiveRecord::Schema.define(version: 20140827212138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -219,6 +219,7 @@ ActiveRecord::Schema.define(version: 20140827211507) do
     t.datetime "updated_at"
     t.boolean  "fundraising_shift",                               default: false
     t.boolean  "quota_shift",                                     default: true
+    t.string   "workers_comp_type",                               default: ""
   end
 
   add_index "shift_types", ["fundraising_shift"], name: "index_shift_types_on_fundraising_shift", using: :btree

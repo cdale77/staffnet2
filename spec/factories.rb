@@ -62,6 +62,7 @@ FactoryGirl.define do
     name                  ['street', 'door', 'office', 'phone'].sample
     monthly_cc_multiplier    7
     quarterly_cc_multiplier  3
+    workers_comp_type     ["inside", "outside"].sample
   end
 
   factory :shift do

@@ -58,7 +58,12 @@ describe Paycheck do
                                        employee: employee,
                                        payroll: payroll) }
   let!(:employee) { FactoryGirl.create(:employee) }
-  let!(:shift_type) { FactoryGirl.create(:shift_type) }
+  let!(:shift_type) { FactoryGirl.create(:shift_type,
+                                          name: "street",
+                                          workers_comp_type: "outside") }
+  let!(:shift_type2) { FactoryGirl.create(:shift_type,
+                                         name: "phone",
+                                         workers_comp_type: "inside") }
   let!(:shift) { FactoryGirl.create(:shift,
                                     paycheck: paycheck,
                                     employee: employee,
@@ -111,6 +116,13 @@ describe Paycheck do
       expect(paycheck.vacation_shift_quantity.to_s).to eq 1.to_s
       expect(paycheck.total_deposit.to_s).to eq 20.to_s
       expect(paycheck.fundraising_credit.to_s).to eq 80.to_s
+    end
+  end
+
+  ## METHODS
+  describe 'inside outside splits' do
+    it 'should provide the correct inside shift number' do
+
     end
   end
 end
