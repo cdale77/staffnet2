@@ -13,7 +13,7 @@
       <th>Source</th>
     </tr>
     <% donations.each do |donation| %>
-      <tr class="clickable-row <%= donation.captured ? "red" : "" %>"
+      <tr class="clickable-row <%=  "red" if !donation.captured %>"
           id="donation_<%= donation.id %>"
           url="<%= donation_path(donation) %>">
         <td><%= donation.supporter.full_name %></td>
