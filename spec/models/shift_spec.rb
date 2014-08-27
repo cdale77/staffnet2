@@ -98,6 +98,7 @@ describe Shift do
   it { should respond_to(:shift_type_name) }
   it { should respond_to(:fundraising_shift) }
   it { should respond_to(:quota_shift) }
+  it { should respond_to(:workers_comp_type) }
 
   ## VALIDATIONS
   describe 'date validations' do

@@ -41,7 +41,13 @@ class Paycheck < ActiveRecord::Base
   belongs_to :payroll
   has_many :shifts
 
+  def inside_shift_count
+    self.shifts.select { |s| s.workers_comp_type == "inside"}.count
+  end
 
+  def outside_shift_count
+    self.shifts.select { |s| s.workers_comp_type == "outside"}.count
+  end
 
   def calculate_values
     total_shifts = self.shifts

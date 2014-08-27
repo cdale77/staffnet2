@@ -122,7 +122,8 @@ describe Paycheck do
   ## METHODS
   describe 'inside outside splits' do
     it 'should provide the correct inside shift number' do
-
+      expect(paycheck.inside_shift_count).to eq 1
+      expect(paycheck.outside_shift_count).to eq 1
     end
   end
 end

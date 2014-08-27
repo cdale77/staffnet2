@@ -55,6 +55,7 @@ class Shift < ActiveRecord::Base
   delegate :name, to: :shift_type, prefix: true
   delegate :fundraising_shift, to: :shift_type
   delegate :quota_shift, to: :shift_type
+  delegate :workers_comp_type, to: :shift_type
 
   ## VALIDATIONS
   validates :date,
