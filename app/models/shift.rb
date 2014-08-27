@@ -115,7 +115,7 @@ class Shift < ActiveRecord::Base
     self.captured_donations.sum(&:amount)
   end
 
-  def total_fundraising_credit
+  def gross_fundraising_credit
     self.captured_donations.sum(&:total_value)
   end
 

@@ -183,7 +183,7 @@ FactoryGirl.define do
         vacation_shift_quantity   0
         holiday_shift_quantity    0
         total_deposit             9876
-        total_fundraising_credit  10764
+        gross_fundraising_credit  10764
   end
 
   factory :paycheck do

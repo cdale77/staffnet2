@@ -26,7 +26,7 @@
         <td><%= shift.net_time %></td>
         <td><%= shift.shift_type.name.humanize %></td>
         <td><%= number_to_currency shift.total_deposit %></td>
-        <td><%= number_to_currency shift.total_fundraising_credit %></td>
+        <td><%= number_to_currency shift.gross_fundraising_credit %></td>
       </tr>
     <% end %>
   </table>

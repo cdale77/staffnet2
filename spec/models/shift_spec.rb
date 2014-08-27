@@ -174,7 +174,7 @@ describe Shift do
   end
   describe '#total_fundraising_credit' do
     it 'should return the total fundraising credit' do
-      shift.total_fundraising_credit.should eq 80
+      shift.gross_fundraising_credit.should eq 80
     end
   end
   describe '#net_time' do

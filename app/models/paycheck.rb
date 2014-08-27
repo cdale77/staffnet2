@@ -45,7 +45,7 @@ class Paycheck < ActiveRecord::Base
     holiday_shifts = total_shifts.select { |s| s.shift_type_name == "holiday" }
 
     total_deposit = total_shifts.map(&:total_deposit).inject(0, &:+)
-    total_fundraising_credit = total_shifts.map(&:total_fundraising_credit).inject(0, &:+)
+    total_fundraising_credit = total_shifts.map(&:gross_fundraising_credit).inject(0, &:+)
 
     total_pay = total_shifts.count * self.employee.pay_daily
     travel_reimb = total_shifts.map(&:travel_reimb).inject(0, &:+)
