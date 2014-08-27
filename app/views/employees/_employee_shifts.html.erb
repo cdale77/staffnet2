@@ -13,6 +13,8 @@
       <th>Time out</th>
       <th>Net hours</th>
       <th>Type</th>
+      <th>Deposit</th>
+      <th>Credit</th>
     </tr>
     <% shifts.each do |shift| %>
       <tr class="clickable-row"
@@ -23,6 +25,8 @@
         <td><%= l(shift.time_out, format: :short) %></td>
         <td><%= shift.net_time %></td>
         <td><%= shift.shift_type.name.humanize %></td>
+        <td><%= number_to_currency shift.total_deposit %></td>
+        <td><%= number_to_currency shift.total_fundraising_credit %></td>
       </tr>
     <% end %>
   </table>
