@@ -44,6 +44,7 @@
 #  updated_at        :datetime
 #  cim_customer_id   :string(255)      default("")
 #  vol_level         :string(255)      default("")
+#  spouse_name       :string(255)      default("")
 #
 
 class Supporter < ActiveRecord::Base

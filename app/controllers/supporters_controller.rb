@@ -109,6 +109,7 @@ class SupportersController < ApplicationController
                                           :tag_list,
                                           :address_county,
                                           :source,
-                                          :notes)
+                                          :notes,
+                                          :spouse_name)
     end
 end
