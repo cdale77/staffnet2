@@ -1,4 +1,5 @@
 require "csv"
+desc "Scripts to migrate data from the legacy system."
 
 namespace :import do
 
@@ -11,8 +12,6 @@ namespace :import do
     record.migrated = true
     record.save
   end
-
-  ## ORIGINAL MIGRATION TASKS
 
   task prepare: :environment do
 
