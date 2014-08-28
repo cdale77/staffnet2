@@ -20,6 +20,12 @@
           <td><%= number_to_phone(value.to_i) %></td>
         </tr>
       <% end %>
+      <% if @supporter.spouse_name.present? %>
+        <tr>
+          <th>Spouse</th>
+          <td><%= @supporter.spouse_name %></td>
+        </tr>
+      <% end %>
     </table>
   </div>
   <div class="col-md-4 record-column record-column2">
