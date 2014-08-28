@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-md-3">
     <%= f.input :employee_id,
                 as: :select,
                 collection: @employees,
@@ -21,11 +21,10 @@
 
 </div>
 <div class="row">
-
-  <div class="col-md-2">
+  <div class="col-md-3">
     <%= f.input :site %>
   </div>
-  <div class="col-md-2">
+  <div class="col-md-3">
     <%= f.input :field_manager_employee_id,
                 as: :select,
                 collection: Employee.field_managers,
