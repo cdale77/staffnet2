@@ -1,4 +1,4 @@
-require 'csv'
+require "csv"
 
 namespace :import do
 
@@ -14,7 +14,7 @@ namespace :import do
 
   ## ORIGINAL MIGRATION TASKS
 
-  task :prepare => :environment do
+  task prepare: :environment do
 
     ## Create shift types
     names = ['door', 'street', 'phone', 'office', 'vacation', 'holiday', 'sick' ]
@@ -52,7 +52,7 @@ namespace :import do
 
   end
 
-  task :users_and_employees => :environment do
+  task users_and_employees: :environment do
     legacy_users = Migration::User.all
     puts "Migrating #{legacy_users.count.to_s} legacy users. . . "
     legacy_users.each do |legacy_user|
@@ -118,7 +118,7 @@ namespace :import do
     end
   end
 
-  task :shifts => :environment do
+  task shifts: :environment do
 
 
 
@@ -179,7 +179,7 @@ namespace :import do
     end
   end
 
-  task :supporters => :environment do
+  task supporters: :environment do
 
 
     Migration::Supporter.find_each do |legacy_supporter|
@@ -264,7 +264,7 @@ namespace :import do
     end
   end
 
-  task :donations => :environment do
+  task donations:  :environment do
 
     Migration::Donation.find_each do |legacy_donation|
 
@@ -317,7 +317,7 @@ namespace :import do
     end
   end
 
-  task :payments => :environment do
+  task payments: :environment do
 
     Migration::Payment.find_each do |legacy_payment|
 
@@ -384,7 +384,7 @@ namespace :import do
     end
   end
 
-  task :city_council => :environment do
+  task city_council: :environment do
 
     supporter_type = SupporterType.find_by_name('city_council')
     sendy_list = SendyList.find_by_name('city_council')
@@ -444,7 +444,7 @@ namespace :import do
     end
   end
 
-  task :school_board => :environment do
+  task school_board: :environment do
 
     supporter_type = SupporterType.find_by_name('school_board')
     sendy_list = SendyList.find_by_name('school_board')
@@ -501,7 +501,7 @@ namespace :import do
     end
   end
 
-  task :press => :environment do
+  task press: :environment do
     supporter_type = SupporterType.find_by_name('press')
     sendy_list = SendyList.find_by_name('press')
 
@@ -556,7 +556,7 @@ namespace :import do
     end
   end
 
-  task :nb_extras => :environment do
+  task nb_extras: :environment do
 
     new_sendy_list_id = SendyList.find_by_name('supporters').id #default
 
@@ -617,7 +617,7 @@ namespace :import do
     end
   end
 
-  task :nb_dnc => :environment do
+  task nb_dnc: :environment do
 
     s3 = AWS::S3.new( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
                                          secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
@@ -667,7 +667,7 @@ namespace :import do
 
   end
 
-  task :nb_unsubs => :environment do
+  task nb_unsubs: :environment do
     s3 = AWS::S3.new( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
                       secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
 
