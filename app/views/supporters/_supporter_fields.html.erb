@@ -1,5 +1,8 @@
 <div class="row">
   <div class="col-md-12">
+    <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#spouse">
+      Spouse
+    </button>
     <button type="button" class="btn btn-default field-toggle" data-toggle="collapse" data-target="#contact-prefs">
       Contact prefs
     </button>
@@ -94,6 +97,14 @@
                 collection: [['Door', 'door'], ['Street', 'street'], ['Web', 'web']],
                 include_blank: true,
                 selected: @supporter.source %>
+  </div>
+</div>
+<div id="spouse" class="collapse">
+  <hr />
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.input :spouse_name %>
+    </div>
   </div>
 </div>
 <div id="employer" class="collapse">
