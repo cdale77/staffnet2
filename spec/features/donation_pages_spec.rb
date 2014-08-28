@@ -41,10 +41,6 @@ describe 'DonationPages' do
     select 'Phone',               from: 'donation_source'
     select 'Prop 13',             from: 'donation_campaign'
     select 'Quarterly',           from: 'Sustainer frequency'
-    #find("#payment-profile-id", visible: false).set(payment_profile.id)
-    find("#payment-type", visible: false).set('cash')
-    find("#payment-amount", visible: false).set(10.00)
-
   end
 
   #### AS SUPERADMIN USER ####
@@ -94,7 +90,6 @@ describe 'DonationPages' do
         describe 'after saving donation' do
           before { click_button 'Create Donation' }
           it { should have_selector('div.alert') }
-          it { should have_content('Month code') }
         end
       end
 
