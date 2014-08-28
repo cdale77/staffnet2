@@ -4,7 +4,9 @@
     <h1>New shift</h1>
     <%= simple_form_for([@employee, @shift]) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-      <%= render partial: 'shift_fields', locals: { shift: @shift, employee: @employee, f: f } %>
+      <%= render 'shift_fields', shift: @shift,
+                                 employees: @employees,
+                                 f: f  %>
       <%= render 'shared/forms/submit_button', f: f %>
     <% end %>
   </div>

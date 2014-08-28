@@ -11,12 +11,7 @@ Staffnet2::Application.routes.draw do
       resources :shifts
     end
 
-    # new shifts can only be made through the employee association
-    resources :shifts, except: :new do
-      resource :shift_type
-      resource :employee
-      resources :donations
-    end
+    resources :shifts
 
 
     resources :supporters do

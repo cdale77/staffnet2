@@ -4,19 +4,13 @@ class ShiftsController < ApplicationController
   after_filter :verify_authorized
 
   def new
-    @employee = Employee.find(params[:employee_id])
-    if @employee
-      @shift = @employee.shifts.build
-      authorize @shift
-    else
-      flash[:alert] = "Could not find employee"
-      render root_path  # TODO: Fix. Render probably not correct
-    end
+    @shift = Shift.new
+    @employees = Employee.active
+    authorize @shift
   end
 
   def create
-    @employee = Employee.find(params[:employee_id])
-    @shift = @employee.shifts.build(shift_params)
+    @shift = Shift.new(shift_params)
     authorize @shift
     if @shift.save
       flash[:success] = "Success"
@@ -75,6 +69,7 @@ class ShiftsController < ApplicationController
 
     def shift_params
       params.require(:shift).permit(:shift_type_id,
+                                    :employee_id,
                                     :field_manager_employee_id,
                                     :time_in,
                                     :time_out,

@@ -1,5 +1,11 @@
-<h4>Employee: <%= employee.full_name %></h4>
 <div class="row">
+  <div class="col-md-2">
+    <%= f.input :employee_id,
+                as: :select,
+                collection: @employees,
+                label_method: :full_name,
+                selected: @shift.employee_id %>
+  </div>
   <div class="col-md-2">
     <%= f.input :date, as: :string, input_html: { type: "date" } %>
   </div>
@@ -13,10 +19,9 @@
                 input_html: { class: "input-shift-data" } %>
   </div>
 
+</div>
+<div class="row">
 
-  <div class="col-md-2">
-    <%= f.input :contacts %>
-  </div>
   <div class="col-md-2">
     <%= f.input :site %>
   </div>
@@ -29,6 +34,9 @@
                 selected: shift.field_manager_employee_id,
                 label: 'Field manager',
                 include_blank: true %>
+  </div>
+  <div class="col-md-2">
+    <%= f.input :contacts %>
   </div>
 </div>
 <div class="row">
