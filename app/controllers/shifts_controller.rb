@@ -40,7 +40,7 @@ class ShiftsController < ApplicationController
 
   def edit
     @shift = Shift.find(params[:id])
-    @employee = @shift.employee
+    @employees = Employee.active
     authorize @shift
   end
 
