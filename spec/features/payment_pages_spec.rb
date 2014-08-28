@@ -61,7 +61,6 @@ describe 'PaymentPages' do
         describe 'after saving a payment' do
           before { click_button 'Create Payment' }
           it { should have_selector('div.alert') }
-          it { should have_content('Month code') }
         end
       end
     end
