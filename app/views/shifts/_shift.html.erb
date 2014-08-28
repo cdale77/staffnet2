@@ -1,6 +1,10 @@
-<tr class="clickable-row" id="shift_<%= shift.id %>" url="<%= shift_path(shift) %>">
+<tr>
   <td><%= shift.employee.full_name %></td>
   <td><%= shift.date %></td>
   <td><%= shift.net_time %></td>
   <td><%= shift.shift_type.name.humanize %></td>
+  <td><%= number_to_currency shift.gross_fundraising_credit %></td>
+  <td class="buttons">
+    <%= render "shared/index/index_buttons", record: shift %>
+  </td>
 </tr>

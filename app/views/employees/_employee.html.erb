@@ -1,6 +1,4 @@
-<tr class="clickable-row"
-    id="employee_<%= employee.id %>"
-    url="<%= employee_path(employee) %>">
+<tr>
   <td><%= employee.full_name %></td>
   <td><%= employee.title.humanize %></td>
   <td><%= mail_to employee.email, employee.email,
@@ -8,4 +6,7 @@
   <td><%= number_to_phone(employee.phone.to_i) %></td>
   <td><%= employee.address_city %></td>
   <td><%= employee.active ? "Active" : "Inactive" %></td>
+  <td class="buttons">
+    <%= render "shared/index/index_buttons", record: employee %>
+  </td>
 </tr>

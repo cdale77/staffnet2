@@ -1,6 +1,9 @@
-<tr class="clickable-row" id="user_<%= user.id %>" url="<%= user_path(user) %>">
+<tr>
   <td><%= mail_to user.email, user.email, class: 'hover-underline-grey' %></td>
   <td><%= user.role.humanize %></td>
-  <td><%= user.created_at.strftime("%Y-%m-%d") %></td>
-  <td><%= user.updated_at.strftime("%Y-%m-%d") %></td>
+  <td><%= l user.created_at %></td>
+  <td><%= l user.updated_at %></td>
+  <td class="buttons">
+    <%= render "shared/index/index_buttons", record: user %>
+  </td>
 </tr>

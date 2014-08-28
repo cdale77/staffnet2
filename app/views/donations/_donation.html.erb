@@ -1,9 +1,10 @@
-<tr class="clickable-row"
-    id="donation_<%= donation.id %>"
-    url="<%= donation_path(donation) %>">
+<tr>
   <td><%= donation.supporter.full_name %></td>
   <td><%= donation.date %></td>
   <td><%= number_to_currency donation.amount %></td>
   <td><%= donation.donation_type.humanize %></td>
   <td><%= donation.source.humanize %></td>
+  <td class="buttons">
+    <%= render "shared/index/index_buttons", record: donation %>
+  </td>
 </tr>

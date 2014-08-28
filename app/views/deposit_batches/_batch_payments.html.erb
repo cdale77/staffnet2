@@ -2,7 +2,7 @@
   <div class="table-header">
     <h4 class="table-title-right">Payments</h4>
   </div>
-  <table class="table table-hover">
+  <table class="table">
     <tr>
       <th>Payment date</th>
       <th>Employee</th>
@@ -13,11 +13,10 @@
       <th>Frequency</th>
       <th>Source</th>
       <th>Captured?</th>
+      <th></th>
     </tr>
     <% payments.each do |payment| %>
-      <tr class="clickable-row <%= payment.captured ? "" : "red" %>"
-          id="payment_<%= payment.id %>"
-          url="<%= donation_payment_path(payment.donation, payment) %>">
+      <tr>
         <td>
           <%= l payment.created_at %>
         </td>

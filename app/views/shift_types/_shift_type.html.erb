@@ -4,7 +4,6 @@
   <td><%= shift_type.quota_shift %></td>
   <td><%= shift_type.number_of_shifts %></td>
   <td class="buttons">
-    <%= link_to 'edit', edit_shift_type_path(shift_type),
-                class: 'btn btn-default btn-xs', type: 'button' %>
+    <%= render "shared/index/index_buttons", record: shift_type %>
   </td>
 </tr>

@@ -2,4 +2,7 @@
   <td><%= sendy_list.name %></td>
   <td><%= sendy_list.sendy_list_identifier %></td>
   <td><%= sendy_list.supporters.count %></td>
+  <td class="buttons">
+    <%= render "shared/index/index_buttons", record: sendy_list %>
+  </td>
 </tr>
