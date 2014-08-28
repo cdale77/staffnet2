@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 include Warden::Test::Helpers
 Warden.test_mode!
 
@@ -12,11 +12,16 @@ describe 'ShiftTypePages' do
   let!(:staff) { FactoryGirl.create(:staff) }
   let!(:user) { FactoryGirl.create(:user) }
 
-  let!(:super_admin_employee) { FactoryGirl.create(:employee, user: super_admin) }
-  let!(:admin_employee) { FactoryGirl.create(:employee, user: admin) }
-  let!(:manager_employee) { FactoryGirl.create(:employee, user: manager) }
-  let!(:staff_employee) { FactoryGirl.create(:employee, user: staff) }
-  let!(:user_employee) { FactoryGirl.create(:employee, user: user) }
+  let!(:super_admin_employee) { FactoryGirl.create(:employee,
+                                                   user: super_admin) }
+  let!(:admin_employee) { FactoryGirl.create(:employee,
+                                             user: admin) }
+  let!(:manager_employee) { FactoryGirl.create(:employee,
+                                               user: manager) }
+  let!(:staff_employee) { FactoryGirl.create(:employee,
+                                             user: staff) }
+  let!(:user_employee) { FactoryGirl.create(:employee,
+                                            user: user) }
 
   let(:shift_type) { FactoryGirl.create(:shift_type) }
 
@@ -24,19 +29,19 @@ describe 'ShiftTypePages' do
   ## HELPERS ##
 
   def create_sample_shift_types
-    FactoryGirl.create(:shift_type, name: 'door')
-    FactoryGirl.create(:shift_type, name: 'office')
-    FactoryGirl.create(:shift_type, name: 'vacation')
-    FactoryGirl.create(:shift_type, name: 'sick')
+    FactoryGirl.create(:shift_type, name: "door")
+    FactoryGirl.create(:shift_type, name: "office")
+    FactoryGirl.create(:shift_type, name: "vacation")
+    FactoryGirl.create(:shift_type, name: "sick")
   end
 
   ## AS SUPERADMIN USER ##
   describe 'as super_admin user' do
     before do
       visit new_user_session_path
-      fill_in 'Email',    with: super_admin.email
-      fill_in 'Password', with: super_admin.password
-      click_button 'Sign in'
+      fill_in "Email",    with: super_admin.email
+      fill_in "Password", with: super_admin.password
+      click_button "Sign in"
     end
 
     after do
@@ -47,29 +52,37 @@ describe 'ShiftTypePages' do
       before { visit new_shift_type_path }
 
       describe 'page' do
-        it { should have_selector('h1', text: 'New shift type') }
+        it 'should have a title' do
+          expect(page).to have_selector("h1", text: "New shift type")
+        end
       end
 
       describe 'with invalid information' do
         it 'should not create a shift_type' do
-          expect { click_button 'New shift type' }.not_to change(ShiftType, :count)
+          expect { click_button "New shift type" }.not_to \
+            change(ShiftType, :count)
         end
         describe 'after clicking' do
-          before { click_button 'New shift type' }
-          it { should have_content('error') }
+          before { click_button "New shift type" }
+          it 'should throw an error' do
+            expect(page).to have_content("error")
+          end
+
         end
       end
 
       describe 'with valid information' do
-        before { fill_in 'Name', with: 'Tabling' }
+        before { fill_in "Name", with: "Tabling" }
 
         it 'should create a new shift_type' do
-          expect { click_button 'New shift type' }.to change(ShiftType, :count).by(1)
+          expect { click_button "New shift type" }.to \
+            change(ShiftType, :count).by(1)
         end
         describe 'after saving shift type' do
-          before { click_button 'New shift type' }
-
-          it { should have_selector('div.alert') }
+          before { click_button "New shift type" }
+          it 'should display an alert' do
+            expect(page).to have_selector("div.alert")
+          end
         end
       end
     end
@@ -83,17 +96,17 @@ describe 'ShiftTypePages' do
       after { ShiftType.destroy_all }
 
       describe 'page' do
-        it { should have_selector('h1', text: 'Shift types') }
+        it { should have_selector("h1", text: "Shift types") }
 
         it 'should list each shift type' do
           ShiftType.all.each do |shift_type|
-            expect(page).to have_content(shift_type.name)
+            expect(page).to have_content(shift_type.name.humanize)
           end
         end
 
         it 'should have edit links for each shift type' do
           ShiftType.all.each do |shift_type|
-            expect(page).to have_link('edit', edit_shift_type_path(shift_type))
+            expect(page).to have_link("edit", edit_shift_type_path(shift_type))
           end
         end
       end
@@ -103,26 +116,26 @@ describe 'ShiftTypePages' do
       before { visit edit_shift_type_path(shift_type) }
 
       describe 'page' do
-        it { should have_selector('h1', text: 'Edit shift type') }
+        it { should have_selector("h1", text: "Edit shift type") }
       end
 
       describe 'with invalid information' do
-        invalid_shift_type = 'a' * 80
+        invalid_shift_type = "a" * 80
         before  do
-          fill_in 'Name', with: invalid_shift_type
-          click_button 'Edit shift type'
+          fill_in "Name", with: invalid_shift_type
+          click_button "Edit shift type"
         end
-        it { should have_selector('div.alert-alert') }
+        it { should have_selector("div.alert") }
       end
 
       describe 'with valid information' do
         valid_shift_type = 'Newshift'
         before  do
-          fill_in 'Name', with: valid_shift_type
-          click_button 'Edit shift type'
+          fill_in "Name", with: valid_shift_type
+          click_button "Edit shift type"
         end
-        it { should have_selector('div.alert-success') }
-        specify { expect(shift_type.reload.name).to eq 'Newshift' }
+        it { should have_selector("div.alert-success") }
+        specify { expect(shift_type.reload.name).to eq "Newshift" }
       end
     end
   end
@@ -132,9 +145,9 @@ describe 'ShiftTypePages' do
   describe 'as admin user' do
     before do
       visit new_user_session_path
-      fill_in 'Email',    with: admin.email
-      fill_in 'Password', with: admin.password
-      click_button 'Sign in'
+      fill_in "Email",    with: admin.email
+      fill_in "Password", with: admin.password
+      click_button "Sign in"
     end
 
     after do
@@ -145,29 +158,31 @@ describe 'ShiftTypePages' do
       before { visit new_shift_type_path }
 
       describe 'page' do
-        it { should have_selector('h1', text: 'New shift type') }
+        it { should have_selector("h1", text: "New shift type") }
       end
 
       describe 'with invalid information' do
         it 'should not create a shift_type' do
-          expect { click_button 'New shift type' }.not_to change(ShiftType, :count)
+          expect { click_button "New shift type" }.not_to \
+            change(ShiftType, :count)
         end
         describe 'after clicking' do
-          before { click_button 'New shift type' }
-          it { should have_content('error') }
+          before { click_button "New shift type" }
+          it { should have_content("error") }
         end
       end
 
       describe 'with valid information' do
-        before { fill_in 'Name', with: 'Tabling' }
+        before { fill_in "Name", with: "Tabling" }
 
         it 'should create a new shift_type' do
-          expect { click_button 'New shift type' }.to change(ShiftType, :count).by(1)
+          expect { click_button "New shift type" }.to \
+            change(ShiftType, :count).by(1)
         end
         describe 'after saving shift type' do
-          before { click_button 'New shift type' }
+          before { click_button "New shift type" }
 
-          it { should have_selector('div.alert') }
+          it { should have_selector("div.alert") }
         end
       end
     end
@@ -181,7 +196,7 @@ describe 'ShiftTypePages' do
       after { ShiftType.delete_all }
 
       describe 'page' do
-        it { should have_selector('h1', text: 'Shift types') }
+        it { should have_selector("h1", text: "Shift types") }
 
         it 'should list each shift type' do
           ShiftType.all.each do |shift_type|
@@ -191,7 +206,7 @@ describe 'ShiftTypePages' do
 
         it 'should have editlinks for each shift type' do
           ShiftType.all.each do |shift_type|
-            expect(page).to have_link('edit', edit_shift_type_path(shift_type))
+            expect(page).to have_link("edit", edit_shift_type_path(shift_type))
           end
         end
       end
@@ -201,27 +216,27 @@ describe 'ShiftTypePages' do
       before { visit edit_shift_type_path(shift_type) }
 
       describe 'page' do
-        it { should have_selector('h1', text: 'Edit shift type') }
+        it { should have_selector("h1", text: "Edit shift type") }
 
       end
 
       describe 'with invalid information' do
-        invalid_shift_type = 'a' * 80
+        invalid_shift_type = "a" * 80
         before  do
-          fill_in 'Name', with: invalid_shift_type
-          click_button 'Edit shift type'
+          fill_in "Name", with: invalid_shift_type
+          click_button "Edit shift type"
         end
-        it { should have_selector('div.alert-alert') }
+        it { should have_selector("div.alert") }
       end
 
       describe 'with valid information' do
-        valid_shift_type = 'Newshift'
+        valid_shift_type = "Newshift"
         before  do
-          fill_in 'Name', with: valid_shift_type
-          click_button 'Edit shift type'
+          fill_in "Name", with: valid_shift_type
+          click_button "Edit shift type"
         end
-        it { should have_selector('div.alert-success') }
-        specify { expect(shift_type.reload.name).to eq 'Newshift' }
+        it { should have_selector("div.alert-success") }
+        specify { expect(shift_type.reload.name).to eq "Newshift" }
       end
     end
   end
@@ -230,9 +245,9 @@ describe 'ShiftTypePages' do
   describe 'as manager user' do
     before do
       visit new_user_session_path
-      fill_in 'Email',    with: manager.email
-      fill_in 'Password', with: manager.password
-      click_button 'Sign in'
+      fill_in "Email",    with: manager.email
+      fill_in "Password", with: manager.password
+      click_button "Sign in"
     end
 
     after do
@@ -245,7 +260,7 @@ describe 'ShiftTypePages' do
       before { visit shift_types_path }
 
       describe 'page' do
-        it { should have_selector('h1', text: 'Shift types') }
+        it { should have_selector("h1", text: "Shift types") }
       end
     end
 
@@ -255,9 +270,9 @@ describe 'ShiftTypePages' do
   describe 'as staff user' do
     before do
       visit new_user_session_path
-      fill_in 'Email',    with: staff.email
-      fill_in 'Password', with: staff.password
-      click_button 'Sign in'
+      fill_in "Email",    with: staff.email
+      fill_in "Password", with: staff.password
+      click_button "Sign in"
     end
 
     after do
@@ -270,9 +285,8 @@ describe 'ShiftTypePages' do
       before { visit shift_types_path }
 
       describe 'page' do
-        it { should have_selector('h1', text: 'Shift types') }
+        it { should have_selector("h1", text: "Shift types") }
       end
     end
-
   end
 end
