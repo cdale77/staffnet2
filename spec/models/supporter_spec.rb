@@ -45,6 +45,7 @@
 #  cim_customer_id   :string(255)      default("")
 #  vol_level         :string(255)      default("")
 #  spouse_name       :string(255)      default("")
+#  prospect_group    :string(255)      default("")
 #
 
 require 'spec_helper'
@@ -80,7 +81,8 @@ describe Supporter do
                             sendy_list_id: 3,
                             address_county: "Alameda",
                             cim_customer_id: "100024",
-                            spouse_name: "John" }
+                            spouse_name: "John",
+                            prospect_group: "c" }
 
   # eager-eval to limit Cim callbacks
   let!(:supporter) { FactoryGirl.create(:supporter) }

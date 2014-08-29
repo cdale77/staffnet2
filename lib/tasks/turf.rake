@@ -41,10 +41,9 @@ namespace :turf do
                                 Amt
                                 Type
                                 Freq
-                                Freq_Code
+                                SubMonth
                                 Declined?
                                 Canceled?
-                                CC_Type
                                 CC_Info
                                 Notes ]
 
@@ -66,10 +65,10 @@ namespace :turf do
 
       Supporter.find_each do |supporter|
 
-        donations = supporter.donations.order(date: :desc)
+        donations = supporter.donations.limit(5)
 
         donations_count = donations.count.to_s
-        donations_amount = donations.map(&:total_amount).inject(0, &:+)
+        donations_amount = donations.map(&:total_value).inject(0, &:+)
 
         #set the initial supporter fields array
         supporter_fields = [  supporter.id.to_s,
@@ -95,8 +94,30 @@ namespace :turf do
                               supporter.do_not_mail,
                               donations_count,
                               donations_amount,
-                              supporter.is_sutainer?]
+                              supporter.is_sutainer? ]
 
+        donations.each do |donation|
+
+          # look up the most recent payment
+          payment = donations.payments.first
+
+          donation_fields =  [  donation.source,
+                                donation.date,
+                                donation.amount,
+                                donation.donation_type,
+                                donation.frequency,
+                                donation.sub_month,
+                                !donation.captured,
+                                donation.cancelled,
+                                payment.payment_profile.short_version,
+                                donation.notes ]
+
+          # add the donations fields to the supporter fields array
+          donation_fields.each { |field| supporter_fields << field }
+        end
+
+        # add the fields to the CSV object
+        csv << supporter_fields
       end
     end
 

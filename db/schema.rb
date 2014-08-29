@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140828000424) do
+ActiveRecord::Schema.define(version: 20140829005353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -309,6 +309,7 @@ ActiveRecord::Schema.define(version: 20140828000424) do
     t.string   "cim_customer_id",   default: ""
     t.string   "vol_level",         default: ""
     t.string   "spouse_name",       default: ""
+    t.string   "prospect_group",    default: ""
   end
 
   add_index "supporters", ["cim_id"], name: "index_supporters_on_cim_id", using: :btree
