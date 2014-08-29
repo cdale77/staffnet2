@@ -3,8 +3,6 @@ desc "Scripts to export supporter data for calling or other contact."
 
 namespace :turf do
 
-
-
   task all: :environment do
     desc "Produce a report of all the supporters"
 

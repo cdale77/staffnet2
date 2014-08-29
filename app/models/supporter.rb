@@ -73,6 +73,7 @@ class Supporter < ActiveRecord::Base
   ## CALLBACKS
   # data cleaning
   before_validation { self.salutation = first_name if self.salutation.blank? }
+  before_save :update_prospect_group
 
 
 
@@ -156,6 +157,10 @@ class Supporter < ActiveRecord::Base
       flag = true if donation.is_sustainer?
     end
     return flag
+  end
+
+  def update_prospect_group
+    self.prospect_group = PROSPECT_GROUPS[self.donations.first.date.month]
   end
 
 
