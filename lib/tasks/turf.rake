@@ -18,22 +18,23 @@ namespace :turf do
                         City
                         State
                         Zip
-                        Email
+                        Email1
+                        Email2
                         Mobile
+                        MobileBad
                         Home
-                        Work
-                        Donor?
-                        Political?
-                        VolunteerLevel
+                        HomeBad
+                        Alt
+                        AltBad
+                        ContactType
                         ProspectGroup
                         Notes
-                        NoGoodPhone
-                        DoNotContact
+                        DoNotEmail
                         DoNotCall
                         DoNotMail
                         DonationsCount
                         DonationsAmount
-                        IsSupporterSustainer ]
+                        IsSustainer ]
 
     donation_column_names = %W[ Source
                                 Date
@@ -57,9 +58,46 @@ namespace :turf do
 
 
     # generate the CSV file
-    puts "Generating the CSV file"
+    puts "Generating the CSV file. This might take a while."
     csv_file = CSV.generate do |csv_row|
+
+      # write the column names
       csv_row << column_names
+
+      Supporter.find_each do |supporter|
+
+        donations = supporter.donations.order(date: :desc)
+
+        donations_count = donations.count.to_s
+        donations_amount = donations.map(&:total_amount).inject(0, &:+)
+
+        #set the initial supporter fields array
+        supporter_fields = [  supporter.id.to_s,
+                              supporter.full_name,
+                              supporter.address1,
+                              supporter.address2,
+                              supporter.address_city,
+                              supporter.address_state,
+                              supporter.address_zip,
+                              supporter.email_1,
+                              supporter.email_2,
+                              supporter.phone_mobile,
+                              supporter.phone_mobile_bad,
+                              supporter.phone_home,
+                              supporter.phone_home_bad,
+                              supporter.phone_alt,
+                              supporter.phone_alt_bad,
+                              supporter.supporter_type.name,
+                              supporter.prospect_group,
+                              supporter.notes,
+                              supporter.do_not_email,
+                              supporter.do_not_call,
+                              supporter.do_not_mail,
+                              donations_count,
+                              donations_amount,
+                              supporter.is_sutainer?]
+
+      end
     end
 
     ## Store the file on S3

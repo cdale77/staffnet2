@@ -243,11 +243,4 @@ describe Supporter do
     end
 
   end
-  describe 'Cim integration' do
-    it 'should store a cim profile' do
-     # supporter.cim_id.should_not be_blank
-    end
-  end
-
-
 end

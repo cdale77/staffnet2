@@ -147,6 +147,8 @@ class Supporter < ActiveRecord::Base
     all.select { |supporter| supporter.is_sustainer? }
   end
 
+
+  ## INSTANCE METHODS
   def is_sustainer?
     flag = false
     self.donations.each do |donation|
@@ -154,6 +156,7 @@ class Supporter < ActiveRecord::Base
     end
     return flag
   end
+
 
   ## CIM
   def generate_cim_customer_id
