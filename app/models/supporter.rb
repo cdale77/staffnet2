@@ -160,7 +160,10 @@ class Supporter < ActiveRecord::Base
   end
 
   def update_prospect_group
-    self.prospect_group = PROSPECT_GROUPS[self.donations.first.date.month]
+    donations = self.donations
+    if donations.any?
+      self.prospect_group = PROSPECT_GROUPS[donations.first.date.month]
+    end
   end
 
 

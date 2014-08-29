@@ -92,12 +92,14 @@ namespace :turf do
                               supporter.do_not_mail,
                               donations_count,
                               donations_amount,
-                              supporter.is_sutainer? ]
+                              supporter.is_sustainer? ]
 
         donations.each do |donation|
 
           # look up the most recent payment
-          payment = donations.payments.first
+          payment = donation.payments.first
+          profile = payment ? payment.payment_profile : PaymentProfile.new
+          cc_info = profile ? profile.short_version : ""
 
           donation_fields =  [  donation.source,
                                 donation.date,
@@ -107,7 +109,7 @@ namespace :turf do
                                 donation.sub_month,
                                 !donation.captured,
                                 donation.cancelled,
-                                payment.payment_profile.short_version,
+                                cc_info,
                                 donation.notes ]
 
           # add the donations fields to the supporter fields array
@@ -115,18 +117,17 @@ namespace :turf do
         end
 
         # add the fields to the CSV object
-        csv << supporter_fields
+        csv_row << supporter_fields
       end
     end
 
     ## Store the file on S3
-    file_name = "all_supporters-#{Date.today}"
+    file_name = "all_supporters-#{Date.today}.csv"
     puts "Storing on S3. Filename: #{file_name}"
     s3_connection = AWS::S3.new( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
                               secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
 
     bucket = s3_connection.buckets["staffnet2-turf"]
-
     bucket.objects.create(file_name, csv_file)
   end
 end
