@@ -1,3 +1,6 @@
+# Lookup table for prospect groups. Keys are month numbers, values are group
+# codes.
+
 1: a
 2: b
 3: c

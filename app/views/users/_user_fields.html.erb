@@ -7,11 +7,11 @@
     <div class="select">
       <%= f.input :role,
                   as: :select,
-                  collection: [['None', ''],
-                               ['Superadmin', 'super_admin'],
-                               ['Admin', 'admin'],
-                               ['Manager', 'manager'],
-                               ['Staff', 'staff'] ],
+                  collection: [["None", ""],
+                               ["Superadmin", "super_admin"],
+                               ["Admin", "admin"],
+                               ["Manager", "manager"],
+                               ["Staff", "staff"] ],
                   selected: user.role %>
     </div>
   </div>

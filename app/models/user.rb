@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
 
   private
     def self.roles
-      Staffnet2::Application.config.user_roles
+      USER_ROLES
     end
 
 end

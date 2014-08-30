@@ -1,1 +1,0 @@
-PROSPECT_GROUPS = YAML.load_file("#{Rails.root}/config/prospect_groups.yml")

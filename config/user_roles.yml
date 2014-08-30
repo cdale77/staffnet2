@@ -1,0 +1,6 @@
+# Stores the possible user roles
+
+- staff
+- manager
+- admin
+- super_admin
