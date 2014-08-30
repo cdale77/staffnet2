@@ -2,6 +2,7 @@ Staffnet2
 =========
 [![Code Climate](https://codeclimate.com/github/cdale77/staffnet2/badges/gpa.svg)](https://codeclimate.com/github/cdale77/staffnet2)
 [![Test Coverage](https://codeclimate.com/github/cdale77/staffnet2/badges/coverage.svg)](https://codeclimate.com/github/cdale77/staffnet2)
+[![Build Status](https://travis-ci.org/cdale77/staffnet2.svg?branch=master)](https://travis-ci.org/cdale77/staffnet2)
 
 This is a rewrite of my first major Rails project (hens the 2). It is a Ruby
 on Rails application that handles a variety of tasks for a membership-based

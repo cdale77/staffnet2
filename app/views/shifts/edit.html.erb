@@ -3,9 +3,13 @@
   <div class="col-md-12">
     <h1>Edit shift</h1>
     <%= simple_form_for([@employee, @shift]) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <%= render partial: 'shift_fields', locals: { shift: @shift, employee: @employee, f: f } %>
-      <%= render 'shared/forms/submit_button', f: f %>
+      <%= render "shared/error_messages",
+                 object: f.object %>
+      <%= render "shift_fields",
+                 shift: @shift,
+                 f: f %>
+      <%= render "shared/forms/submit_button",
+                 f: f %>
     <% end %>
   </div>
 </div>

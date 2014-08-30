@@ -2,9 +2,10 @@
   <div class="col-md-3">
     <%= f.input :employee_id,
                 as: :select,
-                collection: @employees,
+                collection: Employee.active,
                 label_method: :full_name,
-                selected: @shift.employee_id %>
+                value_method: :id,
+                selected: shift.employee_id %>
   </div>
   <div class="col-md-2">
     <%= f.input :date, as: :string, input_html: { type: "date" } %>
