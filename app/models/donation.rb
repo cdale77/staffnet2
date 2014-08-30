@@ -121,15 +121,19 @@ class Donation < ActiveRecord::Base
   end
 
   def total_value
-    case self.frequency
-      when "one-time"
-        return self.amount
-      when "monthly"
+    if self.frequency == "one-time"
+      return self.amount
+
+    elsif self.shift
+
+      if self.frequency == "monthly"
         return ( self.amount * self.shift.shift_type.monthly_cc_multiplier )
-      when "quarterly"
+      elsif self.frequency == "quarterly"
         return ( self.amount * self.shift.shift_type.quarterly_cc_multiplier )
-      else
-        return self.amount
+      end
+
+    else
+      return ( self.amount * DEFAULT_DONATION_MULTIPLIERS[self.frequency] )
     end
   end
 

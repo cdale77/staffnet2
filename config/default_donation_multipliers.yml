@@ -1,3 +1,4 @@
 # Default mutlipliers to calculate value of recurring donations
+one-time: 1
 monthly: 7
 quarterly: 3
