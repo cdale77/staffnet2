@@ -1,5 +1,3 @@
-require 'Faker'
-
 FactoryGirl.define do
 
   sequence :email do |n|
@@ -36,24 +34,24 @@ FactoryGirl.define do
   end
 
   factory :employee do
-    first_name          Faker::Name.first_name
-    last_name           Faker::Name.last_name
-    phone               '5105551234'
-    email               ('a'..'z').to_a.shuffle[0,10].join + 'employee@example.com'
-    address1            Faker::Address.street_address
-    address2            Faker::Address.secondary_address
-    address_city        Faker::Address.city
-    address_state       Faker::Address.state_abbr
-    address_zip         '12345'
-    title               'organizer'
+    first_name          "Test"
+    last_name           "User"
+    phone               "5101234567"
+    email               ("a".."z").to_a.shuffle[0,10].join + "employee@example.com"
+    address1            "1 Market Street"
+    address2            "Suite 100"
+    address_city        "San Francisco"
+    address_state       "CA"
+    address_zip         "12345"
+    title               "organizer"
     pay_hourly          12
-    fed_filing_status   'single'
-    ca_filing_status    'single'
+    fed_filing_status   "single"
+    ca_filing_status    "single"
     fed_allowances      2
     ca_allowances       2
     dob                 Date.today
     hire_date           Date.today
-    gender              'f'
+    gender              "f"
     active              true
     user
   end
@@ -99,23 +97,23 @@ FactoryGirl.define do
   end
 
   factory :supporter do
-    first_name            Faker::Name.first_name
-    last_name             Faker::Name.last_name
-    address1              Faker::Address.street_address
-    address2              Faker::Address.secondary_address
-    address_city          Faker::Address.city
-    address_state         'CA'
-    address_zip           '94523'
-    email_1               Faker::Internet.email
-    email_2               Faker::Internet.email
+    first_name          "Test"
+    last_name           "User"
+    address1            "1 Market Street"
+    address2            "Suite 100"
+    address_city        "San Francisco"
+    address_state       "CA"
+    address_zip         "12345"
+    email_1             "example@example.com"
+    email_2             "another@example.com"
     phone_mobile          '5553234322'
     phone_home            '5553232325'
     phone_alt             '5554954933'
     vol_level             2
-    employer              Faker::Company.name
-    occupation            'Consultant'
-    source                Faker::Lorem.word
-    notes                 Faker::Lorem.sentence
+    employer              "Dewey Cheetum and Howe"
+    occupation            "Consultant"
+    source               "Door"
+    notes                 "Some notes"
     supporter_type
   end
 
