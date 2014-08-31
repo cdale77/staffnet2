@@ -36,13 +36,13 @@ gem 'morrisjs-rails', '0.5.1'
 group :development do
   gem 'pry-rails', '0.3.2'
   gem 'annotate', '2.6.5'
-  gem 'faker', '1.4.3'
   gem 'metric_fu', '4.11.1'
 end
 
 group :development, :test do
   gem 'rspec-rails', '2.99.0'
   gem 'capybara', '2.3.0'
+  gem 'faker', '1.4.3'
   gem 'selenium-webdriver', '2.42.0'
   gem 'factory_girl_rails', '4.4.1'
   gem 'byebug', '3.1.2'
