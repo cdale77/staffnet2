@@ -6,7 +6,7 @@ env:
   global:
     secure: AeHf5DhdtExNjXtV1nW8BFyP7Qh71Mx+t5+LCNMnItI07TQvoUhU1YbyCe6HeKK8e3S+ti/scYlzrCvrVesA4aPxp/FhiQ3LpscOKcjhq/hlHQfkzm0NKSFLVMOj6WZMfVRaWqaDgCVy59OGfJf89ZnfC0IYlaJgsOfhsSCELL0=
 script:
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - RAILS_ENV=test bundle exec rake db:schema:load --trace
   - bundle exec rake db:test:prepare
   - bundle exec rake
 before_script:
