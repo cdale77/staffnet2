@@ -14,7 +14,7 @@ gem 'sendyr', '0.2.1'
 # data storage
 gem 'aws-sdk', '1.51.0'
 gem 'pgbackups-archive', '0.2.1'
-gem 'paper_trail', '3.0.3'
+gem 'paper_trail', '3.0.5'
 
 ## DATES
 gem 'date_validator', '0.7.0'
