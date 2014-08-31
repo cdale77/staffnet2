@@ -31,8 +31,8 @@ describe 'StaticPages' do
       describe 'page' do
 
         describe 'footer' do
-          it { should have_link('Home', root_path) }
           it { should have_link('Sign out', destroy_user_session_path(super_admin)) }
+          it { should have_link('Profile', employee_path(employee)) }
         end
       end
     end

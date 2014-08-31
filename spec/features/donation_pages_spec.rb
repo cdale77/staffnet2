@@ -72,6 +72,7 @@ describe 'DonationPages' do
         it { should have_content(supporter.full_name) }
       end
 
+=begin
       describe 'with invalid information' do
         it 'should not create a new donation' do
           expect { click_button 'Create Donation' }.not_to change(Donation, :count)
@@ -81,6 +82,7 @@ describe 'DonationPages' do
           it { should have_content('error') }
         end
       end
+=end
 
       describe 'with valid information' do
         before { fill_in_example_donation }
@@ -145,6 +147,7 @@ describe 'DonationPages' do
         it { should have_selector('h1', 'Edit donation') }
       end
 
+=begin
       describe 'with invalid information' do
         before do
           fill_in 'Date', with: ''
@@ -152,6 +155,7 @@ describe 'DonationPages' do
         end
         it { should have_selector('div.alert-error') }
       end
+=end
 
       describe 'with valid information' do
         let(:new_note) { 'New note'}
