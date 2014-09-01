@@ -25,3 +25,6 @@ doc/
 .DS_Store
 .idea
 .secret
+
+# Ignore Figaro file
+/config/application.yml

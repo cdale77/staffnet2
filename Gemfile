@@ -6,6 +6,7 @@ gem 'rake', '10.3.2'
 gem 'pg', '0.17.1'
 gem 'devise', '3.3.0'
 gem 'pundit', '0.2.3'
+gem 'figaro', '0.7.0'
 
 ## APIs
 gem 'activemerchant', '1.43.3'
