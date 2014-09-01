@@ -35,11 +35,16 @@ class PaymentProfile < ActiveRecord::Base
   validates :payment_profile_type, presence: { message: "required" }
 
   def short_version
-    if self.payment_profile_type == "credit"
-      "#{self.payment_profile_type.humanize} - #{self.cc_type.humanize} \
-        x#{self.cc_last_4} #{self.cc_month}/#{self.cc_year}"
+    profile_type = self.payment_profile_type || ""
+    cc_type = self.cc_type || ""
+    cc_last_4 = self.cc_last_4 || ""
+    cc_year = self.cc_year || ""
+    
+    if profile_type == "credit"
+      "#{profile_type.humanize} - #{cc_type.humanize} \
+        x#{cc_last_4} #{self.cc_month}/#{cc_year}"
     else
-      "#{self.payment_profile_type.humanize}"
+      "#{profile_type.humanize}"
     end
 
   end
