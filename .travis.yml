@@ -1,15 +1,17 @@
 language: ruby
 cache: bundler
 rvm:
-  - 2.1.2
+- 2.1.2
 env:
   global:
-    secure: AeHf5DhdtExNjXtV1nW8BFyP7Qh71Mx+t5+LCNMnItI07TQvoUhU1YbyCe6HeKK8e3S+ti/scYlzrCvrVesA4aPxp/FhiQ3LpscOKcjhq/hlHQfkzm0NKSFLVMOj6WZMfVRaWqaDgCVy59OGfJf89ZnfC0IYlaJgsOfhsSCELL0=
+  - secure: AeHf5DhdtExNjXtV1nW8BFyP7Qh71Mx+t5+LCNMnItI07TQvoUhU1YbyCe6HeKK8e3S+ti/scYlzrCvrVesA4aPxp/FhiQ3LpscOKcjhq/hlHQfkzm0NKSFLVMOj6WZMfVRaWqaDgCVy59OGfJf89ZnfC0IYlaJgsOfhsSCELL0=
+  - secure: L3bU2Wg1iPgyTPVTh5w+hCD7elDbRywyi+Fh67zu7d5OmUkfzsKZQ6uw5u4Jk5N45CX62srMKsPtjHp74O/Yv//W26uq83ZMwTsrpnRINU5iv1JuR2zgRZ6TIHaM4PXWS2wVqGbF/2ZjQe+Dou5wbm1ahKYnl1AJE6GP/onPtPc=
+  - secure: C3Q8N/LIz039QHxDniWORGM7dA4tv+CF1qZH+VxkUiuwuZ1u/oKX3WIBYRpg2bI0XkornKbmKHk3dDECyoy7ZadHer/Ov24z40ucFG45+QjIL6pHdR7nFJxK7T26Juc9r47UJUksZIyuJRvK8HygUY8xmbGG1AnHUaU6wYKBtZw=
 script:
-  - RAILS_ENV=test bundle exec rake db:schema:load --trace
-  - bundle exec rake db:test:prepare
-  - bundle exec rake
+- RAILS_ENV=test bundle exec rake db:schema:load --trace
+- bundle exec rake db:test:prepare
+- bundle exec rake
 before_script:
-  - cp config/database.travis.yml config/database.yml
-  - mysql -e 'create database staffnet2_test'
-  - psql -c 'create database staffnet2_test' -U postgres
+- cp config/database.travis.yml config/database.yml
+- mysql -e 'create database staffnet2_test'
+- psql -c 'create database staffnet2_test' -U postgres
