@@ -28,7 +28,6 @@ describe 'ShiftPages' do
   ## HELPERS
 
   def fill_in_example_shift
-    select "Door",                from: "shift_shift_type_id"
     fill_in "Date",               with: "2013-09-04"
     fill_in "Time in",            with: "09:00 AM"
     fill_in "Time out",           with: "05:00 PM"
