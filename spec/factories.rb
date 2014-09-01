@@ -104,7 +104,7 @@ FactoryGirl.define do
     address_city        "San Francisco"
     address_state       "CA"
     address_zip         "12345"
-    email_1             ("a".."z").to_a.shuffle[0,10].join + "example@example.com"
+    email_1             { ("a".."z").to_a.shuffle[0,10].join + "example@example.com" }
     phone_mobile          '5553234322'
     phone_home            '5553232325'
     phone_alt             '5554954933'

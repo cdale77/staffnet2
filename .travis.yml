@@ -15,3 +15,10 @@ before_script:
 - cp config/database.travis.yml config/database.yml
 - mysql -e 'create database staffnet2_test'
 - psql -c 'create database staffnet2_test' -U postgres
+deploy:
+  provider: heroku
+  api_key:
+    secure: kiv5lFAMlEFcPrbFj/sE9x28fk7gGjnIDHAxPTc1vgBVzeP+7/1P/gfla6TH5W9AVV1Y9A0cBThmi2r5BqgNWfLZjepZZozw621auK7pj+HUzk6NpvR0e4BspnPNUnkrsi6j2hi4fti/nn95S+2N3N5c0Ts4PpScfmGAYCTXNRQ=
+  app: staffnet2
+  on:
+    repo: cdale77/staffnet2
