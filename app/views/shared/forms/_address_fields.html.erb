@@ -1,17 +1,29 @@
 <div class="form-group row">
   <div class="col-md-3">
-    <%= f.input :address1, label: 'Address line 1', placeholder: '123 Main St.' %>
+    <%= f.input :address1,
+                label: "Address line 1",
+                placeholder: "123 Main St." %>
   </div>
   <div class="col-md-3">
-    <%= f.input :address2, label: 'Address line 2', placeholder: 'Apt. 320' %>
+    <%= f.input :address2,
+                label: "Address line 2",
+                placeholder: "Apt. 320" %>
   </div>
   <div class="col-md-2">
-    <%= f.input :address_city, label: 'City', placeholder: 'San Francisco' %>
+    <%= f.input :address_city,
+                label: "City",
+                placeholder: "San Francisco" %>
   </div>
   <div class="col-md-2 select">
-    <%= f.input :address_state, as: :select, collection: us_states, selected: record.address_state, label: 'State' %>
+    <%= f.input :address_state,
+                as: :select,
+                collection: us_states,
+                selected: record.address_state,
+                label: "State" %>
   </div>
   <div class="col-md-2">
-    <%= f.input :address_zip, label: 'Zip', placeholder: '94110' %>
+    <%= f.input :address_zip,
+                label: "Zip",
+                placeholder: "94110" %>
   </div>
 </div>

@@ -1,1 +1,4 @@
-<%= link_to "New #{record_name}", polymorphic_path([record, record_name], action: :new), class: 'btn btn-xs btn-default btn-new-record', role: 'button' %>
+<%= link_to "New #{record_name}",
+            polymorphic_path([record, record_name], action: :new),
+            class: 'btn btn-xs btn-default btn-new-record',
+            role: 'button' %>

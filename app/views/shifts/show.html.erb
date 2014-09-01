@@ -1,6 +1,6 @@
 <% provide(:title, 'Shift') %>
 <h1>Shift profile</h1>
-<%= render 'shared/profiles/profile_buttons', record: @shift %>
+<%= render "shared/profiles/profile_buttons", record: @shift %>
 <div class="col-md-12 row record-display">
   <div class="col-md-4 record-column"><table>
     <tr>
@@ -77,4 +77,4 @@
   </table></div>
 </div>
 <hr />
-<%= render 'shift_donations', donations: @donations %>
+<%= render "shift_donations", donations: @donations %>
