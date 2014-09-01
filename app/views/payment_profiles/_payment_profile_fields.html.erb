@@ -1,23 +1,24 @@
 <div class="row" id="new-payment-profile">
   <div class="col-md-12">
-    <%= simple_form_for([@supporter, @payment_profile], remote: true, authenticity_token: true) do |f| %>
+    <%= simple_form_for([@supporter, @payment_profile],
+                        remote: true, authenticity_token: true) do |f| %>
       <div class="form-group row">
         <div class="col-md-3">
           <%= f.input :payment_profile_type,
                       as: :select,
-                      collection: [['Credit Card', 'credit'],
-                                   ['Cash', 'cash'],
-                                   ['Check', 'check']],
-                      selected: 'credit' %>
+                      collection: [["Credit Card", "credit"],
+                                   ["Cash", "cash"],
+                                   ["Check", "check"]],
+                      selected: "credit" %>
         </div>
         <div class="col-md-3">
-          <%= f.input :cc_number, label: 'CC number' %>
+          <%= f.input :cc_number, label: "CC number" %>
         </div>
         <div class="col-md-2">
-          <%= f.input :cc_month, label: 'Exp month', placeholder: '04' %>
+          <%= f.input :cc_month, label: "Exp month", placeholder: "04" %>
         </div>
         <div class="col-md-2">
-          <%= f.input :cc_year, label: 'Exp year', placeholder: '2014' %>
+          <%= f.input :cc_year, label: "Exp year", placeholder: "2014" %>
         </div>
       </div>
       <div class="form-group row">
@@ -27,8 +28,10 @@
       </div>
       <div class="form-group row">
         <div class="col-md-2">
-          <%= f.button :submit, remote: true, class: 'btn btn-xs btn-default btn-ajax',
-                                       data: { 'loading-text' => 'Updating ...'} %>
+          <%= f.button :submit,
+                       remote: true,
+                       class: "btn btn-xs btn-default btn-ajax",
+                       data: { "loading-text" => "Updating ..." } %>
         </div>
       </div>
     <% end %>
