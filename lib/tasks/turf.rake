@@ -121,13 +121,10 @@ namespace :turf do
       end
     end
 
-    ## Store the file on S3
+    ## Write the file to the filesystem.
     file_name = "all_supporters-#{Date.today}.csv"
-    puts "Storing on S3. Filename: #{file_name}"
-    s3_connection = AWS::S3.new( access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-                              secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'] )
-
-    bucket = s3_connection.buckets["staffnet2-turf"]
-    bucket.objects.create(file_name, csv_file)
+    File.open(file_name,'wb') do |f|
+      f.write csv_file
+    end
   end
 end
