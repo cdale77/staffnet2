@@ -13,6 +13,7 @@
         <th>Amount</th>
         <th>Type</th>
         <th>Captured?</th>
+        <th></th>
       </tr>
       <% payments.each do |payment| %>
         <tr class="clickable-row <%= payment.captured ? "" : "red" %>"
@@ -22,6 +23,9 @@
           <td><%= number_to_currency payment.amount %></td>
           <td><%= payment.payment_type.humanize %></td>
           <td><%= human_boolean payment.captured %></td>
+          <td class="buttons">
+            <%= render "shared/index/index_buttons", record: payment %>
+          </td>
         </tr>
       <% end %>
     </table>
