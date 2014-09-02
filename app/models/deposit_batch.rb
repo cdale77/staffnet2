@@ -61,7 +61,7 @@ class DepositBatch < ActiveRecord::Base
     type_names.each do |type_name|
       type_batch = type_batches.delete(type_name)
       if type_batch
-        date_batches = type_batch.group_by { |payment| payment.created_at }
+        date_batches = type_batch.group_by { |payment| payment.created_at.to_date }
         date_batches.each do |k,v|
           batch = DepositBatch.create(batch_type: type_name, date: k)
           v.each do |payment|
