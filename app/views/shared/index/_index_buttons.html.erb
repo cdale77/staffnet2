@@ -1,4 +1,7 @@
 <%= link_to "details", polymorphic_path(record),
             class: "btn btn-xs btn-default", type: "button" %>
-<%= link_to "edit", edit_polymorphic_path(record),
+<% begin Rails.application.routes.recognize_path(edit_polymorphic_path(record)) %>
+  <%= link_to "edit", edit_polymorphic_path(record),
             class: "btn btn-xs btn-default", type: "button" %>
+<% rescue %>
+<% end %>

@@ -24,6 +24,8 @@ Staffnet2::Application.routes.draw do
       resources :payments
     end
 
+    resources :payments, only: [:show]
+
     resources :payment_profiles
 
     resources :supporter_types, except: [:show, :destroy]
