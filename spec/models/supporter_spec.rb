@@ -85,9 +85,12 @@ describe Supporter do
                             prospect_group: "c" }
 
   # eager-eval to limit Cim callbacks
+  let!(:supporter_type) { FactoryGirl.create(:supporter_type,
+                                              name: "supporter") }
   let!(:supporter) { FactoryGirl.create(:supporter) }
   let!(:sustainer) { FactoryGirl.create(:supporter) }
   let!(:donation) { FactoryGirl.create(:donation,
+                                       amount: 10,
                                        supporter: sustainer,
                                        sub_month: 'm',
                                        sub_week: 3) }
@@ -202,6 +205,21 @@ describe Supporter do
   end
 
   ## METHODS
+  describe '#supporter_type_name' do
+    it 'should return the supporter type name' do
+      expect(supporter.supporter_type_name).to eq "supporter"
+    end
+  end
+  describe '#donations_amount' do
+    it 'should return the correct donations amount with multiplier' do
+      expect(sustainer.donations_amount).to eq 70
+    end
+  end
+  describe '#donations_count' do
+    it 'should return the correct donations count' do
+      expect(sustainer.donations_count).to eq 1
+    end
+  end
   describe 'salutation setting' do
     it 'should set the salutation correctly' do
       name = 'Kim'

@@ -151,6 +151,19 @@ class Supporter < ActiveRecord::Base
 
 
   ## INSTANCE METHODS
+
+  def supporter_type_name
+    self.supporter_type ? self.supporter_type.name : ""
+  end
+
+  def donations_count
+    self.donations.count
+  end
+
+  def donations_amount
+    self.donations.map(&:total_value).inject(0, &:+)
+  end
+
   def is_sustainer?
     flag = false
     self.donations.each do |donation|

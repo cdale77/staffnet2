@@ -38,6 +38,31 @@ module Exports
                                   CC_Info
                                   Notes ]
 
+    @@supporter_field_value_methods = %w[ id
+                                          full_name
+                                          address1
+                                          address2
+                                          address_city
+                                          address_state
+                                          address_zip
+                                          email_1
+                                          email_2
+                                          phone_mobile
+                                          phone_mobile_bad
+                                          phone_home
+                                          phone_home_bad
+                                          phone_alt
+                                          phone_alt_bad
+                                          supporter_type_name
+                                          prospect_group
+                                          notes
+                                          do_not_email
+                                          do_not_call
+                                          do_not_mail
+                                          donations_count
+                                          donations_amount
+                                          is_sustainer? ]
+
     def self.column_names
       # returns the column names for a supporter record with five donation
       # columns
@@ -53,34 +78,12 @@ module Exports
       return column_names
     end
 
-    def self.supporter_fields(supporter, donations)
-      donations_count = donations.count.to_s
-      donations_amount = donations.map(&:total_value).inject(0, &:+)
+    def self.supporter_fields(supporter)
+      supporter_fields = []
+      @@supporter_field_value_methods.each do |method|
+        supporter_fields << supporter.send(method)
+      end
 
-      [  supporter.id.to_s,
-         supporter.full_name,
-         supporter.address1,
-         supporter.address2,
-         supporter.address_city,
-         supporter.address_state,
-         supporter.address_zip,
-         supporter.email_1,
-         supporter.email_2,
-         supporter.phone_mobile,
-         supporter.phone_mobile_bad,
-         supporter.phone_home,
-         supporter.phone_home_bad,
-         supporter.phone_alt,
-         supporter.phone_alt_bad,
-         supporter.supporter_type.name,
-         supporter.prospect_group,
-         supporter.notes,
-         supporter.do_not_email,
-         supporter.do_not_call,
-         supporter.do_not_mail,
-         donations_count,
-         donations_amount,
-         supporter.is_sustainer? ]
     end
 
     def self.donation_fields(donation)
@@ -110,9 +113,11 @@ module Exports
 
         Supporter.where(prospect_group: group_code).find_each do |supporter|
 
+          puts "Processing supporter #{supporter.id}"
+
           donations = supporter.donations.limit(5)
 
-          supporter_fields = self.supporter_fields(supporter, donations)
+          supporter_fields = self.supporter_fields(supporter)
 
           donations.each do |donation|
 
