@@ -101,9 +101,41 @@ module Exports
          donation.notes ]
     end
 
-    def self.perform
+    def self.prospect_group(group_code)
 
-      puts "Generating the CSV file. This might take a while."
+      csv_file = CSV.generate do |csv_row|
+
+        # write the column names
+        csv_row << column_names
+
+        Supporter.where(prospect_group: group_code).find_each do |supporter|
+
+          donations = supporter.donations.limit(5)
+
+          supporter_fields = self.supporter_fields(supporter, donations)
+
+          donations.each do |donation|
+
+            donation_fields =  self.donation_fields(donation)
+
+            # add the donations fields to the supporter fields array
+            donation_fields.each { |field| supporter_fields << field }
+          end
+
+          # add the fields to the CSV object
+          csv_row << supporter_fields
+        end
+      end
+
+      ## Write the file to the filesystem.
+      file_name = "all_supporters-#{Date.today}.csv"
+      File.open(file_name,'wb') do |f|
+        f.write csv_file
+      end
+    end
+
+    def self.all
+
       csv_file = CSV.generate do |csv_row|
 
         # write the column names
