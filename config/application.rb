@@ -34,6 +34,7 @@ module Staffnet2
     config.autoload_paths += %W(#{config.root}/lib/validations)
     config.autoload_paths += %W(#{config.root}/lib/cim)
     config.autoload_paths += %W(#{config.root}/lib/sendy)
+    config.autoload_paths += %W(#{config.root}/lib/exports)
     config.autoload_paths += %W(#{config.root}/app/models/emails)
 
 
