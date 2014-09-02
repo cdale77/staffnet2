@@ -13,8 +13,7 @@ describe Exports::DonationHistory do
 
   describe '::supporter_fields' do
     it 'should return an array' do
-      expect(Exports::DonationHistory.supporter_fields(supporter,
-                                                       supporter.donations)).to \
+      expect(Exports::DonationHistory.supporter_fields(supporter)).to \
                                                        be_an_instance_of Array
     end
   end

@@ -83,7 +83,7 @@ module Exports
       @@supporter_field_value_methods.each do |method|
         supporter_fields << supporter.send(method)
       end
-
+      return supporter_fields
     end
 
     def self.donation_fields(donation)
@@ -133,7 +133,7 @@ module Exports
       end
 
       ## Write the file to the filesystem.
-      file_name = "all_supporters-#{Date.today}.csv"
+      file_name = "#{Date.today}-prospect_group-#{group_code}.csv"
       File.open(file_name,'wb') do |f|
         f.write csv_file
       end
@@ -150,7 +150,7 @@ module Exports
 
           donations = supporter.donations.limit(5)
 
-          supporter_fields = self.supporter_fields(supporter, donations)
+          supporter_fields = self.supporter_fields(supporter)
 
           donations.each do |donation|
 
