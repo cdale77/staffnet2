@@ -45,7 +45,7 @@
           <%= human_boolean payment.captured %>
         </td>
         <td class="buttons">
-          <%= render "shared/index/index_buttons", record: payment %>
+          <%= render "shared/index/index_buttons", record: payment.donation %>
         </td>
       </tr>
     <% end %>

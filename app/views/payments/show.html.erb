@@ -37,7 +37,8 @@
         <th>Type</th>
         <td><%= @payment.payment_type.humanize %></td>
       </tr>
-      <% if @payment.payment_type == "credit" %>
+      <% if @payment.payment_type == "credit" || \
+            @payment.payment_type == "installment" %>
         <tr>
           <th>CC</th>
           <td><%= @payment_profile.short_version %></td>
