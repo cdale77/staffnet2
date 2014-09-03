@@ -9,7 +9,7 @@
       </tr>
       <tr>
         <th>Donation date</th>
-        <td><%= @donation.date %></td>
+        <td><%= link_to @donation.date, donation_path(@donation) %></td>
       </tr>
       <tr>
         <th>Donation amount</th>
