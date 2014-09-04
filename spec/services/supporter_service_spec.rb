@@ -13,7 +13,7 @@ describe SupporterService do
   describe '#new_supporter' do
     before { supporter_service.new_supporter }
     it 'should be successful' do
-      supporter_service.success.should be_true
+      supporter_service.success.should be_truthy
     end
   end
 
@@ -23,14 +23,14 @@ describe SupporterService do
       supporter_service.destroy_supporter
     end
     it 'should be successful' do
-      supporter_service.success.should be_true
+      supporter_service.success.should be_truthy
     end
   end
 
   describe '#update_supporter' do
     before { supporter_service.update_supporter }
     it 'should be successful' do
-      supporter_service.success.should be_true
+      supporter_service.success.should be_truthy
     end
   end
 end
