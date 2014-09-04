@@ -27,7 +27,7 @@ gem "week_of_month", "1.2.3.2"
 
 ## UI
 gem "sass-rails", "4.0.3"
-gem "bootstrap-sass", "3.2.0.1"
+gem "bootstrap-sass", "3.2.0.2"
 gem "will_paginate", "3.0.7"
 gem "bootstrap-will_paginate", "0.0.10"
 gem "simple_form", "3.0.2"
@@ -46,8 +46,8 @@ group :development do
 end
 
 group :development, :test do
-  gem "rspec-rails", "2.99.0"
-  gem "capybara", "2.3.0"
+  gem "rspec-rails", "3.0.2"
+  gem "capybara", "2.4.1"
   gem "selenium-webdriver", "2.42.0"
   gem "factory_girl_rails", "4.4.1"
   gem "byebug", "3.1.2"
