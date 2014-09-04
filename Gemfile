@@ -4,6 +4,9 @@ ruby "2.1.2"
 gem "rails", "4.1.5"
 gem "rake", "10.3.2"
 gem "unicorn", "4.8.3"
+gem "sidekiq", "3.2.3"
+gem "sinatra", "1.4.5"  # required by Sidekiq
+gem "slim", "2.0.3"     # required by Sidekiq
 gem "pg", "0.17.1"
 gem "devise", "3.3.0"
 gem "pundit", "0.3.0"
