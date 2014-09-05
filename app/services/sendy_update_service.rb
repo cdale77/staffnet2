@@ -23,6 +23,7 @@ class SendyUpdateService < ServiceBase
         sendy_list_id:    @sendy_list_id,
         sendy_email:      (@old_email.present? ? @old_email : @supporter_email),
         new_sendy_email:  (@old_email.present? ? @supporer_email : ""),
-        action:           action)
+        action:           action,
+        new_sendy_status: "#{action}d")
     end
 end

@@ -60,29 +60,26 @@ module Sendy
           next
         end
 
-        puts "Performing update id #{update.id}"
+        if supporter.email_1.present? && \
+           !supporter.do_not_email && \
+           !supporter.email_1_bad
 
-        case update.action
+           puts "Performing update id #{update.id}"
 
-          when 'update_database'
-            unless supporter.sendy_status == update.new_sendy_status
-              supporter.sendy_status = update.new_sendy_status
-              mark_as_completed(update) if supporter.save
-            end
+          case update.action
 
-          when 'subscribe'
-            if supporter.do_not_email || supporter.email_1_bad
-              mark_as_completed(update)
-            else
+            when "subscribe"
               subscribe_to_sendy(supporter, sendy_list.sendy_list_identifier)
               supporter.sendy_status = 'subscribed'
-              mark_as_completed(update) if supporter.save
-            end
 
-          when 'unsubscribe'
-            unsubscribe_from_sendy(supporter, sendy_list.sendy_list_identifier)
-            supporter.sendy_status = 'unsubscribed'
-            mark_as_completed(update) if supporter.save
+            when "unsubscribe"
+              unsubscribe_from_sendy(supporter, sendy_list.sendy_list_identifier)
+              supporter.sendy_status = 'unsubscribed'
+
+          end
+        else
+          supporter.sendy_status = update.new_sendy_status
+          mark_as_completed(update) if supporter.save
         end
       end
     end
