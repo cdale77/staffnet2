@@ -1,8 +1,7 @@
 desc 'Heroku scheduler file'
 
 task :update_sendy => :environment do
-  updates = SendyUpdate.where(success: false)
-  Sendy::PerformUpdates.perform(updates)
+  SendyUpdateJob.enqueue
 end
 
 task :sub_week_5_to_4 => :environment do
