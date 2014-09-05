@@ -152,6 +152,10 @@ class Supporter < ActiveRecord::Base
 
   ## INSTANCE METHODS
 
+  def has_email_address
+    true if self.email_1.present? || self.email_2.present?
+  end
+
   def supporter_type_name
     self.supporter_type ? self.supporter_type.name : ""
   end

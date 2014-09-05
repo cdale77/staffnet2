@@ -205,6 +205,16 @@ describe Supporter do
   end
 
   ## METHODS
+  describe '#has_email_address' do
+    it 'should return true with an email' do
+      expect(supporter.has_email_address).to be_truthy
+    end
+    it 'should return false without an email' do
+      supporter.email_1 = ""
+      expect(supporter.has_email_address).to be_falsey
+    end
+  end
+
   describe '#supporter_type_name' do
     it 'should return the supporter type name' do
       expect(supporter.supporter_type_name).to eq "supporter"
