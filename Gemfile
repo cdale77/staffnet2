@@ -1,19 +1,23 @@
 source "https://rubygems.org"
 
 ruby "2.1.2"
-gem "rails", "4.1.5"
+gem "rails", "4.2.0.beta1"
 gem "rake", "10.3.2"
 gem "unicorn", "4.8.3"
 gem "sidekiq", "3.2.3"
 gem "sinatra", "1.4.5"  # required by Sidekiq
 gem "slim", "2.0.3"     # required by Sidekiq
 gem "pg", "0.17.1"
-gem "devise", "3.3.0"
+# https://github.com/plataformatec/devise/pull/3153
+gem "devise", git: "https://github.com/plataformatec/devise.git",
+    branch: "lm-rails-4-2"
 gem "pundit", "0.3.0"
 gem "figaro", "0.7.0"
+gem "i18n", "0.7.0.beta1"
 
 ## APIs
 gem "activemerchant", "1.44.1"
+gem "money", git: "https://github.com/cdale77/money.git"
 gem "sendyr", "0.2.1"
 
 # data storage
@@ -26,7 +30,7 @@ gem "date_validator", "0.7.0"
 gem "week_of_month", "1.2.3.2"
 
 ## UI
-gem "sass-rails", "4.0.3"
+gem "sass-rails", "5.0.0.beta1"
 gem "bootstrap-sass", "3.2.0.2"
 gem "will_paginate", "3.0.7"
 gem "bootstrap-will_paginate", "0.0.10"
