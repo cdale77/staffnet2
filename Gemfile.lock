@@ -1,4 +1,16 @@
 GIT
+  remote: git://github.com/activerecord-hackery/ransack.git
+  revision: 4c254f5ba235e20ca43a2a3d8ff32ffc4653282c
+  branch: rails-4.2
+  specs:
+    ransack (1.2.4)
+      actionpack (>= 4.1)
+      activerecord (>= 4.1)
+      activesupport (>= 4.1)
+      i18n
+      polyamorous (~> 1.1)
+
+GIT
   remote: https://github.com/cdale77/money.git
   revision: 732ead8fcdfc34c62206ad3428477912fa5a7654
   specs:
@@ -313,12 +325,6 @@ GEM
     rainbow (2.0.0)
     raindrops (0.13.0)
     rake (10.3.2)
-    ransack (1.3.0)
-      actionpack (>= 3.0)
-      activerecord (>= 3.0)
-      activesupport (>= 3.0)
-      i18n
-      polyamorous (~> 1.1)
     raphael-rails (2.1.2)
     rdoc (4.1.1)
       json (~> 1.4)
@@ -386,7 +392,7 @@ GEM
       json
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
-    simple_form (3.0.2)
+    simple_form (3.1.0.rc2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     simplecov (0.9.0)
@@ -467,7 +473,7 @@ DEPENDENCIES
   rails (= 4.2.0.beta1)
   rails_12factor (= 0.0.2)
   rake (= 10.3.2)
-  ransack (= 1.3.0)
+  ransack!
   raphael-rails (= 2.1.2)
   rspec-rails (= 3.0.2)
   sass-rails (= 5.0.0.beta1)
@@ -475,7 +481,7 @@ DEPENDENCIES
   selenium-webdriver (= 2.42.0)
   sendyr (= 0.2.1)
   sidekiq (= 3.2.3)
-  simple_form (= 3.0.2)
+  simple_form (= 3.1.0.rc2)
   sinatra (= 1.4.5)
   slim (= 2.0.3)
   turbolinks (= 2.3.0)

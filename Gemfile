@@ -34,8 +34,9 @@ gem "sass-rails", "5.0.0.beta1"
 gem "bootstrap-sass", "3.2.0.2"
 gem "will_paginate", "3.0.7"
 gem "bootstrap-will_paginate", "0.0.10"
-gem "simple_form", "3.0.2"
-gem "ransack", "1.3.0"
+gem "simple_form", "3.1.0.rc2"
+#gem "ransack", "1.3.0"
+gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.2"
 
 ## JS
 gem "jquery-rails", "3.1.2"
