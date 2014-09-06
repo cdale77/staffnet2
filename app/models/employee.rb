@@ -163,7 +163,7 @@ class Employee < ActiveRecord::Base
   end
 
   def self.calculate_average(raised, shifts_count)
-    if fundraising_shifts_count > 0
+    if shifts_count> 0
       raised / shifts_count
     else
       0
