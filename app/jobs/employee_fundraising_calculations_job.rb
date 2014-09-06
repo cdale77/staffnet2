@@ -24,7 +24,7 @@ class EmployeeFundraisingCalculationsJob < ActiveJob::Base
       employee.fundraising_shifts_this_week = fundraising_shifts_this_week.count
       employee.donations_lifetime = donations.count
       employee.donations_this_week = donations_this_week.count
-      employee.successful_donations_lifetime = succesful_donations.count
+      employee.successful_donations_lifetime = successful_donations.count
       employee.successful_donations_this_week = successful_donations_this_week.count
       employee.raised_lifetime = raised_lifetime
       employee.raised_this_week = raised_this_week
