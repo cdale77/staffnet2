@@ -19,13 +19,13 @@ ActiveRecord::Schema.define(version: 20140906011001) do
 
   create_table "deposit_batches", force: true do |t|
     t.integer  "employee_id"
-    t.string   "batch_type",     default: ""
+    t.string   "batch_type",     limit: 255, default: ""
     t.date     "date"
-    t.boolean  "deposited",      default: false
+    t.boolean  "deposited",                  default: false
+    t.boolean  "approved",                   default: false
+    t.string   "receipt_number", limit: 255, default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "approved",       default: false
-    t.string   "receipt_number", default: ""
   end
 
   create_table "donations", force: true do |t|
@@ -33,14 +33,14 @@ ActiveRecord::Schema.define(version: 20140906011001) do
     t.integer  "supporter_id"
     t.integer  "shift_id"
     t.date     "date"
-    t.string   "donation_type",                                   default: ""
-    t.string   "source",                                          default: ""
-    t.string   "campaign",                                        default: ""
-    t.string   "sub_month",     limit: 1,                         default: ""
-    t.integer  "sub_week",      limit: 2,                         default: 0
-    t.decimal  "amount",                  precision: 8, scale: 2, default: 0.0
-    t.boolean  "cancelled",                                       default: false
-    t.text     "notes",                                           default: ""
+    t.string   "donation_type", limit: 255,                         default: ""
+    t.string   "source",        limit: 255,                         default: ""
+    t.string   "campaign",      limit: 255,                         default: ""
+    t.string   "sub_month",     limit: 1,                           default: ""
+    t.integer  "sub_week",      limit: 2,                           default: 0
+    t.decimal  "amount",                    precision: 8, scale: 2, default: 0.0
+    t.boolean  "cancelled",                                         default: false
+    t.text     "notes",                                             default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,50 +50,50 @@ ActiveRecord::Schema.define(version: 20140906011001) do
 
   create_table "employees", force: true do |t|
     t.integer  "user_id"
-    t.string   "legacy_id",                                                    default: ""
-    t.string   "first_name",                                                   default: ""
-    t.string   "last_name",                                                    default: ""
-    t.string   "email",                                                        default: ""
-    t.string   "phone",                                                        default: ""
-    t.string   "address1",                                                     default: ""
-    t.string   "address2",                                                     default: ""
-    t.string   "address_city",                                                 default: ""
-    t.string   "address_state",                                                default: ""
-    t.string   "address_zip",                                                  default: ""
-    t.string   "title",                                                        default: ""
-    t.decimal  "pay_hourly",                           precision: 8, scale: 2, default: 0.0
-    t.decimal  "pay_daily",                            precision: 8, scale: 2, default: 0.0
+    t.string   "legacy_id",                            limit: 255,                         default: ""
+    t.string   "first_name",                           limit: 255,                         default: ""
+    t.string   "last_name",                            limit: 255,                         default: ""
+    t.string   "email",                                limit: 255,                         default: ""
+    t.string   "phone",                                limit: 255,                         default: ""
+    t.string   "address1",                             limit: 255,                         default: ""
+    t.string   "address2",                             limit: 255,                         default: ""
+    t.string   "address_city",                         limit: 255,                         default: ""
+    t.string   "address_state",                        limit: 255,                         default: ""
+    t.string   "address_zip",                          limit: 255,                         default: ""
+    t.string   "title",                                limit: 255,                         default: ""
+    t.decimal  "pay_hourly",                                       precision: 8, scale: 2, default: 0.0
+    t.decimal  "pay_daily",                                        precision: 8, scale: 2, default: 0.0
     t.date     "hire_date"
     t.date     "term_date"
-    t.string   "fed_filing_status",                                            default: ""
-    t.string   "ca_filing_status",                                             default: ""
-    t.integer  "fed_allowances",                                               default: 0
-    t.integer  "ca_allowances",                                                default: 0
+    t.string   "fed_filing_status",                    limit: 255,                         default: ""
+    t.string   "ca_filing_status",                     limit: 255,                         default: ""
+    t.integer  "fed_allowances",                                                           default: 0
+    t.integer  "ca_allowances",                                                            default: 0
     t.date     "dob"
-    t.string   "gender",                                                       default: ""
-    t.boolean  "active",                                                       default: true
-    t.text     "notes",                                                        default: ""
+    t.string   "gender",                               limit: 255,                         default: ""
+    t.boolean  "active",                                                                   default: true
+    t.text     "notes",                                                                    default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "daily_quota",                          precision: 8, scale: 2, default: 0.0
-    t.decimal  "shifts_lifetime",                      precision: 8, scale: 2, default: 0.0
-    t.decimal  "shifts_this_pay_period",               precision: 8, scale: 2, default: 0.0
-    t.decimal  "shifts_this_week",                     precision: 8, scale: 2, default: 0.0
-    t.decimal  "fundraising_shifts_lifetime",          precision: 8, scale: 2, default: 0.0
-    t.decimal  "fundraising_shifts_this_pay_period",   precision: 8, scale: 2, default: 0.0
-    t.decimal  "fundraising_shifts_this_week",         precision: 8, scale: 2, default: 0.0
-    t.decimal  "donations_lifetime",                   precision: 8, scale: 2, default: 0.0
-    t.decimal  "donations_this_pay_period",            precision: 8, scale: 2, default: 0.0
-    t.decimal  "donations_this_week",                  precision: 8, scale: 2, default: 0.0
-    t.decimal  "successful_donations_lifetime",        precision: 8, scale: 2, default: 0.0
-    t.decimal  "successful_donations_this_pay_period", precision: 8, scale: 2, default: 0.0
-    t.decimal  "successful_donations_this_week",       precision: 8, scale: 2, default: 0.0
-    t.decimal  "raised_lifetime",                      precision: 8, scale: 2, default: 0.0
-    t.decimal  "raised_this_pay_period",               precision: 8, scale: 2, default: 0.0
-    t.decimal  "raised_this_week",                     precision: 8, scale: 2, default: 0.0
-    t.decimal  "average_lifetime",                     precision: 8, scale: 2, default: 0.0
-    t.decimal  "average_this_pay_period",              precision: 8, scale: 2, default: 0.0
-    t.decimal  "average_this_week",                    precision: 8, scale: 2, default: 0.0
+    t.decimal  "daily_quota",                                      precision: 8, scale: 2, default: 0.0
+    t.decimal  "shifts_lifetime",                                  precision: 8, scale: 2, default: 0.0
+    t.decimal  "shifts_this_pay_period",                           precision: 8, scale: 2, default: 0.0
+    t.decimal  "shifts_this_week",                                 precision: 8, scale: 2, default: 0.0
+    t.decimal  "fundraising_shifts_lifetime",                      precision: 8, scale: 2, default: 0.0
+    t.decimal  "fundraising_shifts_this_pay_period",               precision: 8, scale: 2, default: 0.0
+    t.decimal  "fundraising_shifts_this_week",                     precision: 8, scale: 2, default: 0.0
+    t.decimal  "donations_lifetime",                               precision: 8, scale: 2, default: 0.0
+    t.decimal  "donations_this_pay_period",                        precision: 8, scale: 2, default: 0.0
+    t.decimal  "donations_this_week",                              precision: 8, scale: 2, default: 0.0
+    t.decimal  "successful_donations_lifetime",                    precision: 8, scale: 2, default: 0.0
+    t.decimal  "successful_donations_this_pay_period",             precision: 8, scale: 2, default: 0.0
+    t.decimal  "successful_donations_this_week",                   precision: 8, scale: 2, default: 0.0
+    t.decimal  "raised_lifetime",                                  precision: 8, scale: 2, default: 0.0
+    t.decimal  "raised_this_pay_period",                           precision: 8, scale: 2, default: 0.0
+    t.decimal  "raised_this_week",                                 precision: 8, scale: 2, default: 0.0
+    t.decimal  "average_lifetime",                                 precision: 8, scale: 2, default: 0.0
+    t.decimal  "average_this_pay_period",                          precision: 8, scale: 2, default: 0.0
+    t.decimal  "average_this_week",                                precision: 8, scale: 2, default: 0.0
   end
 
   add_index "employees", ["active"], name: "index_employees_on_active", using: :btree
@@ -107,8 +107,8 @@ ActiveRecord::Schema.define(version: 20140906011001) do
 
   create_table "migration_errors", force: true do |t|
     t.integer  "record_id"
-    t.string   "record_name", default: ""
-    t.string   "message",     default: ""
+    t.string   "record_name", limit: 255, default: ""
+    t.string   "message",     limit: 255, default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -146,9 +146,9 @@ ActiveRecord::Schema.define(version: 20140906011001) do
 
   create_table "payment_profiles", force: true do |t|
     t.integer  "supporter_id"
-    t.string   "cim_payment_profile_id", default: ""
-    t.string   "payment_profile_type",   default: ""
-    t.hstore   "details",                default: {}
+    t.string   "cim_payment_profile_id", limit: 255, default: ""
+    t.string   "payment_profile_type",   limit: 255, default: ""
+    t.hstore   "details",                            default: {}
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -160,15 +160,15 @@ ActiveRecord::Schema.define(version: 20140906011001) do
     t.integer  "donation_id"
     t.integer  "payment_profile_id"
     t.integer  "deposit_batch_id"
-    t.string   "legacy_id",                                  default: ""
-    t.string   "cim_transaction_id",                         default: ""
-    t.string   "cim_auth_code",                              default: ""
+    t.string   "legacy_id",          limit: 255,                         default: ""
+    t.string   "cim_transaction_id", limit: 255,                         default: ""
+    t.string   "cim_auth_code",      limit: 255,                         default: ""
     t.date     "deposited_at"
-    t.string   "payment_type",                               default: ""
-    t.boolean  "captured",                                   default: false
-    t.boolean  "processed",                                  default: false
-    t.decimal  "amount",             precision: 8, scale: 2, default: 0.0
-    t.text     "notes",                                      default: ""
+    t.string   "payment_type",       limit: 255,                         default: ""
+    t.boolean  "captured",                                               default: false
+    t.boolean  "processed",                                              default: false
+    t.decimal  "amount",                         precision: 8, scale: 2, default: 0.0
+    t.text     "notes",                                                  default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "receipt_sent_at"
@@ -201,8 +201,8 @@ ActiveRecord::Schema.define(version: 20140906011001) do
 
   create_table "sendy_lists", force: true do |t|
     t.integer  "supporter_type_id"
-    t.string   "sendy_list_identifier", default: ""
-    t.string   "name",                  default: ""
+    t.string   "sendy_list_identifier", limit: 255, default: ""
+    t.string   "name",                  limit: 255, default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -214,11 +214,11 @@ ActiveRecord::Schema.define(version: 20140906011001) do
     t.integer  "supporter_id"
     t.integer  "sendy_list_id"
     t.integer  "sendy_batch_id"
-    t.string   "sendy_email",      default: ""
-    t.string   "new_sendy_email",  default: ""
-    t.string   "new_sendy_status", default: ""
-    t.string   "action",           default: ""
-    t.boolean  "success",          default: false
+    t.string   "sendy_email",      limit: 255, default: ""
+    t.string   "new_sendy_email",  limit: 255, default: ""
+    t.string   "new_sendy_status", limit: 255, default: ""
+    t.string   "action",           limit: 255, default: ""
+    t.boolean  "success",                      default: false
     t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -230,14 +230,14 @@ ActiveRecord::Schema.define(version: 20140906011001) do
   add_index "sendy_updates", ["supporter_id"], name: "index_sendy_updates_on_supporter_id", using: :btree
 
   create_table "shift_types", force: true do |t|
-    t.string   "name",                                            default: ""
-    t.decimal  "monthly_cc_multiplier",   precision: 8, scale: 2, default: 0.0
-    t.decimal  "quarterly_cc_multiplier", precision: 8, scale: 2, default: 0.0
+    t.string   "name",                    limit: 255,                         default: ""
+    t.decimal  "monthly_cc_multiplier",               precision: 8, scale: 2, default: 0.0
+    t.decimal  "quarterly_cc_multiplier",             precision: 8, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "fundraising_shift",                               default: false
-    t.boolean  "quota_shift",                                     default: true
-    t.string   "workers_comp_type",                               default: ""
+    t.boolean  "fundraising_shift",                                           default: false
+    t.boolean  "quota_shift",                                                 default: true
+    t.string   "workers_comp_type",       limit: 255,                         default: ""
   end
 
   add_index "shift_types", ["fundraising_shift"], name: "index_shift_types_on_fundraising_shift", using: :btree
@@ -247,30 +247,30 @@ ActiveRecord::Schema.define(version: 20140906011001) do
     t.integer  "employee_id"
     t.integer  "field_manager_employee_id"
     t.integer  "shift_type_id"
-    t.string   "legacy_id",                                         default: ""
+    t.string   "legacy_id",                 limit: 255,                         default: ""
     t.date     "date"
     t.time     "time_in"
     t.time     "time_out"
-    t.integer  "break_time",                                        default: 0
-    t.text     "notes",                                             default: ""
-    t.decimal  "travel_reimb",              precision: 8, scale: 2, default: 0.0
-    t.hstore   "products",                                          default: {}
-    t.decimal  "reported_raised",           precision: 8, scale: 2, default: 0.0
-    t.integer  "reported_total_yes",                                default: 0
-    t.integer  "reported_cash_qty",                                 default: 0
-    t.decimal  "reported_cash_amt",         precision: 8, scale: 2, default: 0.0
-    t.integer  "reported_check_qty",                                default: 0
-    t.decimal  "reported_check_amt",        precision: 8, scale: 2, default: 0.0
-    t.integer  "reported_one_time_cc_qty",                          default: 0
-    t.decimal  "reported_one_time_cc_amt",  precision: 8, scale: 2, default: 0.0
-    t.integer  "reported_monthly_cc_qty",                           default: 0
-    t.decimal  "reported_monthly_cc_amt",   precision: 8, scale: 2, default: 0.0
-    t.integer  "reported_quarterly_cc_amt",                         default: 0
-    t.decimal  "reported_quarterly_cc_qty", precision: 8, scale: 2, default: 0.0
+    t.integer  "break_time",                                                    default: 0
+    t.text     "notes",                                                         default: ""
+    t.decimal  "travel_reimb",                          precision: 8, scale: 2, default: 0.0
+    t.hstore   "products",                                                      default: {}
+    t.decimal  "reported_raised",                       precision: 8, scale: 2, default: 0.0
+    t.integer  "reported_total_yes",                                            default: 0
+    t.integer  "reported_cash_qty",                                             default: 0
+    t.decimal  "reported_cash_amt",                     precision: 8, scale: 2, default: 0.0
+    t.integer  "reported_check_qty",                                            default: 0
+    t.decimal  "reported_check_amt",                    precision: 8, scale: 2, default: 0.0
+    t.integer  "reported_one_time_cc_qty",                                      default: 0
+    t.decimal  "reported_one_time_cc_amt",              precision: 8, scale: 2, default: 0.0
+    t.integer  "reported_monthly_cc_qty",                                       default: 0
+    t.decimal  "reported_monthly_cc_amt",               precision: 8, scale: 2, default: 0.0
+    t.integer  "reported_quarterly_cc_amt",                                     default: 0
+    t.decimal  "reported_quarterly_cc_qty",             precision: 8, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "paycheck_id"
-    t.string   "site",                                              default: ""
+    t.string   "site",                      limit: 255,                         default: ""
   end
 
   add_index "shifts", ["employee_id"], name: "index_shifts_on_employee_id", using: :btree
@@ -279,7 +279,7 @@ ActiveRecord::Schema.define(version: 20140906011001) do
   add_index "shifts", ["shift_type_id"], name: "index_shifts_on_shift_type_id", using: :btree
 
   create_table "supporter_types", force: true do |t|
-    t.string   "name",       default: ""
+    t.string   "name",       limit: 255, default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -287,47 +287,47 @@ ActiveRecord::Schema.define(version: 20140906011001) do
   create_table "supporters", force: true do |t|
     t.integer  "supporter_type_id"
     t.integer  "sendy_list_id"
-    t.string   "legacy_id",         default: ""
-    t.string   "external_id",       default: ""
-    t.string   "cim_id",            default: ""
-    t.string   "prefix",            default: ""
-    t.string   "salutation",        default: ""
-    t.string   "first_name",        default: ""
-    t.string   "last_name",         default: ""
-    t.string   "suffix",            default: ""
-    t.string   "address1",          default: ""
-    t.string   "address2",          default: ""
-    t.string   "address_city",      default: ""
-    t.string   "address_state",     default: ""
-    t.string   "address_zip",       default: ""
-    t.string   "address_county",    default: ""
-    t.boolean  "address_bad",       default: false
-    t.string   "email_1",           default: ""
-    t.boolean  "email_1_bad",       default: false
-    t.string   "email_2",           default: ""
-    t.boolean  "email_2_bad",       default: false
-    t.string   "phone_mobile",      default: ""
-    t.boolean  "phone_mobile_bad",  default: false
-    t.string   "phone_home",        default: ""
-    t.boolean  "phone_home_bad",    default: false
-    t.string   "phone_alt",         default: ""
-    t.boolean  "phone_alt_bad",     default: false
-    t.boolean  "do_not_mail",       default: false
-    t.boolean  "do_not_call",       default: false
-    t.boolean  "do_not_email",      default: false
-    t.boolean  "keep_informed",     default: false
-    t.string   "employer",          default: ""
-    t.string   "occupation",        default: ""
-    t.string   "source",            default: ""
-    t.text     "notes",             default: ""
-    t.string   "sendy_status",      default: ""
+    t.string   "legacy_id",         limit: 255, default: ""
+    t.string   "external_id",       limit: 255, default: ""
+    t.string   "cim_id",            limit: 255, default: ""
+    t.string   "prefix",            limit: 255, default: ""
+    t.string   "salutation",        limit: 255, default: ""
+    t.string   "first_name",        limit: 255, default: ""
+    t.string   "last_name",         limit: 255, default: ""
+    t.string   "suffix",            limit: 255, default: ""
+    t.string   "address1",          limit: 255, default: ""
+    t.string   "address2",          limit: 255, default: ""
+    t.string   "address_city",      limit: 255, default: ""
+    t.string   "address_state",     limit: 255, default: ""
+    t.string   "address_zip",       limit: 255, default: ""
+    t.string   "address_county",    limit: 255, default: ""
+    t.boolean  "address_bad",                   default: false
+    t.string   "email_1",           limit: 255, default: ""
+    t.boolean  "email_1_bad",                   default: false
+    t.string   "email_2",           limit: 255, default: ""
+    t.boolean  "email_2_bad",                   default: false
+    t.string   "phone_mobile",      limit: 255, default: ""
+    t.boolean  "phone_mobile_bad",              default: false
+    t.string   "phone_home",        limit: 255, default: ""
+    t.boolean  "phone_home_bad",                default: false
+    t.string   "phone_alt",         limit: 255, default: ""
+    t.boolean  "phone_alt_bad",                 default: false
+    t.boolean  "do_not_mail",                   default: false
+    t.boolean  "do_not_call",                   default: false
+    t.boolean  "do_not_email",                  default: false
+    t.boolean  "keep_informed",                 default: false
+    t.string   "employer",          limit: 255, default: ""
+    t.string   "occupation",        limit: 255, default: ""
+    t.string   "source",            limit: 255, default: ""
+    t.text     "notes",                         default: ""
+    t.string   "sendy_status",      limit: 255, default: ""
     t.datetime "sendy_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "cim_customer_id",   default: ""
-    t.string   "vol_level",         default: ""
-    t.string   "spouse_name",       default: ""
-    t.string   "prospect_group",    default: ""
+    t.string   "cim_customer_id",   limit: 255, default: ""
+    t.string   "vol_level",         limit: 255, default: ""
+    t.string   "spouse_name",       limit: 255, default: ""
+    t.string   "prospect_group",    limit: 255, default: ""
   end
 
   add_index "supporters", ["cim_id"], name: "index_supporters_on_cim_id", using: :btree
@@ -346,31 +346,31 @@ ActiveRecord::Schema.define(version: 20140906011001) do
   add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
 
   create_table "tags", force: true do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0
+    t.integer  "sign_in_count",                      default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        default: 0
-    t.string   "unlock_token"
+    t.string   "unconfirmed_email",      limit: 255
+    t.integer  "failed_attempts",                    default: 0
+    t.string   "unlock_token",           limit: 255
     t.datetime "locked_at"
-    t.string   "authentication_token"
-    t.string   "role",                   default: ""
+    t.string   "authentication_token",   limit: 255
+    t.string   "role",                   limit: 255, default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -382,10 +382,10 @@ ActiveRecord::Schema.define(version: 20140906011001) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   create_table "versions", force: true do |t|
-    t.string   "item_type",  null: false
-    t.integer  "item_id",    null: false
-    t.string   "event",      null: false
-    t.string   "whodunnit"
+    t.string   "item_type",  limit: 255, null: false
+    t.integer  "item_id",                null: false
+    t.string   "event",      limit: 255, null: false
+    t.string   "whodunnit",  limit: 255
     t.text     "object"
     t.datetime "created_at"
   end

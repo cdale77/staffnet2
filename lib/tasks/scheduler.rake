@@ -15,3 +15,7 @@ task :sub_week_5_to_4 => :environment do
     end
   end
 end
+
+task :employee_fundraising_calculations => :environment do
+  EmployeeFundraisingCalculationsJob.enqueue
+end
