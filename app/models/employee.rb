@@ -145,6 +145,7 @@ class Employee < ActiveRecord::Base
     successful_donations = donations.select { |d| d.captured }
     donations_this_week = donations.select { |d| (Date.today.beginning_of_week..Date.today).include?(d.shift.date) }
     successful_donations_this_week = successful_donations.select { |d| (Date.today.beginning_of_week..Date.today).include?(d.shift.date) }
+    raised_lifetime = successful_donations.sum(&:total_value)
     {
         shifts: shifts.count,
         shifts_this_week: shifts_this_week.count,
@@ -154,7 +155,7 @@ class Employee < ActiveRecord::Base
         donations_this_week: donations_this_week.count,
         successful_donations: successful_donations.count,
         successful_donations_this_week:  successful_donations_this_week.count,
-        raised_lifetime: successful_donations.sum(&:total_value),
+        raised_lifetime: raised_lifetime,
         raised_this_week: successful_donations_this_week.sum(&:total_value),
         average_lifetime: self.calculate_average(raised_lifetime, fundraising_shifts.count),
         average_this_week: self.calculate_averge(raised_this_week / fundraising_shifts_this_week.count)

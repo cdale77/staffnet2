@@ -9,8 +9,6 @@ class EmployeeFundraisingCalculationsJob < ActiveJob::Base
       employee.save
     end
 
-
-
   end
 end
 
