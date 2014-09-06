@@ -6,14 +6,14 @@
 #  donation_id        :integer
 #  payment_profile_id :integer
 #  deposit_batch_id   :integer
-#  legacy_id          :string(255)      default("")
-#  cim_transaction_id :string(255)      default("")
-#  cim_auth_code      :string(255)      default("")
+#  legacy_id          :string           default("")
+#  cim_transaction_id :string           default("")
+#  cim_auth_code      :string           default("")
 #  deposited_at       :date
-#  payment_type       :string(255)      default("")
-#  captured           :boolean          default(FALSE)
-#  processed          :boolean          default(FALSE)
-#  amount             :decimal(8, 2)    default(0.0)
+#  payment_type       :string           default("")
+#  captured           :boolean          default("false")
+#  processed          :boolean          default("false")
+#  amount             :decimal(8, 2)    default("0.0")
 #  notes              :text             default("")
 #  created_at         :datetime
 #  updated_at         :datetime

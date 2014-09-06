@@ -4,9 +4,9 @@
 #
 #  id                     :integer          not null, primary key
 #  supporter_id           :integer
-#  cim_payment_profile_id :string(255)      default("")
-#  payment_profile_type   :string(255)      default("")
-#  details                :hstore           default({})
+#  cim_payment_profile_id :string           default("")
+#  payment_profile_type   :string           default("")
+#  details                :hstore           default("")
 #  created_at             :datetime
 #  updated_at             :datetime
 #

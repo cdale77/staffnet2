@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: payments
+#
+#  id                 :integer          not null, primary key
+#  donation_id        :integer
+#  payment_profile_id :integer
+#  deposit_batch_id   :integer
+#  legacy_id          :string           default("")
+#  cim_transaction_id :string           default("")
+#  cim_auth_code      :string           default("")
+#  deposited_at       :date
+#  payment_type       :string           default("")
+#  captured           :boolean          default("false")
+#  processed          :boolean          default("false")
+#  amount             :decimal(8, 2)    default("0.0")
+#  notes              :text             default("")
+#  created_at         :datetime
+#  updated_at         :datetime
+#  receipt_sent_at    :datetime
+#
+
 FactoryGirl.define do
   factory :payment do
     payment_type          'cash'

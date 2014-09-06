@@ -4,8 +4,8 @@
 #
 #  id          :integer          not null, primary key
 #  record_id   :integer
-#  record_name :string(255)      default("")
-#  message     :string(255)      default("")
+#  record_name :string           default("")
+#  message     :string           default("")
 #  created_at  :datetime
 #  updated_at  :datetime
 #

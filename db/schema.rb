@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140829005353) do
+ActiveRecord::Schema.define(version: 20140906011001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,32 +50,50 @@ ActiveRecord::Schema.define(version: 20140829005353) do
 
   create_table "employees", force: true do |t|
     t.integer  "user_id"
-    t.string   "legacy_id",                                 default: ""
-    t.string   "first_name",                                default: ""
-    t.string   "last_name",                                 default: ""
-    t.string   "email",                                     default: ""
-    t.string   "phone",                                     default: ""
-    t.string   "address1",                                  default: ""
-    t.string   "address2",                                  default: ""
-    t.string   "address_city",                              default: ""
-    t.string   "address_state",                             default: ""
-    t.string   "address_zip",                               default: ""
-    t.string   "title",                                     default: ""
-    t.decimal  "pay_hourly",        precision: 8, scale: 2, default: 0.0
-    t.decimal  "pay_daily",         precision: 8, scale: 2, default: 0.0
+    t.string   "legacy_id",                                                    default: ""
+    t.string   "first_name",                                                   default: ""
+    t.string   "last_name",                                                    default: ""
+    t.string   "email",                                                        default: ""
+    t.string   "phone",                                                        default: ""
+    t.string   "address1",                                                     default: ""
+    t.string   "address2",                                                     default: ""
+    t.string   "address_city",                                                 default: ""
+    t.string   "address_state",                                                default: ""
+    t.string   "address_zip",                                                  default: ""
+    t.string   "title",                                                        default: ""
+    t.decimal  "pay_hourly",                           precision: 8, scale: 2, default: 0.0
+    t.decimal  "pay_daily",                            precision: 8, scale: 2, default: 0.0
     t.date     "hire_date"
     t.date     "term_date"
-    t.string   "fed_filing_status",                         default: ""
-    t.string   "ca_filing_status",                          default: ""
-    t.integer  "fed_allowances",                            default: 0
-    t.integer  "ca_allowances",                             default: 0
+    t.string   "fed_filing_status",                                            default: ""
+    t.string   "ca_filing_status",                                             default: ""
+    t.integer  "fed_allowances",                                               default: 0
+    t.integer  "ca_allowances",                                                default: 0
     t.date     "dob"
-    t.string   "gender",                                    default: ""
-    t.boolean  "active",                                    default: true
-    t.text     "notes",                                     default: ""
+    t.string   "gender",                                                       default: ""
+    t.boolean  "active",                                                       default: true
+    t.text     "notes",                                                        default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "daily_quota",       precision: 8, scale: 2, default: 0.0
+    t.decimal  "daily_quota",                          precision: 8, scale: 2, default: 0.0
+    t.decimal  "shifts_lifetime",                      precision: 8, scale: 2, default: 0.0
+    t.decimal  "shifts_this_pay_period",               precision: 8, scale: 2, default: 0.0
+    t.decimal  "shifts_this_week",                     precision: 8, scale: 2, default: 0.0
+    t.decimal  "fundraising_shifts_lifetime",          precision: 8, scale: 2, default: 0.0
+    t.decimal  "fundraising_shifts_this_pay_period",   precision: 8, scale: 2, default: 0.0
+    t.decimal  "fundraising_shifts_this_week",         precision: 8, scale: 2, default: 0.0
+    t.decimal  "donations_lifetime",                   precision: 8, scale: 2, default: 0.0
+    t.decimal  "donations_this_pay_period",            precision: 8, scale: 2, default: 0.0
+    t.decimal  "donations_this_week",                  precision: 8, scale: 2, default: 0.0
+    t.decimal  "successful_donations_lifetime",        precision: 8, scale: 2, default: 0.0
+    t.decimal  "successful_donations_this_pay_period", precision: 8, scale: 2, default: 0.0
+    t.decimal  "successful_donations_this_week",       precision: 8, scale: 2, default: 0.0
+    t.decimal  "raised_lifetime",                      precision: 8, scale: 2, default: 0.0
+    t.decimal  "raised_this_pay_period",               precision: 8, scale: 2, default: 0.0
+    t.decimal  "raised_this_week",                     precision: 8, scale: 2, default: 0.0
+    t.decimal  "average_lifetime",                     precision: 8, scale: 2, default: 0.0
+    t.decimal  "average_this_pay_period",              precision: 8, scale: 2, default: 0.0
+    t.decimal  "average_this_week",                    precision: 8, scale: 2, default: 0.0
   end
 
   add_index "employees", ["active"], name: "index_employees_on_active", using: :btree

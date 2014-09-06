@@ -4,13 +4,13 @@
 #
 #  id             :integer          not null, primary key
 #  employee_id    :integer
-#  batch_type     :string(255)      default("")
+#  batch_type     :string           default("")
 #  date           :date
-#  deposited      :boolean          default(FALSE)
+#  deposited      :boolean          default("false")
 #  created_at     :datetime
 #  updated_at     :datetime
-#  approved       :boolean          default(FALSE)
-#  receipt_number :string(255)      default("")
+#  approved       :boolean          default("false")
+#  receipt_number :string           default("")
 #
 
 require 'spec_helper'

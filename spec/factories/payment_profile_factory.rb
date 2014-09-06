@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: payment_profiles
+#
+#  id                     :integer          not null, primary key
+#  supporter_id           :integer
+#  cim_payment_profile_id :string           default("")
+#  payment_profile_type   :string           default("")
+#  details                :hstore           default("")
+#  created_at             :datetime
+#  updated_at             :datetime
+#
+
 FactoryGirl.define do
   factory :payment_profile do
     cim_payment_profile_id    '44432111'

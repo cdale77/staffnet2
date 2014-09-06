@@ -5,20 +5,20 @@
 #  id                       :integer          not null, primary key
 #  start_date               :date
 #  end_date                 :date
-#  check_quantity           :integer          default(0)
-#  shift_quantity           :decimal(8, 2)    default(0.0)
-#  cv_shift_quantity        :decimal(8, 2)    default(0.0)
-#  quota_shift_quantity     :decimal(8, 2)    default(0.0)
-#  office_shift_quantity    :decimal(8, 2)    default(0.0)
-#  sick_shift_quantity      :decimal(8, 2)    default(0.0)
-#  holiday_shift_quantity   :decimal(8, 2)    default(0.0)
-#  total_deposit            :decimal(8, 2)    default(0.0)
+#  check_quantity           :integer          default("0")
+#  shift_quantity           :decimal(8, 2)    default("0.0")
+#  cv_shift_quantity        :decimal(8, 2)    default("0.0")
+#  quota_shift_quantity     :decimal(8, 2)    default("0.0")
+#  office_shift_quantity    :decimal(8, 2)    default("0.0")
+#  sick_shift_quantity      :decimal(8, 2)    default("0.0")
+#  holiday_shift_quantity   :decimal(8, 2)    default("0.0")
+#  total_deposit            :decimal(8, 2)    default("0.0")
 #  created_at               :datetime
 #  updated_at               :datetime
-#  vacation_shift_quantity  :decimal(8, 2)    default(0.0)
+#  vacation_shift_quantity  :decimal(8, 2)    default("0.0")
 #  notes                    :text             default("")
-#  gross_fundraising_credit :decimal(8, 2)    default(0.0)
-#  net_fundraising_credit   :decimal(8, 2)    default(0.0)
+#  gross_fundraising_credit :decimal(8, 2)    default("0.0")
+#  net_fundraising_credit   :decimal(8, 2)    default("0.0")
 #
 
 class Payroll < ActiveRecord::Base

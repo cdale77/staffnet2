@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: sendy_lists
+#
+#  id                    :integer          not null, primary key
+#  supporter_type_id     :integer
+#  sendy_list_identifier :string           default("")
+#  name                  :string           default("")
+#  created_at            :datetime
+#  updated_at            :datetime
+#
+
 FactoryGirl.define do
   factory :sendy_list do
     name      'supporters'
