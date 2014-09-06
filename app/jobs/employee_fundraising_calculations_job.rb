@@ -9,7 +9,7 @@ class EmployeeFundraisingCalculationsJob < ActiveJob::Base
       shifts_this_week = shifts.where(date: (Date.today.beginning_of_week..Date.today))
       fundraising_shifts = shifts.select { |s| s.fundraising_shift }
       fundraising_shifts_this_week = shifts_this_week.select { |s| s.fundraising_shift }
-      donations = Employee.donations
+      donations = employee.donations
       donations_this_week = donations.select { |d| (Date.today.beginning_of_week..Date.today).include?(d.shift.date) }
       successful_donations = donations.select { |d| d.captured }
       successful_donations_this_week =  donations.select { |d| (Date.today.beginning_of_week..Date.today).include?(d.shift.date) }
