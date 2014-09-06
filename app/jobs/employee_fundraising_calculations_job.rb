@@ -15,8 +15,8 @@ class EmployeeFundraisingCalculationsJob < ActiveJob::Base
       successful_donations_this_week =  donations.select { |d| (Date.today.beginning_of_week..Date.today).include?(d.shift.date) }
       raised_lifetime = successful_donations.sum(&:total_value)
       raised_this_week = successful_donations_this_week.sum(&:total_value)
-      average_lifetime = raised_lifetime / fundraising_shifts
-      average_this_week = raised_this_week / fundraising_shifts_this_week
+      average_lifetime = raised_lifetime / fundraising_shifts.count
+      average_this_week = raised_this_week / fundraising_shifts_this_week.count
 
       employee.shifts_lifetime = shifts.count
       employee.shifts_this_week = shifts_this_week.count
