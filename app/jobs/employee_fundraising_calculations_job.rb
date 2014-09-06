@@ -5,7 +5,7 @@ class EmployeeFundraisingCalculationsJob < ActiveJob::Base
 
   def perform
     Employee.active.each do |employee|
-      shifts = Employee.shifts
+      shifts = employee.shifts
       shifts_this_week = shifts.where(date: (Date.today.beginning_of_week..Date.today))
       fundraising_shifts = shifts.select { |s| s.fundraising_shift }
       fundraising_shifts_this_week = shifts_this_week.select { |s| s.fundraising_shift }
