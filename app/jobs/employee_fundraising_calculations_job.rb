@@ -5,7 +5,7 @@ class EmployeeFundraisingCalculationsJob < ActiveJob::Base
 
   def perform
     Employee.active.each do |employee|
-      employee.assign_attributes(Employee.statistics(employee))
+      employee.update_attributes(Employee.statistics(employee))
       employee.save
     end
 

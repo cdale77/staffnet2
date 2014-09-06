@@ -148,7 +148,7 @@ class Employee < ActiveRecord::Base
     raised_lifetime = successful_donations.sum(&:total_value)
     raised_this_week = successful_donations_this_week.sum(&:total_value)
     {
-        shifts: shifts.count,
+        shifts_lifetime: shifts.count,
         shifts_this_week: shifts_this_week.count,
         fundraising_shifts: fundraising_shifts.count,
         fundraising_shifts_this_week: fundraising_shifts_this_week.count,
