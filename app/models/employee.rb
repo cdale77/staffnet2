@@ -154,7 +154,7 @@ class Employee < ActiveRecord::Base
         fundraising_shifts_this_week: fundraising_shifts_this_week.count,
         donations_lifetime: donations.count,
         donations_this_week: donations_this_week.count,
-        successful_donations: successful_donations.count,
+        successful_donations_lifetime: successful_donations.count,
         successful_donations_this_week:  successful_donations_this_week.count,
         raised_lifetime: raised_lifetime,
         raised_this_week: raised_this_week,
