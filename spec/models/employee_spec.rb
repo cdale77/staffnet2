@@ -344,29 +344,4 @@ describe Employee do
       end
     end
   end
-
-  ## INSTANCE METHODS
-  describe '#successful_donations' do
-    it 'should return the correct number' do
-      expect(employee.successful_donations.count).to eq 2
-    end
-  end
-  describe '#fundraising_shifts' do
-    it 'should return the correct number' do
-      expect(employee.fundraising_shifts.count).to eq 1
-    end
-  end
-  describe '#fundraising_total' do
-    it 'should return the correct number' do
-      expect(employee.fundraising_total).to eq 10
-    end
-  end
-  describe '#fundraising_average' do
-    it 'should calculate the correct average' do
-      expect(employee.fundraising_average).to eq 10
-    end
-  end
-
 end
-
-

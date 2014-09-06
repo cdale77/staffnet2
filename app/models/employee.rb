@@ -125,7 +125,7 @@ class Employee < ActiveRecord::Base
   end
 
 
-  ## METHODS
+  ## SCOPES
   def self.active
     Employee.where(active: true)
   end
@@ -134,51 +134,9 @@ class Employee < ActiveRecord::Base
     Employee.where(title: "field_manager")
   end
 
-  def fundraising_shifts
-    self.shifts.select { |s| s.fundraising_shift }
-  end
-
-  def shifts_this_week
-    self.shifts.where(date: (Date.today.beginning_of_week..Date.today))
-  end
-
-  def fundraising_shifts_this_week
-    self.shifts_this_week.select { |s| s.fundraising_shift }
-  end
-
-  def donations_this_week
-    self.donations.select do |d|
-        (Date.today.beginning_of_week..Date.today).include?(d.shift.date)
-    end
-  end
-
-  def successful_donations
-    self.donations.select { |d| d.captured }
-  end
-
-  def successful_donations_this_week
-    self.successful_donations.select do |d|
-      (Date.today.beginning_of_week..Date.today).include?(d.shift.date)
-    end
-  end
-
-  def fundraising_total
-    self.successful_donations.sum(&:total_value)
-  end
+  ## FUNDRAISING STATISTICS
 
 
-  def fundraising_total_this_week
-    self.successful_donations_this_week.sum(&:total_value)
-  end
-
-  def fundraising_average
-    if self.fundraising_shifts.any?
-      self.fundraising_total / self.fundraising_shifts.count
-    else
-      0
-    end
-
-  end
 
   def fundraising_average_this_week
     if self.fundraising_shifts_this_week.any?
