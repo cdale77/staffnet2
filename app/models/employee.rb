@@ -159,7 +159,7 @@ class Employee < ActiveRecord::Base
         raised_lifetime: raised_lifetime,
         raised_this_week: raised_this_week,
         average_lifetime: self.calculate_average(raised_lifetime, fundraising_shifts.count),
-        average_this_week: self.calculate_averge(raised_this_week / fundraising_shifts_this_week.count)
+        average_this_week: self.calculate_average(raised_this_week / fundraising_shifts_this_week.count)
     }
   end
 
