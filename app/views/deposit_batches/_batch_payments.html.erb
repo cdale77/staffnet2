@@ -3,7 +3,7 @@
     <h4 class="table-title-right">Payments</h4>
   </div>
   <table class="table">
-    <tr class="<%= payment.captured ? "red" : "" %>">
+    <tr>
       <th>Created at</th>
       <th>Employee</th>
       <th>Shift</th>
@@ -16,7 +16,7 @@
       <th></th>
     </tr>
     <% payments.each do |payment| %>
-      <tr>
+      <tr class="<%= payment.captured ? "red" : "" %>" >
         <td>
           <%= l payment.created_at %>
         </td>
