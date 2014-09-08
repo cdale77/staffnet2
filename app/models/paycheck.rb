@@ -50,30 +50,61 @@ class Paycheck < ActiveRecord::Base
   end
 
   def calculate_values
-    total_shifts = self.shifts
-    cv_shifts = total_shifts.select { |s| s.fundraising_shift }
-    quota_shifts = total_shifts.select { |s| s.quota_shift }
-    office_shifts = total_shifts.select { |s| s.shift_type_name == "office" }
-    sick_shifts = total_shifts.select { |s| s.shift_type_name == "sick" }
-    vacation_shifts = total_shifts.select { |s| s.shift_type_name == "vacation" }
-    holiday_shifts = total_shifts.select { |s| s.shift_type_name == "holiday" }
 
-    total_deposit = total_shifts.map(&:total_deposit).inject(0, &:+)
-    gross_fundraising_credit = total_shifts.map(&:gross_fundraising_credit).inject(0, &:+)
+    values = {
+        shift_quantity:           self.calculate_total_shifts,
+        cv_shift_quantity:        self.calculate_cv_shifts,
+        quota_shift_quantity:     self.calculate_quota_shifts,
+        office_shift_quantity:    self.calculate_shifts_by_type("office"),
+        sick_shift_quantity:      self.calculate_shifts_by_type("sick"),
+        vacation_shift_quantity:  self.calculate_shifts_by_type("vacation"),
+        holiday_shift_quantity:   self.calculate_shifts_by_type("holiday"),
+        total_deposit:            self.calculate_total_deposit,
+        gross_fundraising_credit: self.calculate_fundraising_credit,
+        net_fundraising_credit:   self.calculate_net_fundraising_credit,
+        total_pay:                self.calculate_total_pay,
+        travel_reimb:             self.calculate_travel_reimb
+    }
 
-    total_pay = total_shifts.count * self.employee.pay_daily
-    travel_reimb = total_shifts.map(&:travel_reimb).inject(0, &:+)
+    update_attributes!(values)
 
-    self.shift_quantity = total_shifts.count
-    self.cv_shift_quantity = cv_shifts.count
-    self.quota_shift_quantity = quota_shifts.count
-    self.office_shift_quantity = office_shifts.count
-    self.sick_shift_quantity = sick_shifts.count
-    self.vacation_shift_quantity = vacation_shifts.count
-    self.holiday_shift_quantity = holiday_shifts.count
-    self.total_deposit = total_deposit
-    self.gross_fundraising_credit = gross_fundraising_credit
-    self.total_pay = total_pay
-    self.travel_reimb = travel_reimb
+  end
+
+  # methods for calculating paycheck numbers. Named to not conflict with
+  # attribute names
+  def calculate_net_fundraising_credit
+    0
+  end
+
+  def calculate_travel_reimb
+    self.shifts.map(&:travel_reimb).inject(0, &:+)
+  end
+
+  def calculate_total_pay
+    calculate_total_shifts * self.employee.pay_daily
+  end
+
+  def calculate_fundraising_credit
+    self.shifts.map(&:gross_fundraising_credit).inject(0, &:+)
+  end
+
+  def calculate_total_deposit
+    self.shifts.map(&:total_deposit).inject(0, &:+)
+  end
+
+  def calculate_shifts_by_type(type)
+    self.shifts.select { |s| s.shift_type_name == type.to_s }.count
+  end
+
+  def calculate_quota_shifts
+    self.shifts.select { |s| s.quota_shift }.count
+  end
+
+  def calculate_cv_shifts
+    self.shifts.select { |s| s.fundraising_shift }.count
+  end
+
+  def calculate_total_shifts
+    self.shifts.count
   end
 end

@@ -60,10 +60,12 @@ describe Paycheck do
   let!(:employee) { FactoryGirl.create(:employee) }
   let!(:shift_type) { FactoryGirl.create(:shift_type,
                                           name: "street",
-                                          workers_comp_type: "outside") }
+                                          workers_comp_type: "outside",
+                                          fundraising_shift: true) }
   let!(:shift_type2) { FactoryGirl.create(:shift_type,
                                          name: "phone",
-                                         workers_comp_type: "inside") }
+                                         workers_comp_type: "inside",
+                                         fundraising_shift: true) }
   let!(:shift) { FactoryGirl.create(:shift,
                                     paycheck: paycheck,
                                     employee: employee,
@@ -88,8 +90,6 @@ describe Paycheck do
                                        donation: donation2) }
 
 
-
-
   subject { paycheck }
 
   ## ATTRIBUTES
@@ -104,24 +104,55 @@ describe Paycheck do
   it { should respond_to(:payroll) }
   it { should respond_to(:shifts) }
 
-=begin
-  ## CALLBACKS
-  describe 'paycheck calculations' do
-    before { paycheck.calculate_values }
-    it 'should have the correct amounts' do
-      expect(paycheck.shift_quantity.to_s).to eq 1.to_s
-      expect(paycheck.cv_shift_quantity.to_s).to eq 1.to_s
-      expect(paycheck.quota_shift_quantity.to_s).to eq 1.to_s
-      expect(paycheck.office_shift_quantity.to_s).to eq 1.to_s
-      expect(paycheck.sick_shift_quantity.to_s).to eq 1.to_s
-      expect(paycheck.holiday_shift_quantity.to_s).to eq 1.to_s
-      expect(paycheck.vacation_shift_quantity.to_s).to eq 1.to_s
-      expect(paycheck.total_deposit.to_s).to eq 20.to_s
-      expect(paycheck.fundraising_credit.to_s).to eq 80.to_s
+  ## METHODS
+  describe '#calculate_values' do
+    it 'should return successful' do
+      expect(paycheck.calculate_values).to be_truthy
     end
   end
-=end
-  ## METHODS
+  describe '#calculate_travel_reimb' do
+    it 'should return a number' do
+      expect(paycheck.calculate_travel_reimb).to be_an_instance_of BigDecimal
+    end
+  end
+
+  describe '#calculate_total_pay' do
+    it 'should return a number' do
+      expect(paycheck.calculate_total_pay).to be_an_instance_of BigDecimal
+    end
+  end
+  describe '#calculate_fundraising_credit' do
+    it 'should return a number' do
+      expect(paycheck.calculate_fundraising_credit).to eq 80
+    end
+  end
+  describe '#calculate_total_deposit' do
+    it 'should return a number' do
+      expect(paycheck.calculate_total_deposit).to eq 20
+    end
+  end
+  describe '#calculate_shifts_by_type' do
+    it 'should return a number' do
+      expect(paycheck.calculate_shifts_by_type("street")).to eq 1
+    end
+  end
+  describe '#calculate_quota_shifts' do
+    it 'should return a number' do
+      expect(paycheck.calculate_quota_shifts).to eq 1
+    end
+  end
+
+  describe '#calculate_cv_shifts' do
+    it 'should return a number' do
+      expect(paycheck.calculate_cv_shifts).to eq 1
+    end
+  end
+
+  describe '#calculate_total_shifts' do
+    it 'should return a number' do
+      expect(paycheck.calculate_total_shifts).to eq 1
+    end
+  end
   describe 'inside outside splits' do
     it 'should provide the correct inside shift number' do
   #    expect(paycheck.inside_shift_count).to eq 1
