@@ -16,7 +16,7 @@
       <th></th>
     </tr>
     <% payments.each do |payment| %>
-      <tr class="<%= payment.captured ? "red" : "" %>" >
+      <tr class="<%= !payment.captured ? "red" : "" %>" >
         <td>
           <%= l payment.created_at %>
         </td>
