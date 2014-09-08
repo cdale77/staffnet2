@@ -60,10 +60,12 @@ describe Paycheck do
   let!(:employee) { FactoryGirl.create(:employee) }
   let!(:shift_type) { FactoryGirl.create(:shift_type,
                                           name: "street",
-                                          workers_comp_type: "outside") }
+                                          workers_comp_type: "outside",
+                                          fundraising_shift: true) }
   let!(:shift_type2) { FactoryGirl.create(:shift_type,
                                          name: "phone",
-                                         workers_comp_type: "inside") }
+                                         workers_comp_type: "inside",
+                                         fundraising_shift: true) }
   let!(:shift) { FactoryGirl.create(:shift,
                                     paycheck: paycheck,
                                     employee: employee,
@@ -122,6 +124,23 @@ describe Paycheck do
   end
 =end
   ## METHODS
+  describe '#calculate_quota_shifts' do
+    it 'should return a number' do
+      expect(paycheck.calculate_quota_shifts).to eq 1
+    end
+  end
+
+  describe '#calculate_cv_shifts' do
+    it 'should return a number' do
+      expect(paycheck.calculate_cv_shifts).to eq 1
+    end
+  end
+
+  describe '#calculate_total_shifts' do
+    it 'should return a number' do
+      expect(paycheck.calculate_total_shifts).to eq 1
+    end
+  end
   describe 'inside outside splits' do
     it 'should provide the correct inside shift number' do
   #    expect(paycheck.inside_shift_count).to eq 1

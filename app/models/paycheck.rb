@@ -50,8 +50,13 @@ class Paycheck < ActiveRecord::Base
   end
 
   def calculate_values
-    total_shifts = self.shifts
-    cv_shifts = total_shifts.select { |s| s.fundraising_shift }
+
+    values = {
+        total_shifts:     self.calculate_total_shifts,
+        cv_shifts:        self.calculate_cv_shifts,
+
+    }
+
     quota_shifts = total_shifts.select { |s| s.quota_shift }
     office_shifts = total_shifts.select { |s| s.shift_type_name == "office" }
     sick_shifts = total_shifts.select { |s| s.shift_type_name == "sick" }
@@ -75,5 +80,19 @@ class Paycheck < ActiveRecord::Base
     self.gross_fundraising_credit = gross_fundraising_credit
     self.total_pay = total_pay
     self.travel_reimb = travel_reimb
+  end
+
+  # methods for calculating paycheck numbers. Named to not conflict with
+  # attribute names
+  def calculate_quota_shifts
+    self.shifts.select { |s| s.quota_shift }.count
+  end
+
+  def calculate_cv_shifts
+    self.shifts.select { |s| s.fundraising_shift }.count
+  end
+
+  def calculate_total_shifts
+    self.shifts.count
   end
 end
