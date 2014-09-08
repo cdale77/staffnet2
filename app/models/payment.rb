@@ -79,6 +79,8 @@ class Payment < ActiveRecord::Base
           self.deposited_at = Date.today
           self.captured = true
         end
+
+        self.processed = true
         self.notes = charge.server_message + "--" + self.notes
       else
         self.captured = true # anything but a credit payment considered captured
