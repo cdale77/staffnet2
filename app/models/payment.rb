@@ -80,9 +80,10 @@ class Payment < ActiveRecord::Base
           self.captured = true
         end
         self.notes = charge.server_message + "--" + self.notes
+      else
+        self.captured = true # anything but a credit payment considered captured
+        self.processed = true
       end
-    self.captured = true # anything but a credit payment considered captured
-    self.processed = true
     end
   end
 
