@@ -61,6 +61,7 @@ class Paycheck < ActiveRecord::Base
         holiday_shift_quantity:   self.calculate_shifts_by_type("holiday"),
         total_deposit:            self.calculate_total_deposit,
         gross_fundraising_credit: self.calculate_fundraising_credit,
+        net_fundraising_credit:   self.calculate_net_fundraising_credit,
         total_pay:                self.calculate_total_pay,
         travel_reimb:             self.calculate_travel_reimb
     }
@@ -71,6 +72,10 @@ class Paycheck < ActiveRecord::Base
 
   # methods for calculating paycheck numbers. Named to not conflict with
   # attribute names
+  def calculate_net_fundraising_credit
+    0
+  end
+
   def calculate_travel_reimb
     self.shifts.map(&:travel_reimb).inject(0, &:+)
   end

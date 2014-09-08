@@ -30,6 +30,7 @@ class Payroll < ActiveRecord::Base
   ## RELATIONSHIPS
   has_many :paychecks
 
+  ## CALLBACKS
 
   def create_paychecks
     check_date = self.end_date + 6.days
