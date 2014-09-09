@@ -43,8 +43,10 @@ gem "jquery-rails", "3.1.2"
 gem "raphael-rails", "2.1.2"
 gem "morrisjs-rails", "0.5.1"
 
+## Misc
+gem "pry-rails", "0.3.2"
+
 group :development do
-  gem "pry-rails", "0.3.2"
   gem "faker", "1.4.3"
   gem "annotate", "2.6.5"
   gem "metric_fu", "4.11.1"
