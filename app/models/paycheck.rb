@@ -49,22 +49,4 @@ class Paycheck < ActiveRecord::Base
     self.shifts.select { |s| s.workers_comp_type == "outside"}.count
   end
 
-
-  # methods for calculating paycheck numbers. Named to not conflict with
-  # attribute names
-  def calculate_net_fundraising_credit
-    0
-  end
-
-  def calculate_travel_reimb
-    self.shifts.map(&:travel_reimb).inject(0, &:+)
-  end
-
-  def calculate_total_pay
-    calculate_total_shifts * self.employee.pay_daily
-  end
-
-
-
-
 end

@@ -1,4 +1,4 @@
-class CalculatePayrollService < ServiceBase
+class CalculatePaycheckService < ServiceBase
   
   def initialize(paycheck)
     @paycheck = paycheck
