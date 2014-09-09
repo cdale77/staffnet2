@@ -21,7 +21,8 @@ class CreatePaychecksService < ServiceBase
       end
 
       #when everything is set up, calculate the paycheck values and save
-      paycheck.calculate_values
+      service = CalculatePayrollService.new(paycheck)
+      service.perform
       paycheck.save
     end
   end
