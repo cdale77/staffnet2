@@ -13,7 +13,7 @@ class CalculatePaycheckService < ServiceBase
     @total_deposit = @total_shifts.map(&:total_deposit).inject(0, &:+)
     @gross_credit = @total_shifts.map(&:gross_fundraising_credit).inject(0, &:+)
     @net_credit = @gross_credit # for now
-    @total_quota = @quota_shifts * @employee.daily_quota
+    @total_quota = @quota_shifts.count * @employee.daily_quota
     @over_quota = @net_credit - @total_quota
     @old_buffer = 500 #for now
     @temp_buffer = @old_buffer + @over_quota
