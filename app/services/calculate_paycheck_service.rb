@@ -42,6 +42,7 @@ class CalculatePaycheckService < ServiceBase
         old_buffer:               @old_buffer,
         temp_buffer:              @temp_buffer,
         new_buffer:               @new_buffer,
+        bonus_credit:             @bonus_credit,
         bonus:                    @bonus,
         total_pay:                @total_pay,
         travel_reimb:             @travel_reimb
