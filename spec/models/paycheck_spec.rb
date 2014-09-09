@@ -120,4 +120,5 @@ describe Paycheck do
       expect(paycheck.outside_shift_count).to eq 1
     end
   end
+
 end

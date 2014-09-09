@@ -15,7 +15,7 @@ class CalculatePaycheckService < ServiceBase
     @net_credit = @gross_credit # for now
     @total_quota = @quota_shifts.count * @employee.daily_quota
     @over_quota = @net_credit - @total_quota
-    @old_buffer = 500 #for now
+    @old_buffer = @employee.paychecks.second.new_buffer
     @temp_buffer = @old_buffer + @over_quota
     @bonus_credit = @temp_buffer - 500
     @bonus = (@bonus_credit > 0) ? (@bonus_credit * 0.25) : 0
