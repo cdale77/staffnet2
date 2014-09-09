@@ -15,7 +15,7 @@ class CalculatePaycheckService < ServiceBase
     @net_credit = @gross_credit # for now
     @total_quota = @quota_shifts.count * @employee.daily_quota
     @over_quota = @net_credit - @total_quota
-    @old_buffer = @employee.paychecks.second.new_buffer
+    @old_buffer = get_old_buffer
     @temp_buffer = @old_buffer + @over_quota
     @bonus_credit = @temp_buffer - 500
     @bonus = (@bonus_credit > 0) ? (@bonus_credit * 0.25) : 0
@@ -49,4 +49,24 @@ class CalculatePaycheckService < ServiceBase
 
     @paycheck.update_attributes(values)
   end
+
+  private
+
+    def get_old_buffer
+      # find the new buffer from the most recent check. Since a check has
+      # already been created at this point, if the employee has 1 check, its
+      # their first check and old buffer should be 0. Otherwise look up the
+      # last check
+
+      paychecks = @employee.paychecks
+
+      case paychecks.count
+        when 0
+          return 0
+        when 1
+          return 0
+        else
+          return paychekcs.second.new_buffer
+      end
+    end
 end
