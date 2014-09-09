@@ -3,7 +3,7 @@ class CreatePaychecksService < ServiceBase
   def initialize(payroll)
     @payroll = payroll
     @check_date = @payroll.end_date + 6.days
-    @payroll_shifts = Shift.where(date: self.start_date..self.end_date)
+    @payroll_shifts = Shift.where(date: @payroll.start_date..@payroll.end_date)
     @shift_groups = @payroll_shifts.group_by { |shift| shift.employee_id }
   end
 
