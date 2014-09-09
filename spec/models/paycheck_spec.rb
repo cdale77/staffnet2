@@ -50,7 +50,8 @@ describe Paycheck do
       docks: 25.00,
       total_quota: 1500,
       net_fundraising_credit: 10500,
-      over_quota: -4500
+      over_quota: -4500,
+      temp_buffer: -300
   }
 
   let!(:payroll) { FactoryGirl.create(:payroll) }
