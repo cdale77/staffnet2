@@ -6,10 +6,10 @@
 #  supporter_id     :integer
 #  sendy_list_id    :integer
 #  sendy_batch_id   :integer
-#  sendy_email      :string           default("")
-#  new_sendy_email  :string           default("")
-#  new_sendy_status :string           default("")
-#  action           :string           default("")
+#  sendy_email      :string(255)      default("")
+#  new_sendy_email  :string(255)      default("")
+#  new_sendy_status :string(255)      default("")
+#  action           :string(255)      default("")
 #  success          :boolean          default("false")
 #  completed_at     :datetime
 #  created_at       :datetime

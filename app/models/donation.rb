@@ -7,9 +7,9 @@
 #  supporter_id  :integer
 #  shift_id      :integer
 #  date          :date
-#  donation_type :string           default("")
-#  source        :string           default("")
-#  campaign      :string           default("")
+#  donation_type :string(255)      default("")
+#  source        :string(255)      default("")
+#  campaign      :string(255)      default("")
 #  sub_month     :string(1)        default("")
 #  sub_week      :integer          default("0")
 #  amount        :decimal(8, 2)    default("0.0")

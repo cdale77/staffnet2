@@ -6,7 +6,7 @@
 #  employee_id               :integer
 #  field_manager_employee_id :integer
 #  shift_type_id             :integer
-#  legacy_id                 :string           default("")
+#  legacy_id                 :string(255)      default("")
 #  date                      :date
 #  time_in                   :time
 #  time_out                  :time
@@ -29,7 +29,7 @@
 #  created_at                :datetime
 #  updated_at                :datetime
 #  paycheck_id               :integer
-#  site                      :string           default("")
+#  site                      :string(255)      default("")
 #
 
 require 'spec_helper'

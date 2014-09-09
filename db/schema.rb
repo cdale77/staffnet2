@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140909011723) do
+ActiveRecord::Schema.define(version: 20140909012456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 20140909011723) do
     t.decimal  "net_fundraising_credit",   precision: 8, scale: 2, default: 0.0
     t.decimal  "over_quota",               precision: 8, scale: 2, default: 0.0
     t.decimal  "temp_buffer",              precision: 8, scale: 2, default: 0.0
+    t.decimal  "bonus_credit",             precision: 8, scale: 2, default: 0.0
   end
 
   add_index "paychecks", ["employee_id"], name: "index_paychecks_on_employee_id", using: :btree

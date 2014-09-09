@@ -28,6 +28,8 @@
 #  total_quota              :decimal(8, 2)    default("0.0")
 #  net_fundraising_credit   :decimal(8, 2)    default("0.0")
 #  over_quota               :decimal(8, 2)    default("0.0")
+#  temp_buffer              :decimal(8, 2)    default("0.0")
+#  bonus_credit             :decimal(8, 2)    default("0.0")
 #
 
 require "spec_helper"
@@ -51,7 +53,8 @@ describe Paycheck do
       total_quota: 1500,
       net_fundraising_credit: 10500,
       over_quota: -4500,
-      temp_buffer: -300
+      temp_buffer: -300,
+      bonus_credit: -400,
   }
 
   let!(:payroll) { FactoryGirl.create(:payroll) }

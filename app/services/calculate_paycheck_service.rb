@@ -15,6 +15,9 @@ class CalculatePaycheckService < ServiceBase
     @net_credit = @gross_credit # for now
     @total_quota = @quota_shifts * @employee.daily_quota
     @over_quota = @net_credit - @total_quota
+    @old_buffer = 500 #for now
+    @temp_buffer = @old_buffer + @over_quota
+    @new_buffer = @temp_buffer > 500 ? 500 : @temp_buffer
     @total_pay = @total_shifts.count * @employee.pay_daily
     @travel_reimb = @total_shifts.map(&:travel_reimb).inject(0, &:+)
   end
@@ -34,6 +37,8 @@ class CalculatePaycheckService < ServiceBase
         net_fundraising_credit:   @net_credit,
         total_quota:              @total_quota,
         over_quota:               @over_quota,
+        temp_buffer:              @temp_buffer,
+        new_buffer:               @new_buffer,
         total_pay:                @total_pay,
         travel_reimb:             @travel_reimb
     }

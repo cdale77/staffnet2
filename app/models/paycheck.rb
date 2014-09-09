@@ -28,6 +28,8 @@
 #  total_quota              :decimal(8, 2)    default("0.0")
 #  net_fundraising_credit   :decimal(8, 2)    default("0.0")
 #  over_quota               :decimal(8, 2)    default("0.0")
+#  temp_buffer              :decimal(8, 2)    default("0.0")
+#  bonus_credit             :decimal(8, 2)    default("0.0")
 #
 
 class Paycheck < ActiveRecord::Base
