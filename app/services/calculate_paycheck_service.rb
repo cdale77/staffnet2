@@ -2,7 +2,7 @@ class CalculatePaycheckService < ServiceBase
   
   def initialize(paycheck)
     @paycheck = paycheck
-    @employee = @paycheck.emloyee
+    @employee = @paycheck.employee
     @total_shifts = paycheck.shifts
     @cv_shifts = @total_shifts.select { |s| s.fundraising_shift }
     @quota_shifts = @total_shifts.select { |s| s.quota_shift }
