@@ -39,6 +39,7 @@ class CalculatePaycheckService < ServiceBase
         net_fundraising_credit:   @net_credit,
         total_quota:              @total_quota,
         over_quota:               @over_quota,
+        old_buffer:               @old_buffer,
         temp_buffer:              @temp_buffer,
         new_buffer:               @new_buffer,
         bonus:                    @bonus,

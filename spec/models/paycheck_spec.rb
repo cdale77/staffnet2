@@ -74,6 +74,11 @@ describe Paycheck do
                                     paycheck: paycheck,
                                     employee: employee,
                                     shift_type: shift_type) }
+
+  let!(:shift2) { FactoryGirl.create(:shift,
+                                    paycheck: paycheck,
+                                    employee: employee,
+                                    shift_type: shift_type2) }
   let!(:donation) { FactoryGirl.create(:donation,
                                        amount: 10,
                                        donation_type: "cash",
@@ -111,7 +116,7 @@ describe Paycheck do
   ## METHODS
   describe 'inside outside splits' do
     it 'should provide the correct inside shift number' do
-  #    expect(paycheck.inside_shift_count).to eq 1
+      expect(paycheck.inside_shift_count).to eq 1
       expect(paycheck.outside_shift_count).to eq 1
     end
   end
