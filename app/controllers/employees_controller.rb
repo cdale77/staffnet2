@@ -78,7 +78,8 @@ class EmployeesController < ApplicationController
                                         :ca_allowances,
                                         :dob,
                                         :gender,
-                                        :active )
+                                        :active,
+                                        :daily_quota)
     end
 
     def check_owner
