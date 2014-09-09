@@ -66,7 +66,7 @@ class CalculatePaycheckService < ServiceBase
         when 1
           return 0
         else
-          return paychekcs.second.new_buffer
+          return paychecks.second.new_buffer
       end
     end
 end
