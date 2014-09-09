@@ -18,8 +18,8 @@ class CalculatePaycheckService < ServiceBase
     @old_buffer = 500 #for now
     @temp_buffer = @old_buffer + @over_quota
     @bonus_credit = @temp_buffer - 500
-    @bonus = @bonus_credit > 0 ? @bonus_credit * @employee * 0.25
-    @new_buffer = @temp_buffer > 500 ? 500 : @temp_buffer
+    @bonus = (@bonus_credit > 0) ? (@bonus_credit * 0.25) : 0
+    @new_buffer = (@temp_buffer > 500) ? 500 : @temp_buffer
     @total_pay = @total_shifts.count * @employee.pay_daily
     @travel_reimb = @total_shifts.map(&:travel_reimb).inject(0, &:+)
   end
