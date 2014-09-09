@@ -49,26 +49,6 @@ class Paycheck < ActiveRecord::Base
     self.shifts.select { |s| s.workers_comp_type == "outside"}.count
   end
 
-  def calculate_values
-
-    values = {
-        shift_quantity:           self.calculate_total_shifts,
-        cv_shift_quantity:        self.calculate_cv_shifts,
-        quota_shift_quantity:     self.calculate_quota_shifts,
-        office_shift_quantity:    self.calculate_shifts_by_type("office"),
-        sick_shift_quantity:      self.calculate_shifts_by_type("sick"),
-        vacation_shift_quantity:  self.calculate_shifts_by_type("vacation"),
-        holiday_shift_quantity:   self.calculate_shifts_by_type("holiday"),
-        total_deposit:            self.calculate_total_deposit,
-        gross_fundraising_credit: self.calculate_fundraising_credit,
-        net_fundraising_credit:   self.calculate_net_fundraising_credit,
-        total_pay:                self.calculate_total_pay,
-        travel_reimb:             self.calculate_travel_reimb
-    }
-
-    update_attributes!(values)
-
-  end
 
   # methods for calculating paycheck numbers. Named to not conflict with
   # attribute names
@@ -84,27 +64,7 @@ class Paycheck < ActiveRecord::Base
     calculate_total_shifts * self.employee.pay_daily
   end
 
-  def calculate_fundraising_credit
-    self.shifts.map(&:gross_fundraising_credit).inject(0, &:+)
-  end
 
-  def calculate_total_deposit
-    self.shifts.map(&:total_deposit).inject(0, &:+)
-  end
 
-  def calculate_shifts_by_type(type)
-    self.shifts.select { |s| s.shift_type_name == type.to_s }.count
-  end
 
-  def calculate_quota_shifts
-    self.shifts.select { |s| s.quota_shift }.count
-  end
-
-  def calculate_cv_shifts
-    self.shifts.select { |s| s.fundraising_shift }.count
-  end
-
-  def calculate_total_shifts
-    self.shifts.count
-  end
 end

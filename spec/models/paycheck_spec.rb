@@ -105,54 +105,6 @@ describe Paycheck do
   it { should respond_to(:shifts) }
 
   ## METHODS
-  describe '#calculate_values' do
-    it 'should return successful' do
-      expect(paycheck.calculate_values).to be_truthy
-    end
-  end
-  describe '#calculate_travel_reimb' do
-    it 'should return a number' do
-      expect(paycheck.calculate_travel_reimb).to be_an_instance_of BigDecimal
-    end
-  end
-
-  describe '#calculate_total_pay' do
-    it 'should return a number' do
-      expect(paycheck.calculate_total_pay).to be_an_instance_of BigDecimal
-    end
-  end
-  describe '#calculate_fundraising_credit' do
-    it 'should return a number' do
-      expect(paycheck.calculate_fundraising_credit).to eq 80
-    end
-  end
-  describe '#calculate_total_deposit' do
-    it 'should return a number' do
-      expect(paycheck.calculate_total_deposit).to eq 20
-    end
-  end
-  describe '#calculate_shifts_by_type' do
-    it 'should return a number' do
-      expect(paycheck.calculate_shifts_by_type("street")).to eq 1
-    end
-  end
-  describe '#calculate_quota_shifts' do
-    it 'should return a number' do
-      expect(paycheck.calculate_quota_shifts).to eq 1
-    end
-  end
-
-  describe '#calculate_cv_shifts' do
-    it 'should return a number' do
-      expect(paycheck.calculate_cv_shifts).to eq 1
-    end
-  end
-
-  describe '#calculate_total_shifts' do
-    it 'should return a number' do
-      expect(paycheck.calculate_total_shifts).to eq 1
-    end
-  end
   describe 'inside outside splits' do
     it 'should provide the correct inside shift number' do
   #    expect(paycheck.inside_shift_count).to eq 1

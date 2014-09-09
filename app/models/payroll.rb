@@ -32,10 +32,6 @@ class Payroll < ActiveRecord::Base
 
   ## CALLBACKS
 
-  def create_paychecks
-
-  end
-
   def set_start_and_end_dates
     last_payroll = Payroll.first
     if last_payroll
@@ -45,5 +41,4 @@ class Payroll < ActiveRecord::Base
       self.end_date = new_end_date
     end
   end
-
 end
