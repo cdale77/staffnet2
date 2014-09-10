@@ -48,5 +48,7 @@ FactoryGirl.define do
     travel_reimb              12.50
     notes                     "some notes"
     gross_fundraising_credit  3000
+    employee
+    payroll
   end
 end

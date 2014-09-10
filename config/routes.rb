@@ -15,6 +15,7 @@ Staffnet2::Application.routes.draw do
 
     resources :employees do
       resources :shifts
+      resources :paychecks, only: [:show]
     end
 
     resources :shifts

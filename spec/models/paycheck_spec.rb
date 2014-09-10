@@ -113,6 +113,9 @@ describe Paycheck do
   it { should respond_to(:payroll) }
   it { should respond_to(:shifts) }
 
+  ## DELEGATIONS
+  it { should respond_to(:user) }
+
   ## METHODS
   describe 'inside outside splits' do
     it 'should provide the correct inside shift number' do

@@ -43,6 +43,9 @@ class Paycheck < ActiveRecord::Base
   belongs_to :payroll
   has_many :shifts
 
+  ## DELEGATIONS
+  delegate :user, to: :employee
+
 
   def inside_shift_count
     self.shifts.select { |s| s.workers_comp_type == "inside"}.count
