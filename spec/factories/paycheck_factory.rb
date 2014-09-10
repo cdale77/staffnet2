@@ -34,5 +34,19 @@
 
 FactoryGirl.define do
   factory :paycheck do
+
+    check_date                Date.today
+    shift_quantity            10.0
+    cv_shift_quantity         8
+    office_shift_quantity     2
+    total_deposit             2345.0
+    old_buffer                500
+    new_buffer                500
+    temp_buffer               780
+    bonus                     450
+    total_pay                 2000
+    travel_reimb              12.50
+    notes                     "some notes"
+    gross_fundraising_credit  3000
   end
 end
