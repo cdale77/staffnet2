@@ -6,6 +6,7 @@ describe 'PaycheckPages' do
 
   subject { page }
 
+  let!(:super_admin) { FactoryGirl.create(:super_admin) }
   let!(:employee) { FactoryGirl.create(:employee) }
   let!(:paycheck) { FactoryGirl.create(:paycheck,
                                        employee: employee) }
