@@ -2,8 +2,9 @@
 <h1>Batch details</h1>
 <div class="col-md-12 row button-container">
   <div class="buttons">
-    <% if admin_user? && @deposit_batch.not_approved %>
-      <%= link_to "approve", edit_deposit_batch_path(@deposit_batch.model),
+    <% if admin_user? && @deposit_batch_presenter.not_approved %>
+      <%= link_to "approve",
+                  edit_deposit_batch_path(@deposit_batch_presenter.model),
                   class: "btn btn-md btn-primary",
                   type: "button" %>
     <% end %>
@@ -14,19 +15,19 @@
     <table>
       <tr>
         <th>Type</th>
-        <td><%= @deposit_batch.human_name %></td>
+        <td><%= @deposit_batch_presenter.human_name %></td>
       </tr>
       <tr>
         <th>Date</th>
-        <td><%= @deposit_batch.formatted_date %></td>
+        <td><%= @deposit_batch_presenter.formatted_date %></td>
       </tr>
       <tr>
         <th>Donations</th>
-        <td><%= @deposit_batch.payment_count %></td>
+        <td><%= @deposit_batch_presenter.payment_count %></td>
       </tr>
       <tr>
         <th>Total</th>
-        <td><%= @deposit_batch.payment_total %></td>
+        <td><%= @deposit_batch_presenter.payment_total %></td>
       </tr>
     </table>
   </div>
@@ -34,14 +35,15 @@
     <table>
       <tr>
         <th>Approved by</th>
-        <td><%= @deposit_batch.approved_by %></td>
+        <td><%= @deposit_batch_presenter.approved_by %></td>
       </tr>
       <tr>
         <th>Receipt number</th>
-        <td><%= @deposit_batch.receipt_number %></td>
+        <td><%= @deposit_batch_presenter.receipt_number %></td>
       </tr>
-      <%= render "shared/profiles/magic_columns", record: @deposit_batch %>
+      <%= render "shared/profiles/magic_columns",
+                 record: @deposit_batch_presenter %>
     </table>
   </div>
 </div>
-<%= render "batch_payments", payments: @deposit_batch.payments %>
+<%= render "batch_payments", payments: @deposit_batch_presenter.payments %>
