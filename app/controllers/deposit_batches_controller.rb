@@ -4,10 +4,9 @@ class DepositBatchesController < ApplicationController
   after_filter :verify_authorized
 
   def show
-    @deposit_batch = DepositBatch.find(params[:id])
-    #@payments = @deposit_batch.payments_by_shift
-    @payments = @deposit_batch.payments
-    authorize @deposit_batch
+    deposit_batch = DepositBatch.find(params[:id])
+    @deposit_batch = DepositBatchPresenter.new(deposit_batch)
+    authorize deposit_batch
   end
 
   def index

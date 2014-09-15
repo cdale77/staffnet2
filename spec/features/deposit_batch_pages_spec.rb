@@ -13,7 +13,8 @@ describe 'DepositBatchPages' do
   let!(:super_admin_employee) { FactoryGirl.create(:employee,
                                                     user: super_admin) }
 
-  let(:deposit_batch) { FactoryGirl.create(:deposit_batch) }
+  let!(:deposit_batch) { FactoryGirl.create(:deposit_batch) }
+  let!(:presenter) { DepositBatchPresenter.new(deposit_batch) }
 
   #### AS SUPERADMIN USER ####
 
@@ -46,7 +47,7 @@ describe 'DepositBatchPages' do
       before { visit deposit_batch_path(deposit_batch) }
       describe 'page' do
         it { should have_title('Staffnet:Batch details') }
-        it { should have_content(deposit_batch.batch_type.humanize) }
+        it { should have_content(presenter.human_name) }
       end
     end
 

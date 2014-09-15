@@ -52,4 +52,25 @@ describe DepositBatchPresenter do
       expect(presenter.approved_by).to eq employee.full_name
     end
   end
+
+  describe '#formatted_date' do
+    it 'should return the formatted date' do
+      expect(presenter.formatted_date).to eq I18n.l(deposit_batch.date)
+    end
+  end
+  describe '#formatted_created_at' do
+    it 'should return the formatted timestamp' do
+      expect(presenter.formatted_created_at).to eq \
+        I18n.l(deposit_batch.created_at, format: :long)
+    end
+  end
+
+
+  describe '#formatted_updated_at' do
+    it 'should return the formatted timestamp' do
+      expect(presenter.formatted_updated_at).to eq \
+        I18n.l(deposit_batch.updated_at, format: :long)
+    end
+  end
+
 end
