@@ -1,24 +1,34 @@
-class DepositBatchPresenter
-
+class DepositBatchPresenter < PresenterBase
 
   def initialize(deposit_batch)
-    @deposit_batch = deposit_batch
-  end
 
-  def approved
-    @deposit_batch.approved
+    @payments = deposit_batch.payments
+    super
   end
 
   def not_approved
-    !@deposit_batch.approved
+    !approved
   end
 
   def human_name
-    @deposit_batch.batch_type.humanize
+    batch_type.humanize
   end
 
   def date
-    I18n.l(@deposit_batch.date)
+    I18n.l(date)
   end
+
+  def payment_count
+    @payments.count
+  end
+
+  def payment_total
+    number_to_currency(@payments.where(captured: true).sum(:amount))
+  end
+
+  def approved_by
+    employee.full_name ||= ""
+  end
+
 
 end

@@ -37,15 +37,6 @@ class DepositBatch < ActiveRecord::Base
     self.payments.sort_by { |payment| payment.shift }
   end
 
-  def approved_by
-    unless self.employee_id.blank?
-      Employee.find(self.employee_id).full_name
-    end
-  end
-
-  def total
-    self.payments.where(captured: true).sum(:amount)
-  end
 
   # create new batches from un-batched payments
   def self.batch_up
