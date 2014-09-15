@@ -30,5 +30,11 @@ class DepositBatchPresenter < PresenterBase
     employee.full_name ||= ""
   end
 
+  def created_at
+    I18n.l(created_at, format: :long)
+  end
 
+  def updated_at
+    I18n.l(updated_at, format: :long)
+  end
 end
