@@ -23,7 +23,7 @@ class DepositBatchPresenter < PresenterBase
 
 
   def approved_by
-    employee.full_name ||= ""
+    employee ? employee.full_name : ""
   end
 
    def formatted_created_at

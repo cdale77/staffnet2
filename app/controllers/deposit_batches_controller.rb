@@ -10,9 +10,11 @@ class DepositBatchesController < ApplicationController
   end
 
   def index
+    # Batch up any new payments
     DepositBatch.batch_up
-    @deposit_batches = DepositBatch.all.limit(20)
-    authorize @deposit_batches
+    deposit_batches = DepositBatch.all.limit(20)
+    @deposit_batches = DepositBatchPresenter.wrap(deposit_batches)
+    authorize deposit_batches
   end
 
   def edit
