@@ -21,7 +21,7 @@
         <td><%= number_to_currency donation.amount %></td>
         <td><%= donation.donation_type.humanize %></td>
         <td><%= donation.frequency.humanize %></td>
-        <td><%= human_boolean donation.captured %></td>
+        <td><%= donation.captured %></td>
         <td><%= donation.source.humanize %></td>
       </tr>
     <% end %>
