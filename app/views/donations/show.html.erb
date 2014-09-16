@@ -1,6 +1,9 @@
 <% provide(:title, "Donation") %>
 <h1>Donation profile</h1>
 <%= render 'shared/profiles/profile_buttons', record: @donation %>
+<%= render "shared/profiles/new_dependent_record_button",
+           record_name: "payment",
+           record: @donation %>
 <div class="cold-md-12 row record-display">
   <div class="col-md-4 record-column">
     <table>
@@ -64,8 +67,6 @@
   </div>
 </div>
 <hr />
-
-<%= render 'donation_payments',
-           donation: @donation,
-           payments: @payments %>
+<%= render "shared/profiles/dependent_payments",
+           payment_presenters: @payment_presenters %>
 

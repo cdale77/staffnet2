@@ -46,7 +46,8 @@ class DonationsController < ApplicationController
   def show
     @donation = Donation.find(params[:id])
     @supporter = @donation.supporter
-    @payments = @donation.payments
+    payments = @donation.payments
+    @payment_presenters = PaymentPresenter.wrap(payments)
     authorize @donation
   end
 
