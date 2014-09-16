@@ -1,0 +1,3 @@
+class DonationPresenter < PresenterBase
+  
+end
