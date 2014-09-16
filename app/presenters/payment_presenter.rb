@@ -22,9 +22,6 @@ class PaymentPresenter < PresenterBase
     captured ? "Yes" : "No"
   end
 
-  def formatted_amount
-    number_to_currency(amount)
-  end
 
   def type_to_human
     payment_type.humanize

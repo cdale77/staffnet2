@@ -12,6 +12,14 @@ class PresenterBase < SimpleDelegator
     __getobj__
   end
 
+  def formatted_amount
+    number_to_currency(amount)
+  end
+
+  def formatted_date
+    I18n.l(date)
+  end
+
   def formatted_created_at
     I18n.l(created_at, format: :long)
   end
