@@ -1,12 +1,12 @@
-<% provide(:title, @supporter.full_name) %>
+<% provide(:title, @supporter_presenter.full_name) %>
 <h1>Supporter profile</h1>
 <div class="col-md-12 row button-container">
   <div class="buttons">
     <%= render "shared/profiles/new_dependent_record_button",
                record_name: "donation",
-               record: @supporter %>
+               record: @supporter_presenter.model %>
     <%= render "shared/profiles/profile_buttons",
-               record: @supporter %>
+               record: @supporter_presenter.model %>
   </div>
 </div>
 <div class="col-md-12 row record-display">
@@ -14,50 +14,25 @@
     <table>
       <tr>
         <th>Name</th>
-        <td><%= @supporter.full_name %></td>
+        <td><%= @supporter_presenter.full_name %></td>
       </tr>
-      <% @supporter.emails.each do |key, value| %>
-        <tr>
-          <th><%= 'Email' %></th>
-          <td><%= value %></td>
-        </tr>
-      <% end %>
-      <% @supporter.phones.each do |key, value| %>
-        <tr>
-          <th><%= key.to_s.split("_").last.humanize %></th>
-          <td><%= number_to_phone(value.to_i) %></td>
-        </tr>
-      <% end %>
-      <% if @supporter.spouse_name.present? %>
-        <tr>
-          <th>Spouse</th>
-          <td><%= @supporter.spouse_name %></td>
-        </tr>
-      <% end %>
+      <%= render "supporter_emails" %>
+      <%= render "supporter_phones" %>
+      <%= render "supporter_spouse" %>
     </table>
   </div>
   <div class="col-md-4 record-column record-column2">
     <table>
-      <tr>
-        <%= render 'shared/profiles/address', record: @supporter %>
-      </tr>
+      <%= render "shared/profiles/address",
+                 presenter: @supporter_presenter %>
       <tr>
         <th>Cim ID</th>
-        <td><%= @supporter.cim_id %></td>
+        <td><%= @supporter_presenter.cim_id %></td>
       </tr>
-      <% if @supporter.employer.present? || @supporter.occupation.present? %>
-        <tr>
-          <th>Occupation</th>
-          <td><%= @supporter.occupation.humanize %></td>
-        </tr>
-        <tr>
-          <th>Employer</th>
-          <td><%= @supporter.employer %></td>
-        </tr>
-      <% end %>
+      <%= render "supporter_employer" %>
       <tr>
         <th>Tags</th>
-        <td><%= @supporter.tag_list %></td>
+        <td><%= @supporter_presenter.tag_list %></td>
       </tr>
     </table>
   </div>
@@ -65,17 +40,18 @@
     <table>
       <tr>
         <th>Vol. Level</th>
-        <td><%= @supporter.vol_level %></td>
+        <td><%= @supporter_presenter.vol_level %></td>
       </tr>
       <tr>
         <th>Source</th>
-        <td><%= @supporter.source.humanize %></td>
+        <td><%= @supporter_presenter.source_to_human %></td>
       </tr>
       <tr>
         <th>Notes</th>
-        <td><%= @supporter.notes %></td>
+        <td><%= @supporter_presenter.notes %></td>
       </tr>
-      <%= render 'shared/profiles/magic_columns', record: @supporter %>
+      <%= render 'shared/profiles/magic_columns',
+                 presenter: @supporter_presenter %>
     </table>
   </div>
 </div>

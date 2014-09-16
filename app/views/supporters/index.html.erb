@@ -27,6 +27,6 @@
     <th>Source</th>
     <th></th>
   </tr>
-  <%= render @supporters %>
+  <%= render "supporters", supporter_presenters: @supporter_presenters %>
 </table>
-<%= will_paginate %>
+<%= will_paginate @supporter_presenters %>

@@ -1,0 +1,11 @@
+<% if @supporter_presenter.employer.present? ||
+      @supporter_presenter.occupation.present? %>
+  <tr>
+    <th>Occupation</th>
+    <td><%= @supporter_presenter.occupation_to_human %></td>
+  </tr>
+  <tr>
+    <th>Employer</th>
+    <td><%= @supporter_presenter.employer %></td>
+  </tr>
+<% end %>

@@ -22,18 +22,18 @@ class SupportersController < ApplicationController
   end
 
   def show
-    @supporter = Supporter.find(params[:id])
-    donations = @supporter.donations.limit(20)
-    @donation_presenters = DonationPresenter.wrap(donations)
-    @supporter_type = @supporter.supporter_type
-    authorize @supporter
+    supporter = Supporter.find(params[:id])
+    @supporter_presenter = SupporterPresenter.new(supporter)
+    @donation_presenters = DonationPresenter.wrap(supporter.donations.limit(20))
+    authorize supporter
   end
 
   def index
     @search = Supporter.search(params[:q])
-    @supporters = @search.result.paginate(page: params[:page])
     @search.build_condition
-    authorize @supporters
+    supporters = @search.result
+    @supporter_presenters = SupporterPresenter.wrap(supporters).paginate(page: params[:page])
+    authorize supporters
   end
 
   def edit

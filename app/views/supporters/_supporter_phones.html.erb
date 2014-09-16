@@ -1,0 +1,6 @@
+<% @supporter_presenter.phones.each do |key, value| %>
+  <tr>
+    <th><%= key.to_s.split("_").last.humanize %></th>
+    <td><%= number_to_phone(value.to_i) %></td>
+  </tr>
+<% end %>

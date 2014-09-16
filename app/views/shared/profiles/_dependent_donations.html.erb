@@ -11,6 +11,7 @@
       <th>Frequency</th>
       <th>Captured?</th>
       <th>Source</th>
+      <th></th>
     </tr>
     <% donation_presenters.each do |donation_presenter| %>
       <tr class="<%= donation_presenter.captured ? "" : "red" %>">
@@ -21,6 +22,10 @@
         <td><%= donation_presenter.frequency_to_human %></td>
         <td><%= donation_presenter.captured_to_human %></td>
         <td><%= donation_presenter.source_to_human %></td>
+        <td class="buttons">
+          <%= render "shared/index/index_buttons",
+                     record: donation_presenter.model %>
+        </td>
       </tr>
     <% end %>
   </table>
