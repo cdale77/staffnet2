@@ -3,13 +3,13 @@ include ActionView::Helpers::NumberHelper
 
 describe DonationPresenter do
 
-  #let!(:supporter) { FactoryGirl.create(:supporter) }
-  #let!(:employee) { FactoryGirl.create(:employee) }
-  #let!(:shift) { FactoryGirl.create(:shift,
-  #                                  employee: employee) }
-  #let!(:donation) { FactoryGirl.create(:donation,
-  #                                     supporter: supporter,
-  #                                     shift: shift) }
+  let!(:supporter) { FactoryGirl.create(:supporter) }
+  let!(:employee) { FactoryGirl.create(:employee) }
+  let!(:shift) { FactoryGirl.create(:shift,
+                                    employee: employee) }
+  let!(:donation) { FactoryGirl.create(:donation,
+                                       supporter: supporter,
+                                       shift: shift) }
   let!(:payment) { FactoryGirl.create(:payment,
                                       donation: donation) }
   let!(:presenter) { DonationPresenter.new(donation) }
