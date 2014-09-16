@@ -1,10 +1,12 @@
-<tr>
-  <td><%= donation.supporter.full_name %></td>
-  <td><%= donation.date %></td>
-  <td><%= number_to_currency donation.amount %></td>
-  <td><%= donation.donation_type.humanize %></td>
-  <td><%= donation.source.humanize %></td>
-  <td class="buttons">
-    <%= render "shared/index/index_buttons", record: donation %>
-  </td>
-</tr>
+<% donation_presenters.each do |presenter| %>
+  <tr>
+    <td><%= presenter.supporter_full_name %></td>
+    <td><%= presenter.formatted_date %></td>
+    <td><%= presenter.formatted_amount %></td>
+    <td><%= presenter.type_to_human %></td>
+    <td><%= presenter.source_to_human %></td>
+    <td class="buttons">
+      <%= render "shared/index/index_buttons", record: presenter.model %>
+    </td>
+  </tr>
+<% end %>

@@ -1,28 +1,34 @@
 <% provide(:title, "Donation") %>
 <h1>Donation profile</h1>
-<%= render 'shared/profiles/profile_buttons', record: @donation %>
-<%= render "shared/profiles/new_dependent_record_button",
-           record_name: "payment",
-           record: @donation %>
+<div class="col-md-12 row button-container">
+  <div class="buttons">
+    <%= render "shared/profiles/new_dependent_record_button",
+               record_name: "payment",
+               record: @donation_presenter.model %>
+    <%= render "shared/profiles/profile_buttons",
+               record: @donation_presenter.model %>
+  </div>
+</div>
 <div class="cold-md-12 row record-display">
   <div class="col-md-4 record-column">
     <table>
       <tr>
         <th>Supporter</th>
-        <td><%= link_to @supporter.full_name, supporter_path(@supporter) %></td>
+        <td><%= link_to @donation_presenter.supporter_full_name,
+                     supporter_path(@donation_presenter.model.supporter) %></td>
       </tr>
       <tr>
         <th>Date</th>
-        <td><%= @donation.date %></td>
+        <td><%= @donation_presenter.formatted_date %></td>
       </tr>
       <tr>
         <th>Amount</th>
-        <td><%= number_to_currency @donation.amount %></td>
+        <td><%= @donation_presenter.formatted_amount %></td>
       </tr>
-      <% if @donation.sub_month.present? %>
+      <% if @donation_presenter.sub_month.present? %>
         <tr>
           <th>Month code</th>
-          <td><%= @donation.sub_month %></td>
+          <td><%= @donation_presenter.sub_month %></td>
         </tr>
       <% end %>
     </table>
@@ -31,20 +37,20 @@
     <table>
       <tr>
         <th>Type</th>
-        <td><%= @donation.donation_type.humanize %></td>
+        <td><%= @donation_presenter.type_to_human %></td>
       </tr>
       <tr>
         <th>Source</th>
-        <td><%= @donation.source.humanize %></td>
+        <td><%= @donation_presenter.source_to_human %></td>
       </tr>
       <tr>
         <th>Campaign</th>
-        <td><%= @donation.campaign.humanize %></td>
+        <td><%= @donation_presenter.campaign_to_human %></td>
       </tr>
-      <% if @donation.sub_week && @donation.sub_week > 0 %>
+      <% if @donation_presenter.sub_week && @donation_presenter.sub_week > 0 %>
         <tr>
           <th>Week code</th>
-          <td><%= @donation.sub_week %></td>
+          <td><%= @donation_presenter.sub_week %></td>
         </tr>
       <% end %>
     </table>
@@ -53,15 +59,15 @@
     <table>
       <tr>
         <th>Notes</th>
-        <td><%= @donation.notes %></td>
+        <td><%= @donation_presenter.notes %></td>
       </tr>
 
       <%= render "shared/profiles/magic_columns",
-                 record: @donation %>
+                 record: @donation_presenter %>
 
       <tr>
         <th>Cancelled</th>
-        <td><%= @donation.cancelled ? "Yes" : "No" %></td>
+        <td><%= @donation_presenter.cancelled_to_human %></td>
       </tr>
     </table>
   </div>

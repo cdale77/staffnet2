@@ -1,21 +1,15 @@
 class PaymentPresenter < PresenterBase
 
-  def initialize(payment)
-    @donation = payment.donation
-    @shift = @donation.shift
-    super
-  end
-
   def credited_employee
-    @shift ? @shift.employee.full_name : "Not credited"
+    donation.shift ? donation.shift.employee.full_name : "Not credited"
   end
 
   def shift_date
-    @shift ? I18n.l(@shift.date) : "Not applicable"
+    donation.shift ? I18n.l(donation.shift.date) : "Not applicable"
   end
 
   def supporter_name
-    @donation.supporter.full_name
+    donation.supporter.full_name
   end
 
   def captured_to_human
@@ -28,10 +22,10 @@ class PaymentPresenter < PresenterBase
   end
 
   def frequency_to_human
-    @donation.frequency.humanize
+    donation.frequency.humanize
   end
 
   def source_to_human
-    @donation.source.humanize
+    donation.source.humanize
   end
 end

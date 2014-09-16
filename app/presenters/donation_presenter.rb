@@ -1,12 +1,7 @@
 class DonationPresenter < PresenterBase
 
-  def initialize(donation)
-    @supporter = donation.supporter
-    super
-  end
-
   def supporter_full_name
-    @supporter.full_name
+    supporter ? supporter.full_name : "No supporter"
   end
 
   def type_to_human
@@ -24,5 +19,4 @@ class DonationPresenter < PresenterBase
   def cancelled_to_human
     cancelled ? "Yes" : "No"
   end
-  
 end

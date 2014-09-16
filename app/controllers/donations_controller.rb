@@ -44,16 +44,16 @@ class DonationsController < ApplicationController
   end
 
   def show
-    @donation = Donation.find(params[:id])
-    @supporter = @donation.supporter
-    payments = @donation.payments
-    @payment_presenters = PaymentPresenter.wrap(payments)
-    authorize @donation
+    donation = Donation.find(params[:id])
+    @donation_presenter = DonationPresenter.new(donation)
+    @payment_presenters = PaymentPresenter.wrap(donation.payments)
+    authorize donation
   end
 
   def index
-    @donations = Donation.all.paginate(page: params[:page])
-    authorize @donations
+    donations = Donation.all
+    @donation_presenters = DonationPresenter.wrap(donations).paginate(page: params[:page])
+    authorize donations
   end
 
   def edit
