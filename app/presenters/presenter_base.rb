@@ -12,4 +12,12 @@ class PresenterBase < SimpleDelegator
     __getobj__
   end
 
+  def formatted_created_at
+    I18n.l(created_at, format: :long)
+  end
+
+  def formatted_updated_at
+    I18n.l(updated_at, format: :long)
+  end
+
 end

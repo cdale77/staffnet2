@@ -65,12 +65,10 @@ describe DepositBatchPresenter do
     end
   end
 
-
   describe '#formatted_updated_at' do
     it 'should return the formatted timestamp' do
       expect(presenter.formatted_updated_at).to eq \
         I18n.l(deposit_batch.updated_at, format: :long)
     end
   end
-
 end

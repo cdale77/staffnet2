@@ -6,6 +6,7 @@ class DepositBatchesController < ApplicationController
   def show
     deposit_batch = DepositBatch.find(params[:id])
     @deposit_batch_presenter = DepositBatchPresenter.new(deposit_batch)
+    @payment_presenters = PaymentPresenter.wrap(deposit_batch.payments)
     authorize deposit_batch
   end
 

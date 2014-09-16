@@ -1,6 +1,5 @@
 class DepositBatchPresenter < PresenterBase
 
-
   def not_approved
     !approved
   end
@@ -21,16 +20,7 @@ class DepositBatchPresenter < PresenterBase
     number_to_currency(payments.where(captured: true).sum(:amount))
   end
 
-
   def approved_by
     employee ? employee.full_name : ""
   end
-
-   def formatted_created_at
-     I18n.l(created_at, format: :long)
-   end
-
-   def formatted_updated_at
-     I18n.l(updated_at, format: :long)
-   end
 end

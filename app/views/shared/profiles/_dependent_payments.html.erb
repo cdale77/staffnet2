@@ -15,37 +15,38 @@
       <th>Captured?</th>
       <th></th>
     </tr>
-    <% payments.each do |payment| %>
-      <tr class="<%= !payment.captured ? "red" : "" %>" >
+    <% payment_presenters.each do |payment_presenter| %>
+      <tr class="<%= !payment_presenter.captured ? "red" : "" %>" >
         <td>
-          <%= l payment.created_at %>
+          <%= payment_presenter.formatted_created_at %>
         </td>
         <td>
-          <%= payment.donation.shift.employee.full_name if payment.donation.shift %>
+          <%= payment_presenter.credited_employee %>
         </td>
         <td>
-          <%= payment.donation.shift.date if payment.donation.shift %>
+          <%= payment_presenter.shift_date %>
         </td>
         <td>
-          <%= payment.supporter.full_name %>
+          <%= payment_presenter.supporter_name %>
         </td>
         <td>
-          <%= number_to_currency payment.amount %>
+          <%= payment_presenter.formatted_amount %>
         </td>
         <td>
-          <%= payment.payment_type.humanize %>
+          <%= payment_presenter.type_to_human %>
         </td>
         <td>
-          <%= payment.donation.frequency.humanize %>
+          <%= payment_presenter.frequency_to_human %>
         </td>
         <td>
-          <%= payment.donation.source.humanize %>
+          <%= payment_presenter.source_to_human %>
         </td>
         <td>
-          <%= human_boolean payment.captured %>
+          <%= payment_presenter.captured_to_human %>
         </td>
         <td class="buttons">
-          <%= render "shared/index/index_buttons", record: payment.donation %>
+          <%= render "shared/index/index_buttons",
+                     record: payment_presenter.model %>
         </td>
       </tr>
     <% end %>

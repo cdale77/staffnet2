@@ -46,4 +46,5 @@
     </table>
   </div>
 </div>
-<%= render "batch_payments", payments: @deposit_batch_presenter.payments %>
+<%= render "shared/profiles/dependent_payments",
+           payment_presenters: @payment_presenters %>

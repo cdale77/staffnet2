@@ -30,9 +30,6 @@ module ApplicationHelper
     record.user == current_user
   end
 
-  def human_boolean(boolean)
-    boolean ? 'Yes' : 'No'
-  end
 
   def filing_status_options
     [ ["Single", "single"], ["Married - joint", "married-joint"],
