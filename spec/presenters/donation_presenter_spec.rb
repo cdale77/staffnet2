@@ -68,4 +68,16 @@ describe DonationPresenter do
       expect(presenter.cancelled_to_human).to eq "No"
     end
   end
+
+  describe '#captured_to_human' do
+    it 'should return the yes or no' do
+      expect(presenter.captured_to_human).to eq "Yes"
+    end
+  end
+
+  describe '#frequency_to_human' do
+    it 'should return the yes or no' do
+      expect(presenter.frequency_to_human).to eq "One-time"
+    end
+  end
 end

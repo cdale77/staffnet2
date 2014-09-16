@@ -23,7 +23,8 @@ class SupportersController < ApplicationController
 
   def show
     @supporter = Supporter.find(params[:id])
-    @donations = @supporter.donations
+    donations = @supporter.donations.limit(20)
+    @donation_presenters = DonationPresenter.wrap(donations)
     @supporter_type = @supporter.supporter_type
     authorize @supporter
   end

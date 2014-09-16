@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :authenticate_user!
 
+  # Make will_paginate work with arrays
+  require 'will_paginate/array'
+
   private
     def super_admin
       redirect_to root_path unless current_user.role? :super_admin

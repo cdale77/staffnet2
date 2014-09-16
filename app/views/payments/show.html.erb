@@ -71,7 +71,7 @@
         <th>Receipt sent at</th>
         <td><%= @payment_presenter.formatted_receipt_sent_at %></td>
       </tr>
-      <%= render "shared/profiles/magic_columns", record: @payment_presenter %>
+      <%= render "shared/profiles/magic_columns", presenter: @payment_presenter %>
     </table>
   </div>
 </div>

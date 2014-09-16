@@ -1,6 +1,14 @@
 <% provide(:title, @supporter.full_name) %>
 <h1>Supporter profile</h1>
-<%= render 'shared/profiles/profile_buttons', record: @supporter %>
+<div class="col-md-12 row button-container">
+  <div class="buttons">
+    <%= render "shared/profiles/new_dependent_record_button",
+               record_name: "donation",
+               record: @supporter %>
+    <%= render "shared/profiles/profile_buttons",
+               record: @supporter %>
+  </div>
+</div>
 <div class="col-md-12 row record-display">
   <div class="col-md-4 record-column">
     <table>
@@ -72,4 +80,5 @@
   </div>
 </div>
 <hr />
-<%= render 'supporter_donations', donations: @donations, supporter: @supporter %>
+<%= render "shared/profiles/dependent_donations",
+           donation_presenters: @donation_presenters %>

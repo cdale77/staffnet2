@@ -1,8 +1,8 @@
 <tr>
   <th>Created at</th>
-  <td><%= l(record.created_at, format: :long) %></td>
+  <td><%= presenter.formatted_created_at %></td>
 </tr>
 <tr>
   <th>Updated at</th>
-  <td><%= l(record.updated_at, format: :long) %></td>
+  <td><%= presenter.formatted_updated_at %></td>
 </tr>

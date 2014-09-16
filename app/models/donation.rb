@@ -115,9 +115,6 @@ class Donation < ActiveRecord::Base
     # this is mapped to the first payment - if it's captured, so is the donation
     # if for some reason there is no first payment, the return false
     self.payments.first ? self.payments.first.captured : false
-
-
-
   end
 
   def total_value

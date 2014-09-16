@@ -19,4 +19,12 @@ class DonationPresenter < PresenterBase
   def cancelled_to_human
     cancelled ? "Yes" : "No"
   end
+
+  def captured_to_human
+    captured ? "Yes" : "No"
+  end
+
+  def frequency_to_human
+    frequency.humanize
+  end
 end
