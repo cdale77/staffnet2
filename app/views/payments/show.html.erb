@@ -5,74 +5,73 @@
     <table>
       <tr>
         <th>Supporter</th>
-        <td><%= @supporter.full_name %></td>
+        <td><%= @payment_presenter.supporter_name %></td>
       </tr>
       <tr>
         <th>Donation date</th>
-        <td><%= link_to @donation.date, donation_path(@donation) %></td>
+        <td><%= link_to @payment_presenter.formatted_donation_date,
+                        donation_path(@payment_presenter.donation) %></td>
       </tr>
       <tr>
         <th>Donation amount</th>
-        <td><%= number_to_currency @donation.amount %></td>
+        <td><%= @payment_presenter.formatted_donation_amount %></td>
       </tr>
       <tr>
         <th>Donation source</th>
-        <td><%= @donation.source.humanize %></td>
+        <td><%= @payment_presenter.source_to_human %></td>
       </tr>
-      <% if @donation.is_sustainer? %>
+      <% if @payment_presenter.is_donation_sustainer? %>
         <tr>
           <th>Donation Month code</th>
-          <td><%= @donation.sub_month %></td>
+          <td><%= @payment_presenter.donation_sub_month %></td>
         </tr>
       <% end %>
     </table>
   </div>
-  <div class="col-md-4 record-columnn">
+  <div class="col-md-4 record-column">
     <table>
       <tr>
         <th>Amount</th>
-        <td><%= number_to_currency @payment.amount %></td>
+        <td><%= @payment_presenter.formatted_amount %></td>
       </tr>
       <tr>
         <th>Type</th>
-        <td><%= @payment.payment_type.humanize %></td>
+        <td><%= @payment_presenter.type_to_human %></td>
       </tr>
-      <% if @payment.payment_type == "credit" || \
-            @payment.payment_type == "installment" %>
-        <tr>
-          <th>CC</th>
-          <td><%= @payment_profile.short_version %></td>
-        </tr>
-        <tr>
-          <th>Result</th>
-          <td><%= @payment.captured ? "Captured" : "Declined" %></td>
-        </tr>
-        <tr>
-          <th>Auth code</th>
-          <td><%= @payment.cim_auth_code %></td>
-        </tr>
-        <tr>
-          <th>CIM payment profile</th>
-          <td><%= @payment_profile.cim_payment_profile_id %></td>
-        </tr>
-      <% end %>
+      <tr>
+        <th>Payment profile</th>
+        <td><%= @payment_presenter.payment_profile_short %></td>
+      </tr>
+
+      <tr>
+        <th>Auth code</th>
+        <td><%= @payment_presenter.cim_auth_code %></td>
+      </tr>
+      <tr>
+        <th>CIM payment profile</th>
+        <td><%= @payment_presenter.cim_payment_profile_id %></td>
+      </tr>
+      <tr>
+        <th>Result</th>
+        <td><%= @payment_presenter.captured_to_human %></td>
+      </tr>
     </table>
   </div>
-  <div class="col-md-4 record-columnn">
+  <div class="col-md-4 record-column">
     <table>
       <tr>
         <th>Status</th>
-        <td><%= @payment.processed ? "Processed" : "Not processed" %></td>
+        <td><%= @payment_presenter.payment_status %></td>
       </tr>
       <tr>
         <th>Deposited at</th>
-        <td><%= @payment.deposited_at %></td>
+        <td><%= @payment_presenter.formatted_deposited_at %></td>
       </tr>
       <tr>
         <th>Receipt sent at</th>
-        <td><%= @payment.receipt_sent_at %></td>
+        <td><%= @payment_presenter.formatted_receipt_sent_at %></td>
       </tr>
-      <%= render "shared/profiles/magic_columns", record: @payment %>
+      <%= render "shared/profiles/magic_columns", record: @payment_presenter %>
     </table>
   </div>
 </div>

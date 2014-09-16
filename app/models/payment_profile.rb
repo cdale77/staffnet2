@@ -46,7 +46,6 @@ class PaymentProfile < ActiveRecord::Base
     else
       "#{profile_type.humanize}"
     end
-
   end
 
   def store_cc_info

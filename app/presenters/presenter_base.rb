@@ -27,5 +27,4 @@ class PresenterBase < SimpleDelegator
   def formatted_updated_at
     I18n.l(updated_at, format: :long)
   end
-
 end
