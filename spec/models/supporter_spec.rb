@@ -82,9 +82,9 @@ describe Supporter do
                             address_county: "Alameda",
                             cim_customer_id: "100024",
                             spouse_name: "John",
-                            prospect_group: "c" }
+                            prospect_group: "c",
+                            issue_knowledge: 2 }
 
-  # eager-eval to limit Cim callbacks
   let!(:supporter_type) { FactoryGirl.create(:supporter_type,
                                               name: "supporter") }
   let!(:supporter) { FactoryGirl.create(:supporter) }

@@ -111,6 +111,7 @@ class SupportersController < ApplicationController
                                           :address_county,
                                           :source,
                                           :notes,
-                                          :spouse_name)
+                                          :spouse_name,
+                                          :issue_knowledge)
     end
 end
