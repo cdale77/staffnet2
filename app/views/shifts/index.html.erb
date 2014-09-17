@@ -9,6 +9,6 @@
     <th>Fundraising</th>
     <th></th>
   </tr>
-  <%= render @shifts %>
+  <%= render "shifts", shift_presenters: @shift_presenters %>
 </table>
-<%= will_paginate %>
+<%= will_paginate @shift_presenters %>

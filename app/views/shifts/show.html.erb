@@ -1,78 +1,80 @@
 <% provide(:title, 'Shift') %>
 <h1>Shift profile</h1>
-<%= render "shared/profiles/profile_buttons", record: @shift %>
+<div class="col-md-12 row button-container">
+  <div class="buttons">
+    <%= render "shared/profiles/profile_buttons",
+               record: @shift_presenter.model %>
+  </div>
+</div>
 <div class="col-md-12 row record-display">
   <div class="col-md-4 record-column"><table>
     <tr>
       <th>Employee</th>
-      <td><%= @employee.full_name %></td>
+      <td><%= @shift_presenter.employee_name %></td>
     </tr>
     <tr>
       <th>Date</th>
-      <td><%= @shift.date %></td>
+      <td><%= @shift_presenter.formatted_date %></td>
     </tr>
     <tr>
       <th>Type</th>
-      <td><%= @shift.shift_type.name.humanize %></td>
+      <td><%= @shift_presenter.shift_type_name %></td>
     </tr>
     <tr>
       <th>Site</th>
-      <td><%= @shift.site %></td>
+      <td><%= @shift_presenter.site_to_human %></td>
     </tr>
     <tr>
       <th>Travel reimb</th>
-      <td><%= number_to_currency(@shift.travel_reimb) %></td>
+      <td><%= @shift_presenter.formatted_travel_reimb %></td>
     </tr>
-
-    <% if @shift.field_manager %>
-      <tr>
-        <th>Field manager</th>
-        <td><%= @shift.field_manager.full_name %></td>
-      </tr>
-    <% end  %>
+    <tr>
+      <th>Field manager</th>
+      <td><%= @shift_presenter.field_manager_name %></td>
+    </tr>
   </table></div>
   <div class="col-md-4 record-column"><table>
     <tr>
       <th>Time in</th>
-      <td><%= l(@shift.time_in, format: :short) %></td>
+      <td><%= @shift_presenter.formatted_time_in %></td>
     </tr>
     <tr>
       <th>Time out</th>
-      <td><%= l(@shift.time_out, format: :short) %></td>
+      <td><%= @shift_presenter.formatted_time_in %></td>
     </tr>
     <tr>
       <th>Break time</th>
-      <td><%= @shift.break_time %> minutes</td>
+      <td><%= @shift_presenter.break_time %> minutes</td>
     </tr>
     <tr>
       <th>Net hours</th>
-      <td><%= @shift.net_time %></td>
+      <td><%= @shift_presenter.net_time %></td>
     </tr>
     <tr>
       <th>Notes</th>
-      <td><%= @shift.notes %></td>
+      <td><%= @shift_presenter.notes %></td>
     </tr>
   </table></div>
   <div class="col-md-4 record-column"> <table>
     <tr>
       <th>Reported raised</th>
-      <td><%= number_to_currency @shift.reported_raised %></td>
+      <td><%= @shift_presenter.formatted_reported_raised %></td>
     </tr>
     <tr>
       <th>Fundraising credit</th>
-      <td><%= number_to_currency @shift.gross_fundraising_credit %></td>
+      <td><%= @shift_presenter.formatted_gross_fundraising_credit %></td>
     </tr>
     <tr>
       <th>Deposit</th>
-      <td><%= number_to_currency @shift.total_deposit %></td>
+      <td><%= @shift_presenter.formatted_total_deposit %></td>
     </tr>
     <tr>
       <th>Reported yes</th>
-      <td><%= @shift.reported_total_yes %></td>
+      <td><%= @shift_presenter.reported_total_yes %></td>
     </tr>
     <tr>
       <th>Contacts</th>
-      <td><%= @shift.contacts %></td>
+      <td><%= @shift_presenter.contacts %></td>
     </tr>
   </table></div>
 </div>

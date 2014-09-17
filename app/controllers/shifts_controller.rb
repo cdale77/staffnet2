@@ -20,22 +20,22 @@ class ShiftsController < ApplicationController
   end
 
   def show
-    @shift = Shift.find(params[:id])
-    donations = @shift.donations.limit(20)
-    donation_presenters = DonationPresenter.wrap(donations)
-    @employee = @shift.employee
-    authorize @shift
+    shift = Shift.find(params[:id])
+    @shift_presenter = ShiftPresenter.new(shift)
+    @donation_presenters = DonationPresenter.wrap(shift.donations.limit(20))
+    authorize shift
   end
 
   def index
     # Pundit policy scopes don't seem to work since user is delegated/user_id
     # isn't in the Shifts table.
     if current_user.role? :manager
-      @shifts = Shift.all.paginate(page: params[:page])
+      shifts = Shift.all
     elsif current_user.role? :staff
-      @shifts = current_user.shifts.paginate(page: params[:page])
+      shifts = current_user.shifts
     end
-    authorize @shifts
+    @shift_presenters = ShiftPresenter.wrap(shifts).paginate(page: params[:page])
+    authorize shifts
   end
 
   def edit

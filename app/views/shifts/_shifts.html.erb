@@ -1,0 +1,12 @@
+<% shift_presenters.each do |shift_presenter| %>
+  <tr>
+    <td><%= shift_presenter.employee_name %></td>
+    <td><%= shift_presenter.formatted_date %></td>
+    <td><%= shift_presenter.net_time %></td>
+    <td><%= shift_presenter.shift_type_name %></td>
+    <td><%= shift_presenter.formatted_gross_fundraising_credit %></td>
+    <td class="buttons">
+      <%= render "shared/index/index_buttons", record: shift_presenter.model %>
+    </td>
+  </tr>
+<% end %>
