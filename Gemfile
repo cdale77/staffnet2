@@ -4,7 +4,7 @@ ruby "2.1.2"
 gem "rails", "4.2.0.beta1"
 gem "rake", "10.3.2"
 gem "unicorn", "4.8.3"
-gem "sidekiq", "3.2.3"
+gem "sidekiq", "3.2.5"
 gem "sinatra", "1.4.5"  # required by Sidekiq
 gem "slim", "2.0.3"     # required by Sidekiq
 gem "pg", "0.17.1"
@@ -21,7 +21,7 @@ gem "money", git: "https://github.com/cdale77/money.git"
 gem "sendyr", "0.2.1"
 
 # data storage
-gem "aws-sdk", "1.52.0"
+gem "aws-sdk", "1.53.0"
 gem "pgbackups-archive", "0.2.1"
 gem "paper_trail", "3.0.5"
 
@@ -53,11 +53,11 @@ group :development do
 end
 
 group :development, :test do
-  gem "rspec-rails", "3.0.2"
+  gem "rspec-rails", "3.1.0"
   gem "capybara", "2.4.1"
-  gem "selenium-webdriver", "2.42.0"
+  gem "selenium-webdriver", "2.43.0"
   gem "factory_girl_rails", "4.4.1"
-  gem "byebug", "3.1.2"
+  gem "byebug", "3.4.0"
   gem "codeclimate-test-reporter", "0.4.0"
 end
 
