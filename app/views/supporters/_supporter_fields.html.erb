@@ -1,27 +1,5 @@
-<div class="row">
-  <div class="col-md-12">
-    <button type="button" class="btn btn-default field-toggle"
-            data-toggle="collapse" data-target="#spouse">
-      Spouse
-    </button>
-    <button type="button" class="btn btn-default field-toggle"
-            data-toggle="collapse" data-target="#contact-prefs">
-      Contact prefs
-    </button>
-    <button type="button" class="btn btn-default field-toggle"
-            data-toggle="collapse" data-target="#employer">
-      Employer
-    </button>
-    <button type="button" class="btn btn-default field-toggle"
-            data-toggle="collapse" data-target="#volunteer">
-      Volunteer
-    </button>
-    <button type="button" class="btn btn-default field-toggle"
-            data-toggle="collapse" data-target="#tags">
-      Tags
-    </button>
-  </div>
-</div>
+
+<%= render "supporter_field_buttons" %>
 <hr />
 <div class="row">
   <div class="col-md-2">
@@ -51,12 +29,14 @@
     <%= f.label :email_1_bad, 'Bad?' %>
     <%= f.check_box :email_1_bad %>
   </div>
-  <div class="col-md-4">
-    <%= f.input :email_2, label: 'Secondary email' %>
-  </div>
-  <div class="col-md-1">
-    <%= f.label :email_2_bad, 'Bad?' %>
-    <%= f.check_box :email_2_bad %>
+  <div class="collapse" id="alt_email">
+    <div class="col-md-4">
+      <%= f.input :email_2, label: 'Secondary email' %>
+    </div>
+    <div class="col-md-1">
+      <%= f.label :email_2_bad, 'Bad?' %>
+      <%= f.check_box :email_2_bad %>
+    </div>
   </div>
 </div>
 <hr />
@@ -75,12 +55,14 @@
     <%= f.label :phone_home_bad, label: 'Bad?' %>
     <%= f.check_box :phone_home_bad %>
   </div>
-  <div class="col-md-3">
-    <%= f.input :phone_alt, label: 'Alt phone' %>
-  </div>
-  <div class="col-md-1">
-    <%= f.label :phone_alt_bad, 'Bad?' %>
-    <%= f.check_box :phone_alt_bad %>
+  <div class="collapse" id="alt_phone">
+    <div class="col-md-3">
+      <%= f.input :phone_alt, label: 'Alt phone' %>
+    </div>
+    <div class="col-md-1">
+      <%= f.label :phone_alt_bad, 'Bad?' %>
+      <%= f.check_box :phone_alt_bad %>
+    </div>
   </div>
 </div>
 <hr />
@@ -122,7 +104,7 @@
     </div>
   </div>
 </div>
-<div id="contact-prefs" class="collapse">
+<div id="contact" class="collapse">
   <hr />
   <div class="row">
     <div class="col-md-2">
