@@ -1,5 +1,7 @@
 $ ->
   $("form").on "click", ".remove_fields", (event) ->
+    console.log("fire")
+
     $(this).closest(".field").remove()
     event.preventDefault()
 
