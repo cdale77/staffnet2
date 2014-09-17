@@ -99,7 +99,6 @@ describe 'EmployeePages' do
             it { should have_link('delete', href: employee_path(employee)) }
           end
           describe 'shifts' do
-            it { should have_link('New shift', href: new_employee_shift_path(employee)) }
             it { should have_content(shift.shift_type.name.humanize) }
           end
         end

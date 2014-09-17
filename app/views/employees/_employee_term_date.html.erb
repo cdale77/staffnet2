@@ -1,0 +1,6 @@
+<% if @employee_presenter.term_date.present? %>
+  <tr>
+    <th>Term. date:</th>
+    <td><%= @employee_presenter.formatted_term_date %></td>
+  </tr>
+<% end %>

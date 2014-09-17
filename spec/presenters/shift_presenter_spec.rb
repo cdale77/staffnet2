@@ -89,4 +89,10 @@ describe ShiftPresenter do
         number_to_currency(shift.total_deposit)
     end
   end
+
+  describe '#formatted_date' do
+    it 'should format the date' do
+      expect(presenter.formatted_date).to eq I18n.l(shift.date)
+    end
+  end
 end

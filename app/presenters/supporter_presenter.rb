@@ -1,8 +1,4 @@
-class SupporterPresenter < PresenterBase
-
-  def formatted_city_state_zip
-    "#{address_city}, #{address_state} #{address_zip}"
-  end
+class SupporterPresenter < PeoplePresenter
 
   def occupation_to_human
     occupation.humanize

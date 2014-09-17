@@ -1,6 +1,7 @@
 class PresenterBase < SimpleDelegator
 
   include ActionView::Helpers::NumberHelper
+  include ActionView::Helpers::UrlHelper
 
   def self.wrap(collection)
     collection.map do |obj|
@@ -21,12 +22,5 @@ class PresenterBase < SimpleDelegator
     I18n.l(updated_at, format: :long)
   end
 
-  # Many, but not all, underlying objects have these two methods.
-  def formatted_amount
-    number_to_currency(amount)
-  end
 
-  def formatted_date
-    I18n.l(date)
-  end
 end

@@ -21,14 +21,16 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    @employee = Employee.find(params[:id])
-    @shifts = @employee.shifts.limit(18)
-    authorize @employee
+    employee = Employee.find(params[:id])
+    @employee_presenter = EmployeePresenter.new(employee)
+    @shift_presenters = ShiftPresenter.wrap(employee.shifts.limit(20))
+    authorize employee
   end
 
   def index
-    @employees = Employee.active
-    authorize @employees
+    employees = Employee.active
+    @employee_presenters = EmployeePresenter.wrap(employees)
+    authorize employees
   end
 
   def edit

@@ -1,4 +1,4 @@
-class PaymentPresenter < PresenterBase
+class PaymentPresenter < FinancePresenter
 
   def credited_employee
     donation.shift ? donation.shift.employee.full_name : "Not credited"

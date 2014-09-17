@@ -39,4 +39,8 @@ class ShiftPresenter < PresenterBase
   def formatted_total_deposit
     number_to_currency(total_deposit)
   end
+
+  def formatted_date
+    I18n.l(date)
+  end
 end

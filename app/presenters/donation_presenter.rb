@@ -1,4 +1,4 @@
-class DonationPresenter < PresenterBase
+class DonationPresenter < FinancePresenter
 
   def supporter_full_name
     supporter ? supporter.full_name : "No supporter"

@@ -8,6 +8,7 @@
     <th>Phone</th>
     <th>City</th>
     <th>Status</th>
+    <th></th>
   </tr>
-  <%= render @employees %>
+  <%= render "employees", employee_presenters: @employee_presenters %>
 </table>

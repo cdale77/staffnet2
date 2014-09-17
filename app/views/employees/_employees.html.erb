@@ -1,0 +1,14 @@
+<% employee_presenters.each do |employee_presenter| %>
+  <tr>
+    <td><%= employee_presenter.full_name %></td>
+    <td><%= employee_presenter.title_to_human %></td>
+    <td><%= employee_presenter.email_link %></td>
+    <td><%= employee_presenter.formatted_phone %></td>
+    <td><%= employee_presenter.address_city %></td>
+    <td><%= employee_presenter.formatted_status %></td>
+    <td class="buttons">
+      <%= render "shared/index/index_buttons",
+                 record: employee_presenter.model %>
+    </td>
+  </tr>
+<% end %>

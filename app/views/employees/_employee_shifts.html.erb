@@ -1,10 +1,6 @@
 <div class="col-md-12 row" id="employee-shifts">
   <div class="table-header">
     <h4 class="table-title-right">Shifts</h4>
-
-    <%= render "shared/profiles/new_dependent_record_button",
-               record_name: "shift",
-               record: employee %>
   </div>
   <table class="table table-hover">
     <tr>
@@ -17,17 +13,18 @@
       <th>Credit</th>
       <th></th>
     </tr>
-    <% shifts.each do |shift| %>
+    <% shift_presenters.each do |shift_presenter| %>
       <tr>
-        <td><%= shift.date %></td>
-        <td><%= l(shift.time_in, format: :short) %></td>
-        <td><%= l(shift.time_out, format: :short) %></td>
-        <td><%= shift.net_time %></td>
-        <td><%= shift.shift_type.name.humanize %></td>
-        <td><%= number_to_currency shift.total_deposit %></td>
-        <td><%= number_to_currency shift.gross_fundraising_credit %></td>
+        <td><%= shift_presenter.formatted_date %></td>
+        <td><%= shift_presenter.formatted_time_in %></td>
+        <td><%= shift_presenter.formatted_time_out %></td>
+        <td><%= shift_presenter.net_time %></td>
+        <td><%= shift_presenter.shift_type_name %></td>
+        <td><%= shift_presenter.formatted_total_deposit %></td>
+        <td><%= shift_presenter.formatted_gross_fundraising_credit %></td>
         <td class="buttons">
-          <%= render "shared/index/index_buttons", record: shift %>
+          <%= render "shared/index/index_buttons",
+                     record: shift_presenter.model %>
         </td>
       </tr>
     <% end %>

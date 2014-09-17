@@ -19,4 +19,8 @@ class DepositBatchPresenter < PresenterBase
   def approved_by
     employee ? employee.full_name : ""
   end
+
+  def formatted_date
+    I18n.l(date)
+  end
 end

@@ -67,8 +67,9 @@ FactoryGirl.define do
     ca_filing_status    "single"
     fed_allowances      2
     ca_allowances       2
-    dob                 Date.today
-    hire_date           Date.today
+    dob                 Date.today - 20.years
+    hire_date           Date.today - 1.year
+    term_date           Date.today
     gender              "f"
     active              true
     user

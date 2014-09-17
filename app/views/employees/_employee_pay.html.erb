@@ -1,0 +1,13 @@
+<% if admin_user? %>
+  <% if @employee_presenter.pay_hourly > 0 %>
+    <tr>
+      <th>Hourly pay:</th>
+      <td><%= @employee_presenter.formatted_hourly_pay %></td>
+    </tr>
+  <% elsif @employee_presenter.pay_daily > 0 %>
+    <tr>
+      <th>Daily pay:</th>
+      <td><%= @employee_presenter.formatted_daily_pay %> </td>
+    </tr>
+  <% end %>
+<% end %>
