@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
 
   # Make will_paginate work with arrays
-  require 'will_paginate/array'
+  require "will_paginate/array"
 
   private
     def super_admin

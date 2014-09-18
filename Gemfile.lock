@@ -467,7 +467,7 @@ DEPENDENCIES
   metric_fu (= 4.11.1)
   money!
   morrisjs-rails (= 0.5.1)
-  newrelic_rpm
+  newrelic_rpm (= 3.9.4.245)
   paper_trail (= 3.0.5)
   pg (= 0.17.1)
   pgbackups-archive (= 0.2.1)
