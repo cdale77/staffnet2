@@ -15,6 +15,7 @@ gem "pundit", "0.3.0"
 gem "figaro", "0.7.0"
 gem "i18n", "0.7.0.beta1"
 gem "newrelic_rpm"
+gem "newrelic_sidekiq_agent", git: "https://github.com/secondimpression/newrelic_sidekiq_agent.git"
 
 ## APIs
 gem "activemerchant", "1.44.1"
