@@ -47,6 +47,8 @@ gem "morrisjs-rails", "0.5.1"
 
 ## Misc
 gem "pry-rails", "0.3.2"
+#gem "pipl", "0.0.1
+gem "fullcontact", "0.6.1"
 
 group :development do
   gem "faker", "1.4.3"

@@ -46,6 +46,7 @@
 #  vol_level         :string(255)      default("")
 #  spouse_name       :string(255)      default("")
 #  prospect_group    :string(255)      default("")
+#  issue_knowledge   :integer          default("0")
 #
 
 FactoryGirl.define do

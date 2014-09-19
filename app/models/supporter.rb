@@ -46,6 +46,7 @@
 #  vol_level         :string(255)      default("")
 #  spouse_name       :string(255)      default("")
 #  prospect_group    :string(255)      default("")
+#  issue_knowledge   :integer          default("0")
 #
 
 class Supporter < ActiveRecord::Base
@@ -68,6 +69,8 @@ class Supporter < ActiveRecord::Base
   has_many :payment_profiles
   has_many :taggings
   has_many :tags, through: :taggings
+
+  has_many :full_contact_matches, dependent: :destroy
 
 
   ## CALLBACKS
