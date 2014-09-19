@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917003116) do
+ActiveRecord::Schema.define(version: 20140918220805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20140917003116) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "deposit_batches", ["employee_id"], name: "index_deposit_batches_on_employee_id", using: :btree
 
   create_table "donations", force: true do |t|
     t.integer  "legacy_id"
@@ -45,7 +47,10 @@ ActiveRecord::Schema.define(version: 20140917003116) do
     t.datetime "updated_at"
   end
 
+  add_index "donations", ["donation_type"], name: "index_donations_on_donation_type", using: :btree
   add_index "donations", ["shift_id"], name: "index_donations_on_shift_id", using: :btree
+  add_index "donations", ["sub_month"], name: "index_donations_on_sub_month", using: :btree
+  add_index "donations", ["sub_week"], name: "index_donations_on_sub_week", using: :btree
   add_index "donations", ["supporter_id"], name: "index_donations_on_supporter_id", using: :btree
 
   create_table "employees", force: true do |t|
@@ -97,10 +102,7 @@ ActiveRecord::Schema.define(version: 20140917003116) do
   end
 
   add_index "employees", ["active"], name: "index_employees_on_active", using: :btree
-  add_index "employees", ["email"], name: "index_employees_on_email", using: :btree
   add_index "employees", ["hire_date"], name: "index_employees_on_hire_date", using: :btree
-  add_index "employees", ["last_name"], name: "index_employees_on_last_name", using: :btree
-  add_index "employees", ["phone"], name: "index_employees_on_phone", using: :btree
   add_index "employees", ["term_date"], name: "index_employees_on_term_date", using: :btree
   add_index "employees", ["title"], name: "index_employees_on_title", using: :btree
   add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
@@ -143,6 +145,7 @@ ActiveRecord::Schema.define(version: 20140917003116) do
     t.decimal  "bonus_credit",             precision: 8, scale: 2, default: 0.0
   end
 
+  add_index "paychecks", ["check_date"], name: "index_paychecks_on_check_date", using: :btree
   add_index "paychecks", ["employee_id"], name: "index_paychecks_on_employee_id", using: :btree
   add_index "paychecks", ["payroll_id"], name: "index_paychecks_on_payroll_id", using: :btree
 
@@ -181,6 +184,7 @@ ActiveRecord::Schema.define(version: 20140917003116) do
   add_index "payments", ["deposit_batch_id"], name: "index_payments_on_deposit_batch_id", using: :btree
   add_index "payments", ["donation_id"], name: "index_payments_on_donation_id", using: :btree
   add_index "payments", ["payment_profile_id"], name: "index_payments_on_payment_profile_id", using: :btree
+  add_index "payments", ["payment_type"], name: "index_payments_on_payment_type", using: :btree
 
   create_table "payrolls", force: true do |t|
     t.date     "start_date"
@@ -201,6 +205,9 @@ ActiveRecord::Schema.define(version: 20140917003116) do
     t.decimal  "net_fundraising_credit",   precision: 8, scale: 2, default: 0.0
   end
 
+  add_index "payrolls", ["end_date"], name: "index_payrolls_on_end_date", using: :btree
+  add_index "payrolls", ["start_date"], name: "index_payrolls_on_start_date", using: :btree
+
   create_table "sendy_lists", force: true do |t|
     t.integer  "supporter_type_id"
     t.string   "sendy_list_identifier", limit: 255, default: ""
@@ -209,6 +216,7 @@ ActiveRecord::Schema.define(version: 20140917003116) do
     t.datetime "updated_at"
   end
 
+  add_index "sendy_lists", ["name"], name: "index_sendy_lists_on_name", using: :btree
   add_index "sendy_lists", ["sendy_list_identifier"], name: "index_sendy_lists_on_sendy_list_identifier", using: :btree
   add_index "sendy_lists", ["supporter_type_id"], name: "index_sendy_lists_on_supporter_type_id", using: :btree
 
@@ -243,6 +251,7 @@ ActiveRecord::Schema.define(version: 20140917003116) do
   end
 
   add_index "shift_types", ["fundraising_shift"], name: "index_shift_types_on_fundraising_shift", using: :btree
+  add_index "shift_types", ["name"], name: "index_shift_types_on_name", using: :btree
   add_index "shift_types", ["quota_shift"], name: "index_shift_types_on_quota_shift", using: :btree
 
   create_table "shifts", force: true do |t|
@@ -275,6 +284,7 @@ ActiveRecord::Schema.define(version: 20140917003116) do
     t.string   "site",                      limit: 255,                         default: ""
   end
 
+  add_index "shifts", ["date"], name: "index_shifts_on_date", using: :btree
   add_index "shifts", ["employee_id"], name: "index_shifts_on_employee_id", using: :btree
   add_index "shifts", ["field_manager_employee_id"], name: "index_shifts_on_field_manager_employee_id", using: :btree
   add_index "shifts", ["paycheck_id"], name: "index_shifts_on_paycheck_id", using: :btree
@@ -285,6 +295,8 @@ ActiveRecord::Schema.define(version: 20140917003116) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "supporter_types", ["name"], name: "index_supporter_types_on_name", using: :btree
 
   create_table "supporters", force: true do |t|
     t.integer  "supporter_type_id"
@@ -334,7 +346,7 @@ ActiveRecord::Schema.define(version: 20140917003116) do
   end
 
   add_index "supporters", ["cim_id"], name: "index_supporters_on_cim_id", using: :btree
-  add_index "supporters", ["external_id"], name: "index_supporters_on_external_id", using: :btree
+  add_index "supporters", ["prospect_group"], name: "index_supporters_on_prospect_group", using: :btree
   add_index "supporters", ["sendy_list_id"], name: "index_supporters_on_sendy_list_id", using: :btree
   add_index "supporters", ["supporter_type_id"], name: "index_supporters_on_supporter_type_id", using: :btree
 
