@@ -11,11 +11,13 @@ class FullContactMatchJob < ActiveJob::Base
 
     major_donors.each do |donor|
 
-      response = look_up_request(donor)
+      unless donor.full_contact_matches.count > 0
+        response = look_up_request(donor)
 
-      process_response(response)
+        process_response(response)
 
-      sleep(1.5)
+        sleep(1.5)
+      end
 
     end
 
@@ -65,7 +67,7 @@ class FullContactMatchJob < ActiveJob::Base
 
       donor.full_contact_matches.create(payload: response)
 
-    elsif response["status"] == 202
+    elsif response && response.is_a?(Hashie::Rash) && response["status"] == 202
       @retries << donor.id
     end
   end
