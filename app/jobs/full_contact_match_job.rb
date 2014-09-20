@@ -13,7 +13,7 @@ class FullContactMatchJob < ActiveJob::Base
 
       response = look_up_request(donor)
 
-      process_response(response)
+      process_response(response, donor)
 
       sleep(1.5)
 
@@ -26,7 +26,7 @@ class FullContactMatchJob < ActiveJob::Base
 
         response = look_up_request(donor)
 
-        process_response(response)
+        process_response(response, donor)
 
       end
     end
@@ -40,7 +40,7 @@ class FullContactMatchJob < ActiveJob::Base
     begin
       response = FullContact.person(email: donor.email_1)
     rescue
-  
+
     end
 
     elsif donor.email_2.present?
@@ -68,7 +68,7 @@ class FullContactMatchJob < ActiveJob::Base
     return response if response
   end
 
-  def process_response(response)
+  def process_response(response, donor)
     if response && response.is_a?(Hashie::Rash) && response["status"] == 200
 
       donor.full_contact_matches.create(payload: response)
