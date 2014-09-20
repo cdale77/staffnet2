@@ -37,27 +37,35 @@ class FullContactMatchJob < ActiveJob::Base
 
     if donor.email_1.present?
 
+    begin
       response = FullContact.person(email: donor.email_1)
-
-    elsif donor.email_2.present?
-
-      response = FullContact.person(email: donor.email_2)
-
-    elsif donor.phone_mobile.present?
-
-      response = FullContact.person(phone: donor.phone_mobile)
-
-    elsif donor.phone_home.present?
-
-      response = FullContact.person(phone: donor.phone_home)
-
-    elsif donor.phone_alt.present?
-
-      response = FullContact.person(phone: donor.phone_alt)
-
+    rescue
+  
     end
 
-    return response
+    elsif donor.email_2.present?
+    begin
+      response = FullContact.person(email: donor.email_2)
+    rescue
+    end
+    elsif donor.phone_mobile.present?
+      begin
+        response = FullContact.person(phone: donor.phone_mobile)
+      rescue
+      end
+    elsif donor.phone_home.present?
+      begin
+      response = FullContact.person(phone: donor.phone_home)
+      rescue
+      end
+    elsif donor.phone_alt.present?
+      begin
+      response = FullContact.person(phone: donor.phone_alt)
+      rescue
+      end
+    end
+
+    return response if response
   end
 
   def process_response(response)
