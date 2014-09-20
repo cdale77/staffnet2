@@ -4,9 +4,6 @@ ruby "2.1.2"
 gem "rails", "4.2.0.beta1"
 gem "rake", "10.3.2"
 gem "unicorn", "4.8.3"
-gem "sidekiq", "3.2.5"
-gem "sinatra", "1.4.5"  # required by Sidekiq
-gem "slim", "2.0.3"     # required by Sidekiq
 gem "pg", "0.17.1"
 # https://github.com/plataformatec/devise/pull/3153
 gem "devise", git: "https://github.com/plataformatec/devise.git",
@@ -14,15 +11,22 @@ gem "devise", git: "https://github.com/plataformatec/devise.git",
 gem "pundit", "0.3.0"
 gem "figaro", "0.7.0"
 gem "i18n", "0.7.0.beta1"
-gem "newrelic_rpm", "3.9.4.245"
 
+
+## JOBS
+gem "sidekiq", "3.2.5"
+gem "sinatra", "1.4.5"  # required by Sidekiq
+gem "slim", "2.0.3"     # required by Sidekiq
+## MONITORING
+gem "exception_notification", "4.0.1"
+gem "newrelic_rpm", "3.9.4.245"
 
 ## APIs
 gem "activemerchant", "1.44.1"
 gem "money", git: "https://github.com/cdale77/money.git"
 gem "sendyr", "0.2.1"
 
-# data storage
+# DATA STORAGE
 gem "aws-sdk", "1.53.0"
 gem "pgbackups-archive", "0.2.1"
 gem "paper_trail", "3.0.5"
