@@ -10,6 +10,7 @@
       <th>Type</th>
       <th>Frequency</th>
       <th>Captured?</th>
+      <th>Cancelled?</th>
       <th>Source</th>
       <th></th>
     </tr>
@@ -21,6 +22,7 @@
         <td><%= donation_presenter.type_to_human %></td>
         <td><%= donation_presenter.frequency_to_human %></td>
         <td><%= donation_presenter.captured_to_human %></td>
+        <td><%= donation_presenter.cancelled_to_human %></td>
         <td><%= donation_presenter.source_to_human %></td>
         <td class="buttons">
           <%= render "shared/index/index_buttons",
