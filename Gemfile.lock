@@ -18,6 +18,13 @@ GIT
       i18n (>= 0.6.4)
 
 GIT
+  remote: https://github.com/cdale77/rubillow.git
+  revision: 95298719e800589dbf82ce9110f7adede04338f9
+  specs:
+    rubillow (0.0.8)
+      nokogiri (~> 1.6.0)
+
+GIT
   remote: https://github.com/plataformatec/devise.git
   revision: 8482e485d1396fdc43c030098f80c90f11763a3a
   branch: lm-rails-4-2
@@ -285,6 +292,9 @@ GEM
       fog (>= 1.4.0)
       heroku (>= 2.34.0)
       rake (>= 0.9.2.2)
+    pipl-api (3.0.1)
+      multi_json (~> 1.7)
+      rest-client (~> 1.6)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
     pry (0.10.1)
@@ -488,6 +498,7 @@ DEPENDENCIES
   paper_trail (= 3.0.5)
   pg (= 0.17.1)
   pgbackups-archive (= 0.2.1)
+  pipl-api (= 3.0.1)
   pry-rails (= 0.3.2)
   pundit (= 0.3.0)
   rails (= 4.2.0.beta1)
@@ -496,6 +507,7 @@ DEPENDENCIES
   ransack!
   raphael-rails (= 2.1.2)
   rspec-rails (= 3.1.0)
+  rubillow!
   sass-rails (= 5.0.0.beta1)
   sdoc
   selenium-webdriver (= 2.43.0)
