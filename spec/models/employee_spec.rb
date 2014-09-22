@@ -54,45 +54,7 @@ require 'spec_helper'
 
 describe Employee do
 
-  employee_attributes = { first_name: 'Test',
-                          last_name: 'Employee',
-                          email: 'test_employee@example.com',
-                          phone: '4155551234',
-                          address1: '2017 Mission St.',
-                          address2: '2nd Fl',
-                          address_city: 'San Francisco',
-                          address_state: 'CA',
-                          address_zip: '94110',
-                          title: 'Field Manager',
-                          pay_hourly: 12,
-                          hire_date: Date.today,
-                          fed_filing_status: 'single',
-                          ca_filing_status: 'single',
-                          fed_allowances: 2,
-                          ca_allowances: 2,
-                          dob: Date.today,
-                          gender: 'f',
-                          active: true,
-                          notes: 'Notes',
-                          legacy_id: '34',
-                          shifts_lifetime: 0.0,
-                          shifts_this_pay_period: 0.0,
-                          shifts_this_week: 0.0,
-                          fundraising_shifts_lifetime: 0.0,
-                          fundraising_shifts_this_pay_period: 0.0,
-                          fundraising_shifts_this_week: 0.0,
-                          donations_lifetime: 0.0,
-                          donations_this_pay_period: 0.0,
-                          donations_this_week: 0.0,
-                          successful_donations_lifetime: 0.0,
-                          successful_donations_this_pay_period: 0.0,
-                          successful_donations_this_week: 0.0,
-                          raised_lifetime: 0.0,
-                          raised_this_pay_period: 0.0,
-                          raised_this_week: 0.0,
-                          average_lifetime: 0.0,
-                          average_this_pay_period: 0.0,
-                          average_this_week: 0.0 }
+  employee_attributes = SpecData.employee_attributes
 
   # SETUP ENVIRONMNET
   let!(:employee) { FactoryGirl.create(:employee) }

@@ -20,9 +20,7 @@ require 'spec_helper'
 
 describe SendyUpdate do
 
-  update_attributes = { supporter_id: 34, sendy_batch_id: 34, action: 'subscribe', success: true,
-                        sendy_email: 'example@example.com', new_sendy_email: 'example2@example.com',
-                        completed_at: Time.now, new_sendy_status: 'subscribed' }
+  update_attributes =  SpecData.sendy_update_attributes
 
   let(:sendy_update) { FactoryGirl.create(:sendy_update) }
 

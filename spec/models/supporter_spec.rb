@@ -53,38 +53,7 @@ require 'spec_helper'
 
 describe Supporter do
 
-  supporter_attributes = {  external_id: "3421",
-                            cim_id: "43300134",
-                            supporter_type_id: 1,
-                            prefix: "Mr.",
-                            salutation: "Bob",
-                            first_name: "William",
-                            last_name: "Taft",
-                            suffix: "III",
-                            address1: "44 Winter Street",
-                            address2: "2nd Floor",
-                            address_city: "Boston",
-                            address_state: "MA",
-                            address_zip: "02010",
-                            email_1: "bob@example.com",
-                            email_2: "bobtaft@example.com",
-                            phone_mobile: "5554859875",
-                            phone_home: "5559007845",
-                            phone_alt: "5558874952",
-                            keep_informed: true,
-                            vol_level: "prospect",
-                            employer: "Ohio State University",
-                            occupation: "Professor",
-                            source: "door",
-                            notes: "Note.",
-                            sendy_updated_at: Time.now,
-                            sendy_status: "subscribed",
-                            sendy_list_id: 3,
-                            address_county: "Alameda",
-                            cim_customer_id: "100024",
-                            spouse_name: "John",
-                            prospect_group: "c",
-                            issue_knowledge: 2 }
+  supporter_attributes = SpecData.supporter_attributes
 
   let!(:supporter_type) { FactoryGirl.create(:supporter_type,
                                               name: "supporter") }

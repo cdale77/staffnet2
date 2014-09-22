@@ -24,14 +24,7 @@ require 'spec_helper'
 
 describe Payment do
 
-  payment_attributes = {  deposited_at: Time.now,
-                          payment_type: "Credit Card",
-                          captured: true,
-                          processed: true,
-                          cim_transaction_id: "112131231",
-                          cim_auth_code: "12312312423",
-                          amount: 10.00,
-                          notes: "Notes" }
+  payment_attributes = SpecData.payment_attributes
 
   let(:payment) { FactoryGirl.create(:payment) }
 

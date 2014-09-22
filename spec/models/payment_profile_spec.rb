@@ -15,11 +15,9 @@ require 'spec_helper'
 
 describe PaymentProfile do
 
-  payment_profile_attributes = {  supporter_id: 21, cim_payment_profile_id: '32323223', payment_profile_type: 'credit',
-                                  cc_last_4: '1111', cc_type: 'visa', cc_month: '10', cc_year: '2017',
-                                  cc_number: '4111111111111111'}
+  payment_profile_attributes = SpecData.payment_profile_attributes
 
-  let!(:payment_profile) { FactoryGirl.create(:payment_profile) } # eager-eval to limit Cim callbacks
+  let!(:payment_profile) { FactoryGirl.create(:payment_profile) }
 
   ## ATTRIBUTES
   describe 'payment profile attribute tests' do

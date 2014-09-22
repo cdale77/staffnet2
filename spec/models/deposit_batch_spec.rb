@@ -17,11 +17,7 @@ require 'spec_helper'
 
 describe DepositBatch do
 
-  deposit_batch_attributes = { date: Date.today,
-                               deposited: false,
-                               approved: false,
-                               receipt_number: "2323002323232",
-                               batch_type: 'installment' }
+  deposit_batch_attributes = SpecData.deposit_batch_attributes
 
   let(:deposit_batch) { FactoryGirl.create(:deposit_batch) }
 

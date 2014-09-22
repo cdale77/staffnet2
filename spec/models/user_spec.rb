@@ -30,15 +30,10 @@ require 'spec_helper'
 
 describe User do
 
-  user_attributes = { email: 'test@example.com',
-                      password: 'foobar7878',
-                      password_confirmation: 'foobar7878',
-                      role: 'manager' }
+  user_attributes = SpecData.user_attributes
 
   before do
-    @user = User.new(email: 'test@example.com',
-                     password: 'foobar7878',
-                     password_confirmation: 'foobar7878')
+    @user = User.new(user_attributes)
   end
 
   subject { @user }

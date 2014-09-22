@@ -23,16 +23,7 @@ require 'spec_helper'
 
 describe Donation do
 
-  donation_attributes = { date: '2012/12/10',
-                          donation_type: 'Ongoing',
-                          source: 'Mail',
-                          campaign: 'Energy',
-                          frequency: 'Quarterly',
-                          sub_month: 'm',
-                          sub_week: 3,
-                          amount: 10.00,
-                          cancelled: false,
-                          notes: 'Notes' }
+  donation_attributes = SpecData.donation_attributes
 
   let!(:shift_type) { FactoryGirl.create(:shift_type) }
   let!(:shift) { FactoryGirl.create(:shift, shift_type: shift_type) }

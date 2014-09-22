@@ -36,26 +36,7 @@ require "spec_helper"
 
 describe Paycheck do
 
-  paycheck_attributes = {
-      check_date: Date.today,
-      shift_quantity: 80,
-      cv_shift_quantity: 74,
-      quota_shift_quantity: 80,
-      office_shift_quantity: 16,
-      sick_shift_quantity: 0,
-      vacation_shift_quantity: 0,
-      holiday_shift_quantity: 0,
-      total_deposit: 9876,
-      gross_fundraising_credit: 10764,
-      notes: "some note",
-      credits: 45.00,
-      docks: 25.00,
-      total_quota: 1500,
-      net_fundraising_credit: 10500,
-      over_quota: -4500,
-      temp_buffer: -300,
-      bonus_credit: -400,
-  }
+  paycheck_attributes = SpecData.paycheck_attributes
 
   let!(:payroll) { FactoryGirl.create(:payroll) }
   let!(:paycheck) { FactoryGirl.create(:paycheck,
