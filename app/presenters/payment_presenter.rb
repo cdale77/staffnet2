@@ -42,7 +42,7 @@ class PaymentPresenter < FinancePresenter
   end
 
   def formatted_donation_date
-    donation_date ? I18n.l(donation.date) : ""
+    donation.date ? I18n.l(donation.date) : ""
   end
 
   def is_donation_sustainer?
