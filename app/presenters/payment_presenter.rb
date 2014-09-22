@@ -9,7 +9,7 @@ class PaymentPresenter < FinancePresenter
   end
 
   def supporter_name
-    donation.supporter.full_name
+    donation.supporter ? donation.supporter.full_name : "No supporter"
   end
 
   def captured_to_human
@@ -21,11 +21,12 @@ class PaymentPresenter < FinancePresenter
   end
 
   def frequency_to_human
+    # donation#frequency is a method that always returns a string
     donation.frequency.humanize
   end
 
   def source_to_human
-    donation.source.humanize
+    donation.source ? donation.source.humanize : ""
   end
 
   def formatted_donation_amount
@@ -37,11 +38,11 @@ class PaymentPresenter < FinancePresenter
   end
 
   def formatted_receipt_sent_at
-    I18n.l(receipt_sent_at, format: :long)
+    receipt_sent_at ? I18n.l(receipt_sent_at, format: :long) : "Not sent."
   end
 
   def formatted_donation_date
-    I18n.l(donation.date)
+    donation_date ? I18n.l(donation.date) : ""
   end
 
   def is_donation_sustainer?

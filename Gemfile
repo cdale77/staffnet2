@@ -51,8 +51,9 @@ gem "morrisjs-rails", "0.5.1"
 
 ## Misc
 gem "pry-rails", "0.3.2"
-#gem "pipl", "0.0.1
+gem "pipl-api", "3.0.1"
 gem "fullcontact", "0.6.1"
+gem "rubillow", git: "https://github.com/cdale77/rubillow.git"
 
 group :development do
   gem "faker", "1.4.3"
