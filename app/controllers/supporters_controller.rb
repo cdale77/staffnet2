@@ -31,7 +31,7 @@ class SupportersController < ApplicationController
   def index
     @search = Supporter.search(params[:q])
     @search.build_condition
-    supporters = params[:q] ? @search.result : Supporter.all.limit(200)
+    supporters = params[:q] ? @search.result : Supporter.all.limit(100)
     @supporter_presenters = SupporterPresenter.wrap(supporters).paginate(page: params[:page])
     authorize supporters
   end
