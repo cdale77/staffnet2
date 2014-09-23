@@ -15,6 +15,9 @@ describe 'EmployeePages' do
 
   let!(:employee) { FactoryGirl.create(:employee) }
   let!(:shift) { FactoryGirl.create(:shift, employee_id: employee.id) }
+  let!(:paycheck) { FactoryGirl.create(:paycheck,
+                                        employee: employee,
+                                        check_date: Date.today - 1.month) }
 
   ### HELPERS ###
   def fill_in_example_employee

@@ -1,0 +1,36 @@
+<div class="col-md-12 row" id="employee-paychecks">
+  <div class="table-header">
+    <h4 class="table-title-right">Paychecks</h4>
+  </div>
+  <table class="table table-hover">
+    <tr>
+      <th>Date</th>
+      <th>Total shifts</th>
+      <th>Quota shifts</th>
+      <th>Canvass shifts</th>
+      <th>Total quota</th>
+      <th>Net credit</th>
+      <th>Total pay</th>
+      <th>Bonus</th>
+      <th>New buffer</th>
+      <th></th>
+    </tr>
+    <% paycheck_presenters.each do |paycheck_presenter| %>
+      <tr>
+        <td><%= paycheck_presenter.formatted_check_date %></td>
+        <td><%= paycheck_presenter.shift_quantity %></td>
+        <td><%= paycheck_presenter.quota_shift_quantity %></td>
+        <td><%= paycheck_presenter.cv_shift_quantity %></td>
+        <td><%= paycheck_presenter.formatted_total_quota %></td>
+        <td><%= paycheck_presenter.formatted_net_fundraising_credit %></td>
+        <td><%= paycheck_presenter.total_pay %></td>
+        <td><%= paycheck_presenter.formatted_bonus %></td>
+        <td><%= paycheck_presenter.formatted_new_buffer %></td>
+        <td class="buttons">
+          <%= render "shared/index/index_buttons",
+                     record: paycheck_presenter.model %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

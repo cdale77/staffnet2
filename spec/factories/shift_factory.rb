@@ -55,6 +55,7 @@ FactoryGirl.define do
     site                        "Whole Foods"
     employee
     shift_type
+    paycheck
   end
 
 end

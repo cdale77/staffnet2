@@ -139,6 +139,8 @@
   </div>
 </div>
 <hr />
+<%= render "shared/profiles/dependent_shifts",
+           shift_presenters: @shift_presenters %>
 
-<%= render "employee_shifts", shift_presenters: @shift_presenters %>
-
+<%= render "shared/profiles/dependent_paychecks",
+           paycheck_presenters: @paycheck_presenters %>

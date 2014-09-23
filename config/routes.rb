@@ -15,7 +15,6 @@ Staffnet2::Application.routes.draw do
 
     resources :employees do
       resources :shifts
-      resources :paychecks, only: [:show]
     end
 
     resources :supporters do
@@ -35,5 +34,6 @@ Staffnet2::Application.routes.draw do
     resources :shift_types, except: [:show, :destroy]
     resources :sendy_lists
     resources :deposit_batches, only: [:show, :index, :edit, :update]
+    resources :paychecks, only: [:show]
   end
 end
