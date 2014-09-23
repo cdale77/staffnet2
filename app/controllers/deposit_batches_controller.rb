@@ -13,8 +13,9 @@ class DepositBatchesController < ApplicationController
   def index
     # Batch up any new payments
     DepositBatch.batch_up
-    deposit_batches = DepositBatch.all
-    @deposit_batch_presenters = DepositBatchPresenter.wrap(deposit_batches).paginate(page: params[:page])
+    deposit_batches = DepositBatch.includes(:employee).all
+    @deposit_batch_presenters = DepositBatchPresenter.wrap(deposit_batches). \
+                                  paginate(page: params[:page])
     authorize deposit_batches
   end
 

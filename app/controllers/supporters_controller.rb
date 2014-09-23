@@ -22,7 +22,7 @@ class SupportersController < ApplicationController
   end
 
   def show
-    supporter = Supporter.includes(:donations, :supporter_type).find(params[:id])
+    supporter = Supporter.find(params[:id])
     @supporter_presenter = SupporterPresenter.new(supporter)
     @donation_presenters = DonationPresenter.wrap(supporter.donations.limit(20))
     authorize supporter
