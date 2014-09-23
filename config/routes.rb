@@ -18,9 +18,6 @@ Staffnet2::Application.routes.draw do
       resources :paychecks, only: [:show]
     end
 
-    resources :shifts
-
-
     resources :supporters do
       resources :donations
       resources :payment_profiles
@@ -31,15 +28,12 @@ Staffnet2::Application.routes.draw do
       resources :payments
     end
 
+    resources :shifts
     resources :payments, only: [:show]
-
     resources :payment_profiles
-
     resources :supporter_types, except: [:show, :destroy]
     resources :shift_types, except: [:show, :destroy]
-
     resources :sendy_lists
-
     resources :deposit_batches, only: [:show, :index, :edit, :update]
   end
 end

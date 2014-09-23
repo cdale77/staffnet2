@@ -1,5 +1,6 @@
 require 'spec_helper'
 include Warden::Test::Helpers
+include ActionView::Helpers::NumberHelper
 Warden.test_mode!
 
 describe 'PaycheckPages' do
@@ -15,7 +16,6 @@ describe 'PaycheckPages' do
 
   # log in as superadmin user to test basic functionality of the pages.
   # Authorization is handled in the  policy specs
-=begin
   describe 'as super_admin user' do
 
     before do
@@ -33,12 +33,11 @@ describe 'PaycheckPages' do
       describe 'page' do
         before { visit employee_paycheck_path(employee, paycheck) }
         describe 'page' do
-          it { should have_content (employee.first_name) }
-          it { should have_content (employee.last_name) }
+          it { should have_content (employee.full_name) }
           it { should have_content (paycheck.check_date) }
+          it { should have_content (number_to_currency(paycheck.total_pay)) }
         end
       end
     end
   end
-=end
 end

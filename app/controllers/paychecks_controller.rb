@@ -4,8 +4,8 @@ class PaychecksController < ApplicationController
   after_filter :verify_authorized
 
   def show
-    @employee = Employee.find(params[:employee_id])
-    @paycheck = Paycheck.find(params[:id])
-    authorize @paycheck
+    paycheck = Paycheck.find(params[:id])
+    @paycheck_presenter = PaycheckPresenter.new(paycheck)
+    authorize paycheck
   end
 end
