@@ -39,7 +39,7 @@ describe 'PaycheckPages' do
 
     describe 'show' do
       describe 'page' do
-        before { visit employee_paycheck_path(employee, paycheck) }
+        before { visit paycheck_path(paycheck) }
         describe 'page' do
           it { should have_content (employee.full_name) }
           it { should have_content (paycheck.check_date) }
