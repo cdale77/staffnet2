@@ -1,6 +1,4 @@
-require 'gctools/oobgc'
-GC::OOB.run # after every request
-use(GC::OOB::UnicornMiddleware) # in config.ru for unicorn
+
 
 worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 30
