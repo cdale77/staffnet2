@@ -14,7 +14,7 @@ Staffnet2::Application.routes.draw do
     resources :users
 
     resources :employees do
-      resources :shifts
+      resources :shifts, only: :index
     end
 
     resources :supporters do
@@ -28,12 +28,12 @@ Staffnet2::Application.routes.draw do
     end
 
     resources :shifts
-    resources :payments, only: [:show]
+    resources :payments, only: :show
     resources :payment_profiles
     resources :supporter_types, except: [:show, :destroy]
     resources :shift_types, except: [:show, :destroy]
     resources :sendy_lists
     resources :deposit_batches, only: [:show, :index, :edit, :update]
-    resources :paychecks, only: [:show]
+    resources :paychecks, only: :show
   end
 end

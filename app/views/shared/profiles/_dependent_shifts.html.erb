@@ -1,6 +1,12 @@
 <div class="col-md-12 row" id="employee-shifts">
   <div class="table-header">
     <h4 class="table-title-right">Shifts</h4>
+    <div class="buttons">
+      <%= link_to "All my shifts",
+                  employee_shifts_path(employee),
+                  class: "btn btn-xs btn-default",
+                  role: "button" %>
+    </div>
   </div>
   <table class="table table-hover">
     <tr>

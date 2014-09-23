@@ -29,11 +29,28 @@ class ShiftsController < ApplicationController
   def index
     # Pundit policy scopes don't seem to work since user is delegated/user_id
     # isn't in the Shifts table.
-    if current_user.role? :manager
-      shifts = Shift.all
-    elsif current_user.role? :staff
-      shifts = current_user.shifts
+
+    employee_id = params[:employee_id]
+    query = params[:q]
+
+    @search = Shift.search(query)
+    @search.build_condition
+
+    if employee_id && \
+       (current_user.employee.id == employee_id || current_user.role?(:manager))
+
+      if query
+        shifts = @search.result
+      else
+        shifts = Employee.find(params[:employee_id]).shifts
+      end
+
+    elsif query
+      shifts = @search.result
+    else
+      shifts = Shift.all.limit(100)
     end
+
     @shift_presenters = ShiftPresenter.wrap(shifts).paginate(page: params[:page])
     authorize shifts
   end
