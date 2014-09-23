@@ -25,9 +25,12 @@ module Exports
                                     DoNotMail
                                     DonationsCount
                                     DonationsAmount
-                                    IsSustainer ]
+                                    IsSustainer
+                                    VolLevel
+                                    IssueKnowledge ]
 
     @@donation_column_names = %W[ Source
+                                  Staff
                                   Date
                                   Amt
                                   Type
@@ -61,7 +64,9 @@ module Exports
                                           do_not_mail
                                           donations_count
                                           donations_amount
-                                          is_sustainer? ]
+                                          is_sustainer?
+                                          vol_level
+                                          issue_knowledge ]
 
     def self.column_names
       # returns the column names for a supporter record with five donation
@@ -91,8 +96,10 @@ module Exports
       payment = donation.payments.first
       profile = payment ? payment.payment_profile : PaymentProfile.new
       cc_info = profile ? profile.short_version : ""
+      staff_name = donation_employee_name(donation)
 
       [  donation.source,
+         staff_name,
          donation.date,
          donation.amount,
          donation.donation_type,
@@ -102,6 +109,14 @@ module Exports
          donation.cancelled,
          cc_info,
          donation.notes ]
+    end
+
+    def self.donation_employee_name(donation)
+      if donation.shift && donation.shift.employee
+        donation.shift.employee.full_name
+      else
+        ""
+      end
     end
 
     def self.prospect_group(group_code)

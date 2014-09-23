@@ -186,7 +186,6 @@ class Supporter < ActiveRecord::Base
     end
   end
 
-
   ## CIM
   def generate_cim_customer_id
     self.cim_customer_id = ( self.id + 20000 ).to_s
