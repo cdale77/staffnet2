@@ -68,7 +68,10 @@ group :development, :test do
   gem "factory_girl_rails", "4.4.1"
   gem "byebug", "3.4.0"
   gem "codeclimate-test-reporter", "0.4.0"
-  gem "webmock", "1.18.0"
+end
+
+group :test do
+  #gem "webmock", "1.18.0"
 end
 
 group :production do
