@@ -11,6 +11,7 @@ gem "devise", git: "https://github.com/plataformatec/devise.git",
 gem "pundit", "0.3.0"
 gem "figaro", "0.7.0"
 gem "i18n", "0.7.0.beta1"
+gem "gctools", "0.2.3"
 
 
 ## JOBS
