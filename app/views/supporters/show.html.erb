@@ -16,6 +16,10 @@
         <th>Name</th>
         <td><%= @supporter_presenter.full_name %></td>
       </tr>
+      <tr>
+        <th>Type</th>
+        <td><%= @supporter_presenter.supporter_type_name %></td>
+      </tr>
       <%= render "supporter_emails" %>
       <%= render "supporter_phones" %>
       <%= render "supporter_spouse" %>
