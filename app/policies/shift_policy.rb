@@ -1,7 +1,7 @@
 class ShiftPolicy < Struct.new(:user, :record)
 
   def new?
-    user.role? :staff
+    user.role? :manager or user == record.user
   end
 
   def create?

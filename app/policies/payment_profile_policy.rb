@@ -1,10 +1,10 @@
 class PaymentProfilePolicy < Struct.new(:user, :record)
 
   def new?
-    user.role? :admin
+    user.role? :manager
   end
 
   def create?
-    user.role? :admin
+    user.role? :manager
   end
 end
