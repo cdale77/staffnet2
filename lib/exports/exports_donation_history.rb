@@ -128,7 +128,7 @@ module Exports
 
         Supporter.where(prospect_group: group_code).find_each do |supporter|
 
-          puts "Processing supporter #{supporter.id}"
+          puts "."
 
           donations = supporter.donations.limit(5)
 
