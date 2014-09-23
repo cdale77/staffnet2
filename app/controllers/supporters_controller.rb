@@ -22,17 +22,13 @@ class SupportersController < ApplicationController
   end
 
   def show
-    supporter = Supporter.find(params[:id])
+    supporter = Supporter.includes(:donations).find(params[:id])
     @supporter_presenter = SupporterPresenter.new(supporter)
     @donation_presenters = DonationPresenter.wrap(supporter.donations.limit(20))
     authorize supporter
   end
 
   def index
-    if params[:q]
-    else
-
-    end
     @search = Supporter.search(params[:q])
     @search.build_condition
     supporters = params[:q] ? @search.result : Supporter.all.limit(200)

@@ -1,4 +1,4 @@
-erodesc 'Heroku scheduler file'
+desc 'Heroku scheduler file'
 
 task :update_sendy => :environment do
   SendyUpdateJob.enqueue
