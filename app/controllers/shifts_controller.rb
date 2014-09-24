@@ -47,6 +47,8 @@ class ShiftsController < ApplicationController
 
     elsif current_user.role?(:admin)
       shifts = query ? @search.result : Shift.all.limit(100)
+    else
+      shifts = []
     end
 
     @shift_presenters = ShiftPresenter.wrap(shifts).paginate(page: params[:page])
