@@ -65,14 +65,13 @@ describe 'ShiftPages' do
         #shift_type = ShiftType.new(name: 'Door')
         #shift_type.save
 
-        visit new_employee_shift_path(employee)
+        visit new_shift_path
       end
 
       after { ShiftType.destroy_all }
 
       describe 'page' do
         it { should have_selector('h1', 'New shift') }
-        it { should have_content(employee.full_name) }
       end
 
       describe 'with invalid information' do

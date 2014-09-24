@@ -37,7 +37,7 @@ class ShiftsController < ApplicationController
     @search.build_condition
 
     if employee_id && \
-       (current_user.employee.id == employee_id || current_user.role?(:manager))
+       (current_user.employee.id == employee_id || current_user.role?(:admin))
 
       if query
         shifts = @search.result
@@ -45,10 +45,8 @@ class ShiftsController < ApplicationController
         shifts = Employee.find(params[:employee_id]).shifts
       end
 
-    elsif query
-      shifts = @search.result
-    else
-      shifts = Shift.all.limit(100)
+    elsif current_user.role?(:admin)
+      shifts = query ? @search.result : Shift.all.limit(100)
     end
 
     @shift_presenters = ShiftPresenter.wrap(shifts).paginate(page: params[:page])

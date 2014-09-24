@@ -87,4 +87,5 @@
   </div>
 </div>
 <%= render "shared/profiles/dependent_shifts",
+           employee: @paycheck_presenter.model.employee,
            shift_presenters: @shift_presenters %>
