@@ -51,8 +51,12 @@ class DonationsController < ApplicationController
   end
 
   def index
-    donations = Donation.all
-    @donation_presenters = DonationPresenter.wrap(donations).paginate(page: params[:page])
+    query = params[:q]
+    @search = Donation.search(query)
+    @search.build_condition
+    donations = query ? @search.result : Donation.all.limit(100)
+    @donation_presenters = DonationPresenter.wrap(donations). \
+                            paginate(page: params[:page])
     authorize donations
   end
 
