@@ -1,7 +1,7 @@
 language: ruby
 cache: bundler
 rvm:
-- 2.1.2
+- 2.1.3
 env:
   global:
   - secure: AeHf5DhdtExNjXtV1nW8BFyP7Qh71Mx+t5+LCNMnItI07TQvoUhU1YbyCe6HeKK8e3S+ti/scYlzrCvrVesA4aPxp/FhiQ3LpscOKcjhq/hlHQfkzm0NKSFLVMOj6WZMfVRaWqaDgCVy59OGfJf89ZnfC0IYlaJgsOfhsSCELL0=
