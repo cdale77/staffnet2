@@ -7,7 +7,7 @@
                 collection: [["Retry", "retry"],
                              ["Installment", "installment"],
                              ["Refund", "refund"]],
-                selected: payment.payment.type %>
+                selected: payment.payment_type %>
     <%= f.input :payment_profile_id,
                 as: :select,
                 collection: payment_profiles,
