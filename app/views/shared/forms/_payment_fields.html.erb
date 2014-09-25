@@ -1,12 +1,21 @@
 <div class="form-group row">
   <div class="col-md-10">
 
+    <%= f.input :payment_type,
+                as: :select,
+                input_html: { id: "payment-type" },
+                collection: [["Retry", "retry"],
+                             ["Installment", "installment"],
+                             ["Refund", "refund"]],
+                selected: payment.payment.type %>
     <%= f.input :payment_profile_id,
                 as: :select,
                 collection: payment_profiles,
                 label_method: :short_version,
                 include_blank: true,
                 selected: payment.payment_profile_id %>
+
+    <%= f.input :notes %>
   </div>
   <div class="col-md-2">
 

@@ -26,6 +26,8 @@ class PaymentsController < ApplicationController
       @payment.amount = @donation.amount
       @payment.payment_type = @donation.donation_type
       authorize @payment
+      @payment.process_payment
+      @payment.send_receipt
       if @payment.save
         flash[:success] = "Success"
         redirect_to donation_path(@donation)
@@ -39,6 +41,8 @@ class PaymentsController < ApplicationController
 
   private
     def payment_params
-      params.require(:payment).permit(:payment_profile_id)
+      params.require(:payment).permit(:payment_profile_id,
+                                      :payment_type,
+                                      :notes)
     end
 end
