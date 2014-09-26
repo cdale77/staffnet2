@@ -24,7 +24,8 @@ gem "newrelic_rpm", "3.9.4.245"
 
 ## APIs
 gem "activemerchant", "1.44.1"
-gem "money", git: "https://github.com/cdale77/money.git"
+#gem "money", git: "https://github.com/cdale77/money.git"
+gem "money", "6.3.0"
 gem "sendyr", "0.2.1"
 
 # DATA STORAGE
@@ -42,8 +43,8 @@ gem "bootstrap-sass", "3.2.0.2"
 gem "will_paginate", "3.0.7"
 gem "bootstrap-will_paginate", "0.0.10"
 gem "simple_form", "3.1.0.rc2"
-#gem "ransack", "1.3.0"
-gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.2"
+gem "ransack", "1.4.1"
+#gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.2"
 
 ## JS
 gem "jquery-rails", "3.1.2"
@@ -67,7 +68,7 @@ group :development, :test do
   gem "capybara", "2.4.3"
   gem "selenium-webdriver", "2.43.0"
   gem "factory_girl_rails", "4.4.1"
-  gem "byebug", "3.4.0"
+  gem "byebug", "3.4.1"
   gem "codeclimate-test-reporter", "0.4.0"
 end
 
