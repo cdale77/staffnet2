@@ -496,7 +496,7 @@ DEPENDENCIES
   rake (= 10.3.2)
   ransack (= 1.4.1)
   raphael-rails (= 2.1.2)
-  rspec-rails (= 3.1.0)
+  rspec-rails (= 3.1)
   rubillow!
   sass-rails (= 5.0.0.beta1)
   sdoc
