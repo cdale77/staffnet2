@@ -9,7 +9,7 @@
                         html: { role: "form" }) do |f| %>
       <div class="form-group"><%= f.input :email %></div>
       <div class="form-group"><%= f.input :password %></div>
-      <div class="form-group"><%= f.input :remember_me %></div>
+      <div class="form-group"><%= f.input :remember_me, as: :boolean %></div>
       <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
