@@ -1,15 +1,17 @@
 <% provide(:title, "Review batches") %>
 <h1>Deposit batches</h1>
-<table class="table table-hover">
-  <tr>
-    <th>Type</th>
-    <th>Date</th>
-    <th>Payments</th>
-    <th>Total</th>
-    <th>Approved by</th>
-    <th></th>
-  </tr>
-  <%= render "deposit_batch",
+<% cache cache_key_for_deposit_batches do %>
+  <table class="table table-hover">
+    <tr>
+      <th>Type</th>
+      <th>Date</th>
+      <th>Payments</th>
+      <th>Total</th>
+      <th>Approved by</th>
+      <th></th>
+    </tr>
+    <%= render "deposit_batch",
              batch_presenters: @deposit_batch_presenters %>
-</table>
+  </table>
 <%= will_paginate @deposit_batch_presenters %>
+<% end %>

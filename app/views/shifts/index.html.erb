@@ -3,6 +3,7 @@
 <% cache('ransack-form-v1') do %>
   <%= render "shared/index/search_fields", search: @search %>
 <% end %>
+<% cache ["v1", cache_key_for_shifts] do %>
 <table class="table table-hover">
   <tr>
     <th>Name</th>
@@ -15,3 +16,4 @@
   <%= render "shifts", shift_presenters: @shift_presenters %>
 </table>
 <%= will_paginate @shift_presenters %>
+<% end %>

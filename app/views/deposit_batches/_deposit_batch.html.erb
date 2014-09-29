@@ -1,12 +1,14 @@
 <% batch_presenters.each do |presenter| %>
-  <tr>
-    <td><%= presenter.human_name %></td>
-    <td><%= presenter.formatted_date %></td>
-    <td><%= presenter.payment_count %></td>
-    <td><%= presenter.payment_total %></td>
-    <td><%= presenter.approved_by %></td>
-    <td class="buttons">
-      <%= render "shared/index/index_buttons", record: presenter.model %>
-    </td>
-  </tr>
+  <% cache ["v1", presenter.model] do %>
+    <tr>
+      <td><%= presenter.human_name %></td>
+      <td><%= presenter.formatted_date %></td>
+      <td><%= presenter.payment_count %></td>
+      <td><%= presenter.payment_total %></td>
+      <td><%= presenter.approved_by %></td>
+      <td class="buttons">
+        <%= render "shared/index/index_buttons", record: presenter.model %>
+      </td>
+    </tr>
+  <% end %>
 <% end %>

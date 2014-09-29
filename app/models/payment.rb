@@ -28,10 +28,10 @@ class Payment < ActiveRecord::Base
 
   ## RELATIONSHIPS
   delegate :supporter, to: :donation
-  belongs_to :donation
+  belongs_to :donation, touch: true
   delegate :shift, to: :donation
   belongs_to :payment_profile
-  belongs_to :deposit_batch
+  belongs_to :deposit_batch, touch: true
 
   ## VALIDATIONS
   validates :payment_type, presence: { message: "required" }

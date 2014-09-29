@@ -34,7 +34,7 @@ class Donation < ActiveRecord::Base
 
   ## RELATIONSHIPS
   belongs_to :supporter
-  belongs_to :shift
+  belongs_to :shift, touch: true
   has_many :payments, dependent: :destroy
 
   ## CALLBACKS
