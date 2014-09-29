@@ -1,0 +1,62 @@
+<h4>Stats</h4>
+<div class="col-md-12 row record-display">
+  <div class="col-md-4 record_column">
+    <h5>Lifetime</h5>
+    <table>
+      <tr>
+        <th>Shifts</th>
+        <td><%= @employee_presenter.shifts_lifetime %></td>
+      </tr>
+      <tr>
+        <th>Fundraising shifts</th>
+        <td><%= @employee_presenter.fundraising_shifts_lifetime %></td>
+      </tr>
+      <tr>
+        <th>Donations</th>
+        <td><%= @employee_presenter.donations_lifetime %></td>
+      </tr>
+      <tr>
+        <th>Successful donations</th>
+        <td><%= @employee_presenter.successful_donations_lifetime %></td>
+      </tr>
+      <tr>
+        <th>Raised</th>
+        <td><%= @employee_presenter.formatted_raised_lifetime %></td>
+      </tr>
+      <tr>
+        <th>Average</th>
+        <td><%= @employee_presenter.formatted_average_lifetime %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-4 record_column">
+    <h5>This week</h5>
+    <table>
+      <tr>
+        <th>Shifts</th>
+        <td><%= @employee_presenter.shifts_this_week %></td>
+      </tr>
+      <tr>
+        <th>Fundraising shifts</th>
+        <td><%= @employee_presenter.fundraising_shifts_this_week %></td>
+      </tr>
+      <tr>
+        <th>Donations</th>
+        <td><%= @employee_presenter.donations_this_week %></td>
+      </tr>
+      <tr>
+        <th>Successful donations</th>
+        <td><%= @employee_presenter.successful_donations_this_week %></td>
+      </tr>
+      <tr>
+        <th>Raised</th>
+        <td><%= @employee_presenter.formatted_raised_this_week %></td>
+      </tr>
+      <tr>
+        <th>Average</th>
+        <td><%= @employee_presenter.formatted_average_this_week %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<hr />

@@ -1,0 +1,71 @@
+<div class="col-md-12 row record-display">
+  <div class="col-md-4 record-column">
+    <table>
+      <tr>
+        <th>Name</th>
+        <td><%= @employee_presenter.full_name %></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%= @employee_presenter.email_link %></td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td><%= @employee_presenter.formatted_phone %></td>
+      </tr>
+
+      <%= render "shared/profiles/address",
+                 presenter: @employee_presenter %>
+
+    </table>
+  </div>
+  <div class="col-md-4 record-column">
+    <table>
+      <tr>
+        <th>DOB</th>
+        <td><%= @employee_presenter.formatted_dob %></td>
+      </tr>
+      <tr>
+        <th>Gender</th>
+        <td><%= @employee_presenter.gender %></td>
+      </tr>
+      <tr>
+        <th>Fed tax status:</th>
+        <td><%= @employee_presenter.fed_status_to_human %> </td>
+      </tr>
+      <tr>
+        <th>CA tax status:</th>
+        <td><%= @employee_presenter.ca_status_to_human %></td>
+      </tr>
+      <tr>
+        <th>Fed allowances:</th>
+        <td><%= @employee_presenter.fed_allowances %></td>
+      </tr>
+      <tr>
+        <th>CA allowances:</th>
+        <td><%= @employee_presenter.ca_allowances %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-4 record-column">
+    <table>
+      <tr>
+        <th>Title:</th>
+        <td><%= @employee_presenter.title_to_human %></td>
+      </tr>
+
+      <%= render "employee_pay" %>
+
+      <tr>
+        <th>Hire date:</th>
+        <td><%= @employee_presenter.formatted_hire_date %></td>
+      </tr>
+
+      <%= render "employee_term_date" %>
+
+      <%= render "shared/profiles/magic_columns",
+                 presenter: @employee_presenter %>
+
+  </table>
+  </div>
+</div>

@@ -45,7 +45,7 @@ class Shift < ActiveRecord::Base
   include Regex
 
   ## RELATIONSHIPS
-  belongs_to :employee
+  belongs_to :employee, touch: true
   delegate :user, to: :employee
   belongs_to :shift_type
   has_many :donations
