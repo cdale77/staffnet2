@@ -12,7 +12,7 @@ gem "pundit", "0.3.0"
 gem "figaro", "1.0.0"
 gem "i18n", "0.7.0.beta1"
 gem "gctools", "0.2.3"
-
+gem "dalli", "2.7.2"
 
 ## JOBS
 gem "sidekiq", "3.2.5"

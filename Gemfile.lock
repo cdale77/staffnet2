@@ -124,6 +124,7 @@ GEM
     colored (1.2)
     columnize (0.8.9)
     connection_pool (2.0.0)
+    dalli (2.7.2)
     date_validator (0.7.0)
       activemodel (>= 3)
     debugger-linecache (1.2.0)
@@ -470,6 +471,7 @@ DEPENDENCIES
   capybara (= 2.4.3)
   codeclimate-test-reporter (= 0.4.0)
   coffee-rails (= 4.0.1)
+  dalli (= 2.7.2)
   date_validator (= 0.7.0)
   devise!
   exception_notification (= 4.0.1)

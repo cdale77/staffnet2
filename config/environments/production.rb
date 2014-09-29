@@ -79,6 +79,16 @@ Staffnet2::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
 
+  # Memcached
+  config.cache_store = :dalli_store,
+                    (ENV["MEMCACHIER_SERVERS"] || "").split(","),
+                    {:username => ENV["MEMCACHIER_USERNAME"],
+                     :password => ENV["MEMCACHIER_PASSWORD"],
+                     :failover => true,
+                     :socket_timeout => 1.5,
+                     :socket_failure_delay => 0.2
+                    }
+
   # Email setup
   ActionMailer::Base.smtp_settings = {
       :address        => 'smtp.gmail.com',
