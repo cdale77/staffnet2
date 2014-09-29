@@ -4,8 +4,8 @@ class SendReceiptEmailJob < ActiveJob::Base
 
   queue_as :default 
 
-  def perform(payment_id)
-    donation = Payment.find(payment_id).donation
+  def perform(donation_id)
+    donation = Donation.find(donation_id)
     supporter = donation.supporter 
     if donation && supporter 
       SupporterMailer.receipt(supporter, donation).deliver

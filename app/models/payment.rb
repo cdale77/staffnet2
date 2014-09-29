@@ -93,7 +93,7 @@ class Payment < ActiveRecord::Base
     unless self.receipt_sent_at.present?
       supporter = self.donation.supporter
       if supporter.email_1.present?
-        SendReceiptEmailJob.enqueue(self.id)
+        SendReceiptEmailJob.enqueue(self.donation_id)
         self.receipt_sent_at = Time.now
       end
     end
