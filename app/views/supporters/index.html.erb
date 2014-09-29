@@ -1,18 +1,20 @@
-<% provide(:title, 'Supporters') %>
+<% provide(:title, "Supporters") %>
 <h1>Supporters</h1>
-<% cache('ransack-form-v1') do %>
+<% cache "ransack-form-v1" do %>
   <%= render "shared/index/search_fields", search: @search %>
 <% end %>
-<table class="table table-hover">
-  <tr>
-    <th>Name</th>
-    <th>City</th>
-    <th>Email</th>
-    <th>Mobile</th>
-    <th>Type</th>
-    <th>Source</th>
-    <th></th>
-  </tr>
-  <%= render "supporters", supporter_presenters: @supporter_presenters %>
-</table>
-<%= will_paginate @supporter_presenters %>
+<%= cache ["v1", cache_key_for_supporters ] do %>
+  <table class="table table-hover">
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Type</th>
+      <th>Source</th>
+      <th></th>
+    </tr>
+    <%= render "supporters", supporter_presenters: @supporter_presenters %>
+  </table>
+  <%= will_paginate @supporter_presenters %>
+<% end %>

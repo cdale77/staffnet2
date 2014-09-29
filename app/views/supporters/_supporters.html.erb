@@ -1,28 +1,29 @@
 <% supporter_presenters.each do |supporter_presenter| %>
-  <tr>
-    <td>
-      <%= supporter_presenter.full_name %>
-    </td>
-    <td>
-      <%= supporter_presenter.address_city %>
-    </td>
-    <td>
-      <%= mail_to supporter_presenter.email_1, supporter_presenter.email_1,
-                  class: "hover-underline-grey" %>
-    </td>
-    <td>
-      <%= supporter_presenter.phone_mobile_to_human %>
-    </td>
-    <td>
-      <%= supporter_presenter.supporter_type_name %>
-    </td>
-    <td>
-      <%= supporter_presenter.source_to_human %>
-    </td>
-    <td class="buttons">
-      <%= render "shared/index/index_buttons",
-                 record: supporter_presenter.model %>
-    </td>
-  </tr>
+  <% cache ["v1", supporter_presenter.model] do %>
+    <tr>
+      <td>
+        <%= supporter_presenter.full_name %>
+      </td>
+      <td>
+        <%= supporter_presenter.address_city %>
+      </td>
+      <td>
+        <%= mail_to supporter_presenter.email_1, supporter_presenter.email_1,
+                    class: "hover-underline-grey" %>
+      </td>
+      <td>
+        <%= supporter_presenter.phone_mobile_to_human %>
+      </td>
+      <td>
+        <%= supporter_presenter.supporter_type_name %>
+      </td>
+      <td>
+        <%= supporter_presenter.source_to_human %>
+      </td>
+      <td class="buttons">
+        <%= render "shared/index/index_buttons",
+                   record: supporter_presenter.model %>
+      </td>
+    </tr>
+  <% end %>
 <% end %>
-
