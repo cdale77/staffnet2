@@ -10,8 +10,8 @@ class DuplicateRecordsController < ApplicationController
   end
 
   def new_file 
-    file_url = params[:report][:url]
-    puts "this is what I got: #{file_url}"
+    filepath = params[:filepath
+    
     render nothing: true
   end
 end
