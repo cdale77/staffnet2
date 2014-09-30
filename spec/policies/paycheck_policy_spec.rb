@@ -60,7 +60,7 @@ describe PaycheckPolicy do
     let(:user) { FactoryGirl.create(:super_admin) }
 
     it { should permit(:show) }
-    it { should_not permit(:edit) }
+    it { should permit(:edit) }
 
   end
 end

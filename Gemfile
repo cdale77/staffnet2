@@ -18,6 +18,7 @@ gem "dalli", "2.7.2"
 gem "sidekiq", "3.2.5"
 gem "sinatra", "1.4.5"  # required by Sidekiq
 gem "slim", "2.0.3"     # required by Sidekiq
+
 ## MONITORING
 gem "exception_notification", "4.0.1"
 gem "newrelic_rpm", "3.9.4.245"

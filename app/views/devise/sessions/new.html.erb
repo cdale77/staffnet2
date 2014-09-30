@@ -1,10 +1,9 @@
-<% provide(:title, "Sign in") %>
+<% provide(:title, 'Sign in') %>
 <h1>Sign in</h1>
 
 <div class="row">
   <div class="col-md-4 col-md-offset-4">
-    <%= simple_form_for(resource,
-                        as: resource_name,
+    <%= simple_form_for(resource, as: resource_name,
                         url: session_path(resource_name),
                         html: { role: "form" }) do |f| %>
       <div class="form-group"><%= f.input :email %></div>

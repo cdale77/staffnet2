@@ -18,8 +18,13 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
 
-#include the custom data file
+  #include the custom data file
   config.include SpecData
+
+  # enable both should and expect syntax
+  config.expect_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
 
 =begin
   # stub out HTTP requests
