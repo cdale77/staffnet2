@@ -6,7 +6,7 @@ ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "spec_helper"
-WebMock.disable_net_connect!(allow_localhost: true)
+#WebMock.disable_net_connect!(allow_localhost: true)
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
