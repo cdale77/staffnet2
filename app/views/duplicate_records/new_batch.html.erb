@@ -2,7 +2,7 @@
 <h1>New Duplicate record batch<h1>
 <%= s3_uploader_form callback_url: new_duplicate_file_url, 
                      callback_method: "POST", 
-                     callback_param: "report[image_url]", 
+                     callback_param: "report[url]", 
                      key: "reports/{timestamp}-{unique_id}-#{SecureRandom.hex}/${filename}", 
                      key_starts_with: "reports/", 
                      #acl: "public-read", 
