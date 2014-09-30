@@ -30,6 +30,7 @@
 #  over_quota               :decimal(8, 2)    default("0.0")
 #  temp_buffer              :decimal(8, 2)    default("0.0")
 #  bonus_credit             :decimal(8, 2)    default("0.0")
+#  total_salary             :decimal(8, 2)    default("0.0")
 #
 
 FactoryGirl.define do

@@ -81,7 +81,8 @@ module SpecData
         net_fundraising_credit: 10500,
         over_quota: -4500,
         temp_buffer: -300,
-        bonus_credit: -400, }
+        bonus_credit: -400, 
+        total_salary: 2000 }
   end
 
   def self.payment_profile_attributes
