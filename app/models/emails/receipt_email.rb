@@ -21,7 +21,7 @@ class ReceiptEmail
   private
 
     # Receipts are only sent if the donation is captured. 
-    def receipt_attributes(supporter, donation, payment)
+    def receipt_attributes(supporter, donation, payment, cim_auth_code)
       {
           supporter_first_name: supporter.first_name,
           supporter_last_name:  supporter.last_name,
