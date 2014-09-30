@@ -1,19 +1,19 @@
 <% provide(:title, "All shifts") %>
 <h1>All shifts</h1>
-<% cache('ransack-form-v1') do %>
+<% cache("ransack-form-v1") do %>
   <%= render "shared/index/search_fields", search: @search %>
 <% end %>
 <% cache ["v1--#{params[:page]}", cache_key_for_shifts] do %>
-<table class="table table-hover">
-  <tr>
-    <th>Name</th>
-    <th>Date</th>
-    <th>Hours</th>
-    <th>Type</th>
-    <th>Fundraising</th>
-    <th></th>
-  </tr>
-  <%= render "shifts", shift_presenters: @shift_presenters %>
-</table>
-<%= will_paginate @shift_presenters %>
+  <table class="table table-hover">
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Hours</th>
+      <th>Type</th>
+      <th>Fundraising</th>
+      <th></th>
+    </tr>
+    <%= render "shifts", shift_presenters: @shift_presenters %>
+  </table>
+  <%= will_paginate @shift_presenters %>
 <% end %>
