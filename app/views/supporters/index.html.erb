@@ -3,7 +3,7 @@
 <% cache "ransack-form-v1" do %>
   <%= render "shared/index/search_fields", search: @search %>
 <% end %>
-<%= cache ["v1-#{params[:page]}", cache_key_for_supporters ] do %>
+<%= cache ["v1-#{params[:page]}-#{params[:q]}", cache_key_for_supporters ] do %>
   <table class="table table-hover">
     <tr>
       <th>Name</th>
