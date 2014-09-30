@@ -27,8 +27,8 @@ describe 'DuplicateRecordPages' do
     describe 'new_batch' do 
       before { visit new_duplicate_batch_path }
       describe 'page' do 
-        it { should have_title "Staffnet:New Duplicate Batch" }
-        it { should have_selector "h1", "New Duplicate Batch" }
+        it { should have_title "Staffnet:New dupe batch" }
+        it { should have_selector "h1", "New duplicate record batch" }
       end
     end
 
