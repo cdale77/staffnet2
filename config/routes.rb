@@ -39,5 +39,8 @@ Staffnet2::Application.routes.draw do
     ## Dupes
     get "duplicate_records/new_batch", 
       to: "duplicate_records#new_batch", as: :new_duplicate_batch
+    post "duplicate_records/new_file",
+      to: "duplicate_records#new_file", as: :new_duplicate_file
+
   end
 end

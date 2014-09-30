@@ -1,2 +1,22 @@
 <% provide(:title, "New dupe batch") %>
 <h1>New Duplicate record batch<h1>
+<%= s3_uploader_form callback_url: new_duplicate_file_url, 
+                     callback_method: "POST", 
+                     callback_param: "report[image_url]", 
+                     key: "reports/{timestamp}-{unique_id}-#{SecureRandom.hex}/${filename}", 
+                     key_starts_with: "reports/", 
+                     #acl: "public-read", 
+                     max_file_size: 50.megabytes, 
+                     id: "s3-uploader", 
+                     class: "upload-form", 
+                     data: {:key => :val} do %>
+                      <%= file_field_tag :file, multiple: true %>
+                    <% end %>
+
+<div id="uploads_container"></div>
+<script id="template-upload" type="text/x-tmpl">
+<div id="upload_{%=o.unique_id%}" class="upload">
+  <h5>{%=o.name%}</h5>
+  <div class="progress progress-striped active"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>

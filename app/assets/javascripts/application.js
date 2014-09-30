@@ -14,9 +14,10 @@
 
 //= require jquery
 //= require jquery_ujs
+//= require s3_direct_upload
 //= require bootstrap
 //= require turbolinks
-//= require_tree .
 //= require raphael
 //= require morris
 //= require custom
+//= require_tree .
