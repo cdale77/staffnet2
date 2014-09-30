@@ -61,6 +61,5 @@ describe PaycheckPolicy do
 
     it { should permit(:show) }
     it { should permit(:edit) }
-
   end
 end
