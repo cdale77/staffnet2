@@ -27,7 +27,7 @@ class PaymentsController < ApplicationController
       @payment.payment_type = @donation.donation_type
       authorize @payment
       @payment.process_payment
-      @payment.send_receipt
+      @payment.send_receipt if @payment.captured
       if @payment.save
         flash[:success] = "Success"
         redirect_to donation_path(@donation)
