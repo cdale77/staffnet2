@@ -1,6 +1,6 @@
 <% provide(:title, "Review batches") %>
 <h1>Deposit batches</h1>
-<% cache cache_key_for_deposit_batches do %>
+<% cache ["v1-#{params[:page]}", cache_key_for_deposit_batches] do %>
   <table class="table table-hover">
     <tr>
       <th>Type</th>

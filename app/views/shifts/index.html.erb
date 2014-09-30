@@ -1,6 +1,6 @@
 <% provide(:title, "All shifts") %>
 <h1>All shifts</h1>
-<% cache("ransack-form-v1") do %>
+<% cache "ransack-form-v1-#{params[:q]}" do %>
   <%= render "shared/index/search_fields", search: @search %>
 <% end %>
 <% cache ["v1--#{params[:page]}", cache_key_for_shifts] do %>
