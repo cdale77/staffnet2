@@ -1,0 +1,18 @@
+<% provide(:title, "Edit paycheck") %>
+<div class="row">
+  <div class="span10 offset1">
+    <h1>Edit paycheck</h1>
+    <%= simple_form_for(@paycheck) do |f| %>
+
+      <%= render "shared/error_messages",
+                 object: f.object %>
+
+      <%= render "paycheck_fields",
+                 employee: @employee, f: f  %>
+
+      <%= render "shared/forms/submit_button",
+                 f: f %>
+
+    <% end %>
+  </div>
+</div>

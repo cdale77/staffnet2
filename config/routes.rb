@@ -34,6 +34,6 @@ Staffnet2::Application.routes.draw do
     resources :shift_types, except: [:show, :destroy]
     resources :sendy_lists
     resources :deposit_batches, only: [:show, :index, :edit, :update]
-    resources :paychecks, only: :show
+    resources :paychecks, only: [:show, :edit]
   end
 end

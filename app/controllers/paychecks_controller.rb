@@ -9,4 +9,9 @@ class PaychecksController < ApplicationController
     @shift_presenters = ShiftPresenter.wrap(paycheck.shifts)
     authorize paycheck
   end
+
+  def edit 
+    @paycheck = Paycheck.find(params[:id])
+    authorize @paycheck
+  end
 end

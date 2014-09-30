@@ -52,5 +52,13 @@ describe 'PaycheckPages' do
         end
       end
     end
+
+    describe 'edit' do 
+      before { visit edit_paycheck_path(paycheck) }
+      describe 'page' do 
+        it { should have_title("Edit paycheck") }
+        it { should have_selector("h1", "Edit donation") }
+      end
+    end
   end
 end
