@@ -25,3 +25,7 @@ deploy:
 
 addons:
   postgresql: 9.3
+
+services:
+  - memecached
+  - redis-server
