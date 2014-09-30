@@ -35,5 +35,9 @@ Staffnet2::Application.routes.draw do
     resources :sendy_lists
     resources :deposit_batches, only: [:show, :index, :edit, :update]
     resources :paychecks, only: [:show, :edit]
+
+    ## Dupes
+    get "duplicate_records/new_batch", 
+      to: "duplicate_records#new_batch", as: :new_duplicate_batch
   end
 end
