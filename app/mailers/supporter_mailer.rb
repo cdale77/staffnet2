@@ -1,8 +1,8 @@
 class SupporterMailer < ActionMailer::Base
   default from: "Evolve Team <campaign@evolve-ca.org>"
 
-  def receipt(supporter, donation)
-    @message = ReceiptEmail.new(supporter, donation)
+  def receipt(supporter, donation, cim_auth_code)
+    @message = ReceiptEmail.new(supporter, donation, cim_auth_code)
     mail( to:       supporter.email_1,
           from:     "Evolve Team <campaign@evolve-ca.org>",
           subject:  "Receipt and thanks!")
