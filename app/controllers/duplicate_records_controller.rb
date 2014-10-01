@@ -10,8 +10,7 @@ class DuplicateRecordsController < ApplicationController
   end
 
   def new_file 
-    filepath = params[:filepath]
-    
+    CreateDuplicateRecordsJob.enqueue(params[:filepath])
     render nothing: true
   end
 end
