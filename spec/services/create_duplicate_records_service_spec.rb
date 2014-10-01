@@ -15,7 +15,7 @@ describe CreateDuplicateRecordsService do
   describe '#create_database_records' do 
     it 'should create database records' do 
       sample_data = SpecData.duplicate_record_input_array
-      expect { service.create_database_records(sample_data) }.to \
+      expect { service.send(:create_database_records, sample_data) }.to \
         change(DuplicateRecord, :count).by(1)   
       record = DuplicateRecord.first
       expect(record.primary_record_id).to eq 12345

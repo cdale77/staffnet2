@@ -12,30 +12,29 @@ class CreateDuplicateRecordsService < ServiceBase
     process_file(download_file)
   end
 
-  # exposed for testing
-  def process_file(file) 
+  private 
 
-    # must read the full file into memory, to group it into chunks based
-    # on dupe pair ids
-    data = SmarterCSV.process(file, csv_import_options)
+    def process_file(file) 
 
-    dupe_sets = data.group_by { |line| line["no."] }
+      # must read the full file into memory, to group it into chunks based
+      # on dupe pair ids
+      data = SmarterCSV.process(file, csv_import_options)
 
-    dupe_sets.each do |set|
-      create_database_records(set.second) 
+      dupe_sets = data.group_by { |line| line["no."] }
+
+      dupe_sets.each do |set|
+        create_database_records(set.second) 
+      end
     end
-  end
 
-  def create_database_records(record_array)
-    primary_record = record_array.shift # grab the first record. 
-    primary_record_id = primary_record["*supporterid*"]
-    duplicate_record_ids = record_array.map { |r| r["*supporterid*"] }
-    DuplicateRecord.create!(record_type: "supporter", 
+    def create_database_records(record_array)
+      primary_record = record_array.shift # grab the first record. 
+      primary_record_id = primary_record["*supporterid*"]
+      duplicate_record_ids = record_array.map { |r| r["*supporterid*"] }
+      DuplicateRecord.create!(record_type: "supporter", 
                               primary_record_id: primary_record_id,
                               duplicate_record_ids: duplicate_record_ids)
-  end
-
-  private 
+    end
 
     def download_file
       open(URI.parse(@file_uri))
@@ -43,12 +42,9 @@ class CreateDuplicateRecordsService < ServiceBase
 
     def csv_import_options
       {
-          #chunk_size: chunk_size,
           strip_whitespace: true,
           strings_as_keys: true,
           remove_empty_values: false
-          #remove_unmapped_keys: true,
-          #key_mapping: @import_mapping.mappings
       }
     end
 end
