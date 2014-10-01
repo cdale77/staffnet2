@@ -34,6 +34,7 @@ gem "aws-sdk", "1.53.0"
 gem "pgbackups-archive", "0.2.1"
 gem "paper_trail", "3.0.5"
 gem "s3_direct_upload", "0.1.7"
+gem "smarter_csv", "1.0.17"
 
 ## DATES
 gem "date_validator", "0.7.0"
