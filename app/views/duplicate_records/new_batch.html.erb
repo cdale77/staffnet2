@@ -5,7 +5,7 @@
                      callback_param: "report[url]", 
                      key: "reports/{timestamp}-{unique_id}-#{SecureRandom.hex}/${filename}", 
                      key_starts_with: "reports/", 
-                     acl: "private", 
+                     acl: "public-read", 
                      max_file_size: 50.megabytes, 
                      id: "s3-uploader", 
                      class: "upload-form", 

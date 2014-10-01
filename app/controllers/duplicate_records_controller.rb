@@ -10,7 +10,7 @@ class DuplicateRecordsController < ApplicationController
   end
 
   def new_file 
-    filepath = params[:filepath
+    filepath = params[:filepath]
     
     render nothing: true
   end
