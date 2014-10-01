@@ -13,4 +13,8 @@ class DuplicateRecordsController < ApplicationController
     CreateDuplicateRecordsJob.enqueue(params[:filepath])
     render nothing: true
   end
+
+  def index
+    
+  end
 end

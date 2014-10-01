@@ -9,6 +9,16 @@ describe 'DuplicateRecordPages' do
 
   let!(:admin) { FactoryGirl.create(:admin) }
 
+  def create_duplicate_records 
+    5.times { FactoryGirl.create(:supporter) }
+    supporters = Supporter.all 
+    primary_record = supporters.first
+    dupe_id_array = supporters.map { |s| s.id }
+    DuplicateRecord.create!(record_type: "supporter",
+                            primary_record_id: primary_record.id,
+                            duplicate_record_ids: dupe_id_array)
+  end
+
   ### AS ADMIN USER ###
 
   describe 'as admin user' do 
@@ -32,5 +42,15 @@ describe 'DuplicateRecordPages' do
       end
     end
 
+    describe '#index' do 
+      before do 
+        create_duplicate_records
+        visit duplicate_records_path
+      end
+      describe 'page' do 
+        it { should have_title "Staffnet:Resolve duplicates" }
+        it { should have_selector "h1", "Resolve duplicates" }
+      end
+    end
   end
 end
