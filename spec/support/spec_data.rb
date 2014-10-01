@@ -213,6 +213,12 @@ module SpecData
     }
   end
 
+  def self.duplicate_record_input_array 
+    [{"*supporterid*" => 12345}, 
+      {"*supporterid*" => 12346}, 
+      {"*supporterid*" => 12347}]
+  end
+
   def self.create_cim_profile_stub
     "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<createCustomerProfileRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>8uA7gc4dNPH</name>\n    <transactionKey>9g2YtV247gZJB83R</transactionKey>\n  </merchantAuthentication>\n  <profile>\n    <merchantCustomerId>23772</merchantCustomerId>\n    <email>cdale77@gmail.com</email>\n  </profile>\n</createCustomerProfileRequest>\n"
   end
