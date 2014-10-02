@@ -272,6 +272,12 @@ textarea.record-notes {
   height: 100px;
 }
 
+/********** dupe resolution form *******/
+form.edit_duplicate_record {
+  input.dupe-form { width: auto; }
+  input[type=submit] { margin-top: 15px; }
+}
+
 /*************** PAGES *****************/
 
 h2.page-title { text-align: left; }
@@ -295,7 +301,9 @@ div.table-header {
 /**** new donation  ***/
 .btn-payment-profile {
   margin-top: 30px;
+
 }
+
 /************** INDEX *****************/
 div.will-paginate { margin: 0px; }
 
