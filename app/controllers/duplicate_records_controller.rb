@@ -15,8 +15,8 @@ class DuplicateRecordsController < ApplicationController
   end
 
   def index
-    duplicate_records = DuplicateRecord.unresolved 
-    @record_presenters = DuplicateRecordPresenter.wrap(duplicate_records)
-    authorize duplicate_records
+    duplicates = DuplicateRecord.unresolved 
+    @record_presenters = DuplicateRecordPresenter.wrap(duplicates).paginate(page: params[:page], per_page: 5)
+    authorize duplicates
   end
 end

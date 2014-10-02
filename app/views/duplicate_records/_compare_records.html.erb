@@ -4,36 +4,42 @@
                        url: resolve_duplicate_record_path(presenter.model),
                        method: :patch, 
                        remote: true do |f| %>
-
-      <div class="col-md-12">
-        Primary record:<br/>
-        <div class="col-md-6">
-          <%= radio_button_tag :primary_record, 
-                                presenter.primary_record.id, 
-                                true, class: "radio inline" %>
+      <div class="row">
+        <div class="col-md-12">
+          Primary record:<br/>
+          <div class="col-md-6">
+            <%= radio_button_tag :primary_record, 
+                                  presenter.primary_record.id, 
+                                  true, class: "radio inline" %>
+          </div>
+          <div class="col-md-6">
+            <%= radio_button_tag :primary_record, 
+                                  presenter.duplicate_record.id,
+                                  false, class: "radio inline" %>
+          </div>
         </div>
-        <div class="col-md-6">
-          <%= radio_button_tag :primary_record, 
-                                presenter.duplicate_record.id,
-                                false, class: "radio inline" %>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-6">
+            <h3>Record 1</h3>
+            <%= render "record_fields", 
+                      record_type: "primary",
+                      record: presenter.primary_record %>       
+          </div>
+          <div class="col-md-6">
+            <h3>Record 2</h3>
+            <%= render "record_fields", 
+                      record_type: "duplicate",
+                      record: presenter.duplicate_record %> 
+          </div>
         </div>
-      <div class="col-md-6">
-        <h3>Record 1</h3>
-        <%= render "record_fields", 
-                    record_type: "primary",
-                    record: presenter.primary_record %>       
       </div>
-      <div class="col-md-6">
-        <h3>Record 2</h3>
-        <%= render "record_fields", 
-                    record_type: "duplicate",
-                    record: presenter.duplicate_record %> 
+      <div class="row">
+        <div class="col-md-3 col-md-offset-3">
+          <%= f.button :submit, "Merge", class: "btn-primary" %>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3 col-md-offset-3">
-        <%= f.button :submit, "Merge", class: "btn-primary" %>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
