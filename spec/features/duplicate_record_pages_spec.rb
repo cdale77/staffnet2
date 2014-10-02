@@ -53,7 +53,7 @@ describe 'DuplicateRecordPages' do
       end
       describe 'records' do 
         it 'should list each record' do 
-          expect(page).to have_content(Supporter.first.first_name)
+          expect(page).to have_content(Supporter.first.full_name)
         end
       end
     end
