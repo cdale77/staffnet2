@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001234209) do
+ActiveRecord::Schema.define(version: 20141002011118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,12 +54,12 @@ ActiveRecord::Schema.define(version: 20141001234209) do
   add_index "donations", ["supporter_id"], name: "index_donations_on_supporter_id", using: :btree
 
   create_table "duplicate_records", force: true do |t|
-    t.string   "record_type",          default: ""
     t.integer  "primary_record_id"
     t.string   "duplicate_record_ids", default: [],    array: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "resolved",             default: false
+    t.string   "record_type_name",     default: "1"
   end
 
   add_index "duplicate_records", ["primary_record_id"], name: "index_duplicate_records_on_primary_record_id", using: :btree

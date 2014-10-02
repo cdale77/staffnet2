@@ -31,7 +31,7 @@ class CreateDuplicateRecordsService < ServiceBase
       primary_record = record_array.shift # grab the first record. 
       primary_record_id = primary_record["*supporterid*"]
       duplicate_record_ids = record_array.map { |r| r["*supporterid*"] }
-      DuplicateRecord.create!(record_type: "supporter", 
+      DuplicateRecord.create!(record_type_name: "supporter", 
                               primary_record_id: primary_record_id,
                               duplicate_record_ids: duplicate_record_ids)
     end

@@ -14,7 +14,7 @@ describe 'DuplicateRecordPages' do
     supporters = Supporter.all 
     primary_record = supporters.first
     dupe_id_array = supporters.map { |s| s.id }
-    DuplicateRecord.create!(record_type: "supporter",
+    DuplicateRecord.create!(record_type_name: "supporter",
                             primary_record_id: primary_record.id,
                             duplicate_record_ids: dupe_id_array)
   end

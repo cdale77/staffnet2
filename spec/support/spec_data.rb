@@ -207,7 +207,7 @@ module SpecData
   end
 
   def self.duplicate_record_attributes
-    { record_type: "supporter",
+    { record_type_name: "supporter",
       primary_record_id: 32,
       duplicate_record_ids: ["23", "4", "18"]  
     }
