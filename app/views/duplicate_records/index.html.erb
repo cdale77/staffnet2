@@ -1,2 +1,6 @@
 <% provide(:title, "Resolve duplicates") %>
-<h1>Resolve duplicates<h1>
+<h1>Resolve duplicates</h1>
+<% @record_presenters.each do |presenter| %>
+  <%= render "compare_records", presenter: presenter %>
+
+<% end %>

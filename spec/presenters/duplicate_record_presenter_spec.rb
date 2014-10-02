@@ -6,7 +6,7 @@ describe DuplicateRecordPresenter do
   let!(:dupe_supporter) { FactoryGirl.create(:supporter) }
 
   let!(:duplicate_record) { DuplicateRecord.create!(
-                                record_type: "supporter",
+                                record_type_name: "supporter",
                                 primary_record_id: supporter.id,
                                 duplicate_record_ids: [dupe_supporter.id]) }
 
@@ -19,7 +19,19 @@ describe DuplicateRecordPresenter do
 
   describe '#primary_record' do
     it 'should return the primary supporter' do
-      expect(presenter.model).to eq supporter
+      expect(presenter.primary_record).to eq supporter
+    end
+  end
+
+  describe '#duplicate_record' do 
+    it 'should return the duplicate record' do 
+      expect(presenter.duplicate_record).to eq dupe_supporter
+    end
+  end
+
+  describe '#klass' do 
+    it 'should return the class of the dupe objects' do 
+      expect(presenter.klass).to eq Supporter
     end
   end
 

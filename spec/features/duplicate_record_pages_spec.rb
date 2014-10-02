@@ -51,6 +51,11 @@ describe 'DuplicateRecordPages' do
         it { should have_title "Staffnet:Resolve duplicates" }
         it { should have_selector "h1", "Resolve duplicates" }
       end
+      describe 'records' do 
+        it 'should list each record' do 
+          expect(page).to have_content(Supporter.first.first_name)
+        end
+      end
     end
   end
 end

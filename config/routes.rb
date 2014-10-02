@@ -41,7 +41,7 @@ Staffnet2::Application.routes.draw do
       to: "duplicate_records#new_batch", as: :new_duplicate_batch
     post "duplicate_records/new_file",
       to: "duplicate_records#new_file", as: :new_duplicate_file
-    get "dulicate_records",
+    get "duplicate_records",
       to: "duplicate_records#index", as: :duplicate_records
 
   end

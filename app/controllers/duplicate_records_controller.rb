@@ -15,7 +15,8 @@ class DuplicateRecordsController < ApplicationController
   end
 
   def index
-    @duplicate_records = DuplicateRecord.unresolved 
-    authorize @duplicate_records
+    duplicate_records = DuplicateRecord.unresolved 
+    @record_presenters = DuplicateRecordPresenter.wrap(duplicate_records)
+    authorize duplicate_records
   end
 end
