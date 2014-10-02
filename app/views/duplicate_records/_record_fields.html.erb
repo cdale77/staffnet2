@@ -1,5 +1,9 @@
 <% record.attributes.each do |key, value| %>
   <div>
+    <%= radio_button_tag("#{key}_selected".to_sym,
+                          record_type,
+                          false,
+                          class: "dupe-form") %>
     <%= label_tag "#{record_type}_#{key}", key.humanize %>
     <%= text_field_tag "#{record_type}_#{key}",  value, class: "dupe-form" %>
   </div>
