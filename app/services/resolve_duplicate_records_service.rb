@@ -13,8 +13,9 @@ class ResolveDuplicateRecordsService < ServiceBase
     primary_attrs = clean_hash_keys(extract_primary_record_hash, 
                                     "#{@primary_record_id}_")
 
-    replacement_attrs = clean_hash_keys(extract_selected_attributes, 
-                                        "selected_")
+    replacement_attrs = get_replacement_values
+
+    new_attrs = primary_attrs.merge(replacement_attrs)
 
   end
 
@@ -36,6 +37,14 @@ class ResolveDuplicateRecordsService < ServiceBase
     def extract_selected_attributes 
       @payload.select do |k,v| 
         k.include?("_selected") && v != @primary_record_id.to_s
+      end
+    end
+
+    def get_replacement_values
+      selected_attributes = clean_hash_keys(extract_selected_attributes, 
+                                            "_selected")
+      selected_attributes.inject({}) do |hash, (k,v)|
+        hash.merge(k => @payload["#{v}_#{k}"])
       end
     end
 end
