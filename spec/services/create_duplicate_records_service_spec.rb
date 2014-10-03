@@ -18,8 +18,8 @@ describe CreateDuplicateRecordsService do
       expect { service.send(:create_database_records, sample_data) }.to \
         change(DuplicateRecord, :count).by(1)   
       record = DuplicateRecord.first
-      expect(record.primary_record_id).to eq 12345
-      expect(record.duplicate_record_ids).to eq ["12346", "12347"]
+      expect(record.first_record_id).to eq 12345
+      expect(record.additional_record_ids).to eq ["12346", "12347"]
     end
   end
 end

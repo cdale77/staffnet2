@@ -1,14 +1,14 @@
 class DuplicateRecordPresenter < PresenterBase 
 
   attr_reader :klass 
-  attr_reader :primary_record
-  attr_reader :duplicate_record
+  attr_reader :first_record
+  attr_reader :second_record
 
   def initialize(record)
     super 
     @klass = self.record_type_name.classify.constantize
-    @primary_record = find_record(primary_record_id)
-    @duplicate_record = find_record(duplicate_record_ids.first.to_i)
+    @first_record = find_record(first_record_id)
+    @second_record = find_record(additional_record_ids.first.to_i)
   end
 
 

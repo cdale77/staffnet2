@@ -7,8 +7,8 @@ describe DuplicateRecordPresenter do
 
   let!(:duplicate_record) { DuplicateRecord.create!(
                                 record_type_name: "supporter",
-                                primary_record_id: supporter.id,
-                                duplicate_record_ids: [dupe_supporter.id]) }
+                                first_record_id: supporter.id,
+                                additional_record_ids: [dupe_supporter.id]) }
 
   let!(:presenter) { DuplicateRecordPresenter.new(duplicate_record) }
   describe '#initialize' do
@@ -17,15 +17,15 @@ describe DuplicateRecordPresenter do
     end
   end
 
-  describe '#primary_record' do
+  describe '#first_record' do
     it 'should return the primary supporter' do
-      expect(presenter.primary_record).to eq supporter
+      expect(presenter.first_record).to eq supporter
     end
   end
 
-  describe '#duplicate_record' do 
+  describe '#secondrecord' do 
     it 'should return the duplicate record' do 
-      expect(presenter.duplicate_record).to eq dupe_supporter
+      expect(presenter.second_record).to eq dupe_supporter
     end
   end
 
