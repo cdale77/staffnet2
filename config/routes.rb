@@ -43,7 +43,7 @@ Staffnet2::Application.routes.draw do
       to: "duplicate_records#new_file", as: :new_duplicate_file
     get "duplicate_records",
       to: "duplicate_records#index", as: :duplicate_records
-    patch "duplicate_records/:id/resolve", 
+    post "duplicate_records/:id/resolve", 
       to: "duplicate_records#resolve", as: :resolve_duplicate_record
   end
 end

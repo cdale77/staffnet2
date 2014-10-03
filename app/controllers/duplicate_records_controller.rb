@@ -19,4 +19,9 @@ class DuplicateRecordsController < ApplicationController
     @record_presenters = DuplicateRecordPresenter.wrap(duplicates).paginate(page: params[:page], per_page: 5)
     authorize duplicates
   end
+
+  def resolve 
+
+  
+  end
 end
