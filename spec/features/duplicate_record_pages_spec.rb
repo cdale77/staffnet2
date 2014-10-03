@@ -8,16 +8,12 @@ describe 'DuplicateRecordPages' do
   subject { page }
 
   let!(:admin) { FactoryGirl.create(:admin) }
-
-  def create_duplicate_records 
-    5.times { FactoryGirl.create(:supporter) }
-    supporters = Supporter.all 
-    primary_record = supporters.first
-    dupe_id_array = supporters.map { |s| s.id }
-    DuplicateRecord.create!(record_type_name: "supporter",
-                            first_record_id: primary_record.id,
-                            additional_record_ids: dupe_id_array)
-  end
+  let!(:supporter) { FactoryGirl.create(:supporter, first_name: "Bob") }
+  let!(:dupe) { FactoryGirl.create(:supporter, first_name: "Robert") }
+  let!(:record) { DuplicateRecord.create!(record_type_name: "supporter",
+                            first_record_id: supporter.id,
+                            additional_record_ids: [dupe.id],
+                            resolved: false) }
 
   ### AS ADMIN USER ###
 
@@ -43,17 +39,15 @@ describe 'DuplicateRecordPages' do
     end
 
     describe '#index' do 
-      before do 
-        create_duplicate_records
-        visit duplicate_records_path
-      end
+      before { visit duplicate_records_path }
       describe 'page' do 
         it { should have_title "Staffnet:Resolve duplicates" }
         it { should have_selector "h1", "Resolve duplicates" }
       end
       describe 'records' do 
         it 'should list each record' do 
-          expect(page).to have_content(Supporter.first.full_name)
+          #expect(page).to have_content(supporter.first_name)
+          #expect(page).to have_content(dupe.first_name)
         end
       end
     end
