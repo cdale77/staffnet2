@@ -15,6 +15,6 @@ class DuplicateRecordPresenter < PresenterBase
   private
 
     def find_record(id)
-      @klass.find(id)
+      @klass.find_by(id: id)
     end
 end

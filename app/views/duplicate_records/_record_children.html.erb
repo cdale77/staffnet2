@@ -1,10 +1,9 @@
 <% presenters.each do |presenter| %>
   <div>
       Duplicate
-    <%= check_box_tag "#{presenter.id}-dupe", 
+    <%= check_box_tag "#{presenter.id}-child-dupe", 
           presenter.id, 
           false, class: "dupe-form" %>
-
     <table>
       <tr>
         <th>Date</th>
