@@ -10,26 +10,32 @@ class ResolveDuplicateRecordsService < ServiceBase
 
     primary_record = Supporter.find(@primary_record_id)
     
+    primary_attrs = clean_hash_keys(extract_primary_record_hash, 
+                                    "#{@primary_record_id}_")
 
-    primary_attrs = remove_id_from_hash(primary_record_hash, @primary_record_id)
-    
-    
+    replacement_attrs = clean_hash_keys(extract_selected_attributes, 
+                                        "selected_")
 
-    
   end
 
   private
 
-    def primary_record_hash
+    def extract_primary_record_hash
       # extract the primary fields from the payload by searching for the
       # primary id in the keys
-      @payload.select { |k,v| key.include? @primary_record_id.to_s }
+      @payload.select { |k,v| k.include? @primary_record_id.to_s }
     end
 
-    def remove_id_from_hash(attr_hash, id)
+    def clean_hash_keys(input_hash, to_remove)
       # strip out the id from the primary attrs hash keys
-      attr_hash.inject({}) do |hash, (k,v)|
-         hash.merge(k.sub("#{id.to_s}_", "") => v) 
+      input_hash.inject({}) do |hash, (k,v)|
+         hash.merge(k.sub("#{to_remove}", "") => v) 
+      end
+    end
+
+    def extract_selected_attributes 
+      @payload.select do |k,v| 
+        k.include?("_selected") && v != @primary_record_id.to_s
       end
     end
 end
