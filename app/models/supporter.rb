@@ -67,7 +67,7 @@ class Supporter < ActiveRecord::Base
   has_many :donations, dependent: :destroy
   has_many :payments, through: :donations
   has_many :payment_profiles
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
   has_many :full_contact_matches, dependent: :destroy

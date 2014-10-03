@@ -4,9 +4,10 @@ class ResolveDuplicateRecordsService < ServiceBase
   ## Would like to abstract this to work with any records. . . .
 
   def initialize(payload)
+    @duplicate_record = DuplicateRecord.find_by id: @payload["id"].to_i
     @payload = payload
     @primary_record_id = @payload["primary_record"].to_i
-    @secondary_record_id = "" #set when extract_selected_attributes is called
+    @secondary_record_id = get_secondary_record_id
   end
 
   def perform 
@@ -15,20 +16,50 @@ class ResolveDuplicateRecordsService < ServiceBase
     # to active record
     primary_attrs = clean_hash_keys(extract_primary_record_hash, 
                                     "#{@primary_record_id}_")
+    # remove the primary key from primary_attrs
+    primary_attrs.delete("id")
+
     replacement_attrs = get_replacement_values
     new_attrs = primary_attrs.merge(replacement_attrs)
 
+    ## look up the records
     primary_record = Supporter.find(@primary_record_id)
+    secondary_record = Supporter.find(@secondary_record_id)
 
     # merge the records
-    # delete the child records marked for deletion by the user
-    delete_child_records
+    if primary_record && secondary_record 
+      
+      # delete the child records marked for deletion by the user
+      delete_child_records
 
-    # merge remaining child records
-    merge_child_records
+      # merge remaining child records
+      merge_child_records(secondary_record)
 
-    # update the primary record
-    primary_record.update_attributes(new_attrs)
+      # update the primary record
+      primary_record.update_attributes(new_attrs)
+
+      ## if we merged any credit donations, update the notes
+      if secondary_record.donations.where(donation_type: "credit").any?
+        primary_record.notes = "Dupe cim id: #{secondary_record.cim_id}"
+        primary_record.save
+      end
+
+      # destroy the old record. Reload it first so as not to destroy the
+      # child records that were just moved
+      secondary_record.reload.destroy
+
+      ## finally destroythe duplicate record
+      @duplicate_record.additional_record_ids.delete(@secondary_record_id.to_s)
+      if @duplicate_record.additional_record_ids.any? 
+        DuplicateRecord.create!(
+          first_record_id: @primary_record_id,
+          additional_record_ids: @duplicate_record.additional_record_ids,
+          record_type_name: "supporter")
+        @duplicate_record.destroy
+      else
+        @duplicate_record.destroy
+      end
+    end
 
   end
 
@@ -42,24 +73,14 @@ class ResolveDuplicateRecordsService < ServiceBase
     end
 
     def extract_selected_attributes 
-      attrs = @payload.select do |k,v| 
+      @payload.select do |k,v| 
         k.include?("_selected") && v != @primary_record_id.to_s
       end
-
-      # this grabs the secondary id, which we have easily because we just
-      # extracted the cases where the secondary fields were selected by the user
-      @secondary_record_id = attrs.first.last.to_i
-
-      return attrs
     end
 
     def extract_child_dupe_ids
       pairs = @payload.select { |k,v| k.include? "child-dupe" }
       pairs.map { |k,v| v }
-    end
-
-    def find_secondary_record_id 
-
     end
 
     ## MODIFY THE HASHES
@@ -78,6 +99,17 @@ class ResolveDuplicateRecordsService < ServiceBase
       end
     end
 
+    def get_secondary_record_id 
+      id_array = @payload.map { |k,v| k[/\A\d+/] }
+
+      #strip out the nils
+      id_array.delete nil 
+
+      ids = id_array.uniq
+
+      ids.select {|id| id != @primary_record_id.to_s }.first.to_i
+    end
+
 
     ## MERGING FUNCTIONS
 
@@ -88,7 +120,21 @@ class ResolveDuplicateRecordsService < ServiceBase
       end
     end
 
-    def merge_child_records 
+    def merge_child_records(secondary_record) 
 
+      #merge donations
+      secondary_record.donations.each do |d|
+        d.update_attributes supporter_id: @primary_record_id
+      end
+
+      # merge payment profiles
+      secondary_record.payment_profiles.each do |pp|
+        pp.update_attributes supporter_id: @primary_record_id
+      end
+
+      # merge taggings
+      secondary_record.taggings.each do |t|
+        t.update_attributes supporter_id: @primary_record_id
+      end
     end
 end
