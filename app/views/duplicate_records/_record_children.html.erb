@@ -1,0 +1,32 @@
+<% presenters.each do |presenter| %>
+  <div>
+      Duplicate
+    <%= check_box_tag "#{presenter.id}-dupe", 
+          presenter.id, 
+          false, class: "dupe-form" %>
+
+    <table>
+      <tr>
+        <th>Date</th>
+        <td><%= l presenter.date %></td>
+      </tr>
+      <tr>
+        <th>Type</th>
+        <td><%= presenter.type_to_human %></td>
+      </tr>
+      <tr>
+        <th>Freq</th>
+        <td><%= presenter.frequency_to_human %></td>
+      </tr>
+      <tr>
+        <th>Captured</th>
+        <td><%= presenter.captured_to_human %></td>
+      </tr>
+      <tr>
+        <th>Cancelled</th>
+        <td><%= presenter.cancelled_to_human %></td>
+      </tr>
+    </table>
+  </div>
+  <hr />
+<% end %>
