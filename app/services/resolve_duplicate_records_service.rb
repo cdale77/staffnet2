@@ -4,8 +4,8 @@ class ResolveDuplicateRecordsService < ServiceBase
   ## Would like to abstract this to work with any records. . . .
 
   def initialize(payload)
-    @duplicate_record = DuplicateRecord.find_by id: @payload["id"].to_i
     @payload = payload
+    @duplicate_record = DuplicateRecord.find_by id: @payload["id"].to_i
     @primary_record_id = @payload["primary_record"].to_i
     @secondary_record_id = get_secondary_record_id
   end
@@ -48,19 +48,16 @@ class ResolveDuplicateRecordsService < ServiceBase
       # child records that were just moved
       secondary_record.reload.destroy
 
-      ## finally destroythe duplicate record
+      ## finally mark the record as resolved. 
+      @duplicate_record.update_attributes(resolved: true)
       @duplicate_record.additional_record_ids.delete(@secondary_record_id.to_s)
       if @duplicate_record.additional_record_ids.any? 
         DuplicateRecord.create!(
           first_record_id: @primary_record_id,
           additional_record_ids: @duplicate_record.additional_record_ids,
           record_type_name: "supporter")
-        @duplicate_record.destroy
-      else
-        @duplicate_record.destroy
       end
     end
-
   end
 
   private
@@ -87,7 +84,7 @@ class ResolveDuplicateRecordsService < ServiceBase
     def clean_hash_keys(input_hash, to_remove)
       # strip out the id from the primary attrs hash keys
       input_hash.inject({}) do |hash, (k,v)|
-         hash.merge(k.sub("#{to_remove}", "") => v) 
+         hash.merge(k.sub(to_remove, "") => v) 
       end
     end
 

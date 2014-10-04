@@ -5,7 +5,12 @@ describe ResolveDuplicateRecordsService do
   let!(:supporter) { FactoryGirl.create(:supporter) }
   let!(:dupe) { FactoryGirl.create(:supporter) }
   let!(:dupe_donation) { FactoryGirl.create(:donation, supporter: dupe)}
-  let!(:payload) { SpecData.resolve_dupe_payload(supporter.id, dupe.id) }
+  let!(:dupe_record) { DuplicateRecord.create(
+                        first_record_id: supporter.id,
+                        additional_record_ids: [dupe.id])}
+  let!(:payload) { SpecData.resolve_dupe_payload(supporter.id, 
+                                                  dupe.id,
+                                                  dupe_record.id) }
   let!(:service) { ResolveDuplicateRecordsService.new(payload) }
 
   describe '#initialize' do
