@@ -213,6 +213,10 @@ module SpecData
     }
   end
 
+  def self.data_report_attributes 
+    { data_report_type_name: "all_supporters" }
+  end
+
   def self.duplicate_record_input_array 
     [{"*supporterid*" => 12345}, 
       {"*supporterid*" => 12346}, 
