@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20141004031153) do
   create_table "data_reports", force: true do |t|
     t.integer  "user_id"
     t.string   "data_report_type_name",          default: ""
-    t.string   "string",                         default: ""
     t.string   "downloadable_file_file_name"
     t.string   "downloadable_file_content_type"
     t.integer  "downloadable_file_file_size"
