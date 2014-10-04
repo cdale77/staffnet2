@@ -11,11 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003002507) do
+ActiveRecord::Schema.define(version: 20141004031153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "data_reports", force: true do |t|
+    t.integer  "user_id"
+    t.string   "data_report_type_name", default: ""
+    t.string   "string",                default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "data_reports", ["user_id"], name: "index_data_reports_on_user_id", using: :btree
 
   create_table "deposit_batches", force: true do |t|
     t.integer  "employee_id"

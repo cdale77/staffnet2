@@ -35,6 +35,7 @@ gem "pgbackups-archive", "0.2.1"
 gem "paper_trail", "3.0.5"
 gem "s3_direct_upload", "0.1.7"
 gem "smarter_csv", "1.0.17"
+gem "paperclip", "4.2.0"
 
 ## DATES
 gem "date_validator", "0.7.0"
@@ -95,7 +96,8 @@ gem "coffee-rails", "4.0.1"
 # Use jquery as the JavaScript library
 #gem "jquery-rails"
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# Turbolinks makes following links in your web application faster. 
+# Read more: https://github.com/rails/turbolinks
 gem "turbolinks", "2.3.0"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
