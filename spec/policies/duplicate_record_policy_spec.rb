@@ -10,6 +10,7 @@ describe DuplicateRecordPolicy do
 
     it { should_not permit(:new_batch) }
     it { should_not permit(:index) }
+    it { should_not permit(:resolve) }
   end
 
   context 'for a staff user' do 
@@ -17,6 +18,7 @@ describe DuplicateRecordPolicy do
 
     it { should_not permit(:new_batch) }
     it { should_not permit(:index) }
+    it { should_not permit(:resolve) }
   end
 
     context 'for a manager user' do 
@@ -24,6 +26,7 @@ describe DuplicateRecordPolicy do
 
     it { should_not permit(:new_batch) }
     it { should_not permit(:index) }
+    it { should_not permit(:resolve) }
   end
 
     context 'for an admin user' do 
@@ -31,6 +34,7 @@ describe DuplicateRecordPolicy do
 
     it { should permit(:new_batch) }
     it { should permit(:index) }
+    it { should permit(:resolve) }
   end
 
     context 'for a super_admin user' do 
@@ -38,5 +42,6 @@ describe DuplicateRecordPolicy do
 
     it { should permit(:new_batch) }
     it { should permit(:index) }
+    it { should permit(:resolve) }
   end
 end

@@ -27,5 +27,8 @@ describe ResolveDuplicateRecordsService do
     it 'should merge the donation' do 
       expect(dupe_donation.reload.supporter).to eq supporter
     end
+    it 'should mark the dupe record as resolved' do 
+      expect(dupe_record.resolved).to be true
+    end
   end
 end

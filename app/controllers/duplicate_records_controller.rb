@@ -21,9 +21,11 @@ class DuplicateRecordsController < ApplicationController
   end
 
   def resolve 
-    duplicate_record = DuplicateRecord.find(params[:id]) 
-    authorize duplicate_record
-    service = ResolveDuplicateRecordsService.new(params)
-    service.perform
+    @duplicate_record = DuplicateRecord.find(params[:id]) 
+    authorize @duplicate_record
+    ResolveDuplicateRecordsJob.enqueue(params)
+    respond_to do |format|
+      format.js
+    end
   end
 end
