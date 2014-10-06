@@ -23,6 +23,15 @@ describe 'DataReportsPages' do
     after do
       logout(:super_admin)
     end
+
+    describe 'new' do 
+      before { visit new_data_report_path }
+      describe 'page' do 
+        it { should have_title("Staffnet2:New data report") }
+        it { should have_content("New data report")}
+      end
+
+    end
   end
 
 end

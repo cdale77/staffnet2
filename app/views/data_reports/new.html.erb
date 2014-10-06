@@ -3,18 +3,14 @@
   <div class="col-md-12">
     <h1>New data report</h1>
     <div id="new-payment-profile-fields" class="collapse"></div>
-    <%= simple_form_for([@supporter, @donation]) do |f| %>
+    <%= simple_form_for @data_report do |f| %>
 
       <%= render "shared/error_messages",
                  object: f.object %>
 
-      <%= render "donation_fields", supporter: @supporter,
-                                    donation: @donation,
-                                    payment: @payment,
-                                    payment_fields: true,
-                                    payment_profiles: @payment_profiles,
-                                    shifts: @shifts,
-                                    f: f %>
+      <%= f.input :data_report_type_name,
+                  as: :select,
+                  collection: [["All supporters", "all_supporters"]] %>
 
       <%= render "shared/forms/submit_button",
                  f: f %>
