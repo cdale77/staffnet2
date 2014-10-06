@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   ## RELATIONSHIPS
   has_one :employee
   has_many :shifts, through: :employee
+  has_many :data_reports
   #has_many :tasks, through: :shift
 
 

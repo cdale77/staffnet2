@@ -50,6 +50,7 @@ describe User do
   ## RELATIONSHIPS
   it { should respond_to(:employee) }
   it { should respond_to(:shifts) }
+  it { should respond_to(:data_reports) }
   #it { should respond_to(:tasks) }
 
   ## VALIDATIONS

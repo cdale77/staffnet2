@@ -34,6 +34,7 @@ describe DepositBatchPolicy do
 
   context 'for an admin user' do
     let(:user) { FactoryGirl.create(:admin) }
+
     it { should permit(:show) }
     it { should permit(:index) }
     it { should permit(:update) }

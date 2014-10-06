@@ -18,8 +18,8 @@ describe 'DepositBatchPages' do
 
   #### AS SUPERADMIN USER ####
 
-  ## log in as superadmin user to test basic functionality of the pages. Authorization is handled in the
-  ## policy specs
+  # log in as superadmin user to test basic functionality of the pages. 
+  # Authorization is handled in the policy specs
 
   describe 'as super_admin user' do
 

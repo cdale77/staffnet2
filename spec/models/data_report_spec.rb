@@ -16,3 +16,20 @@
 require "spec_helper"
 
 describe DataReport do 
+
+  report_attrs = SpecData.data_report_attributes 
+  let!(:report) { DataReport.new(data_report_type_name: "all_supporters") }
+
+  subject { report }
+
+  ## ATTRIBUTES
+  describe 'attribute tests' do 
+    report_attrs.each do |k,v|
+      it { should respond_to(k) }
+    end
+  end
+
+  ## RELATIONSHIPS
+  it { should respond_to(:user) }
+
+end
