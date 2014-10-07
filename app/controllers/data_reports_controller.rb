@@ -21,8 +21,12 @@ class DataReportsController < ApplicationController
   end
 
   def index
-    @data_reports = DataReport.all
-    authorize @data_reports
+    data_reports = DataReport.all
+    authorize data_reports
+    @data_report_presenters = DataReportPresenter.wrap(data_reports)
+  end
+
+
   private
 
     def data_report_params
