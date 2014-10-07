@@ -24,11 +24,4 @@ describe DataReportPresenter do
       expect(presenter.human_type_name).to eq report.data_report_type_name.humanize
     end
   end
-
-    describe '#formatted date' do 
-    it 'should format the date' do 
-      expect(presenter.formatted_date).to eq I18n.l(report.created_at)
-    end
-  end
-
 end

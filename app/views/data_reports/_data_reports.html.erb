@@ -2,9 +2,8 @@
   <%= cache ["v1", presenter.model] do  %>
     <tr>
       <td><%= presenter.human_type_name %></td>
-      <td><%= presenter.formatted_date %></td>
+      <td><%= presenter.formatted_created_at %></td>
       <td><%= presenter.file_download_link %></td>
     </tr>
   <% end %>
-
 <% end %>
