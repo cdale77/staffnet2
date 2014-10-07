@@ -48,8 +48,7 @@ class ResolveDuplicateRecordsService < ServiceBase
       # child records that were just moved
       secondary_record.reload.destroy
 
-      ## finally mark the record as resolved. 
-      @duplicate_record.update_attributes(resolved: true)
+      # if there are still more dupes, then create a new record
       @duplicate_record.additional_record_ids.delete(@secondary_record_id.to_s)
       if @duplicate_record.additional_record_ids.any? 
         DuplicateRecord.create!(
@@ -57,6 +56,9 @@ class ResolveDuplicateRecordsService < ServiceBase
           additional_record_ids: @duplicate_record.additional_record_ids,
           record_type_name: "supporter")
       end
+
+      # finally mark the record as resolved. 
+      @duplicate_record.update_attributes(resolved: true)
     end
   end
 

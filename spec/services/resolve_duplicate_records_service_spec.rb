@@ -20,6 +20,7 @@ describe ResolveDuplicateRecordsService do
   end
 
   describe '#perform' do 
+
     before { service.perform }
     it 'should merge the records' do 
       expect(supporter.reload.address_state).to eq "NY"
@@ -28,7 +29,7 @@ describe ResolveDuplicateRecordsService do
       expect(dupe_donation.reload.supporter).to eq supporter
     end
     it 'should mark the dupe record as resolved' do 
-      expect(dupe_record.resolved).to be true
+      expect(dupe_record.reload.resolved).to be true
     end
   end
 end
