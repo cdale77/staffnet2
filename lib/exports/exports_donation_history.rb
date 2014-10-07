@@ -147,11 +147,8 @@ module Exports
         end
       end
 
-      ## Write the file to the filesystem.
-      file_name = "#{Date.today}-prospect_group-#{group_code}.csv"
-      File.open(file_name,'wb') do |f|
-        f.write csv_file
-      end
+      # return a StringIO to make it easyt to use PaperClip
+      StringIO.new(csv_file)
     end
 
     def self.all
@@ -180,11 +177,8 @@ module Exports
         end
       end
 
-      ## Write the file to the filesystem.
-      file_name = "all_supporters-#{Date.today}.csv"
-      File.open(file_name,'wb') do |f|
-        f.write csv_file
-      end
+      # return a StringIO to make it easyt to use PaperClip
+      StringIO.new(csv_file)
     end
   end
 end

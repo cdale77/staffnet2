@@ -18,4 +18,12 @@ class DataReport < ActiveRecord::Base
   default_scope { order(created_at: :desc) }
 
   belongs_to :user
+
+  has_attached_file :downloadable_file,
+              s3_headers:   { "Content-Type" => "text/plain" },
+              path: ":rails_root/public/system/:class/:attachment/:filename",
+              s3_permissions: :private
+
+  validates_attachment :downloadable_file,
+         content_type: { content_type: /\Atext/ }
 end

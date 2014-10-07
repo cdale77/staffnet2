@@ -26,14 +26,16 @@ describe Exports::DonationHistory do
   end
 
   describe 'the entire list' do
-    it 'should return true' do
-      expect(Exports::DonationHistory.all).to be_truthy
+    it 'should return a StringIO' do
+      result = Exports::DonationHistory.all
+      expect(result).to be_an_instance_of StringIO
     end
   end
 
   describe 'a prospect group' do
-    it 'should return true' do
-      expect(Exports::DonationHistory.prospect_group("a")).to be_truthy
+    it 'should return a StringIO' do
+      result = Exports::DonationHistory.prospect_group("a")
+      expect(result).to be_an_instance_of StringIO
     end
   end
 end
