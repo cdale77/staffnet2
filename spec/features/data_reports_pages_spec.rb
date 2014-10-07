@@ -27,11 +27,17 @@ describe 'DataReportsPages' do
     describe 'new' do 
       before { visit new_data_report_path }
       describe 'page' do 
-        it { should have_title("Staffnet2:New data report") }
+        it { should have_title("Staffnet:New data report") }
         it { should have_content("New data report")}
       end
-
+      describe 'with valid information' do 
+        before do
+          select "All supporters", from: "Data report type name"
+        end
+        it 'should create a new data report' do 
+          expect { click_button 'Create Data report'}.to change(DataReport, :count).by(1)
+        end
+      end
     end
   end
-
 end

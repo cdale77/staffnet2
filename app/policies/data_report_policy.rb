@@ -4,4 +4,11 @@ class DataReportPolicy < Struct.new(:user, :record)
     user.role? :admin
   end
 
+  def create?
+    user.role? :admin
+  end
+
+  def index?
+    user.role? :admin
+  end
 end

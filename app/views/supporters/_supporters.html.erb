@@ -1,5 +1,5 @@
 <% supporter_presenters.each do |supporter_presenter| %>
-  <% cache ["v1", supporter_presenter.model] do %>
+  <%= cache ["v1", supporter_presenter.model] do %>
     <tr>
       <td>
         <%= supporter_presenter.full_name %>

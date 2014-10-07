@@ -1,0 +1,12 @@
+<% provide(:title, "All reports") %>
+<h1>Data reports</h1>
+<%= cache ["v1-#{params[:page]}", cache_key_for_data_reports] do %>
+  <table class="table table-hover">
+    <tr>
+      <th>Type</th>
+      <th>Date</th>
+      <th>File</th>
+    </tr>
+    <%= render "data_reports", report_presenters: @data_report_presenters %>
+  </table>
+<% end %>
