@@ -9,6 +9,7 @@ describe DuplicateRecordPolicy do
     let(:user) { FactoryGirl.create(:user) }
 
     it { should_not permit(:new_batch) }
+    it { should_not permit(:new_file) }
     it { should_not permit(:index) }
     it { should_not permit(:resolve) }
   end
@@ -17,6 +18,7 @@ describe DuplicateRecordPolicy do
     let(:user) { FactoryGirl.create(:staff) }
 
     it { should_not permit(:new_batch) }
+    it { should_not permit(:new_file) }
     it { should_not permit(:index) }
     it { should_not permit(:resolve) }
   end
@@ -25,6 +27,7 @@ describe DuplicateRecordPolicy do
     let(:user) { FactoryGirl.create(:manager) }
 
     it { should_not permit(:new_batch) }
+    it { should_not permit(:new_file) }
     it { should_not permit(:index) }
     it { should_not permit(:resolve) }
   end
@@ -33,6 +36,7 @@ describe DuplicateRecordPolicy do
     let(:user) { FactoryGirl.create(:admin) }
 
     it { should permit(:new_batch) }
+    it { should permit(:new_file) }
     it { should permit(:index) }
     it { should permit(:resolve) }
   end
@@ -41,6 +45,7 @@ describe DuplicateRecordPolicy do
     let(:user) { FactoryGirl.create(:super_admin) }
 
     it { should permit(:new_batch) }
+    it { should permit(:new_file) }
     it { should permit(:index) }
     it { should permit(:resolve) }
   end

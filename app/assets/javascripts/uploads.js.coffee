@@ -1,5 +1,5 @@
-jQuery ->
-  $("#s3-uploader").S3Uploader();
+#jQuery ->
+#  $("#s3-uploader").S3Uploader();
 
 ###$(function() {
   $('#s3_uploader').S3Uploader(
