@@ -14,7 +14,7 @@ class DataReportService < ServiceBase
       ""
     end
 
-    file_name = "#{report_type} = #{I18n.l(Date.today)}"
+    file_name = "#{report_type}-#{I18n.l(Date.today)}.csv"
 
     @data_report.update_attributes!({ downloadable_file: csv_file,
                                       downloadable_file_file_name: file_name })

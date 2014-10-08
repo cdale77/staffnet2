@@ -36,6 +36,8 @@ Staffnet2::Application.routes.draw do
     resources :deposit_batches, only: [:show, :index, :edit, :update]
     resources :paychecks, only: [:show, :edit]
     resources :data_reports, only: [:new, :create, :index]
+    get "/data_reports/:id/downloadable_file", 
+      to: "data_reports#downloadable_file", as: :data_report_downloadable_file
 
 
     ## Dupes

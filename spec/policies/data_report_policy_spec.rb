@@ -11,6 +11,7 @@ describe DataReportPolicy do
     it { should_not permit(:new) }
     it { should_not permit(:create) }
     it { should_not permit(:index) }
+    it { should_not permit(:downloadable_file) }
   end
 
   context 'for a staff user' do
@@ -19,6 +20,7 @@ describe DataReportPolicy do
     it { should_not permit(:new) }
     it { should_not permit(:create) }
     it { should_not permit(:index) }
+    it { should_not permit(:downloadable_file) }
   end
 
   context 'for a manager user' do
@@ -27,6 +29,7 @@ describe DataReportPolicy do
     it { should_not permit(:new) }
     it { should_not permit(:create) }
     it { should_not permit(:index) }
+    it { should_not permit(:downloadable_file) }
   end
 
   context 'for an admin user' do
@@ -35,6 +38,7 @@ describe DataReportPolicy do
     it { should permit(:new) }
     it { should permit(:create) }
     it { should permit(:index) }
+    it { should permit(:downloadable_file) }
   end
 
   context 'for a super_admin user' do
@@ -43,5 +47,6 @@ describe DataReportPolicy do
     it { should permit(:new) }
     it { should permit(:create) }
     it { should permit(:index) }
+    it { should permit(:downloadable_file) }
   end
 end

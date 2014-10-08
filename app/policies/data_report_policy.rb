@@ -11,4 +11,8 @@ class DataReportPolicy < Struct.new(:user, :record)
   def index?
     user.role? :admin
   end
+
+  def downloadable_file?
+    user.role? :admin
+  end
 end

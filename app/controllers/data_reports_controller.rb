@@ -12,6 +12,7 @@ class DataReportsController < ApplicationController
     @data_report = DataReport.new(data_report_params)
     authorize @data_report
     if @data_report.save 
+      DataReportJob.enqueue(@data_report.id)
       flash[:success] = "Report queued. Refresh to check on completion."
       redirect_to data_reports_path
     else
@@ -26,6 +27,11 @@ class DataReportsController < ApplicationController
     @data_report_presenters = DataReportPresenter.wrap(data_reports)
   end
 
+  def downloadable_file
+    data_report = DataReport.find(params[:id])
+    authorize data_report
+    redirect_to data_report.downloadable_file.expiring_url(10)
+  end
 
   private
 
