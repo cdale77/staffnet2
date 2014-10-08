@@ -4,6 +4,10 @@ class DuplicateRecordPolicy < Struct.new(:user, :record)
     user.role? :admin
   end
 
+  def new_file?
+    user.role? :admin
+  end
+
   def index? 
     user.role? :admin
   end

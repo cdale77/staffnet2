@@ -10,8 +10,12 @@ class DuplicateRecordsController < ApplicationController
   end
 
   def new_file 
-    CreateDuplicateRecordsJob.enqueue(params[:filepath])
-    render nothing: true
+    if CreateDuplicateRecordsJob.enqueue(params[:filepath])
+      flash[:success] = "Dupe file imported."
+    else
+      flash[:danger] = "Something went wrong, please try again."
+    end
+    redirect_to root_path
   end
 
   def index
