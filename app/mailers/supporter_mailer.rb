@@ -16,6 +16,4 @@ class SupporterMailer < ActionMailer::Base
           subject:  "Thanks for your pledge!")
     end
   end
-
-
 end

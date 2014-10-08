@@ -1,4 +1,4 @@
-class PledgeEmailController < ApplicationController
+class PledgeEmailsController < ApplicationController
 
   include Pundit
   after_filter :verify_authorized

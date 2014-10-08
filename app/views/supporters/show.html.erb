@@ -2,6 +2,10 @@
 <h1>Supporter profile</h1>
 <div class="col-md-12 row button-container">
   <div class="buttons">
+    <%# link_to "Send pledge email", 
+                new_supporter_pledge_email_path(@supporter_presenter.model),
+                class: "btn btn-xs btn-default",
+                role: "button"  %>
     <%= render "shared/profiles/new_dependent_record_button",
                record_name: "donation",
                record: @supporter_presenter.model %>
