@@ -30,7 +30,7 @@ gem "money", "6.3.0"
 gem "sendyr", "0.2.1"
 
 # DATA STORAGE
-gem "aws-sdk", "1.53.0"
+gem "aws-sdk", "1.54.0"
 gem "pgbackups-archive", "0.2.1"
 gem "paper_trail", "3.0.5"
 gem "s3_direct_upload", "0.1.7"
@@ -72,8 +72,8 @@ group :development, :test do
   gem "capybara", "2.4.3"
   gem "selenium-webdriver", "2.43.0"
   gem "factory_girl_rails", "4.4.1"
-  gem "byebug", "3.4.1"
-  gem "codeclimate-test-reporter", "0.4.0"
+  gem "byebug", "3.5.1"
+  gem "codeclimate-test-reporter", "0.4.1"
 end
 
 group :test do
@@ -98,10 +98,10 @@ gem "coffee-rails", "4.0.1"
 
 # Turbolinks makes following links in your web application faster. 
 # Read more: https://github.com/rails/turbolinks
-gem "turbolinks", "2.3.0"
+gem "turbolinks", "2.4.0"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem "jbuilder", "2.1.3"
+gem "jbuilder", "2.2.2"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
