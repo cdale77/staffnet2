@@ -28,7 +28,7 @@
   <div class="col-md-3">
     <%= f.input :field_manager_employee_id,
                 as: :select,
-                collection: Employee.field_managers,
+                collection: Employee.all,
                 label_method: :full_name,
                 value_method: :id,
                 selected: shift.field_manager_employee_id,
