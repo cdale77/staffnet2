@@ -39,7 +39,7 @@ describe ShiftPolicy do
     let(:user) { FactoryGirl.create(:staff) }
 
     context 'for other employee shifts' do
-      it { should_not permit(:new) }
+      it { should permit(:new) } # new action is available to all
       it { should_not permit(:create) }
       it { should_not permit(:show) }
       #it { should_not permit(:index) }  # scoping is tested in shift pages integration tests
@@ -56,8 +56,8 @@ describe ShiftPolicy do
       it { should permit(:create) }
       it { should permit(:show) }
       it { should permit(:index) }
-      it { should_not permit(:edit) }
-      it { should_not permit(:update) }
+      it { should permit(:edit) }
+      it { should permit(:update) }
       it { should_not permit(:destroy) }
     end
   end
