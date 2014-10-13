@@ -8,7 +8,7 @@ class SendReceiptEmailJob < ActiveJob::Base
     donation = Donation.find(donation_id)
     supporter = donation.supporter 
     if donation && supporter 
-      SupporterMailer.receipt(supporter, donation, cim_auth_code).deliver
+      SupporterMailer.receipt(supporter, donation, cim_auth_code).deliver_now
     end
   end
 end

@@ -1,13 +1,11 @@
 source "https://rubygems.org"
 
 ruby "2.1.3"
-gem "rails", "4.2.0.beta1"
+gem "rails", "4.2.0.beta2"
 gem "rake", "10.3.2"
 gem "unicorn", "4.8.3"
 gem "pg", "0.17.1"
-# https://github.com/plataformatec/devise/pull/3153
-gem "devise", git: "https://github.com/plataformatec/devise.git",
-    branch: "lm-rails-4-2"
+gem "devise", "3.4.0"
 gem "pundit", "0.3.0"
 gem "figaro", "1.0.0"
 gem "i18n", "0.7.0.beta1"
@@ -21,18 +19,17 @@ gem "slim", "2.0.3"     # required by Sidekiq
 
 ## MONITORING
 gem "exception_notification", "4.0.1"
-gem "newrelic_rpm", "3.9.4.245"
+gem "newrelic_rpm", "3.9.5.251"
 
 ## APIs
 gem "activemerchant", "1.44.1"
-#gem "money", git: "https://github.com/cdale77/money.git"
 gem "money", "6.3.0"
 gem "sendyr", "0.2.1"
 
 # DATA STORAGE
-gem "aws-sdk", "1.54.0"
+gem "aws-sdk", "1.55.0"
 gem "pgbackups-archive", "0.2.1"
-gem "paper_trail", "3.0.5"
+gem "paper_trail", "3.0.6"
 gem "s3_direct_upload", "0.1.7"
 gem "smarter_csv", "1.0.17"
 gem "paperclip", "4.2.0"
@@ -48,7 +45,6 @@ gem "will_paginate", "3.0.7"
 gem "bootstrap-will_paginate", "0.0.10"
 gem "simple_form", "3.1.0.rc2"
 gem "ransack", "1.4.1"
-#gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.2"
 
 ## JS
 gem "jquery-rails", "3.1.2"
@@ -57,8 +53,8 @@ gem "morrisjs-rails", "0.5.1"
 
 ## Misc
 gem "pry-rails", "0.3.2"
-gem "pipl-api", "3.0.1"
-gem "fullcontact", "0.6.1"
+#gem "pipl-api", "3.0.1"
+#gem "fullcontact", "0.7.0"
 gem "rubillow", git: "https://github.com/cdale77/rubillow.git"
 
 group :development do
@@ -69,7 +65,7 @@ end
 
 group :development, :test do
   gem "rspec-rails", "3.1"
-  gem "capybara", "2.4.3"
+  gem "capybara", "2.4.4"
   gem "selenium-webdriver", "2.43.0"
   gem "factory_girl_rails", "4.4.1"
   gem "byebug", "3.5.1"
@@ -88,7 +84,7 @@ end
 gem "uglifier", "2.5.3"
 
 # Use CoffeeScript for .js.coffee assets and views
-gem "coffee-rails", "4.0.1"
+gem "coffee-rails", "4.1.0"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem "therubyracer", platforms: :ruby

@@ -12,7 +12,7 @@ class DataReportsController < ApplicationController
     @data_report = DataReport.new(data_report_params)
     authorize @data_report
     if @data_report.save 
-      DataReportJob.enqueue(@data_report.id)
+      DataReportJob.perform_later(@data_report.id)
       flash[:success] = "Report queued. Refresh to check on completion."
       redirect_to data_reports_path
     else

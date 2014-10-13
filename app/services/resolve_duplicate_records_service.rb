@@ -45,9 +45,9 @@ class ResolveDuplicateRecordsService < ServiceBase
       end
 
       # remove the cim profile associated with the old record
-      cim_service = CimCustomerProfileService.new(secondary_record.cim_customer_id,
-                                                  secondary_record.email_1,
-                                                  secondary_record.cim_id)
+      cim_service = CimCustProfileService.new(secondary_record.cim_customer_id,
+                                              secondary_record.email_1,
+                                              secondary_record.cim_id)
       cim_service.destroy
 
       # destroy the old record. Reload it first so as not to destroy the

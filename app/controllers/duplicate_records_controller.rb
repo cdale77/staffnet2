@@ -10,7 +10,7 @@ class DuplicateRecordsController < ApplicationController
   end
 
   def new_file 
-    if CreateDuplicateRecordsJob.enqueue(params[:filepath])
+    if CreateDuplicateRecordsJob.perform_later(params[:filepath])
       flash[:success] = "Dupe file imported."
     else
       flash[:danger] = "Something went wrong, please try again."
@@ -27,7 +27,7 @@ class DuplicateRecordsController < ApplicationController
   def resolve 
     @duplicate_record = DuplicateRecord.find(params[:id]) 
     authorize @duplicate_record
-    ResolveDuplicateRecordsJob.enqueue(params)
+    ResolveDuplicateRecordsJob.perform_later(params)
     respond_to do |format|
       format.js
     end
