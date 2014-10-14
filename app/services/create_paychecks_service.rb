@@ -1,6 +1,6 @@
 class CreatePaychecksService < ServiceBase
 
-  def initialize(payroll)
+  def initialize(payroll:)
     @payroll = payroll
     @check_date = @payroll.end_date + 6.days
     @payroll_shifts = Shift.where(date: @payroll.start_date..@payroll.end_date)
@@ -21,7 +21,7 @@ class CreatePaychecksService < ServiceBase
       end
 
       #when everything is set up, calculate the paycheck values and save
-      service = CalculatePaycheckService.new(paycheck)
+      service = CalculatePaycheckService.new(paycheck: paycheck)
       service.perform
       paycheck.save
     end

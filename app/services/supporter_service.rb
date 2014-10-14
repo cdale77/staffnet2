@@ -2,20 +2,26 @@ class SupporterService < ServiceBase
 
   attr_reader :cim_id
 
-  def initialize(supporter, sendy_list_id, old_email = "", new_status = "",
-                 cim_id = "")
+  def initialize( supporter:, 
+                  sendy_list_id:, 
+                  old_email: "", 
+                  new_status: "",
+                  cim_id: "")
+  
     @supporter = supporter
     @message = ''
     @success = false
     @cim_id = cim_id
     @new_status = new_status
-    @cim_profile = CimCustProfileService.new(@supporter.cim_customer_id,
-                                             @supporter.email_1,
-                                             @cim_id)
-    @sendy_update = SendyUpdateService.new(@supporter.id,
-                                           sendy_list_id,
-                                           @supporter.email_1,
-                                           old_email)
+    @cim_profile_service = CimCustProfileService.new( 
+                              cim_customer_id:  @supporter.cim_customer_id,
+                              supporter_email:  @supporter.email_1,
+                              supporter_cim_id: @cim_id)
+    @sendy_update = SendyUpdateService.new(
+                              supporter_id:     @supporter.id,
+                              sendy_list_id:    sendy_list_id,
+                              supporter_email:  @supporter.email_1,
+                              old_email:        old_email)
   end
 
   def new_supporter
@@ -39,19 +45,19 @@ class SupporterService < ServiceBase
 
   private
     def store_cim_profile
-      @cim_profile.create
+      @cim_profile_service.create
       cim_profile_result
     end
 
     def unstore_cim_profile
-      @cim_profile.destroy
+      @cim_profile_service.destroy
       cim_profile_result
     end
 
     def cim_profile_result
-      @cim_id = @cim_profile.cim_id
-      @message = "#{@message} : AuthNet: #{@cim_profile.message}"
-      @cim_profile.success
+      @cim_id = @cim_profile_service.cim_id
+      @message = "#{@message} : AuthNet: #{@cim_profile_service.message}"
+      @cim_profile_service.success
     end
 
     def queue_sendy_update(action)

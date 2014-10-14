@@ -3,7 +3,9 @@ require 'spec_helper'
 describe SupporterService do
   let!(:supporter) { FactoryGirl.create(:supporter) }
   let!(:sendy_list) { FactoryGirl.create(:sendy_list) }
-  let(:supporter_service) { SupporterService.new(supporter, sendy_list.id, supporter.email_1) }
+  let(:supporter_service) { SupporterService.new(supporter: supporter, 
+                                                 sendy_list_id: sendy_list.id, 
+                                                 old_email: supporter.email_1) }
   describe '#initialize' do
     it 'should create an object' do
       supporter_service.should be_an_instance_of SupporterService

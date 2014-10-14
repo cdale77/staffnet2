@@ -11,7 +11,7 @@ describe ResolveDuplicateRecordsService do
   let!(:payload) { SpecData.resolve_dupe_payload(supporter.id, 
                                                   dupe.id,
                                                   dupe_record.id) }
-  let!(:service) { ResolveDuplicateRecordsService.new(payload) }
+  let!(:service) { ResolveDuplicateRecordsService.new(payload: payload) }
 
   describe '#initialize' do
     it 'should create an object' do

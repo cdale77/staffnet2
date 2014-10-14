@@ -3,7 +3,7 @@ require "spec_helper"
 describe DataReportService do 
 
   let!(:data_report) { DataReport.new(data_report_type_name: "all_supporters") }
-  let!(:service) { DataReportService.new(data_report) }
+  let!(:service) { DataReportService.new(data_report: data_report) }
 
   describe '#initialize' do 
     it 'should create an object' do 

@@ -4,7 +4,7 @@ describe CreateDuplicateRecordsService do
 
   report_path = ""
 
-  let!(:service) { CreateDuplicateRecordsService.new(report_path) }
+  let!(:service) { CreateDuplicateRecordsService.new(file_path: report_path) }
 
   describe '#initialize' do
     it 'should create an object' do

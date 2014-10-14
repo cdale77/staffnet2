@@ -67,13 +67,16 @@ class SupportersController < ApplicationController
       # supporter id the service object will save the new supporter
       supporter.generate_cim_customer_id
       sendy_list = supporter.supporter_type.sendy_lists.first
-      service = SupporterService.new(supporter, sendy_list.id )
+      service = SupporterService.new(supporter:supporter, 
+                                     sendy_list_id: sendy_list.id )
       service.new_supporter ? flash[:success] = 'Saved new supporter.' : flash[:alert] = "Error: #{service.message}"
     end
 
     def destroy_supporter_tasks(supporter)
       sendy_list = supporter.supporter_type.sendy_lists.first
-      service = SupporterService.new(supporter, sendy_list.id, "", "", supporter.cim_id )
+      service = SupporterService.new(supporter: supporter, 
+                                     sendy_list_id: sendy_list.id, 
+                                     cim_id: supporter.cim_id )
       service.destroy_supporter ? flash[:success] = "Supporter record destroyed" : flash[:alert] = "Error: #{service.message}"
     end
 

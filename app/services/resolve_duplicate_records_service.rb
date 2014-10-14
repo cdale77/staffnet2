@@ -3,7 +3,7 @@ class ResolveDuplicateRecordsService < ServiceBase
   ## This is half-abstracted. "Child record" referes to Donation, at this point.
   ## Would like to abstract this to work with any records. . . .
 
-  def initialize(payload)
+  def initialize(payload:)
     @payload = payload
     @duplicate_record = DuplicateRecord.find_by id: @payload["id"].to_i
     @primary_record_id = @payload["primary_record"].to_i
@@ -45,9 +45,10 @@ class ResolveDuplicateRecordsService < ServiceBase
       end
 
       # remove the cim profile associated with the old record
-      cim_service = CimCustProfileService.new(secondary_record.cim_customer_id,
-                                              secondary_record.email_1,
-                                              secondary_record.cim_id)
+      cim_service = CimCustProfileService.new(
+                        cim_customer_id:  secondary_record.cim_customer_id,
+                        supporter_email:  secondary_record.email_1,
+                        supporter_cim_id: secondary_record.cim_id)
       cim_service.destroy
 
       # destroy the old record. Reload it first so as not to destroy the
