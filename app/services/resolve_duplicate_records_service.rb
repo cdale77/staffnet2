@@ -4,6 +4,7 @@ class ResolveDuplicateRecordsService < ServiceBase
   ## Would like to abstract this to work with any records. . . .
 
   def initialize(payload:)
+    super
     @payload = payload
     @duplicate_record = DuplicateRecord.find_by id: @payload["id"].to_i
     @primary_record_id = @payload["primary_record"].to_i

@@ -1,6 +1,7 @@
 class CalculatePaycheckService < ServiceBase
   
   def initialize(paycheck:)
+    super
     @paycheck = paycheck
     @employee = @paycheck.employee
     @total_shifts = paycheck.shifts

@@ -4,6 +4,7 @@ class CreateDuplicateRecordsService < ServiceBase
   require "open-uri"
 
   def initialize(file_path:)
+    super
     @file_uri = "#{BASE_URI}#{file_path}"
   end
 

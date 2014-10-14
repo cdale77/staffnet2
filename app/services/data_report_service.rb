@@ -1,6 +1,7 @@
 class DataReportService < ServiceBase 
 
   def initialize(data_report:)
+    super
     @data_report = data_report
   end
 

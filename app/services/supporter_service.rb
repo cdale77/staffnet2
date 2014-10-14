@@ -7,10 +7,8 @@ class SupporterService < ServiceBase
                   old_email: "", 
                   new_status: "",
                   cim_id: "")
-  
+    super
     @supporter = supporter
-    @message = ''
-    @success = false
     @cim_id = cim_id
     @new_status = new_status
     @cim_profile_service = CimCustProfileService.new( 

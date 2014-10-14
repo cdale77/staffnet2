@@ -2,9 +2,8 @@ class SendyUpdateService < ServiceBase
 
   attr_accessor :sendy_list_id
 
-  def initialize(supporter_id:, sendy_list_id:, supporter_email:, old_email:)
-    @success = false
-    @message = ""
+  def initialize(supporter_id:, sendy_list_id:, supporter_email:, old_email: "")
+    super
     @supporter_id = supporter_id
     @sendy_list_id = sendy_list_id
     @supporter_email = supporter_email

@@ -9,8 +9,7 @@ class CimCustProfileService < ServiceBase
   attr_reader :cim_id
 
   def initialize(cim_customer_id:, supporter_email:, supporter_cim_id: "")
-    @success = false
-    @message = ""
+    super
     @cim_customer_id = cim_customer_id
     @supporter_email = supporter_email
     @cim_id = supporter_cim_id

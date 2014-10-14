@@ -1,6 +1,7 @@
 class CreatePayrollService < ServiceBase
 
   def initialize
+    super
     @payroll = Payroll.new
   end
 

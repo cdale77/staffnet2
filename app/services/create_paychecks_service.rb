@@ -1,6 +1,7 @@
 class CreatePaychecksService < ServiceBase
 
   def initialize(payroll:)
+    super
     @payroll = payroll
     @check_date = @payroll.end_date + 6.days
     @payroll_shifts = Shift.where(date: @payroll.start_date..@payroll.end_date)
