@@ -16,8 +16,8 @@ describe PaymentProfilePolicy do
   context 'for a staff user' do
     let(:user) { FactoryGirl.create(:staff) }
 
-    it { should_not permit(:new) }
-    it { should_not permit(:create) }
+    it { should permit(:new) }
+    it { should permit(:create) }
   end
 
   context 'for a manager user' do

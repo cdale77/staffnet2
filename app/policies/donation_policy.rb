@@ -1,11 +1,11 @@
 class DonationPolicy < Struct.new(:user, :record)
 
   def new?
-    user.role? :manager
+    user.role? :staff
   end
 
   def create?
-    user.role? :manager
+    user.role? :staff
   end
 
   def show?
@@ -17,14 +17,14 @@ class DonationPolicy < Struct.new(:user, :record)
   end
 
   def edit?
-    user.role? :manager
+    user.role? :staff
   end
 
   def update?
-    user.role? :manager
+    user.role? :staff
   end
 
   def destroy?
-    user.role? :manager
+    user.role? :staff
   end
 end

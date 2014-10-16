@@ -58,7 +58,7 @@ describe ShiftPolicy do
       it { should permit(:index) }
       it { should permit(:edit) }
       it { should permit(:update) }
-      it { should_not permit(:destroy) }
+      it { should permit(:destroy) }
     end
   end
 
