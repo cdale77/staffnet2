@@ -4,11 +4,18 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   before_filter :authenticate_user!
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # Make will_paginate work with arrays
   require "will_paginate/array"
 
   private
+
+    def user_not_authorized
+      flash[:danger] = "Not authorized."
+      redirect_to(request.referrer || root_path)
+    end
+
     def super_admin
       redirect_to root_path unless current_user.role? :super_admin
     end
@@ -24,5 +31,4 @@ class ApplicationController < ActionController::Base
     def staffer
       redirect_to root_path unless current_user.role? :staff
     end
-
 end
