@@ -1,4 +1,5 @@
 require "spec_helper"
+include ActionView::Helpers::NumberHelper
 
 describe PayrollPresenter do 
 
@@ -24,5 +25,17 @@ describe PayrollPresenter do
     end
   end
 
+  describe '#formatted_raised' do
+    it 'should format the amount' do
+      expect(presenter.formatted_raised).to eq \
+        number_to_currency(payroll.gross_fundraising_credit)
+    end
+  end
 
+  describe '#formatted_total_deposit' do
+    it 'should format the amount' do
+      expect(presenter.formatted_total_deposit).to eq \
+        number_to_currency(payroll.total_deposit)
+    end
+  end
 end
