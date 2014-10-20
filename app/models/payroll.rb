@@ -41,4 +41,9 @@ class Payroll < ActiveRecord::Base
       self.end_date = new_end_date
     end
   end
+
+  ## METHODS
+  def non_cv_shift_quantity
+    office_shift_quantity + sick_shift_quantity + vacation_shift_quantity
+  end
 end

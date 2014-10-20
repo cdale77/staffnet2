@@ -27,7 +27,7 @@ describe Payroll do
 
   payroll_attributes = SpecData.payroll_attributes
 
-  let!(:payroll) { FactoryGirl.create(:payroll) }
+  let!(:payroll) { FactoryGirl.build(:payroll) }
 
   subject { payroll }
 
@@ -41,4 +41,11 @@ describe Payroll do
   ## RELATIONSHIPS
   it { should respond_to(:paychecks) }
 
+  ## METHODS
+  describe '#non_cv_shift_quantity' do 
+    it 'should return the non-cv shift count' do 
+      non_cv_shift_count = payroll.office_shift_quantity + payroll.sick_shift_quantity + payroll.vacation_shift_quantity
+      expect(payroll.non_cv_shift_quantity).to eq non_cv_shift_count
+    end
+  end
 end

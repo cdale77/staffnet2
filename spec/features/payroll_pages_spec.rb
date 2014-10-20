@@ -1,4 +1,3 @@
-=begin
 require "spec_helper"
 include Warden::Test::Helpers
 include ActionView::Helpers::NumberHelper
@@ -9,19 +8,19 @@ describe 'PayrollPages' do
   subject { page }
 
   let!(:super_admin) { FactoryGirl.create(:super_admin) }
-  let!(:employee) { FactoryGirl.create(:employee) }
-  let!(:employee2) { FactoryGirl.create(:employee, 
-                                        first_name: "Jon") }
-  let!(:payroll) { FactoryGirl.create(:payroll, 
+  #let!(:employee) { FactoryGirl.create(:employee) }
+  #let!(:employee2) { FactoryGirl.create(:employee, 
+  #                                      first_name: "Jon") }
+  let!(:payroll) { FactoryGirl.build(:payroll, 
                                       end_date: Date.today) }
-  let!(:payroll2) { FactoryGirl.create(:payroll, 
-                                        end_date: (Date.today - 2.weeks))}
-  let!(:paycheck) { FactoryGirl.create(:paycheck,
-                                       employee: employee,
-                                       payroll: payroll) }
-  let!(:paycheck) { FactoryGirl.create(:paycheck,
-                                       employee: employee2,
-                                       payroll: payroll) }
+  let!(:payroll2) { FactoryGirl.build(:payroll, 
+                                        end_date: (Date.today - 2.weeks)) }
+  #let!(:paycheck) { FactoryGirl.create(:paycheck,
+  #                                     employee: employee,
+  #                                     payroll: payroll) }
+  #let!(:paycheck) { FactoryGirl.create(:paycheck,
+  #                                     employee: employee2,
+  #                                     payroll: payroll) }
 
   #### AS SUPERADMIN USER ####
 
@@ -46,12 +45,12 @@ describe 'PayrollPages' do
         it { should have_title("Staffnet:Payrolls") }
       end
       describe 'listing' do 
-        it { should have_content(payroll.date) }
-        it { should have_content(payroll2.date) }
+        it { should have_content(payroll.end_date) }
+        it { should have_content(payroll2.end_date) }
       end
     end
   end
 end
-=end
+
 
 
