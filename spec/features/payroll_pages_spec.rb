@@ -11,9 +11,9 @@ describe 'PayrollPages' do
   #let!(:employee) { FactoryGirl.create(:employee) }
   #let!(:employee2) { FactoryGirl.create(:employee, 
   #                                      first_name: "Jon") }
-  let!(:payroll) { FactoryGirl.build(:payroll, 
+  let!(:payroll) { FactoryGirl.create(:payroll, 
                                       end_date: Date.today) }
-  let!(:payroll2) { FactoryGirl.build(:payroll, 
+  let!(:payroll2) { FactoryGirl.create(:payroll, 
                                         end_date: (Date.today - 2.weeks)) }
   #let!(:paycheck) { FactoryGirl.create(:paycheck,
   #                                     employee: employee,
