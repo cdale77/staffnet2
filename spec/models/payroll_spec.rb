@@ -48,10 +48,4 @@ describe Payroll do
       expect(payroll.non_cv_shift_quantity).to eq non_cv_shift_count
     end
   end
-  describe '#shift_quantity' do 
-    it 'should return the shift count' do 
-      shift_count = payroll.office_shift_quantity + payroll.sick_shift_quantity + payroll.vacation_shift_quantity + payroll.cv_shift_quantity
-      expect(payroll.shift_quantity).to eq shift_count
-    end
-  end
 end

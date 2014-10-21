@@ -1,0 +1,71 @@
+<% provide(:title, 'Payroll') %>
+<h1>Payroll profile</h1>
+<div class="col-md-12 row record-display">
+  <div class="col-md-4 record-column">
+    <table>
+      <tr>
+        <th>Start date</th>
+        <td><%= @payroll_presenter.formatted_start_date %></td>
+      </tr>
+      <tr>
+        <th>End date</th>
+        <td><%= @payroll_presenter.formatted_end_date %></td>
+      </tr>
+      <tr>
+        <th>Gross credit</th>
+        <td><%= @payroll_presenter.formatted_raised %></td>
+      </tr>
+      <tr>
+        <th>Net credit</th>
+        <td><%= @payroll_presenter.formatted_net_raised %></td>
+      </tr>
+      <tr>
+        <th>Deposit</th>
+        <td><%= @payroll_presenter.formatted_total_deposit %></td>
+      </tr>
+      <tr>
+        <th>Check count</th>
+        <td><%= @payroll_presenter.check_quantity %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-4 record-column">
+    <table>
+      <tr>
+        <th>Total shifts</th>
+        <td><%= @payroll_presenter.shift_quantity %></td>
+      </tr>
+      <tr>
+        <th>Quota shifts</th>
+        <td><%= @payroll_presenter.quota_shift_quantity %></td>
+      </tr>
+      <tr>
+        <th>CV shifts</th>
+        <td><%= @payroll_presenter.cv_shift_quantity %></td>
+      </tr>
+      <tr>
+        <th>Office shifts</th>
+        <td><%= @payroll_presenter.office_shift_quantity %></td>
+      </tr>
+      <tr>
+        <th>Sick shifts</th>
+        <td><%= @payroll_presenter.sick_shift_quantity %></td>
+      </tr>
+      <tr>
+        <th>Vacation shifts</th>
+        <td><%= @payroll_presenter.vacation_shift_quantity %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-4 record-column">
+    <table>
+
+      <tr>
+        <th>Notes</th>
+        <td><%= @payroll_presenter.notes %></td>
+      </tr>
+      <%= render "shared/profiles/magic_columns",
+                 presenter: @payroll_presenter %>
+    </table>
+  </div>
+</div>

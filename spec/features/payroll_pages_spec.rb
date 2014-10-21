@@ -39,6 +39,16 @@ describe 'PayrollPages' do
       logout(:super_admin)
     end
 
+    describe 'show' do 
+      before { visit payroll_path(payroll) }
+      describe 'page' do 
+        it { should have_title("Staffnet:Payroll") }
+        it { should have_content("Payroll") }
+        it { should have_content(payroll.end_date) }
+        it { should have_content(payroll.start_date) }
+      end
+    end
+    
     describe 'index' do 
       before { visit payrolls_path }
       describe 'page' do 

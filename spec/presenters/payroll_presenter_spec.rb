@@ -19,6 +19,12 @@ describe PayrollPresenter do
     end
   end
 
+  describe '#formatted_start_date' do
+    it 'should format the date' do
+      expect(presenter.formatted_start_date).to eq I18n.l(payroll.start_date)
+    end
+  end
+
   describe '#formatted_end_date' do
     it 'should format the date' do
       expect(presenter.formatted_end_date).to eq I18n.l(payroll.end_date)
@@ -29,6 +35,13 @@ describe PayrollPresenter do
     it 'should format the amount' do
       expect(presenter.formatted_raised).to eq \
         number_to_currency(payroll.gross_fundraising_credit)
+    end
+  end
+
+  describe '#formatted_net_raised' do
+    it 'should format the amount' do
+      expect(presenter.formatted_net_raised).to eq \
+        number_to_currency(payroll.net_fundraising_credit)
     end
   end
 

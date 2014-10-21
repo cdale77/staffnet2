@@ -44,10 +44,6 @@ class Payroll < ActiveRecord::Base
 
   ## METHODS
 
-  def shift_quantity
-    non_cv_shift_quantity + cv_shift_quantity
-  end
-
   def non_cv_shift_quantity
     office_shift_quantity + sick_shift_quantity + vacation_shift_quantity
   end
