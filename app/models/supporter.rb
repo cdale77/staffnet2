@@ -179,13 +179,6 @@ class Supporter < ActiveRecord::Base
     return flag
   end
 
-  def update_prospect_group
-    donations = self.donations
-    if donations.any?
-      self.prospect_group = PROSPECT_GROUPS[donations.first.date.month]
-    end
-  end
-
   ## CIM
   def generate_cim_customer_id
     self.cim_customer_id = ( self.id + 20000 ).to_s

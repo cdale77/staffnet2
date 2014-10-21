@@ -15,3 +15,7 @@ end
 task :employee_fundraising_calculations => :environment do
   EmployeeFundraisingCalculationsJob.perform_later
 end
+
+task :update_prospect_group => :environment do 
+  UpdateProspectGroupJob.perform_later
+end
