@@ -1,6 +1,6 @@
 module Exports
   class DonationHistory < Exports::Base
-    require "csv"
+
 
     @@supporter_column_names = %W[  SupporterID
                                     Name

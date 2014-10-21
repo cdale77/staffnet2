@@ -61,6 +61,7 @@ describe Paycheck do
                                     paycheck: paycheck,
                                     employee: employee,
                                     shift_type: shift_type2) }
+=begin
   let!(:donation) { FactoryGirl.create(:donation,
                                        amount: 10,
                                        donation_type: "cash",
@@ -79,6 +80,8 @@ describe Paycheck do
                                        amount: 10,
                                        captured: true,
                                        donation: donation2) }
+=end
+
 
 
   subject { paycheck }
@@ -97,6 +100,10 @@ describe Paycheck do
 
   ## DELEGATIONS
   it { should respond_to(:user) }
+  it { should respond_to(:last_name) }
+  it { should respond_to(:pay_daily) }
+  it { should respond_to(:pay_hourly) }
+  it { should respond_to(:daily_quota) }
 
   ## METHODS
   describe 'inside outside splits' do

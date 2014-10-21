@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141004031153) do
+ActiveRecord::Schema.define(version: 20141021215734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,20 +224,28 @@ ActiveRecord::Schema.define(version: 20141004031153) do
   create_table "payrolls", force: true do |t|
     t.date     "start_date"
     t.date     "end_date"
-    t.integer  "check_quantity",                                   default: 0
-    t.decimal  "shift_quantity",           precision: 8, scale: 2, default: 0.0
-    t.decimal  "cv_shift_quantity",        precision: 8, scale: 2, default: 0.0
-    t.decimal  "quota_shift_quantity",     precision: 8, scale: 2, default: 0.0
-    t.decimal  "office_shift_quantity",    precision: 8, scale: 2, default: 0.0
-    t.decimal  "sick_shift_quantity",      precision: 8, scale: 2, default: 0.0
-    t.decimal  "holiday_shift_quantity",   precision: 8, scale: 2, default: 0.0
-    t.decimal  "total_deposit",            precision: 8, scale: 2, default: 0.0
+    t.integer  "check_quantity",                                       default: 0
+    t.decimal  "shift_quantity",               precision: 8, scale: 2, default: 0.0
+    t.decimal  "cv_shift_quantity",            precision: 8, scale: 2, default: 0.0
+    t.decimal  "quota_shift_quantity",         precision: 8, scale: 2, default: 0.0
+    t.decimal  "office_shift_quantity",        precision: 8, scale: 2, default: 0.0
+    t.decimal  "sick_shift_quantity",          precision: 8, scale: 2, default: 0.0
+    t.decimal  "holiday_shift_quantity",       precision: 8, scale: 2, default: 0.0
+    t.decimal  "total_deposit",                precision: 8, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "vacation_shift_quantity",  precision: 8, scale: 2, default: 0.0
-    t.text     "notes",                                            default: ""
-    t.decimal  "gross_fundraising_credit", precision: 8, scale: 2, default: 0.0
-    t.decimal  "net_fundraising_credit",   precision: 8, scale: 2, default: 0.0
+    t.decimal  "vacation_shift_quantity",      precision: 8, scale: 2, default: 0.0
+    t.text     "notes",                                                default: ""
+    t.decimal  "gross_fundraising_credit",     precision: 8, scale: 2, default: 0.0
+    t.decimal  "net_fundraising_credit",       precision: 8, scale: 2, default: 0.0
+    t.string   "paycheck_report_file_name"
+    t.string   "paycheck_report_content_type"
+    t.integer  "paycheck_report_file_size"
+    t.datetime "paycheck_report_updated_at"
+    t.string   "shift_report_file_name"
+    t.string   "shift_report_content_type"
+    t.integer  "shift_report_file_size"
+    t.datetime "shift_report_updated_at"
   end
 
   add_index "payrolls", ["end_date"], name: "index_payrolls_on_end_date", using: :btree

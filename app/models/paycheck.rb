@@ -46,6 +46,10 @@ class Paycheck < ActiveRecord::Base
 
   ## DELEGATIONS
   delegate :user, to: :employee
+  delegate :last_name, to: :employee
+  delegate :pay_hourly, to: :employee 
+  delegate :pay_daily, to: :employee 
+  delegate :daily_quota, to: :employee
 
 
   def inside_shift_count
