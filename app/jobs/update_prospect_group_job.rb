@@ -1,6 +1,6 @@
 require "active_job"
 
-class UpdateProspectGroupJob < ActiveJob
+class UpdateProspectGroupJob < ActiveJob::Base
   queue_as :default
 
   def perform
