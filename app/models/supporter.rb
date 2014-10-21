@@ -76,9 +76,6 @@ class Supporter < ActiveRecord::Base
   ## CALLBACKS
   # data cleaning
   before_validation { self.salutation = first_name if self.salutation.blank? }
-  before_save :update_prospect_group
-
-
 
   ## VALIDATIONS
   validates :first_name, :prefix, :salutation,
