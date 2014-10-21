@@ -4,7 +4,8 @@
   </div>
   <table class="table table-hover">
     <tr>
-      <th>Date</th>
+      <th>Employee</th>
+      <th>Check date</th>
       <th>Total shifts</th>
       <th>Quota shifts</th>
       <th>Canvass shifts</th>
@@ -17,13 +18,14 @@
     </tr>
     <% paycheck_presenters.each do |paycheck_presenter| %>
       <tr>
+        <td><%= paycheck_presenter.employee_full_name %></td>
         <td><%= paycheck_presenter.formatted_check_date %></td>
         <td><%= paycheck_presenter.shift_quantity %></td>
         <td><%= paycheck_presenter.quota_shift_quantity %></td>
         <td><%= paycheck_presenter.cv_shift_quantity %></td>
         <td><%= paycheck_presenter.formatted_total_quota %></td>
         <td><%= paycheck_presenter.formatted_net_fundraising_credit %></td>
-        <td><%= paycheck_presenter.total_pay %></td>
+        <td><%= paycheck_presenter.formatted_total_pay %></td>
         <td><%= paycheck_presenter.formatted_bonus %></td>
         <td><%= paycheck_presenter.formatted_new_buffer %></td>
         <td class="buttons">

@@ -8,19 +8,20 @@ describe 'PayrollPages' do
   subject { page }
 
   let!(:super_admin) { FactoryGirl.create(:super_admin) }
-  #let!(:employee) { FactoryGirl.create(:employee) }
-  #let!(:employee2) { FactoryGirl.create(:employee, 
-  #                                      first_name: "Jon") }
+  let!(:employee) { FactoryGirl.create(:employee) }
+  let!(:employee2) { FactoryGirl.create(:employee, 
+                                        first_name: "Jon") }
   let!(:payroll) { FactoryGirl.create(:payroll, 
                                       end_date: Date.today) }
   let!(:payroll2) { FactoryGirl.create(:payroll, 
                                         end_date: (Date.today - 2.weeks)) }
-  #let!(:paycheck) { FactoryGirl.create(:paycheck,
-  #                                     employee: employee,
-  #                                     payroll: payroll) }
-  #let!(:paycheck) { FactoryGirl.create(:paycheck,
-  #                                     employee: employee2,
-  #                                     payroll: payroll) }
+  let!(:paycheck) { FactoryGirl.create(:paycheck,
+                                       employee: employee,
+                                       payroll: payroll) }
+  let!(:paycheck2) { FactoryGirl.create(:paycheck,
+                                       employee: employee2,
+                                       payroll: payroll,
+                                       check_date: Date.today) }
 
   #### AS SUPERADMIN USER ####
 
@@ -47,6 +48,13 @@ describe 'PayrollPages' do
         it { should have_content(payroll.end_date) }
         it { should have_content(payroll.start_date) }
       end
+      describe 'paychecks' do 
+        it { should have_content(employee.full_name) }
+        it { should have_content(employee2.full_name) }
+        it { should have_content(paycheck.check_date) }
+        it { should have_content(paycheck2.check_date) }
+      end
+
     end
     
     describe 'index' do 

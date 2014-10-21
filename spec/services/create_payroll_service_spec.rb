@@ -9,5 +9,4 @@ describe CreatePayrollService do
       payroll_service.should be_an_instance_of CreatePayrollService
     end
   end
-
 end

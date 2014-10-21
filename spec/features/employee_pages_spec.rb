@@ -104,6 +104,9 @@ describe 'EmployeePages' do
           describe 'shifts' do
             it { should have_content(shift.shift_type.name.humanize) }
           end
+          describe 'paychecks' do 
+            it { should have_content(paycheck.check_date) }
+          end
         end
       end
     end
