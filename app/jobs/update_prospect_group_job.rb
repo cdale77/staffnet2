@@ -9,8 +9,9 @@ class UpdateProspectGroupJob < active_job
       if donations.any?
         last_donation = donations.first
         if last_donation.date > (Date.today - 1.day)
-        supporter.prospect_group = PROSPECT_GROUPS[last_donation.date.month]
-        supporter.save
+          supporter.prospect_group = PROSPECT_GROUPS[last_donation.date.month]
+          supporter.save
+        end
       end
     end
   end
