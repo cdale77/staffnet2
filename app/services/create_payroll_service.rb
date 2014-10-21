@@ -10,6 +10,7 @@ class CreatePayrollService < ServiceBase
     @payroll.save
     paycheck_service = CreatePaychecksService.new(payroll: @payroll)
     paycheck_service.perform
+    update_payroll_totals
   end
 
   
