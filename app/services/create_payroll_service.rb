@@ -26,7 +26,7 @@ class CreatePayrollService < ServiceBase
         holiday_shift_quantity: paychecks.sum(:holiday_shift_quantity),
         vacation_shift_quantity: paychecks.sum(:vacation_shift_quantity),
         total_deposit: paychecks.sum(:total_deposit),
-        gross_fundraising_credit: paychecks.sum(:gross_fundraising_credit)
+        gross_fundraising_credit: paychecks.sum(:gross_fundraising_credit),
         net_fundraising_credit: paychecks.sum(:net_fundraising_credit)
       }
       @payroll.update_attributes(attributes)
