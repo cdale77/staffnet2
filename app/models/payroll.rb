@@ -39,6 +39,7 @@ class Payroll < ActiveRecord::Base
   has_many :paychecks
 
   ## ATTACHMENTS
+=begin
   has_attached_file :paycheck_report,
               s3_headers:   { "Content-Type" => "text/plain" },
               path: ":rails_root/public/system/:class/:attachment/:filename",
@@ -54,6 +55,8 @@ class Payroll < ActiveRecord::Base
 
   validates_attachment :shift_report,
          content_type: { content_type: /\Atext/ }
+=end
+
 
 
   def set_start_and_end_dates
