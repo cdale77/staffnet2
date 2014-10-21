@@ -13,13 +13,13 @@ gem "gctools", "0.2.3"
 gem "dalli", "2.7.2"
 
 ## JOBS
-gem "sidekiq", "3.2.5"
+gem "sidekiq", "3.2.6"
 gem "sinatra", "1.4.5"  # required by Sidekiq
-gem "slim", "2.0.3"     # required by Sidekiq
+gem "slim", "2.1.0"     # required by Sidekiq
 
 ## MONITORING
 gem "exception_notification", "4.0.1"
-gem "newrelic_rpm", "3.9.5.251"
+gem "newrelic_rpm", "3.9.6.257"
 
 ## APIs
 gem "activemerchant", "1.44.1"
@@ -27,7 +27,7 @@ gem "money", "6.3.0"
 gem "sendyr", "0.2.1"
 
 # DATA STORAGE
-gem "aws-sdk", "1.55.0"
+gem "aws-sdk", "1.56.0"
 gem "pgbackups-archive", "0.2.1"
 gem "paper_trail", "3.0.6"
 gem "s3_direct_upload", "0.1.7"
@@ -35,7 +35,7 @@ gem "smarter_csv", "1.0.17"
 gem "paperclip", "4.2.0"
 
 ## DATES
-gem "date_validator", "0.7.0"
+gem "date_validator", "0.7.1"
 gem "week_of_month", "1.2.3.2"
 
 ## UI
@@ -67,7 +67,7 @@ group :development, :test do
   gem "rspec-rails", "3.1"
   gem "capybara", "2.4.4"
   gem "selenium-webdriver", "2.43.0"
-  gem "factory_girl_rails", "4.4.1"
+  gem "factory_girl_rails", "4.5.0"
   gem "byebug", "3.5.1"
   gem "codeclimate-test-reporter", "0.4.1"
 end
@@ -78,7 +78,7 @@ group :test do
 end
 
 group :production do
-  gem "rails_12factor", "0.0.2"
+  gem "rails_12factor", "0.0.3"
 end
 
 # Use Uglifier as compressor for JavaScript assets
@@ -98,7 +98,7 @@ gem "coffee-rails", "4.1.0"
 gem "turbolinks", "2.4.0"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem "jbuilder", "2.2.2"
+gem "jbuilder", "2.2.3"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
