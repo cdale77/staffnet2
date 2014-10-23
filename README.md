@@ -15,13 +15,13 @@ Staffnet2 stores a variety of important information about supporters.
 
 Communications
 --------------
-
 ###Email
 Staffnet2 automatically syncs supporter emails with [Sendy](http://sendy.co/) 
 for email blasting.
 
 ###Phone fundraising
 Staffnet2 has a simple donor outreach cycle and can produce turf reports. 
+
 
 Fundraising
 -----------
