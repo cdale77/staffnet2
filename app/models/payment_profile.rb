@@ -40,12 +40,8 @@ class PaymentProfile < ActiveRecord::Base
     cc_last_4 = self.cc_last_4 || ""
     cc_year = self.cc_year || ""
     
-    if profile_type == "credit"
-      "#{profile_type.humanize} - #{cc_type.humanize} \
-        x#{cc_last_4} #{self.cc_month}/#{cc_year}"
-    else
-      "#{profile_type.humanize}"
-    end
+    "#{profile_type.humanize} - #{cc_type.humanize} \
+      x#{cc_last_4} #{self.cc_month}/#{cc_year}"
   end
 
   def store_cc_info
