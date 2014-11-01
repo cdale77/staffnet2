@@ -103,7 +103,7 @@ class Supporter < ActiveRecord::Base
             allow_blank: true
 
 
-  ## WRITERS  
+  ## WRITERS
   def email_1=(email)
     write_attribute(:email_1, email.downcase) if email
   end
@@ -181,3 +181,4 @@ class Supporter < ActiveRecord::Base
     self.cim_customer_id = ( self.id + 20000 ).to_s
   end
 end
+
