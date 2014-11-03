@@ -1,5 +1,9 @@
 class CalculatePaycheckService < ServiceBase
-  
+  # This service will calculate a paycheck's values based on the current
+  # database records AND the paycheck's stored credits and docks. This class
+  # can be used to create new paychecks, or to re-calulcate existing ones in
+  # case of a change in the underlying data (a new donation, for example) or a
+  # change in the checks' credits or docks.
   def initialize(paycheck:)
     super
     @paycheck = paycheck
@@ -25,7 +29,7 @@ class CalculatePaycheckService < ServiceBase
     @total_pay =  @total_salary + @bonus
     @travel_reimb = @total_shifts.map(&:travel_reimb).inject(0, &:+)
   end
-  
+
   def perform
 
     values = {
