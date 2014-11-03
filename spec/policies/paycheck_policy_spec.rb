@@ -12,6 +12,7 @@ describe PaycheckPolicy do
 
     it { should_not permit(:show) }
     it { should_not permit(:edit) }
+    it { should_not permit(:update) }
   end
 
   context 'for a staff user' do
@@ -20,6 +21,7 @@ describe PaycheckPolicy do
     context 'for other employee shifts' do
       it { should_not permit(:show) }
       it { should_not permit(:edit) }
+      it { should_not permit(:update) }
     end
 
     context 'for their own shifts' do
@@ -28,6 +30,7 @@ describe PaycheckPolicy do
 
       it { should permit(:show) }
       it { should_not permit(:edit) }
+      it { should_not permit(:update) }
     end
   end
 
@@ -37,6 +40,7 @@ describe PaycheckPolicy do
     context 'for other employee shifts' do
       it { should_not permit(:show) }
       it { should_not permit(:edit) }
+      it { should_not permit(:update) }
     end
 
     context 'for their own shifts' do
@@ -45,6 +49,7 @@ describe PaycheckPolicy do
 
       it { should permit(:show) }
       it { should_not permit(:edit) }
+      it { should_not permit(:update) }
     end
   end
 
@@ -53,7 +58,7 @@ describe PaycheckPolicy do
 
     it { should permit(:show) }
     it { should_not permit(:edit) }
-
+    it { should_not permit(:update) }
   end
 
   context 'for a super_admin user' do
@@ -61,5 +66,6 @@ describe PaycheckPolicy do
 
     it { should permit(:show) }
     it { should permit(:edit) }
+    it { should permit(:update) }
   end
 end

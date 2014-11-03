@@ -4,7 +4,11 @@ class PaycheckPolicy < Struct.new(:user, :record)
     user.role? :admin or user == record.user
   end
 
-  def edit? 
-    user.role? :super_admin 
+  def edit?
+    user.role? :super_admin
   end
+
+  def update?
+    user.role? :super_admin
 end
+
