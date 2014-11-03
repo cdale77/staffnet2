@@ -10,5 +10,6 @@ class PaycheckPolicy < Struct.new(:user, :record)
 
   def update?
     user.role? :super_admin
+  end
 end
 
