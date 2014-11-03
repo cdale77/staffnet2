@@ -2,6 +2,8 @@
 <div class="row">
   <div class="span10 offset1">
     <h1>Edit paycheck</h1>
+    <p>Use this page to edit the credits and docks. The check will then be
+       re-calculated</p>
     <%= simple_form_for(@paycheck) do |f| %>
 
       <%= render "shared/error_messages",
@@ -12,7 +14,7 @@
 
       <%= render "shared/forms/submit_button",
                  f: f %>
-
     <% end %>
   </div>
 </div>
+
