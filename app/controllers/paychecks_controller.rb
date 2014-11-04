@@ -21,6 +21,7 @@ class PaychecksController < ApplicationController
     if @paycheck.update_attributes(paycheck_params)
       flash[:success] = "Paycheck updated."
       CalculatePaycheckService.new(paycheck: @paycheck).perform
+      CalculatePayrollService.new(payroll: @paycheck.payroll).perform
       redirect_to paycheck_path(@paycheck)
     else
       flash[:danger] = "Something went wrong"
