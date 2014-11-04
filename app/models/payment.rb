@@ -43,8 +43,8 @@ class Payment < ActiveRecord::Base
 
   def self.create_installment_payments(
       month_code = Donation.current_quarter_code,
-      week_code = Date.today.week_of_month)
-  
+      week_code = Donation.current_week_code)
+
     current_sustainers = Donation.sustaining_donations
     deposit_batch = DepositBatch.create(batch_type: "installment",
                                         date: Date.today)

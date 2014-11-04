@@ -84,6 +84,10 @@ class Donation < ActiveRecord::Base
     end
   end
 
+  def self.current_week_code
+    Date.today.week_of_month
+  end
+
   def is_sustainer?
     if sub_month.present? && sub_week.present? && cancelled == false
       true
@@ -114,8 +118,22 @@ class Donation < ActiveRecord::Base
   def captured
     # this is mapped to the first payment - if it's captured, so is the donation
     # if for some reason there is no first payment, the return false
-    self.payments.first ? self.payments.first.captured : false
+    most_recent_payment ? most_recent_payment.captured : false
   end
+
+=begin
+  def payments_current?
+    if most_recent_payment && \
+       most_recent_payment.captured && \
+       sub_month == self.class.current_quarter_code && \
+       (most_recent_payment.deposited_at - Date.today).to_i < 27
+      return true
+    else
+      return false
+    end
+  end
+=end
+
 
   def total_value
     if self.frequency == "one-time"
@@ -132,6 +150,10 @@ class Donation < ActiveRecord::Base
     else
       return ( self.amount * DEFAULT_DONATION_MULTIPLIERS[self.frequency] )
     end
+  end
+
+  def most_recent_payment
+    payments.first if payments.any?
   end
 
   private

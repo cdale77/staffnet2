@@ -28,12 +28,23 @@ describe Donation do
   let!(:shift_type) { FactoryGirl.create(:shift_type) }
   let!(:shift) { FactoryGirl.create(:shift, shift_type: shift_type) }
   let!(:donation) { FactoryGirl.create(:donation,
-                                      sub_month: "a",
-                                      sub_week: 4,
+                                      sub_month: Donation.current_quarter_code,
+                                      sub_week: Donation.current_week_code,
                                       shift: shift) }
   let!(:payment) { FactoryGirl.create(:payment,
                                       donation: donation,
-                                      captured: true) }
+                                      captured: true,
+                                      deposited_at: Date.today) }
+  let!(:not_current) { FactoryGirl.create(:donation,
+                                      sub_month: Donation.current_quarter_code,
+                                      sub_week: Donation.current_week_code,
+                                      shift: shift) }
+   let!(:payment2) { FactoryGirl.create(:payment,
+                                      donation: not_current,
+                                      captured: true,
+                                      deposited_at: (Date.today - 6.months)) }
+
+
 
   ## ATTRIBUTES
   describe 'donation attribute tests' do
@@ -117,7 +128,7 @@ describe Donation do
     end
     it 'should return the sustaining donations' do
       # include the original donation created by let!
-      expect(Donation.sustaining_donations.count).to eq 3
+      expect(Donation.sustaining_donations.count).to eq 4
     end
   end
 
@@ -134,6 +145,16 @@ describe Donation do
   end
 
   ## INSTANCE METHODS
+
+  describe '#payments_current?' do
+    it 'should return true' do
+      expect(donation.payments_current?).to be_truthy
+    end
+    it 'should return false' do
+      expect(not_current.payments_current?).to be_falsey
+    end
+  end
+
   describe '#captured' do
     it 'should return true' do
       expect(donation.captured).to be_truthy
@@ -142,7 +163,8 @@ describe Donation do
   describe '#total_value' do
     it 'should return the correct result' do
       # using to_s to make the results human readable
-      expect(donation.total_value.to_s).to eq (donation.amount * shift_type.quarterly_cc_multiplier).to_s
+      expect(donation.total_value.to_s).to eq \
+        (donation.amount * shift_type.quarterly_cc_multiplier).to_s
     end
   end
 
@@ -161,6 +183,12 @@ describe Donation do
       donation.cancelled = true
       expect(donation.is_sustainer?).to be_falsey
     end
+  end
 
+  describe '#most_recent_payment' do
+    it 'should return the most recent payment' do
+      expect(donation.most_recent_payment).to eq \
+        donation.payments.first
+    end
   end
 end
