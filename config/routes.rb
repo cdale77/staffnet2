@@ -34,7 +34,7 @@ Staffnet2::Application.routes.draw do
     resources :shift_types, except: [:show, :destroy]
     resources :sendy_lists
     resources :deposit_batches, only: [:show, :index, :edit, :update]
-    resources :paychecks, only: [:show, :edit]
+    resources :paychecks, only: [:show, :edit, :update]
     resources :payrolls, only: [:show, :index]
     resources :data_reports, only: [:new, :create, :index]
     get "/data_reports/:id/downloadable_file", 
