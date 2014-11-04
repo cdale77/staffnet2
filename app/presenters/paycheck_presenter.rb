@@ -59,4 +59,9 @@ class PaycheckPresenter < PresenterBase
   def employee_full_name
     employee.full_name
   end
+
+  def employee_last_name
+    employee.last_name
+  end
 end
+

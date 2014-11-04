@@ -122,4 +122,11 @@ describe PaycheckPresenter do
       expect(presenter.employee_full_name).to eq paycheck.employee.full_name
     end
   end
+
+  describe '#employee_last_name' do 
+    it 'should provide the last name' do 
+      expect(presenter.employee_last_name).to eq paycheck.employee.last_name
+    end
+  end
 end
+

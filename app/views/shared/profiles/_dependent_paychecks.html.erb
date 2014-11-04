@@ -20,7 +20,7 @@
     </tr>
     <% paycheck_presenters.each do |paycheck_presenter| %>
       <tr>
-        <td><%= paycheck_presenter.employee_full_name %></td>
+        <td><%= paycheck_presenter.employee_last_name %></td>
         <td><%= paycheck_presenter.formatted_check_date %></td>
         <td><%= paycheck_presenter.shift_quantity %></td>
         <td><%= paycheck_presenter.quota_shift_quantity %></td>
