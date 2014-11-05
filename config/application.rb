@@ -37,6 +37,9 @@ module Staffnet2
     config.autoload_paths += %W(#{config.root}/lib/exports)
     config.autoload_paths += %W(#{config.root}/app/models/emails)
     config.autoload_paths += %W(#{config.root}/app/presenters)
+    config.autoload_paths += %W(#{config.root}/app/services)
+    config.autoload_paths += %W(#{config.root}/app/services/payroll)
+
 
 
     # legacy db models
