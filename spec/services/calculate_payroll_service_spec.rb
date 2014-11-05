@@ -2,7 +2,8 @@ require "spec_helper"
 
 describe CalculatePayrollService do
 
-  let!(:service) { CalculatePayrollService.new }
+  let!(:payroll) { FactoryGirl.create(:payroll) }
+  let!(:service) { CalculatePayrollService.new(payroll: payroll) }
 
   describe '#initialize' do
     it 'should create an object' do

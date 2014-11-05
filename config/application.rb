@@ -39,6 +39,9 @@ module Staffnet2
     config.autoload_paths += %W(#{config.root}/app/presenters)
     config.autoload_paths += %W(#{config.root}/app/services)
     config.autoload_paths += %W(#{config.root}/app/services/payroll)
+    config.autoload_paths += %W(#{config.root}/app/services/supporters)
+    config.autoload_paths += %W(#{config.root}/app/services/duplicate_records)
+    config.autoload_paths += %W(#{config.root}/app/services/data_reports)
 
 
 
