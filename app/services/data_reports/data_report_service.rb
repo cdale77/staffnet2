@@ -10,7 +10,7 @@ class DataReportService < ServiceBase
 
     csv_file = case report_type
     when "all_supporters"
-      Exports::DonationHistory.all
+      DonationHistoryReportService.new.perform
     else
       ""
     end
