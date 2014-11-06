@@ -11,9 +11,15 @@ describe ExportTemplate::Excel::Workbook do
     end
   end
 
-  describe '#export_file' do
+  describe '#header' do
     it 'should be a string' do
-      expect(template.export_file).to be_an_instance_of String
+      expect(template.header).to be_an_instance_of String
+    end
+  end
+
+  describe '#footer' do
+    it 'should be a string' do
+      expect(template.footer).to be_an_instance_of String
     end
   end
 end
