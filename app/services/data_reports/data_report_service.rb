@@ -9,8 +9,10 @@ class DataReportService < ServiceBase
     report_type = @data_report.data_report_type_name
 
     export_file = case report_type
-    when "all_supporters"
+    when "donation_history"
       DonationHistoryReportService.new.perform
+    when "database"
+      DatabaseReportService.new.perform
     else
       ""
     end
