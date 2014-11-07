@@ -146,15 +146,6 @@ describe Donation do
 
   ## INSTANCE METHODS
 
-  describe '#payments_current?' do
-    it 'should return true' do
-      expect(donation.payments_current?).to be_truthy
-    end
-    it 'should return false' do
-      expect(not_current.payments_current?).to be_falsey
-    end
-  end
-
   describe '#captured' do
     it 'should return true' do
       expect(donation.captured).to be_truthy

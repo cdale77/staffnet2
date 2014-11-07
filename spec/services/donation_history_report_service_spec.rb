@@ -11,8 +11,8 @@ describe DonationHistoryReportService do
   end
 
   describe '#perform' do
-    it 'should return a string' do
-      expect(service.perform).to be_an_instance_of String
+    it 'should return a StringIO' do
+      expect(service.perform).to be_an_instance_of StringIO
     end
   end
 

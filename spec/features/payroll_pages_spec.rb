@@ -49,8 +49,8 @@ describe 'PayrollPages' do
         it { should have_content(payroll.start_date) }
       end
       describe 'paychecks' do
-        it { should have_content(employee.full_name) }
-        it { should have_content(employee2.full_name) }
+        it { should have_content(employee.last_name) }
+        it { should have_content(employee2.last_name) }
         it { should have_content(paycheck.check_date) }
         it { should have_content(paycheck2.check_date) }
       end
