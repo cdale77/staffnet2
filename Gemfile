@@ -52,6 +52,7 @@ gem "raphael-rails", "2.1.2"
 gem "morrisjs-rails", "0.5.1"
 
 ## Misc
+gem "axlsx", "2.0.01"
 gem "pry-rails", "0.3.2"
 #gem "pipl-api", "3.0.1"
 #gem "fullcontact", "0.7.0"

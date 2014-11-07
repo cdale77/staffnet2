@@ -20,10 +20,11 @@ class DataReport < ActiveRecord::Base
   belongs_to :user
 
   has_attached_file :downloadable_file,
-              s3_headers:   { "Content-Type" => "text/plain" },
+              s3_headers:   { "Content-Type" => "application/octet-stream" },
               path: ":rails_root/public/system/:class/:attachment/:filename",
               s3_permissions: :private
 
-  validates_attachment :downloadable_file,
-         content_type: { content_type: /\Atext/ }
+  do_not_validate_attachment_file_type :downloadable_file
+  #validates_attachment :downloadable_file,
+  #       content_type: { content_type: "application/octet-stream" }
 end

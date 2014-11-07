@@ -1,16 +1,27 @@
 class DonationHistoryReportService < ServiceBase
+  require 'axlsx'
 
   def initialize
     super
-    @workbook_template = ExportTemplate::Excel::Workbook.new
-    @worksheet_template = ExportTemplate::Excel::Worksheet.new(
-                                                    column_names: column_names)
+    #@workbook_template = ExportTemplate::Excel::Workbook.new
+    #@worksheet_template = ExportTemplate::Excel::Worksheet.new(
+    #                                                column_names: column_names)
+    @p = Axlsx::Package.new
   end
 
   def perform
-    "#{@workbook_template.header}" \
-    "#{@worksheet_template.worksheet}" \
-    "#{@workbook_template.footer}"
+    #"#{@workbook_template.header}" \
+    #"#{@worksheet_template.worksheet}" \
+    #"#{@workbook_template.footer}"
+    
+    p = Axlsx::Package.new
+    workbook = p.workbook
+
+    workbook.add_worksheet(name: "DonationHistory") do |sheet|
+      sheet.add_row column_names
+    end
+
+    file = p.to_stream
   end
 
   private
