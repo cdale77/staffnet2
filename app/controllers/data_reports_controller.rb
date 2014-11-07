@@ -1,17 +1,17 @@
-class DataReportsController < ApplicationController 
+class DataReportsController < ApplicationController
 
   include Pundit
   after_filter :verify_authorized
 
   def new
-    @data_report = DataReport.new 
+    @data_report = DataReport.new
     authorize @data_report
   end
 
-  def create 
+  def create
     @data_report = DataReport.new(data_report_params)
     authorize @data_report
-    if @data_report.save 
+    if @data_report.save
       DataReportJob.perform_later(@data_report.id)
       flash[:success] = "Report queued. Refresh to check on completion."
       redirect_to data_reports_path
@@ -34,9 +34,7 @@ class DataReportsController < ApplicationController
   end
 
   private
-
     def data_report_params
       params.require(:data_report).permit(:data_report_type_name)
     end
-
 end
