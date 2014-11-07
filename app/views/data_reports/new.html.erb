@@ -8,16 +8,15 @@
         <div class="col-md-6 col-md-offset-3">
           <%= render "shared/error_messages",
                    object: f.object %>
-
           <%= f.input :data_report_type_name,
                     as: :select,
-                    collection: [["All supporters", "all_supporters"]] %>
+                    collection: [["Supporter donation history", "donation_history"],
+                                 ["Entire database", "database"]] %>
 
-       
         </div>
       </div>
       <%= render "shared/forms/submit_button", f: f %>
-
     <% end %>
   </div>
 </div>
+

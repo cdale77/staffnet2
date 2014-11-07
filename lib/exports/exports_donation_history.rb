@@ -147,7 +147,7 @@ module Exports
         end
       end
 
-      # return a StringIO to make it easyt to use PaperClip
+      # return a StringIO to make it easy to use PaperClip
       StringIO.new(csv_file)
     end
 

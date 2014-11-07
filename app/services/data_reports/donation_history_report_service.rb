@@ -1,27 +1,16 @@
 class DonationHistoryReportService < ServiceBase
   require 'axlsx'
 
-  def initialize
-    super
-    #@workbook_template = ExportTemplate::Excel::Workbook.new
-    #@worksheet_template = ExportTemplate::Excel::Worksheet.new(
-    #                                                column_names: column_names)
-    @p = Axlsx::Package.new
-  end
-
   def perform
-    #"#{@workbook_template.header}" \
-    #"#{@worksheet_template.worksheet}" \
-    #"#{@workbook_template.footer}"
-    
     p = Axlsx::Package.new
     workbook = p.workbook
 
     workbook.add_worksheet(name: "DonationHistory") do |sheet|
       sheet.add_row column_names
+      Supporter.find_each { |s| sheet.add_row build_row(s) }
     end
 
-    file = p.to_stream
+    return p.to_stream # returns a StringIO, good for paperclip
   end
 
   private
@@ -34,6 +23,35 @@ class DonationHistoryReportService < ServiceBase
         end
       end
       return column_names
+    end
+
+    def build_row(supporter)
+      row = build_supporter_data(supporter)
+      supporter.donations.limit(5).each do |donation|
+        build_donation_data(donation).each do |field|
+          row << field
+        end
+        build_misc_data(donation, donation.payments.first).each do |field|
+          row << field
+        end
+      end
+      return row
+    end
+
+    def build_supporter_data(supporter)
+      supporter_data_methods.map do |method|
+        supporter.public_send(method.to_s)
+      end
+    end
+
+    def build_donation_data(donation)
+      donation_data_methods.map do |method|
+        donation.public_send(method.to_s)
+      end
+    end
+
+    def build_misc_data(donation = Donation.new, payment = Payment.new)
+      [donation_employee_name(donation), payment_profile_info(payment)]
     end
 
     def supporter_column_names
@@ -67,19 +85,19 @@ class DonationHistoryReportService < ServiceBase
 
     def donation_column_names
       %w[ Source
-          Staff
           Date
           Amt
           Type
           Freq
           SubMonth
-          Declined?
+          Captured?
           Canceled?
-          CC_Info
-          Notes ]
+          Notes
+          EmployeeName
+          CCInfo ]
     end
 
-    def column_methods
+    def supporter_data_methods
       %w[ id
           full_name
           address1
@@ -106,7 +124,31 @@ class DonationHistoryReportService < ServiceBase
           is_sustainer?
           vol_level
           issue_knowledge ]
+    end
 
+    def donation_data_methods
+      %w[ source
+          date
+          amount
+          donation_type
+          frequency
+          sub_month
+          captured
+          cancelled
+          notes ]
+    end
+
+    def donation_employee_name(donation)
+      if donation.shift && donation.shift.employee
+        donation.shift.employee.full_name
+      else
+        ""
+      end
+    end
+
+    def payment_profile_info(payment)
+      profile = payment.payment_profile if payment
+      profile ? profile.short_version : ""
     end
 end
 
