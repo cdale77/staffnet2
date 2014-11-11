@@ -11,8 +11,12 @@ class InstallmentPaymentsJob < ActiveJob::Base
 
       payments.each do |payment|
         puts "Processing installment payment id #{payment.id}"
-        payment.process_payment
-        puts "Captured: #{payment.captured}"
+        begin
+          payment.process_payment
+        rescue
+          puts "Error processing payment id #{payment.id}"
+        end
+
         if payment.save
           puts "Saved payment details for id #{payment.id}"
         else
