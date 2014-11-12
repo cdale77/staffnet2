@@ -7,11 +7,15 @@ class DatabaseReportService < ServiceBase
     export_models.each do |model|
       workbook.add_worksheet(name: "#{model.name.pluralize.downcase}") do |sheet|
         sheet.add_row model.column_names
-        model.find_each(batch_size: 50) do |record|
+        model.find_each(batch_size: 25) do |record|
           sheet.add_row record.attributes.values
           record = nil #explicity destroy the object to save some memory
+          GC.start     #garbage clean now to avoid memory bloat
         end
+
       end
+      model = nil
+      GC.start
     end
 
     return p.to_stream # returns a StringIO, good for paperclip
