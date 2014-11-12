@@ -7,7 +7,10 @@ class DonationHistoryReportService < ServiceBase
 
     workbook.add_worksheet(name: "DonationHistory") do |sheet|
       sheet.add_row column_names
-      Supporter.find_each { |s| sheet.add_row build_row(s) }
+      Supporter.find_each(batch_size: 50) do  |supporter|
+        sheet.add_row build_row(supporter)
+        supporter = nil #manually manage some memory here
+      end
     end
 
     return p.to_stream # returns a StringIO, good for paperclip
