@@ -63,4 +63,13 @@ class DepositBatch < ActiveRecord::Base
       end
     end
   end
+
+  def processable?
+    if batch_type == "installment" && self.payments.where(processed: false).any?
+      return true
+    else
+      return false
+    end
+  end
 end
+

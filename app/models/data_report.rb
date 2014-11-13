@@ -24,7 +24,8 @@ class DataReport < ActiveRecord::Base
               path: ":rails_root/public/system/:class/:attachment/:filename",
               s3_permissions: :private
 
+  # Turn off validations, as these files are not uploaded but created by the
+  # server.
   do_not_validate_attachment_file_type :downloadable_file
-  #validates_attachment :downloadable_file,
-  #       content_type: { content_type: "application/octet-stream" }
 end
+

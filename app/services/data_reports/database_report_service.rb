@@ -11,8 +11,8 @@ class DatabaseReportService < ServiceBase
           sheet.add_row record.attributes.values
           record = nil #explicity destroy the object to save some memory
         end
-
       end
+      model = nil
     end
     return p.to_stream # returns a StringIO, good for paperclip
   end
