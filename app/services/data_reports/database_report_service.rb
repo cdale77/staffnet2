@@ -10,14 +10,10 @@ class DatabaseReportService < ServiceBase
         model.find_each(batch_size: 25) do |record|
           sheet.add_row record.attributes.values
           record = nil #explicity destroy the object to save some memory
-          GC.start     #garbage clean now to avoid memory bloat
         end
 
       end
-      model = nil
-      GC.start
     end
-
     return p.to_stream # returns a StringIO, good for paperclip
   end
 
