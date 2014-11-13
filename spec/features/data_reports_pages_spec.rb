@@ -32,7 +32,7 @@ describe 'DataReportsPages' do
       end
       describe 'with valid information' do 
         before do
-          select "Donation history", from: "Data report type name"
+          select "Supporter donation history", from: "Data report type name"
         end
         it 'should create a new data report' do 
           expect { click_button 'Create Data report'}.to change(DataReport, :count).by(1)

@@ -19,8 +19,11 @@ describe DepositBatch do
 
   deposit_batch_attributes = SpecData.deposit_batch_attributes
 
-  let!(:deposit_batch) { FactoryGirl.create(:deposit_batch) }
-  let!(:payment) { FactoryGirl.create(:payment, deposit_batch: deposit_batch) }
+  let!(:deposit_batch) { FactoryGirl.create(:deposit_batch,
+                                             batch_type: "installment") }
+  let!(:payment) { FactoryGirl.create(:payment,
+                                      processed: false,
+                                      deposit_batch: deposit_batch) }
 
   subject { deposit_batch }
 
@@ -56,22 +59,20 @@ describe DepositBatch do
 
   ## INSTANCE METHODS
   describe '#processable?' do
-    
-    before do
-      deposit_batch.batch_type = "installment"
-      payment.processed = false
-    end
 
     it 'should return true' do
       expect(deposit_batch.processable?).to be_truthy
     end
     it 'should return false' do
       payment.processed = true
+      payment.save
       expect(deposit_batch.processable?).to be_falsey
     end
     it 'should return false' do 
       deposit_batch.batch_type = "credit"
+      deposit_batch.save
       payment.processed = false
+      payment.save
       expect(deposit_batch.processable?).to be_falsey
     end
   end
