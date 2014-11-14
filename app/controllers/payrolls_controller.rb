@@ -11,9 +11,10 @@ class PayrollsController < ApplicationController
     authorize payroll
   end
 
-  def index 
+  def index
     payrolls = Payroll.all
     @payroll_presenters = PayrollPresenter.wrap(payrolls).paginate(page: params[:page])
     authorize payrolls
   end
 end
+

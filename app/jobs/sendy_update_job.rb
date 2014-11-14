@@ -37,6 +37,7 @@ class SendyUpdateJob < ActiveJob::Base
       end
       mark_completed(update: update, success: success)
     end
+  end
 
   private
 
