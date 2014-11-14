@@ -10,20 +10,12 @@ class SendyUpdateJob < ActiveJob::Base
     updates.each do |update|
       puts "Performing update id #{update.id}"
 
-      # create a new client for every update
-      client = Sendyr::Client.new(update.sendy_list_identifier)
-
       begin
         supporter = Supporter.find(update.supporter_id.to_i)
+        sendy_list = SendyList.find(update.send_list_id.to_i)
+        client = Sendyr::Client.new(update.sendy_list_identifier)
       rescue
         mark_as_completed(update: update, success: false)
-        next
-      end
-
-      begin
-        sendy_list = SendyList.find(update.send_list_id.to_i)
-      rescue
-         mark_as_completed(update: update, success: false)
         next
       end
 
