@@ -13,9 +13,9 @@ class SendyUpdateJob < ActiveJob::Base
       begin
         supporter = Supporter.find(update.supporter_id.to_i)
         sendy_list = SendyList.find(update.send_list_id.to_i)
-        client = Sendyr::Client.new(update.sendy_list_identifier)
+        client = Sendyr::Client.new(sendy_list.sendy_list_identifier)
       rescue
-        mark_as_completed(update: update, success: false)
+        mark_complete(update: update, success: false)
         next
       end
 
@@ -31,7 +31,7 @@ class SendyUpdateJob < ActiveJob::Base
         success = true
       end
 
-      mark_completed(update: update, success: success)
+      mark_complete(update: update, success: success)
       update.save
       supporter.save
     end
@@ -39,7 +39,7 @@ class SendyUpdateJob < ActiveJob::Base
 
   private
 
-  def mark_completed(update:, success:)
+  def mark_complete(update:, success:)
     update.completed_at = Time.now
     update.result = success
   end
