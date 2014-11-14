@@ -17,7 +17,6 @@
 #
 
 class SendyUpdate < ActiveRecord::Base
-
   #no paper trail
-  
 end
+

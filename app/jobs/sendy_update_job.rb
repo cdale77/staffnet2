@@ -41,7 +41,7 @@ class SendyUpdateJob < ActiveJob::Base
 
   def mark_complete(update:, success:)
     update.completed_at = Time.now
-    update.result = success
+    update.success = success
   end
 
   def perform_update(update: update, supporter: supporter, sendy_list: sendy_list)
