@@ -26,7 +26,6 @@ class SendyUpdateJob < ActiveJob::Base
       end
 
 
-      client = Sendyr::Client.new(sendy_list.sendy_list_identifier)
 
       # only actually subscribe them if they can get emails
       if supporter.email_1.present? && \
@@ -63,6 +62,7 @@ class SendyUpdateJob < ActiveJob::Base
   end
 
   def subscribe_to_sendy(supporter, sendy_list_identifier)
+      client = Sendyr::Client.new(sendy_list.sendy_list_identifier)
       client.subscribe(:email => supporter.email_1,
                        :name => supporter.full_name,
                        "FirstName" => supporter.first_name,
@@ -70,6 +70,7 @@ class SendyUpdateJob < ActiveJob::Base
   end
 
   def unsubscribe_from_sendy(supporter, sendy_list_identifier)
+    client = Sendyr::Client.new(sendy_list.sendy_list_identifier)
     client.unsubscribe(:email => supporter.email_1, :name => supporter.full_name )
   end
 end
