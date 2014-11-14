@@ -12,6 +12,7 @@ describe DepositBatchPolicy do
     it { should_not permit(:index) }
     it { should_not permit(:update) }
     it { should_not permit(:edit) }
+    it { should_not permit(:process_batch) }
   end
 
   context 'for a staff user' do
@@ -21,6 +22,7 @@ describe DepositBatchPolicy do
     it { should_not permit(:index) }
     it { should_not permit(:update) }
     it { should_not permit(:edit) }
+    it { should_not permit(:process_batch) }
   end
 
   context 'for a manager user' do
@@ -30,6 +32,7 @@ describe DepositBatchPolicy do
     it { should_not permit(:index) }
     it { should_not permit(:update) }
     it { should_not permit(:edit) }
+    it { should_not permit(:process_batch) }
   end
 
   context 'for an admin user' do
@@ -39,6 +42,7 @@ describe DepositBatchPolicy do
     it { should permit(:index) }
     it { should permit(:update) }
     it { should permit(:edit) }
+    it { should permit(:process_batch) }
   end
 
   context 'for a super_admin user' do
@@ -48,5 +52,7 @@ describe DepositBatchPolicy do
     it { should permit(:index) }
     it { should permit(:update) }
     it { should permit(:edit) }
+    it { should permit(:process_batch) }
   end
 end
+

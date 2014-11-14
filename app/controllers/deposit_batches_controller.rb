@@ -33,10 +33,13 @@ class DepositBatchesController < ApplicationController
       flash[:success] = "Batch approved"
       redirect_to deposit_batches_path
     end
-
-
   end
 
+  def process_batch
+    @deposit_batch = DepositBatch.find(params[:id])
+    authorize @deposit_batch
+    DepositBatchProcessingSerivice.new(@deposit_batch).perform
+  end
 
   private
     def deposit_batch_params

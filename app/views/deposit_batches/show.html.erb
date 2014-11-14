@@ -2,12 +2,20 @@
 <h1>Batch details</h1>
 <div class="col-md-12 row button-container">
   <div class="buttons">
-    <% if admin_user? && @deposit_batch_presenter.not_approved %>
+  <% if admin_user? %>
+    <% if @deposit_batch_presenter.not_approved %>
       <%= link_to "approve",
                   edit_deposit_batch_path(@deposit_batch_presenter.model),
                   class: "btn btn-md btn-primary",
                   type: "button" %>
     <% end %>
+    <% if @deposit_batch_presenter.processable? %>
+      <%= link_to "process",
+            process_batch_path(@deposit_batch_presenter.model),
+            class: "btn btn-md btn-success",
+            type: "button" %>
+    <% end %>
+  <% end %>
   </div>
 </div>
 <div class="cold-md-12 row record-display">

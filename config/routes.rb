@@ -34,21 +34,24 @@ Staffnet2::Application.routes.draw do
     resources :shift_types, except: [:show, :destroy]
     resources :sendy_lists
     resources :deposit_batches, only: [:show, :index, :edit, :update]
+    post "deposit_batches/:id/process_batch",
+      to: "deposit_batches#process_batch", as: :process_batch
     resources :paychecks, only: [:show, :edit, :update]
     resources :payrolls, only: [:show, :index]
     resources :data_reports, only: [:new, :create, :index]
-    get "/data_reports/:id/downloadable_file", 
+    get "/data_reports/:id/downloadable_file",
       to: "data_reports#downloadable_file", as: :data_report_downloadable_file
 
 
     ## Dupes
-    get "duplicate_records/new_batch", 
+    get "duplicate_records/new_batch",
       to: "duplicate_records#new_batch", as: :new_duplicate_batch
     post "duplicate_records/new_file",
       to: "duplicate_records#new_file", as: :new_duplicate_file
     get "duplicate_records",
       to: "duplicate_records#index", as: :duplicate_records
-    post "duplicate_records/:id/resolve", 
+    post "duplicate_records/:id/resolve",
       to: "duplicate_records#resolve", as: :resolve_duplicate_record
   end
 end
+
