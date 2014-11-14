@@ -10,40 +10,42 @@ class SendyUpdateJob < ActiveJob::Base
     updates.each do |update|
       puts "Performing update id #{update.id}"
 
+      # create a new client for every update
       client = Sendyr::Client.new(sendy_list_identifier)
 
       begin
         supporter = Supporter.find(update.supporter_id.to_i)
       rescue
-        handle_error(update_id: update.id, msg: "Could not find supporter")
+        mark_as_completed(update: update, success: false)
         next
       end
 
       begin
         sendy_list = SendyList.find(update.send_list_id.to_i)
       rescue
-        handle_error(update_id: update.id, msg: "Could not find Sendy list")
+         mark_as_completed(update: update, success: false)
         next
       end
 
+      # only actually subscribe them if they can get emails
       if supporter.email_1.present? && \
          !supporter.do_not_email && \
          !supporter.email_1_bad
 
         success = perform_update(update: update,
-                                supporter: supporter,
-                                sendy_list: sendy_list)
-
+                                 supporter: supporter,
+                                 sendy_list: sendy_list)
+      else
+        success = true
       end
+
       mark_completed(update: update, success: success)
+      update.save
+      supporter.save
     end
   end
 
   private
-
-  def handle_error(update_id:, msg: "Something went wrong")
-    # raise a custom exception class here
-  end
 
   def mark_completed(update:, success:)
     update.completed_at = Time.now
