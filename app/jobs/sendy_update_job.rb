@@ -12,12 +12,21 @@ class SendyUpdateJob < ActiveJob::Base
 
       begin
         supporter = Supporter.find(update.supporter_id.to_i)
-        sendy_list = SendyList.find(update.send_list_id.to_i)
-        client = Sendyr::Client.new(sendy_list.sendy_list_identifier)
+        sendy_list = SendyList.find(update.sendy_list_id.to_i)
       rescue
         mark_complete(update: update, success: false)
         next
       end
+
+      begin
+        sendy_list = SendyList.find(update.sendy_list_id.to_i)
+      rescue
+        mark_complete(update: update, success: false)
+        next
+      end
+
+
+      client = Sendyr::Client.new(sendy_list.sendy_list_identifier)
 
       # only actually subscribe them if they can get emails
       if supporter.email_1.present? && \
@@ -41,7 +50,7 @@ class SendyUpdateJob < ActiveJob::Base
 
   def mark_complete(update:, success:)
     update.completed_at = Time.now
-    update.success = success
+    update.result = success
   end
 
   def perform_update(update: update, supporter: supporter, sendy_list: sendy_list)
