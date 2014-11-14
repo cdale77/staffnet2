@@ -11,7 +11,7 @@ class SendyUpdateJob < ActiveJob::Base
       puts "Performing update id #{update.id}"
 
       # create a new client for every update
-      client = Sendyr::Client.new(sendy_list_identifier)
+      client = Sendyr::Client.new(update.sendy_list_identifier)
 
       begin
         supporter = Supporter.find(update.supporter_id.to_i)
