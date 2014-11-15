@@ -15,7 +15,7 @@ class SupporterService < ServiceBase
                               cim_customer_id:  @supporter.cim_customer_id,
                               supporter_email:  @supporter.email_1,
                               supporter_cim_id: @cim_id)
-    @sendy_update = SendyUpdateService.new(
+    @sendy_update = QueueSendyUpdateService.new(
                               supporter_id:     @supporter.id,
                               sendy_list_id:    sendy_list_id,
                               supporter_email:  @supporter.email_1,

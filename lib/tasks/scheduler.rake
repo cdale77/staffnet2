@@ -1,7 +1,7 @@
 desc 'Heroku scheduler file'
 
 task :update_sendy => :environment do
-  SendyUpdateJob.perform_later
+  PerformSendyUpdatesService.new.perform
 end
 
 task :calculate_employee_stats => :environment do

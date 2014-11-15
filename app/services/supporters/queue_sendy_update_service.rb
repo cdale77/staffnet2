@@ -1,4 +1,4 @@
-class SendyUpdateService < ServiceBase
+class QueueSendyUpdateService < ServiceBase
 
   attr_accessor :sendy_list_id
 
