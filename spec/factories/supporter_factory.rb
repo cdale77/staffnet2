@@ -67,6 +67,8 @@ FactoryGirl.define do
     occupation            "Consultant"
     source               "Door"
     notes                 "Some notes"
+    sendy_status          "subscribed"
     supporter_type
   end
 end
+

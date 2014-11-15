@@ -1,6 +1,13 @@
 <% @supporter_presenter.emails.each do |key, value| %>
   <tr>
-    <th><%= 'Email' %></th>
+    <th>Email</th>
     <td><%= value %></td>
   </tr>
 <% end %>
+<% if @supporter_presenter.model.email_1.present? %>
+  <tr>
+    <th>Sendy status</th>
+    <td><%= @supporter_presenter.formatted_sendy_status %></td>
+  </tr>
+  <% end %>
+

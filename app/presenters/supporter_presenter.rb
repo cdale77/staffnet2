@@ -15,4 +15,9 @@ class SupporterPresenter < PeoplePresenter
   def supporter_type_name
      supporter_type ? supporter_type.name.humanize : ""
   end
+
+  def formatted_sendy_status
+    sendy_status.humanize
+  end
 end
+

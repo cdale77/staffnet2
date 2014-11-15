@@ -52,4 +52,11 @@ describe SupporterPresenter do
       expect(presenter.supporter_type_name).to eq supporter_type.name.humanize
     end
   end
+
+  describe '#formatted_sendy_status' do 
+    it 'should humanize the sendy status' do 
+      expect(presenter.formatted_sendy_status).to eq supporter.sendy_status.humanize
+    end
+  end
 end
+
