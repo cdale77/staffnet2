@@ -9,6 +9,7 @@ class SendyUpdateJob < ActiveJob::Base
     supporter = Supporter.find(update.supporter_id)
     sendy_list = SendyList.find(update.sendy_list_id)
 
+    sendy_list_identifier = sendy_list.sendy_list_identifier
     action = update.action.to_sym
     options = build_options(supporter: supporter)
 
