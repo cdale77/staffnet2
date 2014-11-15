@@ -12,10 +12,6 @@
         <td><%= @paycheck_presenter.formatted_check_date %></td>
       </tr>
       <tr>
-        <th>Bonus</th>
-        <td><%= @paycheck_presenter.formatted_bonus %></td>
-      </tr>
-      <tr>
         <th>Travel</th>
         <td><%= @paycheck_presenter.formatted_travel_reimb %></td>
       </tr>
@@ -26,6 +22,18 @@
       <tr>
         <th>New buffer</th>
         <td><%= @paycheck_presenter.formatted_new_buffer %></td>
+      </tr>
+      <tr>
+        <th>Total wages</th>
+        <td><%= @paycheck_presenter.formatted_total_salary %></td>
+      </tr>
+      <tr>
+        <th>Bonus</th>
+        <td><%= @paycheck_presenter.formatted_bonus %></td>
+      </tr>
+      <tr>
+        <th>Total pay</th>
+        <td><%= @paycheck_presenter.formatted_total_pay %></td>
       </tr>
     </table>
   </div>

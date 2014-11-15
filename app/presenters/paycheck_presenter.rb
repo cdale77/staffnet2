@@ -16,6 +16,10 @@ class PaycheckPresenter < PresenterBase
     number_to_currency(total_pay)
   end
 
+  def formatted_total_salary
+    number_to_currency(total_salary)
+  end
+
   def other_shift_quantity
     holiday_shift_quantity + vacation_shift_quantity + sick_shift_quantity
   end
