@@ -34,7 +34,7 @@ Staffnet2::Application.routes.draw do
     resources :shift_types, except: [:show, :destroy]
     resources :sendy_lists
     resources :deposit_batches, only: [:show, :index, :edit, :update]
-    post "deposit_batches/:id/process_batch",
+    get "deposit_batches/:id/process_batch",
       to: "deposit_batches#process_batch", as: :process_batch
     resources :paychecks, only: [:show, :edit, :update]
     resources :payrolls, only: [:show, :index]
