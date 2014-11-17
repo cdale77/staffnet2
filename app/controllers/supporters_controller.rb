@@ -44,8 +44,13 @@ class SupportersController < ApplicationController
   def update
     @supporter = Supporter.find(params[:id])
     authorize @supporter
+    old_email = @supporter.email_1
+    old_status = @supporter.sendy_status
     if @supporter.update_attributes(supporter_params)
-      flash[:success] = "Supporter updated"
+      if old_status != new_status
+        update_supporter_tasks(supporter, old_email, new_status)
+      end
+      flash[:success] = "Supporter updated."
       redirect_to supporter_path(@supporter)
     else
       render "edit"
@@ -67,15 +72,24 @@ class SupportersController < ApplicationController
       # supporter id the service object will save the new supporter
       supporter.generate_cim_customer_id
       sendy_list = supporter.supporter_type.sendy_lists.first
-      service = SupporterService.new(supporter:supporter, 
+      service = SupporterService.new(supporter:supporter,
                                      sendy_list_id: sendy_list.id )
       service.new_supporter ? flash[:success] = 'Saved new supporter.' : flash[:alert] = "Error: #{service.message}"
     end
 
+    def update_supporter_tasks(supporter, old_email, new_status)
+      sendy_list = supporter.supporter_type.sendy_lists.first
+      service = SupporterService.new(supporter: supporter,
+                                     sendy_list_id: sendy_list.id,
+                                     old_email: supporter.email_1,
+                                     new_status: new_status)
+      service.update_supporter
+    end
+
     def destroy_supporter_tasks(supporter)
       sendy_list = supporter.supporter_type.sendy_lists.first
-      service = SupporterService.new(supporter: supporter, 
-                                     sendy_list_id: sendy_list.id, 
+      service = SupporterService.new(supporter: supporter,
+                                     sendy_list_id: sendy_list.id,
                                      cim_id: supporter.cim_id )
       service.destroy_supporter ? flash[:success] = "Supporter record destroyed" : flash[:alert] = "Error: #{service.message}"
     end
@@ -94,6 +108,7 @@ class SupportersController < ApplicationController
                                           :address_bad,
                                           :email_1,
                                           :email_1_bad,
+                                          :sendy_status,
                                           :email_2,
                                           :email_2_bad,
                                           :phone_mobile,
@@ -118,3 +133,4 @@ class SupportersController < ApplicationController
                                           :issue_knowledge)
     end
 end
+
