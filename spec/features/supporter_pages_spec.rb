@@ -65,7 +65,6 @@ describe 'SupporterPages' do
         end
       end
 
-=begin
       describe 'with valid information' do
         before { fill_in_example_supporter }
 
@@ -73,14 +72,11 @@ describe 'SupporterPages' do
           expect { click_button 'Create Supporter' }.to \
             change(Supporter, :count).by(1)
         end
-        describe 'after saving supporter' do
+        describe 'after saving a supporter' do
           before { click_button 'Create Supporter' }
-
           it { should have_selector('div.alert') }
         end
       end
-=end
-
     end
 
     describe 'show' do
