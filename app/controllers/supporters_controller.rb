@@ -44,9 +44,12 @@ class SupportersController < ApplicationController
   def update
     @supporter = Supporter.find(params[:id])
     authorize @supporter
+
+    # grab the old values to give to the sendy update code
     old_email = @supporter.email_1
     old_status = @supporter.sendy_status
     new_status = supporter_params[:sendy_status]
+
     if @supporter.update_attributes(supporter_params)
       if old_status != new_status
         update_supporter_tasks(@supporter, old_email, new_status)
@@ -85,6 +88,7 @@ class SupportersController < ApplicationController
                                      sendy_list_id: sendy_list.id,
                                      old_email: supporter.email_1,
                                      new_status: new_status)
+      supporter.update_attributes(sendy_status: "pending")
       service.update_supporter
     end
 
