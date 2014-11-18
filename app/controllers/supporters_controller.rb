@@ -47,7 +47,7 @@ class SupportersController < ApplicationController
     old_email = @supporter.email_1
     old_status = @supporter.sendy_status
     if @supporter.update_attributes(supporter_params)
-      if old_status != supporter.sendy_status
+      if old_status != @supporter.sendy_status
         update_supporter_tasks(supporter, old_email, new_status)
       end
       flash[:success] = "Supporter updated."
