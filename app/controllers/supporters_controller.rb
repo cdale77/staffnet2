@@ -47,7 +47,7 @@ class SupportersController < ApplicationController
     old_email = @supporter.email_1
     old_status = @supporter.sendy_status
     if @supporter.update_attributes(supporter_params)
-      if old_status != new_status
+      if old_status != supporter.sendy_status
         update_supporter_tasks(supporter, old_email, new_status)
       end
       flash[:success] = "Supporter updated."
@@ -71,6 +71,7 @@ class SupportersController < ApplicationController
       # generate an id for the cim customer id field. add 20,000 to the
       # supporter id the service object will save the new supporter
       supporter.generate_cim_customer_id
+      # assign the supporter to a Sendy list based on the supporter_type
       sendy_list = supporter.supporter_type.sendy_lists.first
       service = SupporterService.new(supporter:supporter,
                                      sendy_list_id: sendy_list.id )
@@ -78,7 +79,7 @@ class SupportersController < ApplicationController
     end
 
     def update_supporter_tasks(supporter, old_email, new_status)
-      sendy_list = supporter.supporter_type.sendy_lists.first
+      sendy_list = supporter.sendy_list
       service = SupporterService.new(supporter: supporter,
                                      sendy_list_id: sendy_list.id,
                                      old_email: supporter.email_1,
