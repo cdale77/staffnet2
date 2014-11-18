@@ -1,9 +1,12 @@
-
 <% if admin_user? %>
-  <%= link_to "edit", polymorphic_path(record, action: :edit),
+  <% begin Rails.application.routes.recognize_path(edit_polymorphic_path(record)) %>
+    <%= link_to "edit", polymorphic_path(record, action: :edit),
               class: "btn btn-xs btn-default",
               role: "button" %>
+    <% rescue %>
+    <% end %>
   <%= link_to "delete", record, method: :delete,
               data: { confirm: "You sure?" },
               class: "btn btn-xs btn-danger", role: "button" %>
 <% end %>
+
