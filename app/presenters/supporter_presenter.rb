@@ -17,7 +17,11 @@ class SupporterPresenter < PeoplePresenter
   end
 
   def formatted_sendy_status
-    sendy_status.humanize
+    if sendy_status == "subscribe" || sendy_status == "unsubscribe"
+      "#{sendy_status.humanize}d"
+    else
+      sendy_status.humanize
+    end
   end
 end
 

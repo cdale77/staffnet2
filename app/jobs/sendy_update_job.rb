@@ -19,7 +19,7 @@ class SendyUpdateJob < ActiveJob::Base
 
       # only actually subscribe them if they can get emails
       success = Sendyr::Client.new(sendy_list_identifier).send(action, options)
-      supporter.sendy_status = "#{action}d"
+      supporter.sendy_status = action
       supporter.sendy_updated_at = Time.now
       supporter.save
     end

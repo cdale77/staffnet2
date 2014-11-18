@@ -4,10 +4,12 @@
     <h1>New supporter</h1>
     <%= simple_form_for(@supporter) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-      <% cache ["v1", cache_key_for_supporter_types] do %>
-        <%= render 'supporter_fields', supporter: @supporter, supporter_types: @supporter_types, f: f %>
+      <% cache ["v3", cache_key_for_supporter_types] do %>
+        <%= render 'supporter_fields', supporter: @supporter,
+                        supporter_types: @supporter_types, f: f %>
         <%= render 'shared/forms/submit_button', f: f %>
       <% end %>
     <% end %>
   </div>
 </div>
+

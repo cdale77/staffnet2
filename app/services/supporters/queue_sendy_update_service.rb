@@ -23,6 +23,6 @@ class QueueSendyUpdateService < ServiceBase
         sendy_email:      (@old_email.present? ? @old_email : @supporter_email),
         new_sendy_email:  (@old_email.present? ? @supporer_email : ""),
         action:           action,
-        new_sendy_status: "#{action}d")
+        new_sendy_status: "#{action}")
     end
 end
