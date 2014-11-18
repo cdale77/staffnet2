@@ -1,5 +1,12 @@
 <% provide(:title, "Payment") %>
 <h1>Payment</h1>
+<div class="col-md-12 row button-container">
+  <div class="buttons">
+    <%= link_to "Donation", donation_path(@payment_presenter.donation),
+              class: "btn btn-xs btn-default",
+              role: "button" %>
+  </div>
+</div>
 <div class="cold-md-12 row record-display">
   <div class="col-md-4 record-column">
     <table>
@@ -9,8 +16,7 @@
       </tr>
       <tr>
         <th>Donation date</th>
-        <td><%= link_to @payment_presenter.formatted_donation_date,
-                        donation_path(@payment_presenter.donation) %></td>
+        <td><%= @payment_presenter.formatted_donation_date %></td>
       </tr>
       <tr>
         <th>Donation amount</th>
@@ -22,8 +28,12 @@
       </tr>
       <% if @payment_presenter.is_donation_sustainer? %>
         <tr>
-          <th>Donation Month code</th>
+          <th>Donation month code</th>
           <td><%= @payment_presenter.donation_sub_month %></td>
+        </tr>
+        <tr>
+          <th>Donation week code</th>
+          <td><%= @payment_presenter.donation_sub_week %></td>
         </tr>
       <% end %>
     </table>
@@ -52,13 +62,17 @@
         <td><%= @payment_presenter.cim_payment_profile_id %></td>
       </tr>
       <tr>
-        <th>Result</th>
-        <td><%= @payment_presenter.captured_to_human %></td>
+        <th>Supporter CIM ID</th>
+        <td><%= @payment_presenter.supporter_cim_id %></td>
       </tr>
     </table>
   </div>
   <div class="col-md-4 record-column">
     <table>
+      <tr>
+        <th>Result</th>
+        <td><%= @payment_presenter.captured_to_human %></td>
+      </tr>
       <tr>
         <th>Status</th>
         <td><%= @payment_presenter.payment_status %></td>

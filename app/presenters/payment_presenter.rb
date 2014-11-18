@@ -12,6 +12,10 @@ class PaymentPresenter < FinancePresenter
     donation.supporter ? donation.supporter.full_name : "No supporter"
   end
 
+  def supporter_cim_id
+    donation.supporter ? donation.supporter.cim_id : "No supporter"
+  end
+
   def captured_to_human
     captured ? "Captured" : "Declined"
   end

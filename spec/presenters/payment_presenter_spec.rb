@@ -47,6 +47,12 @@ describe PaymentPresenter do
     end
   end
 
+  describe '#supporter_cim_id' do
+    it 'should return the cim id of the supporter' do
+      expect(presenter.supporter_cim_id).to eq supporter.cim_id
+    end
+  end
+
   describe '#captured_to_human' do
     it 'should return yes or no' do
       status = payment.captured ? "Captured" : "Declined"
