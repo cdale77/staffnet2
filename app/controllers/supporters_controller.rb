@@ -48,7 +48,7 @@ class SupportersController < ApplicationController
     old_status = @supporter.sendy_status
     if @supporter.update_attributes(supporter_params)
       if old_status != @supporter.sendy_status
-        update_supporter_tasks(supporter, old_email, new_status)
+        update_supporter_tasks(@supporter, old_email, new_status)
       end
       flash[:success] = "Supporter updated."
       redirect_to supporter_path(@supporter)
