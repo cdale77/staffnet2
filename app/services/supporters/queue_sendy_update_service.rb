@@ -1,4 +1,8 @@
 class QueueSendyUpdateService < ServiceBase
+  # Queues a Sendy update by creating a SendyUpdate database record. Note
+  # sendy_status is stored as a string that matches the action: "subscribe",
+  # "unsubscribe", "bounce", etc. The view layer handles presenting this to the
+  # user.
 
   attr_accessor :sendy_list_id
 
@@ -26,3 +30,4 @@ class QueueSendyUpdateService < ServiceBase
         new_sendy_status: "#{action}")
     end
 end
+

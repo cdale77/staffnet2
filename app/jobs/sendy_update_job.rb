@@ -13,16 +13,10 @@ class SendyUpdateJob < ActiveJob::Base
     action = update.action.to_sym
     options = build_options(supporter: supporter)
 
-    if supporter.email_1.present? && \
-       !supporter.do_not_email && \
-       !supporter.email_1_bad
-
-      # only actually subscribe them if they can get emails
-      success = Sendyr::Client.new(sendy_list_identifier).send(action, options)
-      supporter.sendy_status = action
-      supporter.sendy_updated_at = Time.now
-      supporter.save
-    end
+    success = Sendyr::Client.new(sendy_list_identifier).send(action, options)
+    supporter.sendy_status = action
+    supporter.sendy_updated_at = Time.now
+    supporter.save
 
     mark_complete(update: update, success: success)
   end

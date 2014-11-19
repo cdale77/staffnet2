@@ -59,11 +59,13 @@ class SupporterService < ServiceBase
     end
 
     def queue_sendy_update(action)
-      # hacky way to not queue a Sendy update if there's no email address
-      if @supporter.email_1.blank?
-        true
-      else
+      #only queue an update if the supporter can get email
+      if @supporter.email_1.present? &&
+         !@supporter.email_1_bad ? &&
+         !@supporter.do_not_email
         @sendy_update.update(action)
+      else
+        return true
       end
     end
 
