@@ -1,22 +1,26 @@
 require "active_job"
 
-class SendyUpdateJob < ActiveJob::Base
+class SendyUnsubscribeJob < ActiveJob::Base
   queue_as :default
 
   def perform(update_id)
     success = false
     update = SendyUpdate.find(update_id)
-    supporter = Supporter.find(update.supporter_id)
     sendy_list = SendyList.find(update.sendy_list_id)
 
     sendy_list_identifier = sendy_list.sendy_list_identifier
-    action = update.action.to_sym
     options = build_options(supporter: supporter)
 
-    success = Sendyr::Client.new(sendy_list_identifier).send(action, options)
-    supporter.sendy_status = action
-    supporter.sendy_updated_at = Time.now
-    supporter.save
+    success = Sendyr::Client.new(sendy_list_identifier).unsubscribe(options)
+
+    ## attempt to update the supporter, if they are still in the db
+    begin
+      supporter = Supporter.find(update.supporter_id)
+      supporter.sendy_status = "unsubscribe"
+      supporter.sendy_updated_at = Time.now
+      supporter.save
+    rescue
+    end
 
     mark_complete(update: update, success: success)
   end
@@ -28,11 +32,8 @@ class SendyUpdateJob < ActiveJob::Base
       update.save
     end
 
-    def build_options(supporter:)
-      { :email => supporter.email_1,
-        :name => supporter.full_name,
-        "FirstName" => supporter.first_name,
-        "LastName" => supporter.last_name }
+    def build_options
+      { :email => update.sendy_email }
     end
 end
 
