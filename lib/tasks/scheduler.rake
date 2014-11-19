@@ -21,5 +21,5 @@ task :update_prospect_group => :environment do
 end
 
 task :clean_data => :environment do
-  CleanDataJob.perform_late
+  CleanDataJob.perform_later
 end
