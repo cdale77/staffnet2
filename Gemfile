@@ -1,11 +1,11 @@
 source "https://rubygems.org"
 
 ruby "2.1.3"
-gem "rails", "4.2.0.beta2"
+gem "rails", "4.2.0.beta4"
 gem "rake", "10.3.2"
 gem "unicorn", "4.8.3"
 gem "pg", "0.17.1"
-gem "devise", "3.4.0"
+gem "devise", "3.4.1"
 gem "pundit", "0.3.0"
 gem "figaro", "1.0.0"
 gem "i18n", "0.7.0.beta1"
@@ -19,19 +19,19 @@ gem "slim", "2.1.0"     # required by Sidekiq
 
 ## MONITORING
 gem "exception_notification", "4.0.1"
-gem "newrelic_rpm", "3.9.6.257"
+gem "newrelic_rpm", "3.9.7.266"
 
 ## APIs
 gem "activemerchant", "1.44.1"
-gem "money", "6.3.0"
+gem "money", "6.4.0"
 gem "sendyr", "0.2.1"
 
 # DATA STORAGE
-gem "aws-sdk", "1.56.0"
+gem "aws-sdk", "1.59.0"
 gem "pgbackups-archive", "0.2.1"
 gem "paper_trail", "3.0.6"
 gem "s3_direct_upload", "0.1.7"
-gem "smarter_csv", "1.0.17"
+gem "smarter_csv", "1.0.19"
 gem "paperclip", "4.2.0"
 
 ## DATES
@@ -40,11 +40,11 @@ gem "week_of_month", "1.2.3.2"
 
 ## UI
 gem "sass-rails", "5.0.0.beta1"
-gem "bootstrap-sass", "3.2.0.2"
+gem "bootstrap-sass", "3.3.1.0"
 gem "will_paginate", "3.0.7"
 gem "bootstrap-will_paginate", "0.0.10"
 gem "simple_form", "3.1.0.rc2"
-gem "ransack", "1.4.1"
+gem "ransack", "1.5.1"
 
 ## JS
 gem "jquery-rails", "3.1.2"
@@ -67,7 +67,7 @@ end
 group :development, :test do
   gem "rspec-rails", "3.1"
   gem "capybara", "2.4.4"
-  gem "selenium-webdriver", "2.43.0"
+  gem "selenium-webdriver", "2.44.0"
   gem "factory_girl_rails", "4.5.0"
   gem "byebug", "3.5.1"
   gem "codeclimate-test-reporter", "0.4.1"
@@ -96,7 +96,7 @@ gem "coffee-rails", "4.1.0"
 
 # Turbolinks makes following links in your web application faster. 
 # Read more: https://github.com/rails/turbolinks
-gem "turbolinks", "2.4.0"
+gem "turbolinks", "2.5.2"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "2.2.3"
