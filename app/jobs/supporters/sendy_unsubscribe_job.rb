@@ -7,9 +7,8 @@ class SendyUnsubscribeJob < ActiveJob::Base
     success = false
     update = SendyUpdate.find(update_id)
     sendy_list = SendyList.find(update.sendy_list_id)
-
     sendy_list_identifier = sendy_list.sendy_list_identifier
-    options = build_options(supporter: supporter)
+    options = build_options
 
     success = Sendyr::Client.new(sendy_list_identifier).unsubscribe(options)
 
@@ -20,6 +19,7 @@ class SendyUnsubscribeJob < ActiveJob::Base
       supporter.sendy_updated_at = Time.now
       supporter.save
     rescue
+      puts "Sendy Unsub: could not update supporter id #{update.supporter_id}"
     end
 
     mark_complete(update: update, success: success)
