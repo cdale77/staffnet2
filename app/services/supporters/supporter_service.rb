@@ -61,7 +61,7 @@ class SupporterService < ServiceBase
     def queue_sendy_update(action)
       #only queue an update if the supporter can get email
       if @supporter.email_1.present? &&
-         !@supporter.email_1_bad ? &&
+         !@supporter.email_1_bad &&
          !@supporter.do_not_email
         @sendy_update.update(action)
       else
