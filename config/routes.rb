@@ -28,7 +28,7 @@ Staffnet2::Application.routes.draw do
     end
 
     resources :shifts
-    resources :payments, only: :show
+    resources :payments, only: [:show, :destroy]
     resources :payment_profiles
     resources :supporter_types, except: [:show, :destroy]
     resources :shift_types, except: [:show, :destroy]
