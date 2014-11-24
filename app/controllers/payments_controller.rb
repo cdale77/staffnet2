@@ -39,6 +39,19 @@ class PaymentsController < ApplicationController
     end
   end
 
+  def destroy
+    payment = Payment.find(params[:id])
+    donation = payment.donation
+    authorize payment
+    if payment.processed
+      flash[:danger] = "Cannot delete a processed payment"
+    else
+      payment.destroy
+      flash[:success] = "Payment destroyed"
+    end
+    redirect_to donation_path(donation)
+  end
+
   private
     def payment_params
       params.require(:payment).permit(:payment_profile_id,
