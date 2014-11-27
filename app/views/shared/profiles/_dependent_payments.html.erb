@@ -27,7 +27,8 @@
           <%= payment_presenter.shift_date %>
         </td>
         <td>
-          <%= payment_presenter.supporter_name %>
+          <%= link_to payment_presenter.supporter_name,
+              supporter_path(payment_presenter.model.donation.supporter) %>
         </td>
         <td>
           <%= payment_presenter.formatted_amount %>

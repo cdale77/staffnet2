@@ -16,7 +16,7 @@
     </tr>
     <% donation_presenters.each do |donation_presenter| %>
       <tr class="<%= donation_presenter.captured ? "" : "red" %>">
-        <td><%= donation_presenter.supporter_full_name %></td>
+        <td><%= link_to donation_presenter.supporter_full_name %></td>
         <td><%= donation_presenter.formatted_date %></td>
         <td><%= donation_presenter.formatted_amount %></td>
         <td><%= donation_presenter.type_to_human %></td>
