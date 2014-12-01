@@ -9,7 +9,7 @@
                   class: "btn btn-md btn-primary",
                   type: "button" %>
     <% end %>
-    <% if @deposit_batch_presenter.processable? && !@deposit_batch_presenter.processed %>
+    <% if @deposit_batch_presenter.processable? %>
       <%= link_to "process",
             process_batch_path(@deposit_batch_presenter.model),
             class: "btn btn-md btn-success",
