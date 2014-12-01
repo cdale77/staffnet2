@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 
 ruby "2.1.4"
-gem "rails", "4.2.0.beta4"
-gem "rake", "10.3.2"
+gem "rails", "4.2.0.rc1"
+gem "rake", "10.4.0"
 gem "unicorn", "4.8.3"
 gem "pg", "0.17.1"
 gem "devise", "3.4.1"
@@ -13,7 +13,7 @@ gem "gctools", "0.2.3"
 gem "dalli", "2.7.2"
 
 ## JOBS
-gem "sidekiq", "3.2.6"
+gem "sidekiq", "3.3.0"
 gem "sinatra", "1.4.5"  # required by Sidekiq
 gem "slim", "2.1.0"     # required by Sidekiq
 
@@ -43,11 +43,11 @@ gem "sass-rails", "5.0.0.beta1"
 gem "bootstrap-sass", "3.3.1.0"
 gem "will_paginate", "3.0.7"
 gem "bootstrap-will_paginate", "0.0.10"
-gem "simple_form", "3.1.0.rc2"
+gem "simple_form", "3.1.0"
 gem "ransack", "1.5.1"
 
 ## JS
-gem "jquery-rails", "3.1.2"
+gem "jquery-rails", "4.0.0"
 gem "raphael-rails", "2.1.2"
 gem "morrisjs-rails", "0.5.1"
 
@@ -99,7 +99,7 @@ gem "coffee-rails", "4.1.0"
 gem "turbolinks", "2.5.2"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem "jbuilder", "2.2.3"
+gem "jbuilder", "2.2.5"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
