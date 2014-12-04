@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 
-ruby "2.1.4"
+ruby "2.1.5"
 gem "rails", "4.2.0.rc1"
-gem "rake", "10.4.0"
+gem "rake", "10.4.2"
 gem "unicorn", "4.8.3"
 gem "pg", "0.17.1"
 gem "devise", "3.4.1"
@@ -19,15 +19,15 @@ gem "slim", "2.1.0"     # required by Sidekiq
 
 ## MONITORING
 gem "exception_notification", "4.0.1"
-gem "newrelic_rpm", "3.9.7.266"
+gem "newrelic_rpm", "3.9.8.273"
 
 ## APIs
-gem "activemerchant", "1.44.1"
+gem "activemerchant", "1.45.0"
 gem "money", "6.4.0"
 gem "sendyr", "0.2.1"
 
 # DATA STORAGE
-gem "aws-sdk", "1.59.0"
+gem "aws-sdk", "1.59.1"
 gem "pgbackups-archive", "0.2.1"
 gem "paper_trail", "3.0.6"
 gem "s3_direct_upload", "0.1.7"
@@ -70,7 +70,7 @@ group :development, :test do
   gem "selenium-webdriver", "2.44.0"
   gem "factory_girl_rails", "4.5.0"
   gem "byebug", "3.5.1"
-  gem "codeclimate-test-reporter", "0.4.2"
+  gem "codeclimate-test-reporter", "0.4.3"
 end
 
 group :test do
