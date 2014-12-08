@@ -46,13 +46,13 @@ class SupportersController < ApplicationController
     authorize @supporter
 
     # grab the old values to give to the sendy update code
-    old_email = @supporter.email_1
-    new_email = supporter_params[:email_1]
-    old_status = @supporter.sendy_status
-    new_status = supporter_params[:sendy_status]
+    #old_email = @supporter.email_1
+    #new_email = supporter_params[:email_1]
+    #old_status = @supporter.sendy_status
+    #new_status = supporter_params[:sendy_status]
 
     if @supporter.update_attributes(supporter_params)
-      update_supporter_tasks(@supporter, old_email, new_email, new_status, old_status)
+     # update_supporter_tasks(@supporter, old_email, new_email, new_status, old_status)
       flash[:success] = "Supporter updated."
       redirect_to supporter_path(@supporter)
     else
@@ -81,6 +81,7 @@ class SupportersController < ApplicationController
       service.new_supporter ? flash[:success] = 'Saved new supporter.' : flash[:alert] = "Error: #{service.message}"
     end
 
+    # not currently used! Not working. 2014-12-08
     def update_supporter_tasks(supporter, old_email, new_email, new_status, old_status)
       # do we have enough data?
       unless new_status.blank?
