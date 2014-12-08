@@ -29,18 +29,16 @@
     <%= f.label :email_1_bad, 'Bad?' %>
     <%= f.check_box :email_1_bad %>
   </div>
-  <% if @supporter.sendy_status.present? %>
-    <div class="col-md-2">
-      <%= f.input :sendy_status,
-                as: :select,
-                collection: [["Subscribed", "subscribe"],
-                             ["Unsubscribed", "unsubscribe"],
-                             ["Pending", "pending"]],
-               include_blank: true,
-               selected: @supporter.sendy_status %>
+  <div class="col-md-2">
+    <%= f.input :sendy_status,
+              as: :select,
+              collection: [["Subscribed", "subscribe"],
+                            ["Unsubscribed", "unsubscribe"],
+                            ["Pending", "pending"]],
+              include_blank: true,
+              selected: @supporter.sendy_status %>
 
-    </div>
-  <% end %>
+  </div>
   <div class="collapse" id="alt_email">
     <div class="col-md-4">
       <%= f.input :email_2, label: 'Secondary email' %>
