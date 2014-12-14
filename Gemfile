@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 ruby "2.1.5"
-gem "rails", "4.2.0.rc1"
+gem "rails", "4.2.0.rc3"
 gem "rake", "10.4.2"
 gem "unicorn", "4.8.3"
 gem "pg", "0.17.1"
@@ -32,14 +32,14 @@ gem "pgbackups-archive", "0.2.1"
 gem "paper_trail", "3.0.6"
 gem "s3_direct_upload", "0.1.7"
 gem "smarter_csv", "1.0.19"
-gem "paperclip", "4.2.0"
+gem "paperclip", "4.2.1"
 
 ## DATES
 gem "date_validator", "0.7.1"
 gem "week_of_month", "1.2.3.2"
 
 ## UI
-gem "sass-rails", "5.0.0.beta1"
+gem "sass-rails", "5.0.0"
 gem "bootstrap-sass", "3.3.1.0"
 gem "will_paginate", "3.0.7"
 gem "bootstrap-will_paginate", "0.0.10"
@@ -96,7 +96,7 @@ gem "coffee-rails", "4.1.0"
 
 # Turbolinks makes following links in your web application faster. 
 # Read more: https://github.com/rails/turbolinks
-gem "turbolinks", "2.5.2"
+gem "turbolinks", "2.5.3"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "2.2.5"
