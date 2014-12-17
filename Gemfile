@@ -47,7 +47,7 @@ gem "simple_form", "3.1.0"
 gem "ransack", "1.5.1"
 
 ## JS
-gem "jquery-rails", "4.0.0"
+gem "jquery-rails", "4.0.1"
 gem "raphael-rails", "2.1.2"
 gem "morrisjs-rails", "0.5.1"
 
