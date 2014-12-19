@@ -10,7 +10,7 @@ class SendySubscribeJob < ActiveJob::Base
     sendy_list = SendyList.find(update.sendy_list_id)
 
     sendy_list_identifier = sendy_list.sendy_list_identifier
-    options = build_options(supporter: supporter)
+    options = build_options(update: update, supporter: supporter)
 
     success = Sendyr::Client.new(sendy_list_identifier).subscribe(options)
     supporter.sendy_status = "subscribe"
@@ -27,7 +27,7 @@ class SendySubscribeJob < ActiveJob::Base
       update.save
     end
 
-    def build_options(supporter:)
+    def build_options(update:, supporter:)
       { :email => update.sendy_email,
         :name => supporter.full_name,
         "FirstName" => supporter.first_name,
