@@ -45,12 +45,13 @@ class ResolveDuplicateRecordsService < ServiceBase
         primary_record.save
       end
 
-      # use the SupporterService to clean up the old supporter
-      sendy_list = secondary_record.supporter_type.sendy_lists.first
-      service = SupporterService.new(supporter: secondary_record,
-                                     sendy_list_id: sendy_list.id,
-                                     cim_id: secondary_record.cim_id )
-      service.destroy_supporter
+      # remove the cim profile associated with the old record
+      cim_service = CimCustProfileService.new(
+                        cim_customer_id:  secondary_record.cim_customer_id,
+                        supporter_email:  secondary_record.email_1,
+                        supporter_cim_id: secondary_record.cim_id)
+      cim_service.destroy
+
 
       # destroy the old record. Reload it first so as not to destroy the
       # child records that were just moved
