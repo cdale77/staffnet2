@@ -27,7 +27,6 @@ class DuplicateRecordsController < ApplicationController
       @presenter = DuplicateRecordPresenter.new(duplicate_record)
     else
       duplicate_record.destroy #destroy any records that are invalid
-      flash[:danger] = "We have fixed a problem that occured. Please try again"
       redirect_to edit_duplicate_record_path
     end
   end
