@@ -8,11 +8,16 @@ class DuplicateRecordPolicy < Struct.new(:user, :record)
     user.role? :admin
   end
 
-  def index? 
+  def edit?
     user.role? :admin
   end
 
-  def resolve?
+  def update?
+    user.role? :admin
+  end
+
+  def destroy?
     user.role? :admin
   end
 end
+

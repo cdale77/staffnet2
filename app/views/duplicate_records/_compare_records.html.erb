@@ -1,20 +1,39 @@
-<div class="row collapse" id="merge-alert-<%= presenter.model.id %>"></div>
-<div class="row collapse in" id="merge-form-<%= presenter.model.id %>">
+    <div class="row">
+      <div class="col-md-12">
+        <p>Use this screen to resolve duplicate records. The data belonging to the
+        record marked primary will be used for the new, merged record.
+        To specify that you want the new record to use a field from the not-primary
+        record, simply click the radio button next to that field in the appropriate
+        column. To edit a field in the new record, click the radio button next to the
+        appropriate field in the primary record column and make your changes. </p>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-12">
+        <%= link_to 'This is not a duplicate',
+                    duplicate_record_path(@presenter.model),
+                    method: :delete,
+                    class: 'btn btn-xs btn-danger', role: 'button' %>
+
+      </div>
+    </div>
+    <hr />
+
   <div class="col-md-12">
     <%= simple_form_for presenter.model,
-                       url: resolve_duplicate_record_path(presenter.model),
-                       method: :post, 
-                       remote: true do |f| %>
+                       url: duplicate_record_path(presenter.model),
+                       method: :patch do |f| %>
       <div class="row">
         <div class="col-md-12">
           Primary record:<br/>
           <div class="col-md-6">
-            <%= radio_button_tag :primary_record, 
-                                  presenter.first_record.id, 
+            <%= radio_button_tag :primary_record,
+                                  presenter.first_record.id,
                                   true, class: "radio inline" %>
           </div>
           <div class="col-md-6">
-            <%= radio_button_tag :primary_record, 
+            <%= radio_button_tag :primary_record,
                                   presenter.second_record.id,
                                   false, class: "radio inline" %>
           </div>
@@ -24,13 +43,13 @@
         <div class="col-md-12">
           <div class="col-md-6">
             <h3>Record 1</h3>
-            <%= render "record_fields", 
+            <%= render "record_fields",
                       record_type: "#{presenter.first_record.id}",
-                      record: presenter.first_record %>  
+                      record: presenter.first_record %>
             <h4>Donations</h4>
-            <%= render "record_children", 
+            <%= render "record_children",
                       record_type: "#{presenter.first_record.id}",
-                      presenters: DonationPresenter.wrap(presenter.first_record.donations) %> 
+                      presenters: DonationPresenter.wrap(presenter.first_record.donations) %>
 
           </div>
           <div class="col-md-6">

@@ -44,14 +44,15 @@ Staffnet2::Application.routes.draw do
 
 
     ## Dupes
+    resources :duplicate_records, only: [:update, :destroy]
+    # the edit action just pulls the first record of the db
+    get "duplicate_records/edit",
+        to: "duplicate_records#edit",
+        as: :edit_duplicate_record
     get "duplicate_records/new_batch",
       to: "duplicate_records#new_batch", as: :new_duplicate_batch
     post "duplicate_records/new_file",
       to: "duplicate_records#new_file", as: :new_duplicate_file
-    get "duplicate_records",
-      to: "duplicate_records#index", as: :duplicate_records
-    post "duplicate_records/:id/resolve",
-      to: "duplicate_records#resolve", as: :resolve_duplicate_record
   end
 end
 

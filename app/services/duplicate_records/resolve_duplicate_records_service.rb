@@ -11,8 +11,8 @@ class ResolveDuplicateRecordsService < ServiceBase
     @secondary_record_id = get_secondary_record_id
   end
 
-  def perform 
-    
+  def perform
+
     # gather up all the info, and modify the params hash so it can be passed
     # to active record
     primary_attrs = clean_hash_keys(extract_primary_record_hash, 
@@ -29,7 +29,7 @@ class ResolveDuplicateRecordsService < ServiceBase
 
     # merge the records
     if primary_record && secondary_record 
-      
+
       # delete the child records marked for deletion by the user
       delete_child_records
 
@@ -106,11 +106,11 @@ class ResolveDuplicateRecordsService < ServiceBase
       end
     end
 
-    def get_secondary_record_id 
+    def get_secondary_record_id
       id_array = @payload.map { |k,v| k[/\A\d+/] }
 
       #strip out the nils
-      id_array.delete nil 
+      id_array.delete nil
 
       ids = id_array.uniq
 
@@ -145,3 +145,4 @@ class ResolveDuplicateRecordsService < ServiceBase
       end
     end
 end
+

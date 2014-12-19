@@ -1,0 +1,12 @@
+<% provide(:title, "Resolve duplicates") %>
+<h1>Resolve duplicates</h1>
+<div class="row">
+  <div class="col-md-12">
+    <% if @dupe_count > 0 %>
+      <%= render "compare_records", presenter: @presenter %>
+    <% else %>
+      <p>No duplicates to resolve</p>
+    <% end %>
+  </div>
+</div>
+
