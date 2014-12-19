@@ -28,7 +28,7 @@ class SendySubscribeJob < ActiveJob::Base
     end
 
     def build_options(supporter:)
-      { :email => supporter.email_1,
+      { :email => update.sendy_email,
         :name => supporter.full_name,
         "FirstName" => supporter.first_name,
         "LastName" => supporter.last_name }
