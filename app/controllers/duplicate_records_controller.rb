@@ -22,12 +22,17 @@ class DuplicateRecordsController < ApplicationController
     @dupe_count = DuplicateRecord.count
     duplicate_record = DuplicateRecord.first || DuplicateRecord.new
     authorize duplicate_record
-    validation_service = ValidateDuplicateRecordService.new(duplicate_record)
-    if @dupe_count > 0 && validation_service.valid?
-      @presenter = DuplicateRecordPresenter.new(duplicate_record)
+     if @dupe_count > 0
+        validation_service = ValidateDuplicateRecordService.new(duplicate_record)
+      if validation_service.valid?
+        @presenter = DuplicateRecordPresenter.new(duplicate_record)
+      else
+        duplicate_record.destroy #destroy any records that are invalid
+        redirect_to edit_duplicate_record_path
+      end
     else
-      duplicate_record.destroy #destroy any records that are invalid
-      redirect_to edit_duplicate_record_path
+      flash[:success] = "No more duplicate records."
+      redirect_to root_path
     end
   end
 
