@@ -3,6 +3,7 @@
 <div class="row">
   <div class="col-md-12">
     <% if @dupe_count > 0 %>
+      <p><em>There are <%= @dupe_count - 1 %> duplicate pairs remaining.</em></p>
       <%= render "compare_records", presenter: @presenter %>
     <% else %>
       <p>No duplicates to resolve</p>
