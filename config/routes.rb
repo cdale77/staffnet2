@@ -37,7 +37,7 @@ Staffnet2::Application.routes.draw do
     get "deposit_batches/:id/process_batch",
       to: "deposit_batches#process_batch", as: :process_batch
     resources :paychecks, only: [:show, :edit, :update]
-    resources :payrolls, only: [:show, :index]
+    resources :payrolls, only: [:show, :index, :create]
     resources :data_reports, only: [:new, :create, :index]
     get "/data_reports/:id/downloadable_file",
       to: "data_reports#downloadable_file", as: :data_report_downloadable_file

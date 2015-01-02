@@ -26,6 +26,7 @@ describe PayrollPolicy do
     let(:user) { FactoryGirl.create(:user) }
 
     it { should_not permit(:show) }
+    it { should_not permit(:payroll) }
     it { should_not permit(:index) }
   end
 
@@ -33,6 +34,7 @@ describe PayrollPolicy do
     let(:user) { FactoryGirl.create(:staff) }
 
     it { should_not permit(:show) }
+    it { should_not permit(:payroll) }
     it { should_not permit(:index) }
   end
 
@@ -40,6 +42,7 @@ describe PayrollPolicy do
     let(:user) { FactoryGirl.create(:manager) }
 
     it { should_not permit(:show) }
+    it { should_not permit(:payroll) }
     it { should_not permit(:index) }
   end
 
@@ -47,6 +50,7 @@ describe PayrollPolicy do
     let(:user) { FactoryGirl.create(:admin) }
 
     it { should permit(:show) }
+    it { should permit(:create) }
     it { should permit(:index) }
   end
 
@@ -54,6 +58,7 @@ describe PayrollPolicy do
     let(:user) { FactoryGirl.create(:super_admin) }
 
     it { should permit(:show) }
+    it { should permit(:create) }
     it { should permit(:index) }
   end
 end

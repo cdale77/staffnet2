@@ -4,7 +4,11 @@ class PayrollPolicy < Struct.new(:user, :record)
     user.role? :admin
   end
 
-  def index? 
-    user.role? :admin 
+  def index?
+    user.role? :admin
+  end
+
+  def create?
+    user.role? :admin
   end
 end

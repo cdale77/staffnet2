@@ -1,5 +1,15 @@
 <% provide(:title, "Payrolls") %>
 <h1>All payrolls</h1>
+<% if current_user.role? :admin %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="buttons payroll-button">
+        <%= link_to "Create new payroll", payrolls_path, class: "btn btn-xs btn-primary",
+          role: "button", data: { method: :post, confirm: "We are about to run payroll. Are yo          u sure you are ready todo this?" } %>
+      </div>
+    </div>
+  </div>
+<% end %>
 <% cache cache_key_for_payrolls do %>
   <table class="table table-hover">
     <tr>
