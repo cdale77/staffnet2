@@ -70,7 +70,7 @@ group :development, :test do
   gem "selenium-webdriver", "2.44.0"
   gem "factory_girl_rails", "4.5.0"
   gem "byebug", "3.5.1"
-  gem "codeclimate-test-reporter", "0.4.4"
+  gem "codeclimate-test-reporter", "0.4.5"
 end
 
 group :test do
