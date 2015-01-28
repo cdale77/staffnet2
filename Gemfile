@@ -7,13 +7,13 @@ gem "unicorn", "4.8.3"
 gem "pg", "0.18.1"
 gem "devise", "3.4.1"
 gem "pundit", "0.3.0"
-gem "figaro", "1.0.0"
+gem "figaro", "1.1.0"
 gem "i18n", "0.7.0"
 gem "gctools", "0.2.3"
 gem "dalli", "2.7.2"
 
 ## JOBS
-gem "sidekiq", "3.3.0"
+gem "sidekiq", "3.3.1"
 gem "sinatra", "1.4.5"  # required by Sidekiq
 gem "slim", "2.1.0"     # required by Sidekiq
 
@@ -22,12 +22,12 @@ gem "exception_notification", "4.0.1"
 gem "newrelic_rpm", "3.9.9.275"
 
 ## APIs
-gem "activemerchant", "1.45.0"
+gem "activemerchant", "1.46.0"
 gem "money", "6.5.0"
 gem "sendyr", "0.2.1"
 
 # DATA STORAGE
-gem "aws-sdk", "1.60.2"
+gem "aws-sdk", "1.61.0"
 gem "pgbackups-archive", "0.2.1"
 gem "paper_trail", "3.0.6"
 gem "s3_direct_upload", "0.1.7"
@@ -40,11 +40,11 @@ gem "week_of_month", "1.2.3.2"
 
 ## UI
 gem "sass-rails", "5.0.1"
-gem "bootstrap-sass", "3.3.1.0"
+gem "bootstrap-sass", "3.3.3"
 gem "will_paginate", "3.0.7"
 gem "bootstrap-will_paginate", "0.0.10"
 gem "simple_form", "3.1.0"
-gem "ransack", "1.5.1"
+gem "ransack", "1.6.3"
 
 ## JS
 gem "jquery-rails", "4.0.3"
@@ -61,7 +61,7 @@ gem "pry-rails", "0.3.2"
 group :development do
   gem "faker", "1.4.3"
   gem "annotate", "2.6.5"
-  gem "metric_fu", "4.11.1"
+  gem "metric_fu", "4.11.2"
 end
 
 group :development, :test do
@@ -70,7 +70,7 @@ group :development, :test do
   gem "selenium-webdriver", "2.44.0"
   gem "factory_girl_rails", "4.5.0"
   gem "byebug", "3.5.1"
-  gem "codeclimate-test-reporter", "0.4.5"
+  gem "codeclimate-test-reporter", "0.4.6"
 end
 
 group :test do
