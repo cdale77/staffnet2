@@ -8,7 +8,7 @@ class SendyUnsubscribeJob < ActiveJob::Base
     update = SendyUpdate.find(update_id)
     sendy_list = SendyList.find(update.sendy_list_id)
     sendy_list_identifier = sendy_list.sendy_list_identifier
-    options = build_options
+    options = build_options(update)
 
     success = Sendyr::Client.new(sendy_list_identifier).unsubscribe(options)
 
@@ -32,7 +32,7 @@ class SendyUnsubscribeJob < ActiveJob::Base
       update.save
     end
 
-    def build_options
+    def build_options(update)
       { :email => update.sendy_email }
     end
 end
