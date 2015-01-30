@@ -43,12 +43,6 @@ module Staffnet2
     config.autoload_paths += %W(#{config.root}/app/services/supporters)
     config.autoload_paths += %W(#{config.root}/app/services/duplicate_records)
     config.autoload_paths += %W(#{config.root}/app/services/data_reports)
-    config.autoload_paths += %W(#{config.root}/app/jobs)
-    config.autoload_paths += %W(#{config.root}/app/jobs/supporters)
-
-
-
-
 
 
     # legacy db models

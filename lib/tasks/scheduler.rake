@@ -9,11 +9,16 @@ task :calculate_employee_stats => :environment do
 end
 
 task :sub_week_5_to_4 => :environment do
-  SubWeek5To4Job.perform_later()
-end
-
-task :employee_fundraising_calculations => :environment do
-  EmployeeFundraisingCalculationsJob.perform_later()
+  #SubWeek5To4Job.perform_later()
+  donations = Donation.where(sub_week: 5)
+  puts "Updating #{donations.count} donations"
+  donations.each do |donation|
+    if donation.update_columns(sub_week: 4)
+      puts "Updated donation id #{donation.id}"
+    else
+      puts "Could not update donation id #{donation.id}"
+    end
+  end
 end
 
 task :update_prospect_group => :environment do
