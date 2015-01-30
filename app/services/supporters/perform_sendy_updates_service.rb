@@ -12,7 +12,8 @@ class PerformSendyUpdatesService < ServiceBase
         #marked as successful. I think it's because Sendy does not return
         #success, but still grabs the data, when it's hit too fast
         sleep 5
-      rescue
+      rescue => e
+        ExceptionNotifier.notify_exception(e)
         puts "Error on update id #{update.id}"
       end
     end
