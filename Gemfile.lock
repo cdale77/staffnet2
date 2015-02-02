@@ -239,7 +239,6 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
-    gctools (0.2.3)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     heroku (3.9.3)
@@ -547,7 +546,6 @@ DEPENDENCIES
   factory_girl_rails (= 4.5.0)
   faker (= 1.4.3)
   figaro (= 1.1.0)
-  gctools (= 0.2.3)
   i18n (= 0.7.0)
   jbuilder (= 2.2.6)
   jquery-rails (= 4.0.3)
