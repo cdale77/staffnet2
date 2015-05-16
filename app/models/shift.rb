@@ -71,7 +71,8 @@ class Shift < ActiveRecord::Base
   validates :travel_reimb,
             numericality: { greater_than_or_equal_to: 0,
                             message: "must be a positive number"  },
-            allow_blank: true
+            allow_blank: true,
+            presence: { message: "can't be blank, can be zero (0)" }
 
   validates :time_in, :time_out,
             presence: { message: "required" }
