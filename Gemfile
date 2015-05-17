@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.2.1"
+ruby "2.2.2"
 gem "rails", "4.2.1"
 gem "rake", "10.4.2"
 gem "puma", "2.11.1"
