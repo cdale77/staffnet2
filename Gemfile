@@ -3,10 +3,10 @@ source "https://rubygems.org"
 ruby "2.2.2"
 gem "rails", "4.2.1"
 gem "rake", "10.4.2"
-gem "puma", "2.11.2"
+gem "puma", "2.11.3"
 gem "rack-timeout", "0.2.4"
 gem "pg", "0.18.2"
-gem "devise", "3.4.1"
+gem "devise", "3.5.1"
 gem "pundit", "0.3.0"
 gem "figaro", "1.1.1"
 gem "i18n", "0.7.0"
@@ -22,7 +22,7 @@ gem "exception_notification", "4.1.0"
 gem "newrelic_rpm", "3.12.0.288"
 
 ## APIs
-gem "activemerchant", "1.49.0"
+gem "activemerchant", "1.50.0"
 gem "money", "6.5.1"
 gem "sendyr", "0.2.1"
 
@@ -32,10 +32,10 @@ gem "pgbackups-archive", "0.2.1"
 gem "paper_trail", "3.0.8"
 gem "s3_direct_upload", "0.1.7"
 gem "smarter_csv", "1.0.19"
-gem "paperclip", "4.2.1"
+gem "paperclip", "4.2.2"
 
 ## DATES
-gem "date_validator", "0.7.1"
+gem "date_validator", "0.8.1"
 gem "week_of_month", "1.2.3.2"
 
 ## UI
@@ -60,16 +60,16 @@ gem "pry-rails", "0.3.4"
 
 group :development do
   gem "faker", "1.4.3"
-  gem "annotate", "2.6.8"
+  gem "annotate", "2.6.10"
   gem "metric_fu", "4.11.4"
 end
 
 group :development, :test do
-  gem "rspec-rails", "3.2.1"
+  gem "rspec-rails", "3.2.3"
   gem "capybara", "2.4.4"
-  gem "selenium-webdriver", "2.45.0"
+  gem "selenium-webdriver", "2.46.2"
   gem "factory_girl_rails", "4.5.0"
-  gem "byebug", "4.0.5"
+  gem "byebug", "5.0.0"
   gem "codeclimate-test-reporter", "0.4.7"
 end
 
@@ -99,7 +99,7 @@ gem "coffee-rails", "4.1.0"
 gem "turbolinks", "2.5.3"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem "jbuilder", "2.2.12"
+gem "jbuilder", "2.2.16"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
