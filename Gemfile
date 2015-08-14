@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
 ruby "2.2.2"
-gem "rails", "4.2.1"
+gem "rails", "4.2.3"
 gem "rake", "10.4.2"
-gem "puma", "2.11.3"
+gem "puma", "2.12.3"
 gem "rack-timeout", "0.2.4"
 gem "pg", "0.18.2"
 gem "devise", "3.5.1"
@@ -13,17 +13,17 @@ gem "i18n", "0.7.0"
 gem "dalli", "2.7.4"
 
 ## JOBS
-gem "sidekiq", "3.3.4"
+gem "sidekiq", "3.4.2"
 gem "sinatra", "1.4.6"  # required by Sidekiq
-gem "slim", "3.0.3"     # required by Sidekiq
+gem "slim", "3.0.6"     # required by Sidekiq
 
 ## MONITORING
-gem "exception_notification", "4.1.0"
-gem "newrelic_rpm", "3.12.0.288"
+gem "exception_notification", "4.1.1"
+gem "newrelic_rpm", "3.13.0.299"
 
 ## APIs
-gem "activemerchant", "1.50.0"
-gem "money", "6.5.1"
+gem "activemerchant", "1.52.0"
+gem "money", "6.6.1"
 gem "sendyr", "0.2.1"
 
 # DATA STORAGE
@@ -31,15 +31,15 @@ gem "aws-sdk", "< 2.0"
 gem "pgbackups-archive", "0.2.1"
 gem "paper_trail", "3.0.8"
 gem "s3_direct_upload", "0.1.7"
-gem "smarter_csv", "1.0.19"
-gem "paperclip", "4.2.2"
+gem "smarter_csv", "1.1.0"
+gem "paperclip", "4.3.0"
 
 ## DATES
 gem "date_validator", "0.8.1"
 gem "week_of_month", "1.2.3.2"
 
 ## UI
-gem "bootstrap-sass", "3.3.4.1"
+gem "bootstrap-sass", "3.3.5.1"
 gem "sass-rails", "5.0.3"
 gem "will_paginate", "3.0.7"
 gem "bootstrap-will_paginate", "0.0.10"
@@ -61,13 +61,13 @@ gem "pry-rails", "0.3.4"
 group :development do
   gem "faker", "1.4.3"
   gem "annotate", "2.6.10"
-  gem "metric_fu", "4.11.4"
+  gem "metric_fu", "4.12.0"
 end
 
 group :development, :test do
-  gem "rspec-rails", "3.2.3"
+  gem "rspec-rails", "3.3.3"
   gem "capybara", "2.4.4"
-  gem "selenium-webdriver", "2.46.2"
+  gem "selenium-webdriver", "2.47.1"
   gem "factory_girl_rails", "4.5.0"
   gem "byebug", "5.0.0"
   gem "codeclimate-test-reporter", "0.4.7"
@@ -99,7 +99,7 @@ gem "coffee-rails", "4.1.0"
 gem "turbolinks", "2.5.3"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem "jbuilder", "2.2.16"
+gem "jbuilder", "2.3.1"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
