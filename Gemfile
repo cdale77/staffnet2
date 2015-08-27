@@ -54,7 +54,6 @@ gem "morrisjs-rails", "0.5.1"
 ## Misc
 gem "axlsx", "2.0.01"
 gem "pry-rails", "0.3.4"
-gem "celluloid", "<= 0.17.0" # version 0.16.0 yanked, sidekiq 3.4.2 requires it.
 #gem "pipl-api", "3.0.1"
 #gem "fullcontact", "0.7.0"
 #gem "rubillow", git: "https://github.com/cdale77/rubillow.git"
