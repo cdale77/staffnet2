@@ -3,7 +3,7 @@ include Warden::Test::Helpers
 include ActionView::Helpers::NumberHelper
 Warden.test_mode!
 
-describe 'DuplicateRecordPages' do 
+describe 'DuplicateRecordPages' do
 
   subject { page }
 
@@ -17,7 +17,7 @@ describe 'DuplicateRecordPages' do
 
   ### AS ADMIN USER ###
 
-  describe 'as admin user' do 
+  describe 'as admin user' do
 
     before do
         visit new_user_session_path
@@ -30,25 +30,11 @@ describe 'DuplicateRecordPages' do
       logout(:admin)
     end
 
-    describe 'new_batch' do 
+    describe 'new_batch' do
       before { visit new_duplicate_batch_path }
-      describe 'page' do 
+      describe 'page' do
         it { should have_title "Staffnet:New dupe batch" }
         it { should have_selector "h1", "New duplicate record batch" }
-      end
-    end
-
-    describe '#index' do 
-      before { visit duplicate_records_path }
-      describe 'page' do 
-        it { should have_title "Staffnet:Resolve duplicates" }
-        it { should have_selector "h1", "Resolve duplicates" }
-      end
-      describe 'records' do 
-        it 'should list each record' do 
-          #expect(page).to have_content(supporter.first_name)
-          #expect(page).to have_content(dupe.first_name)
-        end
       end
     end
   end
