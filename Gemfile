@@ -14,6 +14,7 @@ gem "dalli", "2.7.4"
 
 ## JOBS
 gem "sidekiq", "3.4.2"
+gem "celluloid", "0.16.0"
 gem "sinatra", "1.4.6"  # required by Sidekiq
 gem "slim", "3.0.6"     # required by Sidekiq
 
