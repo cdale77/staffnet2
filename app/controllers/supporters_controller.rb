@@ -77,7 +77,7 @@ class SupportersController < ApplicationController
       # assign the supporter to a Sendy list based on the supporter_type
       sendy_list = supporter.supporter_type.sendy_lists.first
       service = SupporterService.new(supporter:supporter,
-                                     sendy_list_id: sendy_list.id )
+                                     sendy_list_id: sendy_list.try(:id))
       service.new_supporter ? flash[:success] = 'Saved new supporter.' : flash[:alert] = "Error: #{service.message}"
     end
 
