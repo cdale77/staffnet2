@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "2.2.2"
 gem "rails", "4.2.3"
 gem "rake", "10.4.2"
-gem "puma", "2.13.4"
+gem "puma", "2.14.0"
 gem "rack-timeout", "0.3.2"
 gem "pg", "0.18.3"
 gem "devise", "3.5.2"
@@ -19,7 +19,7 @@ gem "slim", "3.0.6"     # required by Sidekiq
 
 ## MONITORING
 gem "exception_notification", "4.1.1"
-gem "newrelic_rpm", "3.13.0.299"
+gem "newrelic_rpm", "3.13.1.300"
 
 ## APIs
 gem "activemerchant", "1.53.0"
@@ -43,7 +43,7 @@ gem "bootstrap-sass", "3.3.5.1"
 gem "sass-rails", "5.0.4"
 gem "will_paginate", "3.0.7"
 gem "bootstrap-will_paginate", "0.0.10"
-gem "simple_form", "3.1.1"
+gem "simple_form", "3.2.0"
 gem "ransack", "1.7.0"
 
 ## JS
