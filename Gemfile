@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 ruby "2.2.2"
-gem "rails", "4.2.3"
+gem "rails", "4.2.4"
 gem "rake", "10.4.2"
 gem "puma", "2.14.0"
 gem "rack-timeout", "0.3.2"
