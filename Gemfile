@@ -13,16 +13,16 @@ gem "i18n", "0.7.0"
 gem "dalli", "2.7.4"
 
 ## JOBS
-gem "sidekiq", "3.5.0"
+gem "sidekiq", "3.5.1"
 gem "sinatra", "1.4.6"  # required by Sidekiq
 gem "slim", "3.0.6"     # required by Sidekiq
 
 ## MONITORING
 gem "exception_notification", "4.1.1"
-gem "newrelic_rpm", "3.13.1.300"
+gem "newrelic_rpm", "3.13.2.302"
 
 ## APIs
-gem "activemerchant", "1.53.0"
+gem "activemerchant", "1.54.0"
 gem "money", "6.6.1"
 gem "sendyr", "0.2.1"
 
@@ -64,7 +64,7 @@ end
 group :development, :test do
   gem "rspec-rails", "3.3.3"
   gem "capybara", "2.5.0"
-  gem "selenium-webdriver", "2.47.1"
+  gem "selenium-webdriver", "2.48.1"
   gem "factory_girl_rails", "4.5.0"
   gem "codeclimate-test-reporter", "0.4.8"
 end
@@ -82,7 +82,7 @@ gem "coffee-rails", "4.1.0"
 
 gem "turbolinks", "2.5.3"
 
-gem "jbuilder", "2.3.1"
+gem "jbuilder", "2.3.2"
 
 group :doc do
   gem "sdoc", require: false
