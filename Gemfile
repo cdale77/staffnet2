@@ -19,7 +19,7 @@ gem "slim", "3.0.6"     # required by Sidekiq
 
 ## MONITORING
 gem "exception_notification", "4.1.1"
-gem "newrelic_rpm", "3.13.2.302"
+gem "newrelic_rpm", "3.14.0.305"
 
 ## APIs
 gem "activemerchant", "1.54.0"
@@ -70,7 +70,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "database_cleaner", "1.5.0"
+  gem "database_cleaner", "1.5.1"
 end
 
 group :production do
