@@ -53,10 +53,10 @@ describe SupporterPresenter do
     end
   end
 
-  describe '#formatted_sendy_status' do 
-    it 'should humanize the sendy status' do 
+  describe '#formatted_sendy_status' do
+    it 'should humanize the sendy status' do
       expect(presenter.formatted_sendy_status).to eq \
-        "#{supporter.sendy_status.humanize}d"
+        "#{supporter.sendy_status.humanize}"
     end
   end
 end

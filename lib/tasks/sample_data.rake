@@ -113,18 +113,13 @@ namespace :db do
       # payments
       Donation.all.each do |donation|
         donation.payments.create!(  deposited_at: Date.today,
-                                            amount: donation.amount,
-                                            payment_type: donation.donation_type,
-                                            captured: true,
-                                            processed: true,
-                                            receipt_sent_at: Time.now,
-                                            deposited_at: Date.today)
+                                    amount: donation.amount,
+                                    payment_type: donation.donation_type,
+                                    captured: true,
+                                    processed: true,
+                                    receipt_sent_at: Time.now)
 
       end
-
-
     end
-
-
   end
 end

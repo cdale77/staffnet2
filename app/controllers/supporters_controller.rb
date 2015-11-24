@@ -32,7 +32,8 @@ class SupportersController < ApplicationController
     @search = Supporter.search(params[:q])
     @search.build_condition
     supporters = params[:q] ? @search.result : Supporter.all.limit(100)
-    @supporter_presenters = SupporterPresenter.wrap(supporters).paginate(page: params[:page])
+    @supporter_presenters = SupporterPresenter.wrap(supporters)
+                                              .paginate(page: params[:page])
     authorize supporters
   end
 
@@ -45,14 +46,7 @@ class SupportersController < ApplicationController
     @supporter = Supporter.find(params[:id])
     authorize @supporter
 
-    # grab the old values to give to the sendy update code
-    #old_email = @supporter.email_1
-    #new_email = supporter_params[:email_1]
-    #old_status = @supporter.sendy_status
-    #new_status = supporter_params[:sendy_status]
-
     if @supporter.update_attributes(supporter_params)
-     # update_supporter_tasks(@supporter, old_email, new_email, new_status, old_status)
       flash[:success] = "Supporter updated."
       redirect_to supporter_path(@supporter)
     else
@@ -77,10 +71,15 @@ class SupportersController < ApplicationController
       # assign the supporter to a Sendy list based on the supporter_type
       sendy_list = supporter.supporter_type.sendy_lists.first
       service = SupporterService.new(supporter:supporter,
-                                     sendy_list_id: sendy_list.id )
-      service.new_supporter ? flash[:success] = 'Saved new supporter.' : flash[:alert] = "Error: #{service.message}"
+                                     sendy_list_id: sendy_list.try(:id))
+      if service.new_supporter
+        flash[:success] = 'Saved new supporter.'
+      else
+        flash[:alert] = "Error: #{service.message}"
+      end
     end
 
+=begin
     # not currently used! Not working. 2014-12-08
     def update_supporter_tasks(supporter, old_email, new_email, new_status, old_status)
       # do we have enough data?
@@ -97,52 +96,36 @@ class SupportersController < ApplicationController
         end
       end
     end
+=end
 
     def destroy_supporter_tasks(supporter)
       sendy_list = supporter.supporter_type.sendy_lists.first
       service = SupporterService.new(supporter: supporter,
                                      sendy_list_id: sendy_list.id,
                                      cim_id: supporter.cim_id )
-      service.destroy_supporter ? flash[:success] = "Supporter record destroyed" : flash[:alert] = "Error: #{service.message}"
+      if service.destroy_supporter
+        flash[:success] = "Supporter record destroyed"
+      else
+        flash[:alert] = "Error: #{service.message}"
+      end
     end
 
     def supporter_params
-      params.require(:supporter).permit(  :prefix,
-                                          :salutation,
-                                          :first_name,
-                                          :last_name,
-                                          :suffix,
-                                          :address1,
-                                          :address2,
-                                          :address_city,
-                                          :address_state,
-                                          :address_zip,
-                                          :address_bad,
-                                          :email_1,
-                                          :email_1_bad,
-                                          :sendy_status,
-                                          :email_2,
-                                          :email_2_bad,
-                                          :phone_mobile,
-                                          :phone_mobile_bad,
-                                          :phone_home,
-                                          :phone_home_bad,
-                                          :phone_alt,
-                                          :phone_alt_bad,
-                                          :supporter_type_id,
-                                          :do_not_call,
-                                          :do_not_email,
-                                          :do_not_mail,
-                                          :keep_informed,
-                                          :vol_level,
-                                          :employer,
-                                          :occupation,
-                                          :tag_list,
-                                          :address_county,
-                                          :source,
-                                          :notes,
-                                          :spouse_name,
-                                          :issue_knowledge)
+      params.require(:supporter).permit(:prefix, :salutation, :first_name,
+                                        :last_name, :suffix, :address1,
+                                        :address2, :address_city,
+                                        :address_state,:address_zip,
+                                        :address_bad, :email_1, :email_1_bad,
+                                        :sendy_status,:email_2,:email_2_bad,
+                                        :phone_mobile, :phone_mobile_bad,
+                                        :phone_home, :phone_home_bad,
+                                        :phone_alt,:phone_alt_bad,
+                                        :supporter_type_id, :do_not_call,
+                                        :do_not_email, :do_not_mail,
+                                        :keep_informed, :vol_level, :employer,
+                                        :occupation, :tag_list, :address_county,
+                                        :source, :notes, :spouse_name,
+                                        :issue_knowledge)
     end
 end
 

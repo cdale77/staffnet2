@@ -45,7 +45,7 @@ module Staffnet2
     config.autoload_paths += %W(#{config.root}/app/services/data_reports)
     config.autoload_paths += %W(#{config.root}/app/jobs)
     config.autoload_paths += %W(#{config.root}/app/jobs/supporters)
-
+    config.active_record.raise_in_transactional_callbacks = true #be like rails5
     # legacy db models
      config.autoload_paths += %W(#{config.root}/app/models/legacy)
 
