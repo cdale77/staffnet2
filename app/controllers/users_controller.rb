@@ -74,3 +74,4 @@ class UsersController < ApplicationController
       redirect_to root_path unless ( current_user == User.find(params[:id]) || current_user.role?(:admin) )
     end
 end
+
