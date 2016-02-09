@@ -3,17 +3,17 @@ source "https://rubygems.org"
 ruby "2.3.0"
 gem "rails", "4.2.5.1"
 gem "rake", "10.5.0"
-gem "puma", "2.15.3"
+gem "puma", "2.16.0"
 gem "rack-timeout", "0.3.2"
 gem "pg", "0.18.4"
-gem "devise", "3.5.5"
+gem "devise", "3.5.6"
 gem "pundit", "0.3.0"
 gem "figaro", "1.1.1"
 gem "i18n", "0.7.0"
 gem "dalli", "2.7.5"
 
 ## JOBS
-gem "sidekiq", "4.0.2"
+gem "sidekiq", "4.1.0"
 gem "sinatra", "1.4.7"  # required by Sidekiq
 gem "slim", "3.0.6"     # required by Sidekiq
 
@@ -22,7 +22,7 @@ gem "exception_notification", "4.1.4"
 gem "newrelic_rpm", "3.14.2.312"
 
 ## APIs
-gem "activemerchant", "1.56.0"
+gem "activemerchant", "1.57.0"
 gem "money", "6.7.0"
 gem "sendyr", "0.2.1"
 
@@ -62,10 +62,10 @@ group :development do
 end
 
 group :development, :test do
-  gem "rspec-rails", "3.4.0"
-  gem "capybara", "2.6.0"
-  gem "selenium-webdriver", "2.49.0"
-  gem "factory_girl_rails", "4.5.0"
+  gem "rspec-rails", "3.4.2"
+  gem "capybara", "2.6.2"
+  gem "selenium-webdriver", "2.51.0"
+  gem "factory_girl_rails", "4.6.0"
   gem "codeclimate-test-reporter", "0.4.8"
 end
 
