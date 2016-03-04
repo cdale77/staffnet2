@@ -2,6 +2,7 @@ require "sidekiq/web"
 
 Staffnet2::Application.routes.draw do
 
+  ActiveAdmin.routes(self)
   authenticate :user, lambda { |u| u.role? :super_admin } do
     mount Sidekiq::Web => "/admin/sidekiq"
   end
