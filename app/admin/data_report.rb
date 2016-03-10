@@ -1,6 +1,6 @@
 ActiveAdmin.register DataReport do
   config.per_page = 10
-
+  remove_filter :users
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
