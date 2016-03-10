@@ -39,7 +39,6 @@ class User < ActiveRecord::Base
 
   ## SET UP ENVIRONMENT
   include Regex
-  include PeopleMethods
 
   ## RELATIONSHIPS
   has_one :employee
