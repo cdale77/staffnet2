@@ -11,7 +11,6 @@ gem "pundit", "1.1.0"
 gem "figaro", "1.1.1"
 gem "i18n", "0.7.0"
 gem "dalli", "2.7.6"
-gem "activeadmin", github: "activeadmin"
 
 ## JOBS
 gem "sidekiq", "4.1.1"
