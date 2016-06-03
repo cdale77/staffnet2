@@ -13,16 +13,16 @@ gem "i18n", "0.7.0"
 gem "dalli", "2.7.6"
 
 ## JOBS
-gem "sidekiq", "4.1.1"
+gem "sidekiq", "4.1.2"
 gem "sinatra", "1.4.7"  # required by Sidekiq
-gem "slim", "3.0.6"     # required by Sidekiq
+gem "slim", "3.0.7"     # required by Sidekiq
 
 ## MONITORING
 gem "exception_notification", "4.1.4"
 gem "newrelic_rpm", "3.15.2.317"
 
 ## APIs
-gem "activemerchant", "1.58.0"
+gem "activemerchant", "1.59.0"
 gem "money", "6.7.1"
 gem "sendyr", "0.2.1"
 
@@ -47,7 +47,7 @@ gem "simple_form", "3.2.1"
 gem "ransack", "1.7.0"
 
 ## JS
-gem "jquery-rails", "4.1.0"
+gem "jquery-rails", "4.1.1"
 gem "raphael-rails", "2.1.2"
 gem "morrisjs-rails", "0.5.1"
 
