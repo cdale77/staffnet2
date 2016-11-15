@@ -12,8 +12,9 @@
 #
 
 class PaymentProfile < ActiveRecord::Base
-
+  acts_as_paranoid
   has_paper_trail
+  default_scope { order(created_at: :desc) }
 
   attr_accessor :cc_number
 

@@ -55,6 +55,9 @@ gem "morrisjs-rails", "0.5.1"
 gem "axlsx", "2.0.01"
 gem "pry-rails", "0.3.4"
 
+## Soft Deletes
+gem "paranoia", "~> 2.2"
+
 group :development do
   gem "faker", "1.6.3"
   gem "annotate", "2.7.1"

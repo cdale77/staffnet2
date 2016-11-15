@@ -11,13 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141021215734) do
+ActiveRecord::Schema.define(version: 20161110210513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
 
-  create_table "data_reports", force: true do |t|
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+
+  create_table "data_reports", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "data_report_type_name",          default: ""
     t.string   "downloadable_file_file_name"
@@ -30,7 +45,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
 
   add_index "data_reports", ["user_id"], name: "index_data_reports_on_user_id", using: :btree
 
-  create_table "deposit_batches", force: true do |t|
+  create_table "deposit_batches", force: :cascade do |t|
     t.integer  "employee_id"
     t.string   "batch_type",     limit: 255, default: ""
     t.date     "date"
@@ -43,7 +58,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
 
   add_index "deposit_batches", ["employee_id"], name: "index_deposit_batches_on_employee_id", using: :btree
 
-  create_table "donations", force: true do |t|
+  create_table "donations", force: :cascade do |t|
     t.integer  "legacy_id"
     t.integer  "supporter_id"
     t.integer  "shift_id"
@@ -66,7 +81,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
   add_index "donations", ["sub_week"], name: "index_donations_on_sub_week", using: :btree
   add_index "donations", ["supporter_id"], name: "index_donations_on_supporter_id", using: :btree
 
-  create_table "duplicate_records", force: true do |t|
+  create_table "duplicate_records", force: :cascade do |t|
     t.integer  "first_record_id"
     t.string   "additional_record_ids", default: [],    array: true
     t.datetime "created_at"
@@ -78,7 +93,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
   add_index "duplicate_records", ["first_record_id"], name: "index_duplicate_records_on_first_record_id", using: :btree
   add_index "duplicate_records", ["resolved"], name: "index_duplicate_records_on_resolved", where: "(resolved = false)", using: :btree
 
-  create_table "employees", force: true do |t|
+  create_table "employees", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "legacy_id",                            limit: 255,                         default: ""
     t.string   "first_name",                           limit: 255,                         default: ""
@@ -132,7 +147,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
   add_index "employees", ["title"], name: "index_employees_on_title", using: :btree
   add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
 
-  create_table "full_contact_matches", force: true do |t|
+  create_table "full_contact_matches", force: :cascade do |t|
     t.integer  "supporter_id"
     t.json     "payload"
     t.datetime "created_at"
@@ -141,7 +156,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
 
   add_index "full_contact_matches", ["supporter_id"], name: "index_full_contact_matches_on_supporter_id", using: :btree
 
-  create_table "migration_errors", force: true do |t|
+  create_table "migration_errors", force: :cascade do |t|
     t.integer  "record_id"
     t.string   "record_name", limit: 255, default: ""
     t.string   "message",     limit: 255, default: ""
@@ -149,7 +164,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
     t.datetime "updated_at"
   end
 
-  create_table "paychecks", force: true do |t|
+  create_table "paychecks", force: :cascade do |t|
     t.integer  "payroll_id"
     t.integer  "employee_id"
     t.date     "check_date"
@@ -184,19 +199,21 @@ ActiveRecord::Schema.define(version: 20141021215734) do
   add_index "paychecks", ["employee_id"], name: "index_paychecks_on_employee_id", using: :btree
   add_index "paychecks", ["payroll_id"], name: "index_paychecks_on_payroll_id", using: :btree
 
-  create_table "payment_profiles", force: true do |t|
+  create_table "payment_profiles", force: :cascade do |t|
     t.integer  "supporter_id"
     t.string   "cim_payment_profile_id", limit: 255, default: ""
     t.string   "payment_profile_type",   limit: 255, default: ""
     t.hstore   "details",                            default: {}
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   add_index "payment_profiles", ["cim_payment_profile_id"], name: "index_payment_profiles_on_cim_payment_profile_id", using: :btree
+  add_index "payment_profiles", ["deleted_at"], name: "index_payment_profiles_on_deleted_at", using: :btree
   add_index "payment_profiles", ["supporter_id"], name: "index_payment_profiles_on_supporter_id", using: :btree
 
-  create_table "payments", force: true do |t|
+  create_table "payments", force: :cascade do |t|
     t.integer  "donation_id"
     t.integer  "payment_profile_id"
     t.integer  "deposit_batch_id"
@@ -221,7 +238,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
   add_index "payments", ["payment_profile_id"], name: "index_payments_on_payment_profile_id", using: :btree
   add_index "payments", ["payment_type"], name: "index_payments_on_payment_type", using: :btree
 
-  create_table "payrolls", force: true do |t|
+  create_table "payrolls", force: :cascade do |t|
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "check_quantity",                                       default: 0
@@ -251,7 +268,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
   add_index "payrolls", ["end_date"], name: "index_payrolls_on_end_date", using: :btree
   add_index "payrolls", ["start_date"], name: "index_payrolls_on_start_date", using: :btree
 
-  create_table "sendy_lists", force: true do |t|
+  create_table "sendy_lists", force: :cascade do |t|
     t.integer  "supporter_type_id"
     t.string   "sendy_list_identifier", limit: 255, default: ""
     t.string   "name",                  limit: 255, default: ""
@@ -263,7 +280,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
   add_index "sendy_lists", ["sendy_list_identifier"], name: "index_sendy_lists_on_sendy_list_identifier", using: :btree
   add_index "sendy_lists", ["supporter_type_id"], name: "index_sendy_lists_on_supporter_type_id", using: :btree
 
-  create_table "sendy_updates", force: true do |t|
+  create_table "sendy_updates", force: :cascade do |t|
     t.integer  "supporter_id"
     t.integer  "sendy_list_id"
     t.integer  "sendy_batch_id"
@@ -282,7 +299,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
   add_index "sendy_updates", ["success"], name: "index_sendy_updates_on_success", using: :btree
   add_index "sendy_updates", ["supporter_id"], name: "index_sendy_updates_on_supporter_id", using: :btree
 
-  create_table "shift_types", force: true do |t|
+  create_table "shift_types", force: :cascade do |t|
     t.string   "name",                    limit: 255,                         default: ""
     t.decimal  "monthly_cc_multiplier",               precision: 8, scale: 2, default: 0.0
     t.decimal  "quarterly_cc_multiplier",             precision: 8, scale: 2, default: 0.0
@@ -297,7 +314,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
   add_index "shift_types", ["name"], name: "index_shift_types_on_name", using: :btree
   add_index "shift_types", ["quota_shift"], name: "index_shift_types_on_quota_shift", using: :btree
 
-  create_table "shifts", force: true do |t|
+  create_table "shifts", force: :cascade do |t|
     t.integer  "employee_id"
     t.integer  "field_manager_employee_id"
     t.integer  "shift_type_id"
@@ -333,7 +350,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
   add_index "shifts", ["paycheck_id"], name: "index_shifts_on_paycheck_id", using: :btree
   add_index "shifts", ["shift_type_id"], name: "index_shifts_on_shift_type_id", using: :btree
 
-  create_table "supporter_types", force: true do |t|
+  create_table "supporter_types", force: :cascade do |t|
     t.string   "name",       limit: 255, default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -341,7 +358,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
 
   add_index "supporter_types", ["name"], name: "index_supporter_types_on_name", using: :btree
 
-  create_table "supporters", force: true do |t|
+  create_table "supporters", force: :cascade do |t|
     t.integer  "supporter_type_id"
     t.integer  "sendy_list_id"
     t.string   "legacy_id",         limit: 255, default: ""
@@ -393,7 +410,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
   add_index "supporters", ["sendy_list_id"], name: "index_supporters_on_sendy_list_id", using: :btree
   add_index "supporters", ["supporter_type_id"], name: "index_supporters_on_supporter_type_id", using: :btree
 
-  create_table "taggings", force: true do |t|
+  create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "supporter_id"
     t.datetime "created_at"
@@ -403,13 +420,13 @@ ActiveRecord::Schema.define(version: 20141021215734) do
   add_index "taggings", ["supporter_id"], name: "index_taggings_on_supporter_id", using: :btree
   add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
 
-  create_table "tags", force: true do |t|
+  create_table "tags", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255
@@ -439,7 +456,7 @@ ActiveRecord::Schema.define(version: 20141021215734) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
-  create_table "versions", force: true do |t|
+  create_table "versions", force: :cascade do |t|
     t.string   "item_type",  limit: 255, null: false
     t.integer  "item_id",                null: false
     t.string   "event",      limit: 255, null: false

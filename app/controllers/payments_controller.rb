@@ -8,7 +8,7 @@ class PaymentsController < ApplicationController
     if @donation
       @supporter = @donation.supporter
       @payment = @donation.payments.build
-      @payment_profiles = @supporter.payment_profiles.limit(5)
+      @payment_profiles = @supporter.payment_profiles.limit(2)
     end
     authorize @payment
   end
@@ -34,7 +34,7 @@ class PaymentsController < ApplicationController
       end
     else
       @supporter = @donation.supporter
-      @payment_profiles = @supporter.payment_profiles.limit(5)
+      @payment_profiles = @supporter.payment_profiles.limit(2)
       render "new"
     end
   end
