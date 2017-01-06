@@ -6,9 +6,10 @@
 #  supporter_id           :integer
 #  cim_payment_profile_id :string(255)      default("")
 #  payment_profile_type   :string(255)      default("")
-#  details                :hstore           default("")
+#  details                :hstore           default({})
 #  created_at             :datetime
 #  updated_at             :datetime
+#  deleted_at             :datetime
 #
 
 require 'spec_helper'

@@ -34,6 +34,7 @@ class SupportersController < ApplicationController
     supporters = params[:q] ? @search.result : Supporter.all.limit(100)
     @supporter_presenters = SupporterPresenter.wrap(supporters)
                                               .paginate(page: params[:page])
+    raise "hell"
     authorize supporters
   end
 
@@ -125,7 +126,7 @@ class SupportersController < ApplicationController
                                         :keep_informed, :vol_level, :employer,
                                         :occupation, :tag_list, :address_county,
                                         :source, :notes, :spouse_name,
-                                        :issue_knowledge)
+                                        :issue_knowledge, :sustainer)
     end
 end
 

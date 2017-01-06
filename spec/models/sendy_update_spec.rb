@@ -10,7 +10,7 @@
 #  new_sendy_email  :string(255)      default("")
 #  new_sendy_status :string(255)      default("")
 #  action           :string(255)      default("")
-#  success          :boolean          default("false")
+#  success          :boolean          default(FALSE)
 #  completed_at     :datetime
 #  created_at       :datetime
 #  updated_at       :datetime

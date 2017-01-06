@@ -11,9 +11,9 @@
 #  cim_auth_code      :string(255)      default("")
 #  deposited_at       :date
 #  payment_type       :string(255)      default("")
-#  captured           :boolean          default("false")
-#  processed          :boolean          default("false")
-#  amount             :decimal(8, 2)    default("0.0")
+#  captured           :boolean          default(FALSE)
+#  processed          :boolean          default(FALSE)
+#  amount             :decimal(8, 2)    default(0.0)
 #  notes              :text             default("")
 #  created_at         :datetime
 #  updated_at         :datetime

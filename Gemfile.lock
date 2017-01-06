@@ -65,6 +65,12 @@ GEM
       nokogiri (>= 1.4.1)
       rubyzip (~> 1.0.0)
     bcrypt (3.1.11)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -118,6 +124,7 @@ GEM
     date_validator (0.9.0)
       activemodel
       activesupport
+    debug_inspector (0.0.2)
     devise (3.5.9)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -587,6 +594,8 @@ DEPENDENCIES
   annotate (= 2.7.1)
   aws-sdk (< 2.0)
   axlsx (= 2.0.01)
+  better_errors (~> 2.1.1)
+  binding_of_caller
   bootstrap-sass (= 3.3.6)
   bootstrap-will_paginate (= 0.0.10)
   capybara (= 2.7.1)

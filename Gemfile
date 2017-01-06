@@ -62,6 +62,8 @@ group :development do
   gem "faker", "1.6.3"
   gem "annotate", "2.7.1"
   gem "metric_fu", "4.12.0"
+  gem "binding_of_caller"
+  gem "better_errors", "~> 2.1.1"
 end
 
 group :development, :test do

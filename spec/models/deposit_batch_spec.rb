@@ -6,8 +6,8 @@
 #  employee_id    :integer
 #  batch_type     :string(255)      default("")
 #  date           :date
-#  deposited      :boolean          default("false")
-#  approved       :boolean          default("false")
+#  deposited      :boolean          default(FALSE)
+#  approved       :boolean          default(FALSE)
 #  receipt_number :string(255)      default("")
 #  created_at     :datetime
 #  updated_at     :datetime
