@@ -34,7 +34,6 @@ class SupportersController < ApplicationController
     supporters = params[:q] ? @search.result : Supporter.all.limit(100)
     @supporter_presenters = SupporterPresenter.wrap(supporters)
                                               .paginate(page: params[:page])
-    raise "hell"
     authorize supporters
   end
 
