@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   before_filter :admin, only: [:index, :destroy]
   before_filter :authorize_user, only: :show
 
-
   def new
     @user = User.new
   end
