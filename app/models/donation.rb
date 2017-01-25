@@ -38,7 +38,9 @@ class Donation < ActiveRecord::Base
   has_many :payments, dependent: :destroy
 
   ## CALLBACKS
-  before_save :set_sustainer_codes
+  before_save   :set_sustainer_codes
+  after_save    :set_sustainer
+  before_delete :remove_sustainer
 
   ## VALIDATIONS
   validates :source, :date, presence: { message: "required" }
@@ -157,6 +159,18 @@ class Donation < ActiveRecord::Base
   end
 
   private
+
+    def set_sustainer
+      if self.is_sustainer?
+        self.supporter.update_attributes(sustainer: true)
+      end
+    end
+
+    def remove_sustainer
+      if self.is_sustainer?
+        self.supporter.update_attributes(sustainer: false)
+      end
+    end
 
     def set_sustainer_codes
       if self.sub_month.blank?
