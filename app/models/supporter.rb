@@ -177,6 +177,15 @@ class Supporter < ActiveRecord::Base
     return flag
   end
 
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |supporter|
+        csv << supporter.attributes.values_at(*column_names)
+      end
+    end
+  end
+
   ## CIM
   def generate_cim_customer_id
     self.cim_customer_id = ( self.id + 20000 ).to_s

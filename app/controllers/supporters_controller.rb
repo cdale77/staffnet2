@@ -31,10 +31,15 @@ class SupportersController < ApplicationController
   def index
     @search = Supporter.search(params[:q])
     @search.build_condition
-    supporters = params[:q] ? @search.result : Supporter.all.limit(100)
-    @supporter_presenters = SupporterPresenter.wrap(supporters)
+    @supporters = params[:q] ? @search.result : Supporter.all.limit(100)
+    @supporter_presenters = SupporterPresenter.wrap(@supporters)
                                               .paginate(page: params[:page])
-    authorize supporters
+    respond_to do |format|
+      format.html
+      format.csv { send_data @supporters.to_csv }
+      format.xls { send_data @supporters.to_csv(col_sep: "\t") }
+    end
+    authorize @supporters
   end
 
   def edit

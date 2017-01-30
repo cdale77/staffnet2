@@ -38,9 +38,9 @@ class Donation < ActiveRecord::Base
   has_many :payments, dependent: :destroy
 
   ## CALLBACKS
-  before_save   :set_sustainer_codes
-  after_save    :set_sustainer
-  before_delete :remove_sustainer
+  before_save     :set_sustainer_codes
+  after_save      :set_sustainer
+  before_destroy  :remove_sustainer
 
   ## VALIDATIONS
   validates :source, :date, presence: { message: "required" }
@@ -190,6 +190,15 @@ class Donation < ActiveRecord::Base
     def set_sub_week
       if self.sustainer_type == 'monthly' || self.sustainer_type == 'quarterly'
         self.sub_week = Date.today.week_of_month.to_s
+      end
+    end
+
+    def self.to_csv(options = {})
+      CSV.generate(options) do |csv|
+        csv << column_names
+        all.each do |donation|
+          csv << donation.attributes.values_at(*column_names)
+        end
       end
     end
 
