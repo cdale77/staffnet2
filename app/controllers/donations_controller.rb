@@ -54,7 +54,7 @@ class DonationsController < ApplicationController
     query = params[:q]
     @search = Donation.search(query)
     @search.build_condition
-    @donations = query ? @search.result : Donation.all.limit(100)
+    @donations = query ? @search.result.includes(:supporter) : Donation.all.limit(100)
     @donation_presenters = DonationPresenter.wrap(@donations). \
                             paginate(page: params[:page])
     respond_to do |format|

@@ -27,4 +27,9 @@ class DonationPresenter < FinancePresenter
   def frequency_to_human
     frequency.humanize
   end
+
+  def supporter_id_to_full_name
+    supporter = Supporter.find(@donation.supporter_id)
+    supporter.full_name
+  end
 end

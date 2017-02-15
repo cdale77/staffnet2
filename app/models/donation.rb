@@ -40,7 +40,7 @@ class Donation < ActiveRecord::Base
   ## CALLBACKS
   before_save     :set_sustainer_codes
   after_save      :set_sustainer
-  before_destroy  :remove_sustainer
+  after_update    :remove_sustainer
 
   ## VALIDATIONS
   validates :source, :date, presence: { message: "required" }
@@ -167,7 +167,7 @@ class Donation < ActiveRecord::Base
     end
 
     def remove_sustainer
-      if self.is_sustainer?
+      if self.sub_month.present? && self.sub_week.present? && self.cancelled == true
         self.supporter.update_attributes(sustainer: false)
       end
     end
@@ -197,7 +197,7 @@ class Donation < ActiveRecord::Base
       CSV.generate(options) do |csv|
         csv << column_names
         all.each do |donation|
-          csv << donation.attributes.values_at(*column_names)
+          csv << donation.attributes.values_at(*column_names) + donation.supporter.full_name.split(",")
         end
       end
     end
