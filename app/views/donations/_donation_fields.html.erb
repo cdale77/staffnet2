@@ -63,6 +63,14 @@
                 selected: donation.shift_id  %>
   </div>
 </div>
+<hr />
+<div class="row">
+  <div class="col-md-1">
+    <%= f.label :evolve_ed_fund, "EvolveEd?" %>
+    <%= f.check_box :evolve_ed_fund %>
+  </div>
+</div>
+
 <%= render "shared/forms/notes_field", f: f %>
 
 

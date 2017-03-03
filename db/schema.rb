@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201230448) do
+ActiveRecord::Schema.define(version: 20170223215038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,19 +63,21 @@ ActiveRecord::Schema.define(version: 20161201230448) do
     t.integer  "supporter_id"
     t.integer  "shift_id"
     t.date     "date"
-    t.string   "donation_type", limit: 255,                         default: ""
-    t.string   "source",        limit: 255,                         default: ""
-    t.string   "campaign",      limit: 255,                         default: ""
-    t.string   "sub_month",     limit: 1,                           default: ""
-    t.integer  "sub_week",      limit: 2,                           default: 0
-    t.decimal  "amount",                    precision: 8, scale: 2, default: 0.0
-    t.boolean  "cancelled",                                         default: false
-    t.text     "notes",                                             default: ""
+    t.string   "donation_type",  limit: 255,                         default: ""
+    t.string   "source",         limit: 255,                         default: ""
+    t.string   "campaign",       limit: 255,                         default: ""
+    t.string   "sub_month",      limit: 1,                           default: ""
+    t.integer  "sub_week",       limit: 2,                           default: 0
+    t.decimal  "amount",                     precision: 8, scale: 2, default: 0.0
+    t.boolean  "cancelled",                                          default: false
+    t.text     "notes",                                              default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "evolve_ed_fund",                                     default: false
   end
 
   add_index "donations", ["donation_type"], name: "index_donations_on_donation_type", using: :btree
+  add_index "donations", ["evolve_ed_fund"], name: "index_donations_on_evolve_ed_fund", using: :btree
   add_index "donations", ["shift_id"], name: "index_donations_on_shift_id", using: :btree
   add_index "donations", ["sub_month"], name: "index_donations_on_sub_month", using: :btree
   add_index "donations", ["sub_week"], name: "index_donations_on_sub_week", using: :btree

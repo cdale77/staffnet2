@@ -1,6 +1,6 @@
 <% provide(:title, "Supporters") %>
 <h1>Supporters</h1>
-<% cache "ransack-form-v4-#{params[:q]}" do %>
+<% cache "ransack-form-v5-#{params[:q]}" do %>
   <%= render "shared/index/search_fields", search: @search %>
 <% end %>
 <% if admin_user? %>
@@ -9,7 +9,7 @@
 <p>
 </div>
 <% end %>
-<%= cache ["v4-#{params[:page]}-#{params[:q]}", cache_key_for_supporters ] do %>
+<%= cache ["v5-#{params[:page]}-#{params[:q]}", cache_key_for_supporters ] do %>
   <table class="table table-hover">
     <tr>
       <th>Name</th>
