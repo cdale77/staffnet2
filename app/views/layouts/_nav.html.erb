@@ -125,6 +125,21 @@
                 </li>
               </ul>
             </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                My Profile
+              </a>
+              <ul class="dropdown-menu">
+                <% if current_user && current_user.employee %>
+                <li>
+                  <%= link_to "Profile", employee_path(current_user.employee) %>
+                </li>
+                <li>
+                  <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
+                </li>
+                <% end %>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
