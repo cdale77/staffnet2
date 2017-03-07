@@ -6,16 +6,16 @@
           2017 Mission Street<br />
           San Francisco, CA  94110
         </div>
+        <% if user_signed_in? %>
         <div class="col-md-3">
           <h3>My Account</h3>
-          <% if current_user && current_user.employee %>
             <%= link_to "Profile", employee_path(current_user.employee),
                         class:"nav-link" %><br />
             <%= link_to "Sign out", destroy_user_session_path,
                         method: "delete",
                         class: "nav-link" %>
-          <% end %>
         </div>
+        <% end %>
       </div>
     </div>
   </footer>
