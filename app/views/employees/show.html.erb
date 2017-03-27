@@ -6,12 +6,13 @@
                record: @employee_presenter.model %>
   </div>
 </div>
-  <%= render "employee_details", record: @employee_presenter.model  %>
-  <%= render "employee_stats", record: @employee_presenter.model  %>
+<% cache @employee_presenter.model do %>
+  <%= render "employee_details" %>
+  <%= render "employee_stats" %>
   <%= render "shared/profiles/dependent_shifts",
            employee: @employee_presenter.model,
            shift_presenters: @shift_presenters %>
 
   <%= render "shared/profiles/dependent_paychecks",
            paycheck_presenters: @paycheck_presenters %>
-
+<% end %>

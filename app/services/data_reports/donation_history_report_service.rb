@@ -59,7 +59,8 @@ class DonationHistoryReportService < ServiceBase
 
     def supporter_column_names
       %w[ SupporterID
-          Name
+          FirstName
+          LastName
           Address
           Address2
           City
@@ -102,7 +103,8 @@ class DonationHistoryReportService < ServiceBase
 
     def supporter_data_methods
       %w[ id
-          full_name
+          first_name
+          last_name
           address1
           address2
           address_city
