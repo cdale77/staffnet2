@@ -28,7 +28,7 @@ gem "sendyr", "0.2.1"
 
 # DATA STORAGE
 gem "aws-sdk", "< 2.0"
-gem "pgbackups-archive", "0.2.1"
+gem "pgbackups-archive", "~> 1.1"
 gem "paper_trail", "3.0.8"
 gem "s3_direct_upload", "0.1.7"
 gem "smarter_csv", "1.1.0"
