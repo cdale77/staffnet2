@@ -11,6 +11,8 @@
 #  receipt_number :string(255)      default("")
 #  created_at     :datetime
 #  updated_at     :datetime
+#  sub_month      :string           default("")
+#  sub_week       :string           default("")
 #
 
 FactoryGirl.define do

@@ -1,7 +1,7 @@
 <% batch_presenters.each do |presenter| %>
   <% cache ["v1", presenter.model] do %>
     <tr>
-      <td><%= presenter.human_name %></td>
+      <td><%= presenter.human_name + " " + presenter.sub_month_week %></td>
       <td><%= presenter.formatted_date %></td>
       <td><%= presenter.payment_count %></td>
       <td><%= presenter.payment_total %></td>

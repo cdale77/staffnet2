@@ -8,6 +8,10 @@ class DepositBatchPresenter < PresenterBase
     batch_type.humanize
   end
 
+  def sub_month_week
+    sub_month + sub_week
+  end
+
   def payment_count
     payments.count
   end

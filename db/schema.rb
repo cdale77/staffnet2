@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223215038) do
+ActiveRecord::Schema.define(version: 20170428201556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 20170223215038) do
     t.string   "receipt_number", limit: 255, default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sub_month",                  default: ""
+    t.string   "sub_week",                   default: ""
   end
 
   add_index "deposit_batches", ["employee_id"], name: "index_deposit_batches_on_employee_id", using: :btree
