@@ -9,7 +9,7 @@ class DepositBatchPresenter < PresenterBase
   end
 
   def sub_month_week
-    sub_month + sub_week
+    sub_month.capitalize + sub_week
   end
 
   def payment_count

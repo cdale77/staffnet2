@@ -30,6 +30,7 @@ class PaymentProfile < ActiveRecord::Base
   has_many :payments
 
   ## CALLBACKS
+  before_save :remove_hyphens
   before_save :store_cc_info
   before_destroy :unstore_cim_payment_profile
 
@@ -44,6 +45,12 @@ class PaymentProfile < ActiveRecord::Base
     
     "#{profile_type.humanize} - #{cc_type.humanize} \
       x#{cc_last_4} #{self.cc_month}/#{cc_year}"
+  end
+
+  def remove_hyphens
+    if self.cc_number
+      self.cc_number.gsub!('-','')
+    end
   end
 
   def store_cc_info
