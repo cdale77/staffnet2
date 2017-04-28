@@ -89,7 +89,7 @@ class Shift < ActiveRecord::Base
   end
 
   def short_version
-    "#{self.date.strftime("%Y/%m/%d")}-#{self.employee.full_name}"
+    "#{self.date.strftime("%Y/%m/%d")}-#{self.employee.full_name} (#{self.shift_type.name})"
   end
 
   def net_time
