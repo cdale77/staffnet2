@@ -2,12 +2,12 @@
   <div class="col-md-3">
     <%= f.input :address1,
                 label: "Address line 1",
-                placeholder: "123 Main St." %>
+                placeholder: "123 Main St. Apt. 3" %>
   </div>
   <div class="col-md-3">
     <%= f.input :address2,
                 label: "Address line 2",
-                placeholder: "Apt. 320" %>
+                placeholder: "Suite #456" %>
   </div>
   <div class="col-md-2">
     <%= f.input :address_city,
@@ -18,7 +18,7 @@
     <%= f.input :address_state,
                 as: :select,
                 collection: us_states,
-                selected: record.address_state,
+                selected: record.address_state.present? ? record.address_state : "CA",
                 label: "State" %>
   </div>
   <div class="col-md-2">

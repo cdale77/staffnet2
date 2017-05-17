@@ -52,7 +52,7 @@
                 as: :select,
                 collection: [["Prop 13", "prop13"]],
                 include_blank: true,
-                selected: donation.campaign %>
+                selected: donation.campaign.present? ? donation.campaign : "prop13"  %>
   </div>
   <div class="col-md-5">
     <%= f.input :shift_id,
