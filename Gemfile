@@ -22,7 +22,7 @@ gem "exception_notification", "4.1.4"
 gem "newrelic_rpm", "3.15.2.317"
 
 ## APIs
-gem "activemerchant", "1.59.0"
+gem "activemerchant", "1.70.0"
 gem "money", "6.7.1"
 gem "sendyr", "0.2.1"
 

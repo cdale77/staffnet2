@@ -24,8 +24,8 @@ GEM
     activejob (4.2.6)
       activesupport (= 4.2.6)
       globalid (>= 0.3.0)
-    activemerchant (1.59.0)
-      activesupport (>= 3.2.14, < 5.1)
+    activemerchant (1.70.0)
+      activesupport (>= 3.2.14, < 6.x)
       builder (>= 2.1.2, < 4.0.0)
       i18n (>= 0.6.9)
       nokogiri (~> 1.4)
@@ -464,7 +464,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activemerchant (= 1.59.0)
+  activemerchant (= 1.70.0)
   annotate (= 2.7.1)
   aws-sdk (< 2.0)
   axlsx (= 2.0.01)
