@@ -5,6 +5,7 @@ class DonationsController < ApplicationController
 
   def new
     @supporter = Supporter.find(params[:supporter_id])
+    @current_controller = "donation"
     if @supporter
       @donation = @supporter.donations.build
       @payment = @donation.payments.build

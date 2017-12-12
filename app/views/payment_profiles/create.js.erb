@@ -14,12 +14,13 @@
   // cause the flash div to be shown
   $("#flash-ajax").collapse("show");
 
+
   <% if @cim_profile.success  %>
 
     // prepend the new profile item to the select
     var profileId = <%= @payment_profile.id %>;
     var profileDescription = "<%= @payment_profile.short_version %>";
-    $("#donation_payment_profile_id").prepend(
+    $("#{@current_controller}_payment_profile_id").prepend(
         $('<option></option>').val(profileId).html(profileDescription)
     );
   <% end %>
