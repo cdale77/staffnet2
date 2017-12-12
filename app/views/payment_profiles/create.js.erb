@@ -20,10 +20,11 @@
     // prepend the new profile item to the select
     var profileId = <%= @payment_profile.id %>;
     var profileDescription = "<%= @payment_profile.short_version %>";
-    $("#<%= @current_controller %>_payment_profile_id").prepend(
+    $("<%= @current_controller %>_payment_profile_id").prepend(
         $('<option></option>').val(profileId).html(profileDescription)
     );
   <% end %>
+
 
   // re-display the new payment profile button
   $("#btn-new-payment-profile").show();
