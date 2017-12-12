@@ -5,7 +5,6 @@ class PaymentsController < ApplicationController
 
   def new
     @donation = Donation.find(params[:donation_id])
-    @current_controller = "payment"
     if @donation
       @supporter = @donation.supporter
       @payment = @donation.payments.build
@@ -21,6 +20,7 @@ class PaymentsController < ApplicationController
   end
 
   def create
+    @current_controller = "payment"
     @donation = Donation.find(params[:donation_id])
     if @donation
       @payment = @donation.payments.build(payment_params)
