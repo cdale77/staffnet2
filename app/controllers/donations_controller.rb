@@ -5,6 +5,7 @@ class DonationsController < ApplicationController
 
   def new
     @supporter = Supporter.find(params[:supporter_id])
+    session[:current_controller] = "#donation"
     if @supporter
       @donation = @supporter.donations.build
       @payment = @donation.payments.build
@@ -20,6 +21,7 @@ class DonationsController < ApplicationController
   def create
     new_donation_params = donation_params
     new_donation_params.delete(:payment_profile_id)
+    session[:current_controller] = "#donation"
     @supporter = Supporter.find(params[:supporter_id])
     if @supporter
       @donation = @supporter.donations.build(new_donation_params)

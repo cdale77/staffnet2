@@ -9,6 +9,7 @@ class PaymentProfilesController < ApplicationController
   def new
     @supporter = Supporter.find(params[:supporter_id])
     @payment_profile = @supporter.payment_profiles.build
+    @current_controller = session[:current_controller]
     authorize @payment_profile
     respond_to do |format|
       format.js
@@ -19,6 +20,7 @@ class PaymentProfilesController < ApplicationController
     @supporter = Supporter.find(params[:supporter_id])
     @payment_profile = @supporter.payment_profiles.build(payment_profile_params)
     authorize @payment_profile
+    @current_controller = session[:current_controller]
     @cim_profile = Cim::PaymentProfile.new(@supporter,
                                            params[:payment_profile][:cc_number],
                                            params[:payment_profile][:cc_month],
@@ -30,7 +32,6 @@ class PaymentProfilesController < ApplicationController
     respond_to do |format|
       format.js
     end
-
   end
 
 
