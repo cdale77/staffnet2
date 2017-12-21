@@ -5,7 +5,7 @@
                 collection: Employee.active,
                 label_method: :full_name,
                 value_method: :id,
-                selected: shift.employee_id %>
+                selected: current_user.employee_id %>
   </div>
   <div class="col-md-2">
     <%= f.input :date, as: :string, input_html: { type: "date" } %>

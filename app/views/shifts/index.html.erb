@@ -3,6 +3,12 @@
 <% cache "ransack-form-v1-#{params[:q]}" do %>
   <%= render "shared/index/search_fields", search: @search %>
 <% end %>
+<% if admin_user? %>
+<div class="pull-right">
+<%= link_to "Export XLS", shifts_path({:format => :xls }.merge(params)), :class => "btn btn-info" %>
+<p>
+</div>
+<% end %>
 <% cache ["v1-#{params[:employee_id]}-#{params[:page]}-#{params[:q]}", cache_key_for_shifts] do %>
   <table class="table table-hover">
     <tr>

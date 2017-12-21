@@ -52,6 +52,13 @@ class ShiftsController < ApplicationController
     end
 
     @shift_presenters = ShiftPresenter.wrap(shifts).paginate(page: params[:page])
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data shifts.to_csv }
+      format.xls { send_data shifts.to_csv(col_sep: "\t") }
+    end
+
     authorize shifts
   end
 

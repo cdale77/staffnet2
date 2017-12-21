@@ -15,4 +15,16 @@
                   selected: user.role %>
     </div>
   </div>
+<% if admin_user? %>
+  <div class="col-md-3">
+    <div class="select">
+      <%= f.input :employee_id,
+                  as: :select,
+                  collection: Employee.active,
+                  label_method: :full_name,
+                  value: :id,
+                  selected: user.employee_id %>
+    </div>
+  </div>
+  <% end %>
 </div>
