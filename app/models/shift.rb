@@ -82,6 +82,10 @@ class Shift < ActiveRecord::Base
 
 
   ## INSTANCE METHODS
+  def last_two_weeks
+    self.where("created_at > ? ", 3.weeks.ago)
+  end
+
   def field_manager
     if self.field_manager_employee_id.present?
       Employee.find(self.field_manager_employee_id)

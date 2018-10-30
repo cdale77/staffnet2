@@ -71,7 +71,7 @@ class DonationsController < ApplicationController
   def edit
     @donation = Donation.find(params[:id])
     @supporter = @donation.supporter
-    @shifts = Shift.all
+    @shifts = Shift.last_two_weeks
     authorize @donation
   end
 
