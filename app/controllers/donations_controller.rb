@@ -109,6 +109,7 @@ class DonationsController < ApplicationController
                                         :notes,
                                         :sustainer_type,
                                         :shift_id,
-                                        :payment_profile_id)
+                                        :payment_profile_id,
+                                        :evolve_ed_fund)
     end
 end
