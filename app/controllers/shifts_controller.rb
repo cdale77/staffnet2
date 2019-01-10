@@ -46,7 +46,7 @@ class ShiftsController < ApplicationController
       end
 
     elsif current_user.role?(:admin)
-      shifts = query ? @search.result : Shift.all.limit(100)
+      shifts = query ? @search.result : Shift.all.limit(600)
     else
       shifts = Shift.none
     end

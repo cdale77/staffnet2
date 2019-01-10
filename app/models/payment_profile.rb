@@ -38,12 +38,13 @@ class PaymentProfile < ActiveRecord::Base
   validates :payment_profile_type, presence: { message: "required" }
 
   def short_version
+    profile_id = self.cim_payment_profile_id[-5..-1] || ""
     profile_type = self.payment_profile_type || ""
     cc_type = self.cc_type || ""
     cc_last_4 = self.cc_last_4 || ""
     cc_year = self.cc_year || ""
     
-    "#{profile_type.humanize} - #{cc_type.humanize} \
+    "ID: x#{profile_id} #{profile_type.humanize} - #{cc_type.humanize} \
       x#{cc_last_4} #{self.cc_month}/#{cc_year}"
   end
 

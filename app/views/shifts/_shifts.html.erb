@@ -1,5 +1,5 @@
 <% shift_presenters.each do |shift_presenter| %>
-  <% cache ["v1", shift_presenter.model] do %>
+  <% cache ["v2", shift_presenter.model] do %>
     <tr>
       <td><%= shift_presenter.employee_name %></td>
       <td><%= shift_presenter.formatted_date %></td>
