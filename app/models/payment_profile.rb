@@ -38,7 +38,7 @@ class PaymentProfile < ActiveRecord::Base
   validates :payment_profile_type, presence: { message: "required" }
 
   def short_version
-    profile_id = self.cim_payment_profile_id[-5..-1] || ""
+    profile_id = self.cim_payment_profile_id[-5..-1] if self.cim_payment_profile_id.present?
     profile_type = self.payment_profile_type || ""
     cc_type = self.cc_type || ""
     cc_last_4 = self.cc_last_4 || ""
